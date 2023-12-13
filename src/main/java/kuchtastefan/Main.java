@@ -1,62 +1,108 @@
 package kuchtastefan;
 
 import java.util.Map;
-import java.util.Scanner;
 
 public class Main {
 
-    private final static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("Enter your name: ");
-        final String name = scanner.nextLine();
+        final String name = InputUtils.readString();
         final Hero hero = new Hero(name);
         System.out.println("Hello " + hero.getName() + ". Let's start the game!");
 
-        while (hero.getUnspentPoints() > 0) {
-            System.out.println("\nYour abilities: ");
-            for(Map.Entry<Ability,Integer> entry: hero.getAbilities().entrySet()) {
-                System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
-            }
-            printAbilitiesToUpgrade(hero.getUnspentPoints());
-            setAbilityToUpgrade(scanner.nextInt(), hero);
+        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
+            System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
         }
+        System.out.println();
+        spendHeroAvailablePoints(hero);
     }
 
-    private static void printAbilitiesToUpgrade(int unspentPoints) {
-        System.out.println("Choose ability to upgrade:");
-        System.out.println("You have " + unspentPoints + " to spend.");
-        System.out.println("0. Explain abilities\n1. Attack\n2. Defence\n3. Dexterity\n4. Skill\n5. Luck\n6. Health");
-    }
+    public static void spendHeroAvailablePoints(Hero hero) {
+        int availablePoints = hero.getHeroAvailablePoints();
 
-    private static void setAbilityToUpgrade(int numberOfAbility, Hero hero) {
-        switch (numberOfAbility) {
-            case 0 -> {
-                explainAbilities(hero);
-            }
-            case 1 -> setNewAbilitiesPoints(Ability.ATTACK, hero);
-            case 2 -> setNewAbilitiesPoints(Ability.DEFENCE, hero);
-            case 3 -> setNewAbilitiesPoints(Ability.DEXTERITY, hero);
-            case 4 -> setNewAbilitiesPoints(Ability.SKILL, hero);
-            case 5 -> setNewAbilitiesPoints(Ability.LUCK, hero);
-            case 6 -> setNewAbilitiesPoints(Ability.HEALTH, hero);
-
-
-
+        if (availablePoints == 0) {
+            System.out.println("You have no points to spend");
+            return;
         }
-    }
 
-    private static void setNewAbilitiesPoints(Ability ability, Hero hero) {
-        hero.getAbilities().put(ability, hero.getAbilities().get(ability) + 1);
-        hero.setUnspentPoints(hero.getUnspentPoints() - 1);
-    }
+        while (availablePoints > 0) {
+            System.out.println("You have " + availablePoints + " point to spend. Choose wisely.");
+            System.out.println("0. Explain abilities\n1. Attack\n2. Defence\n3. Dexterity\n4. Skill\n5. Luck\n6. Health");
 
-    private static void explainAbilities(Hero hero) {
+            final int abilityIndex = InputUtils.readInt();
+            Ability ability;
+            switch (abilityIndex) {
+                case 0 -> {
+                    for (Ability a : Ability.values()) {
+                        System.out.println(a + ": " + a.getDescription());
+                    }
+                    System.out.println();
+                    continue;
+                }
+                case 1 -> ability = Ability.ATTACK;
+                case 2 -> ability = Ability.DEFENCE;
+                case 3 -> ability = Ability.DEXTERITY;
+                case 4 -> ability = Ability.SKILL;
+                case 5 -> ability = Ability.LUCK;
+                case 6 -> ability = Ability.HEALTH;
+                default -> {
+                    System.out.println("Invalid index");
+                    continue;
+                }
+            }
+            System.out.println();
+            hero.updateAbility(ability, 1);
+            System.out.println("You have upgrade " + ability);
+            hero.updateAvailablePoints(-1);
+
+            if (availablePoints > 1) {
+                for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
+                    System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
+                }
+            }
+
+            availablePoints--;
+        }
+
+        System.out.println("You have spent all your available points. Your abilities are: ");
         for(Map.Entry<Ability,Integer> entry: hero.getAbilities().entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getKey().getDescription());
+            System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
         }
         System.out.println();
     }
+
+
+//
+//    private static void printAbilitiesToUpgrade(int unspentPoints) {
+//        System.out.println("Choose ability to upgrade:");
+//        System.out.println("You have " + unspentPoints + " to spend.");
+//        System.out.println("0. Explain abilities\n1. Attack\n2. Defence\n3. Dexterity\n4. Skill\n5. Luck\n6. Health");
+//    }
+//
+//    private static void setAbilityToUpgrade(int numberOfAbility, Hero hero) {
+//        switch (numberOfAbility) {
+//            case 0 -> explainAbilities(hero);
+//            case 1 -> setAbilityPoint(Ability.ATTACK, hero);
+//            case 2 -> setAbilityPoint(Ability.DEFENCE, hero);
+//            case 3 -> setAbilityPoint(Ability.DEXTERITY, hero);
+//            case 4 -> setAbilityPoint(Ability.SKILL, hero);
+//            case 5 -> setAbilityPoint(Ability.LUCK, hero);
+//            case 6 -> setAbilityPoint(Ability.HEALTH, hero);
+//        }
+//    }
+//
+//    private static void setAbilityPoint(Ability ability, Hero hero) {
+//        hero.getAbilities().put(ability, hero.getAbilities().get(ability) + 1);
+//        hero.setUnspentAbilityPoints(hero.getUnspentAbilityPoints() - 1);
+//    }
+//
+//    private static void explainAbilities(Hero hero) {
+//        for(Map.Entry<Ability,Integer> entry: hero.getAbilities().entrySet()) {
+//            System.out.println(entry.getKey() + ": " + entry.getKey().getDescription());
+//        }
+//        System.out.println();
+//    }
 }

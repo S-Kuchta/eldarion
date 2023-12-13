@@ -73,36 +73,4 @@ public class Main {
         }
         System.out.println();
     }
-
-
-//
-//    private static void printAbilitiesToUpgrade(int unspentPoints) {
-//        System.out.println("Choose ability to upgrade:");
-//        System.out.println("You have " + unspentPoints + " to spend.");
-//        System.out.println("0. Explain abilities\n1. Attack\n2. Defence\n3. Dexterity\n4. Skill\n5. Luck\n6. Health");
-//    }
-//
-//    private static void setAbilityToUpgrade(int numberOfAbility, Hero hero) {
-//        switch (numberOfAbility) {
-//            case 0 -> explainAbilities(hero);
-//            case 1 -> setAbilityPoint(Ability.ATTACK, hero);
-//            case 2 -> setAbilityPoint(Ability.DEFENCE, hero);
-//            case 3 -> setAbilityPoint(Ability.DEXTERITY, hero);
-//            case 4 -> setAbilityPoint(Ability.SKILL, hero);
-//            case 5 -> setAbilityPoint(Ability.LUCK, hero);
-//            case 6 -> setAbilityPoint(Ability.HEALTH, hero);
-//        }
-//    }
-//
-//    private static void setAbilityPoint(Ability ability, Hero hero) {
-//        hero.getAbilities().put(ability, hero.getAbilities().get(ability) + 1);
-//        hero.setUnspentAbilityPoints(hero.getUnspentAbilityPoints() - 1);
-//    }
-//
-//    private static void explainAbilities(Hero hero) {
-//        for(Map.Entry<Ability,Integer> entry: hero.getAbilities().entrySet()) {
-//            System.out.println(entry.getKey() + ": " + entry.getKey().getDescription());
-//        }
-//        System.out.println();
-//    }
 }

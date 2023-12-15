@@ -4,8 +4,6 @@ import kuchtastefan.domain.Hero;
 import kuchtastefan.utility.InputUtils;
 import kuchtastefan.utility.PrintUtils;
 
-import java.util.Map;
-
 public class HeroAbilityManager {
     private final Hero hero;
 

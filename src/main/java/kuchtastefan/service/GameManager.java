@@ -1,12 +1,9 @@
 package kuchtastefan.service;
 
-import kuchtastefan.ability.Ability;
 import kuchtastefan.ability.HeroAbilityManager;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.utility.InputUtils;
 import kuchtastefan.utility.PrintUtils;
-
-import java.util.Map;
 
 public class GameManager {
     private final Hero hero;

@@ -22,15 +22,15 @@ public class Hero {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 1,
                 Ability.DEFENCE, 1,
-                Ability.DEXTERITY,1,
-                Ability.SKILL,1,
-                Ability.LUCK,1,
+                Ability.DEXTERITY, 1,
+                Ability.SKILL, 1,
+                Ability.LUCK, 1,
                 Ability.HEALTH, 50
         ));
     }
 
     public void updateAbility(Ability ability, int delta) {
-        if(ability.equals(Ability.HEALTH)) {
+        if (ability.equals(Ability.HEALTH)) {
             this.abilities.put(ability, this.abilities.get(ability) + delta * Constant.HEALTH_OF_ONE_POINT);
         } else {
             this.abilities.put(ability, this.abilities.get(ability) + delta);

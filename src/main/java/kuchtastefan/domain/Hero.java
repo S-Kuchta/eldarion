@@ -1,4 +1,7 @@
-package kuchtastefan;
+package kuchtastefan.domain;
+
+import kuchtastefan.ability.Ability;
+import kuchtastefan.constant.Constant;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +15,7 @@ public class Hero {
     public Hero(String name) {
         this.name = name;
         this.abilities = this.getInitialAbilities();
-        this.heroAvailablePoints = 7;
+        this.heroAvailablePoints = Constant.INITIAL_ABILITY_POINTS;
     }
 
     private Map<Ability, Integer> getInitialAbilities() {
@@ -28,7 +31,7 @@ public class Hero {
 
     public void updateAbility(Ability ability, int delta) {
         if(ability.equals(Ability.HEALTH)) {
-            this.abilities.put(ability, this.abilities.get(ability) + delta * 5);
+            this.abilities.put(ability, this.abilities.get(ability) + delta * Constant.HEALTH_OF_ONE_POINT);
         } else {
             this.abilities.put(ability, this.abilities.get(ability) + delta);
         }
@@ -52,5 +55,9 @@ public class Hero {
 
     public void setHeroAvailablePoints(int heroAvailablePoints) {
         this.heroAvailablePoints = heroAvailablePoints;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

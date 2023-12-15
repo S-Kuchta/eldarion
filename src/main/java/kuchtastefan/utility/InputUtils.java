@@ -1,4 +1,4 @@
-package kuchtastefan;
+package kuchtastefan.utility;
 
 import java.util.Scanner;
 

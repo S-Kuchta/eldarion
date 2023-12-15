@@ -1,6 +1,7 @@
 package kuchtastefan.service;
 
 import kuchtastefan.ability.HeroAbilityManager;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.utility.InputUtils;
 import kuchtastefan.utility.PrintUtils;
@@ -8,13 +9,54 @@ import kuchtastefan.utility.PrintUtils;
 public class GameManager {
     private final Hero hero;
     private final HeroAbilityManager heroAbilityManager;
+    private int currentLevel;
 
     public GameManager() {
         this.hero = new Hero("");
         this.heroAbilityManager = new HeroAbilityManager(hero);
+        this.currentLevel = Constant.INITIAL_LEVEL;
     }
 
     public void startGame() {
+        initGame();
+
+        while (this.currentLevel <= 5) {
+            System.out.println("0. Fight " + "level " + this.currentLevel);
+            System.out.println("1. Upgrade abilities (" + hero.getHeroAvailablePoints() + " points to spend.");
+            System.out.println("2. Save game");
+            System.out.println("3. Exit game");
+
+            final int choice = InputUtils.readInt();
+            switch (choice) {
+                case 0 -> {
+                    // TODO FIGHT
+                    this.currentLevel += 1;
+                }
+                case 1 -> {
+                    // TODO UPGRADE ABILITIES
+                }
+                case 2-> {
+                    // TODO save game
+                }
+                case 3 -> {
+                    System.out.println("Are you sure?");
+                    System.out.println("0. No");
+                    System.out.println("1. Yes");
+                    final int exitChoice = InputUtils.readInt();
+                    if(exitChoice == 1) {
+                        System.out.println("Bye");
+                        return;
+                    }
+                    System.out.println("Continuing...");
+                }
+                default -> System.out.println("Invalid choice.");
+            }
+        }
+
+        System.out.println("You have won the game! Congratulations!");
+    }
+
+    private void initGame() {
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("Enter your name: ");
         final String name = InputUtils.readString();

@@ -7,12 +7,12 @@ public class Hero {
 
     private String name;
     private Map<Ability, Integer> abilities;
-    private int unspentPoints;
+    private int unspentAbilityPoints;
 
     public Hero(String name) {
         this.name = name;
         this.abilities = this.getInitialAbilities();
-        this.unspentPoints = 7;
+        this.unspentAbilityPoints = 7;
     }
 
     private Map<Ability, Integer> getInitialAbilities() {
@@ -26,6 +26,21 @@ public class Hero {
         ));
     }
 
+    public void setNewAbilitiesPoints(Ability ability, int numberOfPoints) {
+        if (ability.equals(Ability.HEALTH)) {
+            this.abilities.put(ability, this.abilities.get(ability) + numberOfPoints * 5);
+        } else {
+            this.abilities.put(ability, this.abilities.get(ability) + numberOfPoints);
+        }
+        this.unspentAbilityPoints -= numberOfPoints;
+    }
+
+    public void printCurrentAbilitiPoints() {
+        for (Map.Entry<Ability, Integer> entry : this.abilities.entrySet()) {
+            System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
+        }
+    }
+
     public String getName() {
         return name;
     }
@@ -34,11 +49,7 @@ public class Hero {
         return abilities;
     }
 
-    public int getUnspentPoints() {
-        return unspentPoints;
-    }
-
-    public void setUnspentPoints(int unspentPoints) {
-        this.unspentPoints = unspentPoints;
+    public int getUnspentAbilityPoints() {
+        return unspentAbilityPoints;
     }
 }

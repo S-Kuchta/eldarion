@@ -10,19 +10,19 @@ public class Main {
         final Hero hero = new Hero(name);
         System.out.println("Hello " + hero.getName() + ". Let's start the game!");
 
-        spentAbilityPoints(hero);
+        spendAbilityPoints(hero);
     }
 
-    private static void spentAbilityPoints(Hero hero) {
+    private static void spendAbilityPoints(Hero hero) {
         while (hero.getUnspentAbilityPoints() > 0) {
             System.out.println("\nYour abilities: ");
-            hero.printCurrentAbilitiPoints();
+            hero.printCurrentAbilityPoints();
             printPossibleAbilitiesToUpgrade(hero.getUnspentAbilityPoints());
             setAbilityToUpgrade(ScannerUtil.intScanner(), hero);
         }
 
         System.out.println("You have spent all your available points. You abilities are: ");
-        hero.printCurrentAbilitiPoints();
+        hero.printCurrentAbilityPoints();
     }
 
     private static void printPossibleAbilitiesToUpgrade(int unspentPoints) {

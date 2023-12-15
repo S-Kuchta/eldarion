@@ -18,6 +18,7 @@ public class ScannerUtil {
                 return scanner;
             } catch (Exception e) {
                 System.out.println("Enter valid input(number).");
+                SCANNER.nextLine();
             }
         }
     }

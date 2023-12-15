@@ -35,7 +35,7 @@ public class Hero {
         this.unspentAbilityPoints -= numberOfPoints;
     }
 
-    public void printCurrentAbilitiPoints() {
+    public void printCurrentAbilityPoints() {
         for (Map.Entry<Ability, Integer> entry : this.abilities.entrySet()) {
             System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
         }

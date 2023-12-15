@@ -29,20 +29,28 @@ public class Hero {
         ));
     }
 
-    public void setNewAbilitiesPoints(Ability ability, int numberOfPoints) {
+    public void setNewAbilitiesPoints(Ability ability, int pointsToChange, int heroAvailablePointsChange) {
+        int minimumPoints = 1;
         if (ability.equals(Ability.HEALTH)) {
-            this.abilities.put(ability, this.abilities.get(ability) + numberOfPoints * Constant.HEALTH_OF_ONE_POINT);
-        } else {
-            this.abilities.put(ability, this.abilities.get(ability) + numberOfPoints);
+            minimumPoints = 50;
         }
 
-        updateAbilityPoints(-1);
+//        int tempAbilityPoints = this.abilities.get(ability) + pointsToChange;
+        if ((this.abilities.get(ability) + pointsToChange) < minimumPoints) {
+            System.out.println("You don't have enough points!");
+        } else {
+            if (ability.equals(Ability.HEALTH)) {
+                this.abilities.put(ability, this.abilities.get(ability) + pointsToChange * Constant.HEALTH_OF_ONE_POINT);
+            } else {
+                this.abilities.put(ability, this.abilities.get(ability) + pointsToChange);
+            }
+            updateAbilityPoints(heroAvailablePointsChange);
+        }
     }
 
     public void updateAbilityPoints(int numberOfPoints) {
         this.unspentAbilityPoints += numberOfPoints;
     }
-
 
     public String getName() {
         return name;

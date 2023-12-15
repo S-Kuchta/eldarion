@@ -23,7 +23,7 @@ public class GameManager {
 
         while (this.currentLevel <= 5) {
             System.out.println("0. Fight " + "level " + this.currentLevel);
-            System.out.println("1. Upgrade abilities (" + hero.getUnspentAbilityPoints() + " points to spend.");
+            System.out.println("1. Upgrade abilities (" + hero.getUnspentAbilityPoints() + " points to spend)");
             System.out.println("2. Save game");
             System.out.println("3. Exit game");
 
@@ -34,9 +34,17 @@ public class GameManager {
                     this.currentLevel += 1;
                 }
                 case 1 -> {
-                    // TODO UPGRADE ABILITIES
+                    System.out.println("0. Go Back");
+                    System.out.println("1. Spend points (" + hero.getUnspentAbilityPoints() + " points left)");
+                    System.out.println("2. Remove points");
+                    final int upgradeChoice = InputUtil.intScanner();
+                    if (upgradeChoice == 1) {
+                        this.heroAbilityManager.spendAbilityPoints();
+                    } else if (upgradeChoice == 2) {
+                        this.heroAbilityManager.removeAbilityPoints();
+                    }
                 }
-                case 2-> {
+                case 2 -> {
                     // TODO save game
                 }
                 case 3 -> {
@@ -44,7 +52,7 @@ public class GameManager {
                     System.out.println("0. No");
                     System.out.println("1. Yes");
                     final int exitChoice = InputUtil.intScanner();
-                    if(exitChoice == 1) {
+                    if (exitChoice == 1) {
                         System.out.println("Bye");
                         return;
                     }

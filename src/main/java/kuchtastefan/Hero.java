@@ -32,7 +32,12 @@ public class Hero {
         } else {
             this.abilities.put(ability, this.abilities.get(ability) + numberOfPoints);
         }
-        this.unspentAbilityPoints -= numberOfPoints;
+
+        updateAbilityPoints(-1);
+    }
+
+    public void updateAbilityPoints(int numberOfPoints) {
+        this.unspentAbilityPoints += numberOfPoints;
     }
 
     public void printCurrentAbilityPoints() {

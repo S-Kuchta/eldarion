@@ -35,15 +35,19 @@ public class Hero {
             minimumPoints = 50;
         }
 
-//        int tempAbilityPoints = this.abilities.get(ability) + pointsToChange;
-        if ((this.abilities.get(ability) + pointsToChange) < minimumPoints) {
+        int tempAbilityPoints = this.abilities.get(ability) + pointsToChange;
+        if (tempAbilityPoints < minimumPoints) {
             System.out.println("You don't have enough points!");
         } else {
+            if(tempAbilityPoints < this.abilities.get(ability)) {
+                System.out.println("You have removed 1 point from " + ability.name());
+            }
             if (ability.equals(Ability.HEALTH)) {
                 this.abilities.put(ability, this.abilities.get(ability) + pointsToChange * Constant.HEALTH_OF_ONE_POINT);
             } else {
                 this.abilities.put(ability, this.abilities.get(ability) + pointsToChange);
             }
+
             updateAbilityPoints(heroAvailablePointsChange);
         }
     }

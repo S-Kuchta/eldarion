@@ -12,10 +12,11 @@ public class PrintUtil {
             System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
         }
         System.out.println();
+        printDivider();
     }
 
     public static void printDivider() {
-        System.out.println("-------------------------------------------");
+        System.out.println("----------------------------------------------");
     }
 
 }

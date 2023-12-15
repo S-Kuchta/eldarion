@@ -1,8 +1,8 @@
-package kuchtastefan;
+package kuchtastefan.utility;
 
 import java.util.Scanner;
 
-public class ScannerUtil {
+public class InputUtil {
 
     private final static Scanner SCANNER = new Scanner(System.in);
 
@@ -11,7 +11,7 @@ public class ScannerUtil {
     }
 
     public static int intScanner() {
-        while(true) {
+        while (true) {
             try {
                 int scanner = SCANNER.nextInt();
                 SCANNER.nextLine();

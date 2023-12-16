@@ -54,15 +54,20 @@ public class FileService {
         return saveGame.toString();
     }
 
-    public int loadGame(Hero hero) {
-        Set<String> listOfSavedGames = Objects.requireNonNull(returnFileList());
-        List<String> convertedListOfSavedGames = new ArrayList<>(listOfSavedGames);
+    private void printSavedGames(Set<String> listOfSavedGames) {
         int index = 0;
         for (String savedGame : listOfSavedGames) {
             String[] splitSavedGame = savedGame.split("\\.");
             System.out.println(index + ". " + splitSavedGame[0]);
             index++;
         }
+    }
+
+    public int loadGame(Hero hero) {
+        Set<String> listOfSavedGames = Objects.requireNonNull(returnFileList());
+        List<String> convertedListOfSavedGames = new ArrayList<>(listOfSavedGames);
+
+        printSavedGames(listOfSavedGames);
 
         String selectedSavedGame;
         while (true) {

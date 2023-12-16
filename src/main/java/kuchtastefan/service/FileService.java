@@ -2,50 +2,94 @@ package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.utility.InputUtil;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
-import java.util.Map;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FileService {
 
-    private final Hero hero;
+    public void saveGame(Hero hero, int currentLevel) {
+        while (true) {
+            System.out.println("How do you want to name your save?");
+            final String name = InputUtil.stringScanner();
 
-    public FileService(Hero hero) {
-        this.hero = hero;
+            final String path = "saved-games/" + name + ".txt";
+
+            if (new File(path).exists()) {
+                System.out.println("Game with this name is already saved");
+                continue;
+            }
+
+            try {
+                Files.writeString(Path.of(path), generateSaveFileName(hero, currentLevel));
+                System.out.println("Game saved");
+            } catch (IOException e) {
+                System.out.println("Error while saving game");
+                continue;
+            } catch (InvalidPathException e) {
+                System.out.println("Invalid characters in file name");
+                continue;
+            }
+
+            break;
+        }
     }
 
-    public void saveGame(int currentLevel) {
-        try {
-            Files.writeString(Path.of(generateFileName().toString()), generateSaveFile(currentLevel));
+    private String generateSaveFileName(Hero hero, int currentLevel) {
+        StringBuilder saveGame = new StringBuilder();
+        saveGame.append(currentLevel).append(System.lineSeparator());
+        saveGame.append(hero.getName()).append(System.lineSeparator());
+        saveGame.append(hero.getUnspentAbilityPoints()).append(System.lineSeparator());
+        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
+            saveGame.append(entry.getKey()).append(":").append(entry.getValue()).append(System.lineSeparator());
+        }
+        return saveGame.toString();
+    }
+
+    public void loadGame() {
+//        File file = new File()
+
+        Set<String> listOfSavedGames = Objects.requireNonNull(listFilesUsingFilesList());
+        List<String> convertedListOfSavedGames = new ArrayList<>(listOfSavedGames);
+        int index = 0;
+        for (String savedGame : listOfSavedGames) {
+            System.out.println(index + ". " + savedGame);
+            index++;
+        }
+
+        String selectedSavedGame;
+        while (true) {
+            try {
+                int loadGameChoice = InputUtil.intScanner();
+                selectedSavedGame = convertedListOfSavedGames.get(loadGameChoice);
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Enter valid number");
+            }
+        }
+
+        System.out.println(selectedSavedGame);
+
+    }
+
+    private Set<String> listFilesUsingFilesList() {
+        try (Stream<Path> stream = Files.list(Paths.get("saved-games"))) {
+            return stream
+                    .filter(file -> !Files.isDirectory(file))
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .collect(Collectors.toSet());
         } catch (IOException e) {
             System.out.println(e.getMessage());
+            return null;
         }
-    }
-
-    private StringBuilder generateFileName() {
-        StringBuilder fileName = new StringBuilder();
-        fileName.append("saved-games/");
-        fileName.append(this.hero.getName());
-        fileName.append(".txt");
-        return fileName;
-    }
-
-    private StringBuilder generateSaveFile(int currentLevel) {
-        StringBuilder saveGame = new StringBuilder();
-        saveGame.append(currentLevel);
-        saveGame.append(System.lineSeparator());
-        saveGame.append(this.hero.getName());
-        saveGame.append(System.lineSeparator());
-        saveGame.append(this.hero.getUnspentAbilityPoints());
-        saveGame.append(System.lineSeparator());
-        for (Map.Entry<Ability, Integer> entry : this.hero.getAbilities().entrySet()) {
-            saveGame.append(entry.getKey());
-            saveGame.append(":");
-            saveGame.append(entry.getValue());
-            saveGame.append(System.lineSeparator());
-        }
-        return saveGame;
     }
 }

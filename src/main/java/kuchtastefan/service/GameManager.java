@@ -16,12 +16,12 @@ public class GameManager {
         this.hero = new Hero("");
         this.heroAbilityManager = new HeroAbilityManager(hero);
         this.currentLevel = Constant.INITIAL_LEVEL;
-        this.fileService = new FileService(hero);
+        this.fileService = new FileService();
     }
 
     public void startGame() {
-        initGame();
-        heroAbilityManager.spendAbilityPoints();
+
+        startNewGameOrLoadExisting();
 
         while (this.currentLevel <= 5) {
             System.out.println("0. Fight " + "level " + this.currentLevel);
@@ -47,8 +47,7 @@ public class GameManager {
                     }
                 }
                 case 2 -> {
-                    System.out.println("Game saving.");
-                    fileService.saveGame(this.currentLevel);
+                    fileService.saveGame(hero, this.currentLevel);
                 }
                 case 3 -> {
                     System.out.println("Are you sure?");
@@ -71,8 +70,30 @@ public class GameManager {
         System.out.println("You have won the game! Congratulations!");
     }
 
+    private void startNewGameOrLoadExisting() {
+        while (true) {
+            System.out.println("0. Start new game");
+            System.out.println("1. Load game");
+            int choiceNewOrLoadGame = InputUtil.intScanner();
+            switch (choiceNewOrLoadGame) {
+                case 0 -> {
+                    initGame();
+                }
+                case 1 -> {
+                    // TODO
+                    fileService.loadGame();
+                }
+                default -> {
+                    System.out.println("Enter valid input");
+                }
+            }
+            break;
+        }
+    }
+
     private void initGame() {
         System.out.println("Welcome to the Gladiatus game!");
+
         System.out.println("Enter your name: ");
         final String name = InputUtil.stringScanner();
         PrintUtil.printDivider();
@@ -81,5 +102,7 @@ public class GameManager {
         this.hero.setName(name);
         System.out.println("Hello " + hero.getName() + ". Let's start the game!");
         PrintUtil.printDivider();
+
+        heroAbilityManager.spendAbilityPoints();
     }
 }

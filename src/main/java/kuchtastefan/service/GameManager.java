@@ -10,11 +10,13 @@ public class GameManager {
     private final Hero hero;
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
+    private final FileService fileService;
 
     public GameManager() {
         this.hero = new Hero("");
         this.heroAbilityManager = new HeroAbilityManager(hero);
         this.currentLevel = Constant.INITIAL_LEVEL;
+        this.fileService = new FileService();
     }
 
     public void startGame() {
@@ -37,6 +39,7 @@ public class GameManager {
                 }
                 case 2-> {
                     // TODO save game
+                    this.fileService.saveGame(hero, this.currentLevel);
                 }
                 case 3 -> {
                     System.out.println("Are you sure?");

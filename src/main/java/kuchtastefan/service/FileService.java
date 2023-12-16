@@ -54,14 +54,13 @@ public class FileService {
         return saveGame.toString();
     }
 
-    public void loadGame() {
-//        File file = new File()
-
-        Set<String> listOfSavedGames = Objects.requireNonNull(listFilesUsingFilesList());
+    public int loadGame(Hero hero) {
+        Set<String> listOfSavedGames = Objects.requireNonNull(returnFileList());
         List<String> convertedListOfSavedGames = new ArrayList<>(listOfSavedGames);
         int index = 0;
         for (String savedGame : listOfSavedGames) {
-            System.out.println(index + ". " + savedGame);
+            String[] splitSavedGame = savedGame.split("\\.");
+            System.out.println(index + ". " + splitSavedGame[0]);
             index++;
         }
 
@@ -69,18 +68,41 @@ public class FileService {
         while (true) {
             try {
                 int loadGameChoice = InputUtil.intScanner();
-                selectedSavedGame = convertedListOfSavedGames.get(loadGameChoice);
+                selectedSavedGame = "saved-games/" + convertedListOfSavedGames.get(loadGameChoice);
                 break;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Enter valid number");
             }
         }
 
-        System.out.println(selectedSavedGame);
+        int currentLevel = 0;
+        try {
+            File file = new File(selectedSavedGame);
+            Scanner scanner = new Scanner(file);
+            int positionIndex = 0;
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                switch (positionIndex) {
+                    case 0 -> currentLevel = Integer.parseInt(line);
+                    case 1 -> hero.setName(line);
+                    case 2 -> hero.setUnspentAbilityPoints(Integer.parseInt(line));
+                }
+                String[] parts = line.split(":");
+                if (parts.length >= 2) {
+                    hero.getAbilities().put(Ability.valueOf(parts[0]), Integer.parseInt(parts[1]));
+                }
+                positionIndex++;
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
+        System.out.println("Game loaded!");
+        return currentLevel;
     }
 
-    private Set<String> listFilesUsingFilesList() {
+
+    private Set<String> returnFileList() {
         try (Stream<Path> stream = Files.list(Paths.get("saved-games"))) {
             return stream
                     .filter(file -> !Files.isDirectory(file))

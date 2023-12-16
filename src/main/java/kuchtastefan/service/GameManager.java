@@ -76,16 +76,9 @@ public class GameManager {
             System.out.println("1. Load game");
             int choiceNewOrLoadGame = InputUtil.intScanner();
             switch (choiceNewOrLoadGame) {
-                case 0 -> {
-                    initGame();
-                }
-                case 1 -> {
-                    // TODO
-                    fileService.loadGame();
-                }
-                default -> {
-                    System.out.println("Enter valid input");
-                }
+                case 0 -> initGame();
+                case 1 -> this.currentLevel = fileService.loadGame(this.hero);
+                default -> System.out.println("Enter valid input");
             }
             break;
         }

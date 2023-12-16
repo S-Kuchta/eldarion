@@ -52,6 +52,10 @@ public class Hero {
         }
     }
 
+    public void putNewAbilityToMap(Ability ability, int value) {
+        this.abilities.put(ability, value);
+    }
+
     public void updateAbilityPoints(int numberOfPoints) {
         this.unspentAbilityPoints += numberOfPoints;
     }
@@ -70,5 +74,13 @@ public class Hero {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setAbilities(Map<Ability, Integer> abilities) {
+        this.abilities = abilities;
+    }
+
+    public void setUnspentAbilityPoints(int unspentAbilityPoints) {
+        this.unspentAbilityPoints = unspentAbilityPoints;
     }
 }

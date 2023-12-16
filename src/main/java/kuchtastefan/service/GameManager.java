@@ -10,11 +10,13 @@ public class GameManager {
     private final Hero hero;
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
+    private final FileService fileService;
 
     public GameManager() {
         this.hero = new Hero("");
         this.heroAbilityManager = new HeroAbilityManager(hero);
         this.currentLevel = Constant.INITIAL_LEVEL;
+        this.fileService = new FileService(hero);
     }
 
     public void startGame() {
@@ -23,7 +25,7 @@ public class GameManager {
 
         while (this.currentLevel <= 5) {
             System.out.println("0. Fight " + "level " + this.currentLevel);
-            System.out.println("1. Upgrade abilities (" + hero.getUnspentAbilityPoints() + " points to spend)");
+            System.out.println("1. Upgrade abilities (" + this.hero.getUnspentAbilityPoints() + " points to spend)");
             System.out.println("2. Save game");
             System.out.println("3. Exit game");
 
@@ -45,18 +47,22 @@ public class GameManager {
                     }
                 }
                 case 2 -> {
-                    // TODO save game
+                    System.out.println("Game saving.");
+                    fileService.saveGame(this.currentLevel);
                 }
                 case 3 -> {
                     System.out.println("Are you sure?");
                     System.out.println("0. No");
                     System.out.println("1. Yes");
                     final int exitChoice = InputUtil.intScanner();
+                    if (exitChoice == 0) {
+                        System.out.println("Continuing...");
+                        continue;
+                    }
                     if (exitChoice == 1) {
                         System.out.println("Bye");
                         return;
                     }
-                    System.out.println("Continuing...");
                 }
                 default -> System.out.println("Invalid choice.");
             }
@@ -72,6 +78,7 @@ public class GameManager {
         PrintUtil.printDivider();
 
         final Hero hero = new Hero(name);
+        this.hero.setName(name);
         System.out.println("Hello " + hero.getName() + ". Let's start the game!");
         PrintUtil.printDivider();
     }

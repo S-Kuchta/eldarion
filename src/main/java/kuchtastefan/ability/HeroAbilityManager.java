@@ -17,7 +17,6 @@ public class HeroAbilityManager {
             PrintUtil.printDivider();
         } else {
             while (hero.getUnspentAbilityPoints() > 0) {
-                System.out.println("\nYour abilities: ");
                 PrintUtil.printCurrentAbilityPoints(hero);
                 System.out.println("Choose ability to upgrade:");
                 System.out.println("You have " + hero.getUnspentAbilityPoints() + " to spend.");
@@ -27,6 +26,21 @@ public class HeroAbilityManager {
 
             System.out.println("You have spent all your available points. Your abilities are: ");
             PrintUtil.printCurrentAbilityPoints(hero);
+        }
+    }
+
+    public void removeAbilityPoints() {
+        while (true) {
+            PrintUtil.printCurrentAbilityPoints(hero);
+            System.out.println("Choose ability to remove:");
+            printPossibleAbilitiesToUpgrade("remove");
+            int removeAbilityInput = InputUtil.intScanner();
+            if (removeAbilityInput == 0) {
+                PrintUtil.printCurrentAbilityPoints(hero);
+                break;
+            }
+
+            setAbilityToUpgrade(removeAbilityInput, hero, -1, 1, "remove");
         }
     }
 
@@ -56,21 +70,5 @@ public class HeroAbilityManager {
         for (Ability ability : Ability.values()) {
             System.out.println(ability + ": " + ability.getDescription());
         }
-    }
-
-    public void removeAbilityPoints() {
-        while (true) {
-            PrintUtil.printCurrentAbilityPoints(hero);
-            System.out.println("Choose ability to remove:");
-            printPossibleAbilitiesToUpgrade("remove");
-            int removeAbilityInput = InputUtil.intScanner();
-            if (removeAbilityInput == 0) {
-                PrintUtil.printCurrentAbilityPoints(hero);
-                break;
-            }
-
-            setAbilityToUpgrade(removeAbilityInput, hero, -1, 1, "remove");
-        }
-
     }
 }

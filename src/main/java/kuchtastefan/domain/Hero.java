@@ -67,4 +67,8 @@ public class Hero {
     public int getUnspentAbilityPoints() {
         return unspentAbilityPoints;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

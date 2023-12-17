@@ -29,7 +29,7 @@ public class FileService {
             }
 
             try {
-                Files.writeString(Path.of(path), generateSaveFileName(hero, currentLevel));
+                Files.writeString(Path.of(path), generateSave(hero, currentLevel));
                 System.out.println("Game saved");
             } catch (IOException e) {
                 System.out.println("Error while saving game");
@@ -43,46 +43,22 @@ public class FileService {
         }
     }
 
-    private String generateSaveFileName(Hero hero, int currentLevel) {
+    private String generateSave(Hero hero, int currentLevel) {
         StringBuilder saveGame = new StringBuilder();
         saveGame.append(currentLevel).append(System.lineSeparator());
         saveGame.append(hero.getName()).append(System.lineSeparator());
         saveGame.append(hero.getUnspentAbilityPoints()).append(System.lineSeparator());
+
         for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
             saveGame.append(entry.getKey()).append(":").append(entry.getValue()).append(System.lineSeparator());
         }
         return saveGame.toString();
     }
 
-    private void printSavedGames(Set<String> listOfSavedGames) {
-        int index = 0;
-        for (String savedGame : listOfSavedGames) {
-            String[] splitSavedGame = savedGame.split("\\.");
-            System.out.println(index + ". " + splitSavedGame[0]);
-            index++;
-        }
-    }
-
     public int loadGame(Hero hero) {
-        Set<String> listOfSavedGames = Objects.requireNonNull(returnFileList());
-        List<String> convertedListOfSavedGames = new ArrayList<>(listOfSavedGames);
-
-        printSavedGames(listOfSavedGames);
-
-        String selectedSavedGame;
-        while (true) {
-            try {
-                int loadGameChoice = InputUtil.intScanner();
-                selectedSavedGame = "saved-games/" + convertedListOfSavedGames.get(loadGameChoice);
-                break;
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Enter valid number");
-            }
-        }
-
         int currentLevel = 0;
         try {
-            File file = new File(selectedSavedGame);
+            File file = new File(selectSaveGame());
             Scanner scanner = new Scanner(file);
             int positionIndex = 0;
             while (scanner.hasNextLine()) {
@@ -106,6 +82,29 @@ public class FileService {
         return currentLevel;
     }
 
+    private void printSavedGames(Set<String> listOfSavedGames) {
+        int index = 0;
+        for (String savedGame : listOfSavedGames) {
+            String[] splitSavedGame = savedGame.split("\\.");
+            System.out.println(index + ". " + splitSavedGame[0]);
+            index++;
+        }
+    }
+
+    private String selectSaveGame() {
+        Set<String> listOfSavedGames = Objects.requireNonNull(returnFileList());
+        List<String> convertedListOfSavedGames = new ArrayList<>(listOfSavedGames);
+
+        printSavedGames(listOfSavedGames);
+        while (true) {
+            try {
+                int loadGameChoice = InputUtil.intScanner();
+                return "saved-games/" + convertedListOfSavedGames.get(loadGameChoice);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Enter valid number");
+            }
+        }
+    }
 
     private Set<String> returnFileList() {
         try (Stream<Path> stream = Files.list(Paths.get("saved-games"))) {

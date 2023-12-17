@@ -18,6 +18,12 @@ public class Hero {
         this.heroAvailablePoints = Constant.INITIAL_ABILITY_POINTS;
     }
 
+    public Hero(String name, Map<Ability, Integer> abilities, int heroAvailablePoints) {
+        this.name = name;
+        this.abilities = this.getInitialAbilities();
+        this.heroAvailablePoints = Constant.INITIAL_ABILITY_POINTS;
+    }
+
     private Map<Ability, Integer> getInitialAbilities() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 1,

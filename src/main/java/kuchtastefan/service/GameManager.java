@@ -3,11 +3,12 @@ package kuchtastefan.service;
 import kuchtastefan.ability.HeroAbilityManager;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.domain.LoadedGame;
 import kuchtastefan.utility.InputUtils;
 import kuchtastefan.utility.PrintUtils;
 
 public class GameManager {
-    private final Hero hero;
+    private Hero hero;
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
     private final FileService fileService;
@@ -78,6 +79,21 @@ public class GameManager {
 
     private void initGame() {
         System.out.println("Welcome to the Gladiatus game!");
+        System.out.println("0. Start new game");
+        System.out.println("1. Load game");
+        final int choice = InputUtils.readInt();
+        switch (choice) {
+            case 0 -> System.out.println("Let's go then");
+            case 1 -> {
+                final LoadedGame loadGame = fileService.loadGame();
+                if(loadGame != null) {
+                    this.hero = loadGame.getHero();
+                    this.currentLevel = loadGame.getLevel();
+                    return;
+                }
+            }
+            default -> System.out.println("Invalid choice");
+        }
         System.out.println("Enter your name: ");
         final String name = InputUtils.readString();
         this.hero.setName(name);

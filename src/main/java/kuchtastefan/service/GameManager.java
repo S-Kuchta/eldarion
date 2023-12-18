@@ -2,29 +2,39 @@ package kuchtastefan.service;
 
 import kuchtastefan.ability.HeroAbilityManager;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.domain.LoadedGame;
+import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtils;
 import kuchtastefan.utility.PrintUtils;
+
+import java.util.Map;
 
 public class GameManager {
     private Hero hero;
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
     private final FileService fileService;
+    private final BattleService battleService;
+
+    private final Map<Integer, Enemy> enemiesByLevel;
 
     public GameManager() {
         this.hero = new Hero("");
         this.heroAbilityManager = new HeroAbilityManager(hero);
         this.currentLevel = Constant.INITIAL_LEVEL;
         this.fileService = new FileService();
+        this.enemiesByLevel = EnemyGenerator.createEnemies();
+        this.battleService = new BattleService();
     }
 
     public void startGame() {
         initGame();
 
-        while (this.currentLevel <= 5) {
-            System.out.println("0. Fight " + "level " + this.currentLevel);
+        while (this.currentLevel <= this.enemiesByLevel.size()) {
+            final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
+            System.out.println("0. Fight " + enemy.getName() + "(level " + this.currentLevel + ")");
             System.out.println("1. Upgrade abilities (" + hero.getHeroAvailablePoints() + " points to spend.");
             System.out.println("2. Save game");
             System.out.println("3. Exit game");
@@ -32,13 +42,14 @@ public class GameManager {
             final int choice = InputUtils.readInt();
             switch (choice) {
                 case 0 -> {
-                    // TODO FIGHT
-                    this.currentLevel += 1;
+                    if (this.battleService.isHeroReady(this.hero, enemy)) {
+                        this.currentLevel++;
+                    }
                 }
                 case 1 -> {
                     upgradeAbilities();
                 }
-                case 2-> {
+                case 2 -> {
                     // TODO save game
                     this.fileService.saveGame(hero, this.currentLevel);
                 }
@@ -47,7 +58,7 @@ public class GameManager {
                     System.out.println("0. No");
                     System.out.println("1. Yes");
                     final int exitChoice = InputUtils.readInt();
-                    if(exitChoice == 1) {
+                    if (exitChoice == 1) {
                         System.out.println("Bye");
                         return;
                     }
@@ -70,7 +81,8 @@ public class GameManager {
 
         final int choice = InputUtils.readInt();
         switch (choice) {
-            case 0 -> {}
+            case 0 -> {
+            }
             case 1 -> this.heroAbilityManager.spendHeroAvailablePoints();
             case 2 -> this.heroAbilityManager.removeHeroAvailablePoints();
             default -> System.out.println("Invalid choice");
@@ -86,7 +98,7 @@ public class GameManager {
             case 0 -> System.out.println("Let's go then");
             case 1 -> {
                 final LoadedGame loadGame = fileService.loadGame();
-                if(loadGame != null) {
+                if (loadGame != null) {
                     this.hero = loadGame.getHero();
                     this.currentLevel = loadGame.getLevel();
                     return;

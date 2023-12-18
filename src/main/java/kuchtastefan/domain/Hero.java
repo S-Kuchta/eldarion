@@ -6,22 +6,19 @@ import kuchtastefan.constant.Constant;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Hero {
+public class Hero extends GameCharacter {
 
-    private String name;
-    private Map<Ability, Integer> abilities;
     private int heroAvailablePoints;
 
     public Hero(String name) {
-        this.name = name;
+        super(name, new HashMap<>());
         this.abilities = this.getInitialAbilities();
         this.heroAvailablePoints = Constant.INITIAL_ABILITY_POINTS;
     }
 
     public Hero(String name, Map<Ability, Integer> abilities, int heroAvailablePoints) {
-        this.name = name;
-        this.abilities = this.getInitialAbilities();
-        this.heroAvailablePoints = Constant.INITIAL_ABILITY_POINTS;
+        super(name, abilities);
+        this.heroAvailablePoints = heroAvailablePoints;
     }
 
     private Map<Ability, Integer> getInitialAbilities() {
@@ -45,14 +42,6 @@ public class Hero {
 
     public void updateAvailablePoints(int delta) {
         this.heroAvailablePoints += delta;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Map<Ability, Integer> getAbilities() {
-        return abilities;
     }
 
     public int getHeroAvailablePoints() {

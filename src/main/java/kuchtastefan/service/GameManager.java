@@ -21,11 +21,11 @@ public class GameManager {
 
     public GameManager() {
         this.hero = new Hero("");
-        this.heroAbilityManager = new HeroAbilityManager(hero);
         this.currentLevel = Constant.INITIAL_LEVEL;
         this.fileService = new FileService();
         this.battleService = new BattleService();
         this.enemiesByLevel = EnemyGenerator.createEnemies();
+        this.heroAbilityManager = new HeroAbilityManager(hero);
     }
 
     public void startGame() {
@@ -54,7 +54,6 @@ public class GameManager {
                     System.out.println("1. Yes");
                     final int exitChoice = InputUtil.intScanner();
                     if (exitChoice == 0) {
-                        System.out.println("Continuing...");
                         continue;
                     }
                     if (exitChoice == 1) {
@@ -90,10 +89,11 @@ public class GameManager {
         switch (choice) {
             case 0 -> System.out.println("Let's go then!");
             case 1 -> {
-                final GameLoaded gameLoaded = this.fileService.loadGame();
+                final GameLoaded gameLoaded = fileService.loadGame();
                 if (gameLoaded != null) {
                     this.hero = gameLoaded.getHero();
                     this.currentLevel = gameLoaded.getLevel();
+                    this.heroAbilityManager.setHero(gameLoaded.getHero());
                     return;
                 }
             }

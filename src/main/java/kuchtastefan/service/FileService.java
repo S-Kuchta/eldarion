@@ -91,10 +91,7 @@ public class FileService {
             System.out.println(e.getMessage());
         }
 
-        return new GameLoaded(
-                currentLevel,
-                new Hero(heroName, abilities, unspentAbilityPoints)
-        );
+        return new GameLoaded(currentLevel, new Hero(heroName, abilities, unspentAbilityPoints));
     }
 
     private void printSavedGames(List<String> listOfSavedGames) {
@@ -118,7 +115,7 @@ public class FileService {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Enter valid number");
             } catch (InvalidPathException e) {
-                System.out.println("Save game is corrupted");
+                System.out.println("Save game path is invalid");
             }
         }
     }

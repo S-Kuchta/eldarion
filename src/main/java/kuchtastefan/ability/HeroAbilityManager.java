@@ -5,13 +5,18 @@ import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
 public class HeroAbilityManager {
-    private final Hero hero;
+    private Hero hero;
 
     public HeroAbilityManager(Hero hero) {
         this.hero = hero;
     }
 
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
     public void spendAbilityPoints() {
+//        this.hero = hero;
         if (this.hero.getUnspentAbilityPoints() <= 0) {
             System.out.println("You don't have any ability points to spend.");
             PrintUtil.printDivider();
@@ -30,6 +35,7 @@ public class HeroAbilityManager {
     }
 
     public void removeAbilityPoints() {
+        this.hero = hero;
         while (true) {
             PrintUtil.printCurrentAbilityPoints(this.hero);
             System.out.println("Choose ability to remove:");

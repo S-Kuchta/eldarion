@@ -57,6 +57,7 @@ public class FileService {
 
     public int loadGame(Hero hero) {
         int currentLevel = 0;
+
         try {
             File file = new File(selectSaveGame());
             Scanner scanner = new Scanner(file);
@@ -86,6 +87,10 @@ public class FileService {
 
     private void printSavedGames(Set<String> listOfSavedGames) {
         int index = 0;
+        if(listOfSavedGames.isEmpty()) {
+            System.out.println("List of saved games is empty");
+        }
+
         for (String savedGame : listOfSavedGames) {
             System.out.println(index + ". " + savedGame.replace(".txt", ""));
             index++;

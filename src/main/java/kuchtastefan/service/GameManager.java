@@ -88,7 +88,13 @@ public class GameManager {
             int choiceNewOrLoadGame = InputUtil.intScanner();
             switch (choiceNewOrLoadGame) {
                 case 0 -> initGame();
-                case 1 -> this.currentLevel = fileService.loadGame(this.hero);
+                case 1 -> {
+                    if(fileService.loadGame(this.hero) == 0) {
+                        System.out.println("som tu");
+                        continue;
+                    }
+                    this.currentLevel = fileService.loadGame(this.hero);
+                }
                 default -> System.out.println("Enter valid input");
             }
             break;

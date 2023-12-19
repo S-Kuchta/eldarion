@@ -12,21 +12,22 @@ import kuchtastefan.utility.PrintUtils;
 import java.util.Map;
 
 public class GameManager {
-    private Hero hero;
+
     private final HeroAbilityManager heroAbilityManager;
-    private int currentLevel;
+    private final Map<Integer, Enemy> enemiesByLevel;
+    private Hero hero;
     private final FileService fileService;
     private final BattleService battleService;
-
-    private final Map<Integer, Enemy> enemiesByLevel;
+    private int currentLevel;
 
     public GameManager() {
         this.hero = new Hero("");
+        this.fileService = new FileService();
+        this.battleService = new BattleService();
         this.heroAbilityManager = new HeroAbilityManager(hero);
         this.currentLevel = Constant.INITIAL_LEVEL;
-        this.fileService = new FileService();
         this.enemiesByLevel = EnemyGenerator.createEnemies();
-        this.battleService = new BattleService();
+
     }
 
     public void startGame() {
@@ -47,11 +48,11 @@ public class GameManager {
                     }
                 }
                 case 1 -> {
-                    upgradeAbilities();
+                    this.upgradeAbilities();
                 }
                 case 2 -> {
                     // TODO save game
-                    this.fileService.saveGame(hero, this.currentLevel);
+                    this.fileService.saveGame(this.hero, this.currentLevel);
                 }
                 case 3 -> {
                     System.out.println("Are you sure?");

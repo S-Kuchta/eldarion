@@ -45,24 +45,23 @@ public class HeroAbilityManager {
                 }
             }
             System.out.println();
-            hero.updateAbility(ability, 1);
+            this.hero.updateAbility(ability, 1);
             System.out.println("You have upgrade " + ability);
-            hero.updateAvailablePoints(-1);
-
-            if (availablePoints > 1) {
-                PrintUtils.printAbilities(hero);
-            }
+            this.hero.updateAvailablePoints(-1);
 
             availablePoints--;
+            if (availablePoints > 1) {
+                PrintUtils.printAbilities(this.hero);
+            }
         }
 
         System.out.println("You have spent all your available points. Your abilities are: ");
-        PrintUtils.printAbilities(hero);
+        PrintUtils.printAbilities(this.hero);
         System.out.println();
     }
 
     public void removeHeroAvailablePoints() {
-        while(true) {
+        while (true) {
             System.out.println("Which ability do you want to remove?");
             System.out.println("0. I am done\n1. Attack\n2. Defence\n3. Dexterity\n4. Skill\n5. Luck\n6. Health");
 
@@ -79,12 +78,12 @@ public class HeroAbilityManager {
                 case 5 -> ability = Ability.LUCK;
                 case 6 -> ability = Ability.HEALTH;
                 default -> {
-                    System.out.println("Invalid index");
+                    System.out.println("Invalid ability index");
                     continue;
                 }
             }
 
-            if(this.hero.getAbilities().get(ability) == 1) {
+            if (this.hero.getAbilities().get(ability) == 1) {
                 System.out.println("You cannot remove points from this ability");
             } else {
                 this.hero.updateAbility(ability, -1);
@@ -92,7 +91,6 @@ public class HeroAbilityManager {
                 System.out.println("You have removed 1 point from " + ability);
                 PrintUtils.printAbilities(this.hero);
                 PrintUtils.printDivider();
-
             }
         }
     }

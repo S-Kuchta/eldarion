@@ -6,14 +6,12 @@ import kuchtastefan.constant.Constant;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Hero {
+public class Hero extends GameCharacter {
 
-    private String name;
-    private Map<Ability, Integer> abilities;
     private int unspentAbilityPoints;
 
     public Hero(String name) {
-        this.name = name;
+        super(name, new HashMap<>());
         this.abilities = this.getInitialAbilities();
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
     }
@@ -58,14 +56,6 @@ public class Hero {
 
     public void updateAbilityPoints(int numberOfPoints) {
         this.unspentAbilityPoints += numberOfPoints;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Map<Ability, Integer> getAbilities() {
-        return abilities;
     }
 
     public int getUnspentAbilityPoints() {

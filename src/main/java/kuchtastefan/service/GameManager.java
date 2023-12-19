@@ -2,29 +2,38 @@ package kuchtastefan.service;
 
 import kuchtastefan.ability.HeroAbilityManager;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+
+import java.util.Map;
 
 public class GameManager {
     private final Hero hero;
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
     private final FileService fileService;
+    private final Map<Integer, Enemy> enemiesByLevel;
+    private final BattleService battleService;
 
     public GameManager() {
         this.hero = new Hero("");
         this.heroAbilityManager = new HeroAbilityManager(hero);
         this.currentLevel = Constant.INITIAL_LEVEL;
         this.fileService = new FileService();
+        this.battleService = new BattleService();
+        this.enemiesByLevel = EnemyGenerator.createEnemies();
     }
 
     public void startGame() {
 
         startNewGameOrLoadExisting();
 
-        while (this.currentLevel <= 5) {
-            System.out.println("0. Fight " + "level " + this.currentLevel);
+        while (this.currentLevel <= this.enemiesByLevel.size()) {
+            final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
+            System.out.println("0. Fight " + enemy.getName() +  " (level " + this.currentLevel + ")");
             System.out.println("1. Upgrade abilities (" + this.hero.getUnspentAbilityPoints() + " points to spend)");
             System.out.println("2. Save game");
             System.out.println("3. Exit game");
@@ -32,8 +41,10 @@ public class GameManager {
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
-                    // TODO FIGHT
-                    this.currentLevel += 1;
+                    if(this.battleService.isHeroReadyToBattle(hero, enemy)) {
+                        // TODO battle
+                        this.currentLevel++;
+                    }
                 }
                 case 1 -> {
                     System.out.println("0. Go Back");

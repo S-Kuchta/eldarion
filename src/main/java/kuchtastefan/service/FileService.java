@@ -76,6 +76,8 @@ public class FileService {
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } catch (InvalidPathException e) {
+            System.out.println("Invalid characters in file name!");
         }
 
         System.out.println("Game loaded!");
@@ -85,8 +87,7 @@ public class FileService {
     private void printSavedGames(Set<String> listOfSavedGames) {
         int index = 0;
         for (String savedGame : listOfSavedGames) {
-            String[] splitSavedGame = savedGame.split("\\.");
-            System.out.println(index + ". " + splitSavedGame[0]);
+            System.out.println(index + ". " + savedGame.replace(".txt", ""));
             index++;
         }
     }

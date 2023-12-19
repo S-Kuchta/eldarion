@@ -42,7 +42,7 @@ public class Hero extends GameCharacter {
         if (tempAbilityPoints < minimumPoints) {
             System.out.println("You don't have enough points!");
         } else {
-            if(tempAbilityPoints < this.abilities.get(ability)) {
+            if (tempAbilityPoints < this.abilities.get(ability)) {
                 System.out.println("You have removed 1 point from " + ability.name());
             }
             if (ability.equals(Ability.HEALTH)) {
@@ -55,10 +55,6 @@ public class Hero extends GameCharacter {
         }
     }
 
-    public void putNewAbilityToMap(Ability ability, int value) {
-        this.abilities.put(ability, value);
-    }
-
     public void updateAbilityPoints(int numberOfPoints) {
         this.unspentAbilityPoints += numberOfPoints;
     }
@@ -69,13 +65,5 @@ public class Hero extends GameCharacter {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setAbilities(Map<Ability, Integer> abilities) {
-        this.abilities = abilities;
-    }
-
-    public void setUnspentAbilityPoints(int unspentAbilityPoints) {
-        this.unspentAbilityPoints = unspentAbilityPoints;
     }
 }

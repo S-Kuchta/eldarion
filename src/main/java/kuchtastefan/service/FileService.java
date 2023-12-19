@@ -57,28 +57,21 @@ public class FileService {
     }
 
     public GameLoaded loadGame() {
-
-        if(gameLoaded() == null) {
+        List<String> listOfSavedGames = returnFileList();
+        if (listOfSavedGames.isEmpty()) {
             return null;
         } else {
-            System.out.println("Game loaded!");
-            return gameLoaded();
+            return this.setHeroAbilities(new File(selectSaveGame(listOfSavedGames)));
         }
-
     }
 
-    private GameLoaded gameLoaded() {
+    private GameLoaded setHeroAbilities(File file) {
         int currentLevel = 0;
         int unspentAbilityPoints = 0;
         String heroName = "";
         Map<Ability, Integer> abilities = new HashMap<>();
 
-
         try {
-            File file = new File(selectSaveGame());
-            if (selectSaveGame().isEmpty()) {
-                return null;
-            }
             Scanner scanner = new Scanner(file);
             int positionIndex = 0;
             while (scanner.hasNextLine()) {
@@ -96,8 +89,6 @@ public class FileService {
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        } catch (InvalidPathException e) {
-            System.out.println("Invalid characters in file name!");
         }
 
         return new GameLoaded(
@@ -106,7 +97,7 @@ public class FileService {
         );
     }
 
-    private void printSavedGames(Set<String> listOfSavedGames) {
+    private void printSavedGames(List<String> listOfSavedGames) {
         int index = 0;
         if (listOfSavedGames.isEmpty()) {
             System.out.println("List of saved games is empty");
@@ -118,31 +109,30 @@ public class FileService {
         }
     }
 
-    private String selectSaveGame() {
-        Set<String> listOfSavedGames = Objects.requireNonNull(returnFileList());
-        List<String> convertedListOfSavedGames = new ArrayList<>(listOfSavedGames);
-
+    private String selectSaveGame(List<String> listOfSavedGames) {
         printSavedGames(listOfSavedGames);
         while (true) {
             try {
                 int loadGameChoice = InputUtil.intScanner();
-                return "saved-games/" + convertedListOfSavedGames.get(loadGameChoice);
+                return "saved-games/" + listOfSavedGames.get(loadGameChoice);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Enter valid number");
+            } catch (InvalidPathException e) {
+                System.out.println("Save game is corrupted");
             }
         }
     }
 
-    private Set<String> returnFileList() {
+    private List<String> returnFileList() {
         try (Stream<Path> stream = Files.list(Paths.get("saved-games"))) {
             return stream
                     .filter(file -> !Files.isDirectory(file))
                     .map(Path::getFileName)
                     .map(Path::toString)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             System.out.println(e.getMessage());
-            return null;
+            return new ArrayList<>();
         }
     }
 }

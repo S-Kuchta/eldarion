@@ -66,4 +66,6 @@ public class Hero extends GameCharacter {
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

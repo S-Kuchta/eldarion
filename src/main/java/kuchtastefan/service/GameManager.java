@@ -29,8 +29,7 @@ public class GameManager {
     }
 
     public void startGame() {
-
-        initGame();
+        this.initGame();
 
         while (this.currentLevel <= this.enemiesByLevel.size()) {
             final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
@@ -47,20 +46,8 @@ public class GameManager {
                         this.currentLevel++;
                     }
                 }
-                case 1 -> {
-                    System.out.println("0. Go Back");
-                    System.out.println("1. Spend points (" + this.hero.getUnspentAbilityPoints() + " points left)");
-                    System.out.println("2. Remove points");
-                    final int upgradeChoice = InputUtil.intScanner();
-                    if (upgradeChoice == 1) {
-                        this.heroAbilityManager.spendAbilityPoints();
-                    } else if (upgradeChoice == 2) {
-                        this.heroAbilityManager.removeAbilityPoints();
-                    }
-                }
-                case 2 -> {
-                    fileService.saveGame(this.hero, this.currentLevel);
-                }
+                case 1 -> this.upgradeAbility();
+                case 2 -> fileService.saveGame(this.hero, this.currentLevel);
                 case 3 -> {
                     System.out.println("Are you sure?");
                     System.out.println("0. No");
@@ -82,18 +69,31 @@ public class GameManager {
         System.out.println("You have won the game! Congratulations!");
     }
 
+    private void upgradeAbility() {
+        System.out.println("0. Go Back");
+        System.out.println("1. Spend points (" + this.hero.getUnspentAbilityPoints() + " points left)");
+        System.out.println("2. Remove points");
+        final int upgradeChoice = InputUtil.intScanner();
+        if (upgradeChoice == 1) {
+            this.heroAbilityManager.spendAbilityPoints();
+        } else if (upgradeChoice == 2) {
+            this.heroAbilityManager.removeAbilityPoints();
+        }
+    }
+
     private void initGame() {
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");
         System.out.println("1. Load game");
-        int choiceNewOrLoadGame = InputUtil.intScanner();
-        switch (choiceNewOrLoadGame) {
+
+        int choice = InputUtil.intScanner();
+        switch (choice) {
             case 0 -> System.out.println("Let's go then!");
             case 1 -> {
                 final GameLoaded gameLoaded = this.fileService.loadGame();
                 if (gameLoaded != null) {
                     this.hero = gameLoaded.getHero();
-                    this.currentLevel = gameLoaded.getPlayedLevel();
+                    this.currentLevel = gameLoaded.getLevel();
                     return;
                 }
             }

@@ -2,16 +2,16 @@ package kuchtastefan.domain;
 
 public class GameLoaded {
 
-    private final int playedLevel;
     private final Hero hero;
+    private final int level;
 
-    public GameLoaded(int playedLevel, Hero hero) {
-        this.playedLevel = playedLevel;
+    public GameLoaded(int level, Hero hero) {
+        this.level = level;
         this.hero = hero;
     }
 
-    public int getPlayedLevel() {
-        return playedLevel;
+    public int getLevel() {
+        return level;
     }
 
     public Hero getHero() {

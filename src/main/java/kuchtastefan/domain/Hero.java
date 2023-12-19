@@ -16,6 +16,11 @@ public class Hero extends GameCharacter {
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
     }
 
+    public Hero(String name, Map<Ability, Integer> abilities, int heroAvailablePoints) {
+        super(name, abilities);
+        this.unspentAbilityPoints = heroAvailablePoints;
+    }
+
     private Map<Ability, Integer> getInitialAbilities() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 1,

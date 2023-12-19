@@ -1,6 +1,7 @@
 package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.utility.InputUtil;
 
@@ -55,23 +56,41 @@ public class FileService {
         return saveGame.toString();
     }
 
-    public int loadGame(Hero hero) {
+    public GameLoaded loadGame() {
+
+        if(gameLoaded() == null) {
+            return null;
+        } else {
+            System.out.println("Game loaded!");
+            return gameLoaded();
+        }
+
+    }
+
+    private GameLoaded gameLoaded() {
         int currentLevel = 0;
+        int unspentAbilityPoints = 0;
+        String heroName = "";
+        Map<Ability, Integer> abilities = new HashMap<>();
+
 
         try {
             File file = new File(selectSaveGame());
+            if (selectSaveGame().isEmpty()) {
+                return null;
+            }
             Scanner scanner = new Scanner(file);
             int positionIndex = 0;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 switch (positionIndex) {
                     case 0 -> currentLevel = Integer.parseInt(line);
-                    case 1 -> hero.setName(line);
-                    case 2 -> hero.setUnspentAbilityPoints(Integer.parseInt(line));
+                    case 1 -> heroName = line;
+                    case 2 -> unspentAbilityPoints = Integer.parseInt(line);
                 }
                 String[] parts = line.split(":");
                 if (parts.length >= 2) {
-                    hero.getAbilities().put(Ability.valueOf(parts[0]), Integer.parseInt(parts[1]));
+                    abilities.put(Ability.valueOf(parts[0]), Integer.parseInt(parts[1]));
                 }
                 positionIndex++;
             }
@@ -81,13 +100,15 @@ public class FileService {
             System.out.println("Invalid characters in file name!");
         }
 
-        System.out.println("Game loaded!");
-        return currentLevel;
+        return new GameLoaded(
+                currentLevel,
+                new Hero(heroName, abilities, unspentAbilityPoints)
+        );
     }
 
     private void printSavedGames(Set<String> listOfSavedGames) {
         int index = 0;
-        if(listOfSavedGames.isEmpty()) {
+        if (listOfSavedGames.isEmpty()) {
             System.out.println("List of saved games is empty");
         }
 

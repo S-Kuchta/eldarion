@@ -3,6 +3,7 @@ package kuchtastefan.service;
 import kuchtastefan.ability.HeroAbilityManager;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
+import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
@@ -11,7 +12,7 @@ import kuchtastefan.utility.PrintUtil;
 import java.util.Map;
 
 public class GameManager {
-    private final Hero hero;
+    private Hero hero;
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
     private final FileService fileService;
@@ -89,11 +90,12 @@ public class GameManager {
             switch (choiceNewOrLoadGame) {
                 case 0 -> initGame();
                 case 1 -> {
-                    if(fileService.loadGame(this.hero) == 0) {
-                        System.out.println("som tu");
-                        continue;
+                    final GameLoaded gameLoaded = fileService.loadGame();
+                    if(gameLoaded != null) {
+                        this.hero = gameLoaded.getHero();
+                        this.currentLevel = gameLoaded.getPlayedLevel();
+                        return;
                     }
-                    this.currentLevel = fileService.loadGame(this.hero);
                 }
                 default -> System.out.println("Enter valid input");
             }

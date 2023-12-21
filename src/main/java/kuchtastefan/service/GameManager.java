@@ -1,5 +1,6 @@
 package kuchtastefan.service;
 
+import kuchtastefan.ability.Ability;
 import kuchtastefan.ability.HeroAbilityManager;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
@@ -42,8 +43,21 @@ public class GameManager {
             switch (choice) {
                 case 0 -> {
                     if (this.battleService.isHeroReadyToBattle(this.hero, enemy)) {
-                        // TODO battle
-                        this.currentLevel++;
+                        final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
+
+                        final boolean haveHeroWon = battleService.battle(this.hero, enemy);
+                        if (haveHeroWon) {
+                            PrintUtil.printDivider();
+                            System.out.println("You have won this battle! You have gained " + this.currentLevel + " points to spend");
+                            this.hero.updateAbilityPoints(this.currentLevel);
+                            this.currentLevel++;
+                        } else {
+                            System.out.println("You have lost!");
+                        }
+
+                        this.hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
+                        System.out.println("You have full health now!");
+                        PrintUtil.printDivider();
                     }
                 }
                 case 1 -> this.upgradeAbility();

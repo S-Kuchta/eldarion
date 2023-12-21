@@ -9,7 +9,7 @@ import java.util.Map;
 public class PrintUtil {
 
     public static void printCurrentAbilityPoints(GameCharacter hero) {
-        System.out.println("\nAbilities: ");
+        System.out.println(hero.getClass().getSimpleName().equals("Hero") ? "Your abilities:" : "Enemy abilities:");
         for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
             System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
         }

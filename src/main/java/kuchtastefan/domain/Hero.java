@@ -59,6 +59,10 @@ public class Hero extends GameCharacter {
         this.unspentAbilityPoints += numberOfPoints;
     }
 
+    public void setAbility(Ability ability, int heroHealthBeforeBattle) {
+        this.abilities.put(ability, heroHealthBeforeBattle);
+    }
+
     public int getUnspentAbilityPoints() {
         return unspentAbilityPoints;
     }

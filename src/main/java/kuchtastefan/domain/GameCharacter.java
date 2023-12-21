@@ -17,6 +17,10 @@ public abstract class GameCharacter {
         return name;
     }
 
+    public int getAbilityValue(Ability ability) {
+        return this.abilities.get(ability);
+    }
+
     public Map<Ability, Integer> getAbilities() {
         return abilities;
     }

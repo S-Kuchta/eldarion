@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="41b18b84-4653-4780-af21-dc40bbab0ed4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kuchtastefan/constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kuchtastefan/constant/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kuchtastefan/domain/GameCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kuchtastefan/domain/GameCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kuchtastefan/domain/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kuchtastefan/domain/Hero.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kuchtastefan/service/BattleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kuchtastefan/service/BattleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kuchtastefan/service/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kuchtastefan/service/GameManager.java" afterDir="false" />
-    </list>
+    <list default="true" id="41b18b84-4653-4780-af21-dc40bbab0ed4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

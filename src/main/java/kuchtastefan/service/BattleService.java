@@ -30,7 +30,6 @@ public class BattleService {
         System.out.println("0. NO");
         System.out.println("1. YES");
 
-//        while (true) {
             final int choice = InputUtils.readInt();
             switch (choice) {
                 case 0 -> {
@@ -47,8 +46,6 @@ public class BattleService {
                     return false;
                 }
             }
-//        }
-
     }
 
     public boolean battle(Hero hero, Enemy enemy) {

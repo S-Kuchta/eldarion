@@ -48,6 +48,10 @@ public class Hero extends GameCharacter {
         return heroAvailablePoints;
     }
 
+    public void setAbility(Ability ability, int value) {
+        abilities.put(ability, value);
+    }
+
     public void setHeroAvailablePoints(int heroAvailablePoints) {
         this.heroAvailablePoints = heroAvailablePoints;
     }

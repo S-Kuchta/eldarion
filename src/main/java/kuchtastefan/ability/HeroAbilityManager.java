@@ -22,7 +22,7 @@ public class HeroAbilityManager {
             PrintUtil.printDivider();
         } else {
             while (this.hero.getUnspentAbilityPoints() > 0) {
-                PrintUtil.printCurrentAbilityPoints(this.hero);
+                PrintUtil.printCurrentAbilityPointsWithoutItems(hero);
                 System.out.println("Choose ability to upgrade:");
                 System.out.println("You have " + this.hero.getUnspentAbilityPoints() + " to spend.");
                 printPossibleAbilitiesToUpgrade("spend");
@@ -30,19 +30,18 @@ public class HeroAbilityManager {
             }
 
             System.out.println("You have spent all your available points. Your abilities are: ");
-            PrintUtil.printCurrentAbilityPoints(this.hero);
+            PrintUtil.printCurrentAbilityPointsWithoutItems(hero);
         }
     }
 
     public void removeAbilityPoints() {
-        this.hero = hero;
         while (true) {
-            PrintUtil.printCurrentAbilityPoints(this.hero);
+            PrintUtil.printCurrentAbilityPointsWithoutItems(hero);
             System.out.println("Choose ability to remove:");
             printPossibleAbilitiesToUpgrade("remove");
             int removeAbilityInput = InputUtil.intScanner();
             if (removeAbilityInput == 0) {
-                PrintUtil.printCurrentAbilityPoints(this.hero);
+                PrintUtil.printCurrentAbilityPointsWithoutItems(hero);
                 break;
             }
 

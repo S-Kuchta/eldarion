@@ -1,6 +1,5 @@
 package kuchtastefan.item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ItemList {

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Medium Armor",
+    "abilities": {
+      "DEFENCE": 2,
+      "SKILL": 2
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Heavy armor",
+    "abilities": {
+      "DEFENCE": 4
+    },
+    "itemLevel": 2
+  }
+]

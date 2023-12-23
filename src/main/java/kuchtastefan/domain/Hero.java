@@ -2,15 +2,18 @@ package kuchtastefan.domain;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemType;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Hero extends GameCharacter {
 
     private int unspentAbilityPoints;
-    private Map<ItemType, String> itemWear;
+    private final Map<ItemType, String> equippedItem = new HashMap<>();
+    private final Map<Ability, Integer> wearingItemAbilityPoints = new HashMap<>();
 
     public Hero(String name) {
         super(name, new HashMap<>());
@@ -18,8 +21,20 @@ public class Hero extends GameCharacter {
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
     }
 
-    private void itemWear() {
+    public void equipItems(List<Item> itemList) {
+        this.equippedItem.put(ItemType.SWORD, "Iron sword");
+        this.equippedItem.put(ItemType.BODY, "Medium armor");
 
+        for (Item item : itemList) {
+            for (ItemType itemType : ItemType.values()) {
+                if (item.getName().equals(equippedItem.get(itemType))) {
+                    for (Map.Entry<Ability, Integer> ability : item.getAbilities().entrySet()) {
+                        this.abilities.put(ability.getKey(), ability.getValue() + this.abilities.get(ability.getKey()));
+                        this.wearingItemAbilityPoints.put(ability.getKey(), ability.getValue());
+                    }
+                }
+            }
+        }
     }
 
     public Hero(String name, Map<Ability, Integer> abilities, int heroAvailablePoints) {
@@ -44,7 +59,13 @@ public class Hero extends GameCharacter {
             minimumPoints = 50;
         }
 
-        int tempAbilityPoints = this.abilities.get(ability) + pointsToChange;
+        int tempAbilityPoints;
+        if (this.wearingItemAbilityPoints.get(ability) == null) {
+            tempAbilityPoints = (this.abilities.get(ability) + pointsToChange);
+        } else {
+            tempAbilityPoints = (this.abilities.get(ability) + pointsToChange) - this.wearingItemAbilityPoints.get(ability);
+        }
+
         if (tempAbilityPoints < minimumPoints) {
             System.out.println("You don't have enough points!");
         } else {
@@ -77,5 +98,11 @@ public class Hero extends GameCharacter {
         this.name = name;
     }
 
+    public Map<ItemType, String> getEquippedItem() {
+        return equippedItem;
+    }
 
+    public Map<Ability, Integer> getWearingItemAbilityPoints() {
+        return wearingItemAbilityPoints;
+    }
 }

@@ -8,7 +8,6 @@ import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemList;
-import kuchtastefan.item.ItemType;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -42,12 +41,11 @@ public class GameManager {
 
         for (Item oneItem : this.items) {
 //            if (oneItem.getType().equals(ItemType.AXE)) {
-                System.out.println(oneItem.getName() + ", "
-                        + oneItem.getAbilities() + ", "
-                        + oneItem.getType() + " ("
-                        + oneItem.getType().getDescription() + ")");
+            System.out.println(oneItem.getName() + ", "
+                    + oneItem.getAbilities() + ", "
+                    + oneItem.getType() + " ("
+                    + oneItem.getType().getDescription() + ")");
 //            }
-
         }
 
         this.initGame();
@@ -58,13 +56,13 @@ public class GameManager {
             System.out.println("1. Upgrade abilities (" + this.hero.getUnspentAbilityPoints() + " points to spend)");
             System.out.println("2. Save game");
             System.out.println("3. Exit game");
+            System.out.println("4. Equip items");
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
                     if (this.battleService.isHeroReadyToBattle(this.hero, enemy)) {
                         final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
-
                         final boolean haveHeroWon = battleService.battle(this.hero, enemy);
                         if (haveHeroWon) {
                             PrintUtil.printDivider();
@@ -95,6 +93,7 @@ public class GameManager {
                         return;
                     }
                 }
+                case 4 -> this.hero.equipItems(items);
                 default -> System.out.println("Invalid choice.");
             }
         }

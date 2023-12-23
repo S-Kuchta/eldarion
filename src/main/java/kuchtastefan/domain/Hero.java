@@ -2,6 +2,7 @@ package kuchtastefan.domain;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.item.ItemType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,11 +10,16 @@ import java.util.Map;
 public class Hero extends GameCharacter {
 
     private int unspentAbilityPoints;
+    private Map<ItemType, String> itemWear;
 
     public Hero(String name) {
         super(name, new HashMap<>());
         this.abilities = this.getInitialAbilities();
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
+    }
+
+    private void itemWear() {
+
     }
 
     public Hero(String name, Map<Ability, Integer> abilities, int heroAvailablePoints) {

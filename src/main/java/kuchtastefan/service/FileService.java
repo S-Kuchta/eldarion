@@ -1,11 +1,17 @@
 package kuchtastefan.service;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemType;
 import kuchtastefan.utility.InputUtil;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -132,4 +138,59 @@ public class FileService {
             return new ArrayList<>();
         }
     }
+
+    private List<String> returnFileList1() {
+        try (Stream<Path> stream = Files.list(Paths.get("external-files/items"))) {
+            return stream
+                    .filter(file -> !Files.isDirectory(file))
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    public List<Item> item(List<Item> itemList) {
+        try {
+            List<Item> item;
+            for (String file : returnFileList1()) {
+                BufferedReader reader = new BufferedReader(new FileReader("external-files/items/" + file));
+                item = new Gson().fromJson(reader, new TypeToken<List<Item>>() {
+                }.getType());
+
+                for (Item item1 : item) {
+                    item1.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
+                }
+                itemList.addAll(item);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return itemList;
+    }
+
+//    public List<Item> item(List<Item> itemList) {
+//        try {
+//            for (String file : returnFileList1()) {
+//
+//            }
+//            BufferedReader reader = new BufferedReader(new FileReader("external-files/items/swords.json"));
+//            List<Item> item = new Gson().fromJson(reader, new TypeToken<List<Item>>() {
+//            }.getType());
+//            for (Item item1 : item) {
+//                item1.setItemType(ItemType.SWORD);
+//            }
+//
+//            itemList.addAll(item);
+//
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//        }
+//
+//        return itemList;
+//    }
 }
+

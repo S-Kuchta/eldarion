@@ -6,10 +6,15 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemList;
+import kuchtastefan.item.ItemType;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class GameManager {
@@ -19,6 +24,8 @@ public class GameManager {
     private final FileService fileService;
     private final Map<Integer, Enemy> enemiesByLevel;
     private final BattleService battleService;
+    private final ItemList itemList;
+    private List<Item> items = new ArrayList<>();
 
     public GameManager() {
         this.hero = new Hero("");
@@ -27,9 +34,22 @@ public class GameManager {
         this.battleService = new BattleService();
         this.enemiesByLevel = EnemyGenerator.createEnemies();
         this.heroAbilityManager = new HeroAbilityManager(hero);
+        this.itemList = new ItemList(new ArrayList<>());
     }
 
     public void startGame() {
+        this.items = fileService.item(itemList.getItemList());
+
+        for (Item oneItem : this.items) {
+//            if (oneItem.getType().equals(ItemType.AXE)) {
+                System.out.println(oneItem.getName() + ", "
+                        + oneItem.getAbilities() + ", "
+                        + oneItem.getType() + " ("
+                        + oneItem.getType().getDescription() + ")");
+//            }
+
+        }
+
         this.initGame();
 
         while (this.currentLevel <= this.enemiesByLevel.size()) {

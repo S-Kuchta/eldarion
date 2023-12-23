@@ -22,7 +22,7 @@ public class FileService {
             System.out.println("How do you want to name your save?");
             final String name = InputUtil.stringScanner();
 
-            final String path = "saved-games/" + name + ".txt";
+            final String path = "external-files/saved-games/" + name + ".txt";
 
             if (new File(path).exists()) {
                 System.out.println("Game with this name is already saved");
@@ -111,7 +111,7 @@ public class FileService {
         while (true) {
             try {
                 int loadGameChoice = InputUtil.intScanner();
-                return "saved-games/" + listOfSavedGames.get(loadGameChoice);
+                return "external-files/saved-games/" + listOfSavedGames.get(loadGameChoice);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Enter valid number");
             } catch (InvalidPathException e) {
@@ -121,7 +121,7 @@ public class FileService {
     }
 
     private List<String> returnFileList() {
-        try (Stream<Path> stream = Files.list(Paths.get("saved-games"))) {
+        try (Stream<Path> stream = Files.list(Paths.get("external-files/saved-games"))) {
             return stream
                     .filter(file -> !Files.isDirectory(file))
                     .map(Path::getFileName)

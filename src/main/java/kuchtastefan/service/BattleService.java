@@ -39,20 +39,34 @@ public class BattleService {
     }
 
     public boolean battle(Hero hero, Enemy enemy) {
+        boolean heroPlay = true;
         while (true) {
             int heroHealth = hero.getAbilityValue(Ability.HEALTH);
             int enemyHealth = enemy.getAbilityValue(Ability.HEALTH);
 
             System.out.println("Your healths: " + heroHealth);
             System.out.println("Enemy healths: " + enemyHealth);
-            battleRound(hero, enemy);
+
+            if (heroPlay) {
+                battleRound(hero, enemy);
+                heroPlay = false;
+            } else {
+                battleRound(enemy, hero);
+                heroPlay = true;
+            }
+
             if (enemy.getAbilityValue(Ability.HEALTH) <= 0) {
                 return true;
             }
 
-            battleRound(enemy, hero);
             if (hero.getAbilityValue(Ability.HEALTH) <= 0) {
                 return false;
+            }
+
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -60,12 +74,6 @@ public class BattleService {
     private void battleRound(GameCharacter attacker, GameCharacter defender) {
         int damage = 0;
         int finalDamage;
-
-        try {
-            Thread.sleep(800);
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
-        }
 
         if (criticalHit(attacker)) {
             System.out.println("Critical hit!");

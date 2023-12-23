@@ -39,34 +39,34 @@ public class BattleService {
     }
 
     public boolean battle(Hero hero, Enemy enemy) {
-        int heroHealth = hero.getAbilityValue(Ability.HEALTH);
-        int enemyHealth = enemy.getAbilityValue(Ability.HEALTH);
-
         while (true) {
-            enemyHealth = battleRound(hero, enemy, enemyHealth, heroHealth, enemyHealth);
-            if (enemyHealth <= 0) {
+            int heroHealth = hero.getAbilityValue(Ability.HEALTH);
+            int enemyHealth = enemy.getAbilityValue(Ability.HEALTH);
+
+            System.out.println("Your healths: " + heroHealth);
+            System.out.println("Enemy healths: " + enemyHealth);
+            battleRound(hero, enemy);
+            if (enemy.getAbilityValue(Ability.HEALTH) <= 0) {
                 return true;
             }
 
-            heroHealth = battleRound(enemy, hero, heroHealth, heroHealth, enemyHealth);
-            if (heroHealth <= 0) {
+            battleRound(enemy, hero);
+            if (hero.getAbilityValue(Ability.HEALTH) <= 0) {
                 return false;
             }
         }
     }
 
-    private int battleRound(GameCharacter attacker, GameCharacter defender, int health, int heroHealth, int enemyHealth) {
+    private void battleRound(GameCharacter attacker, GameCharacter defender) {
         int damage = 0;
-        int damageAfterDefense;
+        int finalDamage;
 
         try {
             Thread.sleep(800);
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Your health: " + heroHealth);
-        System.out.println("Enemy health: " + enemyHealth);
         if (criticalHit(attacker)) {
             System.out.println("Critical hit!");
             damage += (attack(attacker) * 2);
@@ -74,20 +74,18 @@ public class BattleService {
             damage = attack(attacker);
         }
 
-        damageAfterDefense = damageCheck(damage, defense(defender));
+        finalDamage = finalDamage(damage, defense(defender));
 
-        health -= damageAfterDefense;
-        System.out.println(attacker.getName() + " attacked " + defender.getName() + " for " + damageAfterDefense);
-        System.out.println(defender.getName() + " healths are: " + health);
+        defender.receiveDamage(finalDamage);
+        System.out.println(attacker.getName() + " attacked " + defender.getName() + " for " + finalDamage + " damage!");
+        System.out.println(defender.getName() + " healths are: " + defender.getAbilityValue(Ability.HEALTH));
         PrintUtil.printDivider();
-        return health;
     }
 
-    private int damageCheck(int damage, int defence) {
+    private int finalDamage(int damage, int defence) {
         int totalDamage = damage - defence;
 
         return Math.max(totalDamage, 0);
-
     }
 
     private int attack(GameCharacter gameCharacter) {

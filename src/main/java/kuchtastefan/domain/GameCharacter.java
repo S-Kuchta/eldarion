@@ -13,6 +13,10 @@ public abstract class GameCharacter {
         this.abilities = abilities;
     }
 
+    public void receiveDamage(int damage) {
+        this.abilities.put(Ability.HEALTH, this.getAbilityValue(Ability.HEALTH) - damage);
+    }
+
     public String getName() {
         return name;
     }

@@ -12,26 +12,33 @@ import java.util.Map;
 public class Hero extends GameCharacter {
 
     private int unspentAbilityPoints;
-    private final Map<ItemType, String> equippedItem = new HashMap<>();
+//    private final Map<ItemType, String> equippedItem = new HashMap<>();
+    private EquippedItems equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints = new HashMap<>();
 
     public Hero(String name) {
         super(name, new HashMap<>());
         this.abilities = this.getInitialAbilities();
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
+        this.equippedItem = new EquippedItems();
         setAllEquippedItemsToNull();
     }
 
     public void equipItems(List<Item> itemList) {
-        this.removeEquippedItems(itemList);
-        this.equippedItem.put(ItemType.WEAPON, "Iron sword");
-        this.equippedItem.put(ItemType.BODY, "Medium armor");
+//        this.removeEquippedItems(itemList);
+//        this.equippedItem.getEquippedItem().put(ItemType.WEAPON, "Iron sword");
+//        this.equippedItem.getEquippedItem().put(ItemType.BODY, "Medium armor");
+//        this.equippedItem.getEquippedItem().put(ItemType.HEAD, "Basic helmet");
+//        this.equippedItem.getEquippedItem().put(ItemType.HANDS, "Basic hands");
+//        this.equippedItem.getEquippedItem().put(ItemType.BOOTS, "Basic boots");
 
         for (Item item : itemList) {
             for (ItemType itemType : ItemType.values()) {
-                if (item.getName().equals(equippedItem.get(itemType))) {
+                if (item.getName().equals(equippedItem.getEquippedItem().get(itemType))) {
                     for (Map.Entry<Ability, Integer> itemAbilityPoints : item.getAbilities().entrySet()) {
-                        this.abilities.put(itemAbilityPoints.getKey(), itemAbilityPoints.getValue() + this.abilities.get(itemAbilityPoints.getKey()));
+                        this.abilities.put(
+                                itemAbilityPoints.getKey(),
+                                itemAbilityPoints.getValue() + this.abilities.get(itemAbilityPoints.getKey()));
                         this.wearingItemAbilityPoints.put(itemAbilityPoints.getKey(), itemAbilityPoints.getValue());
                     }
                 }
@@ -41,14 +48,25 @@ public class Hero extends GameCharacter {
 
     private void setAllEquippedItemsToNull() {
         for (ItemType itemType : ItemType.values()) {
-            this.equippedItem.put(itemType, null);
+            this.equippedItem.getEquippedItem().put(itemType, null);
         }
     }
+
+//    public void removeEquippedItems(List<Item> itemList) {
+//        for (Map.Entry<Ability, Integer> itemAbilityPoint : this.getWearingItemAbilityPoints().entrySet()) {
+//            this.abilities.put(
+//                    itemAbilityPoint.getKey(),
+//                    (this.getAbilityValue(itemAbilityPoint.getKey()) - itemAbilityPoint.getValue()));
+//            this.wearingItemAbilityPoints.put(itemAbilityPoint.getKey(), null);
+//        }
+//
+//        setAllEquippedItemsToNull();
+//    }
 
     public void removeEquippedItems(List<Item> itemList) {
         for (Item item : itemList) {
             for (ItemType itemType : ItemType.values()) {
-                if (item.getName().equals(equippedItem.get(itemType))) {
+                if (item.getName().equals(equippedItem.getEquippedItem().get(itemType))) {
                     for (Map.Entry<Ability, Integer> itemAbilityPoints : item.getAbilities().entrySet()) {
                         this.abilities.put(itemAbilityPoints.getKey(), this.abilities.get(itemAbilityPoints.getKey()) - itemAbilityPoints.getValue());
                         this.wearingItemAbilityPoints.put(itemAbilityPoints.getKey(), null);
@@ -122,7 +140,15 @@ public class Hero extends GameCharacter {
     }
 
     public Map<ItemType, String> getEquippedItem() {
-        return equippedItem;
+        return equippedItem.getEquippedItem();
+    }
+
+    public EquippedItems getEquippedItems() {
+        return this.equippedItem;
+    }
+
+    public void setEquippedItem(EquippedItems equippedItem) {
+        this.equippedItem = equippedItem;
     }
 
     public Map<Ability, Integer> getWearingItemAbilityPoints() {

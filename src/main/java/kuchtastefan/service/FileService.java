@@ -1,18 +1,17 @@
 package kuchtastefan.service;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
+import kuchtastefan.domain.EquippedItems;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemType;
 import kuchtastefan.utility.InputUtil;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -23,7 +22,14 @@ import java.util.stream.Stream;
 
 public class FileService {
 
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
     public void saveGame(Hero hero, int currentLevel) {
+
+        EquippedItems equippedItems = hero.getEquippedItems();
+        String jsonStr = this.gson.toJson(equippedItems);
+        System.out.println(jsonStr);
+
         while (true) {
             System.out.println("How do you want to name your save?");
             final String name = InputUtil.stringScanner();
@@ -36,7 +42,7 @@ public class FileService {
                 System.out.println("Something went wrong");
             }
 
-            final String pathForItems = "external-files/saved-games/" + name + "/" + name + ".txt";
+            final String pathForItems = "external-files/saved-games/" + name + "/" + name + "EquippedItem.json";
             final String path = "external-files/saved-games/" + name + ".txt";
 
             if (new File(path).exists()) {
@@ -44,8 +50,13 @@ public class FileService {
                 continue;
             }
 
+            System.out.println(hero.getEquippedItems());
+
             try {
                 Files.writeString(Path.of(path), generateSave(hero, currentLevel));
+                Writer writer = Files.newBufferedWriter(Paths.get(pathForItems));
+                this.gson.toJson(equippedItems, writer);
+                writer.close();
                 System.out.println("Game saved");
             } catch (IOException e) {
                 System.out.println("Error while saving game");
@@ -65,19 +76,43 @@ public class FileService {
         saveGame.append(hero.getName()).append(System.lineSeparator());
         saveGame.append(hero.getUnspentAbilityPoints()).append(System.lineSeparator());
 
+
+
         for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
-            saveGame.append(entry.getKey()).append(":").append(entry.getValue()).append(System.lineSeparator());
+            hero.getWearingItemAbilityPoints().putIfAbsent(entry.getKey(), 0);
+//            System.out.println(hero.getWearingItemAbilityPoints().get(entry.getKey()));
+            saveGame.append(entry.getKey()).append(":")
+                    .append(entry.getValue() - hero.getWearingItemAbilityPoints()
+                    .get(entry.getKey()))
+                    .append(System.lineSeparator());
         }
         return saveGame.toString();
     }
 
     public GameLoaded loadGame() {
+
         List<String> listOfSavedGames = returnFileList("external-files/saved-games");
         if (listOfSavedGames.isEmpty()) {
             return null;
         } else {
-            return this.setHeroAbilities(new File(selectSaveGame(listOfSavedGames)));
+            String selectedSavedGame = selectSaveGame(listOfSavedGames);
+            return setHeroAbilities(new File(selectedSavedGame));
         }
+    }
+
+    private EquippedItems loadEquippedItems(String selectedSaveGame) {
+        final String pathForItems = "external-files/saved-games/" + selectedSaveGame + "/" + selectedSaveGame + "EquippedItem.json";
+        EquippedItems equippedItems = new EquippedItems();
+
+        try {
+            FileReader fileReader = new FileReader(pathForItems);
+            equippedItems = this.gson.fromJson(fileReader, EquippedItems.class);
+            fileReader.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return equippedItems;
     }
 
     private GameLoaded setHeroAbilities(File file) {
@@ -106,7 +141,9 @@ public class FileService {
             System.out.println(e.getMessage());
         }
 
-        return new GameLoaded(currentLevel, new Hero(heroName, abilities, unspentAbilityPoints));
+        EquippedItems equippedItems = loadEquippedItems(file.getName().replace(".txt", ""));
+
+        return new GameLoaded(currentLevel, new Hero(heroName, abilities, unspentAbilityPoints), equippedItems);
     }
 
     private void printSavedGames(List<String> listOfSavedGames) {

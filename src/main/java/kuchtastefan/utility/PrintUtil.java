@@ -36,7 +36,7 @@ public class PrintUtil {
     }
 
     public static void printCurrentWearingArmor(Hero hero, List<Item> itemList) {
-        for (Map.Entry<ItemType, String> item : hero.getEquippedItem().entrySet()) {
+        for (Map.Entry<ItemType, String> item : hero.getEquippedItems().getEquippedItem().entrySet()) {
             if (item.getValue() != null) {
                 System.out.print(item.getKey() + ": " + item.getValue());
                 for (Item item1 : itemList) {

@@ -101,7 +101,7 @@ public class GameManager {
     }
 
     public void inventoryMenu() {
-        System.out.println("0. Equip");
+        System.out.println("0. Items");
         int choice = InputUtil.intScanner();
 //        switch (choice) {
 //            case 0 ->
@@ -134,6 +134,8 @@ public class GameManager {
                 final GameLoaded gameLoaded = fileService.loadGame();
                 if (gameLoaded != null) {
                     this.hero = gameLoaded.getHero();
+                    this.hero.setEquippedItem(gameLoaded.getEquippedItems());
+                    this.hero.equipItems(itemList.getItemList());
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     return;

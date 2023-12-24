@@ -28,6 +28,15 @@ public class FileService {
             System.out.println("How do you want to name your save?");
             final String name = InputUtil.stringScanner();
 
+            File file = new File("external-files/saved-games/" + name);
+            boolean bool = file.mkdir();
+            if (bool) {
+                System.out.println("Folder created successfully");
+            } else {
+                System.out.println("Something went wrong");
+            }
+
+            final String pathForItems = "external-files/saved-games/" + name + "/" + name + ".txt";
             final String path = "external-files/saved-games/" + name + ".txt";
 
             if (new File(path).exists()) {
@@ -63,7 +72,7 @@ public class FileService {
     }
 
     public GameLoaded loadGame() {
-        List<String> listOfSavedGames = returnFileList();
+        List<String> listOfSavedGames = returnFileList("external-files/saved-games");
         if (listOfSavedGames.isEmpty()) {
             return null;
         } else {
@@ -126,21 +135,8 @@ public class FileService {
         }
     }
 
-    private List<String> returnFileList() {
-        try (Stream<Path> stream = Files.list(Paths.get("external-files/saved-games"))) {
-            return stream
-                    .filter(file -> !Files.isDirectory(file))
-                    .map(Path::getFileName)
-                    .map(Path::toString)
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            return new ArrayList<>();
-        }
-    }
-
-    private List<String> returnFileList1() {
-        try (Stream<Path> stream = Files.list(Paths.get("external-files/items"))) {
+    private List<String> returnFileList(String path) {
+        try (Stream<Path> stream = Files.list(Paths.get(path))) {
             return stream
                     .filter(file -> !Files.isDirectory(file))
                     .map(Path::getFileName)
@@ -153,10 +149,11 @@ public class FileService {
     }
 
     public List<Item> item(List<Item> itemList) {
+        String path = "external-files/items";
         try {
             List<Item> item;
-            for (String file : returnFileList1()) {
-                BufferedReader reader = new BufferedReader(new FileReader("external-files/items/" + file));
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
                 item = new Gson().fromJson(reader, new TypeToken<List<Item>>() {
                 }.getType());
 
@@ -171,26 +168,5 @@ public class FileService {
 
         return itemList;
     }
-
-//    public List<Item> item(List<Item> itemList) {
-//        try {
-//            for (String file : returnFileList1()) {
-//
-//            }
-//            BufferedReader reader = new BufferedReader(new FileReader("external-files/items/swords.json"));
-//            List<Item> item = new Gson().fromJson(reader, new TypeToken<List<Item>>() {
-//            }.getType());
-//            for (Item item1 : item) {
-//                item1.setItemType(ItemType.SWORD);
-//            }
-//
-//            itemList.addAll(item);
-//
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        return itemList;
-//    }
 }
 

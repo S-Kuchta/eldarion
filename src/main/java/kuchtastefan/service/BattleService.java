@@ -4,17 +4,19 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.item.Item;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
-public class BattleService {
-    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy) {
-        System.out.println(hero.getName() + " VS " + enemy.getName());
-        System.out.println("View your abilities:");
-        PrintUtil.printCurrentAbilityPoints(hero);
+import java.util.List;
 
-        System.out.println("View enemy abilities:");
+public class BattleService {
+    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy, List<Item> itemList) {
+        System.out.println(hero.getName() + " VS " + enemy.getName());
+        PrintUtil.printCurrentAbilityPoints(hero);
+        PrintUtil.printCurrentWearingArmor(hero, itemList);
+
         PrintUtil.printCurrentAbilityPoints(enemy);
 
         System.out.println("Are you ready to fight?");

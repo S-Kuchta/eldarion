@@ -19,22 +19,45 @@ public class Hero extends GameCharacter {
         super(name, new HashMap<>());
         this.abilities = this.getInitialAbilities();
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
+        setAllEquippedItemsToNull();
     }
 
     public void equipItems(List<Item> itemList) {
-        this.equippedItem.put(ItemType.SWORD, "Iron sword");
+        this.removeEquippedItems(itemList);
+        this.equippedItem.put(ItemType.WEAPON, "Iron sword");
         this.equippedItem.put(ItemType.BODY, "Medium armor");
 
         for (Item item : itemList) {
             for (ItemType itemType : ItemType.values()) {
                 if (item.getName().equals(equippedItem.get(itemType))) {
-                    for (Map.Entry<Ability, Integer> ability : item.getAbilities().entrySet()) {
-                        this.abilities.put(ability.getKey(), ability.getValue() + this.abilities.get(ability.getKey()));
-                        this.wearingItemAbilityPoints.put(ability.getKey(), ability.getValue());
+                    for (Map.Entry<Ability, Integer> itemAbilityPoints : item.getAbilities().entrySet()) {
+                        this.abilities.put(itemAbilityPoints.getKey(), itemAbilityPoints.getValue() + this.abilities.get(itemAbilityPoints.getKey()));
+                        this.wearingItemAbilityPoints.put(itemAbilityPoints.getKey(), itemAbilityPoints.getValue());
                     }
                 }
             }
         }
+    }
+
+    private void setAllEquippedItemsToNull() {
+        for (ItemType itemType : ItemType.values()) {
+            this.equippedItem.put(itemType, null);
+        }
+    }
+
+    public void removeEquippedItems(List<Item> itemList) {
+        for (Item item : itemList) {
+            for (ItemType itemType : ItemType.values()) {
+                if (item.getName().equals(equippedItem.get(itemType))) {
+                    for (Map.Entry<Ability, Integer> itemAbilityPoints : item.getAbilities().entrySet()) {
+                        this.abilities.put(itemAbilityPoints.getKey(), this.abilities.get(itemAbilityPoints.getKey()) - itemAbilityPoints.getValue());
+                        this.wearingItemAbilityPoints.put(itemAbilityPoints.getKey(), null);
+                    }
+                }
+            }
+        }
+
+        setAllEquippedItemsToNull();
     }
 
     public Hero(String name, Map<Ability, Integer> abilities, int heroAvailablePoints) {

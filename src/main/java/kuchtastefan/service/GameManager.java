@@ -37,8 +37,7 @@ public class GameManager {
     }
 
     public void startGame() {
-        this.items = fileService.item(itemList.getItemList());
-
+        this.initGame();
         for (Item oneItem : this.items) {
 //            if (oneItem.getType().equals(ItemType.AXE)) {
             System.out.println(oneItem.getName() + ", "
@@ -48,8 +47,6 @@ public class GameManager {
 //            }
         }
 
-        this.initGame();
-
         while (this.currentLevel <= this.enemiesByLevel.size()) {
             final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
             System.out.println("0. Fight " + enemy.getName() + " (level " + this.currentLevel + ")");
@@ -57,11 +54,12 @@ public class GameManager {
             System.out.println("2. Save game");
             System.out.println("3. Exit game");
             System.out.println("4. Equip items");
+            System.out.println("5. Remove equipped items");
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
-                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy)) {
+                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.items)) {
                         final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
                         final boolean haveHeroWon = battleService.battle(this.hero, enemy);
                         if (haveHeroWon) {
@@ -94,11 +92,20 @@ public class GameManager {
                     }
                 }
                 case 4 -> this.hero.equipItems(items);
+                case 5 -> this.hero.removeEquippedItems(items);
                 default -> System.out.println("Invalid choice.");
             }
         }
 
         System.out.println("You have won the game! Congratulations!");
+    }
+
+    public void inventoryMenu() {
+        System.out.println("0. Equip");
+        int choice = InputUtil.intScanner();
+//        switch (choice) {
+//            case 0 ->
+//        }
     }
 
     private void upgradeAbility() {
@@ -114,6 +121,8 @@ public class GameManager {
     }
 
     private void initGame() {
+        this.items = fileService.item(itemList.getItemList());
+
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");
         System.out.println("1. Load game");

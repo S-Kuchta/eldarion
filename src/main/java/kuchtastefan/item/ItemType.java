@@ -2,8 +2,7 @@ package kuchtastefan.item;
 
 public enum ItemType {
 
-    SWORD("Attack with sword have 5% chance to attack two times."),
-    AXE("Critical hit with Axe is 3x stronger instead of 2x"),
+    WEAPON("Weapon"),
     HEAD("Head armor"),
     BODY("Body armor"),
     HANDS("Hands armor"),

@@ -1,4 +1,4 @@
 package kuchtastefan.service;
 
-public class ItemService {
+public class ShopService {
 }

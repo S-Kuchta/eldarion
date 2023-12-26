@@ -23,6 +23,7 @@ import java.util.stream.Stream;
 public class FileService {
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private final String savedGamesPath = "external-files/saved-games/";
 
     public void saveGame(Hero hero, int currentLevel) {
 
@@ -30,34 +31,48 @@ public class FileService {
         String jsonStr = this.gson.toJson(equippedItems);
         System.out.println(jsonStr);
 
+        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, hero.getEquippedItems());
+
         while (true) {
             System.out.println("How do you want to name your save?");
             final String name = InputUtil.stringScanner();
 
-            File file = new File("external-files/saved-games/" + name);
-            boolean bool = file.mkdir();
-            if (bool) {
-                System.out.println("Folder created successfully");
-            } else {
-                System.out.println("Something went wrong");
-            }
+//            File file = new File("external-files/saved-games/" + name);
+//            boolean bool = file.mkdir();
+//            if (bool) {
+//                System.out.println("Folder created successfully");
+//            } else {
+//                System.out.println("Something went wrong");
+//            }
 
             final String pathForItems = "external-files/saved-games/" + name + "/" + name + "EquippedItem.json";
-            final String path = "external-files/saved-games/" + name + ".txt";
+            final String path = this.savedGamesPath + name + ".txt";
 
             if (new File(path).exists()) {
                 System.out.println("Game with this name is already saved");
-                continue;
+                System.out.println("Do you want to overwrite ?");
+                System.out.println("0. yes");
+                System.out.println("1. no");
+                int choice = InputUtil.intScanner();
+                switch (choice) {
+                    case 0 -> System.out.println("Game Saved");
+                    case 1 -> {
+                        continue;
+                    }
+                    default -> {
+                        System.out.println("Enter valid number");
+                        continue;
+                    }
+                }
             }
 
-            System.out.println(hero.getEquippedItems());
-
             try {
-                Files.writeString(Path.of(path), generateSave(hero, currentLevel));
-                Writer writer = Files.newBufferedWriter(Paths.get(pathForItems));
-                this.gson.toJson(equippedItems, writer);
+//                Files.writeString(Path.of(path), generateSave(hero, currentLevel));
+//                Writer writer = Files.newBufferedWriter(Paths.get(pathForItems));
+                Writer writer = Files.newBufferedWriter(Paths.get(path));
+                this.gson.toJson(gameLoaded, writer);
+//                this.gson.toJson(equippedItems, writer);
                 writer.close();
-                System.out.println("Game saved");
             } catch (IOException e) {
                 System.out.println("Error while saving game");
                 continue;
@@ -70,24 +85,26 @@ public class FileService {
         }
     }
 
-    private String generateSave(Hero hero, int currentLevel) {
-        StringBuilder saveGame = new StringBuilder();
-        saveGame.append(currentLevel).append(System.lineSeparator());
-        saveGame.append(hero.getName()).append(System.lineSeparator());
-        saveGame.append(hero.getUnspentAbilityPoints()).append(System.lineSeparator());
+//    private GameLoaded generateSave(Hero hero, int currentLevel) {
+//
+//    }
 
-
-
-        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
-            hero.getWearingItemAbilityPoints().putIfAbsent(entry.getKey(), 0);
-//            System.out.println(hero.getWearingItemAbilityPoints().get(entry.getKey()));
-            saveGame.append(entry.getKey()).append(":")
-                    .append(entry.getValue() - hero.getWearingItemAbilityPoints()
-                    .get(entry.getKey()))
-                    .append(System.lineSeparator());
-        }
-        return saveGame.toString();
-    }
+//    private String generateSave(Hero hero, int currentLevel) {
+//        StringBuilder saveGame = new StringBuilder();
+//        saveGame.append(currentLevel).append(System.lineSeparator());
+//        saveGame.append(hero.getName()).append(System.lineSeparator());
+//        saveGame.append(hero.getUnspentAbilityPoints()).append(System.lineSeparator());
+//
+//        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
+//            hero.getWearingItemAbilityPoints().putIfAbsent(entry.getKey(), 0);
+////            System.out.println(hero.getWearingItemAbilityPoints().get(entry.getKey()));
+//            saveGame.append(entry.getKey()).append(":")
+//                    .append(entry.getValue() - hero.getWearingItemAbilityPoints()
+//                            .get(entry.getKey()))
+//                    .append(System.lineSeparator());
+//        }
+//        return saveGame.toString();
+//    }
 
     public GameLoaded loadGame() {
 
@@ -95,9 +112,12 @@ public class FileService {
         if (listOfSavedGames.isEmpty()) {
             return null;
         } else {
-            String selectedSavedGame = selectSaveGame(listOfSavedGames);
-            return setHeroAbilities(new File(selectedSavedGame));
+//            String selectedSavedGame = selectSaveGame(listOfSavedGames);
+//            return setHeroAbilities(new File(selectedSavedGame));
+//            BufferedReader bufferedReader = new BufferedReader(new FileReader(savedGamesPath));
+
         }
+//        return new GameLoaded();
     }
 
     private EquippedItems loadEquippedItems(String selectedSaveGame) {
@@ -198,6 +218,7 @@ public class FileService {
                     item1.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
                 }
                 itemList.addAll(item);
+                reader.close();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

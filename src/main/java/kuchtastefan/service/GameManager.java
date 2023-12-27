@@ -8,6 +8,7 @@ import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemList;
+import kuchtastefan.item.ItemType;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -54,7 +55,7 @@ public class GameManager {
             System.out.println("2. Save game");
             System.out.println("3. Exit game");
             System.out.println("4. Equip items");
-            System.out.println("5. Remove equipped items");
+            System.out.println("5. Wear down all items");
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
@@ -91,8 +92,12 @@ public class GameManager {
                         return;
                     }
                 }
-                case 4 -> this.hero.equipItems(items);
-                case 5 -> this.hero.removeEquippedItems(items);
+                case 4 -> {
+                    this.hero.equipItem(itemList.getItemList().get(0));
+                    this.hero.equipItem(itemList.getItemList().get(2));
+                    this.hero.equipItem(itemList.getItemList().get(4));
+                }
+                case 5 -> this.hero.wearDownAllItems();
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -134,8 +139,8 @@ public class GameManager {
                 final GameLoaded gameLoaded = fileService.loadGame();
                 if (gameLoaded != null) {
                     this.hero = gameLoaded.getHero();
-                    this.hero.setEquippedItem(gameLoaded.getEquippedItems());
-                    this.hero.equipItems(itemList.getItemList());
+//                    this.hero.setEquippedItem(gameLoaded.getEquippedItems());
+//                    this.hero.equipItems(itemList.getItemList());
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     return;

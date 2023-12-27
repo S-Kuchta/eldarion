@@ -15,7 +15,9 @@ public class BattleService {
     public boolean isHeroReadyToBattle(Hero hero, Enemy enemy, List<Item> itemList) {
         System.out.println(hero.getName() + " VS " + enemy.getName());
         PrintUtil.printCurrentAbilityPoints(hero);
-        PrintUtil.printCurrentWearingArmor(hero, itemList);
+        PrintUtil.printCurrentWearingArmor(hero);
+        PrintUtil.printCurrentAbilityPointsWithItems(hero);
+//        PrintUtil.printCurrentWearingArmor(hero, itemList);
 
         PrintUtil.printCurrentAbilityPoints(enemy);
 
@@ -98,11 +100,29 @@ public class BattleService {
         return Math.max(totalDamage, 0);
     }
 
+//    private int attack(GameCharacter gameCharacter) {
+//        int minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
+//        int maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
+//                gameCharacter.getAbilityValue(Ability.DEXTERITY) +
+//                gameCharacter.getAbilityValue(Ability.SKILL);
+//
+//        return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
+//    }
+
     private int attack(GameCharacter gameCharacter) {
-        int minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
-        int maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
-                gameCharacter.getAbilityValue(Ability.DEXTERITY) +
-                gameCharacter.getAbilityValue(Ability.SKILL);
+        int minDamage;
+        int maxDamage;
+        if (gameCharacter instanceof Hero) {
+            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK) + ((Hero) gameCharacter).getItemAbilityValue(Ability.ATTACK);
+            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK) + ((Hero) gameCharacter).getItemAbilityValue(Ability.ATTACK) +
+                    gameCharacter.getAbilityValue(Ability.DEXTERITY) + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEXTERITY) +
+                    gameCharacter.getAbilityValue(Ability.SKILL) + ((Hero) gameCharacter).getItemAbilityValue(Ability.SKILL);
+        } else {
+            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
+            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
+                    gameCharacter.getAbilityValue(Ability.DEXTERITY) +
+                    gameCharacter.getAbilityValue(Ability.SKILL);
+        }
 
         return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
     }

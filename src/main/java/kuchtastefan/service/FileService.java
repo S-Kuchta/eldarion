@@ -3,7 +3,7 @@ package kuchtastefan.service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import kuchtastefan.domain.EquippedItems;
+import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
@@ -27,11 +27,11 @@ public class FileService {
 
     public void saveGame(Hero hero, int currentLevel) {
 
-        EquippedItems equippedItems = hero.getEquippedItems();
-        String jsonStr = this.gson.toJson(equippedItems);
-        System.out.println(jsonStr);
+//        EquippedItems equippedItems = hero.getEquippedItems();
+//        String jsonStr = this.gson.toJson(equippedItems);
+//        System.out.println(jsonStr);
 
-        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, hero.getEquippedItems());
+        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero);
 
         while (true) {
             System.out.println("How do you want to name your save?");
@@ -139,6 +139,10 @@ public class FileService {
 
                 for (Item item1 : item) {
                     item1.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
+                    for (Ability ability : Ability.values()) {
+                        item1.getAbilities().putIfAbsent(ability, 0);
+                    }
+
                 }
                 itemList.addAll(item);
                 reader.close();

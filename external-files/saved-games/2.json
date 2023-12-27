@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "equippedItem": {
+      "equippedItem": {
+        "BODY": {
+          "name": "Heavy armor",
+          "itemType": "BODY",
+          "abilities": {
+            "DEFENCE": 4
+          },
+          "itemLevel": 2
+        }
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "LUCK": 0,
+      "DEXTERITY": 0,
+      "ATTACK": 0,
+      "HEALTH": 0,
+      "DEFENCE": 4,
+      "SKILL": 0
+    },
+    "name": "stefan",
+    "abilities": {
+      "LUCK": 1,
+      "DEXTERITY": 1,
+      "ATTACK": 8,
+      "HEALTH": 50,
+      "DEFENCE": 1,
+      "SKILL": 1
+    }
+  },
+  "level": 1,
+  "equippedItems": {
+    "equippedItem": {
+      "BODY": {
+        "name": "Heavy armor",
+        "itemType": "BODY",
+        "abilities": {
+          "DEFENCE": 4
+        },
+        "itemLevel": 2
+      }
+    }
+  }
+}

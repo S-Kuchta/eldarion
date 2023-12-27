@@ -6,50 +6,45 @@ import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemType;
 
-import java.util.List;
 import java.util.Map;
 
 public class PrintUtil {
 
-    public static void printCurrentAbilityPoints(GameCharacter hero) {
+    public static void printCurrentAbilityPoints(GameCharacter gameCharacter) {
         System.out.println();
-        System.out.println(hero.getClass().getSimpleName().equals("Hero") ? "Your abilities + abilities from Equipped items:" : "Enemy abilities:");
-        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
+        System.out.println(gameCharacter instanceof Hero ? "Your abilities" : "Enemy abilities:");
+        for (Map.Entry<Ability, Integer> entry : gameCharacter.getAbilities().entrySet()) {
             System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
         }
         System.out.println();
         printDivider();
     }
 
-    public static void printCurrentAbilityPointsWithoutItems(Hero hero) {
+    public static void printCurrentAbilityPointsWithItems(Hero hero) {
         System.out.println();
-        System.out.println(hero.getClass().getSimpleName().equals("Hero") ? "Your abilities:" : "Enemy abilities:");
+        System.out.println("Ability points with items");
         for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
-            if (hero.getWearingItemAbilityPoints().get(entry.getKey()) == null) {
-                System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
-            } else {
-                System.out.print(entry.getKey() + ": " + (entry.getValue() - hero.getWearingItemAbilityPoints().get(entry.getKey())) + ", ");
-            }
+                System.out.print(entry.getKey() + ": "
+                        + (entry.getValue()
+                        + hero.getWearingItemAbilityPoints().get(entry.getKey())) + ", ");
         }
         System.out.println();
         printDivider();
     }
 
-    public static void printCurrentWearingArmor(Hero hero, List<Item> itemList) {
-        for (Map.Entry<ItemType, String> item : hero.getEquippedItems().getEquippedItem().entrySet()) {
-            if (item.getValue() != null) {
-                System.out.print(item.getKey() + ": " + item.getValue());
-                for (Item item1 : itemList) {
-                    if (item1.getName().equals(item.getValue())) {
-                        System.out.print(" -> " + item1.getAbilities());
-                    }
+    public static void printCurrentWearingArmor(Hero hero) {
+        for (Map.Entry<ItemType, Item> item : hero.getEquippedItem().entrySet()) {
+            System.out.print(item.getKey() + ": " + item.getValue().getName());
+            if (!item.getValue().getName().equals("No item")) {
+                System.out.print(", Item stats: ");
+            }
+            for (Map.Entry<Ability, Integer> ability : item.getValue().getAbilities().entrySet()) {
+                if (ability.getValue() != 0) {
+                    System.out.print(ability.getKey() + ": " + ability.getValue() + ", ");
                 }
-            } else {
-                System.out.print("You are not wearing " + item.getKey());
             }
             System.out.println();
         }
-        System.out.println();
         printDivider();
     }
 

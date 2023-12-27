@@ -26,11 +26,6 @@ public class FileService {
     private final String savedGamesPath = "external-files/saved-games/";
 
     public void saveGame(Hero hero, int currentLevel) {
-
-//        EquippedItems equippedItems = hero.getEquippedItems();
-//        String jsonStr = this.gson.toJson(equippedItems);
-//        System.out.println(jsonStr);
-
         GameLoaded gameLoaded = new GameLoaded(currentLevel, hero);
 
         while (true) {
@@ -41,15 +36,15 @@ public class FileService {
 
             if (new File(path).exists()) {
                 System.out.println("Game with this name is already saved");
-                System.out.println("Do you want to overwrite ?");
-                System.out.println("0. yes");
-                System.out.println("1. no");
+                System.out.println("Do you want to overwrite it?");
+                System.out.println("0. no");
+                System.out.println("1. yes");
                 int choice = InputUtil.intScanner();
                 switch (choice) {
-                    case 0 -> System.out.println("Game Saved");
-                    case 1 -> {
+                    case 0 -> {
                         continue;
                     }
+                    case 1 -> System.out.println("Game Saved");
                     default -> {
                         System.out.println("Enter valid number");
                         continue;
@@ -142,7 +137,6 @@ public class FileService {
                     for (Ability ability : Ability.values()) {
                         item1.getAbilities().putIfAbsent(ability, 0);
                     }
-
                 }
                 itemList.addAll(item);
                 reader.close();

@@ -32,6 +32,19 @@ public class PrintUtil {
         printDivider();
     }
 
+    public static void printItemAbilityStats(Item item) {
+        System.out.print(item.getType() + ": " + item.getName());
+        if (!item.getName().equals("No item")) {
+            System.out.print(", Item stats: ");
+        }
+        for (Map.Entry<Ability, Integer> ability : item.getAbilities().entrySet()) {
+            if (ability.getValue() != 0) {
+                System.out.print(ability.getKey() + ": " + ability.getValue() + ", ");
+            }
+        }
+        System.out.println();
+    }
+
     public static void printCurrentWearingArmor(Hero hero) {
         for (Map.Entry<ItemType, Item> item : hero.getEquippedItem().entrySet()) {
             System.out.print(item.getKey() + ": " + item.getValue().getName());

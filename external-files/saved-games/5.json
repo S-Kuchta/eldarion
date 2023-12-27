@@ -1,0 +1,90 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "equippedItem": {
+      "HEAD": {
+        "name": "No item",
+        "itemType": "HEAD",
+        "abilities": {
+          "HEALTH": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0
+        },
+        "itemLevel": 0
+      },
+      "BOOTS": {
+        "name": "No item",
+        "itemType": "BOOTS",
+        "abilities": {
+          "HEALTH": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0
+        },
+        "itemLevel": 0
+      },
+      "HANDS": {
+        "name": "No item",
+        "itemType": "HANDS",
+        "abilities": {
+          "HEALTH": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0
+        },
+        "itemLevel": 0
+      },
+      "BODY": {
+        "name": "No item",
+        "itemType": "BODY",
+        "abilities": {
+          "HEALTH": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0
+        },
+        "itemLevel": 0
+      },
+      "WEAPON": {
+        "name": "No item",
+        "itemType": "WEAPON",
+        "abilities": {
+          "HEALTH": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0
+        },
+        "itemLevel": 0
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "LUCK": 0,
+      "DEXTERITY": 0,
+      "ATTACK": 0,
+      "HEALTH": 0,
+      "SKILL": 0,
+      "DEFENCE": 0
+    },
+    "name": "stefan",
+    "abilities": {
+      "LUCK": 1,
+      "DEXTERITY": 1,
+      "ATTACK": 8,
+      "HEALTH": 50,
+      "SKILL": 1,
+      "DEFENCE": 1
+    }
+  },
+  "level": 1
+}

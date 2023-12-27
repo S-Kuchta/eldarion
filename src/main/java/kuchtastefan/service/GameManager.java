@@ -8,7 +8,6 @@ import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemList;
-import kuchtastefan.item.ItemType;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -26,6 +25,7 @@ public class GameManager {
     private final BattleService battleService;
     private final ItemList itemList;
     private List<Item> items = new ArrayList<>();
+    private final InventoryService inventoryService;
 
     public GameManager() {
         this.hero = new Hero("");
@@ -35,18 +35,11 @@ public class GameManager {
         this.enemiesByLevel = EnemyGenerator.createEnemies();
         this.heroAbilityManager = new HeroAbilityManager(hero);
         this.itemList = new ItemList(new ArrayList<>());
+        this.inventoryService = new InventoryService();
     }
 
     public void startGame() {
         this.initGame();
-        for (Item oneItem : this.items) {
-//            if (oneItem.getType().equals(ItemType.AXE)) {
-            System.out.println(oneItem.getName() + ", "
-                    + oneItem.getAbilities() + ", "
-                    + oneItem.getType() + " ("
-                    + oneItem.getType().getDescription() + ")");
-//            }
-        }
 
         while (this.currentLevel <= this.enemiesByLevel.size()) {
             final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
@@ -55,7 +48,7 @@ public class GameManager {
             System.out.println("2. Save game");
             System.out.println("3. Exit game");
             System.out.println("4. Equip items");
-            System.out.println("5. Wear down all items");
+            System.out.println("5. Inventory");
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
@@ -97,7 +90,7 @@ public class GameManager {
                     this.hero.equipItem(itemList.getItemList().get(2));
                     this.hero.equipItem(itemList.getItemList().get(4));
                 }
-                case 5 -> this.hero.wearDownAllItems();
+                case 5 -> this.inventoryMenu();
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -106,11 +99,15 @@ public class GameManager {
     }
 
     public void inventoryMenu() {
-        System.out.println("0. Items");
+        System.out.println("0. Go back");
+        System.out.println("1. Items");
         int choice = InputUtil.intScanner();
-//        switch (choice) {
-//            case 0 ->
-//        }
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> this.inventoryService.inventoryMenu(this.hero);
+            default -> System.out.println("Enter valid input");
+        }
     }
 
     private void upgradeAbility() {
@@ -139,10 +136,11 @@ public class GameManager {
                 final GameLoaded gameLoaded = fileService.loadGame();
                 if (gameLoaded != null) {
                     this.hero = gameLoaded.getHero();
-//                    this.hero.setEquippedItem(gameLoaded.getEquippedItems());
-//                    this.hero.equipItems(itemList.getItemList());
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
+                    for (Item item : this.items) {
+                        this.hero.getHeroInventory().add(item);
+                    }
                     return;
                 }
             }

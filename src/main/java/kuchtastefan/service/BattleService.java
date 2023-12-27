@@ -100,42 +100,55 @@ public class BattleService {
         return Math.max(totalDamage, 0);
     }
 
-//    private int attack(GameCharacter gameCharacter) {
-//        int minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
-//        int maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
-//                gameCharacter.getAbilityValue(Ability.DEXTERITY) +
-//                gameCharacter.getAbilityValue(Ability.SKILL);
-//
-//        return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
-//    }
-
     private int attack(GameCharacter gameCharacter) {
         int minDamage;
         int maxDamage;
         if (gameCharacter instanceof Hero) {
-            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK) + ((Hero) gameCharacter).getItemAbilityValue(Ability.ATTACK);
-            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK) + ((Hero) gameCharacter).getItemAbilityValue(Ability.ATTACK) +
-                    gameCharacter.getAbilityValue(Ability.DEXTERITY) + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEXTERITY) +
-                    gameCharacter.getAbilityValue(Ability.SKILL) + ((Hero) gameCharacter).getItemAbilityValue(Ability.SKILL);
+            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
+                    ((Hero) gameCharacter).getItemAbilityValue(Ability.ATTACK);
+            maxDamage = minDamage
+                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEXTERITY)
+                    + gameCharacter.getAbilityValue(Ability.SKILL)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.SKILL);
         } else {
             minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
-            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
-                    gameCharacter.getAbilityValue(Ability.DEXTERITY) +
-                    gameCharacter.getAbilityValue(Ability.SKILL);
+            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK)
+                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+                    + gameCharacter.getAbilityValue(Ability.SKILL);
         }
 
         return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
     }
 
     private int defense(GameCharacter gameCharacter) {
-        int minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE);
-        int maxDefence = minDefence + gameCharacter.getAbilityValue(Ability.DEXTERITY);
+        int minDefence;
+        int maxDefence;
+        if (gameCharacter instanceof Hero) {
+            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEFENCE);
+            maxDefence = minDefence
+                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEXTERITY);
+        } else {
+            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE);
+            maxDefence = minDefence + gameCharacter.getAbilityValue(Ability.DEXTERITY);
+        }
 
         return RandomNumberGenerator.getRandomNumber(minDefence, maxDefence);
     }
 
     private boolean criticalHit(GameCharacter gameCharacter) {
-        int criticalHit = gameCharacter.getAbilityValue(Ability.LUCK) + gameCharacter.getAbilityValue(Ability.SKILL);
+        int criticalHit;
+        if (gameCharacter instanceof Hero) {
+            criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
+                    + gameCharacter.getAbilityValue(Ability.SKILL)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.SKILL)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.LUCK);
+        } else {
+            criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
+                    + gameCharacter.getAbilityValue(Ability.SKILL);
+        }
         return criticalHit >= RandomNumberGenerator.getRandomNumber(0, 100);
     }
 }

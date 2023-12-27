@@ -26,8 +26,8 @@ public class Hero extends GameCharacter {
 
     public void equipItems(List<Item> itemList) {
 //        this.removeEquippedItems(itemList);
-//        this.equippedItem.getEquippedItem().put(ItemType.WEAPON, "Iron sword");
-//        this.equippedItem.getEquippedItem().put(ItemType.BODY, "Medium armor");
+        this.equippedItem.getEquippedItem().put(ItemType.WEAPON, "Iron sword");
+        this.equippedItem.getEquippedItem().put(ItemType.BODY, "Medium armor");
 //        this.equippedItem.getEquippedItem().put(ItemType.HEAD, "Basic helmet");
 //        this.equippedItem.getEquippedItem().put(ItemType.HANDS, "Basic hands");
 //        this.equippedItem.getEquippedItem().put(ItemType.BOOTS, "Basic boots");

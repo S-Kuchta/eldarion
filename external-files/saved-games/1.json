@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "equippedItem": {
+      "equippedItem": {}
+    },
+    "wearingItemAbilityPoints": {},
+    "name": "stefan",
+    "abilities": {
+      "LUCK": 1,
+      "DEXTERITY": 1,
+      "ATTACK": 8,
+      "HEALTH": 50,
+      "DEFENCE": 1,
+      "SKILL": 1
+    }
+  },
+  "level": 1,
+  "equippedItems": {
+    "equippedItem": {}
+  }
+}

@@ -15,6 +15,7 @@ public class Hero extends GameCharacter {
     private Map<ItemType, Item> equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final List<Item> heroInventory;
+    private int heroGold;
 
     public Hero(String name) {
         super(name, new HashMap<>());
@@ -23,10 +24,16 @@ public class Hero extends GameCharacter {
         this.wearingItemAbilityPoints = getItemsInitialAbilities();
         this.equippedItem = wearDownEquippedItems();
         this.heroInventory = new ArrayList<>();
+        this.heroGold = Constant.INITIAL_HERO_GOLD;
     }
 
     public void equipItem(Item item) {
-        this.equippedItem.put(item.getType(), item);
+        if (this.level < item.getItemLevel()) {
+            System.out.println("You don't meet level requirement to wear this item!");
+        } else {
+            System.out.println("You equipped " + item.getName());
+            this.equippedItem.put(item.getType(), item);
+        }
         setWearingItemAbilityPoints();
     }
 
@@ -140,5 +147,13 @@ public class Hero extends GameCharacter {
 
     public Map<Ability, Integer> getWearingItemAbilityPoints() {
         return wearingItemAbilityPoints;
+    }
+
+    public int getHeroGold() {
+        return heroGold;
+    }
+
+    public void setHeroGold(int heroGold) {
+        this.heroGold = heroGold;
     }
 }

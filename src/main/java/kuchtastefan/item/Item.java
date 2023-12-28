@@ -10,6 +10,7 @@ public class Item {
     private ItemType itemType;
     private Map<Ability, Integer> abilities;
     private int itemLevel;
+    private int price;
 
     public Item() {
     }
@@ -39,5 +40,13 @@ public class Item {
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

@@ -13,15 +13,17 @@ public class InventoryService {
 
     public void inventoryMenu(Hero hero) {
         System.out.println("0. Go back");
-        System.out.println("1. Weapons");
-        System.out.println("2. Body");
-        System.out.println("3. Head");
-        System.out.println("4. Hands");
-        System.out.println("5. Boots");
+        System.out.println("1. Weapons (" + PrintUtil.printItemCountByType(hero, ItemType.WEAPON) + ")");
+        System.out.println("2. Body (" + PrintUtil.printItemCountByType(hero, ItemType.BODY) + ")");
+        System.out.println("3. Head (" + PrintUtil.printItemCountByType(hero, ItemType.HEAD) + ")");
+        System.out.println("4. Hands (" + PrintUtil.printItemCountByType(hero, ItemType.HANDS) + ")");
+        System.out.println("5. Boots (" + PrintUtil.printItemCountByType(hero, ItemType.BOOTS) + ")");
         System.out.println("6. Wear off all equip");
         int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> {}
+            case 0 -> {
+                break;
+            }
             case 1 -> printInventoryMenuByItemType(hero, ItemType.WEAPON);
             case 2 -> printInventoryMenuByItemType(hero, ItemType.BODY);
             case 3 -> printInventoryMenuByItemType(hero, ItemType.HEAD);
@@ -45,15 +47,20 @@ public class InventoryService {
             }
         }
 
-        int choice = InputUtil.intScanner();
-        if (choice == 0) {
-            inventoryMenu(hero);
-        }
-        if (choice < 0 || choice > tempList.size()) {
-            System.out.println("Enter valid number");
-        } else {
-            hero.equipItem(tempList.get(choice - 1));
-            inventoryMenu(hero);
+        while (true) {
+            try {
+                int choice = InputUtil.intScanner();
+                if (choice == 0) {
+                    inventoryMenu(hero);
+                    break;
+                }
+
+                hero.equipItem(tempList.get(choice - 1));
+                inventoryMenu(hero);
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Enter valid number");
+            }
         }
     }
 

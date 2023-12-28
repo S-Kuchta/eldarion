@@ -44,7 +44,8 @@ public class FileService {
                     case 0 -> {
                         continue;
                     }
-                    case 1 -> System.out.println("Game Saved");
+                    case 1 -> {
+                    }
                     default -> {
                         System.out.println("Enter valid number");
                         continue;
@@ -55,6 +56,7 @@ public class FileService {
             try {
                 Writer writer = Files.newBufferedWriter(Paths.get(path));
                 this.gson.toJson(gameLoaded, writer);
+                System.out.println("Game Saved");
                 writer.close();
             } catch (IOException e) {
                 System.out.println("Error while saving game");
@@ -126,19 +128,22 @@ public class FileService {
     public List<Item> item(List<Item> itemList) {
         String path = "external-files/items";
         try {
-            List<Item> item;
+            List<Item> items;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                item = new Gson().fromJson(reader, new TypeToken<List<Item>>() {
+                items = new Gson().fromJson(reader, new TypeToken<List<Item>>() {
                 }.getType());
 
-                for (Item item1 : item) {
-                    item1.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
+                for (Item item : items) {
+                    item.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
                     for (Ability ability : Ability.values()) {
-                        item1.getAbilities().putIfAbsent(ability, 0);
+                        item.getAbilities().putIfAbsent(ability, 0);
                     }
+
+                    item.setPrice(50 * item.getItemLevel());
+
                 }
-                itemList.addAll(item);
+                itemList.addAll(items);
                 reader.close();
             }
         } catch (IOException e) {

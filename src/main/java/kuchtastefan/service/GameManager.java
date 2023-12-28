@@ -26,6 +26,7 @@ public class GameManager {
     private final ItemList itemList;
     private List<Item> items = new ArrayList<>();
     private final InventoryService inventoryService;
+    private final ShopService shopService;
 
     public GameManager() {
         this.hero = new Hero("");
@@ -36,6 +37,7 @@ public class GameManager {
         this.heroAbilityManager = new HeroAbilityManager(hero);
         this.itemList = new ItemList(new ArrayList<>());
         this.inventoryService = new InventoryService();
+        this.shopService = new ShopService();
     }
 
     public void startGame() {
@@ -49,6 +51,7 @@ public class GameManager {
             System.out.println("3. Exit game");
             System.out.println("4. Equip items");
             System.out.println("5. Inventory");
+            System.out.println("6. Shop");
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
@@ -60,6 +63,7 @@ public class GameManager {
                             PrintUtil.printDivider();
                             System.out.println("You have won this battle! You have gained " + this.currentLevel + " points to spend");
                             this.hero.updateAbilityPoints(this.currentLevel);
+                            this.hero.setHeroGold(50 * this.currentLevel);
                             this.currentLevel++;
                         } else {
                             System.out.println("You have lost!");
@@ -91,6 +95,7 @@ public class GameManager {
                     this.hero.equipItem(itemList.getItemList().get(4));
                 }
                 case 5 -> this.inventoryMenu();
+                case 6 -> this.shopService.shopMenu(this.hero, this.items);
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -138,9 +143,6 @@ public class GameManager {
                     this.hero = gameLoaded.getHero();
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
-                    for (Item item : this.items) {
-                        this.hero.getHeroInventory().add(item);
-                    }
                     return;
                 }
             }

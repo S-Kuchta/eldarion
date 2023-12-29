@@ -1,17 +1,63 @@
 [
   {
-    "name": "Wooden sword",
+    "name": "Iron sword of Attack",
     "abilities": {
-      "ATTACK": 2,
-      "SKILL": 3
+      "ATTACK": 2
     },
     "itemLevel": 1
   },
   {
-    "name": "Iron sword",
+    "name": "Iron sword of Dexterity",
+    "abilities": {
+      "ATTACK": 1,
+      "DEXTERITY": 1
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Iron sword of Skill",
+    "abilities": {
+      "ATTACK": 1,
+      "SKILL": 1
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Iron sword of Health",
+    "abilities": {
+      "ATTACK": 1,
+      "HEALTH": 5
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Steel sword of Attack",
+    "abilities": {
+      "ATTACK": 3
+    },
+    "itemLevel": 2
+  },
+  {
+    "name": "Steel sword of Dexterity",
     "abilities": {
       "ATTACK": 2,
       "DEXTERITY": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "name": "Steel sword of Skill",
+    "abilities": {
+      "ATTACK": 2,
+      "SKILL": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "name": "Steel sword of Health",
+    "abilities": {
+      "ATTACK": 2,
+      "HEALTH": 10
     },
     "itemLevel": 2
   }

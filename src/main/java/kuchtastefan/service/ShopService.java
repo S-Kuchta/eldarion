@@ -11,13 +11,13 @@ import java.util.List;
 
 public class ShopService {
     public void shopMenu(Hero hero, List<Item> itemList) {
-        PrintUtil.printHeroGold(hero);
-        System.out.println("0. Go back");
-        System.out.println("1. Weapons");
-        System.out.println("2. Body");
-        System.out.println("3. Head");
-        System.out.println("4. Hands");
-        System.out.println("5. Boots");
+        PrintUtil.printMarketHeader(Item.class.getSimpleName());
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. Weapons");
+        System.out.println("\t2. Body");
+        System.out.println("\t3. Head");
+        System.out.println("\t4. Hands");
+        System.out.println("\t5. Boots");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -32,13 +32,19 @@ public class ShopService {
     }
 
     private void printInventoryMenuByItemType(List<Item> itemList, Hero hero, ItemType itemType) {
+        PrintUtil.printShopHeader(hero, itemType);
         int index = 1;
         List<Item> tempList = new ArrayList<>();
-        System.out.println("0. Go back");
+        System.out.println("\t0. Go back");
         for (Item item : itemList) {
             if (item.getType() == itemType) {
-                System.out.print(index + ". " + "Price: " + item.getPrice() + " golds, item level: " + item.getItemLevel() + ", ");
+                System.out.print("\t" + index + ". ");
                 PrintUtil.printItemAbilityStats(item);
+                System.out.println("\t\t\tPrice: "
+                        + item.getPrice()
+                        + " golds, item level: "
+                        + item.getItemLevel() + ", item quality: "
+                        + item.getItemQuality());
                 tempList.add(item);
                 index++;
             }
@@ -52,19 +58,30 @@ public class ShopService {
                     break;
                 }
 
-                if (hero.getHeroGold() >= tempList.get(choice - 1).getPrice()) {
-                    hero.getHeroInventory().add(tempList.get(choice - 1));
-                    hero.setHeroGold(hero.getHeroGold() - tempList.get(choice - 1).getPrice());
+                Item choosenItem = tempList.get(choice - 1);
 
-                    System.out.println(tempList.get(choice - 1).getName() + " bought. You can find your item in inventory.");
-                    System.out.println("Do you want to equip your new item?");
+                if (hero.getHeroGold() >= choosenItem.getPrice()) {
+                    System.out.println("Are you sure you want to buy " + choosenItem.getName());
                     System.out.println("0. no");
                     System.out.println("1. yes");
-                    int wearChoice = InputUtil.intScanner();
-                    switch (wearChoice) {
-                        case 0 -> {
+                    int confirmInput = InputUtil.intScanner();
+                    switch (confirmInput) {
+                        case 0 -> printInventoryMenuByItemType(itemList, hero, itemType);
+                        case 1 -> {
+                            hero.getHeroInventory().add(choosenItem);
+                            hero.setHeroGold(hero.getHeroGold() - choosenItem.getPrice());
+                            System.out.println(choosenItem.getName() + " bought. You can find it in your inventory.");
+
+                            System.out.println("Do you want to equip your new item?");
+                            System.out.println("0. no");
+                            System.out.println("1. yes");
+                            int wearChoice = InputUtil.intScanner();
+                            switch (wearChoice) {
+                                case 0 -> {
+                                }
+                                case 1 -> hero.equipItem(choosenItem);
+                            }
                         }
-                        case 1 -> hero.equipItem(tempList.get(choice - 1));
                     }
 
                     shopMenu(hero, itemList);

@@ -11,6 +11,7 @@ public class Item {
     private Map<Ability, Integer> abilities;
     private int itemLevel;
     private int price;
+    private ItemQuality itemQuality;
 
     public Item() {
     }
@@ -24,6 +25,10 @@ public class Item {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Map<Ability, Integer> getAbilities() {
@@ -48,5 +53,13 @@ public class Item {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public ItemQuality getItemQuality() {
+        return itemQuality;
+    }
+
+    public void setItemQuality(ItemQuality itemQuality) {
+        this.itemQuality = itemQuality;
     }
 }

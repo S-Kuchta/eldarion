@@ -7,6 +7,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemQuality;
 import kuchtastefan.item.ItemType;
 import kuchtastefan.utility.InputUtil;
 
@@ -134,14 +135,18 @@ public class FileService {
                 items = new Gson().fromJson(reader, new TypeToken<List<Item>>() {
                 }.getType());
 
-                for (Item item : items) {
-                    item.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
-                    for (Ability ability : Ability.values()) {
-                        item.getAbilities().putIfAbsent(ability, 0);
-                    }
 
-                    item.setPrice(50 * item.getItemLevel());
+                    for (Item item : items) {
+                        item.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
 
+//                        item.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
+//                        item.setPrice(50 * item.getItemLevel());
+//                        for (Ability ability : Ability.values()) {
+//                            item.getAbilities().putIfAbsent(ability, 0);
+//                        }
+                        for (ItemQuality itemQuality : ItemQuality.values()) {
+                            itemList.add(improveQualityOfItem(item, itemQuality));
+                        }
                 }
                 itemList.addAll(items);
                 reader.close();
@@ -151,6 +156,30 @@ public class FileService {
         }
 
         return itemList;
+    }
+
+    private Item improveQualityOfItem(Item item, ItemQuality itemQuality) {
+        item.setPrice(50 * item.getItemLevel());
+        for (Ability ability : Ability.values()) {
+            item.getAbilities().putIfAbsent(ability, 0);
+        }
+        item.setItemQuality(itemQuality);
+        item.setName(item.getName() + " (" + itemQuality + ")");
+        if (itemQuality == ItemQuality.BASIC) {
+            return item;
+        } else if (itemQuality == ItemQuality.IMPROVED) {
+            item.setPrice(item.getPrice() * 2);
+            for (Ability ability : Ability.values()) {
+                item.getAbilities().put(ability, item.getAbilities().get(ability) + 1);
+            }
+            return item;
+        } else {
+            item.setPrice(item.getPrice() * 3);
+            for (Ability ability : Ability.values()) {
+                item.getAbilities().put(ability, item.getAbilities().get(ability) + 2);
+            }
+            return item;
+        }
     }
 }
 

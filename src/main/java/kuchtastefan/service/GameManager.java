@@ -49,7 +49,7 @@ public class GameManager {
             System.out.println("1. Upgrade abilities (" + this.hero.getUnspentAbilityPoints() + " points to spend)");
             System.out.println("2. Save game");
             System.out.println("3. Exit game");
-            System.out.println("4. Equip items");
+
             System.out.println("5. Inventory");
             System.out.println("6. Shop");
 
@@ -74,7 +74,7 @@ public class GameManager {
                         PrintUtil.printDivider();
                     }
                 }
-                case 1 -> this.upgradeAbility();
+                case 1 -> this.upgradeAbilityMenu();
                 case 2 -> fileService.saveGame(this.hero, this.currentLevel);
                 case 3 -> {
                     System.out.println("Are you sure?");
@@ -90,12 +90,10 @@ public class GameManager {
                     }
                 }
                 case 4 -> {
-                    this.hero.equipItem(itemList.getItemList().get(0));
-                    this.hero.equipItem(itemList.getItemList().get(2));
-                    this.hero.equipItem(itemList.getItemList().get(4));
+
                 }
                 case 5 -> this.inventoryMenu();
-                case 6 -> this.shopService.shopMenu(this.hero, this.items);
+                case 6 -> this.shopMenu();
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -115,7 +113,19 @@ public class GameManager {
         }
     }
 
-    private void upgradeAbility() {
+    public void shopMenu() {
+        System.out.println("0. Go back");
+        System.out.println("1. Items");
+        int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> this.shopService.shopMenu(this.hero, this.items);
+            default -> System.out.println("Enter valid input");
+        }
+    }
+
+    private void upgradeAbilityMenu() {
         System.out.println("0. Go Back");
         System.out.println("1. Spend points (" + this.hero.getUnspentAbilityPoints() + " points left)");
         System.out.println("2. Remove points");
@@ -154,7 +164,7 @@ public class GameManager {
         PrintUtil.printDivider();
 
         this.hero.setName(name);
-        System.out.println("Hello " + hero.getName() + ". Let's start the game!");
+        System.out.println("\t\tHello " + hero.getName() + ". Let's start the game!");
         PrintUtil.printDivider();
 
         this.heroAbilityManager.spendAbilityPoints();

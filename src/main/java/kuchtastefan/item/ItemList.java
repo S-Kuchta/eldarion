@@ -1,17 +1,17 @@
 package kuchtastefan.item;
 
-import kuchtastefan.item.wearableItem.wearableItem;
+import kuchtastefan.item.wearableItem.WearableItem;
 
 import java.util.List;
 
 public class ItemList {
-    private final List<wearableItem> wearableItemList;
+    private final List<WearableItem> wearableItemList;
 
-    public ItemList(List<wearableItem> wearableItemList) {
+    public ItemList(List<WearableItem> wearableItemList) {
         this.wearableItemList = wearableItemList;
     }
 
-    public List<wearableItem> getItemList() {
+    public List<WearableItem> getItemList() {
         return wearableItemList;
     }
 }

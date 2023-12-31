@@ -3,8 +3,8 @@ package kuchtastefan.domain;
 import com.google.gson.Gson;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.item.wearableItem.wearableItem;
-import kuchtastefan.item.wearableItem.wearableItemType;
+import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,10 +13,10 @@ import java.util.Map;
 
 public class Hero extends GameCharacter {
     private int unspentAbilityPoints;
-    private Map<wearableItemType, wearableItem> equippedItem;
+    private Map<WearableItemType, WearableItem> equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints;
-    private final List<wearableItem> heroInventory;
-    private int heroGold;
+    private final List<WearableItem> heroInventory;
+    private double heroGold;
 
     public Hero(String name) {
         super(name, new HashMap<>());
@@ -28,22 +28,22 @@ public class Hero extends GameCharacter {
         this.heroGold = Constant.INITIAL_HERO_GOLD;
     }
 
-    public void equipItem(wearableItem wearableItem) {
+    public void equipItem(WearableItem wearableItem) {
         if (this.level < wearableItem.getItemLevel()) {
             System.out.println("You don't meet minimal level requirement to wear this item!");
         } else {
             System.out.println("You equipped " + wearableItem.getName());
             this.equippedItem.put(wearableItem.getType(), wearableItem);
         }
-        setWearingItemAbilityPoints();
+        updateWearingItemAbilityPoints();
     }
 
-    public void setWearingItemAbilityPoints() {
+    public void updateWearingItemAbilityPoints() {
         for (Ability ability : Ability.values()) {
             this.wearingItemAbilityPoints.put(ability, 0);
         }
 
-        for (Map.Entry<wearableItemType, wearableItem> wearingItem : this.equippedItem.entrySet()) {
+        for (Map.Entry<WearableItemType, WearableItem> wearingItem : this.equippedItem.entrySet()) {
             for (Ability ability : Ability.values()) {
                 this.wearingItemAbilityPoints.put(
                         ability,
@@ -60,24 +60,25 @@ public class Hero extends GameCharacter {
         }
     }
 
-    private Map<wearableItemType, wearableItem> initialEquip() {
-        Map<wearableItemType, wearableItem> itemMap = new HashMap<>();
-        for (wearableItemType wearableItemType : wearableItemType.values()) {
-            itemMap.put(wearableItemType, new wearableItem("No item", wearableItemType, getItemsInitialAbilityPoints(), 0));
+    private Map<WearableItemType, WearableItem> initialEquip() {
+        Map<WearableItemType, WearableItem> itemMap = new HashMap<>();
+        for (WearableItemType wearableItemType : WearableItemType.values()) {
+            itemMap.put(wearableItemType, new WearableItem("No item", 0, wearableItemType, getItemsInitialAbilityPoints(), 0));
         }
         return itemMap;
     }
 
-    public void addItemToItemList(wearableItem wearableItem) {
+    public void addItemToItemList(WearableItem wearableItem) {
         this.getHeroInventory().add(wearableItem);
     }
 
-    public void addItemWithNewCopyToItemList(wearableItem wearableItem) {
+    public void addItemWithNewCopyToItemList(WearableItem wearableItem) {
         Gson gson = new Gson();
-        this.getHeroInventory().add(gson.fromJson(gson.toJson(wearableItem), wearableItem.class));
+        WearableItem newWearableItem = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
+        this.getHeroInventory().add(newWearableItem);
     }
 
-    public void removeItemFromItemList(wearableItem wearableItem) {
+    public void removeItemFromItemList(WearableItem wearableItem) {
         this.getHeroInventory().remove(wearableItem);
     }
 
@@ -145,11 +146,11 @@ public class Hero extends GameCharacter {
         this.name = name;
     }
 
-    public Map<wearableItemType, wearableItem> getEquippedItem() {
+    public Map<WearableItemType, WearableItem> getEquippedItem() {
         return equippedItem;
     }
 
-    public List<wearableItem> getHeroInventory() {
+    public List<WearableItem> getHeroInventory() {
         return heroInventory;
     }
 
@@ -157,11 +158,11 @@ public class Hero extends GameCharacter {
         return wearingItemAbilityPoints;
     }
 
-    public int getHeroGold() {
+    public double getHeroGold() {
         return heroGold;
     }
 
-    public void setHeroGold(int heroGold) {
+    public void setHeroGold(double heroGold) {
         this.heroGold = heroGold;
     }
 }

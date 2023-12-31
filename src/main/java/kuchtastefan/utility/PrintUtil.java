@@ -4,8 +4,8 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.gameSettings.GameSettings;
-import kuchtastefan.item.wearableItem.wearableItem;
-import kuchtastefan.item.wearableItem.wearableItemType;
+import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemType;
 
 import java.util.Map;
 
@@ -34,7 +34,7 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printItemAbilityStats(wearableItem wearableItem) {
+    public static void printItemAbilityStats(WearableItem wearableItem) {
         System.out.print(wearableItem.getType() + ": " + wearableItem.getName());
         if (!wearableItem.getName().equals("No item")) {
             System.out.print(", Item stats: ");
@@ -48,7 +48,7 @@ public class PrintUtil {
     }
 
     public static void printCurrentWearingArmor(Hero hero) {
-        for (Map.Entry<wearableItemType, wearableItem> item : hero.getEquippedItem().entrySet()) {
+        for (Map.Entry<WearableItemType, WearableItem> item : hero.getEquippedItem().entrySet()) {
             System.out.print(item.getKey() + ": " + item.getValue().getName());
             if (!item.getValue().getName().equals("No item")) {
                 System.out.print(", Item stats: ");
@@ -95,9 +95,9 @@ public class PrintUtil {
         System.out.println("|------------------------------------------------------------------------------|");
     }
 
-    public static int printItemCountByType(Hero hero, wearableItemType wearableItemType) {
+    public static int printItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
-        for (wearableItem wearableItem : hero.getHeroInventory()) {
+        for (WearableItem wearableItem : hero.getHeroInventory()) {
             if (wearableItem.getType() == wearableItemType) {
                 count++;
             }
@@ -105,7 +105,7 @@ public class PrintUtil {
         return count;
     }
 
-    public static void printShopHeader(Hero hero, wearableItemType wearableItemType) {
+    public static void printShopHeader(Hero hero, WearableItemType wearableItemType) {
         printLongDivider();
         System.out.println("\t\t" + "Welcome to the "
                 + wearableItemType + " Shop\t\t\t\t\tYou have "
@@ -113,7 +113,7 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printInventoryHeader(wearableItemType wearableItemType) {
+    public static void printInventoryHeader(WearableItemType wearableItemType) {
         printDivider();
         System.out.println("\t\t\t" + wearableItemType + " inventory");
         printDivider();

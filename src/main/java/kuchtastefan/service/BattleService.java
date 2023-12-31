@@ -4,7 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.wearableItem.wearableItem;
+import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -12,7 +12,7 @@ import kuchtastefan.utility.RandomNumberGenerator;
 import java.util.List;
 
 public class BattleService {
-    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy, List<wearableItem> wearableItemList) {
+    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy, List<WearableItem> wearableItemList) {
         System.out.println(hero.getName() + " VS " + enemy.getName());
         PrintUtil.printCurrentAbilityPoints(hero);
         PrintUtil.printCurrentWearingArmor(hero);

@@ -6,9 +6,9 @@ import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.wearableItem.wearableItem;
-import kuchtastefan.item.wearableItem.wearableItemQuality;
-import kuchtastefan.item.wearableItem.wearableItemType;
+import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemQuality;
+import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
 
 import java.io.*;
@@ -126,27 +126,27 @@ public class FileService {
         }
     }
 
-    public List<wearableItem> item(List<wearableItem> wearableItemList) {
+    public List<WearableItem> item(List<WearableItem> wearableItemList) {
         String path = "external-files/items";
         try {
-            List<wearableItem> wearableItems;
+            List<WearableItem> WearableItems;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                wearableItems = new Gson().fromJson(reader, new TypeToken<List<wearableItem>>() {
+                WearableItems = new Gson().fromJson(reader, new TypeToken<List<WearableItem>>() {
                 }.getType());
 
-                for (wearableItem wearableItem : wearableItems) {
-                    wearableItem.setItemType(wearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
+                for (WearableItem wearableItem : WearableItems) {
+                    wearableItem.setItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
                     wearableItem.setPrice(50 * wearableItem.getItemLevel());
                     if (wearableItem.getItemQuality() == null) {
-                        wearableItem.setItemQuality(wearableItemQuality.BASIC);
+                        wearableItem.setItemQuality(WearableItemQuality.BASIC);
                     }
 
                     for (Ability ability : Ability.values()) {
                         wearableItem.getAbilities().putIfAbsent(ability, 0);
                     }
                 }
-                wearableItemList.addAll(wearableItems);
+                wearableItemList.addAll(WearableItems);
                 reader.close();
             }
         } catch (IOException e) {
@@ -154,30 +154,6 @@ public class FileService {
         }
 
         return wearableItemList;
-    }
-
-    private wearableItem improveQualityOfItem(wearableItem wearableItem, wearableItemQuality wearableItemQuality) {
-        wearableItem.setPrice(50 * wearableItem.getItemLevel());
-        for (Ability ability : Ability.values()) {
-            wearableItem.getAbilities().putIfAbsent(ability, 0);
-        }
-        wearableItem.setItemQuality(wearableItemQuality);
-        wearableItem.setName(wearableItem.getName() + " (" + wearableItemQuality + ")");
-        if (wearableItemQuality == wearableItemQuality.BASIC) {
-            return wearableItem;
-        } else if (wearableItemQuality == wearableItemQuality.IMPROVED) {
-            wearableItem.setPrice(wearableItem.getPrice() * 2);
-            for (Ability ability : Ability.values()) {
-                wearableItem.getAbilities().put(ability, wearableItem.getAbilities().get(ability) + 1);
-            }
-            return wearableItem;
-        } else {
-            wearableItem.setPrice(wearableItem.getPrice() * 3);
-            for (Ability ability : Ability.values()) {
-                wearableItem.getAbilities().put(ability, wearableItem.getAbilities().get(ability) + 2);
-            }
-            return wearableItem;
-        }
     }
 }
 

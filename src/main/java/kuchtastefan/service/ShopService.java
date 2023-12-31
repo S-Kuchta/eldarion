@@ -18,6 +18,7 @@ public class ShopService {
         System.out.println("\t3. Head");
         System.out.println("\t4. Hands");
         System.out.println("\t5. Boots");
+        System.out.println("\t6. Sell item");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -27,6 +28,7 @@ public class ShopService {
             case 3 -> printInventoryMenuByItemType(itemList, hero, ItemType.HEAD);
             case 4 -> printInventoryMenuByItemType(itemList, hero, ItemType.HANDS);
             case 5 -> printInventoryMenuByItemType(itemList, hero, ItemType.BOOTS);
+            case 6 -> sellItem(hero);
             default -> System.out.println("Enter valid number");
         }
     }
@@ -68,7 +70,7 @@ public class ShopService {
                     switch (confirmInput) {
                         case 0 -> printInventoryMenuByItemType(itemList, hero, itemType);
                         case 1 -> {
-                            hero.getHeroInventory().add(choosenItem);
+                            hero.addItemToItemList(choosenItem);
                             hero.setHeroGold(hero.getHeroGold() - choosenItem.getPrice());
                             System.out.println(choosenItem.getName() + " bought. You can find it in your inventory.");
 
@@ -93,5 +95,32 @@ public class ShopService {
                 System.out.println("Enter valid number");
             }
         }
+    }
+
+    private void sellItem(Hero hero) {
+        int index = 1;
+        System.out.println("0. Go back");
+        for (Item item : hero.getHeroInventory()) {
+            System.out.println(index + ". " + item.getName());
+        }
+
+        while (true) {
+            try {
+                int choice = InputUtil.intScanner();
+                if (choice == 0) {
+                    break;
+                } else {
+                    Item tempItem = hero.getHeroInventory().get(choice - 1);
+                    double itemPrice = tempItem.getPrice() * 0.7;
+                    hero.setHeroGold((int) (hero.getHeroGold() + itemPrice));
+                    hero.removeItemFromItemList(tempItem);
+                    System.out.println(tempItem + " sold for " + itemPrice + " golds");
+                }
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Enter valid number");
+            }
+        }
+
     }
 }

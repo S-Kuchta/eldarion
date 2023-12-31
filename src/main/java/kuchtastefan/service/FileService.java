@@ -135,18 +135,16 @@ public class FileService {
                 items = new Gson().fromJson(reader, new TypeToken<List<Item>>() {
                 }.getType());
 
+                for (Item item : items) {
+                    item.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
+                    item.setPrice(50 * item.getItemLevel());
+                    if (item.getItemQuality() == null) {
+                        item.setItemQuality(ItemQuality.BASIC);
+                    }
 
-                    for (Item item : items) {
-                        item.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
-
-//                        item.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
-//                        item.setPrice(50 * item.getItemLevel());
-//                        for (Ability ability : Ability.values()) {
-//                            item.getAbilities().putIfAbsent(ability, 0);
-//                        }
-                        for (ItemQuality itemQuality : ItemQuality.values()) {
-                            itemList.add(improveQualityOfItem(item, itemQuality));
-                        }
+                    for (Ability ability : Ability.values()) {
+                        item.getAbilities().putIfAbsent(ability, 0);
+                    }
                 }
                 itemList.addAll(items);
                 reader.close();

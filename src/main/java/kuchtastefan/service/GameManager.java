@@ -90,7 +90,8 @@ public class GameManager {
                     }
                 }
                 case 4 -> {
-
+                    Item item = new Item();
+                    item.improveItemQuality(hero.getHeroInventory().get(0));
                 }
                 case 5 -> this.inventoryMenu();
                 case 6 -> this.shopMenu();

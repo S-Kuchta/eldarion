@@ -3,6 +3,7 @@ package kuchtastefan.item;
 import kuchtastefan.ability.Ability;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class Item {
 
@@ -29,6 +30,27 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void improveItemQuality(Item item) {
+        ItemQuality itemQuality = item.getItemQuality();
+        if (itemQuality == ItemQuality.BASIC) {
+            item.setItemQuality(ItemQuality.IMPROVED);
+            setItemAbilities(item);
+        } else if (itemQuality == ItemQuality.IMPROVED) {
+            item.setItemQuality(ItemQuality.SUPERIOR);
+            setItemAbilities(item);
+        }
+    }
+
+    private void setItemAbilities(Item item) {
+
+        for (Map.Entry<Ability, Integer> abilityEntry : item.getAbilities().entrySet())
+            for (Ability ability : Ability.values()) {
+                if (abilityEntry.getValue() != 0) {
+                    item.getAbilities().put(ability, abilityEntry.getValue() + 1);
+                }
+            }
     }
 
     public Map<Ability, Integer> getAbilities() {
@@ -61,5 +83,18 @@ public class Item {
 
     public void setItemQuality(ItemQuality itemQuality) {
         this.itemQuality = itemQuality;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return itemLevel == item.itemLevel && price == item.price && Objects.equals(name, item.name) && itemType == item.itemType && Objects.equals(abilities, item.abilities) && itemQuality == item.itemQuality;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, itemType, abilities, itemLevel, price, itemQuality);
     }
 }

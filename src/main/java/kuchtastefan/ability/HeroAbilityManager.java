@@ -16,7 +16,6 @@ public class HeroAbilityManager {
     }
 
     public void spendAbilityPoints() {
-//        this.hero = hero;
         if (this.hero.getUnspentAbilityPoints() <= 0) {
             System.out.println("You don't have any ability points to spend.");
             PrintUtil.printDivider();
@@ -50,24 +49,35 @@ public class HeroAbilityManager {
     }
 
     private void printPossibleAbilitiesToUpgrade(String spendOrRemovePoint) {
-        spendOrRemovePoint = spendOrRemovePoint.equals("spend") ? "Explain abilities" : "I am done";
-        System.out.println("0. " + spendOrRemovePoint + "\n1. Attack\n2. Defence\n3. Dexterity\n4. Skill\n5. Luck\n6. Health");
+        spendOrRemovePoint = spendOrRemovePoint.equals("spend") ? "\t0. Explain abilities" : "\t0. I am done";
+        System.out.println(spendOrRemovePoint);
+        int index = 1;
+        for (Ability ability : Ability.values()) {
+            System.out.println("\t" + index + ". " + ability.toString());
+            index++;
+        }
     }
 
     private void setAbilityToUpgrade(int numberOfAbility, int numberOfPoints, int heroAvailablePointsChange, String spendOrRemovePoint) {
-        switch (numberOfAbility) {
-            case 0 -> {
-                if (spendOrRemovePoint.equals("spend")) {
-                    explainAbilities();
-                }
+        Ability tempAbility = null;
+        if (numberOfAbility == 0) {
+            if (spendOrRemovePoint.equals("spend")) {
+                explainAbilities();
             }
-            case 1 -> this.hero.setNewAbilitiesPoints(Ability.ATTACK, numberOfPoints, heroAvailablePointsChange);
-            case 2 -> this.hero.setNewAbilitiesPoints(Ability.DEFENCE, numberOfPoints, heroAvailablePointsChange);
-            case 3 -> this.hero.setNewAbilitiesPoints(Ability.DEXTERITY, numberOfPoints, heroAvailablePointsChange);
-            case 4 -> this.hero.setNewAbilitiesPoints(Ability.SKILL, numberOfPoints, heroAvailablePointsChange);
-            case 5 -> this.hero.setNewAbilitiesPoints(Ability.LUCK, numberOfPoints, heroAvailablePointsChange);
-            case 6 -> this.hero.setNewAbilitiesPoints(Ability.HEALTH, numberOfPoints, heroAvailablePointsChange);
-            default -> System.out.println("Enter valid value.");
+        } else {
+            int index = 1;
+            if (numberOfAbility < 1 || numberOfAbility > Ability.values().length) {
+                System.out.println("Enter Valid number");
+            } else {
+                for (Ability ability : Ability.values()) {
+                    if (index == numberOfAbility) {
+                        tempAbility = ability;
+                    }
+                    index++;
+                }
+                assert tempAbility != null;
+                this.hero.setNewAbilityPoint(tempAbility, numberOfPoints, heroAvailablePointsChange);
+            }
         }
     }
 

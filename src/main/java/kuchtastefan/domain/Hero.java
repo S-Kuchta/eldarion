@@ -52,16 +52,8 @@ public class Hero extends GameCharacter {
         }
     }
 
-//    public void wearDownAllItems() {
-//        this.equippedItem = wearDownAllEquippedItems();
-//        for (Ability ability : Ability.values()) {
-//            this.wearingItemAbilityPoints.put(ability, 0);
-//        }
-//    }
-
     public void wearDownAllEquippedItems() {
         this.equippedItem = initialEquip();
-
         for (Ability ability : Ability.values()) {
             this.wearingItemAbilityPoints.put(ability, 0);
         }
@@ -72,8 +64,15 @@ public class Hero extends GameCharacter {
         for (ItemType itemType : ItemType.values()) {
             itemMap.put(itemType, new Item("No item", itemType, getItemsInitialAbilityPoints(), 0));
         }
-
         return itemMap;
+    }
+
+    public void addItemToItemList(Item item) {
+        this.getHeroInventory().add(item);
+    }
+
+    public void removeItemFromItemList(Item item) {
+        this.getHeroInventory().remove(item);
     }
 
     private Map<Ability, Integer> getInitialAbilityPoints() {
@@ -98,7 +97,7 @@ public class Hero extends GameCharacter {
         ));
     }
 
-    public void setNewAbilitiesPoints(Ability ability, int pointsToChange, int heroAvailablePointsChange) {
+    public void setNewAbilityPoint(Ability ability, int pointsToChange, int heroAvailablePointsChange) {
         int minimumPoints = 1;
         if (ability.equals(Ability.HEALTH)) {
             minimumPoints = 50;

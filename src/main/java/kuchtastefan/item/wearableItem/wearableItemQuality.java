@@ -1,13 +1,13 @@
-package kuchtastefan.item;
+package kuchtastefan.item.wearableItem;
 
-public enum ItemQuality {
+public enum wearableItemQuality {
     BASIC("Basic item quality"),
     IMPROVED("Improved item quality - item ability stats are increased by 1"),
     SUPERIOR("Superior item quality - item ability stats are increased by 2");
 
     private final String description;
 
-    ItemQuality(String description) {
+    wearableItemQuality(String description) {
         this.description = description;
     }
 

@@ -6,7 +6,7 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.Item;
+import kuchtastefan.item.wearableItem.wearableItem;
 import kuchtastefan.item.ItemList;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
@@ -24,7 +24,7 @@ public class GameManager {
     private final Map<Integer, Enemy> enemiesByLevel;
     private final BattleService battleService;
     private final ItemList itemList;
-    private List<Item> items = new ArrayList<>();
+    private List<wearableItem> wearableItems = new ArrayList<>();
     private final BlacksmithService blacksmithService;
     private final InventoryService inventoryService;
     private final ShopService shopService;
@@ -59,7 +59,7 @@ public class GameManager {
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
-                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.items)) {
+                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.wearableItems)) {
                         final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
                         final boolean haveHeroWon = battleService.battle(this.hero, enemy);
                         if (haveHeroWon) {
@@ -137,7 +137,7 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> this.shopService.shopMenu(this.hero, this.items);
+            case 1 -> this.shopService.shopMenu(this.hero, this.wearableItems);
             default -> System.out.println("Enter valid input");
         }
     }
@@ -155,7 +155,7 @@ public class GameManager {
     }
 
     private void initGame() {
-        this.items = fileService.item(itemList.getItemList());
+        this.wearableItems = fileService.item(itemList.getItemList());
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");

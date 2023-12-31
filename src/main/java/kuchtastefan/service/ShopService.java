@@ -1,8 +1,8 @@
 package kuchtastefan.service;
 
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemType;
+import kuchtastefan.item.wearableItem.wearableItem;
+import kuchtastefan.item.wearableItem.wearableItemType;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopService {
-    public void shopMenu(Hero hero, List<Item> itemList) {
-        PrintUtil.printMarketHeader(Item.class.getSimpleName());
+    public void shopMenu(Hero hero, List<wearableItem> wearableItemList) {
+        PrintUtil.printMarketHeader(wearableItem.class.getSimpleName());
         System.out.println("\t0. Go back");
         System.out.println("\t1. Weapons");
         System.out.println("\t2. Body");
@@ -23,31 +23,31 @@ public class ShopService {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> printInventoryMenuByItemType(itemList, hero, ItemType.WEAPON);
-            case 2 -> printInventoryMenuByItemType(itemList, hero, ItemType.BODY);
-            case 3 -> printInventoryMenuByItemType(itemList, hero, ItemType.HEAD);
-            case 4 -> printInventoryMenuByItemType(itemList, hero, ItemType.HANDS);
-            case 5 -> printInventoryMenuByItemType(itemList, hero, ItemType.BOOTS);
+            case 1 -> printInventoryMenuByItemType(wearableItemList, hero, wearableItemType.WEAPON);
+            case 2 -> printInventoryMenuByItemType(wearableItemList, hero, wearableItemType.BODY);
+            case 3 -> printInventoryMenuByItemType(wearableItemList, hero, wearableItemType.HEAD);
+            case 4 -> printInventoryMenuByItemType(wearableItemList, hero, wearableItemType.HANDS);
+            case 5 -> printInventoryMenuByItemType(wearableItemList, hero, wearableItemType.BOOTS);
             case 6 -> sellItem(hero);
             default -> System.out.println("Enter valid number");
         }
     }
 
-    private void printInventoryMenuByItemType(List<Item> itemList, Hero hero, ItemType itemType) {
-        PrintUtil.printShopHeader(hero, itemType);
+    private void printInventoryMenuByItemType(List<wearableItem> wearableItemList, Hero hero, wearableItemType wearableItemType) {
+        PrintUtil.printShopHeader(hero, wearableItemType);
         int index = 1;
-        List<Item> tempList = new ArrayList<>();
+        List<wearableItem> tempList = new ArrayList<>();
         System.out.println("\t0. Go back");
-        for (Item item : itemList) {
-            if (item.getType() == itemType) {
+        for (wearableItem wearableItem : wearableItemList) {
+            if (wearableItem.getType() == wearableItemType) {
                 System.out.print("\t" + index + ". ");
-                PrintUtil.printItemAbilityStats(item);
+                PrintUtil.printItemAbilityStats(wearableItem);
                 System.out.println("\t\t\tPrice: "
-                        + item.getPrice()
+                        + wearableItem.getPrice()
                         + " golds, item level: "
-                        + item.getItemLevel() + ", item quality: "
-                        + item.getItemQuality());
-                tempList.add(item);
+                        + wearableItem.getItemLevel() + ", item quality: "
+                        + wearableItem.getItemQuality());
+                tempList.add(wearableItem);
                 index++;
             }
         }
@@ -56,23 +56,23 @@ public class ShopService {
             try {
                 int choice = InputUtil.intScanner();
                 if (choice == 0) {
-                    shopMenu(hero, itemList);
+                    shopMenu(hero, wearableItemList);
                     break;
                 }
 
-                Item choosenItem = tempList.get(choice - 1);
+                wearableItem choosenWearableItem = tempList.get(choice - 1);
 
-                if (hero.getHeroGold() >= choosenItem.getPrice()) {
-                    System.out.println("Are you sure you want to buy " + choosenItem.getName());
+                if (hero.getHeroGold() >= choosenWearableItem.getPrice()) {
+                    System.out.println("Are you sure you want to buy " + choosenWearableItem.getName());
                     System.out.println("0. no");
                     System.out.println("1. yes");
                     int confirmInput = InputUtil.intScanner();
                     switch (confirmInput) {
-                        case 0 -> printInventoryMenuByItemType(itemList, hero, itemType);
+                        case 0 -> printInventoryMenuByItemType(wearableItemList, hero, wearableItemType);
                         case 1 -> {
-                            hero.addItemWithNewCopyToItemList(choosenItem);
-                            hero.setHeroGold(hero.getHeroGold() - choosenItem.getPrice());
-                            System.out.println(choosenItem.getName() + " bought. You can find it in your inventory.");
+                            hero.addItemWithNewCopyToItemList(choosenWearableItem);
+                            hero.setHeroGold(hero.getHeroGold() - choosenWearableItem.getPrice());
+                            System.out.println(choosenWearableItem.getName() + " bought. You can find it in your inventory.");
 
                             System.out.println("Do you want to equip your new item?");
                             System.out.println("0. no");
@@ -81,12 +81,12 @@ public class ShopService {
                             switch (wearChoice) {
                                 case 0 -> {
                                 }
-                                case 1 -> hero.equipItem(choosenItem);
+                                case 1 -> hero.equipItem(choosenWearableItem);
                             }
                         }
                     }
 
-                    shopMenu(hero, itemList);
+                    shopMenu(hero, wearableItemList);
                     break;
                 } else {
                     System.out.println("You don't have enough golds!");
@@ -100,8 +100,8 @@ public class ShopService {
     private void sellItem(Hero hero) {
         int index = 1;
         System.out.println("0. Go back");
-        for (Item item : hero.getHeroInventory()) {
-            System.out.println(index + ". " + item.getName());
+        for (wearableItem wearableItem : hero.getHeroInventory()) {
+            System.out.println(index + ". " + wearableItem.getName());
             index++;
         }
 
@@ -111,11 +111,11 @@ public class ShopService {
                 if (choice == 0) {
                     break;
                 } else {
-                    Item tempItem = hero.getHeroInventory().get(choice - 1);
-                    double itemPrice = tempItem.getPrice() * 0.7;
+                    wearableItem tempWearableItem = hero.getHeroInventory().get(choice - 1);
+                    double itemPrice = tempWearableItem.getPrice() * 0.7;
                     hero.setHeroGold((int) (hero.getHeroGold() + itemPrice));
-                    hero.removeItemFromItemList(tempItem);
-                    System.out.println(tempItem + " sold for " + itemPrice + " golds");
+                    hero.removeItemFromItemList(tempWearableItem);
+                    System.out.println(tempWearableItem + " sold for " + itemPrice + " golds");
                 }
                 break;
             } catch (IndexOutOfBoundsException e) {

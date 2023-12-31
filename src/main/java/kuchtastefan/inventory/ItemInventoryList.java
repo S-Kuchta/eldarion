@@ -1,18 +1,18 @@
 package kuchtastefan.inventory;
 
-import kuchtastefan.item.Item;
+import kuchtastefan.item.wearableItem.wearableItem;
 
 import java.util.List;
 
 public class ItemInventoryList {
 
-    private final List<Item> itemInventoryList;
+    private final List<wearableItem> wearableItemInventoryList;
 
-    public ItemInventoryList(List<Item> equipInventoryList) {
-        this.itemInventoryList = equipInventoryList;
+    public ItemInventoryList(List<wearableItem> equipInventoryList) {
+        this.wearableItemInventoryList = equipInventoryList;
     }
 
-    public List<Item> getEquipInventoryList() {
-        return itemInventoryList;
+    public List<wearableItem> getEquipInventoryList() {
+        return wearableItemInventoryList;
     }
 }

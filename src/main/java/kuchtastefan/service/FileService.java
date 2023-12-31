@@ -6,9 +6,9 @@ import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemQuality;
-import kuchtastefan.item.ItemType;
+import kuchtastefan.item.wearableItem.wearableItem;
+import kuchtastefan.item.wearableItem.wearableItemQuality;
+import kuchtastefan.item.wearableItem.wearableItemType;
 import kuchtastefan.utility.InputUtil;
 
 import java.io.*;
@@ -126,57 +126,57 @@ public class FileService {
         }
     }
 
-    public List<Item> item(List<Item> itemList) {
+    public List<wearableItem> item(List<wearableItem> wearableItemList) {
         String path = "external-files/items";
         try {
-            List<Item> items;
+            List<wearableItem> wearableItems;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                items = new Gson().fromJson(reader, new TypeToken<List<Item>>() {
+                wearableItems = new Gson().fromJson(reader, new TypeToken<List<wearableItem>>() {
                 }.getType());
 
-                for (Item item : items) {
-                    item.setItemType(ItemType.valueOf(file.replace(".json", "").toUpperCase()));
-                    item.setPrice(50 * item.getItemLevel());
-                    if (item.getItemQuality() == null) {
-                        item.setItemQuality(ItemQuality.BASIC);
+                for (wearableItem wearableItem : wearableItems) {
+                    wearableItem.setItemType(wearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
+                    wearableItem.setPrice(50 * wearableItem.getItemLevel());
+                    if (wearableItem.getItemQuality() == null) {
+                        wearableItem.setItemQuality(wearableItemQuality.BASIC);
                     }
 
                     for (Ability ability : Ability.values()) {
-                        item.getAbilities().putIfAbsent(ability, 0);
+                        wearableItem.getAbilities().putIfAbsent(ability, 0);
                     }
                 }
-                itemList.addAll(items);
+                wearableItemList.addAll(wearableItems);
                 reader.close();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
-        return itemList;
+        return wearableItemList;
     }
 
-    private Item improveQualityOfItem(Item item, ItemQuality itemQuality) {
-        item.setPrice(50 * item.getItemLevel());
+    private wearableItem improveQualityOfItem(wearableItem wearableItem, wearableItemQuality wearableItemQuality) {
+        wearableItem.setPrice(50 * wearableItem.getItemLevel());
         for (Ability ability : Ability.values()) {
-            item.getAbilities().putIfAbsent(ability, 0);
+            wearableItem.getAbilities().putIfAbsent(ability, 0);
         }
-        item.setItemQuality(itemQuality);
-        item.setName(item.getName() + " (" + itemQuality + ")");
-        if (itemQuality == ItemQuality.BASIC) {
-            return item;
-        } else if (itemQuality == ItemQuality.IMPROVED) {
-            item.setPrice(item.getPrice() * 2);
+        wearableItem.setItemQuality(wearableItemQuality);
+        wearableItem.setName(wearableItem.getName() + " (" + wearableItemQuality + ")");
+        if (wearableItemQuality == wearableItemQuality.BASIC) {
+            return wearableItem;
+        } else if (wearableItemQuality == wearableItemQuality.IMPROVED) {
+            wearableItem.setPrice(wearableItem.getPrice() * 2);
             for (Ability ability : Ability.values()) {
-                item.getAbilities().put(ability, item.getAbilities().get(ability) + 1);
+                wearableItem.getAbilities().put(ability, wearableItem.getAbilities().get(ability) + 1);
             }
-            return item;
+            return wearableItem;
         } else {
-            item.setPrice(item.getPrice() * 3);
+            wearableItem.setPrice(wearableItem.getPrice() * 3);
             for (Ability ability : Ability.values()) {
-                item.getAbilities().put(ability, item.getAbilities().get(ability) + 2);
+                wearableItem.getAbilities().put(ability, wearableItem.getAbilities().get(ability) + 2);
             }
-            return item;
+            return wearableItem;
         }
     }
 }

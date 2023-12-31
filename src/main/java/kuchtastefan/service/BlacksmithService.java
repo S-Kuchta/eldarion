@@ -1,8 +1,8 @@
 package kuchtastefan.service;
 
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemQuality;
+import kuchtastefan.item.wearableItem.wearableItem;
+import kuchtastefan.item.wearableItem.wearableItemQuality;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -10,22 +10,22 @@ public class BlacksmithService {
     public void improveItemQuality(Hero hero) {
         while (true) {
             printItemList(hero);
-            Item item = selectItem(hero);
-            if (item == null) {
+            wearableItem wearableItem = selectItem(hero);
+            if (wearableItem == null) {
                 break;
             } else {
-                ItemQuality itemQuality = item.getItemQuality();
-                if (itemQuality == ItemQuality.BASIC) {
-                    item.setItemQuality(ItemQuality.IMPROVED);
-                    item.setItemAbilities(item);
+                wearableItemQuality wearableItemQuality = wearableItem.getItemQuality();
+                if (wearableItemQuality == wearableItemQuality.BASIC) {
+                    wearableItem.setItemQuality(wearableItemQuality.IMPROVED);
+                    wearableItem.setItemAbilities(wearableItem);
                     PrintUtil.printLongDivider();
-                    System.out.println("\t\tYou improved " + item.getName() + " to " + item.getItemQuality() + " quality");
+                    System.out.println("\t\tYou improved " + wearableItem.getName() + " to " + wearableItem.getItemQuality() + " quality");
                     PrintUtil.printLongDivider();
-                } else if (itemQuality == ItemQuality.IMPROVED) {
-                    item.setItemQuality(ItemQuality.SUPERIOR);
-                    item.setItemAbilities(item);
+                } else if (wearableItemQuality == wearableItemQuality.IMPROVED) {
+                    wearableItem.setItemQuality(wearableItemQuality.SUPERIOR);
+                    wearableItem.setItemAbilities(wearableItem);
                     PrintUtil.printLongDivider();
-                    System.out.println("\t\tYou improved your item " + item.getName() + " to " + item.getItemQuality() + " quality");
+                    System.out.println("\t\tYou improved your item " + wearableItem.getName() + " to " + wearableItem.getItemQuality() + " quality");
                     PrintUtil.printLongDivider();
                 } else {
                     PrintUtil.printLongDivider();
@@ -37,16 +37,16 @@ public class BlacksmithService {
     }
 
     public void destroyItem(Hero hero) {
-        Item item = selectItem(hero);
-        if (item == null) {
+        wearableItem wearableItem = selectItem(hero);
+        if (wearableItem == null) {
             return;
         }
 
-        hero.removeItemFromItemList(item);
-        hero.setHeroGold(hero.getHeroGold() + (item.getPrice() / 4));
+        hero.removeItemFromItemList(wearableItem);
+        hero.setHeroGold(hero.getHeroGold() + (wearableItem.getPrice() / 4));
     }
 
-    private Item selectItem(Hero hero) {
+    private wearableItem selectItem(Hero hero) {
         while (true) {
             int choice = InputUtil.intScanner();
             if (choice == 0) {
@@ -68,12 +68,12 @@ public class BlacksmithService {
             System.out.println("Item list is empty");
         }
 
-        for (Item item : hero.getHeroInventory()) {
-            System.out.println(index + ". " + item.getName()
+        for (wearableItem wearableItem : hero.getHeroInventory()) {
+            System.out.println(index + ". " + wearableItem.getName()
                     + ", item level: "
-                    + item.getItemLevel()
+                    + wearableItem.getItemLevel()
                     + ", item quality: "
-                    + item.getItemQuality());
+                    + wearableItem.getItemQuality());
             index++;
         }
     }

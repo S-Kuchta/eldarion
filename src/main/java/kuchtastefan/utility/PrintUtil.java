@@ -4,8 +4,8 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.gameSettings.GameSettings;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemType;
+import kuchtastefan.item.wearableItem.wearableItem;
+import kuchtastefan.item.wearableItem.wearableItemType;
 
 import java.util.Map;
 
@@ -34,12 +34,12 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printItemAbilityStats(Item item) {
-        System.out.print(item.getType() + ": " + item.getName());
-        if (!item.getName().equals("No item")) {
+    public static void printItemAbilityStats(wearableItem wearableItem) {
+        System.out.print(wearableItem.getType() + ": " + wearableItem.getName());
+        if (!wearableItem.getName().equals("No item")) {
             System.out.print(", Item stats: ");
         }
-        for (Map.Entry<Ability, Integer> ability : item.getAbilities().entrySet()) {
+        for (Map.Entry<Ability, Integer> ability : wearableItem.getAbilities().entrySet()) {
             if (ability.getValue() != 0) {
                 System.out.print(ability.getKey() + ": " + ability.getValue() + ", ");
             }
@@ -48,7 +48,7 @@ public class PrintUtil {
     }
 
     public static void printCurrentWearingArmor(Hero hero) {
-        for (Map.Entry<ItemType, Item> item : hero.getEquippedItem().entrySet()) {
+        for (Map.Entry<wearableItemType, wearableItem> item : hero.getEquippedItem().entrySet()) {
             System.out.print(item.getKey() + ": " + item.getValue().getName());
             if (!item.getValue().getName().equals("No item")) {
                 System.out.print(", Item stats: ");
@@ -95,27 +95,27 @@ public class PrintUtil {
         System.out.println("|------------------------------------------------------------------------------|");
     }
 
-    public static int printItemCountByType(Hero hero, ItemType itemType) {
+    public static int printItemCountByType(Hero hero, wearableItemType wearableItemType) {
         int count = 0;
-        for (Item item : hero.getHeroInventory()) {
-            if (item.getType() == itemType) {
+        for (wearableItem wearableItem : hero.getHeroInventory()) {
+            if (wearableItem.getType() == wearableItemType) {
                 count++;
             }
         }
         return count;
     }
 
-    public static void printShopHeader(Hero hero, ItemType itemType) {
+    public static void printShopHeader(Hero hero, wearableItemType wearableItemType) {
         printLongDivider();
         System.out.println("\t\t" + "Welcome to the "
-                + itemType + " Shop\t\t\t\t\tYou have "
+                + wearableItemType + " Shop\t\t\t\t\tYou have "
                 + hero.getHeroGold() + " golds");
         printLongDivider();
     }
 
-    public static void printInventoryHeader(ItemType itemType) {
+    public static void printInventoryHeader(wearableItemType wearableItemType) {
         printDivider();
-        System.out.println("\t\t\t" + itemType + " inventory");
+        System.out.println("\t\t\t" + wearableItemType + " inventory");
         printDivider();
     }
 

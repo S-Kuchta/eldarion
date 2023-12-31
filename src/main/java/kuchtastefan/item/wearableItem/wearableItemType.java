@@ -1,6 +1,6 @@
-package kuchtastefan.item;
+package kuchtastefan.item.wearableItem;
 
-public enum ItemType {
+public enum wearableItemType {
 
     WEAPON("Weapon"),
     HEAD("Head armor"),
@@ -10,7 +10,7 @@ public enum ItemType {
 
     private final String description;
 
-    ItemType(String description) {
+    wearableItemType(String description) {
         this.description = description;
     }
 

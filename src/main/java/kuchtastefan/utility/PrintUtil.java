@@ -115,7 +115,7 @@ public class PrintUtil {
 
     public static void printInventoryHeader(ItemType itemType) {
         printDivider();
-        System.out.println("\t\t\t\t" + itemType + " inventory");
+        System.out.println("\t\t\t" + itemType + " inventory");
         printDivider();
     }
 

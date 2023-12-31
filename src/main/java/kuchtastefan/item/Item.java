@@ -1,6 +1,7 @@
 package kuchtastefan.item;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.domain.Hero;
 
 import java.util.Map;
 import java.util.Objects;
@@ -32,25 +33,12 @@ public class Item {
         this.name = name;
     }
 
-    public void improveItemQuality(Item item) {
-        ItemQuality itemQuality = item.getItemQuality();
-        if (itemQuality == ItemQuality.BASIC) {
-            item.setItemQuality(ItemQuality.IMPROVED);
-            setItemAbilities(item);
-        } else if (itemQuality == ItemQuality.IMPROVED) {
-            item.setItemQuality(ItemQuality.SUPERIOR);
-            setItemAbilities(item);
-        }
-    }
-
-    private void setItemAbilities(Item item) {
-
-        for (Map.Entry<Ability, Integer> abilityEntry : item.getAbilities().entrySet())
-            for (Ability ability : Ability.values()) {
-                if (abilityEntry.getValue() != 0) {
-                    item.getAbilities().put(ability, abilityEntry.getValue() + 1);
-                }
+    public void setItemAbilities(Item item) {
+        for (Ability ability : Ability.values()) {
+            if (item.getAbilities().get(ability) != 0) {
+                item.getAbilities().put(ability, (item.getAbilities().get(ability) + 1));
             }
+        }
     }
 
     public Map<Ability, Integer> getAbilities() {

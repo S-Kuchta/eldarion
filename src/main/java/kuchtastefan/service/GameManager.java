@@ -25,6 +25,7 @@ public class GameManager {
     private final BattleService battleService;
     private final ItemList itemList;
     private List<Item> items = new ArrayList<>();
+    private final BlacksmithService blacksmithService;
     private final InventoryService inventoryService;
     private final ShopService shopService;
 
@@ -38,6 +39,7 @@ public class GameManager {
         this.itemList = new ItemList(new ArrayList<>());
         this.inventoryService = new InventoryService();
         this.shopService = new ShopService();
+        this.blacksmithService = new BlacksmithService();
     }
 
     public void startGame() {
@@ -51,7 +53,8 @@ public class GameManager {
             System.out.println("3. Exit game");
 
             System.out.println("5. Inventory");
-            System.out.println("6. Shop");
+            System.out.println("6. Market");
+            System.out.println("7. Blacksmith");
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
@@ -90,16 +93,29 @@ public class GameManager {
                     }
                 }
                 case 4 -> {
-                    Item item = new Item();
-                    item.improveItemQuality(hero.getHeroInventory().get(0));
                 }
                 case 5 -> this.inventoryMenu();
                 case 6 -> this.shopMenu();
+                case 7 -> blacksmith();
                 default -> System.out.println("Invalid choice.");
             }
         }
 
         System.out.println("You have won the game! Congratulations!");
+    }
+
+    public void blacksmith() {
+        System.out.println("0. Go back");
+        System.out.println("1. Improve item quality");
+        System.out.println("2. Destroy item");
+        int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> this.blacksmithService.improveItemQuality(this.hero);
+            case 2 -> this.blacksmithService.destroyItem(this.hero);
+            default -> System.out.println("Enter valid input");
+        }
     }
 
     public void inventoryMenu() {

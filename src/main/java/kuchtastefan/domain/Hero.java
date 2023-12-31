@@ -1,5 +1,6 @@
 package kuchtastefan.domain;
 
+import com.google.gson.Gson;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
@@ -69,6 +70,11 @@ public class Hero extends GameCharacter {
 
     public void addItemToItemList(Item item) {
         this.getHeroInventory().add(item);
+    }
+
+    public void addItemWithNewCopyToItemList(Item item) {
+        Gson gson = new Gson();
+        this.getHeroInventory().add(gson.fromJson(gson.toJson(item), Item.class));
     }
 
     public void removeItemFromItemList(Item item) {

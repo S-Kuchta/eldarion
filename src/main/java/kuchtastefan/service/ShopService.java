@@ -70,7 +70,7 @@ public class ShopService {
                     switch (confirmInput) {
                         case 0 -> printInventoryMenuByItemType(itemList, hero, itemType);
                         case 1 -> {
-                            hero.addItemToItemList(choosenItem);
+                            hero.addItemWithNewCopyToItemList(choosenItem);
                             hero.setHeroGold(hero.getHeroGold() - choosenItem.getPrice());
                             System.out.println(choosenItem.getName() + " bought. You can find it in your inventory.");
 
@@ -102,6 +102,7 @@ public class ShopService {
         System.out.println("0. Go back");
         for (Item item : hero.getHeroInventory()) {
             System.out.println(index + ". " + item.getName());
+            index++;
         }
 
         while (true) {

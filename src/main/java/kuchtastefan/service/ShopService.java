@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ShopService {
     public void shopMenu(Hero hero, List<WearableItem> wearableItemList) {
-        PrintUtil.printMarketHeader(WearableItem.class.getSimpleName());
+        PrintUtil.printMarketHeader("Equip");
         System.out.println("\t0. Go back");
         System.out.println("\t1. Weapons");
         System.out.println("\t2. Body");
@@ -41,48 +41,42 @@ public class ShopService {
         for (WearableItem wearableItem : wearableItemList) {
             if (wearableItem.getType() == wearableItemType) {
                 System.out.print("\t" + index + ". ");
-                PrintUtil.printItemAbilityStats(wearableItem);
-                System.out.println("\t\t\tPrice: "
-                        + wearableItem.getPrice()
-                        + " golds, item level: "
-                        + wearableItem.getItemLevel() + ", item quality: "
-                        + wearableItem.getItemQuality());
+                PrintUtil.printFullItemDescription(wearableItem);
                 tempList.add(wearableItem);
                 index++;
             }
         }
 
+
         while (true) {
-            try {
-                int choice = InputUtil.intScanner();
-                if (choice == 0) {
-                    shopMenu(hero, wearableItemList);
-                    break;
-                }
+            int choice = InputUtil.intScanner();
 
+            if (choice == 0) {
+                break;
+            }
+
+            if (choice < 1 || choice > tempList.size()) {
+                System.out.println("Enter valid input");
+            } else {
                 WearableItem choosenWearableItem = tempList.get(choice - 1);
-
                 if (hero.getHeroGold() >= choosenWearableItem.getPrice()) {
                     System.out.println("Are you sure you want to buy " + choosenWearableItem.getName());
                     System.out.println("0. no");
                     System.out.println("1. yes");
                     int confirmInput = InputUtil.intScanner();
                     switch (confirmInput) {
-                        case 0 -> printInventoryMenuByItemType(wearableItemList, hero, wearableItemType);
+                        case 0 -> shopMenu(hero, wearableItemList);
                         case 1 -> {
                             hero.addItemWithNewCopyToItemList(choosenWearableItem);
                             hero.setHeroGold(hero.getHeroGold() - choosenWearableItem.getPrice());
                             System.out.println(choosenWearableItem.getName() + " bought. You can find it in your inventory");
                         }
+                        default -> System.out.println("Enter valid input");
                     }
-
-                    shopMenu(hero, wearableItemList);
                     break;
                 } else {
                     System.out.println("You don't have enough golds!");
                 }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Enter valid number");
             }
         }
     }

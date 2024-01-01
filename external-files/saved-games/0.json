@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "equippedItem": {
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "LUCK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      },
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "LUCK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "LUCK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      },
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "LUCK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "LUCK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "DEXTERITY": 0,
+      "ATTACK": 0,
+      "LUCK": 0,
+      "HEALTH": 0,
+      "SKILL": 0,
+      "DEFENCE": 0
+    },
+    "heroInventory": [],
+    "heroGold": 100.0,
+    "name": "stefan",
+    "abilities": {
+      "DEXTERITY": 1,
+      "ATTACK": 8,
+      "LUCK": 1,
+      "HEALTH": 50,
+      "SKILL": 1,
+      "DEFENCE": 1
+    },
+    "level": 1
+  },
+  "level": 1
+}

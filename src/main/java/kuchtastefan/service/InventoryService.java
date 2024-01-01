@@ -13,7 +13,7 @@ public class InventoryService {
 
     public void inventoryMenu(Hero hero) {
 
-        PrintUtil.printInventoryHeader(WearableItem.class.getSimpleName());
+        PrintUtil.printInventoryHeader("Equip");
         System.out.println("\t0. Go back");
         System.out.println("\t1. Weapons (" + PrintUtil.printItemCountByType(hero, WearableItemType.WEAPON) + ")");
         System.out.println("\t2. Body (" + PrintUtil.printItemCountByType(hero, WearableItemType.BODY) + ")");

@@ -6,8 +6,6 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.craftingItem.CraftingItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.ItemList;
 import kuchtastefan.utility.EnemyGenerator;
@@ -49,14 +47,14 @@ public class GameManager {
 
         while (this.currentLevel <= this.enemiesByLevel.size()) {
             final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
-            System.out.println("0. Fight " + enemy.getName() + " (level " + this.currentLevel + ")");
-            System.out.println("1. Upgrade abilities (" + this.hero.getUnspentAbilityPoints() + " points to spend)");
-            System.out.println("2. Save game");
-            System.out.println("3. Exit game");
+            System.out.println("\t0. Fight " + enemy.getName() + " (level " + this.currentLevel + ")");
+            System.out.println("\t1. Upgrade abilities (" + this.hero.getUnspentAbilityPoints() + " points to spend)");
+            System.out.println("\t2. Save game");
+            System.out.println("\t3. Exit game");
 
-            System.out.println("5. Inventory");
-            System.out.println("6. Market");
-            System.out.println("7. Blacksmith");
+            System.out.println("\t5. Inventory");
+            System.out.println("\t6. Market");
+            System.out.println("\t7. Blacksmith");
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
@@ -97,8 +95,8 @@ public class GameManager {
                 case 4 -> {
                 }
                 case 5 -> this.inventoryMenu();
-                case 6 -> this.shopMenu();
-                case 7 -> blacksmith();
+//                case 6 -> this.shopMenu();
+                case 7 -> blacksmithMenu();
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -106,16 +104,18 @@ public class GameManager {
         System.out.println("You have won the game! Congratulations!");
     }
 
-    public void blacksmith() {
+    public void blacksmithMenu() {
         System.out.println("0. Go back");
         System.out.println("1. Improve item quality");
         System.out.println("2. Destroy item");
+        System.out.println("3. Weapon and Armory shop");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
             case 1 -> this.blacksmithService.improveItemQuality(this.hero);
             case 2 -> this.blacksmithService.destroyItem(this.hero);
+            case 3 -> this.shopService.shopMenu(this.hero, this.WearableItems);
             default -> System.out.println("Enter valid input");
         }
     }
@@ -132,17 +132,17 @@ public class GameManager {
         }
     }
 
-    public void shopMenu() {
-        System.out.println("0. Go back");
-        System.out.println("1. Items");
-        int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> {
-            }
-            case 1 -> this.shopService.shopMenu(this.hero, this.WearableItems);
-            default -> System.out.println("Enter valid input");
-        }
-    }
+//    public void shopMenu() {
+//        System.out.println("0. Go back");
+//        System.out.println("1. Items");
+//        int choice = InputUtil.intScanner();
+//        switch (choice) {
+//            case 0 -> {
+//            }
+//            case 1 -> this.shopService.shopMenu(this.hero, this.WearableItems);
+//            default -> System.out.println("Enter valid input");
+//        }
+//    }
 
     private void upgradeAbilityMenu() {
         System.out.println("0. Go Back");

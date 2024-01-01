@@ -7,6 +7,8 @@ import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class PrintUtil {
@@ -103,6 +105,15 @@ public class PrintUtil {
             }
         }
         return count;
+    }
+
+    public static void printFullItemDescription(WearableItem wearableItem) {
+        PrintUtil.printItemAbilityStats(wearableItem);
+        System.out.println("\t\t\tPrice: "
+                + wearableItem.getPrice()
+                + " golds, item level: "
+                + wearableItem.getItemLevel() + ", item quality: "
+                + wearableItem.getItemQuality());
     }
 
     public static void printShopHeader(Hero hero, WearableItemType wearableItemType) {

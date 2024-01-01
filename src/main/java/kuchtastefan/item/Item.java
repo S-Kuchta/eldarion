@@ -3,8 +3,8 @@ package kuchtastefan.item;
 import java.util.Objects;
 
 public class Item {
-    private String name;
-    private double price;
+    protected String name;
+    protected double price;
 
     public Item(String name, double price) {
         this.name = name;

@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.hint.Hint;
+import kuchtastefan.hint.HintName;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
@@ -18,6 +20,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,8 +29,8 @@ public class FileService {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
-    public void saveGame(Hero hero, int currentLevel) {
-        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero);
+    public void saveGame(Hero hero, int currentLevel, Map<HintName, Hint> hintUtil) {
+        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, hintUtil);
 
         while (true) {
             System.out.println("How do you want to name your save?");

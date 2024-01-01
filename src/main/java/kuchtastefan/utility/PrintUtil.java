@@ -7,8 +7,6 @@ import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class PrintUtil {
@@ -65,7 +63,7 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printStringLetterByLetter(String s) {
+    public static void printStringSlowly(String s) {
         char[] stringToCharArr = s.toCharArray();
 
         if (!GameSettings.isPrintStringSlowly()) {
@@ -108,7 +106,7 @@ public class PrintUtil {
     }
 
     public static void printFullItemDescription(WearableItem wearableItem) {
-        PrintUtil.printItemAbilityStats(wearableItem);
+        printItemAbilityStats(wearableItem);
         System.out.println("\t\t\tPrice: "
                 + wearableItem.getPrice()
                 + " golds, item level: "
@@ -126,19 +124,19 @@ public class PrintUtil {
 
     public static void printInventoryHeader(WearableItemType wearableItemType) {
         printDivider();
-        System.out.println("\t\t\t" + wearableItemType + " inventory");
+        System.out.println("\t\t" + wearableItemType + " inventory");
         printDivider();
     }
 
     public static void printMarketHeader(String marketType) {
         printDivider();
-        System.out.println("\t\t\tWelcome to the " + marketType + " Market");
+        System.out.println("\t\tWelcome to the " + marketType + " Market");
         printDivider();
     }
 
     public static void printInventoryHeader(String inventoryType) {
         printDivider();
-        System.out.println("\t\t\tWelcome to the " + inventoryType + " Inventory");
+        System.out.println("\t\tWelcome to the " + inventoryType + " Inventory");
         printDivider();
     }
 

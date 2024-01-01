@@ -19,6 +19,7 @@ public class ShopService {
         System.out.println("\t4. Hands");
         System.out.println("\t5. Boots");
         System.out.println("\t6. Sell item");
+
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -33,25 +34,24 @@ public class ShopService {
         }
     }
 
-    private void printInventoryMenuByItemType(List<WearableItem> wearableItemList, Hero hero, WearableItemType wearableItemType) {
-        PrintUtil.printShopHeader(hero, wearableItemType);
-        int index = 1;
-        List<WearableItem> tempList = new ArrayList<>();
-        System.out.println("\t0. Go back");
-        for (WearableItem wearableItem : wearableItemList) {
-            if (wearableItem.getType() == wearableItemType) {
-                System.out.print("\t" + index + ". ");
-                PrintUtil.printFullItemDescription(wearableItem);
-                tempList.add(wearableItem);
-                index++;
-            }
-        }
-
-
+    public void printInventoryMenuByItemType(List<WearableItem> wearableItemList, Hero hero, WearableItemType wearableItemType) {
         while (true) {
+            PrintUtil.printShopHeader(hero, wearableItemType);
+            int index = 1;
+            List<WearableItem> tempList = new ArrayList<>();
+            System.out.println("\t0. Go back");
+            for (WearableItem wearableItem : wearableItemList) {
+                if (wearableItem.getType() == wearableItemType) {
+                    System.out.print("\t" + index + ". ");
+                    PrintUtil.printFullItemDescription(wearableItem);
+                    tempList.add(wearableItem);
+                    index++;
+                }
+            }
             int choice = InputUtil.intScanner();
 
             if (choice == 0) {
+                shopMenu(hero, wearableItemList);
                 break;
             }
 
@@ -65,11 +65,12 @@ public class ShopService {
                     System.out.println("1. yes");
                     int confirmInput = InputUtil.intScanner();
                     switch (confirmInput) {
-                        case 0 -> shopMenu(hero, wearableItemList);
+                        case 0 -> printInventoryMenuByItemType(wearableItemList, hero, wearableItemType);
                         case 1 -> {
                             hero.addItemWithNewCopyToItemList(choosenWearableItem);
                             hero.setHeroGold(hero.getHeroGold() - choosenWearableItem.getPrice());
                             System.out.println(choosenWearableItem.getName() + " bought. You can find it in your inventory");
+                            continue;
                         }
                         default -> System.out.println("Enter valid input");
                     }
@@ -81,7 +82,7 @@ public class ShopService {
         }
     }
 
-    private void sellItem(Hero hero) {
+    public void sellItem(Hero hero) {
         int index = 1;
         System.out.println("0. Go back");
         for (WearableItem wearableItem : hero.getHeroInventory()) {

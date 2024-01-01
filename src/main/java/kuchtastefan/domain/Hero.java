@@ -5,6 +5,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,9 +31,13 @@ public class Hero extends GameCharacter {
 
     public void equipItem(WearableItem wearableItem) {
         if (this.level < wearableItem.getItemLevel()) {
-            System.out.println("You don't meet minimal level requirement to wear this item!");
+            PrintUtil.printLongDivider();
+            System.out.println("\tYou don't meet minimal level requirement to wear this item!");
+            PrintUtil.printLongDivider();
         } else {
-            System.out.println("You equipped " + wearableItem.getName());
+            PrintUtil.printDivider();
+            System.out.println("\tYou equipped " + wearableItem.getName());
+            PrintUtil.printDivider();
             this.equippedItem.put(wearableItem.getType(), wearableItem);
         }
         updateWearingItemAbilityPoints();

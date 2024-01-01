@@ -1,7 +1,7 @@
 package kuchtastefan.gameSettings;
 
 public class GameSettings {
-    private static boolean printStringSlowly = false;
+    private static boolean printStringSlowly = true;
 
     public static void setPrintStringSlowly() {
         printStringSlowly = !printStringSlowly;

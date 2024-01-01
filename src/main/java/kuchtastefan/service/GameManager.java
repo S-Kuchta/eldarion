@@ -6,13 +6,16 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.hint.HintName;
+import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.ItemList;
+import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +31,7 @@ public class GameManager {
     private final BlacksmithService blacksmithService;
     private final InventoryService inventoryService;
     private final ShopService shopService;
+    private final HintUtil hintUtil;
 
     public GameManager() {
         this.hero = new Hero("");
@@ -40,6 +44,7 @@ public class GameManager {
         this.inventoryService = new InventoryService();
         this.shopService = new ShopService();
         this.blacksmithService = new BlacksmithService();
+        this.hintUtil = new HintUtil(new HashMap<>());
     }
 
     public void startGame() {
@@ -78,7 +83,7 @@ public class GameManager {
                     }
                 }
                 case 1 -> this.upgradeAbilityMenu();
-                case 2 -> fileService.saveGame(this.hero, this.currentLevel);
+                case 2 -> fileService.saveGame(this.hero, this.currentLevel, this.hintUtil.getHintList());
                 case 3 -> {
                     System.out.println("Are you sure?");
                     System.out.println("0. No");
@@ -105,17 +110,18 @@ public class GameManager {
     }
 
     public void blacksmithMenu() {
+        hintUtil.printHint(HintName.BLACKSMITH);
         System.out.println("0. Go back");
-        System.out.println("1. Improve item quality");
-        System.out.println("2. Destroy item");
+        System.out.println("1. Refinement item");
+        System.out.println("2. Dismantle item");
         System.out.println("3. Weapon and Armory shop");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> this.blacksmithService.improveItemQuality(this.hero);
-            case 2 -> this.blacksmithService.destroyItem(this.hero);
-            case 3 -> this.shopService.shopMenu(this.hero, this.WearableItems);
+            case 1 -> this.blacksmithService.refinementItemQuality(this.hero);
+            case 2 -> this.blacksmithService.dismantleItem(this.hero);
+            case 3 -> shopService.shopMenu(this.hero, this.WearableItems);
             default -> System.out.println("Enter valid input");
         }
     }
@@ -132,18 +138,6 @@ public class GameManager {
         }
     }
 
-//    public void shopMenu() {
-//        System.out.println("0. Go back");
-//        System.out.println("1. Items");
-//        int choice = InputUtil.intScanner();
-//        switch (choice) {
-//            case 0 -> {
-//            }
-//            case 1 -> this.shopService.shopMenu(this.hero, this.WearableItems);
-//            default -> System.out.println("Enter valid input");
-//        }
-//    }
-
     private void upgradeAbilityMenu() {
         System.out.println("0. Go Back");
         System.out.println("1. Spend points (" + this.hero.getUnspentAbilityPoints() + " points left)");
@@ -158,6 +152,7 @@ public class GameManager {
 
     private void initGame() {
         this.WearableItems = fileService.item(itemList.getItemList());
+        hintUtil.initializeHintList();
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");
@@ -172,6 +167,7 @@ public class GameManager {
                     this.hero = gameLoaded.getHero();
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
+                    this.hintUtil.getHintList().putAll(gameLoaded.getHintUtil());
                     return;
                 }
             }

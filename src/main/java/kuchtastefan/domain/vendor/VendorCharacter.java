@@ -5,7 +5,6 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
-
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -14,17 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Vendor extends GameCharacter {
+public abstract class VendorCharacter extends GameCharacter {
 
     protected final List<Item> itemsForSale;
 
-    public Vendor(String name, Map<Ability, Integer> abilities, List<? extends Item> itemList) {
+    public VendorCharacter(String name, Map<Ability, Integer> abilities, List<? extends Item> itemList) {
         super(name, abilities);
         this.itemsForSale = randomItemGeneratorForVendor(itemList);
     }
 
     public abstract void vendorOffer(Hero hero);
+
     public abstract void successfullyItemBought(Hero hero, Item item);
+    public abstract void printGreeting();
 
     public List<Item> randomItemGeneratorForVendor(List<? extends Item> itemList) {
         List<Item> tempItemList = new ArrayList<>();

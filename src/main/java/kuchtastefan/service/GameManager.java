@@ -6,11 +6,13 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
-import kuchtastefan.domain.vendor.WearableVendorCharacter;
+import kuchtastefan.domain.vendor.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
+import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemList;
 import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -30,7 +32,7 @@ public class GameManager {
     private final InventoryService inventoryService;
     private final ShopService shopService;
     private final HintUtil hintUtil;
-    private WearableVendorCharacter wearableVendorCharacter;
+    private WearableItemVendorCharacter wearableItemVendorCharacter;
 
     public GameManager() {
         this.hero = new Hero("");
@@ -108,6 +110,32 @@ public class GameManager {
                     }
                 }
                 case 4 -> {
+
+                    // TESTING
+                    WearableItem item = new WearableItem("item",10, WearableItemType.BODY, Map.of(
+                            Ability.ATTACK, 1,
+                            Ability.DEFENCE, 1,
+                            Ability.DEXTERITY, 1,
+                            Ability.SKILL, 1,
+                            Ability.LUCK, 1,
+                            Ability.HEALTH, 50
+                    ), 1);
+
+                    WearableItem item1 = new WearableItem("item",10, WearableItemType.BODY, Map.of(
+                            Ability.ATTACK, 1,
+                            Ability.DEFENCE, 1,
+                            Ability.DEXTERITY, 1,
+                            Ability.SKILL, 1,
+                            Ability.LUCK, 1,
+                            Ability.HEALTH, 50
+                    ), 1);
+//                    Item item1 = new Item("item", 10);
+                    this.hero.addItemToItemList(item);
+                    this.hero.addItemWithNewCopyToItemList(item1);
+
+                    System.out.println(this.hero.getHeroInventory().get(0).equals(this.hero.getHeroInventory().get(1)));
+
+
                 }
                 case 5 -> this.inventoryMenu();
 //                case 6 -> this.shopMenu();
@@ -134,7 +162,7 @@ public class GameManager {
             case 3 -> {
 //                List<Item> itemList = Collections.singletonList((Item) this.itemList.getItemList());
 
-                wearableVendorCharacter.vendorOffer(this.hero);
+                wearableItemVendorCharacter.vendorOffer(this.hero);
             }
 //            case 3 -> shopService.shopMenu(this.hero, this.WearableItems);
             default -> System.out.println("Enter valid input");
@@ -168,7 +196,7 @@ public class GameManager {
     private void initGame() {
         this.wearableItems = fileService.item(itemList.getItemList());
         hintUtil.initializeHintList();
-        this.wearableVendorCharacter = new WearableVendorCharacter("Gimli", getInitialAbilityPoints(), this.itemList.getItemList());
+        this.wearableItemVendorCharacter = new WearableItemVendorCharacter("Gimli", getInitialAbilityPoints(), this.itemList.getItemList());
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");

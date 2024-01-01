@@ -4,19 +4,28 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class WearableVendorCharacter extends Vendor {
+public class WearableItemVendorCharacter extends VendorCharacter {
 
-    public WearableVendorCharacter(String name, Map<Ability, Integer> abilities, List<? extends Item> itemList) {
+    public WearableItemVendorCharacter(String name, Map<Ability, Integer> abilities, List<? extends Item> itemList) {
         super(name, abilities, itemList);
     }
 
     @Override
     public void vendorOffer(Hero hero) {
+
+        // Item sort in array by WearableItemType
+        this.itemsForSale.sort((item1, item2) -> {
+            WearableItemType wearableItemType1 = ((WearableItem) item1).getType();
+            WearableItemType wearableItemType2 = ((WearableItem) item2).getType();
+            return wearableItemType1.compareTo(wearableItemType2);
+        });
+
+        PrintUtil.printMarketHeader("Blacksmith");
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item wearableItem : this.itemsForSale) {
@@ -32,5 +41,12 @@ public class WearableVendorCharacter extends Vendor {
         hero.addItemWithNewCopyToItemList((WearableItem) item);
         hero.setHeroGold(hero.getHeroGold() - item.getPrice());
         System.out.println(item.getName() + " bought. You can find it in your inventory");
+    }
+
+    @Override
+    public void printGreeting() {
+        PrintUtil.printLongDivider();
+        System.out.println("Hello warrior, my name is " + this.name + " this is my blacksmith shop. Let's look what I have here for you.");
+        PrintUtil.printLongDivider();
     }
 }

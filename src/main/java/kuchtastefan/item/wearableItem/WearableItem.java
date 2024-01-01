@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.item.Item;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class WearableItem extends Item {
 
@@ -59,4 +60,17 @@ public class WearableItem extends Item {
         this.wearableItemQuality = wearableItemQuality;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        WearableItem that = (WearableItem) o;
+        return itemLevel == that.itemLevel && wearableItemType == that.wearableItemType && Objects.equals(abilities, that.abilities) && wearableItemQuality == that.wearableItemQuality;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), wearableItemType, abilities, itemLevel, wearableItemQuality);
+    }
 }

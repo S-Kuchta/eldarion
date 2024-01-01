@@ -6,6 +6,7 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.domain.vendor.WearableVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.ItemList;
@@ -14,10 +15,7 @@ import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameManager {
     private Hero hero;
@@ -27,11 +25,12 @@ public class GameManager {
     private final Map<Integer, Enemy> enemiesByLevel;
     private final BattleService battleService;
     private final ItemList itemList;
-    private List<WearableItem> WearableItems = new ArrayList<>();
+    private List<WearableItem> wearableItems = new ArrayList<>();
     private final BlacksmithService blacksmithService;
     private final InventoryService inventoryService;
     private final ShopService shopService;
     private final HintUtil hintUtil;
+    private WearableVendorCharacter wearableVendorCharacter;
 
     public GameManager() {
         this.hero = new Hero("");
@@ -45,6 +44,17 @@ public class GameManager {
         this.shopService = new ShopService();
         this.blacksmithService = new BlacksmithService();
         this.hintUtil = new HintUtil(new HashMap<>());
+    }
+
+    private Map<Ability, Integer> getInitialAbilityPoints() {
+        return new HashMap<>(Map.of(
+                Ability.ATTACK, 1,
+                Ability.DEFENCE, 1,
+                Ability.DEXTERITY, 1,
+                Ability.SKILL, 1,
+                Ability.LUCK, 1,
+                Ability.HEALTH, 50
+        ));
     }
 
     public void startGame() {
@@ -64,7 +74,7 @@ public class GameManager {
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
-                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.WearableItems)) {
+                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.wearableItems)) {
                         final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
                         final boolean haveHeroWon = battleService.battle(this.hero, enemy);
                         if (haveHeroWon) {
@@ -121,7 +131,12 @@ public class GameManager {
             }
             case 1 -> this.blacksmithService.refinementItemQuality(this.hero);
             case 2 -> this.blacksmithService.dismantleItem(this.hero);
-            case 3 -> shopService.shopMenu(this.hero, this.WearableItems);
+            case 3 -> {
+//                List<Item> itemList = Collections.singletonList((Item) this.itemList.getItemList());
+
+                wearableVendorCharacter.vendorOffer(this.hero);
+            }
+//            case 3 -> shopService.shopMenu(this.hero, this.WearableItems);
             default -> System.out.println("Enter valid input");
         }
     }
@@ -151,8 +166,9 @@ public class GameManager {
     }
 
     private void initGame() {
-        this.WearableItems = fileService.item(itemList.getItemList());
+        this.wearableItems = fileService.item(itemList.getItemList());
         hintUtil.initializeHintList();
+        this.wearableVendorCharacter = new WearableVendorCharacter("Gimli", getInitialAbilityPoints(), this.itemList.getItemList());
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");

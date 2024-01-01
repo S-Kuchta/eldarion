@@ -121,19 +121,28 @@ public class GameManager {
                             Ability.HEALTH, 50
                     ), 1);
 
-                    WearableItem item1 = new WearableItem("item",10, WearableItemType.BODY, Map.of(
-                            Ability.ATTACK, 1,
-                            Ability.DEFENCE, 1,
-                            Ability.DEXTERITY, 1,
-                            Ability.SKILL, 1,
-                            Ability.LUCK, 1,
-                            Ability.HEALTH, 50
-                    ), 1);
+                    WearableItem item1 = new WearableItem("item1",15, WearableItemType.HANDS, Map.of(
+                            Ability.ATTACK, 2,
+                            Ability.DEFENCE, 2,
+                            Ability.DEXTERITY, 2,
+                            Ability.SKILL, 2,
+                            Ability.LUCK, 2,
+                            Ability.HEALTH, 20
+                    ), 2);
 //                    Item item1 = new Item("item", 10);
-                    this.hero.addItemToItemList(item);
+
+                    this.hero.addItemWithNewCopyToItemList(item);
                     this.hero.addItemWithNewCopyToItemList(item1);
 
-                    System.out.println(this.hero.getHeroInventory().get(0).equals(this.hero.getHeroInventory().get(1)));
+                    System.out.println(item.equals(item1));
+
+                    for (Map.Entry<Item, Integer> itemMap : this.hero.getHeroInventory().entrySet()) {
+                        System.out.println(itemMap.getKey().getName() + " : " + itemMap.getValue());
+                    }
+                    System.out.println(item1.hashCode());
+                    System.out.println(item.hashCode());
+
+                    System.out.println(Objects.equals(this.hero.getHeroInventory().get(item), this.hero.getHeroInventory().get(item1)));
 
 
                 }

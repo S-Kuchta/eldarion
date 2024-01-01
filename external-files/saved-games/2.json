@@ -1,0 +1,104 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "equippedItem": {
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "LUCK": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "LUCK": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "LUCK": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      },
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "LUCK": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      },
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "LUCK": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "SKILL": 0,
+          "DEFENCE": 0
+        },
+        "itemLevel": 0,
+        "name": "No item",
+        "price": 0.0
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "LUCK": 0,
+      "DEXTERITY": 0,
+      "ATTACK": 0,
+      "HEALTH": 0,
+      "SKILL": 0,
+      "DEFENCE": 0
+    },
+    "heroInventory": {},
+    "heroGold": 150.0,
+    "name": "1",
+    "abilities": {
+      "LUCK": 1,
+      "DEXTERITY": 1,
+      "ATTACK": 8,
+      "HEALTH": 50,
+      "SKILL": 1,
+      "DEFENCE": 1
+    },
+    "level": 1
+  },
+  "level": 1,
+  "hintUtil": {
+    "BLACKSMITH": {
+      "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
+      "showed": false
+    }
+  }
+}

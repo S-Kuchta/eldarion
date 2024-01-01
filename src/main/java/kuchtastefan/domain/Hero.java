@@ -3,20 +3,20 @@ package kuchtastefan.domain;
 import com.google.gson.Gson;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.item.Item;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Hero extends GameCharacter {
     private int unspentAbilityPoints;
     private Map<WearableItemType, WearableItem> equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints;
-    private final List<WearableItem> heroInventory;
+    private final Map<Item, Integer> heroInventory;
     private double heroGold;
 
     public Hero(String name) {
@@ -25,7 +25,7 @@ public class Hero extends GameCharacter {
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
         this.wearingItemAbilityPoints = getItemsInitialAbilityPoints();
         this.equippedItem = initialEquip();
-        this.heroInventory = new ArrayList<>();
+        this.heroInventory = new HashMap<>();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
     }
 
@@ -73,18 +73,78 @@ public class Hero extends GameCharacter {
         return itemMap;
     }
 
-    public void addItemToItemList(WearableItem wearableItem) {
-        this.getHeroInventory().add(wearableItem);
+    public void addItemToItemList(Item item) {
+        addItemToInventory(item);
     }
 
-    public void addItemWithNewCopyToItemList(WearableItem wearableItem) {
+    public void addItemWithNewCopyToItemList(Item item) {
         Gson gson = new Gson();
-        WearableItem newWearableItem = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
-        this.getHeroInventory().add(newWearableItem);
+        WearableItem itemCopy = gson.fromJson(gson.toJson(item), WearableItem.class);
+        addItemToInventory(itemCopy);
     }
 
-    public void removeItemFromItemList(WearableItem wearableItem) {
-        this.getHeroInventory().remove(wearableItem);
+    private void addItemToInventory(Item item) {
+        if (this.getHeroInventory().isEmpty()) {
+            this.getHeroInventory().put(item, 1);
+        } else {
+            boolean found = false;
+            for (Map.Entry<Item, Integer> itemMap : this.getHeroInventory().entrySet()) {
+                if (itemMap.getKey().equals(item)) {
+                    itemMap.setValue(itemMap.getValue() + 1);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                this.getHeroInventory().put(item, 1);
+            }
+        }
+//        if (this.getHeroInventory().isEmpty()) {
+//            this.getHeroInventory().put(item, 1);
+//        } else {
+//            for (Map.Entry<Item, Integer> itemMap : this.getHeroInventory().entrySet()) {
+//                if (!itemMap.getKey().equals(item)) {
+//                    this.getHeroInventory().put(item, 1);
+//                } else {
+//                    this.getHeroInventory().put(item, itemMap.getValue() + 1);
+//                }
+//            }
+//        }
+    }
+
+//    public void removeItemFromItemList(Item item) {
+//        if (this.getHeroInventory() == null) {
+//            System.out.println("You don't have anything to remove");
+//        } else {
+//            for (Map.Entry<Item, Integer> itemMap : this.getHeroInventory().entrySet()) {
+//                if (itemMap.getKey().equals(item) && itemMap.getValue() > 1) {
+//                    this.getHeroInventory().put(item, itemMap.getValue() - 1);
+//                } else {
+//                    this.getHeroInventory().remove(item);
+//                }
+//            }
+//        }
+//    }
+
+    public void removeItemFromItemList(Item item) {
+        Map<Item, Integer> heroInventory = this.getHeroInventory();
+
+        if (heroInventory == null) {
+            System.out.println("You don't have anything to remove");
+            return;
+        }
+
+        Iterator<Map.Entry<Item, Integer>> iterator = heroInventory.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Item, Integer> entry = iterator.next();
+            if (entry.getKey().equals(item) && entry.getValue() > 1) {
+                heroInventory.put(item, entry.getValue() - 1);
+                return;
+            } else if (entry.getKey().equals(item)) {
+                iterator.remove();
+            }
+        }
     }
 
     private Map<Ability, Integer> getInitialAbilityPoints() {
@@ -155,7 +215,7 @@ public class Hero extends GameCharacter {
         return equippedItem;
     }
 
-    public List<WearableItem> getHeroInventory() {
+    public Map<Item, Integer> getHeroInventory() {
         return heroInventory;
     }
 

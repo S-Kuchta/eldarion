@@ -71,29 +71,29 @@ public abstract class VendorCharacter extends GameCharacter {
     }
 
     void sellItem(Hero hero) {
-        int index = 1;
-        System.out.println("0. Go back");
-        for (WearableItem wearableItem : hero.getHeroInventory()) {
-            System.out.println(index + ". " + wearableItem.getName());
-            index++;
-        }
-
-        while (true) {
-            try {
-                int choice = InputUtil.intScanner();
-                if (choice == 0) {
-                    break;
-                } else {
-                    WearableItem tempWearableItem = hero.getHeroInventory().get(choice - 1);
-                    double itemPrice = tempWearableItem.getPrice() * 0.7;
-                    hero.setHeroGold((hero.getHeroGold() + itemPrice));
-                    hero.removeItemFromItemList(tempWearableItem);
-                    System.out.println(tempWearableItem + " sold for " + itemPrice + " golds");
-                }
-                break;
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("Enter valid number");
-            }
-        }
+//        int index = 1;
+//        System.out.println("0. Go back");
+//        for (WearableItem wearableItem : hero.getHeroInventory()) {
+//            System.out.println(index + ". " + wearableItem.getName());
+//            index++;
+//        }
+//
+//        while (true) {
+//            try {
+//                int choice = InputUtil.intScanner();
+//                if (choice == 0) {
+//                    break;
+//                } else {
+//                    WearableItem tempWearableItem = hero.getHeroInventory().get(choice - 1);
+//                    double itemPrice = tempWearableItem.getPrice() * 0.7;
+//                    hero.setHeroGold((hero.getHeroGold() + itemPrice));
+//                    hero.removeItemFromItemList(tempWearableItem);
+//                    System.out.println(tempWearableItem + " sold for " + itemPrice + " golds");
+//                }
+//                break;
+//            } catch (IndexOutOfBoundsException e) {
+//                System.out.println("Enter valid number");
+//            }
+//        }
     }
 }

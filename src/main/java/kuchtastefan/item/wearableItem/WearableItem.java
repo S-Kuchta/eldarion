@@ -73,4 +73,6 @@ public class WearableItem extends Item {
     public int hashCode() {
         return Objects.hash(super.hashCode(), wearableItemType, abilities, itemLevel, wearableItemQuality);
     }
+
+
 }

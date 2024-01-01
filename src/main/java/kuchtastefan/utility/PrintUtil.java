@@ -95,15 +95,15 @@ public class PrintUtil {
         System.out.println("|------------------------------------------------------------------------------|");
     }
 
-    public static int printItemCountByType(Hero hero, WearableItemType wearableItemType) {
-        int count = 0;
-        for (WearableItem wearableItem : hero.getHeroInventory()) {
-            if (wearableItem.getType() == wearableItemType) {
-                count++;
-            }
-        }
-        return count;
-    }
+//    public static int printItemCountByType(Hero hero, WearableItemType wearableItemType) {
+//        int count = 0;
+//        for (WearableItem wearableItem : hero.getHeroInventory()) {
+//            if (wearableItem.getType() == wearableItemType) {
+//                count++;
+//            }
+//        }
+//        return count;
+//    }
 
     public static void printFullItemDescription(WearableItem wearableItem) {
         printItemAbilityStats(wearableItem);

@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.gameSettings.GameSettings;
+import kuchtastefan.item.Item;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 
@@ -35,7 +36,9 @@ public class PrintUtil {
     }
 
     public static void printItemAbilityStats(WearableItem wearableItem) {
-        System.out.print(wearableItem.getType() + ": " + wearableItem.getName());
+        System.out.print(wearableItem.getType() + ": "
+                + wearableItem.getName()
+                + " (" + wearableItem.getItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
         if (!wearableItem.getName().equals("No item")) {
             System.out.print(", Item stats: ");
         }
@@ -45,6 +48,13 @@ public class PrintUtil {
             }
         }
         System.out.println();
+    }
+
+    public static void printFullItemDescription(WearableItem wearableItem) {
+        printItemAbilityStats(wearableItem);
+        System.out.println("\t\t\tiPrice: "
+                + wearableItem.getPrice()
+                + " golds");
     }
 
     public static void printCurrentWearingArmor(Hero hero) {
@@ -95,29 +105,39 @@ public class PrintUtil {
         System.out.println("|------------------------------------------------------------------------------|");
     }
 
-//    public static int printItemCountByType(Hero hero, WearableItemType wearableItemType) {
-//        int count = 0;
+    public static int printItemCountByType(Hero hero, WearableItemType wearableItemType) {
+        int count = 0;
+        for (Map.Entry<Item, Integer> item : hero.getHeroInventory().entrySet()) {
+            if (((WearableItem) item.getKey()).getType().equals(wearableItemType)) {
+                count += item.getValue();
+            }
+        }
+        return count;
+
+
 //        for (WearableItem wearableItem : hero.getHeroInventory()) {
 //            if (wearableItem.getType() == wearableItemType) {
 //                count++;
 //            }
 //        }
 //        return count;
-//    }
-
-    public static void printFullItemDescription(WearableItem wearableItem) {
-        printItemAbilityStats(wearableItem);
-        System.out.println("\t\t\tPrice: "
-                + wearableItem.getPrice()
-                + " golds, item level: "
-                + wearableItem.getItemLevel() + ", item quality: "
-                + wearableItem.getItemQuality());
     }
 
-    public static void printShopHeader(Hero hero, WearableItemType wearableItemType) {
+//    public static void printFullItemDescription(WearableItem wearableItem) {
+//        printItemAbilityStats(wearableItem);
+//        System.out.println("\t\t\tPrice: "
+//                + wearableItem.getPrice()
+//                + " golds, item level: "
+//                + wearableItem.getItemLevel() + ", item quality: "
+//                + wearableItem.getItemQuality());
+//    }
+
+
+
+    public static void printShopHeader(Hero hero, String shop) {
         printLongDivider();
         System.out.println("\t\t" + "Welcome to the "
-                + wearableItemType + " Shop\t\t\t\t\tYou have "
+                + shop + " Shop\t\t\t\t\tYou have "
                 + hero.getHeroGold() + " golds");
         printLongDivider();
     }

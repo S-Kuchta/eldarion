@@ -26,4 +26,9 @@ public class CraftingItemVendorCharacter extends VendorCharacter {
     public void printGreeting() {
 
     }
+
+    @Override
+    public void printItemsForSale(Hero hero) {
+
+    }
 }

@@ -18,9 +18,9 @@ public class BlacksmithService {
             PrintUtil.printDivider();
             System.out.println("\t\tRefinement item");
             PrintUtil.printDivider();
+
             List<WearableItem> tempItemList = printItemList(hero);
             WearableItem wearableItem = selectItem(tempItemList);
-
 
             if (wearableItem == null) {
                 break;
@@ -28,14 +28,17 @@ public class BlacksmithService {
                 WearableItemQuality wearableItemQuality = wearableItem.getItemQuality();
                 Gson gson = new Gson();
                 WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
+
                 if (wearableItemQuality == WearableItemQuality.BASIC) {
                     hero.removeItemFromItemList(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
                     afterSuccessFullImproveItem(itemCopy, hero);
+
                 } else if (wearableItemQuality == WearableItemQuality.IMPROVED) {
                     hero.removeItemFromItemList(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.SUPERIOR);
                     afterSuccessFullImproveItem(itemCopy, hero);
+
                 } else {
                     PrintUtil.printLongDivider();
                     System.out.println("\t\tYou can not refinement your item. Your item has the highest quality");
@@ -61,6 +64,7 @@ public class BlacksmithService {
         PrintUtil.printDivider();
         System.out.println("\t\tDismantle item");
         PrintUtil.printDivider();
+
         List<WearableItem> tempItemList = printItemList(hero);
         WearableItem wearableItem = selectItem(tempItemList);
         if (wearableItem == null) {
@@ -72,6 +76,7 @@ public class BlacksmithService {
         PrintUtil.printLongDivider();
         System.out.println("\tYou dismantled " + wearableItem.getName() + ", you got " + goldForDestroy + " golds");
         PrintUtil.printLongDivider();
+
         hero.removeItemFromItemList(wearableItem);
         hero.setHeroGold(hero.getHeroGold() + goldForDestroy);
     }
@@ -101,15 +106,10 @@ public class BlacksmithService {
         }
 
         for (Map.Entry<Item, Integer> item : hero.getHeroInventory().entrySet()) {
-            tempItemList.add((WearableItem) item.getKey());
-        }
-
-        for (WearableItem wearableItem : tempItemList) {
-            System.out.println("\t" + index + ". " + wearableItem.getName()
-                    + ", item level: "
-                    + wearableItem.getItemLevel()
-                    + ", item quality: "
-                    + wearableItem.getItemQuality());
+            WearableItem wearableItem = (WearableItem) item.getKey();
+            tempItemList.add(wearableItem);
+            System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+            PrintUtil.printItemAbilityStats(wearableItem);
             index++;
         }
         return tempItemList;

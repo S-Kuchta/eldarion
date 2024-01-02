@@ -25,6 +25,9 @@ public abstract class VendorCharacter extends GameCharacter {
     public abstract void vendorOffer(Hero hero);
 
     public abstract void successfullyItemBought(Hero hero, Item item);
+
+    public abstract void printItemsForSale(Hero hero);
+
     public abstract void printGreeting();
 
     public List<Item> randomItemGeneratorForVendor(List<? extends Item> itemList) {
@@ -70,30 +73,23 @@ public abstract class VendorCharacter extends GameCharacter {
         }
     }
 
-    void sellItem(Hero hero) {
-//        int index = 1;
-//        System.out.println("0. Go back");
-//        for (WearableItem wearableItem : hero.getHeroInventory()) {
-//            System.out.println(index + ". " + wearableItem.getName());
-//            index++;
-//        }
-//
-//        while (true) {
-//            try {
-//                int choice = InputUtil.intScanner();
-//                if (choice == 0) {
-//                    break;
-//                } else {
-//                    WearableItem tempWearableItem = hero.getHeroInventory().get(choice - 1);
-//                    double itemPrice = tempWearableItem.getPrice() * 0.7;
-//                    hero.setHeroGold((hero.getHeroGold() + itemPrice));
-//                    hero.removeItemFromItemList(tempWearableItem);
-//                    System.out.println(tempWearableItem + " sold for " + itemPrice + " golds");
-//                }
-//                break;
-//            } catch (IndexOutOfBoundsException e) {
-//                System.out.println("Enter valid number");
-//            }
-//        }
+    protected void sellItem(Hero hero, List<? extends Item> itemList) {
+        while (true) {
+            try {
+                int choice = InputUtil.intScanner();
+                if (choice == 0) {
+                    break;
+                } else {
+                    Item item = itemList.get(choice - 1);
+                    double itemPrice = item.getPrice() * 0.7;
+                    hero.setHeroGold((hero.getHeroGold() + itemPrice));
+                    hero.removeItemFromItemList(item);
+                    System.out.println(item + " sold for " + itemPrice + " golds");
+                }
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Enter valid number");
+            }
+        }
     }
 }

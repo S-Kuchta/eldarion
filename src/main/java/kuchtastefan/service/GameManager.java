@@ -10,7 +10,7 @@ import kuchtastefan.domain.vendor.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemList;
+import kuchtastefan.item.ItemsLists;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.EnemyGenerator;
@@ -26,7 +26,7 @@ public class GameManager {
     private final FileService fileService;
     private final Map<Integer, Enemy> enemiesByLevel;
     private final BattleService battleService;
-    private final ItemList itemList;
+    private final ItemsLists itemsLists;
     private List<WearableItem> wearableItems = new ArrayList<>();
     private final BlacksmithService blacksmithService;
     private final InventoryService inventoryService;
@@ -41,7 +41,7 @@ public class GameManager {
         this.battleService = new BattleService();
         this.enemiesByLevel = EnemyGenerator.createEnemies();
         this.heroAbilityManager = new HeroAbilityManager(hero);
-        this.itemList = new ItemList(new ArrayList<>());
+        this.itemsLists = new ItemsLists(new ArrayList<>(), new ArrayList<>());
         this.inventoryService = new InventoryService();
         this.shopService = new ShopService();
         this.blacksmithService = new BlacksmithService();
@@ -162,6 +162,7 @@ public class GameManager {
         System.out.println("1. Refinement item");
         System.out.println("2. Dismantle item");
         System.out.println("3. Weapon and Armory shop");
+        System.out.println("4. Sell item");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -173,6 +174,7 @@ public class GameManager {
 
                 wearableItemVendorCharacter.vendorOffer(this.hero);
             }
+            case 4 -> wearableItemVendorCharacter.printItemsForSale(this.hero);
 //            case 3 -> shopService.shopMenu(this.hero, this.WearableItems);
             default -> System.out.println("Enter valid input");
         }
@@ -203,9 +205,9 @@ public class GameManager {
     }
 
     private void initGame() {
-        this.wearableItems = fileService.item(itemList.getItemList());
+        this.wearableItems = fileService.item(itemsLists.getItemList());
         hintUtil.initializeHintList();
-        this.wearableItemVendorCharacter = new WearableItemVendorCharacter("Gimli", getInitialAbilityPoints(), this.itemList.getItemList());
+        this.wearableItemVendorCharacter = new WearableItemVendorCharacter("Gimli", getInitialAbilityPoints(), this.itemsLists.getItemList());
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");

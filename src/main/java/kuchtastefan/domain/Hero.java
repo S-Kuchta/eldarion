@@ -4,13 +4,14 @@ import com.google.gson.Gson;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.nio.charset.CoderResult;
+import java.util.*;
 
 public class Hero extends GameCharacter {
     private int unspentAbilityPoints;
@@ -38,7 +39,7 @@ public class Hero extends GameCharacter {
             PrintUtil.printDivider();
             System.out.println("\tYou equipped " + wearableItem.getName());
             PrintUtil.printDivider();
-            this.equippedItem.put(wearableItem.getType(), wearableItem);
+            this.equippedItem.put(wearableItem.getWearableItemType(), wearableItem);
         }
         updateWearingItemAbilityPoints();
     }
@@ -68,7 +69,7 @@ public class Hero extends GameCharacter {
     private Map<WearableItemType, WearableItem> initialEquip() {
         Map<WearableItemType, WearableItem> itemMap = new HashMap<>();
         for (WearableItemType wearableItemType : WearableItemType.values()) {
-            itemMap.put(wearableItemType, new WearableItem("No item", 0, wearableItemType, getItemsInitialAbilityPoints(), 0));
+            itemMap.put(wearableItemType, new WearableItem("No item", 0,0, wearableItemType, getItemsInitialAbilityPoints(), WearableItemQuality.BASIC));
         }
         return itemMap;
     }
@@ -145,6 +146,46 @@ public class Hero extends GameCharacter {
                 iterator.remove();
             }
         }
+    }
+
+    public List<WearableItem> returnInventoryWearableItemList() {
+        List<WearableItem> wearableItemList = new ArrayList<>();
+        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
+            if (item.getKey().getClass().equals(WearableItem.class)) {
+                wearableItemList.add((WearableItem) item.getKey());
+            }
+        }
+        return wearableItemList;
+    }
+
+    public Map<WearableItem, Integer> returnInventoryWearableItemMap() {
+        Map<WearableItem, Integer> wearableItemMap = new HashMap<>();
+        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
+            if (item.getKey().getClass().equals(WearableItem.class)) {
+                wearableItemMap.put((WearableItem) item.getKey(), item.getValue());
+            }
+        }
+        return wearableItemMap;
+    }
+
+    public List<CraftingReagentItem> returnInventoryCraftingReagentItemList() {
+        List<CraftingReagentItem> craftingReagentItems = new ArrayList<>();
+        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
+            if (item.getKey().getClass().equals(CraftingReagentItem.class)) {
+                craftingReagentItems.add((CraftingReagentItem) item.getKey());
+            }
+        }
+        return craftingReagentItems;
+    }
+
+    public Map<CraftingReagentItem, Integer> returnInventoryCraftingReagentItemMap() {
+        Map<CraftingReagentItem, Integer> wearableItemMap = new HashMap<>();
+        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
+            if (item.getKey().getClass().equals(CraftingReagentItem.class)) {
+                wearableItemMap.put((CraftingReagentItem) item.getKey(), item.getValue());
+            }
+        }
+        return wearableItemMap;
     }
 
     private Map<Ability, Integer> getInitialAbilityPoints() {

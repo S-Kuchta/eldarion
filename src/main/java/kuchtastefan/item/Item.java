@@ -5,14 +5,20 @@ import java.util.Objects;
 public class Item {
     protected String name;
     protected double price;
+    protected int itemLevel;
 
-    public Item(String name, double price) {
+    public Item(String name, double price, int itemLevel) {
         this.name = name;
         this.price = price;
+        this.itemLevel = itemLevel;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getItemLevel() {
+        return itemLevel;
     }
 
     public void setName(String name) {

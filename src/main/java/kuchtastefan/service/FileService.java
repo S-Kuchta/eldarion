@@ -8,6 +8,8 @@ import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
@@ -129,7 +131,9 @@ public class FileService {
         }
     }
 
-    public List<WearableItem> item(List<WearableItem> wearableItemList) {
+    public List<WearableItem> returnWearableItemsFromFile(/*List<WearableItem> wearableItemList*/) {
+
+        List<WearableItem> wearableItemList = new ArrayList<>();
         String path = "external-files/items";
         try {
             List<WearableItem> WearableItems;
@@ -139,7 +143,7 @@ public class FileService {
                 }.getType());
 
                 for (WearableItem wearableItem : WearableItems) {
-                    wearableItem.setItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
+                    wearableItem.setWearableItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
                     wearableItem.setPrice(50 * wearableItem.getItemLevel());
                     if (wearableItem.getItemQuality() == null) {
                         wearableItem.setItemQuality(WearableItemQuality.BASIC);
@@ -157,6 +161,30 @@ public class FileService {
         }
 
         return wearableItemList;
+    }
+
+    public List<CraftingReagentItem> returnCraftingReagentItemsFromFile() {
+        String path = "external-files/items/crafting-reagent";
+        List<CraftingReagentItem> craftingReagents = new ArrayList<>();
+        try {
+            List<CraftingReagentItem> craftingReagentItemsList;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                craftingReagentItemsList = new Gson().fromJson(reader, new TypeToken<List<CraftingReagentItem>>() {
+                }.getType());
+
+                for (CraftingReagentItem craftingReagentItem : craftingReagentItemsList) {
+                    craftingReagentItem.setCraftingReagentItemType(
+                            CraftingReagentItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
+                }
+                craftingReagents.addAll(craftingReagentItemsList);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return craftingReagents;
     }
 }
 

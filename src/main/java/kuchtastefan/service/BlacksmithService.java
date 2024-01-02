@@ -3,10 +3,14 @@ package kuchtastefan.service;
 import com.google.gson.Gson;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +63,7 @@ public class BlacksmithService {
         hero.updateWearingItemAbilityPoints();
     }
 
-    public void dismantleItem(Hero hero) {
+    public void dismantleItem(Hero hero, ItemsLists itemsLists) {
 
         PrintUtil.printDivider();
         System.out.println("\t\tDismantle item");
@@ -71,14 +75,17 @@ public class BlacksmithService {
             return;
         }
 
-        double goldForDestroy = wearableItem.getPrice() / 4;
-
         PrintUtil.printLongDivider();
-        System.out.println("\tYou dismantled " + wearableItem.getName() + ", you got " + goldForDestroy + " golds");
+        List<CraftingReagentItem> tempList = itemsLists.returnCraftingReagentItemListByTypeAndLevel(
+                CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel());
+        for (int i = 0; i < RandomNumberGenerator.getRandomNumber(2, 4) + wearableItem.getItemLevel(); i++) {
+            CraftingReagentItem item = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
+            hero.addItemToItemList(item);
+            System.out.println("\tYou dismantled " + wearableItem.getName() + ", you got " + item.getName());
+        }
         PrintUtil.printLongDivider();
 
         hero.removeItemFromItemList(wearableItem);
-        hero.setHeroGold(hero.getHeroGold() + goldForDestroy);
     }
 
     private WearableItem selectItem(List<WearableItem> tempItemList) {
@@ -105,11 +112,10 @@ public class BlacksmithService {
             System.out.println("\tItem list is empty");
         }
 
-        for (Map.Entry<Item, Integer> item : hero.getHeroInventory().entrySet()) {
-            WearableItem wearableItem = (WearableItem) item.getKey();
-            tempItemList.add(wearableItem);
+        for (Map.Entry<WearableItem, Integer> item : hero.returnInventoryWearableItemMap().entrySet()) {
+            tempItemList.add(item.getKey());
             System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-            PrintUtil.printItemAbilityStats(wearableItem);
+            PrintUtil.printItemAbilityStats(item.getKey());
             index++;
         }
         return tempItemList;

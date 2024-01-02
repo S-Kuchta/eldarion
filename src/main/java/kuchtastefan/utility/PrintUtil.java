@@ -36,7 +36,7 @@ public class PrintUtil {
     }
 
     public static void printItemAbilityStats(WearableItem wearableItem) {
-        System.out.print(wearableItem.getType() + ": "
+        System.out.print(wearableItem.getWearableItemType() + ": "
                 + wearableItem.getName()
                 + " (" + wearableItem.getItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
         if (!wearableItem.getName().equals("No item")) {
@@ -108,31 +108,14 @@ public class PrintUtil {
     public static int printItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
         for (Map.Entry<Item, Integer> item : hero.getHeroInventory().entrySet()) {
-            if (((WearableItem) item.getKey()).getType().equals(wearableItemType)) {
-                count += item.getValue();
+            if (item.getKey().getClass().equals(WearableItem.class)) {
+                if (((WearableItem) item.getKey()).getWearableItemType().equals(wearableItemType)) {
+                    count += item.getValue();
+                }
             }
         }
         return count;
-
-
-//        for (WearableItem wearableItem : hero.getHeroInventory()) {
-//            if (wearableItem.getType() == wearableItemType) {
-//                count++;
-//            }
-//        }
-//        return count;
     }
-
-//    public static void printFullItemDescription(WearableItem wearableItem) {
-//        printItemAbilityStats(wearableItem);
-//        System.out.println("\t\t\tPrice: "
-//                + wearableItem.getPrice()
-//                + " golds, item level: "
-//                + wearableItem.getItemLevel() + ", item quality: "
-//                + wearableItem.getItemQuality());
-//    }
-
-
 
     public static void printShopHeader(Hero hero, String shop) {
         printLongDivider();

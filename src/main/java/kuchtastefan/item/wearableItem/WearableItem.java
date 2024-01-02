@@ -10,22 +10,20 @@ public class WearableItem extends Item {
 
     private WearableItemType wearableItemType;
     private Map<Ability, Integer> abilities;
-    private int itemLevel;
     private WearableItemQuality wearableItemQuality;
 
-    public WearableItem(String name, double price) {
-        super(name, price);
+    public WearableItem(String name, double price, int itemLevel) {
+        super(name, price, itemLevel);
     }
 
-    public WearableItem(String name,
-                        double price,
+    public WearableItem(String name, double price, int itemLevel,
                         WearableItemType wearableItemType,
                         Map<Ability, Integer> abilities,
-                        int itemLevel) {
-        super(name, price);
+                        WearableItemQuality wearableItemQuality) {
+        super(name, price, itemLevel);
         this.wearableItemType = wearableItemType;
         this.abilities = abilities;
-        this.itemLevel = itemLevel;
+        this.wearableItemQuality = wearableItemQuality;
     }
 
     public void setItemAbilities(WearableItem wearableItem) {
@@ -40,15 +38,11 @@ public class WearableItem extends Item {
         return abilities;
     }
 
-    public int getItemLevel() {
-        return itemLevel;
-    }
-
-    public WearableItemType getType() {
+    public WearableItemType getWearableItemType() {
         return wearableItemType;
     }
 
-    public void setItemType(WearableItemType wearableItemType) {
+    public void setWearableItemType(WearableItemType wearableItemType) {
         this.wearableItemType = wearableItemType;
     }
 

@@ -2,6 +2,7 @@ package kuchtastefan.service;
 
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
@@ -44,9 +45,9 @@ public class InventoryService {
         List<WearableItem> tempList = new ArrayList<>();
 
         System.out.println("\t0. Go back");
-        for (Map.Entry<Item, Integer> itemMap : hero.getHeroInventory().entrySet()) {
-            WearableItem wearableItem = (WearableItem) itemMap.getKey();
-            if (wearableItem.getType() == wearableItemType) {
+        for (Map.Entry<WearableItem, Integer> itemMap : hero.returnInventoryWearableItemMap().entrySet()) {
+            WearableItem wearableItem = itemMap.getKey();
+            if (wearableItem.getWearableItemType() == wearableItemType) {
                 System.out.print("\t" + index + ". (" + itemMap.getValue() + "x) ");
                 PrintUtil.printItemAbilityStats(wearableItem);
                 tempList.add(wearableItem);
@@ -68,6 +69,21 @@ public class InventoryService {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("Enter valid number");
             }
+        }
+    }
+
+    public void craftingReagentsMenu(Hero hero) {
+        int index = 1;
+        System.out.println("0. Go back");
+        for (Map.Entry<CraftingReagentItem, Integer> item : hero.returnInventoryCraftingReagentItemMap().entrySet()) {
+            System.out.println(index + ". (" + item.getValue() + "x) " + item.getKey().getName());
+        }
+
+        int choice = InputUtil.intScanner();
+        if(choice == 0) {
+            return;
+        } else {
+            System.out.println("Enter valid number");
         }
     }
 

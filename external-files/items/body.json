@@ -49,8 +49,7 @@
   {
     "name": "Heavy armor",
     "abilities": {
-      "DEFENCE": 2,
-      "SKILL": 2
+      "DEFENCE": 2
     },
     "itemLevel": 1
   },

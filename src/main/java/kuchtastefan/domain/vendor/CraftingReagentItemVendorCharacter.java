@@ -7,8 +7,8 @@ import kuchtastefan.item.Item;
 import java.util.List;
 import java.util.Map;
 
-public class CraftingItemVendorCharacter extends VendorCharacter {
-    public CraftingItemVendorCharacter(String name, Map<Ability, Integer> abilities, List<? extends Item> itemList) {
+public class CraftingReagentItemVendorCharacter extends VendorCharacter {
+    public CraftingReagentItemVendorCharacter(String name, Map<Ability, Integer> abilities, List<? extends Item> itemList) {
         super(name, abilities, itemList);
     }
 

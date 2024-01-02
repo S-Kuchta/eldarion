@@ -11,6 +11,7 @@ import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.EnemyGenerator;
@@ -26,11 +27,11 @@ public class GameManager {
     private final FileService fileService;
     private final Map<Integer, Enemy> enemiesByLevel;
     private final BattleService battleService;
+//    private List<WearableItem> wearableItemList = new ArrayList<>();
+//    private List<CraftingReagentItem> craftingReagentItemList;
     private final ItemsLists itemsLists;
-    private List<WearableItem> wearableItems = new ArrayList<>();
     private final BlacksmithService blacksmithService;
     private final InventoryService inventoryService;
-    private final ShopService shopService;
     private final HintUtil hintUtil;
     private WearableItemVendorCharacter wearableItemVendorCharacter;
 
@@ -41,11 +42,10 @@ public class GameManager {
         this.battleService = new BattleService();
         this.enemiesByLevel = EnemyGenerator.createEnemies();
         this.heroAbilityManager = new HeroAbilityManager(hero);
-        this.itemsLists = new ItemsLists(new ArrayList<>(), new ArrayList<>());
         this.inventoryService = new InventoryService();
-        this.shopService = new ShopService();
         this.blacksmithService = new BlacksmithService();
         this.hintUtil = new HintUtil(new HashMap<>());
+        this.itemsLists = new ItemsLists();
     }
 
     private Map<Ability, Integer> getInitialAbilityPoints() {
@@ -76,7 +76,7 @@ public class GameManager {
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
-                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.wearableItems)) {
+                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.itemsLists.getWearableItemList())) {
                         final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
                         final boolean haveHeroWon = battleService.battle(this.hero, enemy);
                         if (haveHeroWon) {
@@ -112,37 +112,9 @@ public class GameManager {
                 case 4 -> {
 
                     // TESTING
-                    WearableItem item = new WearableItem("item",10, WearableItemType.BODY, Map.of(
-                            Ability.ATTACK, 1,
-                            Ability.DEFENCE, 1,
-                            Ability.DEXTERITY, 1,
-                            Ability.SKILL, 1,
-                            Ability.LUCK, 1,
-                            Ability.HEALTH, 50
-                    ), 1);
-
-                    WearableItem item1 = new WearableItem("item1",15, WearableItemType.HANDS, Map.of(
-                            Ability.ATTACK, 2,
-                            Ability.DEFENCE, 2,
-                            Ability.DEXTERITY, 2,
-                            Ability.SKILL, 2,
-                            Ability.LUCK, 2,
-                            Ability.HEALTH, 20
-                    ), 2);
-//                    Item item1 = new Item("item", 10);
-
-                    this.hero.addItemWithNewCopyToItemList(item);
-                    this.hero.addItemWithNewCopyToItemList(item1);
-
-                    System.out.println(item.equals(item1));
-
-                    for (Map.Entry<Item, Integer> itemMap : this.hero.getHeroInventory().entrySet()) {
-                        System.out.println(itemMap.getKey().getName() + " : " + itemMap.getValue());
+                    for (CraftingReagentItem craftingReagentItem : this.itemsLists.getCraftingReagentItems()) {
+                        System.out.println(craftingReagentItem.getName());
                     }
-                    System.out.println(item1.hashCode());
-                    System.out.println(item.hashCode());
-
-                    System.out.println(Objects.equals(this.hero.getHeroInventory().get(item), this.hero.getHeroInventory().get(item1)));
 
 
                 }
@@ -168,7 +140,7 @@ public class GameManager {
             case 0 -> {
             }
             case 1 -> this.blacksmithService.refinementItemQuality(this.hero);
-            case 2 -> this.blacksmithService.dismantleItem(this.hero);
+            case 2 -> this.blacksmithService.dismantleItem(this.hero, this.itemsLists);
             case 3 -> {
 //                List<Item> itemList = Collections.singletonList((Item) this.itemList.getItemList());
 
@@ -183,11 +155,13 @@ public class GameManager {
     public void inventoryMenu() {
         System.out.println("0. Go back");
         System.out.println("1. Items");
+        System.out.println("2. Crafting reagents");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
             case 1 -> this.inventoryService.inventoryMenu(this.hero);
+            case 2 -> this.inventoryService.craftingReagentsMenu(this.hero);
             default -> System.out.println("Enter valid input");
         }
     }
@@ -205,9 +179,11 @@ public class GameManager {
     }
 
     private void initGame() {
-        this.wearableItems = fileService.item(itemsLists.getItemList());
+        this.itemsLists.getWearableItemList().addAll(fileService.returnWearableItemsFromFile());
+        this.itemsLists.getCraftingReagentItems().addAll(fileService.returnCraftingReagentItemsFromFile());
+
         hintUtil.initializeHintList();
-        this.wearableItemVendorCharacter = new WearableItemVendorCharacter("Gimli", getInitialAbilityPoints(), this.itemsLists.getItemList());
+        this.wearableItemVendorCharacter = new WearableItemVendorCharacter("Gimli", getInitialAbilityPoints(), this.itemsLists.getWearableItemList());
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");

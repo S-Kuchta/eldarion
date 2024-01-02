@@ -20,8 +20,8 @@ public class WearableItemVendorCharacter extends VendorCharacter {
 
         // Item sort in array by WearableItemType
         this.itemsForSale.sort((item1, item2) -> {
-            WearableItemType wearableItemType1 = ((WearableItem) item1).getType();
-            WearableItemType wearableItemType2 = ((WearableItem) item2).getType();
+            WearableItemType wearableItemType1 = ((WearableItem) item1).getWearableItemType();
+            WearableItemType wearableItemType2 = ((WearableItem) item2).getWearableItemType();
             return wearableItemType1.compareTo(wearableItemType2);
         });
 

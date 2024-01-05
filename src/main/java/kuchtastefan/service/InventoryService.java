@@ -45,7 +45,7 @@ public class InventoryService {
         List<WearableItem> tempList = new ArrayList<>();
 
         System.out.println("\t0. Go back");
-        for (Map.Entry<WearableItem, Integer> itemMap : hero.returnInventoryWearableItemMap().entrySet()) {
+        for (Map.Entry<WearableItem, Integer> itemMap : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
             WearableItem wearableItem = itemMap.getKey();
             if (wearableItem.getWearableItemType() == wearableItemType) {
                 System.out.print("\t" + index + ". (" + itemMap.getValue() + "x) ");
@@ -75,7 +75,7 @@ public class InventoryService {
     public void craftingReagentsMenu(Hero hero) {
         int index = 1;
         System.out.println("0. Go back");
-        for (Map.Entry<CraftingReagentItem, Integer> item : hero.returnInventoryCraftingReagentItemMap().entrySet()) {
+        for (Map.Entry<CraftingReagentItem, Integer> item : hero.getItemInventoryList().returnInventoryCraftingReagentItemMap().entrySet()) {
             System.out.println(index + ". (" + item.getValue() + "x) " + item.getKey().getName());
         }
 

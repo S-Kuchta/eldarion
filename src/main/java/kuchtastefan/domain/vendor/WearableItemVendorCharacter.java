@@ -25,6 +25,7 @@ public class WearableItemVendorCharacter extends VendorCharacter {
             return wearableItemType1.compareTo(wearableItemType2);
         });
 
+        this.printGreeting();
         PrintUtil.printShopHeader(hero, "Blacksmith");
         int index = 1;
         System.out.println("\t0. Go back");
@@ -38,16 +39,17 @@ public class WearableItemVendorCharacter extends VendorCharacter {
 
     @Override
     public void printItemsForSale(Hero hero) {
-        List<Item> tempItemList = new ArrayList<>();
+        List<WearableItem> tempItemList = new ArrayList<>();
         int index = 1;
-        if (hero.getHeroInventory().isEmpty()) {
+        if (hero.getItemInventoryList().getHeroInventory().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {
             System.out.println("\t0. Go back");
-            for (Map.Entry<WearableItem, Integer> item : hero.returnInventoryWearableItemMap().entrySet()) {
+            for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
                 tempItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printItemAbilityStats(item.getKey());
+                System.out.println("\t\tsell price: " + super.returnSellItemPrice(item.getKey()));
                 index++;
             }
         }
@@ -65,7 +67,8 @@ public class WearableItemVendorCharacter extends VendorCharacter {
     @Override
     public void printGreeting() {
         PrintUtil.printLongDivider();
-        System.out.println("Hello warrior, my name is " + this.name + " this is my blacksmith shop. Let's look what I have here for you.");
+        System.out.println("\tHello warrior, my name is " + this.name + " this is my blacksmith shop. \n\t" +
+                "Let's look what I have here for you.");
         PrintUtil.printLongDivider();
     }
 }

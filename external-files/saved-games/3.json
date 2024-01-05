@@ -9,8 +9,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "DEFENCE": 0,
-          "SKILL": 0
+          "SKILL": 0,
+          "DEFENCE": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -24,8 +24,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "DEFENCE": 0,
-          "SKILL": 0
+          "SKILL": 0,
+          "DEFENCE": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -39,8 +39,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "DEFENCE": 0,
-          "SKILL": 0
+          "SKILL": 0,
+          "DEFENCE": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -54,8 +54,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "DEFENCE": 0,
-          "SKILL": 0
+          "SKILL": 0,
+          "DEFENCE": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -69,8 +69,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "DEFENCE": 0,
-          "SKILL": 0
+          "SKILL": 0,
+          "DEFENCE": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -83,21 +83,23 @@
       "DEXTERITY": 0,
       "ATTACK": 0,
       "HEALTH": 0,
-      "DEFENCE": 0,
-      "SKILL": 0
+      "SKILL": 0,
+      "DEFENCE": 0
     },
     "itemInventoryList": {
-      "heroInventory": {}
+      "heroInventory": {
+        "kuchtastefan.item.wearableItem.WearableItem@f28282cc": 1
+      }
     },
-    "heroGold": 150.0,
+    "heroGold": 100.0,
     "name": "1",
     "abilities": {
       "LUCK": 1,
       "DEXTERITY": 1,
       "ATTACK": 8,
       "HEALTH": 50,
-      "DEFENCE": 1,
-      "SKILL": 1
+      "SKILL": 1,
+      "DEFENCE": 1
     },
     "level": 1
   },
@@ -105,7 +107,7 @@
   "hintUtil": {
     "BLACKSMITH": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": false
+      "showed": true
     }
   }
 }

@@ -78,11 +78,19 @@ public class BlacksmithService {
         PrintUtil.printLongDivider();
         List<CraftingReagentItem> tempList = itemsLists.returnCraftingReagentItemListByTypeAndLevel(
                 CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel());
+
+        CraftingReagentItem item = null;
+        int numbersOfIteration = 0;
         for (int i = 0; i < RandomNumberGenerator.getRandomNumber(2, 4) + wearableItem.getItemLevel(); i++) {
-            CraftingReagentItem item = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
+            item = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
             hero.addItemToItemList(item);
-            System.out.println("\tYou dismantled " + wearableItem.getName() + ", you got " + item.getName());
+            numbersOfIteration++;
         }
+
+        assert item != null;
+        System.out.println("\tYou dismantled " + wearableItem.getName()
+                + ", you got " + item.getName()
+                + "(" + numbersOfIteration + "x)");
         PrintUtil.printLongDivider();
 
         hero.removeItemFromItemList(wearableItem);
@@ -107,10 +115,10 @@ public class BlacksmithService {
         List<WearableItem> tempItemList = new ArrayList<>();
         int index = 1;
         System.out.println("\t0. Go back");
-        if (hero.getHeroInventory().isEmpty()) {
+        if (hero.getItemInventoryList().getHeroInventory().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {
-            for (Map.Entry<WearableItem, Integer> item : hero.returnInventoryWearableItemMap().entrySet()) {
+            for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
                 tempItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printItemAbilityStats(item.getKey());

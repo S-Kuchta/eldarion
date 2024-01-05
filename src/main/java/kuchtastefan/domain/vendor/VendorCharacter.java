@@ -5,7 +5,7 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.wearableItem.WearableItem;
+
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
@@ -73,6 +73,10 @@ public abstract class VendorCharacter extends GameCharacter {
         }
     }
 
+    protected double returnSellItemPrice(Item item) {
+        return item.getPrice() * 0.7;
+    }
+
     protected void sellItem(Hero hero, List<? extends Item> itemList) {
         while (true) {
             try {
@@ -81,7 +85,7 @@ public abstract class VendorCharacter extends GameCharacter {
                     break;
                 } else {
                     Item item = itemList.get(choice - 1);
-                    double itemPrice = item.getPrice() * 0.7;
+                    double itemPrice = returnSellItemPrice(item);
                     hero.setHeroGold((hero.getHeroGold() + itemPrice));
                     hero.removeItemFromItemList(item);
                     System.out.println(item + " sold for " + itemPrice + " golds");

@@ -25,13 +25,13 @@ public class ItemsLists {
     }
 
     public List<CraftingReagentItem> returnCraftingReagentItemListByType(CraftingReagentItemType craftingReagentItemType) {
-        List<CraftingReagentItem> tempCraftingReagentItemList = new ArrayList<>();
+        List<CraftingReagentItem> tempList = new ArrayList<>();
         for (CraftingReagentItem craftingReagentItem : this.craftingReagentItems) {
             if (craftingReagentItem.getCraftingReagentItemType().equals(craftingReagentItemType)) {
-                tempCraftingReagentItemList.add(craftingReagentItem);
+                tempList.add(craftingReagentItem);
             }
         }
-        return tempCraftingReagentItemList;
+        return tempList;
     }
 
     public List<CraftingReagentItem> returnCraftingReagentItemListByTypeAndLevel(CraftingReagentItemType craftingReagentItemType, int itemLevel) {

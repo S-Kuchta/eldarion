@@ -15,7 +15,7 @@ import java.util.Map;
 
 public abstract class VendorCharacter extends GameCharacter {
 
-    protected final List<Item> itemsForSale;
+    protected final List<? extends Item> itemsForSale;
 
     public VendorCharacter(String name, Map<Ability, Integer> abilities, List<? extends Item> itemList) {
         super(name, abilities);

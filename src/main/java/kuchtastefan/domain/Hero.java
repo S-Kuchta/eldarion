@@ -10,7 +10,6 @@ import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.PrintUtil;
 
-import java.nio.charset.CoderResult;
 import java.util.*;
 
 public class Hero extends GameCharacter {
@@ -101,32 +100,7 @@ public class Hero extends GameCharacter {
                 this.getHeroInventory().put(item, 1);
             }
         }
-//        if (this.getHeroInventory().isEmpty()) {
-//            this.getHeroInventory().put(item, 1);
-//        } else {
-//            for (Map.Entry<Item, Integer> itemMap : this.getHeroInventory().entrySet()) {
-//                if (!itemMap.getKey().equals(item)) {
-//                    this.getHeroInventory().put(item, 1);
-//                } else {
-//                    this.getHeroInventory().put(item, itemMap.getValue() + 1);
-//                }
-//            }
-//        }
     }
-
-//    public void removeItemFromItemList(Item item) {
-//        if (this.getHeroInventory() == null) {
-//            System.out.println("You don't have anything to remove");
-//        } else {
-//            for (Map.Entry<Item, Integer> itemMap : this.getHeroInventory().entrySet()) {
-//                if (itemMap.getKey().equals(item) && itemMap.getValue() > 1) {
-//                    this.getHeroInventory().put(item, itemMap.getValue() - 1);
-//                } else {
-//                    this.getHeroInventory().remove(item);
-//                }
-//            }
-//        }
-//    }
 
     public void removeItemFromItemList(Item item) {
         Map<Item, Integer> heroInventory = this.getHeroInventory();

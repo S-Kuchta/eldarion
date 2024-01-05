@@ -107,17 +107,17 @@ public class BlacksmithService {
         List<WearableItem> tempItemList = new ArrayList<>();
         int index = 1;
         System.out.println("\t0. Go back");
-
         if (hero.getHeroInventory().isEmpty()) {
             System.out.println("\tItem list is empty");
+        } else {
+            for (Map.Entry<WearableItem, Integer> item : hero.returnInventoryWearableItemMap().entrySet()) {
+                tempItemList.add(item.getKey());
+                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                PrintUtil.printItemAbilityStats(item.getKey());
+                index++;
+            }
         }
 
-        for (Map.Entry<WearableItem, Integer> item : hero.returnInventoryWearableItemMap().entrySet()) {
-            tempItemList.add(item.getKey());
-            System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-            PrintUtil.printItemAbilityStats(item.getKey());
-            index++;
-        }
         return tempItemList;
     }
 }

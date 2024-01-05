@@ -40,19 +40,18 @@ public class WearableItemVendorCharacter extends VendorCharacter {
     public void printItemsForSale(Hero hero) {
         List<Item> tempItemList = new ArrayList<>();
         int index = 1;
-
         if (hero.getHeroInventory().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {
             System.out.println("\t0. Go back");
-            for (Map.Entry<Item, Integer> item : hero.getHeroInventory().entrySet()) {
-                WearableItem wearableItem = (WearableItem) item.getKey();
-                tempItemList.add(wearableItem);
+            for (Map.Entry<WearableItem, Integer> item : hero.returnInventoryWearableItemMap().entrySet()) {
+                tempItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printItemAbilityStats(wearableItem);
+                PrintUtil.printItemAbilityStats(item.getKey());
                 index++;
             }
         }
+
         sellItem(hero, tempItemList);
     }
 

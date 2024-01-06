@@ -5,7 +5,6 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
-
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
@@ -30,14 +29,32 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public abstract void printGreeting();
 
+//    public List<Item> randomItemGeneratorForVendor(List<? extends Item> itemList) {
+//        List<Item> tempItemList = new ArrayList<>();
+//
+//        for (int i = 0; i < Constant.MAX_VENDOR_ITEMS_FOR_SELL; i++) {
+//            int randomNum = RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1);
+//            System.out.println(randomNum);
+//            tempItemList.add(itemList.get(randomNum));
+//        }
+//        return tempItemList;
+//    }
+
     public List<Item> randomItemGeneratorForVendor(List<? extends Item> itemList) {
         List<Item> tempItemList = new ArrayList<>();
-        System.out.println("Item list size: " + itemList.size());
-        for (int i = 0; i < Constant.MAX_VENDOR_ITEMS_FOR_SELL; i++) {
-            int randomNum = RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1);
+        List<Item> availableItems = new ArrayList<>(itemList);
+
+        for (int i = 0; i < Constant.MAX_VENDOR_ITEMS_FOR_SELL && !availableItems.isEmpty(); i++) {
+            int randomNum = RandomNumberGenerator.getRandomNumber(0, availableItems.size() - 1);
             System.out.println(randomNum);
-            tempItemList.add(itemList.get(randomNum));
+            tempItemList.add(availableItems.get(randomNum));
+            availableItems.remove(randomNum);
+
+            if (availableItems.isEmpty()) {
+                break;
+            }
         }
+
         return tempItemList;
     }
 
@@ -88,11 +105,11 @@ public abstract class VendorCharacter extends GameCharacter {
                     double itemPrice = returnSellItemPrice(item);
                     hero.setHeroGold((hero.getHeroGold() + itemPrice));
                     hero.getItemInventoryList().removeItemFromItemList(item);
-                    System.out.println(item + " sold for " + itemPrice + " golds");
+                    System.out.println(item.getName() + " sold for " + itemPrice + " golds");
                 }
                 break;
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Enter valid number");
+                System.out.println("Enter valid input");
             }
         }
     }

@@ -12,6 +12,7 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.inventory.ItemInventoryList;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -110,11 +111,6 @@ public class GameManager {
                 case 4 -> {
                     this.hero.testPrint();
                     // TESTING
-//                    for (CraftingReagentItem craftingReagentItem : this.itemsLists.getCraftingReagentItems()) {
-//                        System.out.println(craftingReagentItem.getName());
-//                    }
-
-
                 }
                 case 5 -> this.inventoryMenu();
 //                case 6 -> this.shopMenu();
@@ -140,12 +136,9 @@ public class GameManager {
             case 1 -> this.blacksmithService.refinementItemQuality(this.hero);
             case 2 -> this.blacksmithService.dismantleItem(this.hero, this.itemsLists);
             case 3 -> {
-//                List<Item> itemList = Collections.singletonList((Item) this.itemList.getItemList());
-
                 wearableItemVendorCharacter.vendorOffer(this.hero);
             }
             case 4 -> wearableItemVendorCharacter.printItemsForSale(this.hero);
-//            case 3 -> shopService.shopMenu(this.hero, this.WearableItems);
             default -> System.out.println("Enter valid input");
         }
     }
@@ -197,13 +190,6 @@ public class GameManager {
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     this.hintUtil.getHintList().putAll(gameLoaded.getHintUtil());
-//                    for (Map.Entry<Item, Integer> item : gameLoaded.getHero().getItemInventoryList().getHeroInventory().entrySet()) {
-//                        for (Item item1 : this.itemsLists.getWearableItemList()) {
-//                            if (item.equals(item1)) {
-//                                item.
-//                            }
-//                        }
-//                    }
                     return;
                 }
             }

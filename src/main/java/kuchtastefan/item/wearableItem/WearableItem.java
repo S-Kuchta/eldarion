@@ -1,5 +1,7 @@
 package kuchtastefan.item.wearableItem;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.google.gson.annotations.SerializedName;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.item.Item;
 
@@ -8,13 +10,10 @@ import java.util.Objects;
 
 public class WearableItem extends Item {
 
-    private WearableItemType wearableItemType;
-    private Map<Ability, Integer> abilities;
-    private WearableItemQuality wearableItemQuality;
 
-    public WearableItem(String name, double price, int itemLevel) {
-        super(name, price, itemLevel);
-    }
+    private WearableItemType wearableItemType;
+    private final Map<Ability, Integer> abilities;
+    private WearableItemQuality wearableItemQuality;
 
     public WearableItem(String name, double price, int itemLevel,
                         WearableItemType wearableItemType,

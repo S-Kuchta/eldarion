@@ -1,7 +1,6 @@
 package kuchtastefan.service;
 
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.Item;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
@@ -29,28 +28,27 @@ public class InventoryService {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> printInventoryMenuByItemType(hero, WearableItemType.WEAPON);
-            case 2 -> printInventoryMenuByItemType(hero, WearableItemType.BODY);
-            case 3 -> printInventoryMenuByItemType(hero, WearableItemType.HEAD);
-            case 4 -> printInventoryMenuByItemType(hero, WearableItemType.HANDS);
-            case 5 -> printInventoryMenuByItemType(hero, WearableItemType.BOOTS);
+            case 1 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.WEAPON);
+            case 2 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.BODY);
+            case 3 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.HEAD);
+            case 4 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.HANDS);
+            case 5 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.BOOTS);
             case 6 -> hero.wearDownAllEquippedItems();
             default -> System.out.println("Enter valid number");
         }
     }
 
-    private void printInventoryMenuByItemType(Hero hero, WearableItemType wearableItemType) {
+    private void printWearableItemInventoryMenuByItemType(Hero hero, WearableItemType wearableItemType) {
         PrintUtil.printInventoryHeader(wearableItemType);
         int index = 1;
         List<WearableItem> tempList = new ArrayList<>();
 
         System.out.println("\t0. Go back");
-        for (Map.Entry<WearableItem, Integer> itemMap : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
-            WearableItem wearableItem = itemMap.getKey();
-            if (wearableItem.getWearableItemType() == wearableItemType) {
-                System.out.print("\t" + index + ". (" + itemMap.getValue() + "x) ");
-                PrintUtil.printItemAbilityStats(wearableItem);
-                tempList.add(wearableItem);
+        for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
+            if (item.getKey().getWearableItemType() == wearableItemType) {
+                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                PrintUtil.printItemAbilityStats(item.getKey());
+                tempList.add(item.getKey());
                 index++;
             }
         }
@@ -80,7 +78,7 @@ public class InventoryService {
         }
 
         int choice = InputUtil.intScanner();
-        if(choice == 0) {
+        if (choice == 0) {
             return;
         } else {
             System.out.println("Enter valid number");

@@ -4,7 +4,9 @@ import kuchtastefan.item.Item;
 
 public class CraftingReagentItem extends Item {
 
+
     private CraftingReagentItemType craftingReagentItemType;
+
     public CraftingReagentItem(String name, double price, CraftingReagentItemType craftingReagentItemType, int itemLevel) {
         super(name, price, itemLevel);
         this.craftingReagentItemType = craftingReagentItemType;

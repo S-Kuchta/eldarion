@@ -2,7 +2,6 @@ package kuchtastefan.domain;
 
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.item.Item;
 
 import java.util.Map;
 

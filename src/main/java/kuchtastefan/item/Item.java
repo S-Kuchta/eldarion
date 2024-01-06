@@ -1,21 +1,9 @@
 package kuchtastefan.item;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.wearableItem.WearableItem;
-
 import java.util.Objects;
 
+public class Item {
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
-        property = "itemClass",
-        include = JsonTypeInfo.As.PROPERTY)
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = WearableItem.class, name = "wearableItem"),
-        @JsonSubTypes.Type(value = CraftingReagentItem.class, name = "craftingReagentItem")
-})
-public abstract class Item {
     protected String name;
     protected double price;
     protected int itemLevel;

@@ -1,5 +1,6 @@
 package kuchtastefan.domain;
 
+import com.google.gson.annotations.Expose;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
 

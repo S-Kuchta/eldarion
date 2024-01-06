@@ -11,8 +11,8 @@ import java.util.*;
 
 public class WearableItemVendorCharacter extends VendorCharacter {
 
-    public WearableItemVendorCharacter(String name, Map<Ability, Integer> abilities, List<? extends Item> itemList) {
-        super(name, abilities, itemList);
+    public WearableItemVendorCharacter(String name, int level, List<? extends Item> itemsForSale) {
+        super(name, level, itemsForSale);
     }
 
     @Override
@@ -57,12 +57,12 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         super.sellItem(hero, tempItemList);
     }
 
-    @Override
-    public void successfullyItemBought(Hero hero, Item item) {
-        hero.getItemInventoryList().addItemWithNewCopyToItemList(item);
-        hero.setHeroGold(hero.getHeroGold() - item.getPrice());
-        System.out.println(item.getName() + " bought. You can find it in your inventory");
-    }
+//    @Override
+//    public void successfullyItemBought(Hero hero, Item item) {
+//        hero.getItemInventoryList().addItemWithNewCopyToItemList(item);
+//        hero.setHeroGold(hero.getHeroGold() - item.getPrice());
+//        System.out.println(item.getName() + " bought. You can find it in your inventory");
+//    }
 
     @Override
     public void printGreeting() {

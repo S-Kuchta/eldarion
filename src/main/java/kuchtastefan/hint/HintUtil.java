@@ -1,5 +1,6 @@
 package kuchtastefan.hint;
 
+import com.google.gson.annotations.Expose;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.Map;

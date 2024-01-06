@@ -15,6 +15,11 @@ public abstract class GameCharacter {
         this.level = 1;
     }
 
+    public GameCharacter(String name, int level) {
+        this.name = name;
+        this.level = level;
+    }
+
     public void receiveDamage(int damage) {
         this.abilities.put(Ability.HEALTH, this.getAbilityValue(Ability.HEALTH) - damage);
     }

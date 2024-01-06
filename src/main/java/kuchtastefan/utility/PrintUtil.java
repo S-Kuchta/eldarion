@@ -57,6 +57,10 @@ public class PrintUtil {
                 + " golds");
     }
 
+    public static void printItem() {
+
+    }
+
     public static void printCurrentWearingArmor(Hero hero) {
         for (Map.Entry<WearableItemType, WearableItem> item : hero.getEquippedItem().entrySet()) {
             System.out.print(item.getKey() + ": " + item.getValue().getName());
@@ -107,12 +111,12 @@ public class PrintUtil {
 
     public static int printItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
-        for (Map.Entry<Item, Integer> item : hero.getItemInventoryList().getHeroInventory().entrySet()) {
-            if (item.getKey().getClass().equals(WearableItem.class)) {
-                if (((WearableItem) item.getKey()).getWearableItemType().equals(wearableItemType)) {
+        for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
+//            if (item instanceof WearableItem) {
+                if (item.getKey().getWearableItemType().equals(wearableItemType)) {
                     count += item.getValue();
                 }
-            }
+//            }
         }
         return count;
     }
@@ -120,7 +124,7 @@ public class PrintUtil {
     public static void printShopHeader(Hero hero, String shop) {
         printLongDivider();
         System.out.println("\t\t" + "Welcome to the "
-                + shop + " Shop\t\t\t\t\tYou have "
+                + shop + " Shop\t\t\tYou have "
                 + hero.getHeroGold() + " golds");
         printLongDivider();
     }

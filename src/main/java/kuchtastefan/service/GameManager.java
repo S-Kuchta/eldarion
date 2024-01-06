@@ -6,6 +6,7 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.domain.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.domain.vendor.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
@@ -44,7 +45,6 @@ public class GameManager {
         this.blacksmithService = new BlacksmithService();
         this.hintUtil = new HintUtil(new HashMap<>());
         this.itemsLists = new ItemsLists();
-
     }
 
     private Map<Ability, Integer> getInitialAbilityPoints() {
@@ -109,8 +109,13 @@ public class GameManager {
                     }
                 }
                 case 4 -> {
-                    this.hero.testPrint();
-                    // TESTING
+                    CraftingReagentItemVendorCharacter craftingReagentItemVendorCharacter = new CraftingReagentItemVendorCharacter("Taruq", 8, this.itemsLists.getCraftingReagentItems());
+                    craftingReagentItemVendorCharacter.vendorOffer(this.hero);
+//                    this.hero.testPrint();
+//
+//                    for (Map.Entry<Ability, Integer> abilityIntegerMap : this.wearableItemVendorCharacter.getAbilities().entrySet()) {
+//                        System.out.println(abilityIntegerMap.getKey() + " : " + abilityIntegerMap.getValue());
+//                    }
                 }
                 case 5 -> this.inventoryMenu();
 //                case 6 -> this.shopMenu();
@@ -174,7 +179,9 @@ public class GameManager {
         this.itemsLists.getCraftingReagentItems().addAll(fileService.returnCraftingReagentItemsFromFile());
 
         hintUtil.initializeHintList();
-        this.wearableItemVendorCharacter = new WearableItemVendorCharacter("Gimli", getInitialAbilityPoints(), this.itemsLists.getWearableItemList());
+        this.wearableItemVendorCharacter = new WearableItemVendorCharacter("Gimli", 8, this.itemsLists.getWearableItemList());
+
+
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");

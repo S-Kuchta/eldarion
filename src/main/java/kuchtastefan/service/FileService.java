@@ -8,8 +8,12 @@ import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.inventory.ItemInventoryList;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
+import kuchtastefan.item.questItem.QuestItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
@@ -21,6 +25,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,6 +38,7 @@ public class FileService {
 
     public void saveGame(Hero hero, int currentLevel, Map<HintName, Hint> hintUtil) {
         GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, hintUtil);
+        Map<Item, Integer> tempItemMap = new HashMap<>(gameLoaded.getHero().getItemInventoryList().getHeroInventory());
         gameLoaded.getHero().getItemInventoryList().changeList();
 
         while (true) {
@@ -64,6 +70,7 @@ public class FileService {
                 Writer writer = Files.newBufferedWriter(Paths.get(path));
                 this.gson.toJson(gameLoaded, writer);
                 System.out.println("Game Saved");
+                hero.getItemInventoryList().getHeroInventory().putAll(tempItemMap);
                 writer.close();
             } catch (IOException e) {
                 System.out.println("Error while saving game");
@@ -88,11 +95,30 @@ public class FileService {
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedSavedGame));
 
                 GameLoaded gameLoaded = gson.fromJson(bufferedReader, GameLoaded.class);
-                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getWearableItemInventory());
-                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getCraftingReagentItemInventory());
+                gameLoaded.getHero().getItemInventoryList().getHeroInventory().clear();
 
-                gameLoaded.getHero().getItemInventoryList().getWearableItemInventory().clear();
-                gameLoaded.getHero().getItemInventoryList().getCraftingReagentItemInventory().clear();
+                ItemInventoryList itemInventoryList = gameLoaded.getHero().getItemInventoryList();
+                Map<Item, Integer> heroInventory = itemInventoryList.getHeroInventory();
+
+                Map<WearableItem, Integer> wearableItems = itemInventoryList.getWearableItemInventory();
+                Map<CraftingReagentItem, Integer> craftingReagentItems = itemInventoryList.getCraftingReagentItemInventory();
+                Map<ConsumableItem, Integer> consumableItems = itemInventoryList.getConsumableItemInventory();
+                Map<QuestItem, Integer> questItems = itemInventoryList.getQuestItemInventory();
+
+                for (Map<? extends Item, Integer> inventory : List.of(wearableItems, craftingReagentItems, consumableItems, questItems)) {
+                    heroInventory.putAll(inventory);
+                    inventory.clear();
+                }
+
+//                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getWearableItemInventory());
+//                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getCraftingReagentItemInventory());
+//                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getConsumableItemInventory());
+//                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getQuestItemInventory());
+//
+//                gameLoaded.getHero().getItemInventoryList().getWearableItemInventory().clear();
+//                gameLoaded.getHero().getItemInventoryList().getCraftingReagentItemInventory().clear();
+//                gameLoaded.getHero().getItemInventoryList().getConsumableItemInventory().clear();
+//                gameLoaded.getHero().getItemInventoryList().getQuestItemInventory().clear();
 
                 return gameLoaded;
             } catch (IOException e) {

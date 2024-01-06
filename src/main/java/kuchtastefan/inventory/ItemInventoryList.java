@@ -1,8 +1,11 @@
 package kuchtastefan.inventory;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.questItem.QuestItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 
 import java.util.*;
@@ -11,15 +14,20 @@ import java.util.*;
 
 public class ItemInventoryList {
 
+
     private final Map<Item, Integer> heroInventory;
     private final Map<WearableItem, Integer> wearableItemInventory;
     private final Map<CraftingReagentItem, Integer> craftingReagentItemInventory;
+    private final Map<ConsumableItem, Integer> consumableItemInventory;
+    private final Map<QuestItem, Integer> questItemInventory;
 
 
     public ItemInventoryList() {
         this.heroInventory = new HashMap<>();
         this.wearableItemInventory = new HashMap<>();
         this.craftingReagentItemInventory = new HashMap<>();
+        this.consumableItemInventory = new HashMap<>();
+        this.questItemInventory = new HashMap<>();
     }
 
     public Map<Item, Integer> getHeroInventory() {
@@ -32,9 +40,27 @@ public class ItemInventoryList {
 
     public void addItemWithNewCopyToItemList(Item item) {
         Gson gson = new Gson();
+        Class<? extends Item> itemClass = item.getClass();
 
-        WearableItem itemCopy = gson.fromJson(gson.toJson(item), WearableItem.class);
-        addItemToInventory(itemCopy);
+        if (Item.class.isAssignableFrom(itemClass)) {
+            Item itemCopy = gson.fromJson(gson.toJson(item), itemClass);
+            addItemToInventory(itemCopy);
+        }
+//        Gson gson = new Gson();
+//
+//        if (item instanceof WearableItem) {
+//            WearableItem itemCopy = gson.fromJson(gson.toJson(item), WearableItem.class);
+//            addItemToInventory(itemCopy);
+//        } else if (item instanceof CraftingReagentItem) {
+//            CraftingReagentItem itemCopy = gson.fromJson(gson.toJson(item), CraftingReagentItem.class);
+//            addItemToInventory(itemCopy);
+//        } else if (item instanceof ConsumableItem) {
+//            ConsumableItem itemCopy = gson.fromJson(gson.toJson(item), ConsumableItem.class);
+//            addItemToInventory(itemCopy);
+//        } else if (item instanceof QuestItem) {
+//            QuestItem itemCopy = gson.fromJson(gson.toJson(item), QuestItem.class);
+//            addItemToInventory(itemCopy);
+//        }
     }
 
     private void addItemToInventory(Item item) {
@@ -54,22 +80,30 @@ public class ItemInventoryList {
                 this.getHeroInventory().put(item, 1);
             }
         }
-//        changeList();
+        changeList();
     }
 
     public void changeList() {
         Gson gson = new Gson();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
             if (item.getKey() instanceof WearableItem) {
-                System.out.println("Wearable item");
                 WearableItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), WearableItem.class);
                 this.wearableItemInventory.put(itemCopy, item.getValue());
             }
 
             if (item.getKey() instanceof CraftingReagentItem) {
-                System.out.println("Crafting item");
                 CraftingReagentItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), CraftingReagentItem.class);
                 this.craftingReagentItemInventory.put(itemCopy, item.getValue());
+            }
+
+            if (item.getKey() instanceof ConsumableItem) {
+                ConsumableItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), ConsumableItem.class);
+                this.consumableItemInventory.put(itemCopy, item.getValue());
+            }
+
+            if (item.getKey() instanceof QuestItem) {
+                QuestItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), QuestItem.class);
+                this.questItemInventory.put(itemCopy, item.getValue());
             }
         }
 
@@ -142,6 +176,14 @@ public class ItemInventoryList {
 
     public Map<CraftingReagentItem, Integer> getCraftingReagentItemInventory() {
         return craftingReagentItemInventory;
+    }
+
+    public Map<ConsumableItem, Integer> getConsumableItemInventory() {
+        return consumableItemInventory;
+    }
+
+    public Map<QuestItem, Integer> getQuestItemInventory() {
+        return questItemInventory;
     }
 
     @Override

@@ -5,12 +5,12 @@
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
           "DEFENCE": 0,
-          "SKILL": 0
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -20,27 +20,12 @@
       "HANDS": {
         "wearableItemType": "HANDS",
         "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
           "DEFENCE": 0,
-          "SKILL": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "BOOTS": {
-        "wearableItemType": "BOOTS",
-        "abilities": {
+          "SKILL": 0,
           "LUCK": 0,
-          "DEXTERITY": 0,
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "DEFENCE": 0,
-          "SKILL": 0
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -50,12 +35,12 @@
       "HEAD": {
         "wearableItemType": "HEAD",
         "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
           "DEFENCE": 0,
-          "SKILL": 0
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -65,12 +50,27 @@
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
           "DEFENCE": 0,
-          "SKILL": 0
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEFENCE": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -79,12 +79,12 @@
       }
     },
     "wearingItemAbilityPoints": {
-      "LUCK": 0,
-      "DEXTERITY": 0,
       "ATTACK": 0,
       "HEALTH": 0,
       "DEFENCE": 0,
-      "SKILL": 0
+      "SKILL": 0,
+      "LUCK": 0,
+      "DEXTERITY": 0
     },
     "itemInventoryList": {
       "heroInventory": [
@@ -92,49 +92,31 @@
           {
             "wearableItemType": "BODY",
             "abilities": {
-              "DEFENCE": 2,
-              "ATTACK": 0,
+              "DEFENCE": 1,
+              "ATTACK": 1,
               "DEXTERITY": 0,
               "SKILL": 0,
               "LUCK": 0,
               "HEALTH": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Heavy armor",
+            "name": "Leather armor of Attack",
             "price": 50.0,
-            "itemLevel": 1
-          },
-          1
-        ],
-        [
-          {
-            "wearableItemType": "BODY",
-            "abilities": {
-              "DEFENCE": 3,
-              "ATTACK": 0,
-              "DEXTERITY": 0,
-              "SKILL": 0,
-              "LUCK": 0,
-              "HEALTH": 0
-            },
-            "wearableItemQuality": "IMPROVED",
-            "name": "Heavy armor",
-            "price": 100.0,
             "itemLevel": 1
           },
           1
         ]
       ]
     },
-    "heroGold": 50.0,
+    "heroGold": 100.0,
     "name": "1",
     "abilities": {
-      "LUCK": 1,
-      "DEXTERITY": 1,
       "ATTACK": 8,
       "HEALTH": 50,
       "DEFENCE": 1,
-      "SKILL": 1
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEXTERITY": 1
     },
     "level": 1
   },

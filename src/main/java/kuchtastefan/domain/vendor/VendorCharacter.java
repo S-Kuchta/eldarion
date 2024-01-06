@@ -87,7 +87,7 @@ public abstract class VendorCharacter extends GameCharacter {
                     Item item = itemList.get(choice - 1);
                     double itemPrice = returnSellItemPrice(item);
                     hero.setHeroGold((hero.getHeroGold() + itemPrice));
-                    hero.removeItemFromItemList(item);
+                    hero.getItemInventoryList().removeItemFromItemList(item);
                     System.out.println(item + " sold for " + itemPrice + " golds");
                 }
                 break;

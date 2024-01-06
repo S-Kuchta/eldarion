@@ -34,12 +34,12 @@ public class BlacksmithService {
                 WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
 
                 if (wearableItemQuality == WearableItemQuality.BASIC) {
-                    hero.removeItemFromItemList(wearableItem);
+                    hero.getItemInventoryList().removeItemFromItemList(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
                     afterSuccessFullImproveItem(itemCopy, hero);
 
                 } else if (wearableItemQuality == WearableItemQuality.IMPROVED) {
-                    hero.removeItemFromItemList(wearableItem);
+                    hero.getItemInventoryList().removeItemFromItemList(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.SUPERIOR);
                     afterSuccessFullImproveItem(itemCopy, hero);
 
@@ -55,7 +55,7 @@ public class BlacksmithService {
     private void afterSuccessFullImproveItem(WearableItem wearableItem, Hero hero) {
         wearableItem.setItemAbilities(wearableItem);
         wearableItem.setPrice(wearableItem.getPrice() * 2);
-        hero.addItemToItemList(wearableItem);
+        hero.getItemInventoryList().addItemToItemList(wearableItem);
 
         PrintUtil.printLongDivider();
         System.out.println("\t\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getItemQuality() + " quality");
@@ -83,7 +83,7 @@ public class BlacksmithService {
         int numbersOfIteration = 0;
         for (int i = 0; i < RandomNumberGenerator.getRandomNumber(2, 4) + wearableItem.getItemLevel(); i++) {
             item = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
-            hero.addItemToItemList(item);
+            hero.getItemInventoryList().addItemToItemList(item);
             numbersOfIteration++;
         }
 
@@ -93,7 +93,7 @@ public class BlacksmithService {
                 + "(" + numbersOfIteration + "x)");
         PrintUtil.printLongDivider();
 
-        hero.removeItemFromItemList(wearableItem);
+        hero.getItemInventoryList().removeItemFromItemList(wearableItem);
     }
 
     private WearableItem selectItem(List<WearableItem> tempItemList) {

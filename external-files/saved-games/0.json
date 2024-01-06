@@ -5,12 +5,12 @@
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
+          "DEFENCE": 0,
           "HEALTH": 0,
+          "LUCK": 0,
           "SKILL": 0,
-          "DEFENCE": 0
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -20,27 +20,12 @@
       "HANDS": {
         "wearableItemType": "HANDS",
         "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
+          "DEFENCE": 0,
           "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "BOOTS": {
-        "wearableItemType": "BOOTS",
-        "abilities": {
           "LUCK": 0,
-          "DEXTERITY": 0,
-          "ATTACK": 0,
-          "HEALTH": 0,
           "SKILL": 0,
-          "DEFENCE": 0
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -50,12 +35,12 @@
       "HEAD": {
         "wearableItemType": "HEAD",
         "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
+          "DEFENCE": 0,
           "HEALTH": 0,
+          "LUCK": 0,
           "SKILL": 0,
-          "DEFENCE": 0
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -65,12 +50,27 @@
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
+          "DEFENCE": 0,
           "HEALTH": 0,
+          "LUCK": 0,
           "SKILL": 0,
-          "DEFENCE": 0
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -79,43 +79,44 @@
       }
     },
     "wearingItemAbilityPoints": {
-      "LUCK": 0,
-      "DEXTERITY": 0,
       "ATTACK": 0,
+      "DEFENCE": 0,
       "HEALTH": 0,
+      "LUCK": 0,
       "SKILL": 0,
-      "DEFENCE": 0
+      "DEXTERITY": 0
     },
     "itemInventoryList": {
       "heroInventory": [
         [
           {
-            "name": "Basic hands",
+            "wearableItemType": "BOOTS",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Basic boots",
             "price": 50.0,
             "itemLevel": 1
           },
           1
-        ],
-        [
-          {
-            "craftingReagentItemType": "BLACKSMITH_REAGENT",
-            "name": "Iron ore",
-            "price": 10.0,
-            "itemLevel": 2
-          },
-          5
         ]
       ]
     },
-    "heroGold": 50.0,
+    "heroGold": 100.0,
     "name": "1",
     "abilities": {
-      "LUCK": 1,
-      "DEXTERITY": 1,
       "ATTACK": 8,
+      "DEFENCE": 1,
       "HEALTH": 50,
+      "LUCK": 1,
       "SKILL": 1,
-      "DEFENCE": 1
+      "DEXTERITY": 1
     },
     "level": 1
   },

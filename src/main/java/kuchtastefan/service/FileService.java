@@ -1,5 +1,11 @@
 package kuchtastefan.service;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
+import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -42,6 +48,24 @@ public class FileService {
 
             final String path = this.savedGamesPath + name + ".json";
 
+//            PolymorphicTypeValidator ptv = BasicPolymorphicTypeValidator.builder()
+//                    .allowIfSubType("Item")
+//                    .allowIfSubType("WearableItem")
+//                    .build();
+
+            ObjectMapper mapper = new ObjectMapper();
+//            mapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
+
+
+
+
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+            objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL, JsonTypeInfo.As.PROPERTY);
+
+
+
             if (new File(path).exists()) {
                 System.out.println("Game with this name is already saved");
                 System.out.println("Do you want to overwrite it?");
@@ -62,6 +86,11 @@ public class FileService {
             }
 
             try {
+                for (Map.Entry<Item, Integer> item : gameLoaded.getHero().getItemInventoryList().getHeroInventory().entrySet()) {
+//                    String jsonDataString = objectMapper.writeValueAsString(gameLoaded.getHero().getItemInventoryList().getHeroInventory().get(item.getKey()));
+                        mapper.writeValueAsString(item.getKey());
+                }
+
                 Writer writer = Files.newBufferedWriter(Paths.get(path));
                 this.gson.toJson(gameLoaded, writer);
                 System.out.println("Game Saved");
@@ -86,8 +115,11 @@ public class FileService {
             try {
                 String selectedSavedGame = selectSaveGame(listOfSavedGames);
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedSavedGame));
+                GameLoaded gameLoaded = gson.fromJson(bufferedReader, GameLoaded.class);
 
-                return gson.fromJson(bufferedReader, GameLoaded.class);
+
+                return gameLoaded;
+//                return gson.fromJson(bufferedReader, GameLoaded.class);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
                 return null;

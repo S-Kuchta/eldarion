@@ -54,12 +54,12 @@ public class WearableItemVendorCharacter extends VendorCharacter {
             }
         }
 
-        sellItem(hero, tempItemList);
+        super.sellItem(hero, tempItemList);
     }
 
     @Override
     public void successfullyItemBought(Hero hero, Item item) {
-        hero.addItemWithNewCopyToItemList(item);
+        hero.getItemInventoryList().addItemWithNewCopyToItemList(item);
         hero.setHeroGold(hero.getHeroGold() - item.getPrice());
         System.out.println(item.getName() + " bought. You can find it in your inventory");
     }

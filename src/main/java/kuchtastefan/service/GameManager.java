@@ -12,15 +12,12 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.inventory.ItemInventoryList;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemsLists;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-import javax.swing.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameManager {
     private Hero hero;
@@ -29,8 +26,6 @@ public class GameManager {
     private final FileService fileService;
     private final Map<Integer, Enemy> enemiesByLevel;
     private final BattleService battleService;
-//    private List<WearableItem> wearableItemList = new ArrayList<>();
-//    private List<CraftingReagentItem> craftingReagentItemList;
     private final ItemsLists itemsLists;
     private final BlacksmithService blacksmithService;
     private final InventoryService inventoryService;
@@ -113,11 +108,11 @@ public class GameManager {
                     }
                 }
                 case 4 -> {
-
+                    this.hero.testPrint();
                     // TESTING
-                    for (CraftingReagentItem craftingReagentItem : this.itemsLists.getCraftingReagentItems()) {
-                        System.out.println(craftingReagentItem.getName());
-                    }
+//                    for (CraftingReagentItem craftingReagentItem : this.itemsLists.getCraftingReagentItems()) {
+//                        System.out.println(craftingReagentItem.getName());
+//                    }
 
 
                 }
@@ -199,24 +194,15 @@ public class GameManager {
                 final GameLoaded gameLoaded = fileService.loadGame();
                 if (gameLoaded != null) {
                     this.hero = gameLoaded.getHero();
-//                    Map<Item, Integer> tempMap = new HashMap<>(gameLoaded.getHero().getItemInventoryList().getHeroInventory());
-//                    this.hero.getItemInventoryList().setHeroInventory(tempMap);
-
-//                    for (Map.Entry<Item, Integer> item : gameLoaded.getHero().getItemInventoryList().getHeroInventory().entrySet()) {
-//                        this.hero.getItemInventoryList().getHeroInventory().put(item.getKey(), item.getValue());
-//                    }
-//                    this.hero.setItemInventoryList(gameLoaded.getHero().getItemInventoryList());
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     this.hintUtil.getHintList().putAll(gameLoaded.getHintUtil());
-
-
-//                    ItemInventoryList itemInventoryList = new ItemInventoryList(gameLoaded.getHero().getItemInventoryList().getHeroInventory());
-//                    this.hero.setItemInventoryList(itemInventoryList);
-//                    Map<Item, Integer> inventory = gameLoaded.getHero().getItemInventoryList().getHeroInventory();
-//                    this.hero.initializeInventoryList(inventory);
-//                    for (Map.Entry<Item, Integer> item : this.hero.getItemInventoryList().getHeroInventory().entrySet()) {
-//                        this.hero.addItemToItemList(item.getKey());
+//                    for (Map.Entry<Item, Integer> item : gameLoaded.getHero().getItemInventoryList().getHeroInventory().entrySet()) {
+//                        for (Item item1 : this.itemsLists.getWearableItemList()) {
+//                            if (item.equals(item1)) {
+//                                item.
+//                            }
+//                        }
 //                    }
                     return;
                 }

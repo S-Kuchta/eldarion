@@ -4,21 +4,24 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ItemInventoryList {
 
-    private final Map<Item, Integer> heroInventory;
+    private Map<Item, Integer> heroInventory;
 
-    public ItemInventoryList(Map<Item, Integer> heroInventory) {
-        this.heroInventory = heroInventory;
+    public ItemInventoryList(Map<Item, Integer> newItemList) {
+        this.heroInventory = newItemList;
     }
+
+
 
     public Map<Item, Integer> getHeroInventory() {
         return heroInventory;
+    }
+
+    public void setHeroInventory(Map<Item, Integer> heroInventory) {
+        this.heroInventory = heroInventory;
     }
 
     public List<WearableItem> returnInventoryWearableItemList() {
@@ -59,5 +62,18 @@ public class ItemInventoryList {
             }
         }
         return wearableItemMap;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ItemInventoryList that = (ItemInventoryList) o;
+        return Objects.equals(heroInventory, that.heroInventory);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(heroInventory);
     }
 }

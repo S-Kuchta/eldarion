@@ -9,8 +9,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
+          "DEFENCE": 0,
+          "SKILL": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -24,8 +24,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
+          "DEFENCE": 0,
+          "SKILL": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -39,8 +39,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
+          "DEFENCE": 0,
+          "SKILL": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -54,8 +54,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
+          "DEFENCE": 0,
+          "SKILL": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -69,8 +69,8 @@
           "DEXTERITY": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
+          "DEFENCE": 0,
+          "SKILL": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -83,42 +83,42 @@
       "DEXTERITY": 0,
       "ATTACK": 0,
       "HEALTH": 0,
-      "SKILL": 0,
-      "DEFENCE": 0
+      "DEFENCE": 0,
+      "SKILL": 0
     },
     "itemInventoryList": {
       "heroInventory": [
         [
           {
-            "wearableItemType": "BOOTS",
+            "wearableItemType": "BODY",
             "abilities": {
-              "DEFENCE": 1,
-              "SKILL": 1,
+              "DEFENCE": 2,
               "ATTACK": 0,
               "DEXTERITY": 0,
+              "SKILL": 0,
               "LUCK": 0,
               "HEALTH": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Basic boots",
+            "name": "Heavy armor",
             "price": 50.0,
             "itemLevel": 1
           },
-          2
+          1
         ],
         [
           {
-            "wearableItemType": "BOOTS",
+            "wearableItemType": "BODY",
             "abilities": {
-              "DEFENCE": 2,
-              "SKILL": 2,
+              "DEFENCE": 3,
               "ATTACK": 0,
               "DEXTERITY": 0,
+              "SKILL": 0,
               "LUCK": 0,
               "HEALTH": 0
             },
             "wearableItemQuality": "IMPROVED",
-            "name": "Basic boots",
+            "name": "Heavy armor",
             "price": 100.0,
             "itemLevel": 1
           },
@@ -126,15 +126,15 @@
         ]
       ]
     },
-    "heroGold": 0.0,
+    "heroGold": 50.0,
     "name": "1",
     "abilities": {
       "LUCK": 1,
       "DEXTERITY": 1,
       "ATTACK": 8,
       "HEALTH": 50,
-      "SKILL": 1,
-      "DEFENCE": 1
+      "DEFENCE": 1,
+      "SKILL": 1
     },
     "level": 1
   },

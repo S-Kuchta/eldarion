@@ -2,15 +2,30 @@
   "hero": {
     "unspentAbilityPoints": 0,
     "equippedItem": {
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "SKILL": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
+          "SKILL": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
           "LUCK": 0,
           "DEXTERITY": 0,
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
+          "ATTACK": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -20,42 +35,12 @@
       "HANDS": {
         "wearableItemType": "HANDS",
         "abilities": {
+          "SKILL": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
           "LUCK": 0,
           "DEXTERITY": 0,
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "BOOTS": {
-        "wearableItemType": "BOOTS",
-        "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "HEAD": {
-        "wearableItemType": "HEAD",
-        "abilities": {
-          "LUCK": 0,
-          "DEXTERITY": 0,
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "SKILL": 0,
-          "DEFENCE": 0
+          "ATTACK": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -65,12 +50,27 @@
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
+          "SKILL": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
           "LUCK": 0,
           "DEXTERITY": 0,
-          "ATTACK": 0,
-          "HEALTH": 0,
+          "ATTACK": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
           "SKILL": 0,
-          "DEFENCE": 0
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0,
+          "ATTACK": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -79,62 +79,44 @@
       }
     },
     "wearingItemAbilityPoints": {
+      "SKILL": 0,
+      "DEFENCE": 0,
+      "HEALTH": 0,
       "LUCK": 0,
       "DEXTERITY": 0,
-      "ATTACK": 0,
-      "HEALTH": 0,
-      "SKILL": 0,
-      "DEFENCE": 0
+      "ATTACK": 0
     },
     "itemInventoryList": {
       "heroInventory": [
         [
           {
-            "wearableItemType": "BOOTS",
+            "wearableItemType": "WEAPON",
             "abilities": {
-              "DEFENCE": 1,
-              "SKILL": 1,
-              "ATTACK": 0,
+              "ATTACK": 2,
+              "HEALTH": 10,
+              "DEFENCE": 0,
               "DEXTERITY": 0,
-              "LUCK": 0,
-              "HEALTH": 0
+              "SKILL": 0,
+              "LUCK": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Basic boots",
-            "price": 50.0,
-            "itemLevel": 1
-          },
-          2
-        ],
-        [
-          {
-            "wearableItemType": "BOOTS",
-            "abilities": {
-              "DEFENCE": 2,
-              "SKILL": 2,
-              "ATTACK": 0,
-              "DEXTERITY": 0,
-              "LUCK": 0,
-              "HEALTH": 0
-            },
-            "wearableItemQuality": "IMPROVED",
-            "name": "Basic boots",
+            "name": "Steel sword of Health",
             "price": 100.0,
-            "itemLevel": 1
+            "itemLevel": 2
           },
           1
         ]
       ]
     },
-    "heroGold": 0.0,
+    "heroGold": 50.0,
     "name": "1",
     "abilities": {
+      "SKILL": 1,
+      "DEFENCE": 1,
+      "HEALTH": 50,
       "LUCK": 1,
       "DEXTERITY": 1,
-      "ATTACK": 8,
-      "HEALTH": 50,
-      "SKILL": 1,
-      "DEFENCE": 1
+      "ATTACK": 8
     },
     "level": 1
   },

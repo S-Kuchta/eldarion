@@ -17,6 +17,7 @@ import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -29,7 +30,7 @@ import java.util.stream.Stream;
 
 public class FileService {
 
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private final Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
     public void saveGame(Hero hero, int currentLevel, Map<HintName, Hint> hintUtil) {
@@ -85,6 +86,7 @@ public class FileService {
             try {
                 String selectedSavedGame = selectSaveGame(listOfSavedGames);
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedSavedGame));
+
                 return gson.fromJson(bufferedReader, GameLoaded.class);
             } catch (IOException e) {
                 System.out.println(e.getMessage());

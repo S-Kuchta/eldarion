@@ -9,6 +9,7 @@ import kuchtastefan.domain.Hero;
 import kuchtastefan.domain.vendor.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
+import kuchtastefan.inventory.ItemInventoryList;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemsLists;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
@@ -18,6 +19,7 @@ import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
+import javax.swing.*;
 import java.util.*;
 
 public class GameManager {
@@ -46,6 +48,7 @@ public class GameManager {
         this.blacksmithService = new BlacksmithService();
         this.hintUtil = new HintUtil(new HashMap<>());
         this.itemsLists = new ItemsLists();
+
     }
 
     private Map<Ability, Integer> getInitialAbilityPoints() {
@@ -196,9 +199,25 @@ public class GameManager {
                 final GameLoaded gameLoaded = fileService.loadGame();
                 if (gameLoaded != null) {
                     this.hero = gameLoaded.getHero();
+//                    Map<Item, Integer> tempMap = new HashMap<>(gameLoaded.getHero().getItemInventoryList().getHeroInventory());
+//                    this.hero.getItemInventoryList().setHeroInventory(tempMap);
+
+//                    for (Map.Entry<Item, Integer> item : gameLoaded.getHero().getItemInventoryList().getHeroInventory().entrySet()) {
+//                        this.hero.getItemInventoryList().getHeroInventory().put(item.getKey(), item.getValue());
+//                    }
+//                    this.hero.setItemInventoryList(gameLoaded.getHero().getItemInventoryList());
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     this.hintUtil.getHintList().putAll(gameLoaded.getHintUtil());
+
+
+//                    ItemInventoryList itemInventoryList = new ItemInventoryList(gameLoaded.getHero().getItemInventoryList().getHeroInventory());
+//                    this.hero.setItemInventoryList(itemInventoryList);
+//                    Map<Item, Integer> inventory = gameLoaded.getHero().getItemInventoryList().getHeroInventory();
+//                    this.hero.initializeInventoryList(inventory);
+//                    for (Map.Entry<Item, Integer> item : this.hero.getItemInventoryList().getHeroInventory().entrySet()) {
+//                        this.hero.addItemToItemList(item.getKey());
+//                    }
                     return;
                 }
             }

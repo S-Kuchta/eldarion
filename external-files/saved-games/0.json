@@ -87,12 +87,28 @@
       "DEFENCE": 0
     },
     "itemInventoryList": {
-      "heroInventory": {
-        "kuchtastefan.item.wearableItem.WearableItem@2fdd3d08": 2
-      }
+      "heroInventory": [
+        [
+          {
+            "name": "Basic hands",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Iron ore",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          5
+        ]
+      ]
     },
     "heroGold": 50.0,
-    "name": "0",
+    "name": "1",
     "abilities": {
       "LUCK": 1,
       "DEXTERITY": 1,

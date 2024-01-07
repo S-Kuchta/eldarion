@@ -1,13 +1,14 @@
 package kuchtastefan.domain.vendor;
 
-import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class WearableItemVendorCharacter extends VendorCharacter {
 
@@ -25,8 +26,34 @@ public class WearableItemVendorCharacter extends VendorCharacter {
             return wearableItemType1.compareTo(wearableItemType2);
         });
 
-        this.printGreeting();
         PrintUtil.printShopHeader(hero, "Blacksmith");
+        this.printItems();
+        super.buyItem(hero);
+    }
+
+    @Override
+    public void printItemsForSale(Hero hero) {
+        List<WearableItem> wearableItemList = new ArrayList<>();
+        PrintUtil.printShopHeader(hero, "Blacksmith");
+        int index = 1;
+        System.out.println("\t0. Go back");
+        if (hero.getItemInventoryList().returnInventoryWearableItemMap().isEmpty()) {
+            System.out.println("\tItem list is empty");
+        } else {
+            for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
+                wearableItemList.add(item.getKey());
+                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                PrintUtil.printItemAbilityPoints(item.getKey());
+                System.out.println("\t\tsell price: " + super.returnSellItemPrice(item.getKey()));
+                index++;
+            }
+        }
+
+        super.sellItem(hero, wearableItemList);
+    }
+
+    @Override
+    protected void printItems() {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item wearableItem : this.itemsForSale) {
@@ -34,35 +61,7 @@ public class WearableItemVendorCharacter extends VendorCharacter {
             PrintUtil.printFullItemDescription((WearableItem) wearableItem);
             index++;
         }
-        super.buyItem(hero);
     }
-
-    @Override
-    public void printItemsForSale(Hero hero) {
-        List<WearableItem> tempItemList = new ArrayList<>();
-        int index = 1;
-        if (hero.getItemInventoryList().getHeroInventory().isEmpty()) {
-            System.out.println("\tItem list is empty");
-        } else {
-            System.out.println("\t0. Go back");
-            for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
-                tempItemList.add(item.getKey());
-                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printItemAbilityStats(item.getKey());
-                System.out.println("\t\tsell price: " + super.returnSellItemPrice(item.getKey()));
-                index++;
-            }
-        }
-
-        super.sellItem(hero, tempItemList);
-    }
-
-//    @Override
-//    public void successfullyItemBought(Hero hero, Item item) {
-//        hero.getItemInventoryList().addItemWithNewCopyToItemList(item);
-//        hero.setHeroGold(hero.getHeroGold() - item.getPrice());
-//        System.out.println(item.getName() + " bought. You can find it in your inventory");
-//    }
 
     @Override
     public void printGreeting() {

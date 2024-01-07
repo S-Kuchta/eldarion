@@ -33,11 +33,11 @@ public class ItemsLists {
         return tempList;
     }
 
-    public List<ConsumableItemType> returnConsumableItemListByType(ConsumableItemType consumableItemType) {
-        List<ConsumableItemType> tempList = new ArrayList<>();
+    public List<ConsumableItem> returnConsumableItemListByType(ConsumableItemType consumableItemType) {
+        List<ConsumableItem> tempList = new ArrayList<>();
         for (ConsumableItem consumableItem : this.consumableItems) {
             if (consumableItem.getConsumableItemType().equals(consumableItemType)) {
-                tempList.add(consumableItemType);
+                tempList.add(consumableItem);
             }
         }
         return tempList;

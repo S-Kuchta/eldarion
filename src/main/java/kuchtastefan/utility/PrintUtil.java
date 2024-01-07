@@ -4,7 +4,8 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.gameSettings.GameSettings;
-import kuchtastefan.item.Item;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 
@@ -35,7 +36,7 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printItemAbilityStats(WearableItem wearableItem) {
+    public static void printItemAbilityPoints(WearableItem wearableItem) {
         System.out.print(wearableItem.getWearableItemType() + ": "
                 + wearableItem.getName()
                 + " (" + wearableItem.getItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
@@ -51,14 +52,10 @@ public class PrintUtil {
     }
 
     public static void printFullItemDescription(WearableItem wearableItem) {
-        printItemAbilityStats(wearableItem);
-        System.out.println("\t\t\tiPrice: "
+        printItemAbilityPoints(wearableItem);
+        System.out.println("\t\t\tItem Price: "
                 + wearableItem.getPrice()
                 + " golds");
-    }
-
-    public static void printItem() {
-
     }
 
     public static void printCurrentWearingArmor(Hero hero) {
@@ -97,26 +94,20 @@ public class PrintUtil {
         System.out.println();
     }
 
-    public static void printHeroGold(Hero hero) {
-        System.out.println(hero.getName() + " golds: " + hero.getHeroGold());
-    }
-
     public static void printDivider() {
-        System.out.println("|----------------------------------------------|");
+        System.out.println("|-----------------------------------------------|");
     }
 
     public static void printLongDivider() {
-        System.out.println("|------------------------------------------------------------------------------|");
+        System.out.println("|----------------------------------------------------------------------------------|");
     }
 
-    public static int printItemCountByType(Hero hero, WearableItemType wearableItemType) {
+    public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
         for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
-//            if (item instanceof WearableItem) {
-                if (item.getKey().getWearableItemType().equals(wearableItemType)) {
-                    count += item.getValue();
-                }
-//            }
+            if (item.getKey().getWearableItemType().equals(wearableItemType)) {
+                count += item.getValue();
+            }
         }
         return count;
     }
@@ -135,16 +126,81 @@ public class PrintUtil {
         printDivider();
     }
 
-    public static void printMarketHeader(String marketType) {
+    public static void printInventoryHeader(String inventory) {
         printDivider();
-        System.out.println("\t\tWelcome to the " + marketType + " Market");
-        printDivider();
-    }
-
-    public static void printInventoryHeader(String inventoryType) {
-        printDivider();
-        System.out.println("\t\tWelcome to the " + inventoryType + " Inventory");
+        System.out.println("\t\t" + inventory + " items Inventory");
         printDivider();
     }
 
+    public static void printConsumableItemFromList(Map<ConsumableItem, Integer> consumableItemMap) {
+        int index = 1;
+        for (Map.Entry<ConsumableItem, Integer> item : consumableItemMap.entrySet()) {
+            System.out.print(index + ". ("
+                    + item.getValue() + "x) "
+                    + item.getKey().getName()
+                    + ", Item type: "
+                    + item.getKey().getConsumableItemType());
+            if (item.getKey().getRestoreAmount() != 0) {
+                System.out.print(", Restore Amount: " + item.getKey().getRestoreAmount() + " health");
+            }
+
+            for (Ability ability : Ability.values()) {
+                if (item.getKey().getIncreaseAbilityPoint().get(ability) != 0) {
+                    System.out.print(", increase " + ability + ": "
+                            + item.getKey().getIncreaseAbilityPoint().get(ability) + ", ");
+                }
+            }
+            System.out.println();
+
+            index++;
+        }
+    }
+
+    public static void printConsumableItemInfo(ConsumableItem consumableItem) {
+        System.out.print(consumableItem.getName()
+                + ", " + consumableItem.getConsumableItemType()
+                + ", iLevel" + consumableItem.getItemLevel());
+        if (consumableItem.getRestoreAmount() != 0) {
+            System.out.print(", Restore Amount: " + consumableItem.getRestoreAmount() + " health");
+        }
+
+        for (Ability ability : Ability.values()) {
+            if (consumableItem.getIncreaseAbilityPoint().get(ability) != 0) {
+                System.out.print(", increase " + ability + ": "
+                        + consumableItem.getIncreaseAbilityPoint().get(ability) + ", ");
+            }
+        }
+    }
+
+    public static void printCraftingReagentItemInfo(CraftingReagentItem craftingReagentItem) {
+        System.out.print(craftingReagentItem.getName()
+                + ", " + craftingReagentItem.getCraftingReagentItemType()
+                + ", iLevel: " + craftingReagentItem.getItemLevel());
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

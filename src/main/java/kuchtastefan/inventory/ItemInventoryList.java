@@ -1,7 +1,6 @@
 package kuchtastefan.inventory;
 
 import com.google.gson.Gson;
-import com.google.gson.annotations.Expose;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
@@ -9,8 +8,6 @@ import kuchtastefan.item.questItem.QuestItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 
 import java.util.*;
-
-
 
 public class ItemInventoryList {
 
@@ -46,21 +43,6 @@ public class ItemInventoryList {
             Item itemCopy = gson.fromJson(gson.toJson(item), itemClass);
             addItemToInventory(itemCopy);
         }
-//        Gson gson = new Gson();
-//
-//        if (item instanceof WearableItem) {
-//            WearableItem itemCopy = gson.fromJson(gson.toJson(item), WearableItem.class);
-//            addItemToInventory(itemCopy);
-//        } else if (item instanceof CraftingReagentItem) {
-//            CraftingReagentItem itemCopy = gson.fromJson(gson.toJson(item), CraftingReagentItem.class);
-//            addItemToInventory(itemCopy);
-//        } else if (item instanceof ConsumableItem) {
-//            ConsumableItem itemCopy = gson.fromJson(gson.toJson(item), ConsumableItem.class);
-//            addItemToInventory(itemCopy);
-//        } else if (item instanceof QuestItem) {
-//            QuestItem itemCopy = gson.fromJson(gson.toJson(item), QuestItem.class);
-//            addItemToInventory(itemCopy);
-//        }
     }
 
     private void addItemToInventory(Item item) {
@@ -80,7 +62,6 @@ public class ItemInventoryList {
                 this.getHeroInventory().put(item, 1);
             }
         }
-        changeList();
     }
 
     public void changeList() {
@@ -168,6 +149,26 @@ public class ItemInventoryList {
             }
         }
         return craftingReagentItems;
+    }
+
+    public Map<QuestItem, Integer> returnInventoryQuestItemMap() {
+        Map<QuestItem, Integer> questItems = new HashMap<>();
+        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
+            if (item.getKey() instanceof QuestItem) {
+                questItems.put((QuestItem) item.getKey(), item.getValue());
+            }
+        }
+        return questItems;
+    }
+
+    public Map<ConsumableItem, Integer> returnInventoryConsumableItemMap() {
+        Map<ConsumableItem, Integer> consumableItems = new HashMap<>();
+        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
+            if (item.getKey() instanceof ConsumableItem) {
+                consumableItems.put((ConsumableItem) item.getKey(), item.getValue());
+            }
+        }
+        return consumableItems;
     }
 
     public Map<WearableItem, Integer> getWearableItemInventory() {

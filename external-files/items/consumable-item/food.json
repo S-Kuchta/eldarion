@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Goulash",
+    "price": 20,
+    "itemLevel": 2,
+    "restoreAmount": 30
+  },
+  {
+    "name": "Bread",
+    "price": 15,
+    "itemLevel": 1,
+    "restoreAmount": 20
+  }
+]

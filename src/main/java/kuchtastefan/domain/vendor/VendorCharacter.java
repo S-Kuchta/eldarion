@@ -6,6 +6,7 @@ import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.ArrayList;
@@ -29,6 +30,26 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public abstract void printGreeting();
 
+    protected abstract void printItems();
+
+    public void vendorMenu(Hero hero) {
+        printGreeting();
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. Buy items");
+        System.out.println("\t2. Sell items");
+
+
+        int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> vendorOffer(hero);
+            case 2 -> printItemsForSale(hero);
+            default -> System.out.println("Enter valid input");
+        }
+
+    }
+
     public Map<Ability, Integer> initializeVendorAbility() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 15,
@@ -46,7 +67,6 @@ public abstract class VendorCharacter extends GameCharacter {
 
         for (int i = 0; i < Constant.MAX_VENDOR_ITEMS_FOR_SELL && !availableItems.isEmpty(); i++) {
             int randomNum = RandomNumberGenerator.getRandomNumber(0, availableItems.size() - 1);
-            System.out.println(randomNum);
             tempItemList.add(availableItems.get(randomNum));
             availableItems.remove(randomNum);
         }
@@ -59,6 +79,7 @@ public abstract class VendorCharacter extends GameCharacter {
             int choice = InputUtil.intScanner();
 
             if (choice == 0) {
+                vendorMenu(hero);
                 break;
             }
 
@@ -67,18 +88,23 @@ public abstract class VendorCharacter extends GameCharacter {
             } else {
                 Item item = itemsForSale.get(choice - 1);
                 if (hero.getHeroGold() >= item.getPrice()) {
+                    PrintUtil.printLongDivider();
                     System.out.println("\tAre you sure you want to buy " + item.getName());
                     System.out.println("\t0. no");
                     System.out.println("\t1. yes");
                     int confirmInput = InputUtil.intScanner();
                     switch (confirmInput) {
                         case 0 -> {
-                            return;
                         }
-                        case 1 -> successfullyItemBought(hero, item);
+                        case 1 -> {
+                            PrintUtil.printLongDivider();
+                            successfullyItemBought(hero, item);
+                            PrintUtil.printLongDivider();
+                        }
                         default -> System.out.println("\tEnter valid input");
                     }
-                    break;
+                    vendorMenu(hero);
+                    return;
                 } else {
                     System.out.println("\tYou don't have enough golds!");
                 }
@@ -97,19 +123,21 @@ public abstract class VendorCharacter extends GameCharacter {
     }
 
     protected void sellItem(Hero hero, List<? extends Item> itemList) {
+
         while (true) {
             try {
                 int choice = InputUtil.intScanner();
                 if (choice == 0) {
-                    break;
+                    vendorMenu(hero);
                 } else {
                     Item item = itemList.get(choice - 1);
-                    double itemPrice = returnSellItemPrice(item);
-                    hero.setHeroGold((hero.getHeroGold() + itemPrice));
+                    hero.setHeroGold((hero.getHeroGold() + returnSellItemPrice(item)));
                     hero.getItemInventoryList().removeItemFromItemList(item);
-                    System.out.println("\t" + item.getName() + " sold for " + itemPrice + " golds");
+                    System.out.println("\t" + item.getName() + " sold for " + returnSellItemPrice(item) + " golds");
+                    vendorMenu(hero);
                 }
-                break;
+
+                return;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("\tEnter valid input");
             }

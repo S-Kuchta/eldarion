@@ -6,14 +6,14 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.domain.vendor.ConsumableVendorCharacter;
 import kuchtastefan.domain.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.domain.vendor.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
-import kuchtastefan.inventory.ItemInventoryList;
-import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemsLists;
-import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.consumeableItem.ConsumableItemType;
+import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -32,7 +32,6 @@ public class GameManager {
     private final BlacksmithService blacksmithService;
     private final InventoryService inventoryService;
     private final HintUtil hintUtil;
-    private WearableItemVendorCharacter wearableItemVendorCharacter;
 
     public GameManager() {
         this.hero = new Hero("");
@@ -45,17 +44,6 @@ public class GameManager {
         this.blacksmithService = new BlacksmithService();
         this.hintUtil = new HintUtil(new HashMap<>());
         this.itemsLists = new ItemsLists();
-    }
-
-    private Map<Ability, Integer> getInitialAbilityPoints() {
-        return new HashMap<>(Map.of(
-                Ability.ATTACK, 1,
-                Ability.DEFENCE, 1,
-                Ability.DEXTERITY, 1,
-                Ability.SKILL, 1,
-                Ability.LUCK, 1,
-                Ability.HEALTH, 50
-        ));
     }
 
     public void startGame() {
@@ -109,8 +97,11 @@ public class GameManager {
                     }
                 }
                 case 4 -> {
-                    CraftingReagentItemVendorCharacter craftingReagentItemVendorCharacter = new CraftingReagentItemVendorCharacter("Taruq", 8, this.itemsLists.getCraftingReagentItems());
-                    craftingReagentItemVendorCharacter.vendorOffer(this.hero);
+//                    CraftingReagentItemVendorCharacter craftingReagentItemVendorCharacter = new CraftingReagentItemVendorCharacter("Taruq", 8, this.itemsLists.getCraftingReagentItems());
+//                    craftingReagentItemVendorCharacter.vendorOffer(this.hero);
+
+                    ConsumableVendorCharacter character = new ConsumableVendorCharacter("Aurelia Moonshadow", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.POTION), ConsumableItemType.POTION);
+                    character.vendorMenu(hero);
 //                    this.hero.testPrint();
 //
 //                    for (Map.Entry<Ability, Integer> abilityIntegerMap : this.wearableItemVendorCharacter.getAbilities().entrySet()) {
@@ -128,44 +119,57 @@ public class GameManager {
     }
 
     public void blacksmithMenu() {
+        WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8, this.itemsLists.getWearableItemList());
+        CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8, this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.BLACKSMITH_REAGENT));
         hintUtil.printHint(HintName.BLACKSMITH);
-        System.out.println("0. Go back");
-        System.out.println("1. Refinement item");
-        System.out.println("2. Dismantle item");
-        System.out.println("3. Weapon and Armory shop");
-        System.out.println("4. Sell item");
+
+        PrintUtil.printDivider();
+        System.out.println("\t\tBlacksmith");
+        PrintUtil.printDivider();
+
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. Refinement item");
+        System.out.println("\t2. Dismantle item");
+        System.out.println("\t3. " + citySmithVendor.getName() + " (Merchant)");
+        System.out.println("\t4. " + cityReagentVendor.getName() + " (Merchant)");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
             case 1 -> this.blacksmithService.refinementItemQuality(this.hero);
             case 2 -> this.blacksmithService.dismantleItem(this.hero, this.itemsLists);
-            case 3 -> {
-                wearableItemVendorCharacter.vendorOffer(this.hero);
-            }
-            case 4 -> wearableItemVendorCharacter.printItemsForSale(this.hero);
+            case 3 -> citySmithVendor.vendorMenu(this.hero);
+            case 4 -> cityReagentVendor.vendorMenu(this.hero);
             default -> System.out.println("Enter valid input");
         }
     }
 
     public void inventoryMenu() {
-        System.out.println("0. Go back");
-        System.out.println("1. Items");
-        System.out.println("2. Crafting reagents");
+        PrintUtil.printLongDivider();
+        System.out.println("\t\t" + this.hero.getName() + " Inventory");
+        PrintUtil.printLongDivider();
+
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. Wearable Items");
+        System.out.println("\t2. Crafting reagents");
+        System.out.println("\t3. Consumable Items");
+        System.out.println("\t4. Quest Items");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
             case 1 -> this.inventoryService.inventoryMenu(this.hero);
             case 2 -> this.inventoryService.craftingReagentsMenu(this.hero);
+            case 3 -> this.inventoryService.consumableItemsMenu(this.hero);
+            case 4 -> this.inventoryService.questItemsMenu(this.hero);
             default -> System.out.println("Enter valid input");
         }
     }
 
     private void upgradeAbilityMenu() {
-        System.out.println("0. Go Back");
-        System.out.println("1. Spend points (" + this.hero.getUnspentAbilityPoints() + " points left)");
-        System.out.println("2. Remove points");
+        System.out.println("\t0. Go Back");
+        System.out.println("\t1. Spend points (" + this.hero.getUnspentAbilityPoints() + " points left)");
+        System.out.println("\t2. Remove points");
         final int upgradeChoice = InputUtil.intScanner();
         if (upgradeChoice == 1) {
             this.heroAbilityManager.spendAbilityPoints();
@@ -175,12 +179,12 @@ public class GameManager {
     }
 
     private void initGame() {
-        this.itemsLists.getWearableItemList().addAll(fileService.returnWearableItemsFromFile());
-        this.itemsLists.getCraftingReagentItems().addAll(fileService.returnCraftingReagentItemsFromFile());
+        this.itemsLists.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
+        this.itemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
+        this.itemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
+        this.itemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
 
-        hintUtil.initializeHintList();
-        this.wearableItemVendorCharacter = new WearableItemVendorCharacter("Gimli", 8, this.itemsLists.getWearableItemList());
-
+        this.hintUtil.initializeHintList();
 
 
         System.out.println("Welcome to the Gladiatus game!");

@@ -11,6 +11,7 @@ import kuchtastefan.hint.HintName;
 import kuchtastefan.inventory.ItemInventoryList;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.questItem.QuestItem;
@@ -95,7 +96,6 @@ public class FileService {
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedSavedGame));
 
                 GameLoaded gameLoaded = gson.fromJson(bufferedReader, GameLoaded.class);
-                gameLoaded.getHero().getItemInventoryList().getHeroInventory().clear();
 
                 ItemInventoryList itemInventoryList = gameLoaded.getHero().getItemInventoryList();
                 Map<Item, Integer> heroInventory = itemInventoryList.getHeroInventory();
@@ -109,16 +109,6 @@ public class FileService {
                     heroInventory.putAll(inventory);
                     inventory.clear();
                 }
-
-//                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getWearableItemInventory());
-//                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getCraftingReagentItemInventory());
-//                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getConsumableItemInventory());
-//                gameLoaded.getHero().getItemInventoryList().getHeroInventory().putAll(gameLoaded.getHero().getItemInventoryList().getQuestItemInventory());
-//
-//                gameLoaded.getHero().getItemInventoryList().getWearableItemInventory().clear();
-//                gameLoaded.getHero().getItemInventoryList().getCraftingReagentItemInventory().clear();
-//                gameLoaded.getHero().getItemInventoryList().getConsumableItemInventory().clear();
-//                gameLoaded.getHero().getItemInventoryList().getQuestItemInventory().clear();
 
                 return gameLoaded;
             } catch (IOException e) {
@@ -167,10 +157,10 @@ public class FileService {
         }
     }
 
-    public List<WearableItem> returnWearableItemsFromFile() {
+    public List<WearableItem> importWearableItemsFromFile() {
 
         List<WearableItem> wearableItemList = new ArrayList<>();
-        String path = "external-files/items";
+        String path = "external-files/items/wearable-item";
         try {
             List<WearableItem> WearableItems;
             for (String file : returnFileList(path)) {
@@ -199,7 +189,7 @@ public class FileService {
         return wearableItemList;
     }
 
-    public List<CraftingReagentItem> returnCraftingReagentItemsFromFile() {
+    public List<CraftingReagentItem> importCraftingReagentItemsFromFile() {
         String path = "external-files/items/crafting-reagent";
         List<CraftingReagentItem> craftingReagents = new ArrayList<>();
         try {
@@ -221,6 +211,62 @@ public class FileService {
         }
 
         return craftingReagents;
+    }
+
+    public List<ConsumableItem> importConsumableItemsFromFile() {
+        String path = "external-files/items/consumable-item";
+        List<ConsumableItem> consumableItems = new ArrayList<>();
+        try {
+            List<ConsumableItem> consumableItemList;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                consumableItemList = new Gson().fromJson(reader, new TypeToken<List<ConsumableItem>>() {
+                }.getType());
+
+                for (ConsumableItem consumableItem : consumableItemList) {
+                    consumableItem.setConsumableItemType(
+                            ConsumableItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
+
+                    if (consumableItem.getIncreaseAbilityPoint() == null) {
+                        consumableItem.setIncreaseAbilityPoint(new HashMap<>());
+                    }
+
+                    for (Ability ability : Ability.values()) {
+                        consumableItem.getIncreaseAbilityPoint().putIfAbsent(ability, 0);
+                    }
+
+                    if (consumableItem.getRestoreAmount() == null) {
+                        consumableItem.setRestoreAmount(0);
+                    }
+                }
+                consumableItems.addAll(consumableItemList);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return consumableItems;
+    }
+
+    public List<QuestItem> importQuestItemsFromFile() {
+        String path = "external-files/items/quest-item";
+        List<QuestItem> questItems = new ArrayList<>();
+        try {
+            List<QuestItem> questItemList;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                questItemList = new Gson().fromJson(reader, new TypeToken<List<QuestItem>>() {
+                }.getType());
+
+                questItems.addAll(questItemList);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return questItems;
     }
 }
 

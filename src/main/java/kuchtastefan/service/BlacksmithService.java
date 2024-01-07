@@ -2,7 +2,6 @@ package kuchtastefan.service;
 
 import com.google.gson.Gson;
 import kuchtastefan.domain.Hero;
-import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemsLists;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
@@ -121,7 +120,7 @@ public class BlacksmithService {
             for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
                 tempItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printItemAbilityStats(item.getKey());
+                PrintUtil.printItemAbilityPoints(item.getKey());
                 index++;
             }
         }

@@ -2,6 +2,7 @@ package kuchtastefan.service;
 
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.questItem.QuestItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
@@ -15,14 +16,14 @@ public class InventoryService {
 
     public void inventoryMenu(Hero hero) {
 
-        PrintUtil.printInventoryHeader("Equip");
+        PrintUtil.printInventoryHeader("Wearable");
 
         System.out.println("\t0. Go back");
-        System.out.println("\t1. Weapons (" + PrintUtil.printItemCountByType(hero, WearableItemType.WEAPON) + ")");
-        System.out.println("\t2. Body (" + PrintUtil.printItemCountByType(hero, WearableItemType.BODY) + ")");
-        System.out.println("\t3. Head (" + PrintUtil.printItemCountByType(hero, WearableItemType.HEAD) + ")");
-        System.out.println("\t4. Hands (" + PrintUtil.printItemCountByType(hero, WearableItemType.HANDS) + ")");
-        System.out.println("\t5. Boots (" + PrintUtil.printItemCountByType(hero, WearableItemType.BOOTS) + ")");
+        System.out.println("\t1. Weapons (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.WEAPON) + ")");
+        System.out.println("\t2. Body (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BODY) + ")");
+        System.out.println("\t3. Head (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HEAD) + ")");
+        System.out.println("\t4. Hands (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HANDS) + ")");
+        System.out.println("\t5. Boots (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BOOTS) + ")");
         System.out.println("\t6. Wear off all equip");
         int choice = InputUtil.intScanner();
         switch (choice) {
@@ -47,7 +48,7 @@ public class InventoryService {
         for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
             if (item.getKey().getWearableItemType() == wearableItemType) {
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printItemAbilityStats(item.getKey());
+                PrintUtil.printItemAbilityPoints(item.getKey());
                 tempList.add(item.getKey());
                 index++;
             }
@@ -72,8 +73,39 @@ public class InventoryService {
 
     public void craftingReagentsMenu(Hero hero) {
         int index = 1;
+        PrintUtil.printInventoryHeader("Crafting reagents");
         System.out.println("0. Go back");
         for (Map.Entry<CraftingReagentItem, Integer> item : hero.getItemInventoryList().returnInventoryCraftingReagentItemMap().entrySet()) {
+            System.out.println(index + ". (" + item.getValue() + "x) " + item.getKey().getName());
+        }
+
+        int choice = InputUtil.intScanner();
+        if (choice == 0) {
+            return;
+        } else {
+            System.out.println("Enter valid number");
+        }
+    }
+
+    public void consumableItemsMenu(Hero hero) {
+//        int index = 1;
+        PrintUtil.printInventoryHeader("Consumable");
+        System.out.println("0. Go back");
+        PrintUtil.printConsumableItemFromList(hero.getItemInventoryList().returnInventoryConsumableItemMap());
+
+        int choice = InputUtil.intScanner();
+        if (choice == 0) {
+            return;
+        } else {
+            System.out.println("Enter valid number");
+        }
+    }
+
+    public void questItemsMenu(Hero hero) {
+        int index = 1;
+        PrintUtil.printInventoryHeader("Quest");
+        System.out.println("0. Go back");
+        for (Map.Entry<QuestItem, Integer> item : hero.getItemInventoryList().returnInventoryQuestItemMap().entrySet()) {
             System.out.println(index + ". (" + item.getValue() + "x) " + item.getKey().getName());
         }
 

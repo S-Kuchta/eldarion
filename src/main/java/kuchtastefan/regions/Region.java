@@ -3,13 +3,17 @@ package kuchtastefan.regions;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.item.ItemsLists;
 import kuchtastefan.regions.events.EventService;
+import kuchtastefan.regions.locations.Location;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Region {
     protected String regionName;
     protected String regionDescription;
-    protected int allLocations;
-    protected int discoveredLocations;
-    protected int clearedLocations;
+    protected List<Location> allLocations;
+    protected List<Location> discoveredLocations;
+    protected List<Location> clearedLocations;
     protected ItemsLists itemsLists;
     protected Hero hero;
     protected final EventService eventService;
@@ -18,9 +22,9 @@ public abstract class Region {
     public Region(String regionName, String regionDescription, ItemsLists itemsLists, Hero hero) {
         this.regionName = regionName;
         this.regionDescription = regionDescription;
-        this.allLocations = 0;
-        this.discoveredLocations = 0;
-        this.clearedLocations = 0;
+        this.allLocations = new ArrayList<>();
+        this.discoveredLocations = new ArrayList<>();
+        this.clearedLocations = new ArrayList<>();
         this.hero = hero;
         this.itemsLists = itemsLists;
         this.eventService = new EventService(this.itemsLists);

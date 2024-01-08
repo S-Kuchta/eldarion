@@ -9,6 +9,6 @@ public class NoOutcomeEvent extends Event {
 
     @Override
     public void eventOccurs(Hero hero) {
-        System.out.println("Nothing happened, just calm walking through the region");
+        System.out.println("\tNothing happened, just calm walking through the region");
     }
 }

@@ -75,8 +75,8 @@ public class BlacksmithService {
         }
 
         PrintUtil.printLongDivider();
-        List<CraftingReagentItem> tempList = itemsLists.returnCraftingReagentItemListByTypeAndLevel(
-                CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel());
+        List<CraftingReagentItem> tempList = itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(
+                CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
 
         CraftingReagentItem item = null;
         int numbersOfIteration = 0;

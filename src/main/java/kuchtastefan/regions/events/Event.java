@@ -11,4 +11,8 @@ public abstract class Event {
     }
 
     public abstract void eventOccurs(Hero hero);
+
+    public int getEventLevel() {
+        return eventLevel;
+    }
 }

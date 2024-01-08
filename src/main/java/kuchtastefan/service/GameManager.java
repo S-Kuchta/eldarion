@@ -161,7 +161,7 @@ public class GameManager {
         final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
                 this.itemsLists.getWearableItemList());
         final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
-                this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.BLACKSMITH_REAGENT));
+                this.itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
         hintUtil.printHint(HintName.BLACKSMITH);
 
         PrintUtil.printDivider();

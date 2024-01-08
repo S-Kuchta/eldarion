@@ -19,30 +19,30 @@ public class MerchantEvent extends Event {
 
     @Override
     public void eventOccurs(Hero hero) {
-        System.out.println("You meet merchant caravan, what will you do?");
-        System.out.println("0. Pass around");
-        System.out.println("1. Talk");
+        System.out.println("\tYou meet merchant caravan, what will you do?");
+        System.out.println("\t0. Pass around");
+        System.out.println("\t1. Talk");
         int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> System.out.println("You just walk around merchant and greets him");
+            case 0 -> System.out.println("\tYou just walk around merchant and greets him");
             case 1 -> {
                 int randomNumber = RandomNumberGenerator.getRandomNumber(0, 2);
                 switch (randomNumber) {
                     case 0 -> {
-                        WearableItemVendorCharacter wearableItemVendorCharacter = new WearableItemVendorCharacter("Random name", 8, this.itemsLists.getWearableItemList());
+                        WearableItemVendorCharacter wearableItemVendorCharacter = new WearableItemVendorCharacter("Random name", 8, this.itemsLists.returnWearableItemListByItemLevel(this.getEventLevel(), null));
                         wearableItemVendorCharacter.vendorMenu(hero);
                     }
                     case 1 -> {
-                        CraftingReagentItemVendorCharacter craftingReagentItemVendorCharacter = new CraftingReagentItemVendorCharacter("Random name", 8, this.itemsLists.getCraftingReagentItems());
+                        CraftingReagentItemVendorCharacter craftingReagentItemVendorCharacter = new CraftingReagentItemVendorCharacter("Random name", 8, this.itemsLists.returnCraftingReagentItemListByItemLevel(this.getEventLevel(), 0));
                         craftingReagentItemVendorCharacter.vendorMenu(hero);
                     }
                     case 2 -> {
-                        ConsumableVendorCharacter consumableVendorCharacter = new ConsumableVendorCharacter("Random name", 8, this.itemsLists.getConsumableItems());
+                        ConsumableVendorCharacter consumableVendorCharacter = new ConsumableVendorCharacter("Random name", 8, this.itemsLists.returnConsumableItemListByItemLevel(this.getEventLevel(), 0));
                         consumableVendorCharacter.vendorMenu(hero);
                     }
                 }
             }
-            default -> System.out.println("Enter valid input");
+            default -> System.out.println("\tEnter valid input");
         }
     }
 }

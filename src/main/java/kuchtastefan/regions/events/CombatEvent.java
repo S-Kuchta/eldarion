@@ -10,6 +10,6 @@ public class CombatEvent extends Event {
 
     @Override
     public void eventOccurs(Hero hero) {
-        System.out.println("Combat event");
+        System.out.println("\tCombat event");
     }
 }

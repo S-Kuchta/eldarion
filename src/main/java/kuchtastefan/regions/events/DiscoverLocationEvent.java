@@ -10,6 +10,6 @@ public class DiscoverLocationEvent extends Event {
 
     @Override
     public void eventOccurs(Hero hero) {
-        System.out.println("Discover Location Event");
+        System.out.println("\tDiscover Location Event");
     }
 }

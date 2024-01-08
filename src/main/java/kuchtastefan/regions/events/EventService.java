@@ -13,23 +13,23 @@ public class EventService {
     }
 
     public void randomRegionEventGenerate(Hero hero) {
-        int randomNumber = RandomNumberGenerator.getRandomNumber(0, 12);
+        int randomNumber = RandomNumberGenerator.getRandomNumber(0, 7);
         int eventLevel = hero.getLevel() + RandomNumberGenerator.getRandomNumber(-1, 1);
         if (eventLevel == 0) {
             eventLevel = 1;
         }
 
         switch (randomNumber) {
-            case 0, 1 -> {
+            case 0 -> {
                 new MerchantEvent(eventLevel, this.itemsLists).eventOccurs(hero);
             }
-            case 2, 3, 4 -> {
+            case 1, 2 -> {
                 new CombatEvent(eventLevel).eventOccurs(hero);
             }
-            case 5 -> {
+            case 3 -> {
                 new DiscoverLocationEvent(eventLevel).eventOccurs(hero);
             }
-            case 6 -> {
+            case 4 -> {
                 new FindItemEvent(eventLevel, this.itemsLists).eventOccurs(hero);
             }
             default -> new NoOutcomeEvent(0).eventOccurs(hero);

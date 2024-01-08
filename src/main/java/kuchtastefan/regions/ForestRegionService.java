@@ -16,13 +16,14 @@ public class ForestRegionService extends Region {
     public void adventuringAcrossTheRegion() {
 
         while (true) {
-            PrintUtil.printDivider();
+            System.out.println();
+            PrintUtil.printLongDivider();
             System.out.println("\t\t" + getRegionName());
-            PrintUtil.printDivider();
+            PrintUtil.printLongDivider();
 
-            System.out.println("You are traveling across Magic forest called " + getRegionName());
-            System.out.println("0. Go back to the city");
-            System.out.println("1. Travel across region");
+            System.out.println("\tYou are traveling across Magic forest called " + getRegionName());
+            System.out.println("\t0. Go back to the city");
+            System.out.println("\t1. Travel across region");
             int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {

@@ -53,12 +53,12 @@ public class GameManager {
             final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
             System.out.println("\t0. Fight " + enemy.getName() + " (level " + this.currentLevel + ")");
             System.out.println("\t1. Upgrade abilities (" + this.hero.getUnspentAbilityPoints() + " points to spend)");
-            System.out.println("\t2. Save game");
-            System.out.println("\t3. Exit game");
-
-            System.out.println("\t5. Inventory");
-            System.out.println("\t6. Market");
-            System.out.println("\t7. Blacksmith");
+            System.out.println("\t2. Inventory");
+            System.out.println("\t3. Tavern");
+            System.out.println("\t4. Alchemist");
+            System.out.println("\t5. Blacksmith");
+            System.out.println("\t6. Save game");
+            System.out.println("\t7. Exit game");
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
@@ -82,8 +82,12 @@ public class GameManager {
                     }
                 }
                 case 1 -> this.upgradeAbilityMenu();
-                case 2 -> fileService.saveGame(this.hero, this.currentLevel, this.hintUtil.getHintList());
-                case 3 -> {
+                case 2 -> this.inventoryService.inventoryMenu(this.hero);
+                case 3 -> this.tavernMenu();
+                case 4 -> this.alchemistMenu();
+                case 5 -> this.blacksmithMenu();
+                case 6 -> fileService.saveGame(this.hero, this.currentLevel, this.hintUtil.getHintList());
+                case 7 -> {
                     System.out.println("Are you sure?");
                     System.out.println("0. No");
                     System.out.println("1. Yes");
@@ -96,21 +100,6 @@ public class GameManager {
                         return;
                     }
                 }
-                case 4 -> {
-//                    CraftingReagentItemVendorCharacter craftingReagentItemVendorCharacter = new CraftingReagentItemVendorCharacter("Taruq", 8, this.itemsLists.getCraftingReagentItems());
-//                    craftingReagentItemVendorCharacter.vendorOffer(this.hero);
-
-                    ConsumableVendorCharacter character = new ConsumableVendorCharacter("Aurelia Moonshadow", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.POTION), ConsumableItemType.POTION);
-                    character.vendorMenu(hero);
-//                    this.hero.testPrint();
-//
-//                    for (Map.Entry<Ability, Integer> abilityIntegerMap : this.wearableItemVendorCharacter.getAbilities().entrySet()) {
-//                        System.out.println(abilityIntegerMap.getKey() + " : " + abilityIntegerMap.getValue());
-//                    }
-                }
-                case 5 -> this.inventoryMenu();
-//                case 6 -> this.shopMenu();
-                case 7 -> blacksmithMenu();
                 default -> System.out.println("Invalid choice.");
             }
         }
@@ -118,9 +107,51 @@ public class GameManager {
         System.out.println("You have won the game! Congratulations!");
     }
 
+    private void tavernMenu() {
+        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.FOOD), ConsumableItemType.FOOD);
+
+        PrintUtil.printDivider();
+        System.out.println("\t\tTavern");
+        PrintUtil.printDivider();
+
+        System.out.println("0. Go back");
+        System.out.println("1. " + cityFoodVendor.getName() + " (Food Merchant)");
+
+        int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> cityFoodVendor.vendorMenu(this.hero);
+        }
+    }
+
+    private void alchemistMenu() {
+        final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8, this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.ALCHEMY_REAGENT));
+        final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.POTION), ConsumableItemType.POTION);
+
+        PrintUtil.printDivider();
+        System.out.println("\t\tAlchemist shop");
+        PrintUtil.printDivider();
+
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. Create potion");
+        System.out.println("\t2. " + cityAlchemistReagentVendor.getName() + " (Alchemy reagents Merchant)");
+        System.out.println("\t3. " + cityPotionsVendor.getName() + " (Potions Merchant)");
+
+        int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> System.out.println("Work in progress");
+            case 2 -> cityAlchemistReagentVendor.vendorMenu(this.hero);
+            case 3 -> cityPotionsVendor.vendorMenu(this.hero);
+        }
+
+    }
+
     public void blacksmithMenu() {
-        WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8, this.itemsLists.getWearableItemList());
-        CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8, this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.BLACKSMITH_REAGENT));
+        final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8, this.itemsLists.getWearableItemList());
+        final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8, this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.BLACKSMITH_REAGENT));
         hintUtil.printHint(HintName.BLACKSMITH);
 
         PrintUtil.printDivider();
@@ -130,8 +161,8 @@ public class GameManager {
         System.out.println("\t0. Go back");
         System.out.println("\t1. Refinement item");
         System.out.println("\t2. Dismantle item");
-        System.out.println("\t3. " + citySmithVendor.getName() + " (Merchant)");
-        System.out.println("\t4. " + cityReagentVendor.getName() + " (Merchant)");
+        System.out.println("\t3. " + citySmithVendor.getName() + " (Wearable Items Merchant)");
+        System.out.println("\t4. " + cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -140,28 +171,6 @@ public class GameManager {
             case 2 -> this.blacksmithService.dismantleItem(this.hero, this.itemsLists);
             case 3 -> citySmithVendor.vendorMenu(this.hero);
             case 4 -> cityReagentVendor.vendorMenu(this.hero);
-            default -> System.out.println("Enter valid input");
-        }
-    }
-
-    public void inventoryMenu() {
-        PrintUtil.printLongDivider();
-        System.out.println("\t\t" + this.hero.getName() + " Inventory");
-        PrintUtil.printLongDivider();
-
-        System.out.println("\t0. Go back");
-        System.out.println("\t1. Wearable Items");
-        System.out.println("\t2. Crafting reagents");
-        System.out.println("\t3. Consumable Items");
-        System.out.println("\t4. Quest Items");
-        int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> {
-            }
-            case 1 -> this.inventoryService.inventoryMenu(this.hero);
-            case 2 -> this.inventoryService.craftingReagentsMenu(this.hero);
-            case 3 -> this.inventoryService.consumableItemsMenu(this.hero);
-            case 4 -> this.inventoryService.questItemsMenu(this.hero);
             default -> System.out.println("Enter valid input");
         }
     }

@@ -15,6 +15,28 @@ import java.util.Map;
 public class InventoryService {
 
     public void inventoryMenu(Hero hero) {
+        PrintUtil.printLongDivider();
+        System.out.println("\t\t" + hero.getName() + " Inventory");
+        PrintUtil.printLongDivider();
+
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. Wearable Items");
+        System.out.println("\t2. Crafting reagents");
+        System.out.println("\t3. Consumable Items");
+        System.out.println("\t4. Quest Items");
+        int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> this.wearableItemsMenu(hero);
+            case 2 -> this.craftingReagentsItemMenu(hero);
+            case 3 -> this.consumableItemsMenu(hero);
+            case 4 -> this.questItemsMenu(hero);
+            default -> System.out.println("Enter valid input");
+        }
+    }
+
+    public void wearableItemsMenu(Hero hero) {
 
         PrintUtil.printInventoryHeader("Wearable");
 
@@ -28,6 +50,7 @@ public class InventoryService {
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
+                this.inventoryMenu(hero);
             }
             case 1 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.WEAPON);
             case 2 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.BODY);
@@ -58,7 +81,7 @@ public class InventoryService {
             try {
                 int choice = InputUtil.intScanner();
                 if (choice == 0) {
-                    inventoryMenu(hero);
+                    wearableItemsMenu(hero);
                     break;
                 }
 
@@ -71,7 +94,7 @@ public class InventoryService {
         }
     }
 
-    public void craftingReagentsMenu(Hero hero) {
+    public void craftingReagentsItemMenu(Hero hero) {
         int index = 1;
         PrintUtil.printInventoryHeader("Crafting reagents");
         System.out.println("0. Go back");
@@ -81,7 +104,7 @@ public class InventoryService {
 
         int choice = InputUtil.intScanner();
         if (choice == 0) {
-            return;
+            this.inventoryMenu(hero);
         } else {
             System.out.println("Enter valid number");
         }
@@ -95,7 +118,7 @@ public class InventoryService {
 
         int choice = InputUtil.intScanner();
         if (choice == 0) {
-            return;
+            this.inventoryMenu(hero);
         } else {
             System.out.println("Enter valid number");
         }
@@ -111,7 +134,7 @@ public class InventoryService {
 
         int choice = InputUtil.intScanner();
         if (choice == 0) {
-            return;
+            this.inventoryMenu(hero);
         } else {
             System.out.println("Enter valid number");
         }

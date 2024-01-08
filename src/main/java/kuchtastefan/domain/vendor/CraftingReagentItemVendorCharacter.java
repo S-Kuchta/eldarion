@@ -62,7 +62,7 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
                 craftingReagentItems.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printCraftingReagentItemInfo(item.getKey());
-                System.out.println("\n\t\tsell price: " + super.returnSellItemPrice(item.getKey()));
+                System.out.println("\n\t\tSell price: " + super.returnSellItemPrice(item.getKey()));
             }
         }
         super.sellItem(hero, craftingReagentItems);

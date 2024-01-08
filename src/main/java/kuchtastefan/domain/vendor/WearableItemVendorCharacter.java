@@ -44,7 +44,7 @@ public class WearableItemVendorCharacter extends VendorCharacter {
                 wearableItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printItemAbilityPoints(item.getKey());
-                System.out.println("\t\tsell price: " + super.returnSellItemPrice(item.getKey()));
+                System.out.println("\t\tSell price: " + super.returnSellItemPrice(item.getKey()));
                 index++;
             }
         }
@@ -57,9 +57,11 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item wearableItem : this.itemsForSale) {
-            System.out.print("\t" + index + ". ");
-            PrintUtil.printFullItemDescription((WearableItem) wearableItem);
-            index++;
+            if (wearableItem instanceof WearableItem) {
+                System.out.print("\t" + index + ". ");
+                PrintUtil.printFullItemDescription((WearableItem) wearableItem);
+                index++;
+            }
         }
     }
 

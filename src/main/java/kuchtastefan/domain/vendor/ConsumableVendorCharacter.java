@@ -45,7 +45,6 @@ public class ConsumableVendorCharacter extends VendorCharacter {
                 index++;
                 System.out.println();
             }
-
         }
     }
 
@@ -62,7 +61,7 @@ public class ConsumableVendorCharacter extends VendorCharacter {
                 consumableItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printConsumableItemInfo(item.getKey());
-                System.out.println("\n\t\tsell price: " + super.returnSellItemPrice(item.getKey()));
+                System.out.println("\n\t\tSell price: " + super.returnSellItemPrice(item.getKey()));
             }
         }
         super.sellItem(hero, consumableItemList);
@@ -79,7 +78,7 @@ public class ConsumableVendorCharacter extends VendorCharacter {
                                 "\n\tHelmed by the renowned chef," + getName() + ",\n\t" +
                                 " this opulent marketplace showcases a vast array of delectable delights.");
                 case 1 ->
-                        PrintUtil.printStringSlowly("\tn the heart of a bustling town sits The Drunken Dragon Tavern,\n\t" +
+                        PrintUtil.printStringSlowly("\tIn the heart of a bustling town sits The Drunken Dragon Tavern,\n\t" +
                                 "overseen by the enigmatic barkeep known only as " + getName() + "." +
                                 "\n\tThe tavern's walls echo with tales of mythical creatures and epic adventures." +
                                 "\n\t" + getName() + "'s collection of spirits and ales promises an experience like no other,");

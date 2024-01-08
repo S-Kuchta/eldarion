@@ -19,6 +19,7 @@ import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.PrintUtil;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -49,10 +50,10 @@ public class FileService {
             final String path = this.savedGamesPath + name + ".json";
 
             if (new File(path).exists()) {
-                System.out.println("Game with this name is already saved");
-                System.out.println("Do you want to overwrite it?");
-                System.out.println("0. no");
-                System.out.println("1. yes");
+                System.out.println("\tGame with this name is already saved");
+                System.out.println("\tDo you want to overwrite it?");
+                System.out.println("\t0. no");
+                System.out.println("\t1. yes");
                 int choice = InputUtil.intScanner();
                 switch (choice) {
                     case 0 -> {
@@ -61,7 +62,7 @@ public class FileService {
                     case 1 -> {
                     }
                     default -> {
-                        System.out.println("Enter valid number");
+                        System.out.println("\tEnter valid input");
                         continue;
                     }
                 }
@@ -70,7 +71,11 @@ public class FileService {
             try {
                 Writer writer = Files.newBufferedWriter(Paths.get(path));
                 this.gson.toJson(gameLoaded, writer);
-                System.out.println("Game Saved");
+
+                PrintUtil.printDivider();
+                System.out.println("\tGame Saved");
+                PrintUtil.printDivider();
+
                 hero.getItemInventoryList().getHeroInventory().putAll(tempItemMap);
                 writer.close();
             } catch (IOException e) {
@@ -121,7 +126,7 @@ public class FileService {
     private void printSavedGames(List<String> listOfSavedGames) {
         int index = 0;
         if (listOfSavedGames.isEmpty()) {
-            System.out.println("List of saved games is empty");
+            System.out.println("\tList of saved games is empty");
         }
 
         for (String savedGame : listOfSavedGames) {
@@ -137,7 +142,7 @@ public class FileService {
                 int loadGameChoice = InputUtil.intScanner();
                 return this.savedGamesPath + listOfSavedGames.get(loadGameChoice);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Enter valid number");
+                System.out.println("\tEnter valid number");
             } catch (InvalidPathException e) {
                 System.out.println("Save game path is invalid");
             }

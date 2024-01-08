@@ -8,7 +8,7 @@ import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.inventory.ItemInventoryList;
+import kuchtastefan.inventory.HeroInventory;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
@@ -40,8 +40,8 @@ public class FileService {
 
     public void saveGame(Hero hero, int currentLevel, Map<HintName, Hint> hintUtil) {
         GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, hintUtil);
-        Map<Item, Integer> tempItemMap = new HashMap<>(gameLoaded.getHero().getItemInventoryList().getHeroInventory());
-        gameLoaded.getHero().getItemInventoryList().changeList();
+        Map<Item, Integer> tempItemMap = new HashMap<>(gameLoaded.getHero().getHeroInventory().getHeroInventory());
+        gameLoaded.getHero().getHeroInventory().changeList();
 
         while (true) {
             System.out.println("How do you want to name your save?");
@@ -76,7 +76,7 @@ public class FileService {
                 System.out.println("\tGame Saved");
                 PrintUtil.printDivider();
 
-                hero.getItemInventoryList().getHeroInventory().putAll(tempItemMap);
+                hero.getHeroInventory().getHeroInventory().putAll(tempItemMap);
                 writer.close();
             } catch (IOException e) {
                 System.out.println("Error while saving game");
@@ -102,7 +102,7 @@ public class FileService {
 
                 GameLoaded gameLoaded = gson.fromJson(bufferedReader, GameLoaded.class);
 
-                ItemInventoryList itemInventoryList = gameLoaded.getHero().getItemInventoryList();
+                HeroInventory itemInventoryList = gameLoaded.getHero().getHeroInventory();
                 Map<Item, Integer> heroInventory = itemInventoryList.getHeroInventory();
 
                 Map<WearableItem, Integer> wearableItems = itemInventoryList.getWearableItemInventory();

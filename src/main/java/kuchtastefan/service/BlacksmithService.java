@@ -33,12 +33,12 @@ public class BlacksmithService {
                 WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
 
                 if (wearableItemQuality == WearableItemQuality.BASIC) {
-                    hero.getItemInventoryList().removeItemFromItemList(wearableItem);
+                    hero.getHeroInventory().removeItemFromItemList(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
                     afterSuccessFullImproveItem(itemCopy, hero);
 
                 } else if (wearableItemQuality == WearableItemQuality.IMPROVED) {
-                    hero.getItemInventoryList().removeItemFromItemList(wearableItem);
+                    hero.getHeroInventory().removeItemFromItemList(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.SUPERIOR);
                     afterSuccessFullImproveItem(itemCopy, hero);
 
@@ -54,7 +54,7 @@ public class BlacksmithService {
     private void afterSuccessFullImproveItem(WearableItem wearableItem, Hero hero) {
         wearableItem.setItemAbilities(wearableItem);
         wearableItem.setPrice(wearableItem.getPrice() * 2);
-        hero.getItemInventoryList().addItemToItemList(wearableItem);
+        hero.getHeroInventory().addItemToItemList(wearableItem);
 
         PrintUtil.printLongDivider();
         System.out.println("\t\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getItemQuality() + " quality");
@@ -82,7 +82,7 @@ public class BlacksmithService {
         int numbersOfIteration = 0;
         for (int i = 0; i < RandomNumberGenerator.getRandomNumber(2, 4) + wearableItem.getItemLevel(); i++) {
             item = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
-            hero.getItemInventoryList().addItemToItemList(item);
+            hero.getHeroInventory().addItemToItemList(item);
             numbersOfIteration++;
         }
 
@@ -92,7 +92,7 @@ public class BlacksmithService {
                 + "(" + numbersOfIteration + "x)");
         PrintUtil.printLongDivider();
 
-        hero.getItemInventoryList().removeItemFromItemList(wearableItem);
+        hero.getHeroInventory().removeItemFromItemList(wearableItem);
     }
 
     private WearableItem selectItem(List<WearableItem> tempItemList) {
@@ -114,10 +114,10 @@ public class BlacksmithService {
         List<WearableItem> tempItemList = new ArrayList<>();
         int index = 1;
         System.out.println("\t0. Go back");
-        if (hero.getItemInventoryList().getHeroInventory().isEmpty()) {
+        if (hero.getHeroInventory().getHeroInventory().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {
-            for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
+            for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
                 tempItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printItemAbilityPoints(item.getKey());

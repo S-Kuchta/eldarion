@@ -68,7 +68,7 @@ public class InventoryService {
         List<WearableItem> tempList = new ArrayList<>();
 
         System.out.println("\t0. Go back");
-        for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
+        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
             if (item.getKey().getWearableItemType() == wearableItemType) {
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printItemAbilityPoints(item.getKey());
@@ -98,7 +98,7 @@ public class InventoryService {
         int index = 1;
         PrintUtil.printInventoryHeader("Crafting reagents");
         System.out.println("0. Go back");
-        for (Map.Entry<CraftingReagentItem, Integer> item : hero.getItemInventoryList().returnInventoryCraftingReagentItemMap().entrySet()) {
+        for (Map.Entry<CraftingReagentItem, Integer> item : hero.getHeroInventory().returnInventoryCraftingReagentItemMap().entrySet()) {
             System.out.println(index + ". (" + item.getValue() + "x) " + item.getKey().getName());
         }
 
@@ -114,7 +114,7 @@ public class InventoryService {
 //        int index = 1;
         PrintUtil.printInventoryHeader("Consumable");
         System.out.println("0. Go back");
-        PrintUtil.printConsumableItemFromList(hero.getItemInventoryList().returnInventoryConsumableItemMap());
+        PrintUtil.printConsumableItemFromList(hero.getHeroInventory().returnInventoryConsumableItemMap());
 
         int choice = InputUtil.intScanner();
         if (choice == 0) {
@@ -128,7 +128,7 @@ public class InventoryService {
         int index = 1;
         PrintUtil.printInventoryHeader("Quest");
         System.out.println("0. Go back");
-        for (Map.Entry<QuestItem, Integer> item : hero.getItemInventoryList().returnInventoryQuestItemMap().entrySet()) {
+        for (Map.Entry<QuestItem, Integer> item : hero.getHeroInventory().returnInventoryQuestItemMap().entrySet()) {
             System.out.println(index + ". (" + item.getValue() + "x) " + item.getKey().getName());
         }
 

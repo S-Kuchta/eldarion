@@ -113,7 +113,7 @@ public abstract class VendorCharacter extends GameCharacter {
     }
 
     public void successfullyItemBought(Hero hero, Item item) {
-        hero.getItemInventoryList().addItemWithNewCopyToItemList(item);
+        hero.getHeroInventory().addItemWithNewCopyToItemList(item);
         hero.setHeroGold(hero.getHeroGold() - item.getPrice());
         System.out.println("\t" + item.getName() + " bought. You can find it in your inventory");
     }
@@ -132,7 +132,7 @@ public abstract class VendorCharacter extends GameCharacter {
                 } else {
                     Item item = itemList.get(choice - 1);
                     hero.setHeroGold((hero.getHeroGold() + returnSellItemPrice(item)));
-                    hero.getItemInventoryList().removeItemFromItemList(item);
+                    hero.getHeroInventory().removeItemFromItemList(item);
                     System.out.println("\t" + item.getName() + " sold for " + returnSellItemPrice(item) + " golds");
                     vendorMenu(hero);
                 }

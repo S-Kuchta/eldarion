@@ -9,7 +9,7 @@ import kuchtastefan.item.wearableItem.WearableItem;
 
 import java.util.*;
 
-public class ItemInventoryList {
+public class HeroInventory {
 
 
     private final Map<Item, Integer> heroInventory;
@@ -19,7 +19,7 @@ public class ItemInventoryList {
     private final Map<QuestItem, Integer> questItemInventory;
 
 
-    public ItemInventoryList() {
+    public HeroInventory() {
         this.heroInventory = new HashMap<>();
         this.wearableItemInventory = new HashMap<>();
         this.craftingReagentItemInventory = new HashMap<>();
@@ -191,7 +191,7 @@ public class ItemInventoryList {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ItemInventoryList that = (ItemInventoryList) o;
+        HeroInventory that = (HeroInventory) o;
         return Objects.equals(heroInventory, that.heroInventory);
     }
 

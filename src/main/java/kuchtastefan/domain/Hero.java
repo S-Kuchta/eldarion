@@ -1,9 +1,8 @@
 package kuchtastefan.domain;
 
-import com.google.gson.annotations.Expose;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.inventory.ItemInventoryList;
+import kuchtastefan.inventory.HeroInventory;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
@@ -18,7 +17,7 @@ public class Hero extends GameCharacter {
     private int unspentAbilityPoints;
     private Map<WearableItemType, WearableItem> equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints;
-    private ItemInventoryList itemInventoryList;
+    private HeroInventory heroInventory;
     private double heroGold;
 
     public Hero(String name) {
@@ -27,12 +26,12 @@ public class Hero extends GameCharacter {
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
         this.wearingItemAbilityPoints = getItemsInitialAbilityPoints();
         this.equippedItem = initialEquip();
-        this.itemInventoryList = new ItemInventoryList();
+        this.heroInventory = new HeroInventory();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
     }
 
     public void testPrint() {
-        for (Map.Entry<Item, Integer> itemMap : itemInventoryList.getHeroInventory().entrySet()) {
+        for (Map.Entry<Item, Integer> itemMap : heroInventory.getHeroInventory().entrySet()) {
             System.out.println(itemMap.getKey().getName() + ", " + itemMap.getValue());
             System.out.println(itemMap.getKey().getClass());
         }
@@ -162,11 +161,7 @@ public class Hero extends GameCharacter {
         this.heroGold = heroGold;
     }
 
-    public ItemInventoryList getItemInventoryList() {
-        return itemInventoryList;
-    }
-
-    public void setItemInventoryList(ItemInventoryList itemInventoryList) {
-        this.itemInventoryList = itemInventoryList;
+    public HeroInventory getHeroInventory() {
+        return heroInventory;
     }
 }

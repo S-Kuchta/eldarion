@@ -12,11 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 public class ConsumableVendorCharacter extends VendorCharacter {
-    private final ConsumableItemType vendorSellingConsumableItemType;
 
-    public ConsumableVendorCharacter(String name, int level, List<? extends Item> itemsForSale, ConsumableItemType vendorSellingConsumableItemType) {
+    public ConsumableVendorCharacter(String name, int level, List<? extends Item> itemsForSale) {
         super(name, level, itemsForSale);
-        this.vendorSellingConsumableItemType = vendorSellingConsumableItemType;
     }
 
     @Override
@@ -54,10 +52,10 @@ public class ConsumableVendorCharacter extends VendorCharacter {
         PrintUtil.printShopHeader(hero, "Consumable");
         int index = 1;
         System.out.println("\t0. Go back");
-        if (hero.getItemInventoryList().returnInventoryConsumableItemMap().isEmpty()) {
+        if (hero.getHeroInventory().returnInventoryConsumableItemMap().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {
-            for (Map.Entry<ConsumableItem, Integer> item : hero.getItemInventoryList().returnInventoryConsumableItemMap().entrySet()) {
+            for (Map.Entry<ConsumableItem, Integer> item : hero.getHeroInventory().returnInventoryConsumableItemMap().entrySet()) {
                 consumableItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printConsumableItemInfo(item.getKey());
@@ -71,32 +69,32 @@ public class ConsumableVendorCharacter extends VendorCharacter {
     public void printGreeting() {
         int randomChoice = RandomNumberGenerator.getRandomNumber(0, 1);
         PrintUtil.printLongDivider();
-        if (vendorSellingConsumableItemType.equals(ConsumableItemType.FOOD)) {
-            switch (randomChoice) {
-                case 0 ->
-                        PrintUtil.printStringSlowly("\tStep into the enchanting world of culinary wonders at the Gastronome's Gourmet Emporium." +
-                                "\n\tHelmed by the renowned chef," + getName() + ",\n\t" +
-                                " this opulent marketplace showcases a vast array of delectable delights.");
-                case 1 ->
-                        PrintUtil.printStringSlowly("\tIn the heart of a bustling town sits The Drunken Dragon Tavern,\n\t" +
-                                "overseen by the enigmatic barkeep known only as " + getName() + "." +
-                                "\n\tThe tavern's walls echo with tales of mythical creatures and epic adventures." +
-                                "\n\t" + getName() + "'s collection of spirits and ales promises an experience like no other,");
-            }
-        }
-
-        if (vendorSellingConsumableItemType.equals(ConsumableItemType.POTION)) {
-            switch (randomChoice) {
-                case 0 ->
-                        PrintUtil.printStringSlowly("\tEnter " + getName() + "'s arcane shop, nestled in an ancient city." +
-                                "\n\tGlistening vials of elixirs, each with a tale of far-off lands.");
-                case 1 ->
-                        PrintUtil.printStringSlowly("\t" + getName() + "'s whimsical shop, hidden in an enchanted glade," +
-                                "\n\tboasts elixirs bearing tales of dragons and faeries." +
-                                "\n\tThe shelves hold vials of invisibility and heightened senses," +
-                                "\n\teach enchanted with ancient magic and mischievous whimsy.");
-            }
-        }
-        PrintUtil.printLongDivider();
+//        if (vendorSellingConsumableItemType.equals(ConsumableItemType.FOOD)) {
+//            switch (randomChoice) {
+//                case 0 ->
+//                        PrintUtil.printStringSlowly("\tStep into the enchanting world of culinary wonders at the Gastronome's Gourmet Emporium." +
+//                                "\n\tHelmed by the renowned chef," + getName() + ",\n\t" +
+//                                " this opulent marketplace showcases a vast array of delectable delights.");
+//                case 1 ->
+//                        PrintUtil.printStringSlowly("\tIn the heart of a bustling town sits The Drunken Dragon Tavern,\n\t" +
+//                                "overseen by the enigmatic barkeep known only as " + getName() + "." +
+//                                "\n\tThe tavern's walls echo with tales of mythical creatures and epic adventures." +
+//                                "\n\t" + getName() + "'s collection of spirits and ales promises an experience like no other,");
+//            }
+//        }
+//
+//        if (vendorSellingConsumableItemType.equals(ConsumableItemType.POTION)) {
+//            switch (randomChoice) {
+//                case 0 ->
+//                        PrintUtil.printStringSlowly("\tEnter " + getName() + "'s arcane shop, nestled in an ancient city." +
+//                                "\n\tGlistening vials of elixirs, each with a tale of far-off lands.");
+//                case 1 ->
+//                        PrintUtil.printStringSlowly("\t" + getName() + "'s whimsical shop, hidden in an enchanted glade," +
+//                                "\n\tboasts elixirs bearing tales of dragons and faeries." +
+//                                "\n\tThe shelves hold vials of invisibility and heightened senses," +
+//                                "\n\teach enchanted with ancient magic and mischievous whimsy.");
+//            }
+//        }
+//        PrintUtil.printLongDivider();
     }
 }

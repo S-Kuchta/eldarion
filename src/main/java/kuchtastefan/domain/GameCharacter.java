@@ -35,4 +35,8 @@ public abstract class GameCharacter {
     public Map<Ability, Integer> getAbilities() {
         return abilities;
     }
+
+    public int getLevel() {
+        return level;
+    }
 }

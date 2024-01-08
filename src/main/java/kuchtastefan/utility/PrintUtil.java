@@ -104,7 +104,7 @@ public class PrintUtil {
 
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
-        for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
+        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
             if (item.getKey().getWearableItemType().equals(wearableItemType)) {
                 count += item.getValue();
             }

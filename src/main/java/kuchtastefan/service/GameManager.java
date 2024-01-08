@@ -1,6 +1,5 @@
 package kuchtastefan.service;
 
-import kuchtastefan.ability.Ability;
 import kuchtastefan.ability.HeroAbilityManager;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.domain.Enemy;
@@ -14,6 +13,7 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.ItemsLists;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
+import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -32,6 +32,7 @@ public class GameManager {
     private final BlacksmithService blacksmithService;
     private final InventoryService inventoryService;
     private final HintUtil hintUtil;
+    private ForestRegionService forestRegionService;
 
     public GameManager() {
         this.hero = new Hero("");
@@ -49,6 +50,7 @@ public class GameManager {
     public void startGame() {
         this.initGame();
 
+
         while (this.currentLevel <= this.enemiesByLevel.size()) {
             final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
             System.out.println("\t0. Fight " + enemy.getName() + " (level " + this.currentLevel + ")");
@@ -63,23 +65,27 @@ public class GameManager {
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
-                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.itemsLists.getWearableItemList())) {
-                        final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
-                        final boolean haveHeroWon = battleService.battle(this.hero, enemy);
-                        if (haveHeroWon) {
-                            PrintUtil.printDivider();
-                            System.out.println("You have won this battle! You have gained " + this.currentLevel + " points to spend");
-                            this.hero.updateAbilityPoints(this.currentLevel);
-                            this.hero.setHeroGold(50 * this.currentLevel);
-                            this.currentLevel++;
-                        } else {
-                            System.out.println("You have lost!");
-                        }
 
-                        this.hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
-                        System.out.println("You have full health now!");
-                        PrintUtil.printDivider();
-                    }
+                    this.forestRegionService.adventuringAcrossTheRegion();
+
+
+//                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.itemsLists.getWearableItemList())) {
+//                        final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
+//                        final boolean haveHeroWon = battleService.battle(this.hero, enemy);
+//                        if (haveHeroWon) {
+//                            PrintUtil.printDivider();
+//                            System.out.println("You have won this battle! You have gained " + this.currentLevel + " points to spend");
+//                            this.hero.updateAbilityPoints(this.currentLevel);
+//                            this.hero.setHeroGold(50 * this.currentLevel);
+//                            this.currentLevel++;
+//                        } else {
+//                            System.out.println("You have lost!");
+//                        }
+//
+//                        this.hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
+//                        System.out.println("You have full health now!");
+//                        PrintUtil.printDivider();
+//                    }
                 }
                 case 1 -> this.upgradeAbilityMenu();
                 case 2 -> this.inventoryService.inventoryMenu(this.hero);
@@ -108,7 +114,7 @@ public class GameManager {
     }
 
     private void tavernMenu() {
-        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.FOOD), ConsumableItemType.FOOD);
+        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.FOOD));
 
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
@@ -126,8 +132,10 @@ public class GameManager {
     }
 
     private void alchemistMenu() {
-        final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8, this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.ALCHEMY_REAGENT));
-        final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.POTION), ConsumableItemType.POTION);
+        final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8,
+                this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.ALCHEMY_REAGENT));
+        final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
+                this.itemsLists.returnConsumableItemListByType(ConsumableItemType.POTION));
 
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");
@@ -150,8 +158,10 @@ public class GameManager {
     }
 
     public void blacksmithMenu() {
-        final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8, this.itemsLists.getWearableItemList());
-        final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8, this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.BLACKSMITH_REAGENT));
+        final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
+                this.itemsLists.getWearableItemList());
+        final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
+                this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.BLACKSMITH_REAGENT));
         hintUtil.printHint(HintName.BLACKSMITH);
 
         PrintUtil.printDivider();
@@ -192,6 +202,8 @@ public class GameManager {
         this.itemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
         this.itemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
         this.itemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
+
+        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero);
 
         this.hintUtil.initializeHintList();
 

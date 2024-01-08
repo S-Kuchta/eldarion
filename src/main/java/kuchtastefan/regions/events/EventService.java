@@ -1,8 +1,10 @@
 package kuchtastefan.regions.events;
 
+import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.Location;
+import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class EventService {
         this.discoveredLocations = discoveredLocations;
     }
 
-    public void randomRegionEventGenerate(Hero hero) {
+    public void randomRegionEventGenerate(Hero hero, EnemyList enemyList, LocationType locationType) {
         int randomNumber = RandomNumberGenerator.getRandomNumber(0, 7);
         int eventLevel = hero.getLevel() + RandomNumberGenerator.getRandomNumber(-1, 1);
         if (eventLevel == 0) {
@@ -31,7 +33,7 @@ public class EventService {
                 new MerchantEvent(eventLevel, this.itemsLists).eventOccurs(hero);
             }
             case 1, 2 -> {
-                new CombatEvent(eventLevel).eventOccurs(hero);
+                new CombatEvent(eventLevel, enemyList, locationType).eventOccurs(hero);
             }
             case 3 -> {
                 new DiscoverLocationEvent(eventLevel, this.allLocations, this.discoveredLocations).eventOccurs(hero);

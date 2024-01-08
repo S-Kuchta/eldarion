@@ -4,7 +4,6 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.items.Item;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
@@ -18,7 +17,7 @@ public class Hero extends GameCharacter {
     private int unspentAbilityPoints;
     private Map<WearableItemType, WearableItem> equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints;
-    private HeroInventory heroInventory;
+    private final HeroInventory heroInventory;
     private double heroGold;
 
     public Hero(String name) {
@@ -29,13 +28,6 @@ public class Hero extends GameCharacter {
         this.equippedItem = initialEquip();
         this.heroInventory = new HeroInventory();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
-    }
-
-    public void testPrint() {
-        for (Map.Entry<Item, Integer> itemMap : heroInventory.getHeroInventory().entrySet()) {
-            System.out.println(itemMap.getKey().getName() + ", " + itemMap.getValue());
-            System.out.println(itemMap.getKey().getClass());
-        }
     }
 
     public void equipItem(WearableItem wearableItem) {

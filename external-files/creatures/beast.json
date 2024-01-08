@@ -12,5 +12,33 @@
     "level": 1,
     "locationType": ["FOREST","HIGHLAND"],
     "maxStack": 5
+  },
+  {
+    "name": "Bear",
+    "abilities": {
+      "ATTACK": 5,
+      "DEFENCE": 3,
+      "HEALTH": 45,
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEXTERITY": 1
+    },
+    "level": 2,
+    "locationType": ["FOREST","HIGHLAND"],
+    "maxStack": 5
+  },
+  {
+    "name": "Wolf",
+    "abilities": {
+      "ATTACK": 3,
+      "DEFENCE": 1,
+      "HEALTH": 30,
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEXTERITY": 3
+    },
+    "level": 1,
+    "locationType": ["FOREST","HIGHLAND"],
+    "maxStack": 5
   }
 ]

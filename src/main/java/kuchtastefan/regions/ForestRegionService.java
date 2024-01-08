@@ -1,10 +1,11 @@
 package kuchtastefan.regions;
 
-import kuchtastefan.characters.enemy.LocationType;
+import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroCharacterService;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.Location;
+import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -13,8 +14,8 @@ import java.util.List;
 
 public class ForestRegionService extends Region {
 
-    public ForestRegionService(String regionName, String regionDescription, ItemsLists itemsLists, Hero hero) {
-        super(regionName, regionDescription, itemsLists, hero);
+    public ForestRegionService(String regionName, String regionDescription, ItemsLists itemsLists, Hero hero, EnemyList enemyList) {
+        super(regionName, regionDescription, itemsLists, hero, enemyList);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class ForestRegionService extends Region {
                     return;
                 }
                 case 2 -> heroCharacterService.heroCharacterMenu(this.hero);
-                case 1 -> super.eventService.randomRegionEventGenerate(super.hero);
+                case 1 -> super.eventService.randomRegionEventGenerate(super.hero, this.enemyList, LocationType.FOREST);
                 default -> {
                     try {
                         this.discoveredLocations.get(choice - 3).locationMenu();

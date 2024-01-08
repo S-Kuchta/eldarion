@@ -12,6 +12,7 @@ import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.items.Item;
+import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
@@ -277,7 +278,7 @@ public class FileService {
         return questItems;
     }
 
-    public List<Enemy> importCreaturesFromFile() {
+    public List<Enemy> importCreaturesFromFile(ItemsLists itemsLists) {
         String path = "external-files/creatures";
         List<Enemy> enemies = new ArrayList<>();
         try {
@@ -290,7 +291,12 @@ public class FileService {
                 for (Enemy enemy : enemyList) {
                     enemy.setEnemyType(
                             EnemyType.valueOf(file.toUpperCase().replace(".JSON", "")));
+
+//                    if (enemy.getItemsLists() == null) {
+                    enemy.setItemsLists(itemsLists);
+//                    }
                 }
+
                 enemies.addAll(enemyList);
                 reader.close();
             }

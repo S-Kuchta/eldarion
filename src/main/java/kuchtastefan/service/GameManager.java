@@ -21,6 +21,7 @@ import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class GameManager {
@@ -28,8 +29,6 @@ public class GameManager {
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
     private final FileService fileService;
-    //    private final Map<Integer, Enemy> enemiesByLevel;
-    private final BattleService battleService;
     private final ItemsLists itemsLists;
     private final BlacksmithService blacksmithService;
     private final HintUtil hintUtil;
@@ -41,8 +40,6 @@ public class GameManager {
         this.hero = new Hero("");
         this.currentLevel = Constant.INITIAL_LEVEL;
         this.fileService = new FileService();
-        this.battleService = new BattleService();
-//        this.enemiesByLevel = EnemyGenerator.createEnemies();
         this.heroAbilityManager = new HeroAbilityManager(this.hero);
         this.blacksmithService = new BlacksmithService();
         this.hintUtil = new HintUtil(new HashMap<>());
@@ -208,23 +205,11 @@ public class GameManager {
         this.itemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
         this.itemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
 
-        this.enemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
-
-
-        Enemy enemy = this.enemyList.getEnemyList().get(0);
-        Gson gson = new Gson();
-        enemy.itemsDrop(this.itemsLists);
-
-        Enemy newEnemy = gson.fromJson(gson.toJson(enemy), Enemy.class);
-        newEnemy.itemsDrop(this.itemsLists);
-
-
-        System.out.println(enemy.getItemsDrop().get(0).getName());
-        System.out.println(newEnemy.getItemsDrop().get(0).getName());
+        this.enemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile(this.itemsLists));
 
 
 
-        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero);
+        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero, this.enemyList);
 
         this.hintUtil.initializeHintList();
 

@@ -12,7 +12,7 @@ import kuchtastefan.utility.RandomNumberGenerator;
 import java.util.List;
 
 public class BattleService {
-    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy, List<WearableItem> wearableItemList) {
+    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy) {
         System.out.println(hero.getName() + " VS " + enemy.getName());
         PrintUtil.printCurrentAbilityPoints(hero);
         PrintUtil.printCurrentWearingArmor(hero);

@@ -1,4 +1,4 @@
-package kuchtastefan.characters.enemy;
+package kuchtastefan.regions.locations;
 
 public enum LocationType {
     CAVE(""),

@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
+import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.ArrayList;
@@ -13,22 +14,25 @@ import java.util.Map;
 public class Enemy extends GameCharacter {
 
     private List<Item> itemsDrop;
-    private final int goldDrop;
+    private final double goldDrop;
     private EnemyType enemyType;
     private final LocationType[] locationType;
+    private ItemsLists itemsLists;
     private final int maxStack;
 
     public Enemy(String name, Map<Ability, Integer> abilities,
-                 EnemyType enemyType,
+                 EnemyType enemyType, ItemsLists itemsLists,
                  LocationType[] locationType, int maxStack) {
         super(name, abilities);
         this.goldDrop = goldDrop();
         this.enemyType = enemyType;
         this.locationType = locationType;
         this.maxStack = maxStack;
+        this.itemsLists = itemsLists;
+        this.itemsDrop = new ArrayList<>();
     }
 
-    private int goldDrop() {
+    private double goldDrop() {
         if (enemyType.equals(EnemyType.HUMANOID)) {
             return RandomNumberGenerator.getRandomNumber(5 + getLevel(), 15 + getLevel());
         } else {
@@ -36,15 +40,16 @@ public class Enemy extends GameCharacter {
         }
     }
 
-    public void itemsDrop(ItemsLists itemsLists) {
+    public void itemsDrop() {
         List<Item> tempList = new ArrayList<>();
-        List<Item> itemList = itemsLists.returnItemListByLevel(getLevel(), null);
+        List<Item> itemList = this.itemsLists.returnItemListByLevel(getLevel(), null);
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
 
         for (int i = 0; i < itemsForDrop; i++) {
             int randomItemGenerate = RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1);
             tempList.add(itemList.get(randomItemGenerate));
         }
+
         this.setItemsDrop(tempList);
     }
 
@@ -53,7 +58,7 @@ public class Enemy extends GameCharacter {
         return itemsDrop;
     }
 
-    public int getGoldDrop() {
+    public double getGoldDrop() {
         return goldDrop;
     }
 
@@ -71,6 +76,14 @@ public class Enemy extends GameCharacter {
 
     public void setEnemyType(EnemyType enemyType) {
         this.enemyType = enemyType;
+    }
+
+    public ItemsLists getItemsLists() {
+        return itemsLists;
+    }
+
+    public void setItemsLists(ItemsLists itemsLists) {
+        this.itemsLists = itemsLists;
     }
 
     public void setItemsDrop(List<Item> itemsDrop) {

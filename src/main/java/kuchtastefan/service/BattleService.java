@@ -4,17 +4,21 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.Enemy;
 import kuchtastefan.domain.GameCharacter;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
-public class BattleService {
-    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy) {
-        System.out.println(hero.getName() + " VS " + enemy.getName());
-        System.out.println("View your abilities:");
-        PrintUtil.printCurrentAbilityPoints(hero);
+import java.util.List;
 
-        System.out.println("View enemy abilities:");
+public class BattleService {
+    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy, List<WearableItem> wearableItemList) {
+        System.out.println(hero.getName() + " VS " + enemy.getName());
+        PrintUtil.printCurrentAbilityPoints(hero);
+        PrintUtil.printCurrentWearingArmor(hero);
+        PrintUtil.printCurrentAbilityPointsWithItems(hero);
+//        PrintUtil.printCurrentWearingArmor(hero, itemList);
+
         PrintUtil.printCurrentAbilityPoints(enemy);
 
         System.out.println("Are you ready to fight?");
@@ -39,34 +43,42 @@ public class BattleService {
     }
 
     public boolean battle(Hero hero, Enemy enemy) {
-        int heroHealth = hero.getAbilityValue(Ability.HEALTH);
-        int enemyHealth = enemy.getAbilityValue(Ability.HEALTH);
-
+        boolean heroPlay = true;
         while (true) {
-            enemyHealth = battleRound(hero, enemy, enemyHealth, heroHealth, enemyHealth);
-            if (enemyHealth <= 0) {
+            int heroHealth = hero.getAbilityValue(Ability.HEALTH);
+            int enemyHealth = enemy.getAbilityValue(Ability.HEALTH);
+
+            System.out.println("Your healths: " + heroHealth);
+            System.out.println("Enemy healths: " + enemyHealth);
+
+            if (heroPlay) {
+                battleRound(hero, enemy);
+                heroPlay = false;
+            } else {
+                battleRound(enemy, hero);
+                heroPlay = true;
+            }
+
+            if (enemy.getAbilityValue(Ability.HEALTH) <= 0) {
                 return true;
             }
 
-            heroHealth = battleRound(enemy, hero, heroHealth, heroHealth, enemyHealth);
-            if (heroHealth <= 0) {
+            if (hero.getAbilityValue(Ability.HEALTH) <= 0) {
                 return false;
+            }
+
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
 
-    private int battleRound(GameCharacter attacker, GameCharacter defender, int health, int heroHealth, int enemyHealth) {
+    private void battleRound(GameCharacter attacker, GameCharacter defender) {
         int damage = 0;
-        int damageAfterDefense;
+        int finalDamage;
 
-        try {
-            Thread.sleep(800);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        System.out.println("Your health: " + heroHealth);
-        System.out.println("Enemy health: " + enemyHealth);
         if (criticalHit(attacker)) {
             System.out.println("Critical hit!");
             damage += (attack(attacker) * 2);
@@ -74,40 +86,69 @@ public class BattleService {
             damage = attack(attacker);
         }
 
-        damageAfterDefense = damageCheck(damage, defense(defender));
+        finalDamage = finalDamage(damage, defense(defender));
 
-        health -= damageAfterDefense;
-        System.out.println(attacker.getName() + " attacked " + defender.getName() + " for " + damageAfterDefense);
-        System.out.println(defender.getName() + " healths are: " + health);
+        defender.receiveDamage(finalDamage);
+        System.out.println(attacker.getName() + " attacked " + defender.getName() + " for " + finalDamage + " damage!");
+        System.out.println(defender.getName() + " healths are: " + defender.getAbilityValue(Ability.HEALTH));
         PrintUtil.printDivider();
-        return health;
     }
 
-    private int damageCheck(int damage, int defence) {
+    private int finalDamage(int damage, int defence) {
         int totalDamage = damage - defence;
 
         return Math.max(totalDamage, 0);
-
     }
 
     private int attack(GameCharacter gameCharacter) {
-        int minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
-        int maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
-                gameCharacter.getAbilityValue(Ability.DEXTERITY) +
-                gameCharacter.getAbilityValue(Ability.SKILL);
+        int minDamage;
+        int maxDamage;
+        if (gameCharacter instanceof Hero) {
+            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
+                    ((Hero) gameCharacter).getItemAbilityValue(Ability.ATTACK);
+            maxDamage = minDamage
+                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEXTERITY)
+                    + gameCharacter.getAbilityValue(Ability.SKILL)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.SKILL);
+        } else {
+            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
+            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK)
+                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+                    + gameCharacter.getAbilityValue(Ability.SKILL);
+        }
 
         return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
     }
 
     private int defense(GameCharacter gameCharacter) {
-        int minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE);
-        int maxDefence = minDefence + gameCharacter.getAbilityValue(Ability.DEXTERITY);
+        int minDefence;
+        int maxDefence;
+        if (gameCharacter instanceof Hero) {
+            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEFENCE);
+            maxDefence = minDefence
+                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEXTERITY);
+        } else {
+            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE);
+            maxDefence = minDefence + gameCharacter.getAbilityValue(Ability.DEXTERITY);
+        }
 
         return RandomNumberGenerator.getRandomNumber(minDefence, maxDefence);
     }
 
     private boolean criticalHit(GameCharacter gameCharacter) {
-        int criticalHit = gameCharacter.getAbilityValue(Ability.LUCK) + gameCharacter.getAbilityValue(Ability.SKILL);
+        int criticalHit;
+        if (gameCharacter instanceof Hero) {
+            criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
+                    + gameCharacter.getAbilityValue(Ability.SKILL)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.SKILL)
+                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.LUCK);
+        } else {
+            criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
+                    + gameCharacter.getAbilityValue(Ability.SKILL);
+        }
         return criticalHit >= RandomNumberGenerator.getRandomNumber(0, 100);
     }
 }

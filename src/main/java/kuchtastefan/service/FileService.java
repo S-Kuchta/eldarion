@@ -1,37 +1,83 @@
 package kuchtastefan.service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.domain.GameLoaded;
 import kuchtastefan.domain.Hero;
+import kuchtastefan.hint.Hint;
+import kuchtastefan.hint.HintName;
+import kuchtastefan.inventory.ItemInventoryList;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.consumeableItem.ConsumableItemType;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItemType;
+import kuchtastefan.item.questItem.QuestItem;
+import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemQuality;
+import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.PrintUtil;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileService {
 
-    public void saveGame(Hero hero, int currentLevel) {
+    private final Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
+    private final String savedGamesPath = "external-files/saved-games/";
+
+    public void saveGame(Hero hero, int currentLevel, Map<HintName, Hint> hintUtil) {
+        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, hintUtil);
+        Map<Item, Integer> tempItemMap = new HashMap<>(gameLoaded.getHero().getItemInventoryList().getHeroInventory());
+        gameLoaded.getHero().getItemInventoryList().changeList();
+
         while (true) {
             System.out.println("How do you want to name your save?");
             final String name = InputUtil.stringScanner();
 
-            final String path = "saved-games/" + name + ".txt";
+            final String path = this.savedGamesPath + name + ".json";
 
             if (new File(path).exists()) {
-                System.out.println("Game with this name is already saved");
-                continue;
+                System.out.println("\tGame with this name is already saved");
+                System.out.println("\tDo you want to overwrite it?");
+                System.out.println("\t0. no");
+                System.out.println("\t1. yes");
+                int choice = InputUtil.intScanner();
+                switch (choice) {
+                    case 0 -> {
+                        continue;
+                    }
+                    case 1 -> {
+                    }
+                    default -> {
+                        System.out.println("\tEnter valid input");
+                        continue;
+                    }
+                }
             }
 
             try {
-                Files.writeString(Path.of(path), generateSave(hero, currentLevel));
-                System.out.println("Game saved");
+                Writer writer = Files.newBufferedWriter(Paths.get(path));
+                this.gson.toJson(gameLoaded, writer);
+
+                PrintUtil.printDivider();
+                System.out.println("\tGame Saved");
+                PrintUtil.printDivider();
+
+                hero.getItemInventoryList().getHeroInventory().putAll(tempItemMap);
+                writer.close();
             } catch (IOException e) {
                 System.out.println("Error while saving game");
                 continue;
@@ -44,64 +90,47 @@ public class FileService {
         }
     }
 
-    private String generateSave(Hero hero, int currentLevel) {
-        StringBuilder saveGame = new StringBuilder();
-        saveGame.append(currentLevel).append(System.lineSeparator());
-        saveGame.append(hero.getName()).append(System.lineSeparator());
-        saveGame.append(hero.getUnspentAbilityPoints()).append(System.lineSeparator());
-
-        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
-            saveGame.append(entry.getKey()).append(":").append(entry.getValue()).append(System.lineSeparator());
-        }
-        return saveGame.toString();
-    }
-
     public GameLoaded loadGame() {
-        List<String> listOfSavedGames = returnFileList();
+        List<String> listOfSavedGames = returnFileList(this.savedGamesPath);
+
         if (listOfSavedGames.isEmpty()) {
             return null;
         } else {
-            return this.setHeroAbilities(new File(selectSaveGame(listOfSavedGames)));
-        }
-    }
+            try {
+                String selectedSavedGame = selectSaveGame(listOfSavedGames);
+                BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedSavedGame));
 
-    private GameLoaded setHeroAbilities(File file) {
-        int currentLevel = 0;
-        int unspentAbilityPoints = 0;
-        String heroName = "";
-        Map<Ability, Integer> abilities = new HashMap<>();
+                GameLoaded gameLoaded = gson.fromJson(bufferedReader, GameLoaded.class);
 
-        try {
-            Scanner scanner = new Scanner(file);
-            int positionIndex = 0;
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                switch (positionIndex) {
-                    case 0 -> currentLevel = Integer.parseInt(line);
-                    case 1 -> heroName = line;
-                    case 2 -> unspentAbilityPoints = Integer.parseInt(line);
+                ItemInventoryList itemInventoryList = gameLoaded.getHero().getItemInventoryList();
+                Map<Item, Integer> heroInventory = itemInventoryList.getHeroInventory();
+
+                Map<WearableItem, Integer> wearableItems = itemInventoryList.getWearableItemInventory();
+                Map<CraftingReagentItem, Integer> craftingReagentItems = itemInventoryList.getCraftingReagentItemInventory();
+                Map<ConsumableItem, Integer> consumableItems = itemInventoryList.getConsumableItemInventory();
+                Map<QuestItem, Integer> questItems = itemInventoryList.getQuestItemInventory();
+
+                for (Map<? extends Item, Integer> inventory : List.of(wearableItems, craftingReagentItems, consumableItems, questItems)) {
+                    heroInventory.putAll(inventory);
+                    inventory.clear();
                 }
-                String[] parts = line.split(":");
-                if (parts.length >= 2) {
-                    abilities.put(Ability.valueOf(parts[0]), Integer.parseInt(parts[1]));
-                }
-                positionIndex++;
+
+                return gameLoaded;
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+                return null;
             }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
         }
-
-        return new GameLoaded(currentLevel, new Hero(heroName, abilities, unspentAbilityPoints));
     }
 
     private void printSavedGames(List<String> listOfSavedGames) {
         int index = 0;
         if (listOfSavedGames.isEmpty()) {
-            System.out.println("List of saved games is empty");
+            System.out.println("\tList of saved games is empty");
         }
 
         for (String savedGame : listOfSavedGames) {
-            System.out.println(index + ". " + savedGame.replace(".txt", ""));
+            System.out.println(index + ". " + savedGame.replace(".json", ""));
             index++;
         }
     }
@@ -111,17 +140,17 @@ public class FileService {
         while (true) {
             try {
                 int loadGameChoice = InputUtil.intScanner();
-                return "saved-games/" + listOfSavedGames.get(loadGameChoice);
+                return this.savedGamesPath + listOfSavedGames.get(loadGameChoice);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Enter valid number");
+                System.out.println("\tEnter valid number");
             } catch (InvalidPathException e) {
                 System.out.println("Save game path is invalid");
             }
         }
     }
 
-    private List<String> returnFileList() {
-        try (Stream<Path> stream = Files.list(Paths.get("saved-games"))) {
+    private List<String> returnFileList(String path) {
+        try (Stream<Path> stream = Files.list(Paths.get(path))) {
             return stream
                     .filter(file -> !Files.isDirectory(file))
                     .map(Path::getFileName)
@@ -132,4 +161,117 @@ public class FileService {
             return new ArrayList<>();
         }
     }
+
+    public List<WearableItem> importWearableItemsFromFile() {
+
+        List<WearableItem> wearableItemList = new ArrayList<>();
+        String path = "external-files/items/wearable-item";
+        try {
+            List<WearableItem> WearableItems;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                WearableItems = new Gson().fromJson(reader, new TypeToken<List<WearableItem>>() {
+                }.getType());
+
+                for (WearableItem wearableItem : WearableItems) {
+                    wearableItem.setWearableItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
+                    wearableItem.setPrice(50 * wearableItem.getItemLevel());
+                    if (wearableItem.getItemQuality() == null) {
+                        wearableItem.setItemQuality(WearableItemQuality.BASIC);
+                    }
+
+                    for (Ability ability : Ability.values()) {
+                        wearableItem.getAbilities().putIfAbsent(ability, 0);
+                    }
+                }
+                wearableItemList.addAll(WearableItems);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return wearableItemList;
+    }
+
+    public List<CraftingReagentItem> importCraftingReagentItemsFromFile() {
+        String path = "external-files/items/crafting-reagent";
+        List<CraftingReagentItem> craftingReagents = new ArrayList<>();
+        try {
+            List<CraftingReagentItem> craftingReagentItemsList;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                craftingReagentItemsList = new Gson().fromJson(reader, new TypeToken<List<CraftingReagentItem>>() {
+                }.getType());
+
+                for (CraftingReagentItem craftingReagentItem : craftingReagentItemsList) {
+                    craftingReagentItem.setCraftingReagentItemType(
+                            CraftingReagentItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
+                }
+                craftingReagents.addAll(craftingReagentItemsList);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return craftingReagents;
+    }
+
+    public List<ConsumableItem> importConsumableItemsFromFile() {
+        String path = "external-files/items/consumable-item";
+        List<ConsumableItem> consumableItems = new ArrayList<>();
+        try {
+            List<ConsumableItem> consumableItemList;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                consumableItemList = new Gson().fromJson(reader, new TypeToken<List<ConsumableItem>>() {
+                }.getType());
+
+                for (ConsumableItem consumableItem : consumableItemList) {
+                    consumableItem.setConsumableItemType(
+                            ConsumableItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
+
+                    if (consumableItem.getIncreaseAbilityPoint() == null) {
+                        consumableItem.setIncreaseAbilityPoint(new HashMap<>());
+                    }
+
+                    for (Ability ability : Ability.values()) {
+                        consumableItem.getIncreaseAbilityPoint().putIfAbsent(ability, 0);
+                    }
+
+                    if (consumableItem.getRestoreAmount() == null) {
+                        consumableItem.setRestoreAmount(0);
+                    }
+                }
+                consumableItems.addAll(consumableItemList);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return consumableItems;
+    }
+
+    public List<QuestItem> importQuestItemsFromFile() {
+        String path = "external-files/items/quest-item";
+        List<QuestItem> questItems = new ArrayList<>();
+        try {
+            List<QuestItem> questItemList;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                questItemList = new Gson().fromJson(reader, new TypeToken<List<QuestItem>>() {
+                }.getType());
+
+                questItems.addAll(questItemList);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return questItems;
+    }
 }
+

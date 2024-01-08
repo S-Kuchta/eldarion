@@ -1,0 +1,78 @@
+[
+  {
+    "name": "Leather armor of Dexterity",
+    "abilities": {
+      "DEFENCE": 1,
+      "DEXTERITY": 1
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Leather armor of Skill",
+    "abilities": {
+      "DEFENCE": 1,
+      "SKILL": 1
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Leather armor of Luck",
+    "abilities": {
+      "DEFENCE": 1,
+      "LUCK": 1
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Leather armor of Health",
+    "abilities": {
+      "DEFENCE": 1,
+      "HEALTH": 5
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Leather armor of Attack",
+    "abilities": {
+      "DEFENCE": 1,
+      "ATTACK": 1
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Iron armor",
+    "abilities": {
+      "DEFENCE": 2
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Heavy armor",
+    "abilities": {
+      "DEFENCE": 2
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Heavy armor",
+    "abilities": {
+      "DEFENCE": 4
+    },
+    "itemLevel": 2
+  },
+  {
+    "name": "Heavy armor",
+    "abilities": {
+      "DEFENCE": 2,
+      "SKILL": 2
+    },
+    "itemLevel": 1
+  },
+  {
+    "name": "Heavy armor",
+    "abilities": {
+      "DEFENCE": 4
+    },
+    "itemLevel": 2
+  }
+]

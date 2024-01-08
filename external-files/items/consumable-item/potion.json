@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Minor health potion",
+    "price": 20,
+    "itemLevel": 1,
+    "restoreAmount": 20
+  },
+  {
+    "name": "Big health potion",
+    "price": 30,
+    "itemLevel": 2,
+    "restoreAmount": 40
+  }
+]

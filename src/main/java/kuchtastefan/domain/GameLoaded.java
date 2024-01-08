@@ -1,13 +1,21 @@
 package kuchtastefan.domain;
 
+import com.google.gson.annotations.Expose;
+import kuchtastefan.hint.Hint;
+import kuchtastefan.hint.HintName;
+
+import java.util.Map;
+
 public class GameLoaded {
 
     private final Hero hero;
     private final int level;
+    private final Map<HintName, Hint> hintUtil;
 
-    public GameLoaded(int level, Hero hero) {
+    public GameLoaded(int level, Hero hero, Map<HintName, Hint> hintUtil) {
         this.level = level;
         this.hero = hero;
+        this.hintUtil = hintUtil;
     }
 
     public int getLevel() {
@@ -17,4 +25,9 @@ public class GameLoaded {
     public Hero getHero() {
         return hero;
     }
+
+    public Map<HintName, Hint> getHintUtil() {
+        return hintUtil;
+    }
+
 }

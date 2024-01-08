@@ -1,0 +1,162 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "equippedItem": {
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "DEFENCE": 1,
+          "HEALTH": 5,
+          "ATTACK": 0,
+          "DEXTERITY": 0,
+          "SKILL": 0,
+          "LUCK": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Leather armor of Health",
+        "price": 50.0,
+        "itemLevel": 1
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEFENCE": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEFENCE": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEFENCE": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEFENCE": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "ATTACK": 0,
+      "HEALTH": 5,
+      "DEFENCE": 1,
+      "SKILL": 0,
+      "LUCK": 0,
+      "DEXTERITY": 0
+    },
+    "itemInventoryList": {
+      "heroInventory": {},
+      "wearableItemInventory": [
+        [
+          {
+            "wearableItemType": "HANDS",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Basic hands",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "HEALTH": 5,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Health",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ]
+      ],
+      "craftingReagentItemInventory": [
+        [
+          {
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Iron ore",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          2
+        ]
+      ],
+      "consumableItemInventory": {},
+      "questItemInventory": {}
+    },
+    "heroGold": 30.0,
+    "name": "1",
+    "abilities": {
+      "ATTACK": 8,
+      "HEALTH": 50,
+      "DEFENCE": 1,
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEXTERITY": 1
+    },
+    "level": 1
+  },
+  "level": 1,
+  "hintUtil": {
+    "BLACKSMITH": {
+      "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
+      "showed": true
+    }
+  }
+}

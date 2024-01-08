@@ -1,6 +1,7 @@
-package kuchtastefan.domain;
+package kuchtastefan.characters.enemy;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.characters.GameCharacter;
 
 import java.util.Map;
 

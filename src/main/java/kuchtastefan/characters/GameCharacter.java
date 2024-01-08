@@ -1,4 +1,4 @@
-package kuchtastefan.domain;
+package kuchtastefan.characters;
 
 import kuchtastefan.ability.Ability;
 

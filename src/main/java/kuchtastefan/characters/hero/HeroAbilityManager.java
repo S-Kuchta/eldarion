@@ -1,6 +1,7 @@
-package kuchtastefan.ability;
+package kuchtastefan.characters.hero;
 
-import kuchtastefan.domain.Hero;
+import kuchtastefan.ability.Ability;
+import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 

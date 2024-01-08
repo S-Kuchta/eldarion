@@ -1,9 +1,8 @@
-package kuchtastefan.domain;
+package kuchtastefan.characters.hero;
 
-import com.google.gson.annotations.Expose;
+import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.regions.locations.Location;
 
 import java.util.List;

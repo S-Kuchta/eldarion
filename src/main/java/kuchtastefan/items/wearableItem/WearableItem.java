@@ -1,9 +1,7 @@
-package kuchtastefan.item.wearableItem;
+package kuchtastefan.items.wearableItem;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.google.gson.annotations.SerializedName;
 import kuchtastefan.ability.Ability;
-import kuchtastefan.item.Item;
+import kuchtastefan.items.Item;
 
 import java.util.Map;
 import java.util.Objects;

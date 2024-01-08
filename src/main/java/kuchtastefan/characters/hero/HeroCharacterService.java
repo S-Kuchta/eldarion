@@ -1,7 +1,6 @@
-package kuchtastefan.service;
+package kuchtastefan.characters.hero;
 
-import kuchtastefan.ability.HeroAbilityManager;
-import kuchtastefan.domain.Hero;
+import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.utility.InputUtil;
 
 public class HeroCharacterService {

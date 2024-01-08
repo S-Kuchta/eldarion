@@ -1,4 +1,4 @@
-package kuchtastefan.item;
+package kuchtastefan.items;
 
 import java.util.Objects;
 

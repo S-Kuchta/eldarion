@@ -1,12 +1,13 @@
-package kuchtastefan.domain;
+package kuchtastefan.characters.hero;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.inventory.HeroInventory;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemQuality;
-import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.items.Item;
+import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.items.wearableItem.WearableItemQuality;
+import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.HashMap;

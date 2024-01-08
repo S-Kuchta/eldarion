@@ -1,7 +1,7 @@
-package kuchtastefan.item.consumeableItem;
+package kuchtastefan.items.consumeableItem;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.item.Item;
+import kuchtastefan.items.Item;
 
 import java.util.HashMap;
 import java.util.Map;

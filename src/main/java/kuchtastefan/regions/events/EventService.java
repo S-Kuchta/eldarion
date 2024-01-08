@@ -1,8 +1,7 @@
 package kuchtastefan.regions.events;
 
-import kuchtastefan.domain.Enemy;
-import kuchtastefan.domain.Hero;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.utility.RandomNumberGenerator;
 

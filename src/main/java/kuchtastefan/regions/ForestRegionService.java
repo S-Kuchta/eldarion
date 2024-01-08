@@ -1,9 +1,9 @@
 package kuchtastefan.regions;
 
-import kuchtastefan.domain.Hero;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.Location;
-import kuchtastefan.service.HeroCharacterService;
+import kuchtastefan.characters.hero.HeroCharacterService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 

@@ -1,4 +1,4 @@
-package kuchtastefan.item.craftingItem;
+package kuchtastefan.items.craftingItem;
 
 public enum CraftingReagentItemType {
     BLACKSMITH_REAGENT("Reagent used for blacksmith. For smith or refinement items."),

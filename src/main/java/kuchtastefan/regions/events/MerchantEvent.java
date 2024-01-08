@@ -1,10 +1,10 @@
 package kuchtastefan.regions.events;
 
-import kuchtastefan.domain.Hero;
-import kuchtastefan.domain.vendor.ConsumableVendorCharacter;
-import kuchtastefan.domain.vendor.CraftingReagentItemVendorCharacter;
-import kuchtastefan.domain.vendor.WearableItemVendorCharacter;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
+import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
+import kuchtastefan.characters.vendor.WearableItemVendorCharacter;
+import kuchtastefan.items.ItemsLists;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 

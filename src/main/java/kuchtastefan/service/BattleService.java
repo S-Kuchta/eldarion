@@ -1,10 +1,10 @@
 package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.domain.Enemy;
-import kuchtastefan.domain.GameCharacter;
-import kuchtastefan.domain.Hero;
-import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.characters.enemy.Enemy;
+import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;

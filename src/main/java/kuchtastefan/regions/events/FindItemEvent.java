@@ -1,9 +1,9 @@
 package kuchtastefan.regions.events;
 
-import kuchtastefan.domain.Hero;
-import kuchtastefan.item.ItemsLists;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItemType;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.ItemsLists;
+import kuchtastefan.items.craftingItem.CraftingReagentItem;
+import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.List;

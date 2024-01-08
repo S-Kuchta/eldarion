@@ -1,6 +1,6 @@
 //package kuchtastefan.regions;
 //
-//import kuchtastefan.domain.Hero;
+//import kuchtastefan.characters.hero.Hero;
 //import kuchtastefan.item.ItemsLists;
 //
 //public class HighlandsRegionService extends Region {

@@ -1,10 +1,10 @@
-package kuchtastefan.domain.vendor;
+package kuchtastefan.characters.vendor;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.domain.GameCharacter;
-import kuchtastefan.domain.Hero;
-import kuchtastefan.item.Item;
+import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.Item;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;

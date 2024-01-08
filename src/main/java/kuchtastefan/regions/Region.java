@@ -1,10 +1,10 @@
 package kuchtastefan.regions;
 
-import kuchtastefan.domain.Hero;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.events.EventService;
 import kuchtastefan.regions.locations.Location;
-import kuchtastefan.service.HeroCharacterService;
+import kuchtastefan.characters.hero.HeroCharacterService;
 
 import java.util.ArrayList;
 import java.util.List;

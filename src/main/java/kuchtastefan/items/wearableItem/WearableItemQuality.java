@@ -1,4 +1,4 @@
-package kuchtastefan.item.wearableItem;
+package kuchtastefan.items.wearableItem;
 
 public enum WearableItemQuality {
     BASIC("Basic item quality"),

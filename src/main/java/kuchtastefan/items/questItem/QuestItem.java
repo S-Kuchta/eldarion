@@ -1,6 +1,6 @@
-package kuchtastefan.item.questItem;
+package kuchtastefan.items.questItem;
 
-import kuchtastefan.item.Item;
+import kuchtastefan.items.Item;
 
 public class QuestItem extends Item {
     public QuestItem(String name, double price, int itemLevel) {

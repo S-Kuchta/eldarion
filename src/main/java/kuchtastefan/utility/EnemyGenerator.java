@@ -1,7 +1,7 @@
 package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.domain.Enemy;
+import kuchtastefan.characters.enemy.Enemy;
 
 import java.util.HashMap;
 import java.util.Map;

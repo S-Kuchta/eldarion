@@ -1,7 +1,6 @@
 package kuchtastefan.regions.events;
 
-import kuchtastefan.domain.Enemy;
-import kuchtastefan.domain.Hero;
+import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.service.BattleService;
 
 public class CombatEvent extends Event {

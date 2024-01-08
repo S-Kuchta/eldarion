@@ -1,12 +1,12 @@
 package kuchtastefan.service;
 
 import com.google.gson.Gson;
-import kuchtastefan.domain.Hero;
-import kuchtastefan.item.ItemsLists;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItemType;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemQuality;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.ItemsLists;
+import kuchtastefan.items.craftingItem.CraftingReagentItem;
+import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;

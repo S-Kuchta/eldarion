@@ -1,6 +1,6 @@
-package kuchtastefan.item.craftingItem;
+package kuchtastefan.items.craftingItem;
 
-import kuchtastefan.item.Item;
+import kuchtastefan.items.Item;
 
 public class CraftingReagentItem extends Item {
 

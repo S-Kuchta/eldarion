@@ -1,10 +1,10 @@
-package kuchtastefan.service;
+package kuchtastefan.characters.hero.inventory;
 
-import kuchtastefan.domain.Hero;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.questItem.QuestItem;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.craftingItem.CraftingReagentItem;
+import kuchtastefan.items.questItem.QuestItem;
+import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 

@@ -1,4 +1,4 @@
-package kuchtastefan.item.consumeableItem;
+package kuchtastefan.items.consumeableItem;
 
 public enum ConsumableItemType {
     POTION("Potions are used for restore health, increase ability etc. Can be used during combat"),

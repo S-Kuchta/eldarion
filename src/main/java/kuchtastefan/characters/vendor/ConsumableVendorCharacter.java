@@ -1,9 +1,9 @@
-package kuchtastefan.domain.vendor;
+package kuchtastefan.characters.vendor;
 
-import kuchtastefan.domain.Hero;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.consumeableItem.ConsumableItemType;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.Item;
+import kuchtastefan.items.consumeableItem.ConsumableItem;
+import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 

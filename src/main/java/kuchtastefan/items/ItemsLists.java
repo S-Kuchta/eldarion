@@ -1,11 +1,11 @@
-package kuchtastefan.item;
+package kuchtastefan.items;
 
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.consumeableItem.ConsumableItemType;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItemType;
-import kuchtastefan.item.questItem.QuestItem;
-import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.items.consumeableItem.ConsumableItem;
+import kuchtastefan.items.consumeableItem.ConsumableItemType;
+import kuchtastefan.items.craftingItem.CraftingReagentItem;
+import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.items.questItem.QuestItem;
+import kuchtastefan.items.wearableItem.WearableItem;
 
 import java.util.ArrayList;
 import java.util.List;

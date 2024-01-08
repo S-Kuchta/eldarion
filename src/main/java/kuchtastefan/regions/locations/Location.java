@@ -1,6 +1,6 @@
 package kuchtastefan.regions.locations;
 
-import kuchtastefan.domain.Enemy;
+import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 

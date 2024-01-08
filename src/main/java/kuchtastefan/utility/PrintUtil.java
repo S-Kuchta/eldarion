@@ -1,13 +1,13 @@
 package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.domain.GameCharacter;
-import kuchtastefan.domain.Hero;
+import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.gameSettings.GameSettings;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.items.consumeableItem.ConsumableItem;
+import kuchtastefan.items.craftingItem.CraftingReagentItem;
+import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.items.wearableItem.WearableItemType;
 
 import java.util.Map;
 

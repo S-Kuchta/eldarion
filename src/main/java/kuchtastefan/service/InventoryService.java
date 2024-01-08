@@ -14,6 +14,12 @@ import java.util.Map;
 
 public class InventoryService {
 
+    private final Hero hero;
+
+    public InventoryService(Hero hero) {
+        this.hero = hero;
+    }
+
     public void inventoryMenu(Hero hero) {
         PrintUtil.printLongDivider();
         System.out.println("\t\t" + hero.getName() + " Inventory");
@@ -52,17 +58,17 @@ public class InventoryService {
             case 0 -> {
                 this.inventoryMenu(hero);
             }
-            case 1 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.WEAPON);
-            case 2 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.BODY);
-            case 3 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.HEAD);
-            case 4 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.HANDS);
-            case 5 -> printWearableItemInventoryMenuByItemType(hero, WearableItemType.BOOTS);
+            case 1 -> printWearableItemInventoryMenuByItemType(WearableItemType.WEAPON, hero);
+            case 2 -> printWearableItemInventoryMenuByItemType(WearableItemType.BODY, hero);
+            case 3 -> printWearableItemInventoryMenuByItemType(WearableItemType.HEAD, hero);
+            case 4 -> printWearableItemInventoryMenuByItemType(WearableItemType.HANDS, hero);
+            case 5 -> printWearableItemInventoryMenuByItemType(WearableItemType.BOOTS, hero);
             case 6 -> hero.wearDownAllEquippedItems();
             default -> System.out.println("Enter valid number");
         }
     }
 
-    private void printWearableItemInventoryMenuByItemType(Hero hero, WearableItemType wearableItemType) {
+    private void printWearableItemInventoryMenuByItemType(WearableItemType wearableItemType, Hero hero) {
         PrintUtil.printInventoryHeader(wearableItemType);
         int index = 1;
         List<WearableItem> tempList = new ArrayList<>();

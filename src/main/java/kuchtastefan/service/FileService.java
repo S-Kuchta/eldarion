@@ -18,6 +18,7 @@ import kuchtastefan.item.questItem.QuestItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -38,8 +39,8 @@ public class FileService {
     private final Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
-    public void saveGame(Hero hero, int currentLevel, Map<HintName, Hint> hintUtil) {
-        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, hintUtil);
+    public void saveGame(Hero hero, int currentLevel, Map<HintName, Hint> hintUtil, ForestRegionService forestRegionService) {
+        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, hintUtil, forestRegionService.getDiscoveredLocations());
         Map<Item, Integer> tempItemMap = new HashMap<>(gameLoaded.getHero().getHeroInventory().getHeroInventory());
         gameLoaded.getHero().getHeroInventory().changeList();
 

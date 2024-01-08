@@ -11,7 +11,6 @@ import java.util.*;
 
 public class HeroInventory {
 
-
     private final Map<Item, Integer> heroInventory;
     private final Map<WearableItem, Integer> wearableItemInventory;
     private final Map<CraftingReagentItem, Integer> craftingReagentItemInventory;

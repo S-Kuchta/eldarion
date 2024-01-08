@@ -33,6 +33,7 @@ public class GameManager {
     private final InventoryService inventoryService;
     private final HintUtil hintUtil;
     private ForestRegionService forestRegionService;
+    private final HeroCharacterService heroCharacterService;
 
     public GameManager() {
         this.hero = new Hero("");
@@ -40,22 +41,22 @@ public class GameManager {
         this.fileService = new FileService();
         this.battleService = new BattleService();
         this.enemiesByLevel = EnemyGenerator.createEnemies();
-        this.heroAbilityManager = new HeroAbilityManager(hero);
-        this.inventoryService = new InventoryService();
+        this.heroAbilityManager = new HeroAbilityManager(this.hero);
+        this.inventoryService = new InventoryService(this.hero);
         this.blacksmithService = new BlacksmithService();
         this.hintUtil = new HintUtil(new HashMap<>());
         this.itemsLists = new ItemsLists();
+        this.heroCharacterService = new HeroCharacterService(this.inventoryService, this.heroAbilityManager);
     }
 
     public void startGame() {
         this.initGame();
 
-
         while (this.currentLevel <= this.enemiesByLevel.size()) {
             final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
-            System.out.println("\t0. Fight " + enemy.getName() + " (level " + this.currentLevel + ")");
-            System.out.println("\t1. Upgrade abilities (" + this.hero.getUnspentAbilityPoints() + " points to spend)");
-            System.out.println("\t2. Inventory");
+            System.out.println("\t0. Explore surrounding regions");
+            System.out.println("\t1. ");
+            System.out.println("\t2. Hero menu");
             System.out.println("\t3. Tavern");
             System.out.println("\t4. Alchemist");
             System.out.println("\t5. Blacksmith");
@@ -65,9 +66,8 @@ public class GameManager {
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
-
-                    this.forestRegionService.adventuringAcrossTheRegion();
-
+                    exploreSurroundingRegions();
+//                    this.forestRegionService.adventuringAcrossTheRegion(this.heroCharacterService);
 
 //                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.itemsLists.getWearableItemList())) {
 //                        final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
@@ -87,12 +87,14 @@ public class GameManager {
 //                        PrintUtil.printDivider();
 //                    }
                 }
-                case 1 -> this.upgradeAbilityMenu();
-                case 2 -> this.inventoryService.inventoryMenu(this.hero);
+                case 2 -> this.heroCharacterService.heroCharacterMenu(this.hero);
                 case 3 -> this.tavernMenu();
                 case 4 -> this.alchemistMenu();
                 case 5 -> this.blacksmithMenu();
-                case 6 -> fileService.saveGame(this.hero, this.currentLevel, this.hintUtil.getHintList());
+                case 6 -> this.fileService.saveGame(this.hero,
+                        this.currentLevel,
+                        this.hintUtil.getHintList(),
+                        this.forestRegionService);
                 case 7 -> {
                     System.out.println("Are you sure?");
                     System.out.println("0. No");
@@ -111,6 +113,19 @@ public class GameManager {
         }
 
         System.out.println("You have won the game! Congratulations!");
+    }
+
+    private void exploreSurroundingRegions() {
+        System.out.println("0. Go back to the city");
+        System.out.println("1. Go to " + this.forestRegionService.getRegionName());
+        System.out.println("2. Go to highlands");
+        final int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> this.forestRegionService.adventuringAcrossTheRegion(this.heroCharacterService);
+            default -> System.out.println("Enter valid input");
+        }
     }
 
     private void tavernMenu() {
@@ -185,18 +200,6 @@ public class GameManager {
         }
     }
 
-    private void upgradeAbilityMenu() {
-        System.out.println("\t0. Go Back");
-        System.out.println("\t1. Spend points (" + this.hero.getUnspentAbilityPoints() + " points left)");
-        System.out.println("\t2. Remove points");
-        final int upgradeChoice = InputUtil.intScanner();
-        if (upgradeChoice == 1) {
-            this.heroAbilityManager.spendAbilityPoints();
-        } else if (upgradeChoice == 2) {
-            this.heroAbilityManager.removeAbilityPoints();
-        }
-    }
-
     private void initGame() {
         this.itemsLists.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
         this.itemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
@@ -222,11 +225,14 @@ public class GameManager {
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     this.hintUtil.getHintList().putAll(gameLoaded.getHintUtil());
+                    this.forestRegionService.setHero(this.hero);
+                    this.forestRegionService.getDiscoveredLocations().addAll(gameLoaded.getForestRegionDiscoveredLocation());
                     return;
                 }
             }
             default -> System.out.println("Invalid choice");
         }
+
 
         System.out.println("Enter your name: ");
         final String name = InputUtil.stringScanner();

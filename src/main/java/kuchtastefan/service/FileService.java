@@ -4,11 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
+import kuchtastefan.characters.enemy.Enemy;
+import kuchtastefan.characters.enemy.EnemyType;
 import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
@@ -273,6 +275,30 @@ public class FileService {
         }
 
         return questItems;
+    }
+
+    public List<Enemy> importCreaturesFromFile() {
+        String path = "external-files/creatures";
+        List<Enemy> enemies = new ArrayList<>();
+        try {
+            List<Enemy> enemyList;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                enemyList = new Gson().fromJson(reader, new TypeToken<List<Enemy>>() {
+                }.getType());
+
+                for (Enemy enemy : enemyList) {
+                    enemy.setEnemyType(
+                            EnemyType.valueOf(file.toUpperCase().replace(".JSON", "")));
+                }
+                enemies.addAll(enemyList);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return enemies;
     }
 }
 

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Weak Zombie",
+    "abilities": {
+      "ATTACK": 2,
+      "DEFENCE": 2,
+      "HEALTH": 30,
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEXTERITY": 1
+    },
+    "level": 1,
+    "locationType": ["TOWER","CASTLE"],
+    "maxStack": 5
+  }
+]

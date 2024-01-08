@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Weak Bandit",
+    "abilities": {
+      "ATTACK": 2,
+      "DEFENCE": 2,
+      "HEALTH": 40,
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEXTERITY": 2
+    },
+    "level": 1,
+    "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
+    "maxStack": 5
+  }
+]

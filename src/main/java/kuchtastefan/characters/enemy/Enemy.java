@@ -2,11 +2,78 @@ package kuchtastefan.characters.enemy;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.items.Item;
+import kuchtastefan.items.ItemsLists;
+import kuchtastefan.utility.RandomNumberGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Enemy extends GameCharacter {
-    public Enemy(String name, Map<Ability, Integer> abilities) {
+
+    private List<Item> itemsDrop;
+    private final int goldDrop;
+    private EnemyType enemyType;
+    private final LocationType[] locationType;
+    private final int maxStack;
+
+    public Enemy(String name, Map<Ability, Integer> abilities,
+                 EnemyType enemyType,
+                 LocationType[] locationType, int maxStack) {
         super(name, abilities);
+        this.goldDrop = goldDrop();
+        this.enemyType = enemyType;
+        this.locationType = locationType;
+        this.maxStack = maxStack;
+    }
+
+    private int goldDrop() {
+        if (enemyType.equals(EnemyType.HUMANOID)) {
+            return RandomNumberGenerator.getRandomNumber(5 + getLevel(), 15 + getLevel());
+        } else {
+            return 0;
+        }
+    }
+
+    public void itemsDrop(ItemsLists itemsLists) {
+        List<Item> tempList = new ArrayList<>();
+        List<Item> itemList = itemsLists.returnItemListByLevel(getLevel(), null);
+        int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
+
+        for (int i = 0; i < itemsForDrop; i++) {
+            int randomItemGenerate = RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1);
+            tempList.add(itemList.get(randomItemGenerate));
+        }
+        this.setItemsDrop(tempList);
+    }
+
+
+    public List<Item> getItemsDrop() {
+        return itemsDrop;
+    }
+
+    public int getGoldDrop() {
+        return goldDrop;
+    }
+
+    public EnemyType getEnemyType() {
+        return enemyType;
+    }
+
+    public LocationType[] getLocationType() {
+        return locationType;
+    }
+
+    public int getMaxStack() {
+        return maxStack;
+    }
+
+    public void setEnemyType(EnemyType enemyType) {
+        this.enemyType = enemyType;
+    }
+
+    public void setItemsDrop(List<Item> itemsDrop) {
+        this.itemsDrop = itemsDrop;
     }
 }

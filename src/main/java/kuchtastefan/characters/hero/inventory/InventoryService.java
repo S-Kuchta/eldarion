@@ -14,12 +14,6 @@ import java.util.Map;
 
 public class InventoryService {
 
-    private final Hero hero;
-
-    public InventoryService(Hero hero) {
-        this.hero = hero;
-    }
-
     public void inventoryMenu(Hero hero) {
         PrintUtil.printLongDivider();
         System.out.println("\t\t" + hero.getName() + " Inventory");

@@ -1,61 +1,61 @@
 package kuchtastefan.service;
 
+import com.google.gson.Gson;
+import kuchtastefan.characters.enemy.Enemy;
+import kuchtastefan.characters.enemy.EnemyList;
+import kuchtastefan.characters.hero.GameLoaded;
+import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroAbilityManager;
 import kuchtastefan.characters.hero.HeroCharacterService;
 import kuchtastefan.characters.hero.inventory.InventoryService;
-import kuchtastefan.constant.Constant;
-import kuchtastefan.characters.enemy.Enemy;
-import kuchtastefan.characters.hero.GameLoaded;
-import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
 import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.characters.vendor.WearableItemVendorCharacter;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.regions.ForestRegionService;
-import kuchtastefan.utility.EnemyGenerator;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class GameManager {
     private Hero hero;
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
     private final FileService fileService;
-    private final Map<Integer, Enemy> enemiesByLevel;
+    //    private final Map<Integer, Enemy> enemiesByLevel;
     private final BattleService battleService;
     private final ItemsLists itemsLists;
     private final BlacksmithService blacksmithService;
-    private final InventoryService inventoryService;
     private final HintUtil hintUtil;
     private ForestRegionService forestRegionService;
     private final HeroCharacterService heroCharacterService;
+    private final EnemyList enemyList;
 
     public GameManager() {
         this.hero = new Hero("");
         this.currentLevel = Constant.INITIAL_LEVEL;
         this.fileService = new FileService();
         this.battleService = new BattleService();
-        this.enemiesByLevel = EnemyGenerator.createEnemies();
+//        this.enemiesByLevel = EnemyGenerator.createEnemies();
         this.heroAbilityManager = new HeroAbilityManager(this.hero);
-        this.inventoryService = new InventoryService(this.hero);
         this.blacksmithService = new BlacksmithService();
         this.hintUtil = new HintUtil(new HashMap<>());
         this.itemsLists = new ItemsLists();
-        this.heroCharacterService = new HeroCharacterService(this.inventoryService, this.heroAbilityManager);
+        this.heroCharacterService = new HeroCharacterService(new InventoryService(), this.heroAbilityManager);
+        this.enemyList = new EnemyList();
     }
 
     public void startGame() {
         this.initGame();
 
-        while (this.currentLevel <= this.enemiesByLevel.size()) {
-            final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
+        while (true) {
+//            final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
             System.out.println("\t0. Explore surrounding regions");
             System.out.println("\t1. ");
             System.out.println("\t2. Hero menu");
@@ -114,7 +114,7 @@ public class GameManager {
             }
         }
 
-        System.out.println("You have won the game! Congratulations!");
+//        System.out.println("You have won the game! Congratulations!");
     }
 
     private void exploreSurroundingRegions() {
@@ -207,6 +207,22 @@ public class GameManager {
         this.itemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
         this.itemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
         this.itemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
+
+        this.enemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
+
+
+        Enemy enemy = this.enemyList.getEnemyList().get(0);
+        Gson gson = new Gson();
+        enemy.itemsDrop(this.itemsLists);
+
+        Enemy newEnemy = gson.fromJson(gson.toJson(enemy), Enemy.class);
+        newEnemy.itemsDrop(this.itemsLists);
+
+
+        System.out.println(enemy.getItemsDrop().get(0).getName());
+        System.out.println(newEnemy.getItemsDrop().get(0).getName());
+
+
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero);
 

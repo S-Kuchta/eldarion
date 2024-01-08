@@ -1,15 +1,15 @@
 package kuchtastefan.regions;
 
+import kuchtastefan.characters.enemy.LocationType;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.characters.hero.HeroCharacterService;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.Location;
-import kuchtastefan.characters.hero.HeroCharacterService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class ForestRegionService extends Region {
 
@@ -64,10 +64,10 @@ public class ForestRegionService extends Region {
     @Override
     protected List<Location> initializeLocationForRegion() {
         List<Location> locationList = new ArrayList<>();
-        locationList.add(new Location("Mystic cave", 2, 10));
-        locationList.add(new Location("Tower of Damned", 5, 10));
-        locationList.add(new Location("Castle ruins", 3, 10));
-        locationList.add(new Location("Old mine", 2, 10));
+        locationList.add(new Location("Mystic cave", 2, 10, LocationType.CAVE));
+        locationList.add(new Location("Tower of Damned", 5, 10, LocationType.TOWER));
+        locationList.add(new Location("Castle ruins", 3, 10, LocationType.CASTLE));
+        locationList.add(new Location("Old mine", 2, 10, LocationType.MINE));
         return locationList;
     }
 

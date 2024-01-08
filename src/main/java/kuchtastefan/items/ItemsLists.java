@@ -23,6 +23,21 @@ public class ItemsLists {
         this.consumableItems = new ArrayList<>();
     }
 
+    public List<Item> returnItemListByLevel(int maxItemLevel, Integer minItemLevel) {
+        List<Item> itemList = new ArrayList<>();
+        List<Item> itemListAfterLevelCheck = new ArrayList<>();
+        itemList.addAll(this.wearableItemList);
+        itemList.addAll(this.craftingReagentItems);
+        itemList.addAll(this.consumableItems);
+
+        for (Item item : itemList) {
+            if (checkItemLevelCondition(item, maxItemLevel, minItemLevel)) {
+                itemListAfterLevelCheck.add(item);
+            }
+        }
+        return itemListAfterLevelCheck;
+    }
+
     public List<CraftingReagentItem> returnCraftingReagentItemListByType(CraftingReagentItemType craftingReagentItemType) {
         List<CraftingReagentItem> tempList = new ArrayList<>();
         for (CraftingReagentItem craftingReagentItem : this.craftingReagentItems) {

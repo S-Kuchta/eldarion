@@ -1,6 +1,7 @@
 package kuchtastefan.regions.locations;
 
 import kuchtastefan.characters.enemy.Enemy;
+import kuchtastefan.characters.enemy.LocationType;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -15,14 +16,16 @@ public class Location {
     protected int stageComplete;
     protected boolean cleared;
     protected List<Enemy> enemies;
+    protected final LocationType locationType;
 
-    public Location(String locationName, int locationLevel, int stageTotal) {
+    public Location(String locationName, int locationLevel, int stageTotal, LocationType locationType) {
         this.locationName = locationName;
         this.locationLevel = locationLevel;
         this.stageTotal = stageTotal;
         this.stageComplete = 0;
         this.cleared = false;
         this.enemies = new ArrayList<>();
+        this.locationType = locationType;
     }
 
     public void locationMenu() {

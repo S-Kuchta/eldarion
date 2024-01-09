@@ -17,7 +17,7 @@ public class WearableItemVendorCharacter extends VendorCharacter {
     }
 
     @Override
-    public void vendorOffer(Hero hero) {
+    protected void vendorOffer(Hero hero) {
 
         // Item sort in array by WearableItemType
         this.itemsForSale.sort((item1, item2) -> {

@@ -1,0 +1,372 @@
+[
+  {
+    "name": "Wooden Plate",
+    "price": 3,
+    "itemLevel": 1
+  },
+  {
+  "name": "Cutlery",
+  "price": 2,
+  "itemLevel": 1
+},
+  {
+    "name": "Bucket",
+    "price": 3,
+    "itemLevel": 1
+  },
+  {
+    "name": "Broom",
+    "price": 3,
+    "itemLevel": 1
+  },
+  {
+    "name": "Cup",
+    "price": 3,
+    "itemLevel": 1
+  },
+  {
+    "name": "Jug",
+    "price": 3,
+    "itemLevel": 1
+  },
+  {
+    "name": "Damaged Scarf",
+    "price": 3,
+    "itemLevel": 1
+  },
+  {
+    "name": "Old kitchen knife",
+    "price": 5,
+    "itemLevel": 2
+  },
+  {
+    "name": "Worn-out leather belt",
+    "price": 5,
+    "itemLevel": 2
+  },
+  {
+    "name": "Wooden Bowl",
+    "price": 5,
+    "itemLevel": 2
+  },
+  {
+    "name": "Burned Book",
+    "price": 5,
+    "itemLevel": 2
+  },
+  {
+    "name": "Candlestick",
+    "price": 5,
+    "itemLevel": 2
+  },
+  {
+    "name": "Drum",
+    "price": 5,
+    "itemLevel": 2
+  },
+  {
+    "name": "Cast Iron Pot",
+    "price": 5,
+    "itemLevel": 2
+  },
+  {
+    "name": "Bloody Rags",
+    "price": 7,
+    "itemLevel": 3
+  },
+  {
+    "name": "Bellows",
+    "price": 7,
+    "itemLevel": 3
+  },
+  {
+    "name": "Basket",
+    "price": 7,
+    "itemLevel": 3
+  },
+  {
+    "name": "Clothes Iron",
+    "price": 7,
+    "itemLevel": 3
+  },
+  {
+    "name": "Embalming Tool",
+    "price": 7,
+    "itemLevel": 3
+  },
+  {
+    "name": "Empty Skooma Bottle",
+    "price": 7,
+    "itemLevel": 3
+  },
+  {
+    "name": "Empty Mead Bottle",
+    "price": 7,
+    "itemLevel": 3
+  },
+  {
+    "name": "Flagon",
+    "price": 9,
+    "itemLevel": 4
+  },
+  {
+    "name": "Flower Basket",
+    "price": 9,
+    "itemLevel": 4
+  },
+  {
+    "name": "Flute",
+    "price": 9,
+    "itemLevel": 4
+  },
+  {
+    "name": "Goblet",
+    "price": 9,
+    "itemLevel": 4
+  },
+  {
+    "name": "Hammer",
+    "price": 9,
+    "itemLevel": 4
+  },
+  {
+    "name": "Inkwell",
+    "price": 9,
+    "itemLevel": 4
+  },
+  {
+    "name": "Kettle",
+    "price": 9,
+    "itemLevel": 4
+  },
+  {
+    "name": "Silver Kitchen Knife",
+    "price": 12,
+    "itemLevel": 5
+  },
+  {
+    "name": "Silver Kitchen Fork",
+    "price": 12,
+    "itemLevel": 5
+  },
+  {
+    "name": "Silver Kitchen Spoon",
+    "price": 12,
+    "itemLevel": 5
+  },
+  {
+    "name": "Lantern",
+    "price": 12,
+    "itemLevel": 5
+  },
+  {
+    "name": "Linen wrap",
+    "price": 12,
+    "itemLevel": 5
+  },
+  {
+    "name": "Lute",
+    "price": 12,
+    "itemLevel": 5
+  },
+  {
+    "name": "Platter",
+    "price": 15,
+    "itemLevel": 6
+  },
+  {
+    "name": "Pot",
+    "price": 15,
+    "itemLevel": 6
+  },
+  {
+    "name": "Silver Plate",
+    "price": 15,
+    "itemLevel": 6
+  },
+  {
+    "name": "Quill",
+    "price": 15,
+    "itemLevel": 6
+  },
+  {
+    "name": "Saw",
+    "price": 15,
+    "itemLevel": 6
+  },
+  {
+    "name": "Shovel",
+    "price": 15,
+    "itemLevel": 6
+  },
+  {
+    "name": "Lute with Silver decorating",
+    "price": 15,
+    "itemLevel": 6
+  },
+  {
+    "name": "Flute with Silver decorating",
+    "price": 15,
+    "itemLevel": 6
+  },
+  {
+    "name": "Silver candlestick",
+    "price": 18,
+    "itemLevel": 7
+  },
+  {
+    "name": "Tankard",
+    "price": 18,
+    "itemLevel": 7
+  },
+  {
+    "name": "Tongs",
+    "price": 18,
+    "itemLevel": 7
+  },
+  {
+    "name": "Torture Tools",
+    "price": 18,
+    "itemLevel": 7
+  },
+  {
+    "name": "Bottle With Silver decorating",
+    "price": 18,
+    "itemLevel": 7
+  },
+  {
+    "name": "Jug with Silver decorating",
+    "price": 18,
+    "itemLevel": 7
+  },
+  {
+    "name": "Blunt Axe",
+    "price": 18,
+    "itemLevel": 7
+  },
+  {
+    "name": "Butter Silver Knife",
+    "price": 18,
+    "itemLevel": 7
+  },
+  {
+    "name": "Casket",
+    "price": 21,
+    "itemLevel": 8
+  },
+  {
+    "name": "Chain",
+    "price": 21,
+    "itemLevel": 8
+  },
+  {
+    "name": "Doll",
+    "price": 21,
+    "itemLevel": 8
+  },
+  {
+    "name": "Fishing Rod",
+    "price": 21,
+    "itemLevel": 8
+  },
+  {
+    "name": "Glamour",
+    "price": 21,
+    "itemLevel": 8
+  },
+  {
+    "name": "Glass",
+    "price": 21,
+    "itemLevel": 8
+  },
+  {
+    "name": "Mirror",
+    "price": 21,
+    "itemLevel": 8
+  },
+  {
+    "name": "Silver ring",
+    "price": 21,
+    "itemLevel": 8
+  },
+  {
+    "name": "Haft",
+    "price": 23,
+    "itemLevel": 9
+  },
+  {
+    "name": "Gold Necklace",
+    "price": 23,
+    "itemLevel": 9
+  },
+  {
+    "name": "Gold Plate",
+    "price": 23,
+    "itemLevel": 9
+  },
+  {
+    "name": "Gold Cutlery",
+    "price": 23,
+    "itemLevel": 9
+  },
+  {
+    "name": "Gold Jug",
+    "price": 23,
+    "itemLevel": 9
+  },
+  {
+    "name": "Gold Ring",
+    "price": 23,
+    "itemLevel": 9
+  },
+  {
+    "name": "Gold Weeding Ring",
+    "price": 23,
+    "itemLevel": 9
+  },
+  {
+    "name": "Lute with Gold Decorating",
+    "price": 23,
+    "itemLevel": 9
+  },
+  {
+    "name": "Gold Sapphire Ring",
+    "price": 25,
+    "itemLevel": 10
+  },
+  {
+    "name": "Gold Pearl Necklace",
+    "price": 25,
+    "itemLevel": 10
+  },
+  {
+    "name": "Parchment",
+    "price": 25,
+    "itemLevel": 10
+  },
+  {
+    "name": "Perfume",
+    "price": 25,
+    "itemLevel": 10
+  },
+  {
+    "name": "Gold Razor",
+    "price": 25,
+    "itemLevel": 10
+  },
+  {
+    "name": "Gold Small Statue",
+    "price": 25,
+    "itemLevel": 10
+  },
+  {
+    "name": "Gold Small Sculpture",
+    "price": 25,
+    "itemLevel": 10
+  },
+  {
+    "name": "Gold Teapot",
+    "price": 25,
+    "itemLevel": 10
+  }
+]

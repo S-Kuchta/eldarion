@@ -42,9 +42,8 @@ public class CombatEvent extends Event {
             case 0 -> {
             }
             case 1 -> {
-                final boolean haveHeroWon = battleService.battle(hero, randomEnemy);
                 final int heroHealthBeforeBattle = hero.getAbilities().get(Ability.HEALTH);
-
+                final boolean haveHeroWon = battleService.battle(hero, randomEnemy);
                 if (haveHeroWon) {
                     double goldEarn = randomEnemy.getGoldDrop();
                     double experiencePointGained = randomEnemy.getLevel() * 20;

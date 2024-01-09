@@ -51,7 +51,7 @@ public class BlacksmithService {
                     return;
                 }
                 try {
-                    if (hero.getHeroInventory().checkInventoryForItems(refinementItemMap.get(tempItemList.get(choice - 1)))) {
+                    if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(refinementItemMap.get(tempItemList.get(choice - 1)),true)) {
                         wearableItem = tempItemList.get(choice - 1);
                         break;
                     } else {

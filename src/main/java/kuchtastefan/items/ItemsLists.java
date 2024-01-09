@@ -4,6 +4,7 @@ import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 
@@ -15,12 +16,14 @@ public class ItemsLists {
     private final List<CraftingReagentItem> craftingReagentItems;
     private final List<QuestItem> questItems;
     private final List<ConsumableItem> consumableItems;
+    private final List<JunkItem> junkItems;
 
     public ItemsLists() {
         this.wearableItemList = new ArrayList<>();
         this.craftingReagentItems = new ArrayList<>();
         this.questItems = new ArrayList<>();
         this.consumableItems = new ArrayList<>();
+        this.junkItems = new ArrayList<>();
     }
 
     public List<Item> returnItemListByLevel(int maxItemLevel, Integer minItemLevel) {
@@ -29,6 +32,7 @@ public class ItemsLists {
         itemList.addAll(this.wearableItemList);
         itemList.addAll(this.craftingReagentItems);
         itemList.addAll(this.consumableItems);
+        itemList.addAll(this.junkItems);
 
         for (Item item : itemList) {
             if (checkItemLevelCondition(item, maxItemLevel, minItemLevel)) {
@@ -108,6 +112,16 @@ public class ItemsLists {
         return tempList;
     }
 
+    public List<JunkItem> returnJunkItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
+        List<JunkItem> tempList = new ArrayList<>();
+        for (JunkItem junkItem : this.junkItems) {
+            if (checkItemLevelCondition(junkItem, maxItemLevel, minItemLevel)) {
+                tempList.add(junkItem);
+            }
+        }
+        return tempList;
+    }
+
     private boolean checkItemLevelCondition(Item item, int maxItemLevel, Integer minItemLevel) {
         if (minItemLevel == null) {
             minItemLevel = maxItemLevel;
@@ -130,5 +144,9 @@ public class ItemsLists {
 
     public List<ConsumableItem> getConsumableItems() {
         return consumableItems;
+    }
+
+    public List<JunkItem> getJunkItems() {
+        return junkItems;
     }
 }

@@ -5,41 +5,41 @@
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
+          "DEFENCE": 1,
+          "DEXTERITY": 1,
           "ATTACK": 0,
-          "HEALTH": 0,
-          "DEFENCE": 0,
-          "LUCK": 0,
           "SKILL": 0,
-          "DEXTERITY": 0
+          "LUCK": 0,
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "name": "Leather armor of Dexterity",
+        "price": 50.0,
+        "itemLevel": 1
       },
       "HANDS": {
         "wearableItemType": "HANDS",
         "abilities": {
+          "DEFENCE": 1,
+          "SKILL": 1,
           "ATTACK": 0,
-          "HEALTH": 0,
-          "DEFENCE": 0,
+          "DEXTERITY": 0,
           "LUCK": 0,
-          "SKILL": 0,
-          "DEXTERITY": 0
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "name": "Basic hands",
+        "price": 50.0,
+        "itemLevel": 1
       },
       "HEAD": {
         "wearableItemType": "HEAD",
         "abilities": {
           "ATTACK": 0,
-          "HEALTH": 0,
           "DEFENCE": 0,
-          "LUCK": 0,
+          "HEALTH": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -51,10 +51,10 @@
         "wearableItemType": "WEAPON",
         "abilities": {
           "ATTACK": 0,
-          "HEALTH": 0,
           "DEFENCE": 0,
-          "LUCK": 0,
+          "HEALTH": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -66,10 +66,10 @@
         "wearableItemType": "BOOTS",
         "abilities": {
           "ATTACK": 0,
-          "HEALTH": 0,
           "DEFENCE": 0,
-          "LUCK": 0,
+          "HEALTH": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -80,28 +80,82 @@
     },
     "wearingItemAbilityPoints": {
       "ATTACK": 0,
+      "DEFENCE": 2,
       "HEALTH": 0,
-      "DEFENCE": 0,
+      "SKILL": 1,
       "LUCK": 0,
-      "SKILL": 0,
-      "DEXTERITY": 0
+      "DEXTERITY": 1
     },
     "heroInventory": {
       "heroInventory": {},
       "wearableItemInventory": [
         [
           {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "DEXTERITY": 1,
+              "DEFENCE": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Dexterity",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "HANDS",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Basic hands",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
             "wearableItemType": "BODY",
             "abilities": {
               "DEFENCE": 1,
-              "HEALTH": 5,
+              "DEXTERITY": 1,
               "ATTACK": 0,
-              "DEXTERITY": 0,
               "SKILL": 0,
-              "LUCK": 0
+              "LUCK": 0,
+              "HEALTH": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Leather armor of Health",
+            "name": "Leather armor of Dexterity",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BOOTS",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Basic boots",
             "price": 50.0,
             "itemLevel": 1
           },
@@ -110,17 +164,31 @@
       ],
       "craftingReagentItemInventory": {},
       "consumableItemInventory": {},
-      "questItemInventory": {}
+      "questItemInventory": {},
+      "junkItemInventory": [
+        [
+          {
+            "name": "Wooden Bowl",
+            "price": 5.0,
+            "itemLevel": 2
+          },
+          1
+        ]
+      ]
     },
-    "heroGold": 100.0,
-    "name": "1",
+    "heroGold": 45.0,
+    "experiencePoints": 40.0,
+    "experiencePointsService": {
+      "neededExperiencePointsForNewLevel": 480.0
+    },
+    "name": "Qwyndeed",
     "abilities": {
-      "ATTACK": 8,
-      "HEALTH": 50,
-      "DEFENCE": 1,
-      "LUCK": 1,
+      "ATTACK": 3,
+      "DEFENCE": 3,
+      "HEALTH": 55,
       "SKILL": 1,
-      "DEXTERITY": 1
+      "LUCK": 1,
+      "DEXTERITY": 3
     },
     "level": 1
   },

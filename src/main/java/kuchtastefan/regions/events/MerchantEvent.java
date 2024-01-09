@@ -3,6 +3,7 @@ package kuchtastefan.regions.events;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
 import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
+import kuchtastefan.characters.vendor.JunkVendorCharacter;
 import kuchtastefan.characters.vendor.WearableItemVendorCharacter;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.utility.InputUtil;
@@ -26,7 +27,7 @@ public class MerchantEvent extends Event {
         switch (choice) {
             case 0 -> System.out.println("\tYou just walk around merchant and greets him");
             case 1 -> {
-                int randomNumber = RandomNumberGenerator.getRandomNumber(0, 2);
+                int randomNumber = RandomNumberGenerator.getRandomNumber(0, 3);
                 switch (randomNumber) {
                     case 0 -> {
                         WearableItemVendorCharacter wearableItemVendorCharacter = new WearableItemVendorCharacter("Random name", 8, this.itemsLists.returnWearableItemListByItemLevel(this.getEventLevel(), null));
@@ -39,6 +40,10 @@ public class MerchantEvent extends Event {
                     case 2 -> {
                         ConsumableVendorCharacter consumableVendorCharacter = new ConsumableVendorCharacter("Random name", 8, this.itemsLists.returnConsumableItemListByItemLevel(this.getEventLevel(), 0));
                         consumableVendorCharacter.vendorMenu(hero);
+                    }
+                    case 3 -> {
+                        JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Random Name", 8, this.itemsLists.getJunkItems());
+                        junkVendorCharacter.vendorMenu(hero);
                     }
                 }
             }

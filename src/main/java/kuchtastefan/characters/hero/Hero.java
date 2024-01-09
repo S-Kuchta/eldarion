@@ -157,10 +157,6 @@ public class Hero extends GameCharacter {
         return false;
     }
 
-    public ExperiencePointsService getExperiencePointsService() {
-        return experiencePointsService;
-    }
-
     public void updateAbilityPoints(int numberOfPoints) {
         this.unspentAbilityPoints += numberOfPoints;
     }
@@ -201,11 +197,4 @@ public class Hero extends GameCharacter {
         return heroInventory;
     }
 
-    public double getExperiencePoint() {
-        return experiencePoints;
-    }
-
-    public void setExperiencePoint(double experiencePoints) {
-        this.experiencePoints = experiencePoints;
-    }
 }

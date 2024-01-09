@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
+import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 
@@ -16,6 +17,7 @@ public class HeroInventory {
     private final Map<CraftingReagentItem, Integer> craftingReagentItemInventory;
     private final Map<ConsumableItem, Integer> consumableItemInventory;
     private final Map<QuestItem, Integer> questItemInventory;
+    private final Map<JunkItem, Integer> junkItemInventory;
 
 
     public HeroInventory() {
@@ -24,6 +26,7 @@ public class HeroInventory {
         this.craftingReagentItemInventory = new HashMap<>();
         this.consumableItemInventory = new HashMap<>();
         this.questItemInventory = new HashMap<>();
+        this.junkItemInventory = new HashMap<>();
     }
 
     public Map<Item, Integer> getHeroInventory() {
@@ -63,11 +66,12 @@ public class HeroInventory {
         }
     }
 
-    public boolean checkInventoryForItems(Map<? extends Item, Integer> neededItems) {
-
+    public boolean checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(Map<? extends Item, Integer> neededItems, boolean removeItem) {
         for (Map.Entry<? extends Item, Integer> neededItem : neededItems.entrySet()) {
             if (this.heroInventory.containsKey(neededItem.getKey()) && neededItem.getValue() <= this.heroInventory.get(neededItem.getKey())) {
-                this.heroInventory.put(neededItem.getKey(), heroInventory.get(neededItem.getKey()) - neededItem.getValue());
+                if (removeItem) {
+                    this.heroInventory.put(neededItem.getKey(), heroInventory.get(neededItem.getKey()) - neededItem.getValue());
+                }
                 System.out.println("return true");
                 return true;
             }
@@ -97,6 +101,11 @@ public class HeroInventory {
             if (item.getKey() instanceof QuestItem) {
                 QuestItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), QuestItem.class);
                 this.questItemInventory.put(itemCopy, item.getValue());
+            }
+
+            if (item.getKey() instanceof JunkItem) {
+                JunkItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), JunkItem.class);
+                this.junkItemInventory.put(itemCopy, item.getValue());
             }
         }
 
@@ -163,6 +172,16 @@ public class HeroInventory {
         return craftingReagentItems;
     }
 
+    public Map<JunkItem, Integer> returnInventoryJunkItemMap() {
+        Map<JunkItem, Integer> junkItems = new HashMap<>();
+        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
+            if (item.getKey() instanceof JunkItem) {
+                junkItems.put((JunkItem) item.getKey(), item.getValue());
+            }
+        }
+        return junkItems;
+    }
+
     public Map<QuestItem, Integer> returnInventoryQuestItemMap() {
         Map<QuestItem, Integer> questItems = new HashMap<>();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
@@ -197,6 +216,10 @@ public class HeroInventory {
 
     public Map<QuestItem, Integer> getQuestItemInventory() {
         return questItemInventory;
+    }
+
+    public Map<JunkItem, Integer> getJunkItemInventory() {
+        return junkItemInventory;
     }
 
     @Override

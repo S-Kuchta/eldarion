@@ -17,6 +17,7 @@ import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
@@ -113,8 +114,9 @@ public class FileService {
                 Map<CraftingReagentItem, Integer> craftingReagentItems = itemInventoryList.getCraftingReagentItemInventory();
                 Map<ConsumableItem, Integer> consumableItems = itemInventoryList.getConsumableItemInventory();
                 Map<QuestItem, Integer> questItems = itemInventoryList.getQuestItemInventory();
+                Map<JunkItem, Integer> junkItems = itemInventoryList.getJunkItemInventory();
 
-                for (Map<? extends Item, Integer> inventory : List.of(wearableItems, craftingReagentItems, consumableItems, questItems)) {
+                for (Map<? extends Item, Integer> inventory : List.of(wearableItems, craftingReagentItems, consumableItems, questItems, junkItems)) {
                     heroInventory.putAll(inventory);
                     inventory.clear();
                 }
@@ -292,9 +294,7 @@ public class FileService {
                     enemy.setEnemyType(
                             EnemyType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
-//                    if (enemy.getItemsLists() == null) {
                     enemy.setItemsLists(itemsLists);
-//                    }
                 }
 
                 enemies.addAll(enemyList);
@@ -305,6 +305,26 @@ public class FileService {
         }
 
         return enemies;
+    }
+
+    public List<JunkItem> importJunkItemsFromFile() {
+        String path = "external-files/items/junk-item";
+        List<JunkItem> junkItems = new ArrayList<>();
+        try {
+            List<JunkItem> junkItemList;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                junkItemList = new Gson().fromJson(reader, new TypeToken<List<JunkItem>>() {
+                }.getType());
+
+                junkItems.addAll(junkItemList);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return junkItems;
     }
 }
 

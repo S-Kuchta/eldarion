@@ -24,7 +24,7 @@ public abstract class VendorCharacter extends GameCharacter {
         this.itemsForSale = randomItemGeneratorForVendor(itemsForSale);
     }
 
-    public abstract void vendorOffer(Hero hero);
+    protected abstract void vendorOffer(Hero hero);
 
     public abstract void printItemsForSale(Hero hero);
 
@@ -119,7 +119,7 @@ public abstract class VendorCharacter extends GameCharacter {
     }
 
     protected double returnSellItemPrice(Item item) {
-        return item.getPrice() * 0.7;
+        return Math.floor(item.getPrice() * 0.7);
     }
 
     protected void sellItem(Hero hero, List<? extends Item> itemList) {

@@ -1,7 +1,5 @@
 package kuchtastefan.service;
 
-import com.google.gson.Gson;
-import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
@@ -10,6 +8,7 @@ import kuchtastefan.characters.hero.HeroCharacterService;
 import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
 import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
+import kuchtastefan.characters.vendor.JunkVendorCharacter;
 import kuchtastefan.characters.vendor.WearableItemVendorCharacter;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.hint.HintName;
@@ -21,7 +20,6 @@ import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class GameManager {
@@ -52,10 +50,9 @@ public class GameManager {
         this.initGame();
 
         while (true) {
-//            final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
             System.out.println("\t0. Explore surrounding regions");
-            System.out.println("\t1. ");
-            System.out.println("\t2. Hero menu");
+            System.out.println("\t1. Hero menu");
+            System.out.println("\t2. Junk Merchant");
             System.out.println("\t3. Tavern");
             System.out.println("\t4. Alchemist");
             System.out.println("\t5. Blacksmith");
@@ -64,29 +61,12 @@ public class GameManager {
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
-                case 0 -> {
-                    exploreSurroundingRegions();
-//                    this.forestRegionService.adventuringAcrossTheRegion(this.heroCharacterService);
-
-//                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.itemsLists.getWearableItemList())) {
-//                        final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
-//                        final boolean haveHeroWon = battleService.battle(this.hero, enemy);
-//                        if (haveHeroWon) {
-//                            PrintUtil.printDivider();
-//                            System.out.println("You have won this battle! You have gained " + this.currentLevel + " points to spend");
-//                            this.hero.updateAbilityPoints(this.currentLevel);
-//                            this.hero.setHeroGold(50 * this.currentLevel);
-//                            this.currentLevel++;
-//                        } else {
-//                            System.out.println("You have lost!");
-//                        }
-//
-//                        this.hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
-//                        System.out.println("You have full health now!");
-//                        PrintUtil.printDivider();
-//                    }
+                case 0 -> exploreSurroundingRegions();
+                case 1 -> this.heroCharacterService.heroCharacterMenu(this.hero);
+                case 2 -> {
+                    JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8, this.itemsLists.returnJunkItemListByItemLevel(this.hero.getLevel(), 0));
+                    junkVendorCharacter.vendorMenu(hero);
                 }
-                case 2 -> this.heroCharacterService.heroCharacterMenu(this.hero);
                 case 3 -> this.tavernMenu();
                 case 4 -> this.alchemistMenu();
                 case 5 -> this.blacksmithMenu();
@@ -110,8 +90,6 @@ public class GameManager {
                 default -> System.out.println("Invalid choice.");
             }
         }
-
-//        System.out.println("You have won the game! Congratulations!");
     }
 
     private void exploreSurroundingRegions() {
@@ -128,7 +106,8 @@ public class GameManager {
     }
 
     private void tavernMenu() {
-        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.FOOD));
+        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
+                this.itemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
 
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
@@ -147,9 +126,9 @@ public class GameManager {
 
     private void alchemistMenu() {
         final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8,
-                this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.ALCHEMY_REAGENT));
+                this.itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0));
         final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
-                this.itemsLists.returnConsumableItemListByType(ConsumableItemType.POTION));
+                this.itemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
 
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");
@@ -173,7 +152,7 @@ public class GameManager {
 
     public void blacksmithMenu() {
         final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
-                this.itemsLists.getWearableItemList());
+                this.itemsLists.returnWearableItemListByItemLevel(this.hero.getLevel(), null));
         final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
                 this.itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
         hintUtil.printHint(HintName.BLACKSMITH);
@@ -204,9 +183,9 @@ public class GameManager {
         this.itemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
         this.itemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
         this.itemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
+        this.itemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
 
         this.enemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile(this.itemsLists));
-
 
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero, this.enemyList);

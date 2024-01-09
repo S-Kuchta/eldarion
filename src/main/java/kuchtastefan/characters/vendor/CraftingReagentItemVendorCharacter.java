@@ -17,7 +17,7 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
     }
 
     @Override
-    public void vendorOffer(Hero hero) {
+    protected void vendorOffer(Hero hero) {
         this.itemsForSale.sort((item1, item2) -> {
             CraftingReagentItemType craftingReagentItemType = ((CraftingReagentItem) item1).getCraftingReagentItemType();
             CraftingReagentItemType craftingReagentItemType1 = ((CraftingReagentItem) item2).getCraftingReagentItemType();

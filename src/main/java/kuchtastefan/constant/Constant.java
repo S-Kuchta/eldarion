@@ -6,4 +6,5 @@ public class Constant {
     public static final int INITIAL_LEVEL = 1;
     public static final int INITIAL_HERO_GOLD = 150;
     public static final int MAX_VENDOR_ITEMS_FOR_SELL = 10;
+    public static final int INITIAL_EXPERIENCE_POINT = 0;
 }

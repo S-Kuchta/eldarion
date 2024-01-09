@@ -12,43 +12,104 @@ import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class BlacksmithService {
-    public void refinementItemQuality(Hero hero) {
+    public void refinementItemQuality(Hero hero, ItemsLists itemsLists) {
         while (true) {
             PrintUtil.printDivider();
             System.out.println("\t\tRefinement item");
             PrintUtil.printDivider();
 
-            List<WearableItem> tempItemList = printItemList(hero);
-            WearableItem wearableItem = selectItem(tempItemList);
+            Map<WearableItem, Map<CraftingReagentItem, Integer>> refinementItemMap = new HashMap<>();
 
-            if (wearableItem == null) {
-                break;
+//            List<WearableItem> tempItemList = new ArrayList<>();
+            List<Map<WearableItem, Map<CraftingReagentItem, Integer>>> wearableItemList = new ArrayList<>();
+            int index = 1;
+            System.out.println("\t0. Go back");
+            if (hero.getHeroInventory().getHeroInventory().isEmpty()) {
+                System.out.println("\tItem list is empty");
             } else {
-                WearableItemQuality wearableItemQuality = wearableItem.getItemQuality();
-                Gson gson = new Gson();
-                WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
+                for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
+                    if (!item.getKey().getItemQuality().equals(WearableItemQuality.SUPERIOR)) {
 
-                if (wearableItemQuality == WearableItemQuality.BASIC) {
-                    hero.getHeroInventory().removeItemFromItemList(wearableItem);
-                    itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
-                    afterSuccessFullImproveItem(itemCopy, hero);
+                        System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                        PrintUtil.printItemAbilityPoints(item.getKey());
+                        refinementItemMap.put(item.getKey(), itemsNeededToRefinement(item.getKey(), itemsLists));
+                        wearableItemList.add(refinementItemMap);
 
-                } else if (wearableItemQuality == WearableItemQuality.IMPROVED) {
-                    hero.getHeroInventory().removeItemFromItemList(wearableItem);
-                    itemCopy.setItemQuality(WearableItemQuality.SUPERIOR);
-                    afterSuccessFullImproveItem(itemCopy, hero);
-
-                } else {
-                    PrintUtil.printLongDivider();
-                    System.out.println("\t\tYou can not refinement your item. Your item has the highest quality");
-                    PrintUtil.printLongDivider();
+                        index++;
+                    }
                 }
             }
+            WearableItem wearableItem = null;
+
+            while (true) {
+                int choice = InputUtil.intScanner();
+                if (choice == 0) {
+                    return;
+                }
+                try {
+                    for (Map.Entry<WearableItem, Map<CraftingReagentItem, Integer>> wearableItemIntegerEntry : wearableItemList.get(choice - 1).entrySet()) {
+                        if (hero.getHeroInventory().checkInventoryForItems(wearableItemIntegerEntry.getValue())) {
+//                            wearableItem = wearableItemIntegerEntry.getKey();
+                        }
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Inter valid input");
+                }
+            }
+
+//            if (hero.getHeroInventory().checkInventoryForItems(wearableItemList.get()))
+
+//            WearableItem wearableItem = selectItem(tempItemList);
+
+                if (wearableItem == null) {
+                    break;
+                } else {
+                    WearableItemQuality wearableItemQuality = wearableItem.getItemQuality();
+                    Gson gson = new Gson();
+                    WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
+
+                    if (wearableItemQuality == WearableItemQuality.BASIC) {
+                        hero.getHeroInventory().removeItemFromItemList(wearableItem);
+                        itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
+                        afterSuccessFullImproveItem(itemCopy, hero);
+
+                    } else if (wearableItemQuality == WearableItemQuality.IMPROVED) {
+                        hero.getHeroInventory().removeItemFromItemList(wearableItem);
+                        itemCopy.setItemQuality(WearableItemQuality.SUPERIOR);
+                        afterSuccessFullImproveItem(itemCopy, hero);
+
+                    } else {
+                        PrintUtil.printLongDivider();
+                        System.out.println("\t\tYou can not refinement your item. Your item has the highest quality");
+                        PrintUtil.printLongDivider();
+                    }
+                }
         }
+    }
+
+    private Map<CraftingReagentItem, Integer> itemsNeededToRefinement(WearableItem wearableItem, ItemsLists itemsLists) {
+        List<CraftingReagentItem> tempList = itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
+        Map<CraftingReagentItem, Integer> itemsNeededForRefinement = new HashMap<>();
+        int itemsNeededToRefinement = 0;
+
+        CraftingReagentItem craftingReagentItem = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
+        if (wearableItem.getItemQuality().equals(WearableItemQuality.BASIC)) {
+            itemsNeededToRefinement = wearableItem.getItemLevel() * 2;
+        }
+
+        if (wearableItem.getItemQuality().equals(WearableItemQuality.IMPROVED)) {
+            itemsNeededToRefinement = wearableItem.getItemLevel() * 3;
+        }
+
+        itemsNeededForRefinement.put(craftingReagentItem, itemsNeededToRefinement);
+
+        System.out.println("\t\tTo refinement you need: " + craftingReagentItem.getName() + " (" + itemsNeededToRefinement + "x)");
+        return itemsNeededForRefinement;
     }
 
     private void afterSuccessFullImproveItem(WearableItem wearableItem, Hero hero) {

@@ -1,6 +1,7 @@
 package kuchtastefan.items.wearableItem;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.items.Item;
 
 import java.util.Map;
@@ -26,7 +27,11 @@ public class WearableItem extends Item {
     public void setItemAbilities(WearableItem wearableItem) {
         for (Ability ability : Ability.values()) {
             if (wearableItem.getAbilities().get(ability) != 0) {
-                wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) + 1));
+                if (ability.equals(Ability.HEALTH)) {
+                    wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) + Constant.HEALTH_OF_ONE_POINT));
+                } else {
+                    wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) + 1));
+                }
             }
         }
     }

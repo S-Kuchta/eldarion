@@ -10,6 +10,48 @@
       "DEXTERITY": 1
     },
     "level": 1,
+    "locationType": ["TOWER","CASTLE","CEMETERY"],
+    "maxStack": 5
+  },
+  {
+    "name": "NightBane Dark Runner",
+    "abilities": {
+      "ATTACK": 3,
+      "DEFENCE": 3,
+      "HEALTH": 40,
+      "SKILL": 2,
+      "LUCK": 2,
+      "DEXTERITY": 2
+    },
+    "level": 2,
+    "locationType": ["TOWER","CASTLE","FOREST","CEMETERY"],
+    "maxStack": 5
+  },
+  {
+    "name": "NightBane Tainted One",
+    "abilities": {
+      "ATTACK": 4,
+      "DEFENCE": 1,
+      "HEALTH": 40,
+      "SKILL": 2,
+      "LUCK": 1,
+      "DEXTERITY": 3
+    },
+    "level": 2,
+    "locationType": ["TOWER","CASTLE","FOREST","CEMETERY"],
+    "maxStack": 5
+  },
+  {
+    "name": "Insane Ghoul",
+    "abilities": {
+      "ATTACK": 5,
+      "DEFENCE": 2,
+      "HEALTH": 55,
+      "SKILL": 3,
+      "LUCK": 3,
+      "DEXTERITY": 3
+    },
+    "level": 3,
     "locationType": ["TOWER","CASTLE"],
     "maxStack": 5
   }

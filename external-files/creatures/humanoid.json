@@ -1,6 +1,6 @@
 [
   {
-    "name": "Weak Bandit",
+    "name": "Defias Bandit",
     "abilities": {
       "ATTACK": 2,
       "DEFENCE": 2,
@@ -10,6 +10,48 @@
       "DEXTERITY": 2
     },
     "level": 1,
+    "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
+    "maxStack": 5
+  },
+  {
+    "name": "Defias Thief",
+    "abilities": {
+      "ATTACK": 3,
+      "DEFENCE": 1,
+      "HEALTH": 35,
+      "SKILL": 1,
+      "LUCK": 2,
+      "DEXTERITY": 3
+    },
+    "level": 1,
+    "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
+    "maxStack": 5
+  },
+  {
+    "name": "Defias Looter",
+    "abilities": {
+      "ATTACK": 3,
+      "DEFENCE": 3,
+      "HEALTH": 45,
+      "SKILL": 2,
+      "LUCK": 2,
+      "DEXTERITY": 3
+    },
+    "level": 2,
+    "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
+    "maxStack": 5
+  },
+  {
+    "name": "Defias Raider",
+    "abilities": {
+      "ATTACK": 4,
+      "DEFENCE": 4,
+      "HEALTH": 60,
+      "SKILL": 2,
+      "LUCK": 2,
+      "DEXTERITY": 4
+    },
+    "level": 3,
     "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
     "maxStack": 5
   }

@@ -1,0 +1,565 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "equippedItem": {
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "DEFENCE": 3,
+          "HEALTH": 7,
+          "ATTACK": 0,
+          "DEXTERITY": 0,
+          "SKILL": 0,
+          "LUCK": 0
+        },
+        "wearableItemQuality": "SUPERIOR",
+        "name": "Leather armor of Health",
+        "price": 200.0,
+        "itemLevel": 1
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEFENCE": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEFENCE": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 2,
+          "DEFENCE": 0,
+          "DEXTERITY": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "HEALTH": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Iron sword of Attack",
+        "price": 50.0,
+        "itemLevel": 1
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEFENCE": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "ATTACK": 2,
+      "HEALTH": 7,
+      "DEFENCE": 3,
+      "LUCK": 0,
+      "SKILL": 0,
+      "DEXTERITY": 0
+    },
+    "heroInventory": {
+      "heroInventory": {},
+      "wearableItemInventory": [
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Skill",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 3,
+              "HEALTH": 7,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0
+            },
+            "wearableItemQuality": "SUPERIOR",
+            "name": "Leather armor of Health",
+            "price": 200.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "LUCK": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Luck",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "DEXTERITY": 1,
+              "DEFENCE": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Dexterity",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 5,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "SUPERIOR",
+            "name": "Steel sword of Attack",
+            "price": 400.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "HEALTH": 5,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Health",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "DEXTERITY": 2,
+              "DEFENCE": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Steel sword of Dexterity",
+            "price": 100.0,
+            "itemLevel": 2
+          },
+          2
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 4,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Heavy armor",
+            "price": 100.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 2,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Heavy armor",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 2,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron armor",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Attack",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          3
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 4,
+              "DEXTERITY": 4,
+              "DEFENCE": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "SUPERIOR",
+            "name": "Steel sword of Dexterity",
+            "price": 400.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "DEXTERITY": 1,
+              "ATTACK": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Dexterity",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          3
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "SKILL": 1,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Skill",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "ATTACK": 1,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Attack",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "HEAD",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Basic helmet",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 2,
+              "SKILL": 2,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Heavy armor",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "SKILL": 2,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Steel sword of Skill",
+            "price": 100.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "HEALTH": 5,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Health",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ]
+      ],
+      "craftingReagentItemInventory": [
+        [
+          {
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "name": "DeathBloom",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Iron ore",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          6
+        ]
+      ],
+      "consumableItemInventory": [
+        [
+          {
+            "restoreAmount": 20,
+            "increaseAbilityPoint": {
+              "SKILL": 0,
+              "ATTACK": 0,
+              "DEFENCE": 0,
+              "HEALTH": 0,
+              "LUCK": 0,
+              "DEXTERITY": 0
+            },
+            "consumableItemType": "POTION",
+            "name": "Minor health potion",
+            "price": 20.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "restoreAmount": 40,
+            "increaseAbilityPoint": {
+              "SKILL": 0,
+              "ATTACK": 0,
+              "DEFENCE": 0,
+              "HEALTH": 0,
+              "LUCK": 0,
+              "DEXTERITY": 0
+            },
+            "consumableItemType": "POTION",
+            "name": "Big health potion",
+            "price": 30.0,
+            "itemLevel": 2
+          },
+          2
+        ],
+        [
+          {
+            "restoreAmount": 20,
+            "increaseAbilityPoint": {
+              "SKILL": 0,
+              "ATTACK": 0,
+              "DEFENCE": 0,
+              "HEALTH": 0,
+              "LUCK": 0,
+              "DEXTERITY": 0
+            },
+            "consumableItemType": "FOOD",
+            "name": "Bread",
+            "price": 15.0,
+            "itemLevel": 1
+          },
+          3
+        ],
+        [
+          {
+            "restoreAmount": 30,
+            "increaseAbilityPoint": {
+              "SKILL": 0,
+              "ATTACK": 0,
+              "DEFENCE": 0,
+              "HEALTH": 0,
+              "LUCK": 0,
+              "DEXTERITY": 0
+            },
+            "consumableItemType": "FOOD",
+            "name": "Goulash",
+            "price": 20.0,
+            "itemLevel": 2
+          },
+          1
+        ]
+      ],
+      "questItemInventory": {}
+    },
+    "heroGold": 0.0,
+    "experiencePoints": 50.0,
+    "experiencePointsService": {
+      "neededExperiencePointsForNewLevel": 960.0
+    },
+    "name": "Qwyndeed",
+    "abilities": {
+      "ATTACK": 3,
+      "HEALTH": 34,
+      "DEFENCE": 3,
+      "LUCK": 1,
+      "SKILL": 1,
+      "DEXTERITY": 3
+    },
+    "level": 2
+  },
+  "level": 1,
+  "hintUtil": {
+    "BLACKSMITH": {
+      "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
+      "showed": true
+    }
+  },
+  "forestRegionDiscoveredLocation": [
+    {
+      "locationName": "Mystic cave",
+      "locationLevel": 2,
+      "stageTotal": 10,
+      "stageComplete": 0,
+      "cleared": false,
+      "enemies": [],
+      "locationType": "CAVE"
+    }
+  ]
+}

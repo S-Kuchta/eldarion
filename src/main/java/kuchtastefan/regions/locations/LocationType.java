@@ -6,7 +6,9 @@ public enum LocationType {
     MINE(""),
     CASTLE(""),
     FOREST(""),
-    HIGHLAND("");
+    HIGHLAND(""),
+    CEMETERY(""),
+    VILLAGE("");
 
     private final String description;
 

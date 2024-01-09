@@ -191,7 +191,7 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> this.blacksmithService.refinementItemQuality(this.hero);
+            case 1 -> this.blacksmithService.refinementItemQuality(this.hero, this.itemsLists);
             case 2 -> this.blacksmithService.dismantleItem(this.hero, this.itemsLists);
             case 3 -> citySmithVendor.vendorMenu(this.hero);
             case 4 -> cityReagentVendor.vendorMenu(this.hero);

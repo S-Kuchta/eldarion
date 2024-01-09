@@ -1,5 +1,6 @@
 package kuchtastefan.regions.events;
 
+import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.Hero;
@@ -26,14 +27,13 @@ public class CombatEvent extends Event {
 
     @Override
     public void eventOccurs(Hero hero) {
-        System.out.println("\tCombat event");
-
 
         List<Enemy> suitableEnemies = enemyList.returnEnemyListByLocationTypeAndLevel(this.locationType, this.eventLevel, null);
         int randomNumber = RandomNumberGenerator.getRandomNumber(0, suitableEnemies.size() - 1);
         Enemy randomEnemy = suitableEnemies.get(randomNumber);
 
-        System.out.println("In the distance, you've caught sight of " + randomEnemy.getName() + " Will you attempt a silent evasion or initiate an attack?");
+        System.out.println("\tIn the distance, you've caught sight of " + randomEnemy.getName() + " (Level " + randomEnemy.getLevel() + "), "
+                + "\n\tWill you attempt a silent evasion or initiate an attack?");
         System.out.println("0. Try to evasion");
         System.out.println("1. Attack");
         int choice = InputUtil.intScanner();
@@ -42,19 +42,24 @@ public class CombatEvent extends Event {
             case 0 -> {
             }
             case 1 -> {
-                if (battleService.isHeroReadyToBattle(hero, randomEnemy)) {
-                    final boolean haveHeroWon = battleService.battle(hero, randomEnemy);
-                    if (haveHeroWon) {
-                        double goldEarn = randomEnemy.getGoldDrop();
-                        for (Item item : randomEnemy.getItemsDrop()) {
-                            hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-                            System.out.println("You loot " + item.getName());
-                        }
-                        System.out.println("You loot " + goldEarn + " golds");
-                        hero.setHeroGold(hero.getHeroGold() + goldEarn);
+                final boolean haveHeroWon = battleService.battle(hero, randomEnemy);
+                final int heroHealthBeforeBattle = hero.getAbilities().get(Ability.HEALTH);
 
+                if (haveHeroWon) {
+                    double goldEarn = randomEnemy.getGoldDrop();
+                    double experiencePointGained = randomEnemy.getLevel() * 20;
+
+                    for (Item item : randomEnemy.getItemsDrop()) {
+                        hero.getHeroInventory().addItemWithNewCopyToItemList(item);
+                        System.out.println("You loot " + item.getName());
                     }
+                    System.out.println("You loot " + goldEarn + " golds");
+                    hero.setHeroGold(hero.getHeroGold() + goldEarn);
+
+                    hero.gainExperiencePoints(experiencePointGained);
                 }
+
+                hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
             }
         }
 

@@ -63,6 +63,17 @@ public class HeroInventory {
         }
     }
 
+    public boolean checkInventoryForItems(Map<? extends Item, Integer> neededItems) {
+        for (Map.Entry<Item, Integer> inventoryItem : this.heroInventory.entrySet()) {
+            for (Map.Entry<? extends Item, Integer> neededItem : neededItems.entrySet()) {
+                if (inventoryItem.getKey().equals(neededItem.getKey()) && Objects.equals(inventoryItem.getValue(), neededItem.getValue())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void changeList() {
         Gson gson = new Gson();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {

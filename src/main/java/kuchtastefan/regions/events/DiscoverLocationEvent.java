@@ -26,6 +26,7 @@ public class DiscoverLocationEvent extends Event {
                 if (!discoveredLocations.contains(location)) {
                     discoveredLocations.add(location);
                     System.out.println("\tYou discovered " + location.getLocationName() + ", recommended level: " + location.getLocationLevel() + " level");
+                    hero.gainExperiencePoints(50);
                     location.locationMenu();
                     break;
                 }

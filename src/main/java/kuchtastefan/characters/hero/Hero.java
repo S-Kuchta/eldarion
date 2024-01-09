@@ -7,6 +7,7 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
+import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.HashMap;
@@ -19,6 +20,9 @@ public class Hero extends GameCharacter {
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final HeroInventory heroInventory;
     private double heroGold;
+    private double experiencePoints;
+    private final ExperiencePointsService experiencePointsService;
+
 
     public Hero(String name) {
         super(name, new HashMap<>());
@@ -28,6 +32,8 @@ public class Hero extends GameCharacter {
         this.equippedItem = initialEquip();
         this.heroInventory = new HeroInventory();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
+        this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
+        this.experiencePointsService = new ExperiencePointsService();
     }
 
     public void equipItem(WearableItem wearableItem) {
@@ -118,6 +124,32 @@ public class Hero extends GameCharacter {
         }
     }
 
+    public void gainExperiencePoints(double experiencePointsGained) {
+        this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
+        this.experiencePoints = this.experiencePoints + experiencePointsGained;
+
+        if (this.experiencePointsService.gainedNewLevel(this.experiencePoints)) {
+            this.level++;
+
+            PrintUtil.printDivider();
+            System.out.println("\tYou reach a new level! Your level is " + this.level + "!");
+            PrintUtil.printDivider();
+
+            this.experiencePoints = this.experiencePoints - experiencePointsService.getNeededExperiencePointsForNewLevel();
+            this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
+        }
+
+        PrintUtil.printLongDivider();
+        System.out.println("\t\tYou gained " + (int)experiencePointsGained
+                + "xp\t\t\t\tExperience points: " + (int)this.experiencePoints + "xp / "
+                + (int)this.experiencePointsService.getNeededExperiencePointsForNewLevel() + "xp");
+        PrintUtil.printLongDivider();
+    }
+
+    public ExperiencePointsService getExperiencePointsService() {
+        return experiencePointsService;
+    }
+
     public void updateAbilityPoints(int numberOfPoints) {
         this.unspentAbilityPoints += numberOfPoints;
     }
@@ -156,5 +188,13 @@ public class Hero extends GameCharacter {
 
     public HeroInventory getHeroInventory() {
         return heroInventory;
+    }
+
+    public double getExperiencePoint() {
+        return experiencePoints;
+    }
+
+    public void setExperiencePoint(double experiencePoints) {
+        this.experiencePoints = experiencePoints;
     }
 }

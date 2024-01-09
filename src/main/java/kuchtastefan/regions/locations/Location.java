@@ -29,7 +29,7 @@ public class Location {
 
     public void locationMenu() {
         PrintUtil.printLongDivider();
-        System.out.println("\t\t" + this.locationName + ", location level: " + this.locationLevel);
+        System.out.println("\t\t" + this.locationName + ", Location level: " + this.locationLevel);
         PrintUtil.printLongDivider();
 
         System.out.println("\tWhat do you want to do?");

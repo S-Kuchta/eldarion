@@ -31,9 +31,9 @@ public class ForestRegionService extends Region {
                     + allLocations.size());
             PrintUtil.printLongDivider();
 
-            PrintUtil.printLongDivider();
-            System.out.println("\tYou are traveling across Magic forest called " + getRegionName());
-            PrintUtil.printLongDivider();
+//            PrintUtil.printLongDivider();
+//            System.out.println("\tYou are traveling across Magic forest called " + getRegionName());
+//            PrintUtil.printLongDivider();
             System.out.println("\t0. Go back to the city");
             System.out.println("\t1. Travel across region " + getRegionName());
             System.out.println("\t2. Hero menu");
@@ -69,6 +69,7 @@ public class ForestRegionService extends Region {
         locationList.add(new Location("Tower of Damned", 5, 10, LocationType.TOWER));
         locationList.add(new Location("Castle ruins", 3, 10, LocationType.CASTLE));
         locationList.add(new Location("Old mine", 2, 10, LocationType.MINE));
+        locationList.add(new Location("Cemetery", 4, 10, LocationType.CEMETERY));
         return locationList;
     }
 

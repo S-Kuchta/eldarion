@@ -14,7 +14,7 @@ import java.util.Map;
 public class Enemy extends GameCharacter {
 
     private List<Item> itemsDrop;
-    private final double goldDrop;
+    private double goldDrop;
     private EnemyType enemyType;
     private final LocationType[] locationType;
     private ItemsLists itemsLists;
@@ -24,7 +24,7 @@ public class Enemy extends GameCharacter {
                  EnemyType enemyType, ItemsLists itemsLists,
                  LocationType[] locationType, int maxStack) {
         super(name, abilities);
-        this.goldDrop = goldDrop();
+        this.goldDrop = 0;
         this.enemyType = enemyType;
         this.locationType = locationType;
         this.maxStack = maxStack;
@@ -32,11 +32,9 @@ public class Enemy extends GameCharacter {
         this.itemsDrop = new ArrayList<>();
     }
 
-    private double goldDrop() {
+    public void goldDrop() {
         if (enemyType.equals(EnemyType.HUMANOID)) {
-            return RandomNumberGenerator.getRandomNumber(5 + getLevel(), 15 + getLevel());
-        } else {
-            return 0;
+            setGoldDrop(RandomNumberGenerator.getRandomNumber(5 + getLevel(), 15 + getLevel()));
         }
     }
 
@@ -60,6 +58,10 @@ public class Enemy extends GameCharacter {
 
     public double getGoldDrop() {
         return goldDrop;
+    }
+
+    public void setGoldDrop(double goldDrop) {
+        this.goldDrop = goldDrop;
     }
 
     public EnemyType getEnemyType() {

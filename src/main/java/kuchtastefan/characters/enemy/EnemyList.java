@@ -17,6 +17,7 @@ public class EnemyList {
         Gson gson = new Gson();
         Enemy newEnemy = gson.fromJson(gson.toJson(enemy), Enemy.class);
         newEnemy.itemsDrop();
+        newEnemy.goldDrop();
         return newEnemy;
     }
 

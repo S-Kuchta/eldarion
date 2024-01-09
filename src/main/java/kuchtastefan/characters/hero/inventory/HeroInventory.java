@@ -64,13 +64,15 @@ public class HeroInventory {
     }
 
     public boolean checkInventoryForItems(Map<? extends Item, Integer> neededItems) {
-        for (Map.Entry<Item, Integer> inventoryItem : this.heroInventory.entrySet()) {
-            for (Map.Entry<? extends Item, Integer> neededItem : neededItems.entrySet()) {
-                if (inventoryItem.getKey().equals(neededItem.getKey()) && Objects.equals(inventoryItem.getValue(), neededItem.getValue())) {
-                    return true;
-                }
+
+        for (Map.Entry<? extends Item, Integer> neededItem : neededItems.entrySet()) {
+            if (this.heroInventory.containsKey(neededItem.getKey()) && neededItem.getValue() <= this.heroInventory.get(neededItem.getKey())) {
+                this.heroInventory.put(neededItem.getKey(), heroInventory.get(neededItem.getKey()) - neededItem.getValue());
+                System.out.println("return true");
+                return true;
             }
         }
+
         return false;
     }
 

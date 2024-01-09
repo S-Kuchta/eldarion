@@ -24,9 +24,8 @@ public class BlacksmithService {
             PrintUtil.printDivider();
 
             Map<WearableItem, Map<CraftingReagentItem, Integer>> refinementItemMap = new HashMap<>();
+            List<WearableItem> tempItemList = new ArrayList<>();
 
-//            List<WearableItem> tempItemList = new ArrayList<>();
-            List<Map<WearableItem, Map<CraftingReagentItem, Integer>>> wearableItemList = new ArrayList<>();
             int index = 1;
             System.out.println("\t0. Go back");
             if (hero.getHeroInventory().getHeroInventory().isEmpty()) {
@@ -38,12 +37,12 @@ public class BlacksmithService {
                         System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                         PrintUtil.printItemAbilityPoints(item.getKey());
                         refinementItemMap.put(item.getKey(), itemsNeededToRefinement(item.getKey(), itemsLists));
-                        wearableItemList.add(refinementItemMap);
-
+                        tempItemList.add(item.getKey());
                         index++;
                     }
                 }
             }
+
             WearableItem wearableItem = null;
 
             while (true) {
@@ -52,43 +51,43 @@ public class BlacksmithService {
                     return;
                 }
                 try {
-                    for (Map.Entry<WearableItem, Map<CraftingReagentItem, Integer>> wearableItemIntegerEntry : wearableItemList.get(choice - 1).entrySet()) {
-                        if (hero.getHeroInventory().checkInventoryForItems(wearableItemIntegerEntry.getValue())) {
-//                            wearableItem = wearableItemIntegerEntry.getKey();
-                        }
+                    if (hero.getHeroInventory().checkInventoryForItems(refinementItemMap.get(tempItemList.get(choice - 1)))) {
+                        wearableItem = tempItemList.get(choice - 1);
+                        break;
+                    } else {
+                        PrintUtil.printLongDivider();
+                        System.out.println("\tYou don't have enough crafting reagents to refinement " + tempItemList.get(choice - 1).getName());
+                        PrintUtil.printLongDivider();
                     }
+                    break;
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Inter valid input");
+                    System.out.println("\tInter valid input");
                 }
             }
 
-//            if (hero.getHeroInventory().checkInventoryForItems(wearableItemList.get()))
+            if (wearableItem == null) {
+                break;
+            } else {
+                WearableItemQuality wearableItemQuality = wearableItem.getItemQuality();
+                Gson gson = new Gson();
+                WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
 
-//            WearableItem wearableItem = selectItem(tempItemList);
+                if (wearableItemQuality == WearableItemQuality.BASIC) {
+                    hero.getHeroInventory().removeItemFromItemList(wearableItem);
+                    itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
+                    afterSuccessFullRefinementItem(itemCopy, hero);
 
-                if (wearableItem == null) {
-                    break;
+                } else if (wearableItemQuality == WearableItemQuality.IMPROVED) {
+                    hero.getHeroInventory().removeItemFromItemList(wearableItem);
+                    itemCopy.setItemQuality(WearableItemQuality.SUPERIOR);
+                    afterSuccessFullRefinementItem(itemCopy, hero);
+
                 } else {
-                    WearableItemQuality wearableItemQuality = wearableItem.getItemQuality();
-                    Gson gson = new Gson();
-                    WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
-
-                    if (wearableItemQuality == WearableItemQuality.BASIC) {
-                        hero.getHeroInventory().removeItemFromItemList(wearableItem);
-                        itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
-                        afterSuccessFullImproveItem(itemCopy, hero);
-
-                    } else if (wearableItemQuality == WearableItemQuality.IMPROVED) {
-                        hero.getHeroInventory().removeItemFromItemList(wearableItem);
-                        itemCopy.setItemQuality(WearableItemQuality.SUPERIOR);
-                        afterSuccessFullImproveItem(itemCopy, hero);
-
-                    } else {
-                        PrintUtil.printLongDivider();
-                        System.out.println("\t\tYou can not refinement your item. Your item has the highest quality");
-                        PrintUtil.printLongDivider();
-                    }
+                    PrintUtil.printLongDivider();
+                    System.out.println("\t\tYou can not refinement your item. Your item has the highest quality");
+                    PrintUtil.printLongDivider();
                 }
+            }
         }
     }
 
@@ -99,26 +98,26 @@ public class BlacksmithService {
 
         CraftingReagentItem craftingReagentItem = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
         if (wearableItem.getItemQuality().equals(WearableItemQuality.BASIC)) {
-            itemsNeededToRefinement = wearableItem.getItemLevel() * 2;
+            itemsNeededToRefinement = wearableItem.getItemLevel() * 3;
         }
 
         if (wearableItem.getItemQuality().equals(WearableItemQuality.IMPROVED)) {
-            itemsNeededToRefinement = wearableItem.getItemLevel() * 3;
+            itemsNeededToRefinement = wearableItem.getItemLevel() * 4;
         }
 
         itemsNeededForRefinement.put(craftingReagentItem, itemsNeededToRefinement);
 
-        System.out.println("\t\tTo refinement you need: " + craftingReagentItem.getName() + " (" + itemsNeededToRefinement + "x)");
+        System.out.println("\t\tTo refinement you need: " + craftingReagentItem.getName() + " (" + itemsNeededToRefinement + "x), Price of refinement: ");
         return itemsNeededForRefinement;
     }
 
-    private void afterSuccessFullImproveItem(WearableItem wearableItem, Hero hero) {
+    private void afterSuccessFullRefinementItem(WearableItem wearableItem, Hero hero) {
         wearableItem.setItemAbilities(wearableItem);
         wearableItem.setPrice(wearableItem.getPrice() * 2);
         hero.getHeroInventory().addItemToItemList(wearableItem);
 
         PrintUtil.printLongDivider();
-        System.out.println("\t\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getItemQuality() + " quality");
+        System.out.println("\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getItemQuality() + " quality");
         PrintUtil.printLongDivider();
         hero.updateWearingItemAbilityPoints();
     }

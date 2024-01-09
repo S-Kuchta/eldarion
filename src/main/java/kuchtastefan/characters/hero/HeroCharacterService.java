@@ -2,26 +2,32 @@ package kuchtastefan.characters.hero;
 
 import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.PrintUtil;
 
 public class HeroCharacterService {
     private final InventoryService inventoryService;
     private final HeroAbilityManager heroAbilityManager;
 
-    public HeroCharacterService(InventoryService inventoryService, HeroAbilityManager heroAbilityManager) {
-        this.inventoryService = inventoryService;
+    public HeroCharacterService(HeroAbilityManager heroAbilityManager) {
+        this.inventoryService = new InventoryService();
         this.heroAbilityManager = heroAbilityManager;
     }
 
     public void heroCharacterMenu(Hero hero) {
-        System.out.println("0. Go back");
-        System.out.println("1. Inventory");
-        System.out.println("2. Abilities");
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. Hero Info");
+        System.out.println("\t2. Inventory");
+        System.out.println("\t3. Abilities");
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> this.inventoryService.inventoryMenu(hero);
-            case 2 -> this.upgradeAbilityMenu(hero);
+            case 1 -> {
+                showHeroInfo(hero);
+                heroCharacterMenu(hero);
+            }
+            case 2 -> this.inventoryService.inventoryMenu(hero);
+            case 3 -> this.upgradeAbilityMenu(hero);
         }
     }
 
@@ -35,6 +41,11 @@ public class HeroCharacterService {
             case 1 -> this.heroAbilityManager.spendAbilityPoints();
             case 2 -> this.heroAbilityManager.removeAbilityPoints();
         }
+    }
+
+    private void showHeroInfo(Hero hero) {
+        PrintUtil.printCurrentAbilityPointsWithItems(hero);
+        PrintUtil.printCurrentWearingArmor(hero);
     }
 
     public InventoryService getInventoryService() {

@@ -15,9 +15,9 @@ import java.util.Map;
 public class InventoryService {
 
     public void inventoryMenu(Hero hero) {
-        PrintUtil.printLongDivider();
-        System.out.println("\t\t" + hero.getName() + " Inventory");
-        PrintUtil.printLongDivider();
+        PrintUtil.printDivider();
+        System.out.println("\t\t------ " + hero.getName() + " Inventory ------");
+        PrintUtil.printDivider();
 
         System.out.println("\t0. Go back");
         System.out.println("\t1. Wearable Items");
@@ -32,7 +32,7 @@ public class InventoryService {
             case 2 -> this.craftingReagentsItemMenu(hero);
             case 3 -> this.consumableItemsMenu(hero);
             case 4 -> this.questItemsMenu(hero);
-            default -> System.out.println("Enter valid input");
+            default -> System.out.println("\tEnter valid input");
         }
     }
 
@@ -58,7 +58,7 @@ public class InventoryService {
             case 4 -> printWearableItemInventoryMenuByItemType(WearableItemType.HANDS, hero);
             case 5 -> printWearableItemInventoryMenuByItemType(WearableItemType.BOOTS, hero);
             case 6 -> hero.wearDownAllEquippedItems();
-            default -> System.out.println("Enter valid number");
+            default -> System.out.println("\tEnter valid number");
         }
     }
 
@@ -71,7 +71,11 @@ public class InventoryService {
         for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
             if (item.getKey().getWearableItemType() == wearableItemType) {
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printItemAbilityPoints(item.getKey());
+                if (hero.getEquippedItem().containsValue(item.getKey())) {
+                    System.out.print("-- EQUIPPED -- ");
+                }
+                PrintUtil.printItemDescription(item.getKey(), true);
+
                 tempList.add(item.getKey());
                 index++;
             }
@@ -89,47 +93,47 @@ public class InventoryService {
                 inventoryMenu(hero);
                 break;
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Enter valid number");
+                System.out.println("\tEnter valid number");
             }
         }
     }
 
     public void craftingReagentsItemMenu(Hero hero) {
         int index = 1;
-        PrintUtil.printInventoryHeader("Crafting reagents");
-        System.out.println("0. Go back");
+        PrintUtil.printInventoryHeader("\tCrafting reagents");
+        System.out.println("\t0. Go back");
         for (Map.Entry<CraftingReagentItem, Integer> item : hero.getHeroInventory().returnInventoryCraftingReagentItemMap().entrySet()) {
-            System.out.println(index + ". (" + item.getValue() + "x) " + item.getKey().getName());
+            System.out.println("\t" + index + ". (" + item.getValue() + "x) " + item.getKey().getName());
         }
 
         int choice = InputUtil.intScanner();
         if (choice == 0) {
             this.inventoryMenu(hero);
         } else {
-            System.out.println("Enter valid number");
+            System.out.println("\tEnter valid number");
         }
     }
 
     public void consumableItemsMenu(Hero hero) {
 //        int index = 1;
         PrintUtil.printInventoryHeader("Consumable");
-        System.out.println("0. Go back");
+        System.out.println("\t0. Go back");
         PrintUtil.printConsumableItemFromList(hero.getHeroInventory().returnInventoryConsumableItemMap());
 
         int choice = InputUtil.intScanner();
         if (choice == 0) {
             this.inventoryMenu(hero);
         } else {
-            System.out.println("Enter valid number");
+            System.out.println("\tEnter valid number");
         }
     }
 
     public void questItemsMenu(Hero hero) {
         int index = 1;
         PrintUtil.printInventoryHeader("Quest");
-        System.out.println("0. Go back");
+        System.out.println("\t0. Go back");
         for (Map.Entry<QuestItem, Integer> item : hero.getHeroInventory().returnInventoryQuestItemMap().entrySet()) {
-            System.out.println(index + ". (" + item.getValue() + "x) " + item.getKey().getName());
+            System.out.println("\t" + index + ". (" + item.getValue() + "x) " + item.getKey().getName());
         }
 
         int choice = InputUtil.intScanner();

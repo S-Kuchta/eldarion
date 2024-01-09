@@ -43,8 +43,10 @@ public class WearableItemVendorCharacter extends VendorCharacter {
             for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
                 wearableItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printItemAbilityPoints(item.getKey());
-                System.out.println("\t\tSell price: " + super.returnSellItemPrice(item.getKey()));
+                if (hero.getEquippedItem().containsValue(item.getKey())) {
+                    System.out.print("-- EQUIPPED -- ");
+                }
+                PrintUtil.printItemDescription(item.getKey(), true);
                 index++;
             }
         }
@@ -59,7 +61,7 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         for (Item wearableItem : this.itemsForSale) {
             if (wearableItem instanceof WearableItem) {
                 System.out.print("\t" + index + ". ");
-                PrintUtil.printFullItemDescription((WearableItem) wearableItem);
+                PrintUtil.printItemDescription((WearableItem) wearableItem, false);
                 index++;
             }
         }

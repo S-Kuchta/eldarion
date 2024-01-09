@@ -72,7 +72,6 @@ public class HeroInventory {
                 if (removeItem) {
                     this.heroInventory.put(neededItem.getKey(), heroInventory.get(neededItem.getKey()) - neededItem.getValue());
                 }
-                System.out.println("return true");
                 return true;
             }
         }

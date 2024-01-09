@@ -14,7 +14,7 @@ public class Location {
     protected int stageTotal;
     protected int stageComplete;
     protected boolean cleared;
-    protected List<Enemy> enemies;
+    protected List<Enemy> enemyList;
     protected final LocationType locationType;
 
     public Location(String locationName, int locationLevel, int stageTotal, LocationType locationType) {
@@ -23,7 +23,7 @@ public class Location {
         this.stageTotal = stageTotal;
         this.stageComplete = 0;
         this.cleared = false;
-        this.enemies = new ArrayList<>();
+        this.enemyList = new ArrayList<>();
         this.locationType = locationType;
     }
 

@@ -42,7 +42,7 @@ public class GameManager {
         this.blacksmithService = new BlacksmithService();
         this.hintUtil = new HintUtil(new HashMap<>());
         this.itemsLists = new ItemsLists();
-        this.heroCharacterService = new HeroCharacterService(new InventoryService(), this.heroAbilityManager);
+        this.heroCharacterService = new HeroCharacterService(this.heroAbilityManager);
         this.enemyList = new EnemyList();
     }
 
@@ -50,6 +50,9 @@ public class GameManager {
         this.initGame();
 
         while (true) {
+            PrintUtil.printLongDivider();
+            System.out.println("\t\t\t\t\t\t\t------ Mystic Hollow ------");
+            PrintUtil.printLongDivider();
             System.out.println("\t0. Explore surrounding regions");
             System.out.println("\t1. Hero menu");
             System.out.println("\t2. Junk Merchant");

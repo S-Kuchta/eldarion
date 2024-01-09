@@ -25,8 +25,9 @@ public class PrintUtil {
     }
 
     public static void printCurrentAbilityPointsWithItems(Hero hero) {
-        System.out.println();
-        System.out.println("Ability points with items:");
+        printLongDivider();
+        System.out.println("\t\t\t\t\t------ Ability points with items ------");
+        System.out.print("\t");
         for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
             System.out.print(entry.getKey() + ": "
                     + (entry.getValue()
@@ -36,12 +37,18 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printItemAbilityPoints(WearableItem wearableItem) {
+    public static void printItemDescription(WearableItem wearableItem, boolean sellItem) {
         System.out.print(wearableItem.getWearableItemType() + ": "
                 + wearableItem.getName()
                 + " (" + wearableItem.getItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
+        if (!sellItem) {
+            System.out.print(", Item Price: " + wearableItem.getPrice());
+        } else {
+            System.out.print(", Sell Price: " + Math.floor(wearableItem.getPrice() * 0.7));
+        }
+
         if (!wearableItem.getName().equals("No item")) {
-            System.out.print(", Item stats: ");
+            System.out.print("\n\t\tItem stats: ");
         }
         for (Map.Entry<Ability, Integer> ability : wearableItem.getAbilities().entrySet()) {
             if (ability.getValue() != 0) {
@@ -51,16 +58,18 @@ public class PrintUtil {
         System.out.println();
     }
 
-    public static void printFullItemDescription(WearableItem wearableItem) {
-        printItemAbilityPoints(wearableItem);
-        System.out.println("\t\t\tItem Price: "
-                + wearableItem.getPrice()
-                + " golds");
-    }
+//    public static void printFullItemDescription(WearableItem wearableItem) {
+//        printItemAbilityPoints(wearableItem);
+//        System.out.println("\t\t\tItem Price: "
+//                + wearableItem.getPrice()
+//                + " golds");
+//    }
 
     public static void printCurrentWearingArmor(Hero hero) {
+        printLongDivider();
+        System.out.println("\t\t\t\t------ Current Wearing Armor and Weapon ------");
         for (Map.Entry<WearableItemType, WearableItem> item : hero.getEquippedItem().entrySet()) {
-            System.out.print(item.getKey() + ": " + item.getValue().getName());
+            System.out.print("\t" + item.getKey() + ": " + item.getValue().getName());
             if (!item.getValue().getName().equals("No item")) {
                 System.out.print(", Item stats: ");
             }
@@ -121,21 +130,21 @@ public class PrintUtil {
     }
 
     public static void printInventoryHeader(WearableItemType wearableItemType) {
-        printDivider();
-        System.out.println("\t\t" + wearableItemType + " inventory");
-        printDivider();
+        printLongDivider();
+        System.out.println("\t\t\t\t\t\t------ " + wearableItemType + " inventory ------");
+        printLongDivider();
     }
 
     public static void printInventoryHeader(String inventory) {
-        printDivider();
-        System.out.println("\t\t" + inventory + " items Inventory");
-        printDivider();
+        printLongDivider();
+        System.out.println("\t\t\t\t------ " + inventory + " items Inventory ------");
+        printLongDivider();
     }
 
     public static void printConsumableItemFromList(Map<ConsumableItem, Integer> consumableItemMap) {
         int index = 1;
         for (Map.Entry<ConsumableItem, Integer> item : consumableItemMap.entrySet()) {
-            System.out.print(index + ". ("
+            System.out.print("\t" + index + ". ("
                     + item.getValue() + "x) "
                     + item.getKey().getName()
                     + ", Item type: "

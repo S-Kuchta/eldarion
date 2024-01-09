@@ -33,9 +33,8 @@ public class BlacksmithService {
             } else {
                 for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
                     if (!item.getKey().getItemQuality().equals(WearableItemQuality.SUPERIOR)) {
-
                         System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                        PrintUtil.printItemAbilityPoints(item.getKey());
+                        PrintUtil.printItemDescription(item.getKey(), false);
                         refinementItemMap.put(item.getKey(), itemsNeededToRefinement(item.getKey(), itemsLists));
                         tempItemList.add(item.getKey());
                         index++;
@@ -180,7 +179,7 @@ public class BlacksmithService {
             for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
                 tempItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printItemAbilityPoints(item.getKey());
+                PrintUtil.printItemDescription(item.getKey(), false);
                 index++;
             }
         }

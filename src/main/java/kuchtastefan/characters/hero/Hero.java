@@ -50,6 +50,14 @@ public class Hero extends GameCharacter {
         updateWearingItemAbilityPoints();
     }
 
+    public void unEquipItem(WearableItem wearableItem) {
+        if (this.heroInventory.getHeroInventory().get(wearableItem) < 2) {
+            this.equippedItem.putAll(returnNoItemToEquippedMap(wearableItem.getWearableItemType()));
+        }
+
+        updateWearingItemAbilityPoints();
+    }
+
     public void updateWearingItemAbilityPoints() {
         for (Ability ability : Ability.values()) {
             this.wearingItemAbilityPoints.put(ability, 0);
@@ -75,7 +83,7 @@ public class Hero extends GameCharacter {
     private Map<WearableItemType, WearableItem> initialEquip() {
         Map<WearableItemType, WearableItem> itemMap = new HashMap<>();
         for (WearableItemType wearableItemType : WearableItemType.values()) {
-            itemMap.put(wearableItemType, new WearableItem("No item", 0, 0, wearableItemType, getItemsInitialAbilityPoints(), WearableItemQuality.BASIC));
+            itemMap.putAll(returnNoItemToEquippedMap(wearableItemType));
         }
         return itemMap;
     }
@@ -100,6 +108,10 @@ public class Hero extends GameCharacter {
                 Ability.LUCK, 0,
                 Ability.HEALTH, 0
         ));
+    }
+
+    private Map<WearableItemType, WearableItem> returnNoItemToEquippedMap(WearableItemType wearableItemType) {
+        return new HashMap<>(Map.of(wearableItemType, new WearableItem("No item", 0, 0, wearableItemType, getItemsInitialAbilityPoints(), WearableItemQuality.BASIC)));
     }
 
     public void setNewAbilityPoint(Ability ability, int pointsToChange, int heroAvailablePointsChange) {
@@ -141,9 +153,9 @@ public class Hero extends GameCharacter {
         }
 
         PrintUtil.printLongDivider();
-        System.out.println("\t\tYou gained " + (int)experiencePointsGained
-                + "xp\t\t\t\tExperience points: " + (int)this.experiencePoints + "xp / "
-                + (int)this.experiencePointsService.getNeededExperiencePointsForNewLevel() + "xp");
+        System.out.println("\t\tYou gained " + (int) experiencePointsGained
+                + "xp\t\t\t\tExperience points: " + (int) this.experiencePoints + "xp / "
+                + (int) this.experiencePointsService.getNeededExperiencePointsForNewLevel() + "xp");
         PrintUtil.printLongDivider();
     }
 

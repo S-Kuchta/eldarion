@@ -71,6 +71,7 @@ public class HeroInventory {
             if (this.heroInventory.containsKey(neededItem.getKey()) && neededItem.getValue() <= this.heroInventory.get(neededItem.getKey())) {
                 if (removeItem) {
                     this.heroInventory.put(neededItem.getKey(), heroInventory.get(neededItem.getKey()) - neededItem.getValue());
+//                    this.removeItemFromItemList(neededItem.getKey());
                 }
                 return true;
             }

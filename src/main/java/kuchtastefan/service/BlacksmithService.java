@@ -118,7 +118,8 @@ public class BlacksmithService {
         PrintUtil.printLongDivider();
         System.out.println("\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getItemQuality() + " quality");
         PrintUtil.printLongDivider();
-        hero.updateWearingItemAbilityPoints();
+        hero.equipItem(wearableItem);
+//        hero.updateWearingItemAbilityPoints();
     }
 
     public void dismantleItem(Hero hero, ItemsLists itemsLists) {
@@ -151,6 +152,7 @@ public class BlacksmithService {
                 + "(" + numbersOfIteration + "x)");
         PrintUtil.printLongDivider();
 
+        hero.unEquipItem(wearableItem);
         hero.getHeroInventory().removeItemFromItemList(wearableItem);
     }
 

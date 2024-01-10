@@ -5,6 +5,7 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
+import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -131,7 +132,10 @@ public abstract class VendorCharacter extends GameCharacter {
                     vendorMenu(hero);
                 } else {
                     Item item = itemList.get(choice - 1);
-                    hero.setHeroGold((hero.getHeroGold() + returnSellItemPrice(item)));
+                    hero.setHeroGold(returnSellItemPrice(item));
+                    if (item instanceof WearableItem) {
+                        hero.unEquipItem((WearableItem) item);
+                    }
                     hero.getHeroInventory().removeItemFromItemList(item);
                     System.out.println("\t" + item.getName() + " sold for " + returnSellItemPrice(item) + " golds");
                     vendorMenu(hero);

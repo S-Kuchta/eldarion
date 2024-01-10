@@ -169,6 +169,10 @@ public class Hero extends GameCharacter {
         return false;
     }
 
+    public void addGolds(double golds) {
+        this.heroGold += golds;
+    }
+
     public void updateAbilityPoints(int numberOfPoints) {
         this.unspentAbilityPoints += numberOfPoints;
     }

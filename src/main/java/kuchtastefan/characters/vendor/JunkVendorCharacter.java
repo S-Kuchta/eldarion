@@ -18,7 +18,7 @@ public class JunkVendorCharacter extends VendorCharacter {
     @Override
     protected void vendorOffer(Hero hero) {
         PrintUtil.printShopHeader(hero, "Junk");
-        this.printItems();
+        this.printItems(hero);
         super.buyItem(hero);
     }
 
@@ -34,7 +34,7 @@ public class JunkVendorCharacter extends VendorCharacter {
             for (Map.Entry<JunkItem, Integer> item : hero.getHeroInventory().returnInventoryJunkItemMap().entrySet()) {
                 junkItems.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) " + item.getKey().getName());
-                System.out.println("\n\t\tSell price: " + super.returnSellItemPrice(item.getKey()));
+                System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
             }
         }
         super.sellItem(hero, junkItems);
@@ -46,7 +46,7 @@ public class JunkVendorCharacter extends VendorCharacter {
     }
 
     @Override
-    protected void printItems() {
+    protected void printItems(Hero hero) {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item junkItem : this.itemsForSale) {

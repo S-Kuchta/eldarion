@@ -25,12 +25,12 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
         });
 
         PrintUtil.printShopHeader(hero, "Crafting reagents");
-        this.printItems();
+        this.printItems(hero);
         super.buyItem(hero);
     }
 
     @Override
-    protected void printItems() {
+    protected void printItems(Hero hero) {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item craftingReagentItem : this.itemsForSale) {
@@ -62,7 +62,7 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
                 craftingReagentItems.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printCraftingReagentItemInfo(item.getKey());
-                System.out.println("\n\t\tSell price: " + super.returnSellItemPrice(item.getKey()));
+                System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
             }
         }
         super.sellItem(hero, craftingReagentItems);

@@ -37,14 +37,18 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printItemDescription(WearableItem wearableItem, boolean sellItem) {
+    public static void printItemDescription(WearableItem wearableItem, boolean sellItem, Hero hero) {
+
+        if (hero.getEquippedItem().containsValue(wearableItem)) {
+            System.out.print("-- EQUIPPED -- ");
+        }
         System.out.print(wearableItem.getWearableItemType() + ": "
                 + wearableItem.getName()
                 + " (" + wearableItem.getItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
         if (!sellItem) {
             System.out.print(", Item Price: " + wearableItem.getPrice());
         } else {
-            System.out.print(", Sell Price: " + Math.floor(wearableItem.getPrice() * 0.7));
+            System.out.print(", Sell Price: " + wearableItem.returnSellItemPrice());
         }
 
         if (!wearableItem.getName().equals("No item")) {

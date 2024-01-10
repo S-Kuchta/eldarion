@@ -26,12 +26,12 @@ public class ConsumableVendorCharacter extends VendorCharacter {
         });
 
         PrintUtil.printShopHeader(hero, "Consumable");
-        this.printItems();
+        this.printItems(hero);
         super.buyItem(hero);
     }
 
     @Override
-    protected void printItems() {
+    protected void printItems(Hero hero) {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item consumableItem : this.itemsForSale) {
@@ -59,7 +59,7 @@ public class ConsumableVendorCharacter extends VendorCharacter {
                 consumableItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printConsumableItemInfo(item.getKey());
-                System.out.println("\n\t\tSell price: " + super.returnSellItemPrice(item.getKey()));
+                System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
             }
         }
         super.sellItem(hero, consumableItemList);

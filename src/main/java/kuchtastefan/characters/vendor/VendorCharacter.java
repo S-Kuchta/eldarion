@@ -31,7 +31,7 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public abstract void printGreeting();
 
-    protected abstract void printItems();
+    protected abstract void printItems(Hero hero);
 
     public void vendorMenu(Hero hero) {
         printGreeting();
@@ -132,12 +132,12 @@ public abstract class VendorCharacter extends GameCharacter {
                     vendorMenu(hero);
                 } else {
                     Item item = itemList.get(choice - 1);
-                    hero.setHeroGold(returnSellItemPrice(item));
+                    hero.addGolds(item.returnSellItemPrice());
                     if (item instanceof WearableItem) {
                         hero.unEquipItem((WearableItem) item);
                     }
                     hero.getHeroInventory().removeItemFromItemList(item);
-                    System.out.println("\t" + item.getName() + " sold for " + returnSellItemPrice(item) + " golds");
+                    System.out.println("\t" + item.getName() + " sold for " + item.returnSellItemPrice() + " golds");
                     vendorMenu(hero);
                 }
 

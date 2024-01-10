@@ -27,7 +27,7 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         });
 
         PrintUtil.printShopHeader(hero, "Blacksmith");
-        this.printItems();
+        this.printItems(hero);
         super.buyItem(hero);
     }
 
@@ -46,7 +46,7 @@ public class WearableItemVendorCharacter extends VendorCharacter {
                 if (hero.getEquippedItem().containsValue(item.getKey())) {
                     System.out.print("-- EQUIPPED -- ");
                 }
-                PrintUtil.printItemDescription(item.getKey(), true);
+                PrintUtil.printItemDescription(item.getKey(), true, hero);
                 index++;
             }
         }
@@ -55,13 +55,13 @@ public class WearableItemVendorCharacter extends VendorCharacter {
     }
 
     @Override
-    protected void printItems() {
+    protected void printItems(Hero hero) {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item wearableItem : this.itemsForSale) {
             if (wearableItem instanceof WearableItem) {
                 System.out.print("\t" + index + ". ");
-                PrintUtil.printItemDescription((WearableItem) wearableItem, false);
+                PrintUtil.printItemDescription((WearableItem) wearableItem, false, hero);
                 index++;
             }
         }

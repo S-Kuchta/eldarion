@@ -53,7 +53,7 @@ public class CombatEvent extends Event {
                         System.out.println("You loot " + item.getName());
                     }
                     System.out.println("You loot " + goldEarn + " golds");
-                    hero.setHeroGold(hero.getHeroGold() + goldEarn);
+                    hero.addGolds(goldEarn);
 
                     hero.gainExperiencePoints(experiencePointGained);
                 }

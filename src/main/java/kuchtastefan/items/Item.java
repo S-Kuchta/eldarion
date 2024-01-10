@@ -14,6 +14,10 @@ public class Item {
         this.itemLevel = itemLevel;
     }
 
+    public double returnSellItemPrice() {
+        return Math.floor(this.price * 0.7);
+    }
+
     public String getName() {
         return name;
     }

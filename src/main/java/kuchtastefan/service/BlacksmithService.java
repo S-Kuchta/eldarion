@@ -119,7 +119,6 @@ public class BlacksmithService {
         System.out.println("\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getItemQuality() + " quality");
         PrintUtil.printLongDivider();
         hero.equipItem(wearableItem);
-//        hero.updateWearingItemAbilityPoints();
     }
 
     public void dismantleItem(Hero hero, ItemsLists itemsLists) {

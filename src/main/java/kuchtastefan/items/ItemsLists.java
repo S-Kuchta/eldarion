@@ -7,6 +7,7 @@ import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.quest.Quest;
 
 import java.util.ArrayList;
 import java.util.List;

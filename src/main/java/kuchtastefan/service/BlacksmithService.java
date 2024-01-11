@@ -2,6 +2,10 @@ package kuchtastefan.service;
 
 import com.google.gson.Gson;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
+import kuchtastefan.characters.vendor.WearableItemVendorCharacter;
+import kuchtastefan.hint.HintName;
+import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
@@ -17,6 +21,36 @@ import java.util.List;
 import java.util.Map;
 
 public class BlacksmithService {
+
+    public void blacksmithMenu(Hero hero, ItemsLists itemsLists) {
+        final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
+                itemsLists.returnWearableItemListByItemLevel(hero.getLevel(), null));
+        final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
+                itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
+
+        HintUtil.printHint(HintName.BLACKSMITH_HINT);
+
+        PrintUtil.printDivider();
+        System.out.println("\t\tBlacksmith");
+        PrintUtil.printDivider();
+
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. Refinement item");
+        System.out.println("\t2. Dismantle item");
+        System.out.println("\t3. " + citySmithVendor.getName() + " (Wearable Items Merchant)");
+        System.out.println("\t4. " + cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
+        final int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> this.refinementItemQuality(hero, itemsLists);
+            case 2 -> this.dismantleItem(hero, itemsLists);
+            case 3 -> citySmithVendor.vendorMenu(hero);
+            case 4 -> cityReagentVendor.vendorMenu(hero);
+            default -> System.out.println("Enter valid input");
+        }
+    }
+
     public void refinementItemQuality(Hero hero, ItemsLists itemsLists) {
         while (true) {
             PrintUtil.printDivider();

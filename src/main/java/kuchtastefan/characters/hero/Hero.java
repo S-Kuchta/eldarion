@@ -2,6 +2,7 @@ package kuchtastefan.characters.hero;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.items.wearableItem.WearableItem;
@@ -16,12 +17,13 @@ import java.util.Map;
 public class Hero extends GameCharacter {
 
     private int unspentAbilityPoints;
+    private double heroGold;
+    private double experiencePoints;
     private Map<WearableItemType, WearableItem> equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final HeroInventory heroInventory;
-    private double heroGold;
-    private double experiencePoints;
     private final ExperiencePointsService experiencePointsService;
+    private final EnemyKilled enemyKilled;
 
 
     public Hero(String name) {
@@ -34,6 +36,7 @@ public class Hero extends GameCharacter {
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
         this.experiencePointsService = new ExperiencePointsService();
+        this.enemyKilled = new EnemyKilled();
     }
 
     public void equipItem(WearableItem wearableItem) {
@@ -213,4 +216,7 @@ public class Hero extends GameCharacter {
         return heroInventory;
     }
 
+    public EnemyKilled getEnemyKilled() {
+        return enemyKilled;
+    }
 }

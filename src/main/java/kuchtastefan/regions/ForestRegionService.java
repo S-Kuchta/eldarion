@@ -31,9 +31,6 @@ public class ForestRegionService extends Region {
                     + allLocations.size());
             PrintUtil.printLongDivider();
 
-//            PrintUtil.printLongDivider();
-//            System.out.println("\tYou are traveling across Magic forest called " + getRegionName());
-//            PrintUtil.printLongDivider();
             System.out.println("\t0. Go back to the city");
             System.out.println("\t1. Travel across region " + getRegionName());
             System.out.println("\t2. Hero menu");
@@ -49,8 +46,8 @@ public class ForestRegionService extends Region {
                 case 0 -> {
                     return;
                 }
-                case 2 -> heroCharacterService.heroCharacterMenu(this.hero);
                 case 1 -> super.eventService.randomRegionEventGenerate(super.hero, this.enemyList, LocationType.FOREST);
+                case 2 -> heroCharacterService.heroCharacterMenu(this.hero);
                 default -> {
                     try {
                         this.discoveredLocations.get(choice - 3).locationMenu();

@@ -23,17 +23,17 @@ public class FindItemEvent extends Event {
         int numberOfFindingItems = RandomNumberGenerator.getRandomNumber(0, 2);
 
         if (numberOfFindingItems == 0) {
-            System.out.println("\tThis is unlucky, you were clumsy and ruined " + item.getName());
+            System.out.println("\t--> This is unlucky, you were clumsy and ruined " + item.getName() + " <--");
             return;
         }
 
         for (int i = 0; i < numberOfFindingItems; i++) {
             if (item.getCraftingReagentItemType().equals(CraftingReagentItemType.ALCHEMY_REAGENT)) {
-                System.out.println("\tYou gather " + item.getName());
+                System.out.println("\t--> You gather " + item.getName() + " <--");
             }
 
             if (item.getCraftingReagentItemType().equals(CraftingReagentItemType.BLACKSMITH_REAGENT)) {
-                System.out.println("\tYou mined " + item.getName());
+                System.out.println("\t--> You mined " + item.getName() + " <--");
             }
 
             hero.getHeroInventory().addItemWithNewCopyToItemList(item);

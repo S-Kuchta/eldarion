@@ -8,61 +8,6 @@ import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 public class BattleService {
-//    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy) {
-//        System.out.println(hero.getName() + " VS " + enemy.getName());
-//        PrintUtil.printCurrentAbilityPoints(hero);
-//        PrintUtil.printCurrentWearingArmor(hero);
-//        PrintUtil.printCurrentAbilityPointsWithItems(hero);
-////        PrintUtil.printCurrentWearingArmor(hero, itemList);
-//
-//        PrintUtil.printCurrentAbilityPoints(enemy);
-//
-//        System.out.println("Are you ready to fight?");
-//        System.out.println("0. No");
-//        System.out.println("1. Yes");
-//
-//        final int choice = InputUtil.intScanner();
-//        switch (choice) {
-//            case 0 -> {
-//                System.out.println("You have escaped from battle");
-//                return false;
-//            }
-//            case 1 -> {
-//                System.out.println("Let the battle begin");
-//                return true;
-//            }
-//            default -> {
-//                System.out.println("Invalid choice");
-//                return false;
-//            }
-//        }
-//    }
-
-//    public boolean isHeroReadyToBattle(Hero hero, Enemy enemy) {
-//        System.out.println(hero.getName() + " VS " + enemy.getName());
-////        PrintUtil.printCurrentWearingArmor(hero, itemList);
-//
-//        System.out.println("Are you ready to fight?");
-//        System.out.println("0. No");
-//        System.out.println("1. Yes");
-//
-//        final int choice = InputUtil.intScanner();
-//        switch (choice) {
-//            case 0 -> {
-//                System.out.println("You have escaped from battle");
-//                return false;
-//            }
-//            case 1 -> {
-//                System.out.println("Let the battle begin");
-//                return true;
-//            }
-//            default -> {
-//                System.out.println("Invalid choice");
-//                return false;
-//            }
-//        }
-//    }
-
     public boolean battle(Hero hero, Enemy enemy) {
         boolean heroPlay = true;
         while (true) {

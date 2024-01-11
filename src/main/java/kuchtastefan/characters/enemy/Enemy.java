@@ -7,9 +7,7 @@ import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Enemy extends GameCharacter {
 
@@ -33,7 +31,7 @@ public class Enemy extends GameCharacter {
     }
 
     public void goldDrop() {
-        if (enemyType.equals(EnemyType.HUMANOID)) {
+        if (this.enemyType.equals(EnemyType.HUMANOID)) {
             setGoldDrop(RandomNumberGenerator.getRandomNumber(5 + getLevel(), 15 + getLevel()));
         }
     }
@@ -85,5 +83,20 @@ public class Enemy extends GameCharacter {
 
     public void setItemsDrop(List<Item> itemsDrop) {
         this.itemsDrop = itemsDrop;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Enemy enemy = (Enemy) o;
+        return this.name.equals(enemy.name) && enemyType == enemy.enemyType && Arrays.equals(locationType, enemy.locationType);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name, goldDrop, enemyType);
+        result = 31 * result + Arrays.hashCode(locationType);
+        return result;
     }
 }

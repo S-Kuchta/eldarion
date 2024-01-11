@@ -25,7 +25,7 @@ public class MerchantEvent extends Event {
         System.out.println("\t1. Talk");
         int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> System.out.println("\tYou just walk around merchant and greets him");
+            case 0 -> System.out.println("\t--> You just walk around merchant and greets him <--");
             case 1 -> {
                 int randomNumber = RandomNumberGenerator.getRandomNumber(0, 3);
                 switch (randomNumber) {

@@ -1,6 +1,8 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
+    "heroGold": 178.0,
+    "experiencePoints": 60.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
@@ -8,8 +10,8 @@
           "ATTACK": 0,
           "DEFENCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -23,8 +25,8 @@
           "ATTACK": 0,
           "DEFENCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -38,8 +40,8 @@
           "ATTACK": 0,
           "DEFENCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -53,8 +55,8 @@
           "ATTACK": 0,
           "DEFENCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -68,8 +70,8 @@
           "ATTACK": 0,
           "DEFENCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -82,39 +84,124 @@
       "ATTACK": 0,
       "DEFENCE": 0,
       "HEALTH": 0,
-      "LUCK": 0,
       "SKILL": 0,
+      "LUCK": 0,
       "DEXTERITY": 0
     },
     "heroInventory": {
       "heroInventory": {},
-      "wearableItemInventory": {},
-      "craftingReagentItemInventory": {},
+      "wearableItemInventory": [
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "SKILL": 1,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Skill",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ]
+      ],
+      "craftingReagentItemInventory": [
+        [
+          {
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "name": "DeathBloom",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          3
+        ],
+        [
+          {
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Iron ore",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          7
+        ],
+        [
+          {
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Silver ore",
+            "price": 25.0,
+            "itemLevel": 3
+          },
+          2
+        ]
+      ],
       "consumableItemInventory": {},
       "questItemInventory": {},
-      "junkItemInventory": {}
+      "junkItemInventory": [
+        [
+          {
+            "name": "Doll",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Silver Plate",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Perfume",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Bellows",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ]
+      ]
     },
-    "heroGold": 150.0,
-    "experiencePoints": 0.0,
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 0.0
+      "neededExperiencePointsForNewLevel": 480.0
+    },
+    "enemyKilled": {
+      "enemyKilled": {
+        "Defias Bandit": 2,
+        "Defias Thief": 1
+      },
+      "questEnemyKilled": {}
     },
     "name": "1",
     "abilities": {
       "ATTACK": 8,
       "DEFENCE": 1,
       "HEALTH": 50,
-      "LUCK": 1,
       "SKILL": 1,
+      "LUCK": 1,
       "DEXTERITY": 1
     },
     "level": 1
   },
   "level": 1,
   "hintUtil": {
-    "BLACKSMITH": {
+    "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": true
+      "showed": false
     }
   },
   "forestRegionDiscoveredLocation": []

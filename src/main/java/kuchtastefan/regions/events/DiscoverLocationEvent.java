@@ -25,7 +25,7 @@ public class DiscoverLocationEvent extends Event {
                 Location location = allLocations.get(randomNumber);
                 if (!discoveredLocations.contains(location)) {
                     discoveredLocations.add(location);
-                    System.out.println("\tYou discovered " + location.getLocationName() + ", recommended level: " + location.getLocationLevel() + " level");
+                    System.out.println("\t--> You discovered " + location.getLocationName() + ", recommended level: " + location.getLocationLevel() + " level <--");
                     hero.gainExperiencePoints(50);
                     location.locationMenu();
                     break;
@@ -37,7 +37,7 @@ public class DiscoverLocationEvent extends Event {
                 }
             }
         } else {
-            System.out.println("\tYou believed you caught a glimpse of something, yet it proved to be unremarkable");
+            System.out.println("\t--> You believed you caught a glimpse of something, yet it proved to be unremarkable <--");
         }
     }
 

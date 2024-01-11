@@ -84,7 +84,7 @@ public class BlacksmithService {
                     return;
                 }
                 try {
-                    if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(refinementItemMap.get(tempItemList.get(choice - 1)),true)) {
+                    if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(refinementItemMap.get(tempItemList.get(choice - 1)), true)) {
                         wearableItem = tempItemList.get(choice - 1);
                         break;
                     } else {
@@ -140,7 +140,7 @@ public class BlacksmithService {
 
         itemsNeededForRefinement.put(craftingReagentItem, itemsNeededToRefinement);
 
-        System.out.println("\t\tTo refinement you need: " + craftingReagentItem.getName() + " (" + itemsNeededToRefinement + "x), Price of refinement: ");
+        System.out.println("\t\tTo refinement you need: " + craftingReagentItem.getName() + " (" + itemsNeededToRefinement + "x)");
         return itemsNeededForRefinement;
     }
 

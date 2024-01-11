@@ -1,5 +1,6 @@
 package kuchtastefan.service;
 
+import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
@@ -13,9 +14,15 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestReward;
+import kuchtastefan.quest.questObjectives.QuestKillObjective;
+import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+
+import java.util.List;
 
 
 public class GameManager {
@@ -104,18 +111,36 @@ public class GameManager {
         final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
                 this.itemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
 
+        QuestKillObjective questKillObjective = new QuestKillObjective("Kill 3 wolfs", enemyList.returnEnemyMap().get("Wolf").getName(), 3);
+        QuestReward questReward = new QuestReward(30, 70, 2);
+        questReward.generateRandomWearableItemsReward(1, this.itemsLists.returnWearableItemListByItemLevel(questReward.getQuestLevel(), null));
+
+
+        Quest quest = new Quest("Dangerous in the forest",
+                "In the forest are dangerous wolf, whos kill our miners. Please help us and kill them.", 1, List.of(questKillObjective), questReward);
+
+        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8, quest);
+        for (QuestObjective questObjective : quest.getQuestObjectives()) {
+            questObjective.checkCompleted(this.hero);
+        }
+
+        questGiverCharacter.getQuest().checkQuestObjectivesCompleted();
+
+
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
         PrintUtil.printDivider();
 
         System.out.println("0. Go back");
         System.out.println("1. " + cityFoodVendor.getName() + " (Food Merchant)");
+        System.out.println("2. " + questGiverCharacter.getName());
 
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
             case 1 -> cityFoodVendor.vendorMenu(this.hero);
+            case 2 -> questGiverCharacter.questGiverMenu(this.hero);
         }
     }
 
@@ -150,13 +175,13 @@ public class GameManager {
         this.itemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
         this.itemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
         this.itemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
+        this.itemsLists.initializeAllItemsMapToStringItemMap();
 
         this.enemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile(this.itemsLists));
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero, this.enemyList);
 
         HintUtil.initializeHintList();
-
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");

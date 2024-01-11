@@ -21,7 +21,6 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public VendorCharacter(String name, int level, List<? extends Item> itemsForSale) {
         super(name, level);
-        this.abilities = initializeVendorAbility();
         this.itemsForSale = randomItemGeneratorForVendor(itemsForSale);
     }
 
@@ -49,17 +48,6 @@ public abstract class VendorCharacter extends GameCharacter {
             default -> System.out.println("Enter valid input");
         }
 
-    }
-
-    public Map<Ability, Integer> initializeVendorAbility() {
-        return new HashMap<>(Map.of(
-                Ability.ATTACK, 15,
-                Ability.DEFENCE, 15,
-                Ability.DEXTERITY, 15,
-                Ability.SKILL, 15,
-                Ability.LUCK, 15,
-                Ability.HEALTH, 250
-        ));
     }
 
     public List<Item> randomItemGeneratorForVendor(List<? extends Item> itemList) {

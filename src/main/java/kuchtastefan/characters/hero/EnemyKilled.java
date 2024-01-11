@@ -31,11 +31,11 @@ public class EnemyKilled {
         }
     }
 
-    public void removeQuestEnemyKilled(Enemy enemy) {
-        this.questEnemyKilled.remove(enemy.getName());
+    public void removeQuestEnemyKilled(String enemy) {
+        this.questEnemyKilled.remove(enemy);
     }
 
-    public boolean checkIfContainsEnoughQuestEnemyKilled(String enemyName, int numberOfEnemies) {
+    public boolean checkIfHeroContainsEnoughQuestEnemyKilled(String enemyName, int numberOfEnemies) {
         return this.questEnemyKilled.containsKey(enemyName) && this.questEnemyKilled.get(enemyName) >= numberOfEnemies;
     }
 

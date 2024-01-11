@@ -10,9 +10,12 @@ import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.quest.Quest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ItemsLists {
+    private final Map<String, Item> allItemsMap;
     private final List<WearableItem> wearableItemList;
     private final List<CraftingReagentItem> craftingReagentItems;
     private final List<QuestItem> questItems;
@@ -25,17 +28,30 @@ public class ItemsLists {
         this.questItems = new ArrayList<>();
         this.consumableItems = new ArrayList<>();
         this.junkItems = new ArrayList<>();
+        this.allItemsMap = new HashMap<>();
     }
 
-    public List<Item> returnItemListByLevel(int maxItemLevel, Integer minItemLevel) {
+    public void initializeAllItemsMapToStringItemMap() {
+        List<Item> itemList = returnAllItemsList();
+        itemList.addAll(this.questItems);
+        for (Item item : itemList) {
+            this.allItemsMap.put(item.getName(), item);
+        }
+    }
+
+    private List<Item> returnAllItemsList() {
         List<Item> itemList = new ArrayList<>();
-        List<Item> itemListAfterLevelCheck = new ArrayList<>();
         itemList.addAll(this.wearableItemList);
         itemList.addAll(this.craftingReagentItems);
         itemList.addAll(this.consumableItems);
         itemList.addAll(this.junkItems);
+        return itemList;
+    }
 
-        for (Item item : itemList) {
+    public List<Item> returnItemListByLevel(int maxItemLevel, Integer minItemLevel) {
+        List<Item> itemListAfterLevelCheck = new ArrayList<>();
+
+        for (Item item : returnAllItemsList()) {
             if (item.getItemLevel() == 0) {
                 itemListAfterLevelCheck.add(item);
             } else if (checkItemLevelCondition(item, maxItemLevel, minItemLevel)) {
@@ -131,6 +147,10 @@ public class ItemsLists {
             }
         }
         return tempList;
+    }
+
+    public Map<String, Item> getAllItemsMap() {
+        return allItemsMap;
     }
 
     public List<WearableItem> getWearableItemList() {

@@ -4,13 +4,24 @@ import com.google.gson.Gson;
 import kuchtastefan.regions.locations.LocationType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class EnemyList {
     private final List<Enemy> enemyList;
 
     public EnemyList() {
         this.enemyList = new ArrayList<>();
+    }
+
+    public Map<String, Enemy> returnEnemyMap() {
+        Map<String, Enemy> enemyMap = new HashMap<>();
+        for (Enemy enemy : this.enemyList) {
+            enemyMap.put(enemy.getName(), enemy);
+        }
+
+        return enemyMap;
     }
 
     private Enemy returnEnemyWithNewCopy(Enemy enemy) {

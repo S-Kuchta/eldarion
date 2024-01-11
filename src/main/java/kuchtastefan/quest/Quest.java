@@ -1,15 +1,16 @@
 package kuchtastefan.quest;
 
+import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.List;
 
-public abstract class Quest {
+public class Quest {
     private final String questName;
     private final String questDescription;
     private final int questLevel;
-    private boolean completed;
+    private boolean questCompleted;
     private final List<QuestObjective> questObjectives;
     private final QuestReward questReward;
 
@@ -20,9 +21,11 @@ public abstract class Quest {
         this.questLevel = questLevel;
         this.questObjectives = questObjectives;
         this.questReward = questReward;
+        this.questCompleted = false;
+        questReward.setQuestLevel(this.questLevel);
     }
 
-    public void questObjectivesCompleted() {
+    public void checkQuestObjectivesCompleted() {
         boolean completed = true;
         for (QuestObjective questObjective : this.questObjectives) {
             if (!questObjective.isCompleted()) {
@@ -31,16 +34,16 @@ public abstract class Quest {
             }
         }
         if (completed) {
-            this.completed = true;
+            this.questCompleted = true;
         }
     }
 
-    public void completeTheQuest() {
-        if (this.completed) {
+    public void completeTheQuest(Hero hero) {
+        if (this.questCompleted) {
             PrintUtil.printLongDivider();
             System.out.println("\t\t-- You completed the Quest " + this.questName);
             PrintUtil.printLongDivider();
-            this.questReward.giveQuestReward();
+            this.questReward.giveQuestReward(hero);
         }
     }
 
@@ -61,10 +64,14 @@ public abstract class Quest {
     }
 
     public boolean isCompleted() {
-        return completed;
+        return questCompleted;
     }
 
     public void setCompleted(boolean completed) {
-        this.completed = completed;
+        this.questCompleted = completed;
+    }
+
+    public List<QuestObjective> getQuestObjectives() {
+        return questObjectives;
     }
 }

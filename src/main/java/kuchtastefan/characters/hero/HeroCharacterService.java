@@ -1,16 +1,19 @@
 package kuchtastefan.characters.hero;
 
 import kuchtastefan.characters.hero.inventory.InventoryService;
+import kuchtastefan.quest.QuestService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
 public class HeroCharacterService {
     private final InventoryService inventoryService;
     private final HeroAbilityManager heroAbilityManager;
+    private final QuestService questService;
 
     public HeroCharacterService(HeroAbilityManager heroAbilityManager) {
         this.inventoryService = new InventoryService();
         this.heroAbilityManager = heroAbilityManager;
+        this.questService = new QuestService();
     }
 
     public void heroCharacterMenu(Hero hero) {
@@ -28,6 +31,7 @@ public class HeroCharacterService {
             }
             case 2 -> this.inventoryService.inventoryMenu(hero);
             case 3 -> this.upgradeAbilityMenu(hero);
+            case 4 -> this.questService.printQuests(hero);
         }
     }
 

@@ -1,0 +1,281 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "heroGold": 0.0,
+    "experiencePoints": 110.0,
+    "equippedItem": {
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 2,
+          "DEFENCE": 0,
+          "DEXTERITY": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "HEALTH": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Iron sword of Attack",
+        "price": 50.0,
+        "itemLevel": 1
+      },
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "DEFENCE": 1,
+          "ATTACK": 1,
+          "DEXTERITY": 0,
+          "SKILL": 0,
+          "LUCK": 0,
+          "HEALTH": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Leather armor of Attack",
+        "price": 50.0,
+        "itemLevel": 1
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "DEFENCE": 1,
+          "SKILL": 1,
+          "ATTACK": 0,
+          "DEXTERITY": 0,
+          "LUCK": 0,
+          "HEALTH": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Basic hands",
+        "price": 50.0,
+        "itemLevel": 1
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "ATTACK": 3,
+      "DEFENCE": 2,
+      "HEALTH": 0,
+      "LUCK": 0,
+      "SKILL": 1,
+      "DEXTERITY": 0
+    },
+    "heroInventory": {
+      "heroInventory": {},
+      "wearableItemInventory": [
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "ATTACK": 1,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Attack",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Attack",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "HANDS",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Basic hands",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "DEXTERITY": 1,
+              "DEFENCE": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Dexterity",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ]
+      ],
+      "craftingReagentItemInventory": [
+        [
+          {
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Silver ore",
+            "price": 25.0,
+            "itemLevel": 3
+          },
+          3
+        ],
+        [
+          {
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "name": "DeathBloom",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          11
+        ],
+        [
+          {
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Iron ore",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          4
+        ]
+      ],
+      "consumableItemInventory": {},
+      "questItemInventory": {},
+      "junkItemInventory": [
+        [
+          {
+            "name": "Fishing Rod",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Basket",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Empty Skooma Bottle",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Bucket",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Chain",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ]
+      ]
+    },
+    "experiencePointsService": {
+      "neededExperiencePointsForNewLevel": 480.0
+    },
+    "enemyKilled": {
+      "enemyKilled": {
+        "Wolf": 3
+      },
+      "questEnemyKilled": {
+        "Wolf": 3
+      }
+    },
+    "name": "Qwyndeed",
+    "abilities": {
+      "ATTACK": 4,
+      "DEFENCE": 3,
+      "HEALTH": 50,
+      "LUCK": 1,
+      "SKILL": 1,
+      "DEXTERITY": 3
+    },
+    "level": 1
+  },
+  "level": 1,
+  "hintUtil": {
+    "BLACKSMITH_HINT": {
+      "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
+      "showed": true
+    }
+  },
+  "forestRegionDiscoveredLocation": [
+    {
+      "locationName": "Mystic cave",
+      "locationLevel": 2,
+      "stageTotal": 10,
+      "stageCompleted": 0,
+      "cleared": false,
+      "enemyList": [],
+      "locationType": "CAVE"
+    }
+  ]
+}

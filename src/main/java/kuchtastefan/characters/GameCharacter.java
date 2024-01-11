@@ -2,6 +2,7 @@ package kuchtastefan.characters;
 
 import kuchtastefan.ability.Ability;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class GameCharacter {
@@ -18,10 +19,22 @@ public abstract class GameCharacter {
     public GameCharacter(String name, int level) {
         this.name = name;
         this.level = level;
+        this.abilities = initializeAbilityForNonEnemyCharacters();
     }
 
     public void receiveDamage(int damage) {
         this.abilities.put(Ability.HEALTH, this.getAbilityValue(Ability.HEALTH) - damage);
+    }
+
+    public Map<Ability, Integer> initializeAbilityForNonEnemyCharacters() {
+        return new HashMap<>(Map.of(
+                Ability.ATTACK, 15,
+                Ability.DEFENCE, 15,
+                Ability.DEXTERITY, 15,
+                Ability.SKILL, 15,
+                Ability.LUCK, 15,
+                Ability.HEALTH, 250
+        ));
     }
 
     public String getName() {

@@ -29,12 +29,21 @@ public class QuestGiverCharacter extends GameCharacter {
             }
         }
 
-        int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> {
+        while (true) {
+            try {
+                int choice = InputUtil.intScanner();
+                this.selectedQuestMenu(this.quests.get(choice - 1), hero);
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Enter valid input");
             }
-            default -> selectedQuestMenu(this.quests.get(choice - 1), hero);
         }
+
+//        switch (choice) {
+//            case 0 -> {
+//            }
+//            default -> selectedQuestMenu(this.quests.get(choice - 1), hero);
+//        }
 
     }
 
@@ -42,6 +51,7 @@ public class QuestGiverCharacter extends GameCharacter {
         System.out.println("\t" + quest.getQuestName());
         this.questService.printQuests(hero);
         System.out.println("0. Go back");
+
         if (!quest.isCompleted()) {
             System.out.println("\t1. Accept quest");
         }
@@ -54,6 +64,7 @@ public class QuestGiverCharacter extends GameCharacter {
             case 1 -> {
                 if (quest.isCompleted()) {
                     System.out.println("\tYou already complete this quest");
+                    this.questGiverMenu(hero);
                 } else {
                     this.questService.startQuest(quest);
                     this.questGiverMenu(hero);

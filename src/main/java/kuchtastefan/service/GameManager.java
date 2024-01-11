@@ -22,6 +22,7 @@ import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -119,12 +120,17 @@ public class GameManager {
         Quest quest = new Quest("Dangerous in the forest",
                 "In the forest are dangerous wolf, whos kill our miners. Please help us and kill them.", 1, List.of(questKillObjective), questReward);
 
-        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8, quest);
+        List<Quest> questList = new ArrayList<>();
+        questList.add(quest);
+        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8, questList);
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             questObjective.checkCompleted(this.hero);
         }
 
-        questGiverCharacter.getQuest().checkQuestObjectivesCompleted();
+//        questGiverCharacter.getQuest().checkQuestObjectivesCompleted();
+        for (Quest quest1 : questGiverCharacter.getQuests()) {
+            quest1.checkQuestObjectivesCompleted();
+        }
 
 
         PrintUtil.printDivider();

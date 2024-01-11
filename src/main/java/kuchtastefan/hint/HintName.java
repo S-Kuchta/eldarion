@@ -1,5 +1,5 @@
 package kuchtastefan.hint;
 
 public enum HintName {
-    BLACKSMITH,
+    BLACKSMITH_HINT,
 }

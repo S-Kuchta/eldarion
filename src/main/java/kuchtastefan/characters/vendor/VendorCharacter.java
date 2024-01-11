@@ -1,9 +1,9 @@
 package kuchtastefan.characters.vendor;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.constant.Constant;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.utility.InputUtil;
@@ -66,6 +66,11 @@ public abstract class VendorCharacter extends GameCharacter {
         List<Item> tempItemList = new ArrayList<>();
         List<Item> availableItems = new ArrayList<>(itemList);
 
+        if (itemList instanceof WearableItem) {
+            System.out.println(itemList.getClass().getSimpleName());
+        }
+
+
         for (int i = 0; i < Constant.MAX_VENDOR_ITEMS_FOR_SELL && !availableItems.isEmpty(); i++) {
             int randomNum = RandomNumberGenerator.getRandomNumber(0, availableItems.size() - 1);
             tempItemList.add(availableItems.get(randomNum));
@@ -117,10 +122,6 @@ public abstract class VendorCharacter extends GameCharacter {
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
         hero.setHeroGold(hero.getHeroGold() - item.getPrice());
         System.out.println("\t" + item.getName() + " bought. You can find it in your inventory");
-    }
-
-    protected double returnSellItemPrice(Item item) {
-        return Math.floor(item.getPrice() * 0.7);
     }
 
     protected void sellItem(Hero hero, List<? extends Item> itemList) {

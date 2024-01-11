@@ -22,8 +22,12 @@ public class Item {
         return name;
     }
 
-    public int getItemLevel() {
+    public Integer getItemLevel() {
         return itemLevel;
+    }
+
+    public void setItemLevel(int itemLevel) {
+        this.itemLevel = itemLevel;
     }
 
     public void setName(String name) {

@@ -51,7 +51,6 @@ public class Enemy extends GameCharacter {
         this.setItemsDrop(tempList);
     }
 
-
     public List<Item> getItemsDrop() {
         return itemsDrop;
     }
@@ -78,10 +77,6 @@ public class Enemy extends GameCharacter {
 
     public void setEnemyType(EnemyType enemyType) {
         this.enemyType = enemyType;
-    }
-
-    public ItemsLists getItemsLists() {
-        return itemsLists;
     }
 
     public void setItemsLists(ItemsLists itemsLists) {

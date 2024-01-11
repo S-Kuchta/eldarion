@@ -35,11 +35,21 @@ public class ItemsLists {
         itemList.addAll(this.junkItems);
 
         for (Item item : itemList) {
-            if (checkItemLevelCondition(item, maxItemLevel, minItemLevel)) {
+            if (item.getItemLevel() == 0) {
+                itemListAfterLevelCheck.add(item);
+            } else if (checkItemLevelCondition(item, maxItemLevel, minItemLevel)) {
                 itemListAfterLevelCheck.add(item);
             }
         }
         return itemListAfterLevelCheck;
+    }
+
+    private boolean checkItemLevelCondition(Item item, int maxItemLevel, Integer minItemLevel) {
+        if (minItemLevel == null) {
+            minItemLevel = maxItemLevel;
+        }
+
+        return maxItemLevel + 1 >= item.getItemLevel() && minItemLevel - 1 <= item.getItemLevel();
     }
 
     public List<CraftingReagentItem> returnCraftingReagentItemListByType(CraftingReagentItemType craftingReagentItemType) {
@@ -120,14 +130,6 @@ public class ItemsLists {
             }
         }
         return tempList;
-    }
-
-    private boolean checkItemLevelCondition(Item item, int maxItemLevel, Integer minItemLevel) {
-        if (minItemLevel == null) {
-            minItemLevel = maxItemLevel;
-        }
-
-        return maxItemLevel + 1 >= item.getItemLevel() && minItemLevel - 1 <= item.getItemLevel();
     }
 
     public List<WearableItem> getWearableItemList() {

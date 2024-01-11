@@ -5,7 +5,6 @@ import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroAbilityManager;
 import kuchtastefan.characters.hero.HeroCharacterService;
-import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
 import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.characters.vendor.JunkVendorCharacter;
@@ -20,7 +19,6 @@ import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.HashMap;
 
 public class GameManager {
     private Hero hero;
@@ -29,7 +27,6 @@ public class GameManager {
     private final FileService fileService;
     private final ItemsLists itemsLists;
     private final BlacksmithService blacksmithService;
-    private final HintUtil hintUtil;
     private ForestRegionService forestRegionService;
     private final HeroCharacterService heroCharacterService;
     private final EnemyList enemyList;
@@ -40,7 +37,7 @@ public class GameManager {
         this.fileService = new FileService();
         this.heroAbilityManager = new HeroAbilityManager(this.hero);
         this.blacksmithService = new BlacksmithService();
-        this.hintUtil = new HintUtil(new HashMap<>());
+//        this.hintUtil = new HintUtil(new HashMap<>());
         this.itemsLists = new ItemsLists();
         this.heroCharacterService = new HeroCharacterService(this.heroAbilityManager);
         this.enemyList = new EnemyList();
@@ -75,7 +72,6 @@ public class GameManager {
                 case 5 -> this.blacksmithMenu();
                 case 6 -> this.fileService.saveGame(this.hero,
                         this.currentLevel,
-                        this.hintUtil.getHintList(),
                         this.forestRegionService);
                 case 7 -> {
                     System.out.println("Are you sure?");
@@ -158,7 +154,8 @@ public class GameManager {
                 this.itemsLists.returnWearableItemListByItemLevel(this.hero.getLevel(), null));
         final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
                 this.itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
-        hintUtil.printHint(HintName.BLACKSMITH);
+
+        HintUtil.printHint(HintName.BLACKSMITH_HINT);
 
         PrintUtil.printDivider();
         System.out.println("\t\tBlacksmith");
@@ -169,7 +166,7 @@ public class GameManager {
         System.out.println("\t2. Dismantle item");
         System.out.println("\t3. " + citySmithVendor.getName() + " (Wearable Items Merchant)");
         System.out.println("\t4. " + cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
-        int choice = InputUtil.intScanner();
+        final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
@@ -193,7 +190,7 @@ public class GameManager {
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero, this.enemyList);
 
-        this.hintUtil.initializeHintList();
+        HintUtil.initializeHintList();
 
 
         System.out.println("Welcome to the Gladiatus game!");
@@ -209,7 +206,7 @@ public class GameManager {
                     this.hero = gameLoaded.getHero();
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
-                    this.hintUtil.getHintList().putAll(gameLoaded.getHintUtil());
+                    HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
                     this.forestRegionService.setHero(this.hero);
                     this.forestRegionService.getDiscoveredLocations().addAll(gameLoaded.getForestRegionDiscoveredLocation());
                     return;

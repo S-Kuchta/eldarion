@@ -11,6 +11,7 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
@@ -43,8 +44,8 @@ public class FileService {
     private final Gson gson = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
-    public void saveGame(Hero hero, int currentLevel, Map<HintName, Hint> hintUtil, ForestRegionService forestRegionService) {
-        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, hintUtil, forestRegionService.getDiscoveredLocations());
+    public void saveGame(Hero hero, int currentLevel /*Map<HintName, Hint> hintUtil*/, ForestRegionService forestRegionService) {
+        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, HintUtil.getHintList(), forestRegionService.getDiscoveredLocations());
         Map<Item, Integer> tempItemMap = new HashMap<>(gameLoaded.getHero().getHeroInventory().getHeroInventory());
         gameLoaded.getHero().getHeroInventory().changeList();
 
@@ -316,6 +317,12 @@ public class FileService {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
                 junkItemList = new Gson().fromJson(reader, new TypeToken<List<JunkItem>>() {
                 }.getType());
+
+                for (JunkItem junkItem : junkItemList) {
+                    if (junkItem.getItemLevel() == null) {
+                        junkItem.setItemLevel(0);
+                    }
+                }
 
                 junkItems.addAll(junkItemList);
                 reader.close();

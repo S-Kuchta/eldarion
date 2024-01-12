@@ -2,7 +2,7 @@ package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.characters.hero.Hero;
 
-public abstract class QuestObjective {
+public class QuestObjective {
     private boolean completed;
     private final String questObjectiveName;
 
@@ -11,9 +11,17 @@ public abstract class QuestObjective {
         this.questObjectiveName = questObjectiveName;
     }
 
-    public abstract void printQuestObjectiveAssignment(Hero hero);
-    public abstract void checkCompleted(Hero hero);
-    public abstract void removeCompletedItemsOrEnemies(Hero hero);
+    public void printQuestObjectiveAssignment(Hero hero) {
+
+    }
+
+    public void checkQuestObjectiveCompleted(Hero hero) {
+
+    }
+
+    public void removeCompletedItemsOrEnemies(Hero hero) {
+
+    }
 
     public boolean isCompleted() {
         return completed;

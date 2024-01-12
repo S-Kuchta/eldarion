@@ -1,8 +1,8 @@
 {
   "hero": {
-    "unspentAbilityPoints": 0,
-    "heroGold": 0.0,
-    "experiencePoints": 110.0,
+    "unspentAbilityPoints": 2,
+    "heroGold": 118.0,
+    "experiencePoints": 640.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
@@ -23,14 +23,14 @@
         "wearableItemType": "BODY",
         "abilities": {
           "DEFENCE": 1,
-          "ATTACK": 1,
+          "LUCK": 1,
+          "ATTACK": 0,
           "DEXTERITY": 0,
           "SKILL": 0,
-          "LUCK": 0,
           "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Leather armor of Attack",
+        "name": "Leather armor of Luck",
         "price": 50.0,
         "itemLevel": 1
       },
@@ -53,10 +53,10 @@
         "wearableItemType": "BOOTS",
         "abilities": {
           "ATTACK": 0,
-          "DEFENCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
+          "DEFENCE": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -67,25 +67,25 @@
       "HEAD": {
         "wearableItemType": "HEAD",
         "abilities": {
+          "DEFENCE": 1,
+          "SKILL": 1,
           "ATTACK": 0,
-          "DEFENCE": 0,
-          "HEALTH": 0,
+          "DEXTERITY": 0,
           "LUCK": 0,
-          "SKILL": 0,
-          "DEXTERITY": 0
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "name": "Basic helmet",
+        "price": 50.0,
+        "itemLevel": 1
       }
     },
     "wearingItemAbilityPoints": {
-      "ATTACK": 3,
-      "DEFENCE": 2,
+      "ATTACK": 2,
       "HEALTH": 0,
-      "LUCK": 0,
-      "SKILL": 1,
+      "DEFENCE": 3,
+      "SKILL": 2,
+      "LUCK": 1,
       "DEXTERITY": 0
     },
     "heroInventory": {
@@ -96,32 +96,32 @@
             "wearableItemType": "BODY",
             "abilities": {
               "DEFENCE": 1,
-              "ATTACK": 1,
+              "LUCK": 1,
+              "ATTACK": 0,
               "DEXTERITY": 0,
               "SKILL": 0,
-              "LUCK": 0,
               "HEALTH": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Leather armor of Attack",
+            "name": "Leather armor of Luck",
             "price": 50.0,
             "itemLevel": 1
           },
-          1
+          2
         ],
         [
           {
-            "wearableItemType": "WEAPON",
+            "wearableItemType": "HEAD",
             "abilities": {
-              "ATTACK": 2,
-              "DEFENCE": 0,
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
               "DEXTERITY": 0,
-              "SKILL": 0,
               "LUCK": 0,
               "HEALTH": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Iron sword of Attack",
+            "name": "Basic helmet",
             "price": 50.0,
             "itemLevel": 1
           },
@@ -149,17 +149,71 @@
           {
             "wearableItemType": "WEAPON",
             "abilities": {
-              "ATTACK": 1,
-              "DEXTERITY": 1,
+              "ATTACK": 2,
+              "SKILL": 2,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Steel sword of Skill",
+            "price": 100.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 4,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Heavy armor",
+            "price": 100.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Attack",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "DEXTERITY": 2,
               "DEFENCE": 0,
               "SKILL": 0,
               "LUCK": 0,
               "HEALTH": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Iron sword of Dexterity",
-            "price": 50.0,
-            "itemLevel": 1
+            "name": "Steel sword of Dexterity",
+            "price": 100.0,
+            "itemLevel": 2
           },
           1
         ]
@@ -167,21 +221,12 @@
       "craftingReagentItemInventory": [
         [
           {
-            "craftingReagentItemType": "BLACKSMITH_REAGENT",
-            "name": "Silver ore",
-            "price": 25.0,
-            "itemLevel": 3
-          },
-          3
-        ],
-        [
-          {
             "craftingReagentItemType": "ALCHEMY_REAGENT",
             "name": "DeathBloom",
             "price": 10.0,
             "itemLevel": 2
           },
-          11
+          8
         ],
         [
           {
@@ -190,23 +235,85 @@
             "price": 10.0,
             "itemLevel": 2
           },
-          4
+          3
+        ],
+        [
+          {
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Silver ore",
+            "price": 25.0,
+            "itemLevel": 3
+          },
+          3
         ]
       ],
-      "consumableItemInventory": {},
+      "consumableItemInventory": [
+        [
+          {
+            "restoreAmount": 20,
+            "increaseAbilityPoint": {
+              "SKILL": 0,
+              "ATTACK": 0,
+              "DEFENCE": 0,
+              "HEALTH": 0,
+              "LUCK": 0,
+              "DEXTERITY": 0
+            },
+            "consumableItemType": "POTION",
+            "name": "Minor health potion",
+            "price": 20.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "restoreAmount": 40,
+            "increaseAbilityPoint": {
+              "SKILL": 0,
+              "ATTACK": 0,
+              "DEFENCE": 0,
+              "HEALTH": 0,
+              "LUCK": 0,
+              "DEXTERITY": 0
+            },
+            "consumableItemType": "POTION",
+            "name": "Big health potion",
+            "price": 30.0,
+            "itemLevel": 2
+          },
+          2
+        ]
+      ],
       "questItemInventory": {},
       "junkItemInventory": [
         [
           {
-            "name": "Fishing Rod",
-            "price": 21.0,
+            "name": "Hammer",
+            "price": 9.0,
             "itemLevel": 0
           },
           1
         ],
         [
           {
-            "name": "Basket",
+            "name": "Linen wrap",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Silver Kitchen Fork",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          3
+        ],
+        [
+          {
+            "name": "Embalming Tool",
             "price": 7.0,
             "itemLevel": 0
           },
@@ -214,15 +321,7 @@
         ],
         [
           {
-            "name": "Empty Skooma Bottle",
-            "price": 7.0,
-            "itemLevel": 0
-          },
-          1
-        ],
-        [
-          {
-            "name": "Bucket",
+            "name": "Cup",
             "price": 3.0,
             "itemLevel": 0
           },
@@ -230,8 +329,280 @@
         ],
         [
           {
-            "name": "Chain",
+            "name": "Old kitchen knife",
+            "price": 5.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Jug",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Clothes Iron",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Tankard",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Plate",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Doll",
             "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Flower Basket",
+            "price": 9.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Perfume",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Worn-out leather belt",
+            "price": 5.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Glass",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Bloody Rags",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Lute with Silver decorating",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Small Sculpture",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Goblet",
+            "price": 9.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Haft",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Butter Silver Knife",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Razor",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Cutlery",
+            "price": 2.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Glamour",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Fishing Rod",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Broom",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Sapphire Ring",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Teapot",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Blunt Axe",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Lute",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          3
+        ],
+        [
+          {
+            "name": "Silver Kitchen Knife",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Parchment",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Wooden Plate",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Torture Tools",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Wooden Bowl",
+            "price": 5.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Silver Kitchen Spoon",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Inkwell",
+            "price": 9.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Cutlery",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Pot",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Cast Iron Pot",
+            "price": 5.0,
             "itemLevel": 0
           },
           1
@@ -239,26 +610,69 @@
       ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 480.0
+      "neededExperiencePointsForNewLevel": 960.0
     },
     "enemyKilled": {
       "enemyKilled": {
+        "NightBane Tainted One": 3,
+        "Defias Looter": 1,
+        "NightBane Dark Runner": 5,
+        "Defias Bandit": 2,
+        "Defias Thief": 4,
+        "Defias Raider": 1,
+        "Alpha Wolf": 4,
+        "Bear": 6,
         "Wolf": 3
       },
       "questEnemyKilled": {
-        "Wolf": 3
+        "NightBane Tainted One": 3,
+        "Defias Looter": 1,
+        "NightBane Dark Runner": 5,
+        "Defias Bandit": 2,
+        "Defias Thief": 4,
+        "Defias Raider": 1,
+        "Alpha Wolf": 4,
+        "Wolf": 3,
+        "Bear": 6
       }
     },
-    "name": "Qwyndeed",
+    "listOfAcceptedQuests": [
+      {
+        "questName": "Danger in the forest",
+        "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+        "questLevel": 1,
+        "questCompleted": true,
+        "questObjectives": [
+          {
+            "completed": true,
+            "questObjectiveName": "Kill 3 wolfs"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 1
+        },
+        "isTurnedIn": true
+      }
+    ],
+    "name": "Gwyndeed",
     "abilities": {
-      "ATTACK": 4,
-      "DEFENCE": 3,
+      "ATTACK": 3,
       "HEALTH": 50,
-      "LUCK": 1,
+      "DEFENCE": 3,
       "SKILL": 1,
+      "LUCK": 2,
       "DEXTERITY": 3
     },
-    "level": 1
+    "level": 2
   },
   "level": 1,
   "hintUtil": {
@@ -269,13 +683,13 @@
   },
   "forestRegionDiscoveredLocation": [
     {
-      "locationName": "Mystic cave",
-      "locationLevel": 2,
+      "locationName": "Tower of Damned",
+      "locationLevel": 5,
       "stageTotal": 10,
       "stageCompleted": 0,
       "cleared": false,
       "enemyList": [],
-      "locationType": "CAVE"
+      "locationType": "TOWER"
     }
   ]
 }

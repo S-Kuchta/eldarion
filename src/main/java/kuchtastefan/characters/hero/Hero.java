@@ -2,16 +2,19 @@ package kuchtastefan.characters.hero;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
-import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.PrintUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Hero extends GameCharacter {
@@ -24,6 +27,7 @@ public class Hero extends GameCharacter {
     private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
     private final EnemyKilled enemyKilled;
+    private final List<Quest> listOfAcceptedQuests;
 
 
     public Hero(String name) {
@@ -37,6 +41,7 @@ public class Hero extends GameCharacter {
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
         this.experiencePointsService = new ExperiencePointsService();
         this.enemyKilled = new EnemyKilled();
+        this.listOfAcceptedQuests = new ArrayList<>();
     }
 
     public void equipItem(WearableItem wearableItem) {
@@ -162,6 +167,15 @@ public class Hero extends GameCharacter {
         PrintUtil.printLongDivider();
     }
 
+    public void checkQuestObjectivesAndQuestCompleted() {
+        for (Quest quest : this.listOfAcceptedQuests) {
+            for (QuestObjective questObjective : quest.getQuestObjectives()) {
+                questObjective.checkQuestObjectiveCompleted(this);
+            }
+            quest.checkQuestObjectivesCompleted();
+        }
+    }
+
     public boolean checkHeroGoldsAndRemoveIfTrue(double goldNeeded) {
         if (this.heroGold >= goldNeeded) {
             this.heroGold -= goldNeeded;
@@ -218,5 +232,9 @@ public class Hero extends GameCharacter {
 
     public EnemyKilled getEnemyKilled() {
         return enemyKilled;
+    }
+
+    public List<Quest> getListOfAcceptedQuests() {
+        return listOfAcceptedQuests;
     }
 }

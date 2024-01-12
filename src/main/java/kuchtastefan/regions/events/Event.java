@@ -1,6 +1,7 @@
 package kuchtastefan.regions.events;
 
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.quest.Quest;
 
 public abstract class Event {
 

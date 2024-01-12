@@ -23,7 +23,7 @@ public class QuestBringItemObjective extends QuestObjective {
     }
 
     @Override
-    public void checkCompleted(Hero hero) {
+    public void checkQuestObjectiveCompleted(Hero hero) {
         if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(this.questItemAndCountNeeded, false)) {
             System.out.println("\t--> You completed " + getQuestObjectiveName() + " quest objective <--");
             setCompleted(true);

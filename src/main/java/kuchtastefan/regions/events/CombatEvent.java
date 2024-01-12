@@ -61,11 +61,15 @@ public class CombatEvent extends Event {
 
                     // TODO quest enemy killed
                     hero.getEnemyKilled().addQuestEnemyKilled(randomEnemy.getName());
+
+                    hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
+                    hero.checkQuestObjectivesAndQuestCompleted();
                 }
 
-                hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
+
             }
         }
+
 
     }
 }

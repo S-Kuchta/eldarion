@@ -5,6 +5,7 @@ import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Quest {
     private final String questName;
@@ -13,6 +14,7 @@ public class Quest {
     private boolean questCompleted;
     private final List<QuestObjective> questObjectives;
     private final QuestReward questReward;
+    private boolean isTurnedIn;
 
 
     public Quest(String questName, String questDescription, int questLevel, List<QuestObjective> questObjectives, QuestReward questReward) {
@@ -22,6 +24,7 @@ public class Quest {
         this.questObjectives = questObjectives;
         this.questReward = questReward;
         this.questCompleted = false;
+        this.isTurnedIn = false;
         questReward.setQuestLevel(this.questLevel);
     }
 
@@ -34,6 +37,7 @@ public class Quest {
             }
         }
         if (completed) {
+            System.out.println("\t--> You completed Quest " + this.questName + " <--" );
             this.questCompleted = true;
         }
     }
@@ -73,5 +77,43 @@ public class Quest {
 
     public List<QuestObjective> getQuestObjectives() {
         return questObjectives;
+    }
+
+    public boolean isTurnedIn() {
+        return isTurnedIn;
+    }
+
+    public void setTurnedIn(boolean turnedIn) {
+        isTurnedIn = turnedIn;
+    }
+
+    public boolean isQuestCompleted() {
+        return questCompleted;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Quest quest = (Quest) o;
+        return questLevel == quest.questLevel && Objects.equals(questName, quest.questName) && Objects.equals(questDescription, quest.questDescription);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(questName, questDescription, questLevel);
+    }
+
+    @Override
+    public String toString() {
+        return "Quest{" +
+                "questName='" + questName + '\'' +
+                ", questDescription='" + questDescription + '\'' +
+                ", questLevel=" + questLevel +
+                ", questCompleted=" + questCompleted +
+                ", questObjectives=" + questObjectives +
+                ", questReward=" + questReward +
+                ", isTurnedIn=" + isTurnedIn +
+                '}';
     }
 }

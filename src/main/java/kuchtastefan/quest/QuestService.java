@@ -6,54 +6,53 @@ import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
 public class QuestService {
-//    private final QuestList questList;
 
-//    public QuestService(QuestList questList) {
-//        this.questList = questList;
-//    }
-
-    public void startQuest(Quest quest) {
-        QuestList.acceptedQuest.add(quest);
+    public void startQuest(Quest quest, Hero hero) {
+        if (!hero.getListOfAcceptedQuests().contains(quest)) {
+            hero.getListOfAcceptedQuests().add(quest);
+        }
     }
 
     public void completeTheQuest(Quest quest, Hero hero) {
         quest.completeTheQuest(hero);
+        quest.setTurnedIn(true);
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             questObjective.removeCompletedItemsOrEnemies(hero);
         }
     }
 
-    public void printQuests(Hero hero) {
+    public void printAcceptedQuests(Hero hero) {
         PrintUtil.printLongDivider();
         System.out.println("\t-- Quest Details --");
         PrintUtil.printLongDivider();
         int index = 1;
-        for (Quest quest : QuestList.acceptedQuest) {
+        for (Quest quest : hero.getListOfAcceptedQuests()) {
             System.out.println(index + ". " + quest.getQuestName());
             index++;
         }
-
+        System.out.println("\t0. Go back");
         while (true) {
             try {
                 int choice = InputUtil.intScanner();
-                printQuestDetails(QuestList.acceptedQuest.get(choice - 1), hero);
+                if (choice == 0) {
+                    break;
+                }
+                printQuestDetails(hero.getListOfAcceptedQuests().get(choice - 1), hero);
                 break;
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Enter valid input");
+                System.out.println("\tEnter valid input");
             }
         }
     }
 
     public void printQuestDetails(Quest quest, Hero hero) {
-        System.out.println("\t0. Go back");
         PrintUtil.printLongDivider();
         System.out.println("\t\t\t\t------ " + quest.getQuestName() + " ------");
         System.out.println("\t" + quest.getQuestDescription());
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
-            System.out.println("\t\t\t--- " + questObjective.getQuestObjectiveName() + " ---");
+//            System.out.println("\t\t\t\t------ " + questObjective.getQuestObjectiveName() + " ------");
             System.out.print("\t");
             questObjective.printQuestObjectiveAssignment(hero);
-            System.out.println("\tCompleted: " + questObjective.isCompleted());
         }
     }
 }

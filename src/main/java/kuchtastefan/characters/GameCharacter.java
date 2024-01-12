@@ -41,6 +41,10 @@ public abstract class GameCharacter {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getAbilityValue(Ability ability) {
         return this.abilities.get(ability);
     }

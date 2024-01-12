@@ -53,4 +53,8 @@ public class QuestReward {
     public int getQuestLevel() {
         return questLevel;
     }
+
+    public List<Item> getItemsReward() {
+        return itemsReward;
+    }
 }

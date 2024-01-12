@@ -17,7 +17,6 @@ import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestReward;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -96,15 +95,15 @@ public class GameManager {
     }
 
     private void exploreSurroundingRegions() {
-        System.out.println("0. Go back to the city");
-        System.out.println("1. Go to " + this.forestRegionService.getRegionName());
-        System.out.println("2. Go to highlands");
+        System.out.println("\t0. Go back to the city");
+        System.out.println("\t1. Go to " + this.forestRegionService.getRegionName());
+        System.out.println("\t2. Go to highlands");
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
             case 1 -> this.forestRegionService.adventuringAcrossTheRegion(this.heroCharacterService);
-            default -> System.out.println("Enter valid input");
+            default -> System.out.println("\tEnter valid input");
         }
     }
 
@@ -112,34 +111,38 @@ public class GameManager {
         final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
                 this.itemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
 
+
+
         QuestKillObjective questKillObjective = new QuestKillObjective("Kill 3 wolfs", enemyList.returnEnemyMap().get("Wolf").getName(), 3);
+        QuestKillObjective questKillObjective1 = new QuestKillObjective("Kill 2 NightBane Dark Runner", enemyList.returnEnemyMap().get("NightBane Dark Runner").getName(), 2);
+
         QuestReward questReward = new QuestReward(30, 70, 2);
         questReward.generateRandomWearableItemsReward(1, this.itemsLists.returnWearableItemListByItemLevel(questReward.getQuestLevel(), null));
 
+        Quest quest = new Quest("Danger in the forest",
+                "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.", 1, List.of(questKillObjective, questKillObjective1), questReward);
+        List<Quest> quests = new ArrayList<>();
+        quests.add(quest);
 
-        Quest quest = new Quest("Dangerous in the forest",
-                "In the forest are dangerous wolf, whos kill our miners. Please help us and kill them.", 1, List.of(questKillObjective), questReward);
 
-        List<Quest> questList = new ArrayList<>();
-        questList.add(quest);
-        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8, questList);
-        for (QuestObjective questObjective : quest.getQuestObjectives()) {
-            questObjective.checkCompleted(this.hero);
-        }
+        Quest quest1 = new Quest("Danger in the forest",
+                "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.", 1, List.of(questKillObjective), questReward);
+        quests.add(quest1);
 
-//        questGiverCharacter.getQuest().checkQuestObjectivesCompleted();
-        for (Quest quest1 : questGiverCharacter.getQuests()) {
-            quest1.checkQuestObjectivesCompleted();
-        }
+        System.out.println(quest.equals(quest1));
+
+
+        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8, quests);
+        questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
 
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
         PrintUtil.printDivider();
 
-        System.out.println("0. Go back");
-        System.out.println("1. " + cityFoodVendor.getName() + " (Food Merchant)");
-        System.out.println("2. " + questGiverCharacter.getName());
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. " + cityFoodVendor.getName() + " (Food Merchant)");
+        System.out.println("\t2. " + questGiverCharacter.getName());
 
         int choice = InputUtil.intScanner();
         switch (choice) {

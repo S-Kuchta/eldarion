@@ -90,7 +90,7 @@ public class InventoryService {
                 }
 
                 hero.equipItem(tempList.get(choice - 1));
-                inventoryMenu(hero);
+                wearableItemsMenu(hero);
                 break;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("\tEnter valid number");
@@ -140,7 +140,7 @@ public class InventoryService {
         if (choice == 0) {
             this.inventoryMenu(hero);
         } else {
-            System.out.println("Enter valid number");
+            System.out.println("\tEnter valid number");
         }
     }
 

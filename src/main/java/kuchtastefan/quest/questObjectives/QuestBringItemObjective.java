@@ -34,7 +34,7 @@ public class QuestBringItemObjective extends QuestObjective {
 
     @Override
     public void removeCompletedItemsOrEnemies(Hero hero) {
-
+        hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(this.questItemAndCountNeeded, true);
     }
 
     public Map<QuestItem, Integer> getQuestItemAndCountNeeded() {

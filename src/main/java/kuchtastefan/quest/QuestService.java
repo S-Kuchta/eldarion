@@ -5,7 +5,13 @@ import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
+import java.util.List;
+
 public class QuestService {
+
+    public Quest createNewQuest(Quest quest, List<? extends QuestObjective> questObjectives) {
+        
+    }
 
     public void startQuest(Quest quest, Hero hero) {
         if (!hero.getListOfAcceptedQuests().contains(quest)) {
@@ -25,12 +31,14 @@ public class QuestService {
         PrintUtil.printLongDivider();
         System.out.println("\t-- Quest Details --");
         PrintUtil.printLongDivider();
+
         int index = 1;
+        System.out.println("\t0. Go back");
         for (Quest quest : hero.getListOfAcceptedQuests()) {
-            System.out.println(index + ". " + quest.getQuestName());
+            System.out.println("\t" + index + ". " + quest.getQuestName());
             index++;
         }
-        System.out.println("\t0. Go back");
+
         while (true) {
             try {
                 int choice = InputUtil.intScanner();
@@ -51,7 +59,7 @@ public class QuestService {
         System.out.println("\t" + quest.getQuestDescription());
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
 //            System.out.println("\t\t\t\t------ " + questObjective.getQuestObjectiveName() + " ------");
-            System.out.print("\t");
+//            System.out.print("\t");
             questObjective.printQuestObjectiveAssignment(hero);
         }
     }

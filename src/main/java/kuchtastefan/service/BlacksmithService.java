@@ -1,6 +1,7 @@
 package kuchtastefan.service;
 
 import com.google.gson.Gson;
+import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.characters.vendor.WearableItemVendorCharacter;
@@ -11,14 +12,14 @@ import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestsMap;
+import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BlacksmithService {
 
@@ -30,6 +31,16 @@ public class BlacksmithService {
 
         HintUtil.printHint(HintName.BLACKSMITH_HINT);
 
+
+
+        Quest quest = new Quest();
+        quest = (Quest) List.of(QuestsMap.questsMap.get("shadowRaiders"));
+//        quest.setQuestObjectives(List.of(QuestsMap.questKillObjectiveMap.get("kill10Bandits")));
+        List<Quest> quests = new ArrayList<>(List.of(QuestsMap.questsMap.get("shadowRaiders")));
+//        quests.add(QuestsMap.questsMap.get("shadowRaiders"));
+        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli", 8, quests);
+        questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
+
         PrintUtil.printDivider();
         System.out.println("\t\tBlacksmith");
         PrintUtil.printDivider();
@@ -39,6 +50,7 @@ public class BlacksmithService {
         System.out.println("\t2. Dismantle item");
         System.out.println("\t3. " + citySmithVendor.getName() + " (Wearable Items Merchant)");
         System.out.println("\t4. " + cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
+        System.out.println("\t5. " + questGiverCharacter.getName());
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -47,6 +59,7 @@ public class BlacksmithService {
             case 2 -> this.dismantleItem(hero, itemsLists);
             case 3 -> citySmithVendor.vendorMenu(hero);
             case 4 -> cityReagentVendor.vendorMenu(hero);
+            case 5 -> questGiverCharacter.questGiverMenu(hero);
             default -> System.out.println("Enter valid input");
         }
     }

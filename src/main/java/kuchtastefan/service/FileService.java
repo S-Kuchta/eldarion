@@ -9,8 +9,6 @@ import kuchtastefan.characters.enemy.EnemyType;
 import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
-import kuchtastefan.hint.Hint;
-import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
@@ -23,6 +21,10 @@ import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestsMap;
+import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
+import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -332,6 +334,55 @@ public class FileService {
         }
 
         return junkItems;
+    }
+
+    public void importQuestsFromFile() {
+        String path = "external-files/quests";
+        try {
+            Map<String, Quest> questMap;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                questMap = new Gson().fromJson(reader, new TypeToken<Map<String, Quest>>() {
+                }.getType());
+
+                QuestsMap.questsMap.putAll(questMap);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importKillQuestsObjectivesFromFile() {
+        String path = "external-files/quest-objectives";
+        try {
+            Map<String, QuestKillObjective> questKillObjectiveMap;
+
+            BufferedReader reader = new BufferedReader(new FileReader(path + "/" + "kill-quest-objectives"));
+            questKillObjectiveMap = new Gson().fromJson(reader, new TypeToken<Map<String, QuestKillObjective>>() {
+            }.getType());
+
+            QuestsMap.questKillObjectiveMap.putAll(questKillObjectiveMap);
+            reader.close();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importBringItemQuestsObjectivesFromFile() {
+        String path = "external-files/quest-objectives";
+        try {
+            Map<String, QuestBringItemObjective> questBringItemObjectiveMap;
+            BufferedReader reader = new BufferedReader(new FileReader(path + "/" + "bring-item-quest-objectives"));
+            questBringItemObjectiveMap = new Gson().fromJson(reader, new TypeToken<Map<String, QuestBringItemObjective>>() {
+            }.getType());
+
+            QuestsMap.questBringItemObjectiveMap.putAll(questBringItemObjectiveMap);
+            reader.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 

@@ -6,6 +6,7 @@ import kuchtastefan.quest.QuestService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestGiverCharacter extends GameCharacter {
@@ -23,9 +24,14 @@ public class QuestGiverCharacter extends GameCharacter {
     }
 
     private void connectHeroQuestListWithCharacterQuestList(Hero hero) {
-        List<Quest> acceptedQuests = hero.getListOfAcceptedQuests();
-        this.quests.removeAll(acceptedQuests);
-        this.quests.addAll(acceptedQuests);
+        for (Quest heroQuest : hero.getListOfAcceptedQuests()) {
+            for (Quest quest : this.quests) {
+                if (quest.equals(heroQuest)) {
+                    this.quests.remove(quest);
+                    this.quests.add(heroQuest);
+                }
+            }
+        }
     }
 
     public void questGiverMenu(Hero hero) {

@@ -1,0 +1,9 @@
+[
+  [
+      "kill10Bandits", {
+        "enemyToKill": "Defias Bandit",
+        "countEnemyToKill": 10,
+        "questObjectiveName": "Kill 10 bandits"
+      }
+  ]
+]

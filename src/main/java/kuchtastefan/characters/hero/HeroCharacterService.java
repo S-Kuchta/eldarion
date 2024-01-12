@@ -21,6 +21,7 @@ public class HeroCharacterService {
         System.out.println("\t1. Hero Info");
         System.out.println("\t2. Inventory");
         System.out.println("\t3. Abilities");
+        System.out.println("\t4. Quests");
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {

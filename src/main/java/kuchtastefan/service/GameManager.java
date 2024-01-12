@@ -124,14 +124,6 @@ public class GameManager {
         List<Quest> quests = new ArrayList<>();
         quests.add(quest);
 
-
-        Quest quest1 = new Quest("Danger in the forest",
-                "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.", 1, List.of(questKillObjective), questReward);
-        quests.add(quest1);
-
-        System.out.println(quest.equals(quest1));
-
-
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8, quests);
         questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
@@ -185,6 +177,9 @@ public class GameManager {
         this.itemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
         this.itemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
         this.itemsLists.initializeAllItemsMapToStringItemMap();
+
+        this.fileService.importQuestsFromFile();
+        this.fileService.importKillQuestsObjectivesFromFile();
 
         this.enemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile(this.itemsLists));
 

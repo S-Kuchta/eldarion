@@ -4,6 +4,7 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.PrintUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class Quest {
     private final String questDescription;
     private final int questLevel;
     private boolean questCompleted;
-    private final List<QuestObjective> questObjectives;
+    private List<QuestObjective> questObjectives;
     private final QuestReward questReward;
     private boolean isTurnedIn;
 
@@ -28,6 +29,20 @@ public class Quest {
         questReward.setQuestLevel(this.questLevel);
     }
 
+    public Quest() {
+    }
+
+    public Quest(String questName, String questDescription, int questLevel, QuestReward questReward) {
+        this.questName = questName;
+        this.questDescription = questDescription;
+        this.questLevel = questLevel;
+        this.questObjectives = new ArrayList<>();
+        this.questReward = questReward;
+        this.questCompleted = false;
+        this.isTurnedIn = false;
+        questReward.setQuestLevel(this.questLevel);
+    }
+
     public void checkQuestObjectivesCompleted() {
         boolean completed = true;
         for (QuestObjective questObjective : this.questObjectives) {
@@ -37,7 +52,7 @@ public class Quest {
             }
         }
         if (completed) {
-            System.out.println("\t--> You completed Quest " + this.questName + " <--" );
+            System.out.println("\t--> You completed Quest " + this.questName + " <--");
             this.questCompleted = true;
         }
     }
@@ -79,6 +94,10 @@ public class Quest {
         return questObjectives;
     }
 
+    public void setQuestObjectives(List<? extends QuestObjective> questObjectives) {
+        this.questObjectives = (List<QuestObjective>) questObjectives;
+    }
+
     public boolean isTurnedIn() {
         return isTurnedIn;
     }
@@ -91,11 +110,14 @@ public class Quest {
         return questCompleted;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Quest quest = (Quest) o;
+
         return questLevel == quest.questLevel && Objects.equals(questName, quest.questName) && Objects.equals(questDescription, quest.questDescription);
     }
 

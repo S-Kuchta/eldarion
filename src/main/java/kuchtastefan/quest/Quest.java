@@ -13,12 +13,12 @@ public class Quest {
     private final String questDescription;
     private final int questLevel;
     private boolean questCompleted;
-    private List<QuestObjective> questObjectives;
+    private List<? extends QuestObjective> questObjectives;
     private final QuestReward questReward;
     private boolean isTurnedIn;
 
 
-    public Quest(String questName, String questDescription, int questLevel, List<QuestObjective> questObjectives, QuestReward questReward) {
+    public Quest(String questName, String questDescription, int questLevel, List<? extends QuestObjective> questObjectives, QuestReward questReward) {
         this.questName = questName;
         this.questDescription = questDescription;
         this.questLevel = questLevel;
@@ -27,9 +27,6 @@ public class Quest {
         this.questCompleted = false;
         this.isTurnedIn = false;
         questReward.setQuestLevel(this.questLevel);
-    }
-
-    public Quest() {
     }
 
     public Quest(String questName, String questDescription, int questLevel, QuestReward questReward) {
@@ -90,12 +87,12 @@ public class Quest {
         this.questCompleted = completed;
     }
 
-    public List<QuestObjective> getQuestObjectives() {
+    public List<? extends QuestObjective> getQuestObjectives() {
         return questObjectives;
     }
 
     public void setQuestObjectives(List<? extends QuestObjective> questObjectives) {
-        this.questObjectives = (List<QuestObjective>) questObjectives;
+        this.questObjectives = questObjectives;
     }
 
     public boolean isTurnedIn() {

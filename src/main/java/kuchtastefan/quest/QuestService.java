@@ -10,7 +10,9 @@ import java.util.List;
 public class QuestService {
 
     public Quest createNewQuest(Quest quest, List<? extends QuestObjective> questObjectives) {
-        
+        Quest quest1 = new Quest(quest.getQuestName(), quest.getQuestDescription(), quest.getQuestLevel(), questObjectives, quest.getQuestReward());
+        quest.setQuestObjectives(questObjectives);
+        return quest1;
     }
 
     public void startQuest(Quest quest, Hero hero) {

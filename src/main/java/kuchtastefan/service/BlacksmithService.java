@@ -13,8 +13,9 @@ import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestService;
 import kuchtastefan.quest.QuestsMap;
-import kuchtastefan.quest.questObjectives.QuestKillObjective;
+import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -32,13 +33,14 @@ public class BlacksmithService {
         HintUtil.printHint(HintName.BLACKSMITH_HINT);
 
 
+        QuestService questService = new QuestService();
+        Quest quest = questService.createNewQuest(QuestsMap.questsMap.get("shadowRaiders"), new ArrayList<QuestObjective>(List.of(QuestsMap.questKillObjectiveMap.get("kill10Bandits"))));
 
-        Quest quest = new Quest();
-        quest = (Quest) List.of(QuestsMap.questsMap.get("shadowRaiders"));
+//        Quest quest = new Quest();
 //        quest.setQuestObjectives(List.of(QuestsMap.questKillObjectiveMap.get("kill10Bandits")));
-        List<Quest> quests = new ArrayList<>(List.of(QuestsMap.questsMap.get("shadowRaiders")));
+//        List<Quest> quests = new ArrayList<>(List.of(QuestsMap.questsMap.get("shadowRaiders")));
 //        quests.add(QuestsMap.questsMap.get("shadowRaiders"));
-        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli", 8, quests);
+        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli", 8, List.of(quest));
         questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
 
         PrintUtil.printDivider();

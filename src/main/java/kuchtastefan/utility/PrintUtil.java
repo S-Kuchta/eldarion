@@ -107,6 +107,36 @@ public class PrintUtil {
         System.out.println();
     }
 
+    public static void printTextWrap(String text) {
+//        char[] charArray = text.toCharArray();
+//        int numberOfTextWrap = 1;
+//        for (int i = 0; i <charArray.length; i++) {
+//            System.out.print(charArray[i]);
+//            if (i == (55 * numberOfTextWrap)) {
+//                System.out.print(" -");
+//                System.out.println("");
+//                numberOfTextWrap++;
+//            }
+//        }
+
+        // TODO add \t in front of each line
+        StringBuilder line = new StringBuilder();
+
+        for (String word : text.split("\\s")) {
+            if (line.length() + word.length() <= 60) {
+                line.append(word).append(" ");
+            } else {
+                System.out.println(line.toString().trim());
+                line.setLength(0);
+                line.append(word).append(" ");
+            }
+        }
+
+        if (!line.isEmpty()) {
+            System.out.println(line.toString().trim());
+        }
+    }
+
     public static void printDivider() {
         System.out.println("|-----------------------------------------------|");
     }

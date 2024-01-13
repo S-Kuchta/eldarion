@@ -117,7 +117,9 @@ public class QuestService {
     private void printQuestDetails(Quest quest, Hero hero) {
         PrintUtil.printLongDivider();
         System.out.println("\t\t\t\t------ " + quest.getQuestName() + " ------");
-        System.out.println("\t" + quest.getQuestDescription());
+        System.out.print("\t" /*+ quest.getQuestDescription()*/);
+        PrintUtil.printTextWrap(quest.getQuestDescription());
+        System.out.println();
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             questObjective.printQuestObjectiveAssignment(hero);
         }

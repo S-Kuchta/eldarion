@@ -2,7 +2,7 @@
   {
     "questId": 0,
     "questName": "Shadow Raiders",
-    "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear.\n\tAnswer the call of duty to undertake a quest of paramount importance\n\t– eliminate ten notorious bandit.\n\tYour courage will be tested in the face of danger.",
+    "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
     "questLevel": 2,
     "questObjectives": [
       {
@@ -29,13 +29,16 @@
     "questName": "Wolf in the forest",
     "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
     "questLevel": 2,
-    "questCompleted": false,
     "questObjectives": [
       {
         "type": "QuestKillObjective",
         "enemyToKill": "Wolf",
-        "countEnemyToKill": 1,
-        "completed": false
+        "countEnemyToKill": 5
+      },
+      {
+        "type": "QuestKillObjective",
+        "enemyToKill": "Alpha Wolf",
+        "countEnemyToKill": 1
       }
     ],
     "questReward": {
@@ -49,7 +52,6 @@
       "goldsReward": 30.0,
       "experiencePointsReward": 70.0,
       "questLevel": 2
-    },
-    "isTurnedIn": false
+    }
   }
 ]

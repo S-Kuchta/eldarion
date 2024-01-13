@@ -8,6 +8,7 @@ import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.PrintUtil;
@@ -167,12 +168,24 @@ public class Hero extends GameCharacter {
         PrintUtil.printLongDivider();
     }
 
-    public void checkQuestObjectivesAndQuestCompleted() {
+    public void checkQuestProgress(String enemyName) {
         for (Quest quest : this.listOfAcceptedQuests) {
             for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                questObjective.checkQuestObjectiveCompleted(this);
+                if (questObjective instanceof QuestKillObjective && ((QuestKillObjective) questObjective).getEnemyToKill().equals(enemyName)) {
+                    questObjective.printQuestObjectiveAssignment(this);
+                }
             }
-            quest.checkQuestObjectivesCompleted();
+        }
+    }
+
+    public void checkQuestObjectivesAndQuestCompleted() {
+        for (Quest quest : this.listOfAcceptedQuests) {
+            if (!quest.isTurnedIn()) {
+                for (QuestObjective questObjective : quest.getQuestObjectives()) {
+                    questObjective.checkQuestObjectiveCompleted(this);
+                }
+                quest.checkQuestAndQuestObjectivesCompleted();
+            }
         }
     }
 
@@ -204,10 +217,6 @@ public class Hero extends GameCharacter {
 
     public int getUnspentAbilityPoints() {
         return unspentAbilityPoints;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Map<WearableItemType, WearableItem> getEquippedItem() {

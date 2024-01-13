@@ -32,7 +32,7 @@ public class HeroCharacterService {
             }
             case 2 -> this.inventoryService.inventoryMenu(hero);
             case 3 -> this.upgradeAbilityMenu(hero);
-            case 4 -> this.questService.printAcceptedQuests(hero);
+            case 4 -> this.questService.acceptedQuestMenu(hero, hero.getListOfAcceptedQuests());
         }
     }
 

@@ -3,7 +3,6 @@ package kuchtastefan.characters;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestService;
-import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;
@@ -37,70 +36,11 @@ public class QuestGiverCharacter extends GameCharacter {
     public void questGiverMenu(Hero hero) {
         connectHeroQuestListWithCharacterQuestList(hero);
         setNameBasedOnQuestsAvailable(hero);
-
         PrintUtil.printDivider();
         System.out.println("\t\t\t" + getName());
         PrintUtil.printDivider();
-        System.out.println("\t0. Go back");
-        int index = 1;
-        for (Quest quest : this.quests) {
-            if ((quest.getQuestLevel() - 1) <= hero.getLevel()) {
-                System.out.print("\t" + index + ". " + quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
-                if (quest.isTurnedIn()) {
-                    System.out.print(" -- Completed --");
-                } else if (!hero.getListOfAcceptedQuests().contains(quest)) {
-                    System.out.print(" - ! -");
-                } else if (hero.getListOfAcceptedQuests().contains(quest) && quest.isCompleted() && !quest.isTurnedIn()) {
-                    System.out.print(" - ? -");
-                }
-                index++;
-                System.out.println();
-            }
-        }
-        System.out.println();
 
-        while (true) {
-            try {
-                int choice = InputUtil.intScanner();
-                if (choice == 0) {
-                    break;
-                }
-                this.selectedQuestMenu(this.quests.get(choice - 1), hero);
-                break;
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("\tEnter valid input");
-            }
-        }
-    }
-
-    private void selectedQuestMenu(Quest quest, Hero hero) {
-        System.out.println("\t0. Go back");
-        if (!quest.isTurnedIn()) {
-            this.questService.printQuestDetails(quest, hero);
-            if (!quest.isCompleted() && !hero.getListOfAcceptedQuests().contains(quest)) {
-                System.out.println("\t1. Accept quest");
-            } else if (!quest.isTurnedIn() && quest.isCompleted()) {
-                System.out.println("\t1. Complete quest");
-            }
-        } else {
-            System.out.println("\t--- Completed ---");
-        }
-
-        int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> this.questGiverMenu(hero);
-            case 1 -> {
-                if (!quest.isCompleted() && !hero.getListOfAcceptedQuests().contains(quest)) {
-                    System.out.println("\t\t --> Quest accepted <--");
-                    this.questService.startQuest(quest, hero);
-                    this.questGiverMenu(hero);
-                } else if (!quest.isTurnedIn() && quest.isCompleted()) {
-                    this.questService.completeTheQuest(quest, hero);
-                    this.questGiverMenu(hero);
-                }
-            }
-            default -> System.out.println("\tEnter valid input");
-        }
+        this.questService.questGiverMenu(hero, this.quests);
     }
 
     public void setNameBasedOnQuestsAvailable(Hero hero) {

@@ -4,7 +4,6 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,7 +30,7 @@ public class Quest {
         questReward.setQuestLevel(this.questLevel);
     }
 
-    public void checkQuestObjectivesCompleted() {
+    public void checkQuestAndQuestObjectivesCompleted() {
         boolean completed = true;
         for (QuestObjective questObjective : this.questObjectives) {
             if (!questObjective.isCompleted()) {
@@ -39,8 +38,8 @@ public class Quest {
                 break;
             }
         }
-        if (completed) {
-            System.out.println("\t--> You completed Quest " + this.questName + " <--");
+        if (completed && !this.isCompleted()) {
+            System.out.println("\t--> You have completed Quest " + this.questName + " <--");
             this.questCompleted = true;
         }
     }
@@ -48,7 +47,7 @@ public class Quest {
     public void completeTheQuest(Hero hero) {
         if (this.questCompleted) {
             PrintUtil.printLongDivider();
-            System.out.println("\t\t-- You completed the Quest " + this.questName);
+            System.out.println("\t\t-- You have completed Quest " + this.questName);
             PrintUtil.printLongDivider();
             this.questReward.giveQuestReward(hero);
         }

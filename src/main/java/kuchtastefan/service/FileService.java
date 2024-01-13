@@ -358,7 +358,7 @@ public class FileService {
         try {
             Map<String, QuestKillObjective> questKillObjectiveMap;
 
-            BufferedReader reader = new BufferedReader(new FileReader(path + "/" + "kill-quest-objectives"));
+            BufferedReader reader = new BufferedReader(new FileReader(path + "/" + "kill-quest-objectives.json"));
             questKillObjectiveMap = new Gson().fromJson(reader, new TypeToken<Map<String, QuestKillObjective>>() {
             }.getType());
 

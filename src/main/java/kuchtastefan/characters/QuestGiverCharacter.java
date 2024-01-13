@@ -24,14 +24,23 @@ public class QuestGiverCharacter extends GameCharacter {
     }
 
     private void connectHeroQuestListWithCharacterQuestList(Hero hero) {
+
+        List<Quest> updatedQuests = new ArrayList<>(this.quests);
+
         for (Quest heroQuest : hero.getListOfAcceptedQuests()) {
-            for (Quest quest : this.quests) {
-                if (quest.equals(heroQuest)) {
-                    this.quests.remove(quest);
-                    this.quests.add(heroQuest);
-                }
-            }
+            updatedQuests.removeIf(quest -> quest.equals(heroQuest));
+            updatedQuests.add(heroQuest);
         }
+
+        this.quests = updatedQuests;
+//        for (Quest heroQuest : hero.getListOfAcceptedQuests()) {
+//            for (Quest quest : this.quests) {
+//                if (quest.equals(heroQuest)) {
+//                    this.quests.remove(quest);
+//                    this.quests.add(heroQuest);
+//                }
+//            }
+//        }
     }
 
     public void questGiverMenu(Hero hero) {
@@ -137,13 +146,5 @@ public class QuestGiverCharacter extends GameCharacter {
             this.setName(this.baseName);
         }
 
-    }
-
-    public List<Quest> getQuests() {
-        return quests;
-    }
-
-    public void setQuests(List<Quest> quests) {
-        this.quests = quests;
     }
 }

@@ -3,8 +3,8 @@ package kuchtastefan.quest.questObjectives;
 import kuchtastefan.characters.hero.Hero;
 
 public class QuestObjective {
-    private boolean completed;
-    private final String questObjectiveName;
+    protected boolean completed;
+    protected final String questObjectiveName;
 
     public QuestObjective(String questObjectiveName) {
         this.completed = false;

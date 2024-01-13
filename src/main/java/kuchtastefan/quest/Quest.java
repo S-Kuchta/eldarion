@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Quest {
+    private final int questId;
     private final String questName;
     private final String questDescription;
     private final int questLevel;
@@ -18,22 +19,12 @@ public class Quest {
     private boolean isTurnedIn;
 
 
-    public Quest(String questName, String questDescription, int questLevel, List<? extends QuestObjective> questObjectives, QuestReward questReward) {
+    public Quest(int questId, String questName, String questDescription, int questLevel, List<? extends QuestObjective> questObjectives, QuestReward questReward) {
+        this.questId = questId;
         this.questName = questName;
         this.questDescription = questDescription;
         this.questLevel = questLevel;
         this.questObjectives = questObjectives;
-        this.questReward = questReward;
-        this.questCompleted = false;
-        this.isTurnedIn = false;
-        questReward.setQuestLevel(this.questLevel);
-    }
-
-    public Quest(String questName, String questDescription, int questLevel, QuestReward questReward) {
-        this.questName = questName;
-        this.questDescription = questDescription;
-        this.questLevel = questLevel;
-        this.questObjectives = new ArrayList<>();
         this.questReward = questReward;
         this.questCompleted = false;
         this.isTurnedIn = false;
@@ -108,7 +99,6 @@ public class Quest {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -134,5 +124,9 @@ public class Quest {
                 ", questReward=" + questReward +
                 ", isTurnedIn=" + isTurnedIn +
                 '}';
+    }
+
+    public int getQuestId() {
+        return questId;
     }
 }

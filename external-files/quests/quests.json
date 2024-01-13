@@ -1,32 +1,55 @@
 [
-  [
-    "shadowRaiders",
-    {
-      "questName": "Shadow Raiders",
-      "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear.\n\tAnswer the call of duty to undertake a quest of paramount importance\n\t– eliminate ten notorious bandit.\n\tYour courage will be tested in the face of danger.",
-      "questLevel": 2,
-      "questReward": {
-        "itemsReward": [
-          {
-            "wearableItemType": "WEAPON",
-            "abilities": {
-              "ATTACK": 1,
-              "SKILL": 1,
-              "DEFENCE": 0,
-              "DEXTERITY": 0,
-              "LUCK": 0,
-              "HEALTH": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Iron sword of Skill",
-            "price": 50.0,
-            "itemLevel": 1
-          }
-        ],
-        "goldsReward": 30.0,
-        "experiencePointsReward": 70.0,
-        "questLevel": 2
+  {
+    "questId": 0,
+    "questName": "Shadow Raiders",
+    "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear.\n\tAnswer the call of duty to undertake a quest of paramount importance\n\t– eliminate ten notorious bandit.\n\tYour courage will be tested in the face of danger.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestKillObjective",
+        "enemyToKill": "Defias Bandit",
+        "countEnemyToKill": 1
       }
+    ],
+    "questReward": {
+      "itemsReward": [
+        {
+          "name": "Iron sword of Skill",
+          "price": 50.0,
+          "itemLevel": 1
+        }
+      ],
+      "goldsReward": 30.0,
+      "experiencePointsReward": 70.0,
+      "questLevel": 2
     }
-  ]
+  },
+  {
+    "questId": 1,
+    "questName": "Wolf in the forest",
+    "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+    "questLevel": 2,
+    "questCompleted": false,
+    "questObjectives": [
+      {
+        "type": "QuestKillObjective",
+        "enemyToKill": "Wolf",
+        "countEnemyToKill": 1,
+        "completed": false
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        {
+          "name": "Iron sword of Skill",
+          "price": 50.0,
+          "itemLevel": 1
+        }
+      ],
+      "goldsReward": 30.0,
+      "experiencePointsReward": 70.0,
+      "questLevel": 2
+    },
+    "isTurnedIn": false
+  }
 ]

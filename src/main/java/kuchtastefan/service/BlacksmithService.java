@@ -12,14 +12,15 @@ import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
-import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.QuestService;
-import kuchtastefan.quest.QuestsMap;
+import kuchtastefan.quest.QuestList;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BlacksmithService {
 
@@ -31,12 +32,8 @@ public class BlacksmithService {
 
         HintUtil.printHint(HintName.BLACKSMITH_HINT);
 
-        QuestService questService = new QuestService();
-        Quest quest = questService.createNewQuest(QuestsMap.questsMap.get("shadowRaiders"),
-                List.of(QuestsMap.returnQuestObjective("kill10Bandits")));
-
-        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli", 8,
-                List.of(quest));
+        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli", 8);
+        questGiverCharacter.addQuest(QuestList.questList.get(1));
         questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
 
         PrintUtil.printDivider();

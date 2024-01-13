@@ -11,36 +11,27 @@ import java.util.List;
 
 public class QuestGiverCharacter extends GameCharacter {
 
-    private List<Quest> quests;
+    private final List<Quest> quests;
     private final QuestService questService;
     private final String baseName;
 
 
-    public QuestGiverCharacter(String name, int level, List<Quest> quests) {
+    public QuestGiverCharacter(String name, int level) {
         super(name, level);
-        this.quests = quests;
+        this.quests = new ArrayList<>();
         this.questService = new QuestService();
         this.baseName = name;
     }
 
     private void connectHeroQuestListWithCharacterQuestList(Hero hero) {
-
-        List<Quest> updatedQuests = new ArrayList<>(this.quests);
-
         for (Quest heroQuest : hero.getListOfAcceptedQuests()) {
-            updatedQuests.removeIf(quest -> quest.equals(heroQuest));
-            updatedQuests.add(heroQuest);
+            for (Quest quest : this.quests) {
+                if (quest.equals(heroQuest)) {
+                    this.quests.remove(quest);
+                    this.quests.add(heroQuest);
+                }
+            }
         }
-
-        this.quests = updatedQuests;
-//        for (Quest heroQuest : hero.getListOfAcceptedQuests()) {
-//            for (Quest quest : this.quests) {
-//                if (quest.equals(heroQuest)) {
-//                    this.quests.remove(quest);
-//                    this.quests.add(heroQuest);
-//                }
-//            }
-//        }
     }
 
     public void questGiverMenu(Hero hero) {
@@ -83,14 +74,16 @@ public class QuestGiverCharacter extends GameCharacter {
     }
 
     private void selectedQuestMenu(Quest quest, Hero hero) {
-
-        this.questService.printQuestDetails(quest, hero);
-
         System.out.println("\t0. Go back");
-        if (!quest.isCompleted() && !hero.getListOfAcceptedQuests().contains(quest)) {
-            System.out.println("\t1. Accept quest");
-        } else if (!quest.isTurnedIn() && quest.isCompleted()) {
-            System.out.println("\t1. Complete quest");
+        if (!quest.isTurnedIn()) {
+            this.questService.printQuestDetails(quest, hero);
+            if (!quest.isCompleted() && !hero.getListOfAcceptedQuests().contains(quest)) {
+                System.out.println("\t1. Accept quest");
+            } else if (!quest.isTurnedIn() && quest.isCompleted()) {
+                System.out.println("\t1. Complete quest");
+            }
+        } else {
+            System.out.println("\t--- Completed ---");
         }
 
         int choice = InputUtil.intScanner();
@@ -145,6 +138,9 @@ public class QuestGiverCharacter extends GameCharacter {
         if (this.quests.size() == numberOfCompletedQuests) {
             this.setName(this.baseName);
         }
+    }
 
+    public void addQuest(Quest quest) {
+        this.quests.add(quest);
     }
 }

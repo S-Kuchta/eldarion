@@ -107,6 +107,7 @@
     },
     "listOfAcceptedQuests": [
       {
+        "questId": 0,
         "questName": "Shadow Raiders",
         "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear.\n\tAnswer the call of duty to undertake a quest of paramount importance\n\t– eliminate ten notorious bandit.\n\tYour courage will be tested in the face of danger.",
         "questLevel": 2,

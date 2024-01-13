@@ -14,15 +14,10 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
-import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.QuestReward;
-import kuchtastefan.quest.questObjectives.QuestKillObjective;
+import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class GameManager {
@@ -111,20 +106,8 @@ public class GameManager {
         final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
                 this.itemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
 
-
-
-        QuestKillObjective questKillObjective = new QuestKillObjective("Kill 3 wolfs", enemyList.returnEnemyMap().get("Wolf").getName(), 3);
-        QuestKillObjective questKillObjective1 = new QuestKillObjective("Kill 2 NightBane Dark Runner", enemyList.returnEnemyMap().get("NightBane Dark Runner").getName(), 2);
-
-        QuestReward questReward = new QuestReward(30, 70, 2);
-        questReward.generateRandomWearableItemsReward(1, this.itemsLists.returnWearableItemListByItemLevel(questReward.getQuestLevel(), null));
-
-        Quest quest = new Quest("Danger in the forest",
-                "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.", 1, List.of(questKillObjective, questKillObjective1), questReward);
-        List<Quest> quests = new ArrayList<>();
-        quests.add(quest);
-
-        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8, quests);
+        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8);
+        questGiverCharacter.addQuest(QuestList.questList.get(0));
         questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
 
@@ -178,8 +161,7 @@ public class GameManager {
         this.itemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
         this.itemsLists.initializeAllItemsMapToStringItemMap();
 
-        this.fileService.importQuestsFromFile();
-        this.fileService.importKillQuestsObjectivesFromFile();
+        QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
 
         this.enemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile(this.itemsLists));
 

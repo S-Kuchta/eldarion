@@ -1,32 +1,11 @@
 package kuchtastefan.quest;
 
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class QuestService {
-
-    public Quest createNewQuest(Quest quest, List<? extends QuestObjective> questObjectives) {
-//        List<QuestObjective> questObjectiveList = new ArrayList<>();
-//        questObjectiveList.add(questObjectives);
-//        System.out.println(questObjectives.getClass());
-
-//        if (questObjectives instanceof QuestKillObjective) {
-//            QuestKillObjective questKillObjective = new QuestKillObjective(((QuestKillObjective) questObjectives).getQuestObjectiveName(),
-//                    ((QuestKillObjective) questObjectives).getEnemyToKill(), ((QuestKillObjective) questObjectives).getCountEnemyToKill());
-//            questObjectiveList.add(questKillObjective);
-//        }
-
-//        Quest quest1 = new Quest(quest.getQuestName(), quest.getQuestDescription(), quest.getQuestLevel(), questObjectives, quest.getQuestReward());
-//        quest.setQuestObjectives(questObjectives);
-        return new Quest(quest.getQuestName(), quest.getQuestDescription(), quest.getQuestLevel(), questObjectives, quest.getQuestReward());
-    }
-
     public void startQuest(Quest quest, Hero hero) {
         if (!hero.getListOfAcceptedQuests().contains(quest)) {
             hero.getListOfAcceptedQuests().add(quest);
@@ -49,8 +28,10 @@ public class QuestService {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Quest quest : hero.getListOfAcceptedQuests()) {
-            System.out.println("\t" + index + ". " + quest.getQuestName());
-            index++;
+            if (!quest.isTurnedIn()) {
+                System.out.println("\t" + index + ". " + quest.getQuestName());
+                index++;
+            }
         }
 
         while (true) {

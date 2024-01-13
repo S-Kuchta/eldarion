@@ -2,6 +2,7 @@ package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.characters.hero.Hero;
 
+
 public class QuestKillObjective extends QuestObjective {
     private final String enemyToKill;
     private final int countEnemyToKill;
@@ -10,27 +11,26 @@ public class QuestKillObjective extends QuestObjective {
         super(questObjectiveName);
         this.enemyToKill = enemyToKill;
         this.countEnemyToKill = countEnemyToKill;
-//        this.questObjectiveAssignment = new StringBuilder();
     }
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
 //        this.questObjectiveAssignment.setLength(0);
-        StringBuilder questObjectiveAssignment = new StringBuilder();
-        hero.getEnemyKilled().getQuestEnemyKilled().putIfAbsent(this.enemyToKill, 0);
-        questObjectiveAssignment.append("\tKill ").append(this.countEnemyToKill).append("x ").append(this.enemyToKill).append(" - ");
-        questObjectiveAssignment.append("You have ")
-                .append(hero.getEnemyKilled().getQuestEnemyKilled().get(this.enemyToKill))
-                .append(" / ").append(this.countEnemyToKill)
-                .append(" killed");
+//        StringBuilder questObjectiveAssignment = new StringBuilder();
+//        hero.getEnemyKilled().getQuestEnemyKilled().putIfAbsent(this.enemyToKill, 0);
+//        questObjectiveAssignment.append("\tKill ").append(this.countEnemyToKill).append("x ").append(this.enemyToKill).append(" - ");
+//        questObjectiveAssignment.append("You have ")
+//                .append(hero.getEnemyKilled().getQuestEnemyKilled().get(this.enemyToKill))
+//                .append(" / ").append(this.countEnemyToKill)
+//                .append(" killed");
+//
+//        System.out.println(questObjectiveAssignment);
 
-        System.out.println(questObjectiveAssignment);
+        hero.getEnemyKilled().getQuestEnemyKilled().putIfAbsent(enemyToKill, 0);
 
-//        hero.getEnemyKilled().getQuestEnemyKilled().putIfAbsent(enemyToKill, 0);
-
-//        System.out.println("\tKill " + this.countEnemyToKill + "x - " + this.enemyToKill );
-//        System.out.println("\tYou have " + hero.getEnemyKilled().getQuestEnemyKilled().get(enemyToKill)
-//                + " / " + this.countEnemyToKill + " killed");
+        System.out.println("\tKill " + this.countEnemyToKill + "x - " + this.enemyToKill );
+        System.out.println("\tYou have " + hero.getEnemyKilled().getQuestEnemyKilled().get(enemyToKill)
+                + " / " + this.countEnemyToKill + " killed");
 
     }
 

@@ -36,11 +36,8 @@ public class QuestGiverCharacter extends GameCharacter {
     public void questGiverMenu(Hero hero) {
         connectHeroQuestListWithCharacterQuestList(hero);
         setNameBasedOnQuestsAvailable(hero);
-        PrintUtil.printDivider();
-        System.out.println("\t\t\t" + getName());
-        PrintUtil.printDivider();
 
-        this.questService.questGiverMenu(hero, this.quests);
+        this.questService.questGiverMenu(hero, this.quests, this.name);
     }
 
     public void setNameBasedOnQuestsAvailable(Hero hero) {

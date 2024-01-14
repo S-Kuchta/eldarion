@@ -6,6 +6,7 @@ import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Location {
 
@@ -55,5 +56,18 @@ public class Location {
 
     public boolean isCleared() {
         return cleared;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return locationLevel == location.locationLevel && cleared == location.cleared && stageTotal == location.stageTotal && Objects.equals(locationName, location.locationName) && locationType == location.locationType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(locationName, locationLevel, stageTotal, locationType, cleared);
     }
 }

@@ -172,6 +172,7 @@ public class Hero extends GameCharacter {
         for (Quest quest : this.listOfAcceptedQuests) {
             for (QuestObjective questObjective : quest.getQuestObjectives()) {
                 if (questObjective instanceof QuestKillObjective && ((QuestKillObjective) questObjective).getEnemyToKill().equals(enemyName)) {
+                    this.enemyKilled.addQuestEnemyKilled(enemyName);
                     questObjective.printQuestObjectiveAssignment(this);
                 }
             }

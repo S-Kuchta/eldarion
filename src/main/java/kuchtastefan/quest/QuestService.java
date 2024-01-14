@@ -42,7 +42,13 @@ public class QuestService {
                 if (choice == 0) {
                     break;
                 }
-                printQuestDetails(quests.get(choice - 1), hero);
+
+                if (!quests.get(choice - 1).isTurnedIn()) {
+                    printQuestDetails(quests.get(choice - 1), hero);
+                } else {
+                    System.out.println("\t-- Quest " + quests.get(choice - 1).getQuestName() + " Completed --");
+                }
+
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("\tEnter valid input");
             }
@@ -79,7 +85,7 @@ public class QuestService {
                 System.out.println("\t1. Complete quest");
             }
         } else {
-            System.out.println("\t--- Completed ---");
+            System.out.println("\t-- Quest " + quest.getQuestName() + " Completed --");
             System.out.println("\t0. Go back");
         }
 
@@ -117,7 +123,7 @@ public class QuestService {
     private void printQuestDetails(Quest quest, Hero hero) {
         PrintUtil.printLongDivider();
         System.out.println("\t\t\t\t------ " + quest.getQuestName() + " ------");
-        System.out.print("\t" /*+ quest.getQuestDescription()*/);
+        System.out.print("\t");
         PrintUtil.printTextWrap(quest.getQuestDescription());
         System.out.println();
         for (QuestObjective questObjective : quest.getQuestObjectives()) {

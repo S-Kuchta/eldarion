@@ -1,47 +1,47 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
-    "heroGold": 175.0,
-    "experiencePoints": 60.0,
+    "heroGold": 95.0,
+    "experiencePoints": 340.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "ATTACK": 0,
-          "HEALTH": 0,
+          "ATTACK": 1,
+          "DEXTERITY": 1,
           "DEFENCE": 0,
-          "LUCK": 0,
           "SKILL": 0,
-          "DEXTERITY": 0
+          "LUCK": 0,
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "name": "Iron sword of Dexterity",
+        "price": 50.0,
+        "itemLevel": 1
       },
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
+          "DEFENCE": 1,
+          "DEXTERITY": 1,
           "ATTACK": 0,
-          "HEALTH": 0,
-          "DEFENCE": 0,
-          "LUCK": 0,
           "SKILL": 0,
-          "DEXTERITY": 0
+          "LUCK": 0,
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "name": "Leather armor of Dexterity",
+        "price": 50.0,
+        "itemLevel": 1
       },
       "HANDS": {
         "wearableItemType": "HANDS",
         "abilities": {
           "ATTACK": 0,
-          "HEALTH": 0,
           "DEFENCE": 0,
-          "LUCK": 0,
+          "HEALTH": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -53,10 +53,10 @@
         "wearableItemType": "BOOTS",
         "abilities": {
           "ATTACK": 0,
-          "HEALTH": 0,
           "DEFENCE": 0,
-          "LUCK": 0,
+          "HEALTH": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -68,10 +68,10 @@
         "wearableItemType": "HEAD",
         "abilities": {
           "ATTACK": 0,
-          "HEALTH": 0,
           "DEFENCE": 0,
-          "LUCK": 0,
+          "HEALTH": 0,
           "SKILL": 0,
+          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -81,16 +81,71 @@
       }
     },
     "wearingItemAbilityPoints": {
-      "ATTACK": 0,
+      "ATTACK": 1,
+      "DEFENCE": 1,
       "HEALTH": 0,
-      "DEFENCE": 0,
-      "LUCK": 0,
       "SKILL": 0,
-      "DEXTERITY": 0
+      "LUCK": 0,
+      "DEXTERITY": 2
     },
     "heroInventory": {
       "heroInventory": {},
-      "wearableItemInventory": {},
+      "wearableItemInventory": [
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "DEXTERITY": 1,
+              "ATTACK": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Dexterity",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Skill",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "DEXTERITY": 1,
+              "DEFENCE": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Dexterity",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ]
+      ],
       "craftingReagentItemInventory": [
         [
           {
@@ -99,7 +154,7 @@
             "price": 10.0,
             "itemLevel": 2
           },
-          3
+          4
         ],
         [
           {
@@ -108,7 +163,16 @@
             "price": 10.0,
             "itemLevel": 2
           },
-          3
+          4
+        ],
+        [
+          {
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Silver ore",
+            "price": 25.0,
+            "itemLevel": 3
+          },
+          1
         ]
       ],
       "consumableItemInventory": {},
@@ -116,7 +180,15 @@
       "junkItemInventory": [
         [
           {
-            "name": "Lute with Gold Decorating",
+            "name": "Flute with Silver decorating",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Jug",
             "price": 23.0,
             "itemLevel": 0
           },
@@ -124,32 +196,32 @@
         ],
         [
           {
-            "name": "Doll",
-            "price": 21.0,
+            "name": "Inkwell",
+            "price": 9.0,
             "itemLevel": 0
           },
           1
         ],
         [
           {
-            "name": "Glamour",
-            "price": 21.0,
+            "name": "Tongs",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "name": "Empty Skooma Bottle",
+            "price": 7.0,
             "itemLevel": 0
           },
           1
         ],
         [
           {
-            "name": "Wooden Plate",
-            "price": 3.0,
-            "itemLevel": 0
-          },
-          1
-        ],
-        [
-          {
-            "name": "Silver ring",
-            "price": 21.0,
+            "name": "Basket",
+            "price": 7.0,
             "itemLevel": 0
           },
           1
@@ -161,25 +233,35 @@
     },
     "enemyKilled": {
       "enemyKilled": {
-        "Defias Looter": 1,
-        "Defias Thief": 1
+        "NightBane Dark Runner": 1,
+        "Defias Bandit": 1,
+        "Alpha Wolf": 1,
+        "Wolf": 1
       },
       "questEnemyKilled": {
-        "Defias Looter": 1,
-        "Defias Bandit": 0,
-        "Defias Thief": 1
+        "Alpha Wolf": 1,
+        "Wolf": 1
       }
     },
     "listOfAcceptedQuests": [
       {
-        "questName": "Shadow Raiders",
-        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear.\n\tAnswer the call of duty to undertake a quest of paramount importance\n\t– eliminate ten notorious bandit.\n\tYour courage will be tested in the face of danger.",
+        "questId": 1,
+        "questName": "Wolf in the forest",
+        "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
         "questLevel": 2,
         "questCompleted": false,
         "questObjectives": [
           {
-            "completed": false,
-            "questObjectiveName": "Kill 10 bandits"
+            "type": "QuestKillObjective",
+            "enemyToKill": "Wolf",
+            "countEnemyToKill": 5,
+            "completed": false
+          },
+          {
+            "type": "QuestKillObjective",
+            "enemyToKill": "Alpha Wolf",
+            "countEnemyToKill": 1,
+            "completed": true
           }
         ],
         "questReward": {
@@ -195,15 +277,43 @@
           "questLevel": 2
         },
         "isTurnedIn": false
+      },
+      {
+        "questId": 0,
+        "questName": "Shadow Raiders",
+        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
+        "questLevel": 2,
+        "questCompleted": true,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "enemyToKill": "Defias Bandit",
+            "countEnemyToKill": 1,
+            "completed": true
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": true
       }
     ],
     "name": "1",
     "abilities": {
       "ATTACK": 8,
-      "HEALTH": 50,
       "DEFENCE": 1,
-      "LUCK": 1,
+      "HEALTH": 50,
       "SKILL": 1,
+      "LUCK": 1,
       "DEXTERITY": 1
     },
     "level": 1
@@ -215,5 +325,33 @@
       "showed": true
     }
   },
-  "forestRegionDiscoveredLocation": []
+  "forestRegionDiscoveredLocation": [
+    {
+      "locationName": "Tower of Damned",
+      "locationLevel": 5,
+      "stageTotal": 10,
+      "stageCompleted": 0,
+      "cleared": false,
+      "enemyList": [],
+      "locationType": "TOWER"
+    },
+    {
+      "locationName": "Old mine",
+      "locationLevel": 2,
+      "stageTotal": 10,
+      "stageCompleted": 0,
+      "cleared": false,
+      "enemyList": [],
+      "locationType": "MINE"
+    },
+    {
+      "locationName": "Cemetery",
+      "locationLevel": 4,
+      "stageTotal": 10,
+      "stageCompleted": 0,
+      "cleared": true,
+      "enemyList": [],
+      "locationType": "CEMETERY"
+    }
+  ]
 }

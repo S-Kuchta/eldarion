@@ -147,7 +147,7 @@ public class Hero extends GameCharacter {
 
     public void gainExperiencePoints(double experiencePointsGained) {
         this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
-        this.experiencePoints = this.experiencePoints + experiencePointsGained;
+        this.experiencePoints += experiencePointsGained;
 
         if (this.experiencePointsService.gainedNewLevel(this.experiencePoints)) {
             this.level++;
@@ -157,7 +157,7 @@ public class Hero extends GameCharacter {
             System.out.println("\tYou reach a new level! Your level is " + this.level + "!");
             PrintUtil.printDivider();
 
-            this.experiencePoints = this.experiencePoints - experiencePointsService.getNeededExperiencePointsForNewLevel();
+            this.experiencePoints -= experiencePointsService.getNeededExperiencePointsForNewLevel();
             this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
         }
 
@@ -190,7 +190,7 @@ public class Hero extends GameCharacter {
         }
     }
 
-    public boolean checkHeroGoldsAndRemoveIfTrue(double goldNeeded) {
+    public boolean checkHeroGoldsAndSubstractIfTrue(double goldNeeded) {
         if (this.heroGold >= goldNeeded) {
             this.heroGold -= goldNeeded;
             return true;

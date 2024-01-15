@@ -5,6 +5,7 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroCharacterService;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.Location;
+import kuchtastefan.regions.locations.LocationService;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -50,7 +51,7 @@ public class ForestRegionService extends Region {
                 case 2 -> heroCharacterService.heroCharacterMenu(this.hero);
                 default -> {
                     try {
-                        this.discoveredLocations.get(choice - 3).locationMenu();
+                        new LocationService().locationMenu(hero, this.discoveredLocations.get(choice - 3));
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("\tEnter valid input");
                     }
@@ -62,11 +63,11 @@ public class ForestRegionService extends Region {
     @Override
     protected List<Location> initializeLocationForRegion() {
         List<Location> locationList = new ArrayList<>();
-        locationList.add(new Location("Mystic cave", 2, 10, LocationType.CAVE));
-        locationList.add(new Location("Tower of Damned", 5, 10, LocationType.TOWER));
-        locationList.add(new Location("Castle ruins", 3, 10, LocationType.CASTLE));
-        locationList.add(new Location("Old mine", 2, 10, LocationType.MINE));
-        locationList.add(new Location("Cemetery", 4, 10, LocationType.CEMETERY));
+        locationList.add(new Location("Mystic cave", 2, 10, LocationType.CAVE, true));
+        locationList.add(new Location("Old mine", 2, 10, LocationType.MINE, true));
+        locationList.add(new Location("Castle ruins", 3, 10, LocationType.CASTLE, true));
+        locationList.add(new Location("Cemetery", 4, 10, LocationType.CEMETERY, true));
+        locationList.add(new Location("Tower of Damned", 5, 10, LocationType.TOWER, true));
         return locationList;
     }
 

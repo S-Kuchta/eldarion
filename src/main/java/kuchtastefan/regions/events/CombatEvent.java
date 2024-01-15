@@ -15,22 +15,27 @@ import java.util.List;
 public class CombatEvent extends Event {
 
     private final BattleService battleService;
-    private final EnemyList enemyList;
+//    private final EnemyList enemyList;
+    private final List<Enemy> enemies;
     private final LocationType locationType;
 
-    public CombatEvent(int eventLevel, EnemyList enemyList, LocationType locationType) {
+    public CombatEvent(int eventLevel, /*EnemyList enemyList*/ List<Enemy> enemies, LocationType locationType) {
         super(eventLevel);
         this.battleService = new BattleService();
-        this.enemyList = enemyList;
+//        this.enemyList = enemyList;
+        this.enemies = enemies;
         this.locationType = locationType;
     }
 
     @Override
     public void eventOccurs(Hero hero) {
 
-        List<Enemy> suitableEnemies = this.enemyList.returnEnemyListByLocationTypeAndLevel(this.locationType, this.eventLevel, null);
-        final int randomNumber = RandomNumberGenerator.getRandomNumber(0, suitableEnemies.size() - 1);
-        Enemy randomEnemy = suitableEnemies.get(randomNumber);
+//        List<Enemy> suitableEnemies = this.enemyList.returnEnemyListByLocationTypeAndLevel(this.locationType, this.eventLevel, null);
+//        final int randomNumber = RandomNumberGenerator.getRandomNumber(0, suitableEnemies.size() - 1);
+//
+//        Enemy randomEnemy = suitableEnemies.get(randomNumber);
+        final int randomNumber = RandomNumberGenerator.getRandomNumber(0, enemies.size() - 1);
+        Enemy randomEnemy = enemies.get(randomNumber);
 
         System.out.println("\tIn the distance, you've caught sight of " + randomEnemy.getName() + " (Level " + randomEnemy.getLevel() + "), "
                 + "\n\tWill you attempt a silent evasion or initiate an attack?");
@@ -59,8 +64,6 @@ public class CombatEvent extends Event {
 
                     hero.getEnemyKilled().addEnemyKilled(randomEnemy.getName());
 
-                    // TODO quest enemy killed
-//                    hero.getEnemyKilled().addQuestEnemyKilled(randomEnemy.getName());
                     hero.checkQuestProgress(randomEnemy.getName());
 
                     hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);

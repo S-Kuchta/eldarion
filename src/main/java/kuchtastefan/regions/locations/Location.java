@@ -17,8 +17,9 @@ public class Location {
     protected boolean cleared;
     protected List<Enemy> enemyList;
     protected final LocationType locationType;
+    protected boolean canLocationBeExplored;
 
-    public Location(String locationName, int locationLevel, int stageTotal, LocationType locationType) {
+    public Location(String locationName, int locationLevel, int stageTotal, LocationType locationType, boolean canLocationBeExplored) {
         this.locationName = locationName;
         this.locationLevel = locationLevel;
         this.stageTotal = stageTotal;
@@ -26,24 +27,25 @@ public class Location {
         this.cleared = false;
         this.enemyList = new ArrayList<>();
         this.locationType = locationType;
+        this.canLocationBeExplored = canLocationBeExplored;
     }
 
     public void locationMenu() {
-        PrintUtil.printLongDivider();
-        System.out.println("\t\t" + this.locationName + ", Location level: " + this.locationLevel);
-        PrintUtil.printLongDivider();
-
-        System.out.println("\tWhat do you want to do?");
-        System.out.println("\t0. Go back on the path");
-        System.out.println("\t1. Explore location");
-
-        int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> {
-            }
-            case 1 -> System.out.println("Exploring location");
-            default -> System.out.println("Enter valid input");
-        }
+//        PrintUtil.printLongDivider();
+//        System.out.println("\t\t" + this.locationName + "\t\t Location level: " + this.locationLevel);
+//        PrintUtil.printLongDivider();
+//
+//        System.out.println("\tWhat do you want to do?");
+//        System.out.println("\t0. Go back on the path");
+//        System.out.println("\t1. Explore location");
+//
+//        int choice = InputUtil.intScanner();
+//        switch (choice) {
+//            case 0 -> {
+//            }
+//            case 1 -> System.out.println("Exploring location");
+//            default -> System.out.println("Enter valid input");
+//        }
     }
 
     public String getLocationName() {
@@ -56,6 +58,30 @@ public class Location {
 
     public boolean isCleared() {
         return cleared;
+    }
+
+    public int getStageTotal() {
+        return stageTotal;
+    }
+
+    public int getStageCompleted() {
+        return stageCompleted;
+    }
+
+    public List<Enemy> getEnemyList() {
+        return enemyList;
+    }
+
+    public LocationType getLocationType() {
+        return locationType;
+    }
+
+    public boolean isCanLocationBeExplored() {
+        return canLocationBeExplored;
+    }
+
+    public void setCanLocationBeExplored(boolean canLocationBeExplored) {
+        this.canLocationBeExplored = canLocationBeExplored;
     }
 
     @Override

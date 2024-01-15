@@ -2,6 +2,7 @@ package kuchtastefan.regions.events;
 
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.regions.locations.Location;
+import kuchtastefan.regions.locations.LocationService;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class DiscoverLocationEvent extends Event {
                     discoveredLocations.add(location);
                     System.out.println("\t--> You discovered " + location.getLocationName() + ", recommended level: " + location.getLocationLevel() + " level <--");
                     hero.gainExperiencePoints(50);
-                    location.locationMenu();
+                    new LocationService().locationMenu(hero, location);
                     break;
                 }
 

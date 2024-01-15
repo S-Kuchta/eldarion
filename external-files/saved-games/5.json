@@ -1,0 +1,193 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "heroGold": 150.0,
+    "experiencePoints": 0.0,
+    "equippedItem": {
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "ATTACK": 0,
+      "DEFENCE": 0,
+      "HEALTH": 0,
+      "LUCK": 0,
+      "SKILL": 0,
+      "DEXTERITY": 0
+    },
+    "heroInventory": {
+      "heroInventory": {},
+      "wearableItemInventory": {},
+      "craftingReagentItemInventory": {},
+      "consumableItemInventory": {},
+      "questItemInventory": {},
+      "junkItemInventory": {}
+    },
+    "experiencePointsService": {
+      "neededExperiencePointsForNewLevel": 0.0
+    },
+    "enemyKilled": {
+      "enemyKilled": {},
+      "questEnemyKilled": {
+        "Defias Bandit": 0,
+        "Alpha Wolf": 0,
+        "Wolf": 0
+      }
+    },
+    "listOfAcceptedQuests": [
+      {
+        "questId": 1,
+        "questName": "Wolf in the forest",
+        "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "enemyToKill": "Wolf",
+            "countEnemyToKill": 5,
+            "completed": false
+          },
+          {
+            "type": "QuestKillObjective",
+            "enemyToKill": "Alpha Wolf",
+            "countEnemyToKill": 1,
+            "completed": false
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      },
+      {
+        "questId": 0,
+        "questName": "Shadow Raiders",
+        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "enemyToKill": "Defias Bandit",
+            "countEnemyToKill": 1,
+            "completed": false
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      }
+    ],
+    "name": "1",
+    "abilities": {
+      "ATTACK": 8,
+      "DEFENCE": 1,
+      "HEALTH": 50,
+      "LUCK": 1,
+      "SKILL": 1,
+      "DEXTERITY": 1
+    },
+    "level": 1
+  },
+  "level": 1,
+  "hintUtil": {
+    "BLACKSMITH_HINT": {
+      "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
+      "showed": true
+    }
+  },
+  "forestRegionDiscoveredLocation": []
+}

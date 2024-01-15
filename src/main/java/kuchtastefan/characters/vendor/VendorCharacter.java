@@ -1,6 +1,5 @@
 package kuchtastefan.characters.vendor;
 
-import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.constant.Constant;
@@ -11,9 +10,7 @@ import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public abstract class VendorCharacter extends GameCharacter {
 
@@ -47,7 +44,6 @@ public abstract class VendorCharacter extends GameCharacter {
             case 2 -> printItemsForSale(hero);
             default -> System.out.println("Enter valid input");
         }
-
     }
 
     public List<Item> randomItemGeneratorForVendor(List<? extends Item> itemList) {
@@ -108,7 +104,7 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public void successfullyItemBought(Hero hero, Item item) {
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-        hero.setHeroGold(hero.getHeroGold() - item.getPrice());
+        hero.checkHeroGoldsAndSubstractIfTrue(item.getPrice());
         System.out.println("\t" + item.getName() + " bought. You can find it in your inventory");
     }
 

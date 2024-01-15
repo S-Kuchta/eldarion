@@ -35,6 +35,7 @@ public class JunkVendorCharacter extends VendorCharacter {
                 junkItems.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) " + item.getKey().getName());
                 System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
+                index++;
             }
         }
         super.sellItem(hero, junkItems);

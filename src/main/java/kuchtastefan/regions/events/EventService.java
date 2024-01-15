@@ -22,7 +22,7 @@ public class EventService {
     }
 
     public void randomRegionEventGenerate(Hero hero, EnemyList enemyList, LocationType locationType) {
-        int randomNumber = RandomNumberGenerator.getRandomNumber(0, 7);
+        int randomNumber = RandomNumberGenerator.getRandomNumber(0, 5);
         int eventLevel = hero.getLevel() + RandomNumberGenerator.getRandomNumber(-1, 1);
         if (eventLevel == 0) {
             eventLevel = 1;

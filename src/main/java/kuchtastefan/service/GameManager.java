@@ -163,9 +163,9 @@ public class GameManager {
 
         QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
 
-        this.enemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile(this.itemsLists));
+        EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile(this.itemsLists));
 
-        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero, this.enemyList);
+        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero, 1, 1);
 
         HintUtil.initializeHintList();
 

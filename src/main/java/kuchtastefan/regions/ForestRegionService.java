@@ -1,6 +1,5 @@
 package kuchtastefan.regions;
 
-import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroCharacterService;
 import kuchtastefan.items.ItemsLists;
@@ -15,8 +14,8 @@ import java.util.List;
 
 public class ForestRegionService extends Region {
 
-    public ForestRegionService(String regionName, String regionDescription, ItemsLists itemsLists, Hero hero, EnemyList enemyList) {
-        super(regionName, regionDescription, itemsLists, hero, enemyList);
+    public ForestRegionService(String regionName, String regionDescription, ItemsLists itemsLists, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
+        super(regionName, regionDescription, itemsLists, hero, minimumRegionLevel, maximumRegionLevel);
     }
 
     @Override
@@ -47,7 +46,7 @@ public class ForestRegionService extends Region {
                 case 0 -> {
                     return;
                 }
-                case 1 -> super.eventService.randomRegionEventGenerate(super.hero, this.enemyList, LocationType.FOREST);
+                case 1 -> super.eventService.randomRegionEventGenerate(super.hero, LocationType.FOREST);
                 case 2 -> heroCharacterService.heroCharacterMenu(this.hero);
                 default -> {
                     try {

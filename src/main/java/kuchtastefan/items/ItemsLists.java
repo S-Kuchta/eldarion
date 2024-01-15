@@ -14,40 +14,32 @@ import java.util.List;
 import java.util.Map;
 
 public class ItemsLists {
-    private final Map<String, Item> allItemsMap;
-    private final List<WearableItem> wearableItemList;
-    private final List<CraftingReagentItem> craftingReagentItems;
-    private final List<QuestItem> questItems;
-    private final List<ConsumableItem> consumableItems;
-    private final List<JunkItem> junkItems;
+    private static final Map<String, Item> allItemsMap = new HashMap<>();
+    private static final List<WearableItem> wearableItemList = new ArrayList<>();
+    private static final List<CraftingReagentItem> craftingReagentItems = new ArrayList<>();
+    private static final List<QuestItem> questItems = new ArrayList<>();
+    private static final List<ConsumableItem> consumableItems = new ArrayList<>();
+    private static final List<JunkItem> junkItems = new ArrayList<>();
 
-    public ItemsLists() {
-        this.wearableItemList = new ArrayList<>();
-        this.craftingReagentItems = new ArrayList<>();
-        this.questItems = new ArrayList<>();
-        this.consumableItems = new ArrayList<>();
-        this.junkItems = new ArrayList<>();
-        this.allItemsMap = new HashMap<>();
-    }
 
-    public void initializeAllItemsMapToStringItemMap() {
+    public static void initializeAllItemsMapToStringItemMap() {
         List<Item> itemList = returnAllItemsList();
-        itemList.addAll(this.questItems);
+        itemList.addAll(questItems);
         for (Item item : itemList) {
-            this.allItemsMap.put(item.getName(), item);
+            allItemsMap.put(item.getName(), item);
         }
     }
 
-    private List<Item> returnAllItemsList() {
+    private static List<Item> returnAllItemsList() {
         List<Item> itemList = new ArrayList<>();
-        itemList.addAll(this.wearableItemList);
-        itemList.addAll(this.craftingReagentItems);
-        itemList.addAll(this.consumableItems);
-        itemList.addAll(this.junkItems);
+        itemList.addAll(wearableItemList);
+        itemList.addAll(craftingReagentItems);
+        itemList.addAll(consumableItems);
+        itemList.addAll(junkItems);
         return itemList;
     }
 
-    public List<Item> returnItemListByLevel(int maxItemLevel, Integer minItemLevel) {
+    public static List<Item> returnItemListByLevel(int maxItemLevel, Integer minItemLevel) {
         List<Item> itemListAfterLevelCheck = new ArrayList<>();
 
         for (Item item : returnAllItemsList()) {
@@ -60,7 +52,7 @@ public class ItemsLists {
         return itemListAfterLevelCheck;
     }
 
-    private boolean checkItemLevelCondition(Item item, int maxItemLevel, Integer minItemLevel) {
+    private static boolean checkItemLevelCondition(Item item, int maxItemLevel, Integer minItemLevel) {
         if (minItemLevel == null) {
             minItemLevel = maxItemLevel;
         }
@@ -68,9 +60,9 @@ public class ItemsLists {
         return maxItemLevel + 1 >= item.getItemLevel() && minItemLevel - 1 <= item.getItemLevel();
     }
 
-    public List<CraftingReagentItem> returnCraftingReagentItemListByType(CraftingReagentItemType craftingReagentItemType) {
+    public static List<CraftingReagentItem> returnCraftingReagentItemListByType(CraftingReagentItemType craftingReagentItemType) {
         List<CraftingReagentItem> tempList = new ArrayList<>();
-        for (CraftingReagentItem craftingReagentItem : this.craftingReagentItems) {
+        for (CraftingReagentItem craftingReagentItem : craftingReagentItems) {
             if (craftingReagentItem.getCraftingReagentItemType().equals(craftingReagentItemType)) {
                 tempList.add(craftingReagentItem);
             }
@@ -78,9 +70,9 @@ public class ItemsLists {
         return tempList;
     }
 
-    public List<CraftingReagentItem> returnCraftingReagentItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
+    public static List<CraftingReagentItem> returnCraftingReagentItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
         List<CraftingReagentItem> tempList = new ArrayList<>();
-        for (CraftingReagentItem craftingReagentItem : this.craftingReagentItems) {
+        for (CraftingReagentItem craftingReagentItem : craftingReagentItems) {
             if (checkItemLevelCondition(craftingReagentItem, maxItemLevel, minItemLevel)) {
                 tempList.add(craftingReagentItem);
             }
@@ -88,7 +80,7 @@ public class ItemsLists {
         return tempList;
     }
 
-    public List<CraftingReagentItem> returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType craftingReagentItemType, int maxItemLevel, Integer minItemLevel) {
+    public static List<CraftingReagentItem> returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType craftingReagentItemType, int maxItemLevel, Integer minItemLevel) {
         List<CraftingReagentItem> tempList = new ArrayList<>();
         for (CraftingReagentItem craftingReagentItem : returnCraftingReagentItemListByType(craftingReagentItemType)) {
             if (checkItemLevelCondition(craftingReagentItem, maxItemLevel, minItemLevel)) {
@@ -98,9 +90,9 @@ public class ItemsLists {
         return tempList;
     }
 
-    public List<ConsumableItem> returnConsumableItemListByType(ConsumableItemType consumableItemType) {
+    public static List<ConsumableItem> returnConsumableItemListByType(ConsumableItemType consumableItemType) {
         List<ConsumableItem> tempList = new ArrayList<>();
-        for (ConsumableItem consumableItem : this.consumableItems) {
+        for (ConsumableItem consumableItem : consumableItems) {
             if (consumableItem.getConsumableItemType().equals(consumableItemType)) {
                 tempList.add(consumableItem);
             }
@@ -108,9 +100,9 @@ public class ItemsLists {
         return tempList;
     }
 
-    public List<ConsumableItem> returnConsumableItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
+    public static List<ConsumableItem> returnConsumableItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
         List<ConsumableItem> tempList = new ArrayList<>();
-        for (ConsumableItem consumableItem : this.consumableItems) {
+        for (ConsumableItem consumableItem : consumableItems) {
             if (checkItemLevelCondition(consumableItem, maxItemLevel, minItemLevel)) {
                 tempList.add(consumableItem);
             }
@@ -118,7 +110,7 @@ public class ItemsLists {
         return tempList;
     }
 
-    public List<ConsumableItem> returnConsumableItemListByTypeAndItemLevel(ConsumableItemType consumableItemType, int maxItemLevel, Integer minItemLevel) {
+    public static List<ConsumableItem> returnConsumableItemListByTypeAndItemLevel(ConsumableItemType consumableItemType, int maxItemLevel, Integer minItemLevel) {
         List<ConsumableItem> tempList = new ArrayList<>();
         for (ConsumableItem consumableItem : returnConsumableItemListByType(consumableItemType)) {
             if (checkItemLevelCondition(consumableItem, maxItemLevel, minItemLevel)) {
@@ -128,9 +120,9 @@ public class ItemsLists {
         return tempList;
     }
 
-    public List<WearableItem> returnWearableItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
+    public static List<WearableItem> returnWearableItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
         List<WearableItem> tempList = new ArrayList<>();
-        for (WearableItem wearableItem : this.wearableItemList) {
+        for (WearableItem wearableItem : wearableItemList) {
             if (checkItemLevelCondition(wearableItem, maxItemLevel, minItemLevel)) {
                 tempList.add(wearableItem);
             }
@@ -138,9 +130,9 @@ public class ItemsLists {
         return tempList;
     }
 
-    public List<JunkItem> returnJunkItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
+    public static List<JunkItem> returnJunkItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
         List<JunkItem> tempList = new ArrayList<>();
-        for (JunkItem junkItem : this.junkItems) {
+        for (JunkItem junkItem : junkItems) {
             if (checkItemLevelCondition(junkItem, maxItemLevel, minItemLevel)) {
                 tempList.add(junkItem);
             }
@@ -148,27 +140,27 @@ public class ItemsLists {
         return tempList;
     }
 
-    public Map<String, Item> getAllItemsMap() {
+    public static Map<String, Item> getAllItemsMap() {
         return allItemsMap;
     }
 
-    public List<WearableItem> getWearableItemList() {
+    public static List<WearableItem> getWearableItemList() {
         return wearableItemList;
     }
 
-    public List<CraftingReagentItem> getCraftingReagentItems() {
+    public static List<CraftingReagentItem> getCraftingReagentItems() {
         return craftingReagentItems;
     }
 
-    public List<QuestItem> getQuestItems() {
+    public static List<QuestItem> getQuestItems() {
         return questItems;
     }
 
-    public List<ConsumableItem> getConsumableItems() {
+    public static List<ConsumableItem> getConsumableItems() {
         return consumableItems;
     }
 
-    public List<JunkItem> getJunkItems() {
+    public static List<JunkItem> getJunkItems() {
         return junkItems;
     }
 }

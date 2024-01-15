@@ -15,18 +15,15 @@ public class Enemy extends GameCharacter {
     private double goldDrop;
     private EnemyType enemyType;
     private final LocationType[] locationType;
-    private ItemsLists itemsLists;
     private final int maxStack;
 
     public Enemy(String name, Map<Ability, Integer> abilities,
-                 EnemyType enemyType, ItemsLists itemsLists,
-                 LocationType[] locationType, int maxStack) {
+                 EnemyType enemyType, LocationType[] locationType, int maxStack) {
         super(name, abilities);
         this.goldDrop = 0;
         this.enemyType = enemyType;
         this.locationType = locationType;
         this.maxStack = maxStack;
-        this.itemsLists = itemsLists;
         this.itemsDrop = new ArrayList<>();
     }
 
@@ -38,7 +35,7 @@ public class Enemy extends GameCharacter {
 
     public void itemsDrop() {
         List<Item> tempList = new ArrayList<>();
-        List<Item> itemList = this.itemsLists.returnItemListByLevel(getLevel(), null);
+        List<Item> itemList = ItemsLists.returnItemListByLevel(getLevel(), null);
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
 
         for (int i = 0; i < itemsForDrop; i++) {
@@ -75,10 +72,6 @@ public class Enemy extends GameCharacter {
 
     public void setEnemyType(EnemyType enemyType) {
         this.enemyType = enemyType;
-    }
-
-    public void setItemsLists(ItemsLists itemsLists) {
-        this.itemsLists = itemsLists;
     }
 
     public void setItemsDrop(List<Item> itemsDrop) {

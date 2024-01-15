@@ -14,8 +14,8 @@ import java.util.List;
 
 public class ForestRegionService extends Region {
 
-    public ForestRegionService(String regionName, String regionDescription, ItemsLists itemsLists, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
-        super(regionName, regionDescription, itemsLists, hero, minimumRegionLevel, maximumRegionLevel);
+    public ForestRegionService(String regionName, String regionDescription, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
+        super(regionName, regionDescription, hero, minimumRegionLevel, maximumRegionLevel);
     }
 
     @Override

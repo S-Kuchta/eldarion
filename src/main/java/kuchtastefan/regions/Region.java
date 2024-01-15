@@ -18,12 +18,11 @@ public abstract class Region {
     protected List<Location> clearedLocations;
     protected int minimumRegionLevel;
     protected int maximumRegionLevel;
-    protected ItemsLists itemsLists;
     protected Hero hero;
     protected final EventService eventService;
 
 
-    public Region(String regionName, String regionDescription, ItemsLists itemsLists, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
+    public Region(String regionName, String regionDescription, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
         this.regionName = regionName;
         this.regionDescription = regionDescription;
         this.allLocations = initializeLocationForRegion();
@@ -32,8 +31,7 @@ public abstract class Region {
         this.minimumRegionLevel = minimumRegionLevel;
         this.maximumRegionLevel = maximumRegionLevel;
         this.hero = hero;
-        this.itemsLists = itemsLists;
-        this.eventService = new EventService(this.itemsLists, this.allLocations, this.discoveredLocations);
+        this.eventService = new EventService(this.allLocations, this.discoveredLocations);
     }
 
     public abstract void adventuringAcrossTheRegion(HeroCharacterService heroCharacterService);

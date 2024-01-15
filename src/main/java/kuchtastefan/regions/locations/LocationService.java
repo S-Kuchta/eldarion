@@ -9,7 +9,6 @@ import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LocationService {
@@ -46,7 +45,7 @@ public class LocationService {
                 List<Enemy> suitableEnemies = EnemyList.returnStrongerEnemyListByLocationTypeAndLevel(location.getLocationType(), location.getLocationLevel(), null, 1.4);
                 new CombatEvent(location.getLocationLevel(), suitableEnemies, location.getLocationType()).eventOccurs(hero);
             } else if (randomNum == 1) {
-                new FindItemEvent().eventOccurs(hero);
+                new FindItemEvent(location.getLocationLevel()).eventOccurs(hero);
             }
         }
     }

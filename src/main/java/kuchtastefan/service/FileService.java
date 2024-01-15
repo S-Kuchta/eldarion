@@ -11,7 +11,6 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.Item;
-import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
@@ -22,7 +21,6 @@ import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.QuestList;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
 import kuchtastefan.quest.questObjectives.QuestClearLocation;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
@@ -295,7 +293,7 @@ public class FileService {
         return questItems;
     }
 
-    public List<Enemy> importCreaturesFromFile(ItemsLists itemsLists) {
+    public List<Enemy> importCreaturesFromFile() {
         String path = "external-files/creatures";
         List<Enemy> enemies = new ArrayList<>();
         try {
@@ -309,7 +307,6 @@ public class FileService {
                     enemy.setEnemyType(
                             EnemyType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
-                    enemy.setItemsLists(itemsLists);
                 }
 
                 enemies.addAll(enemyList);

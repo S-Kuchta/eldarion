@@ -25,11 +25,9 @@ public class GameManager {
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
     private final FileService fileService;
-    private final ItemsLists itemsLists;
     private final BlacksmithService blacksmithService;
     private ForestRegionService forestRegionService;
     private final HeroCharacterService heroCharacterService;
-    private final EnemyList enemyList;
 
     public GameManager() {
         this.hero = new Hero("");
@@ -37,9 +35,7 @@ public class GameManager {
         this.fileService = new FileService();
         this.heroAbilityManager = new HeroAbilityManager(this.hero);
         this.blacksmithService = new BlacksmithService();
-        this.itemsLists = new ItemsLists();
         this.heroCharacterService = new HeroCharacterService(this.heroAbilityManager);
-        this.enemyList = new EnemyList();
     }
 
     public void startGame() {
@@ -64,12 +60,12 @@ public class GameManager {
                 case 1 -> this.heroCharacterService.heroCharacterMenu(this.hero);
                 case 2 -> {
                     JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8,
-                            this.itemsLists.returnJunkItemListByItemLevel(this.hero.getLevel(), 0));
+                            ItemsLists.returnJunkItemListByItemLevel(this.hero.getLevel(), 0));
                     junkVendorCharacter.vendorMenu(this.hero);
                 }
                 case 3 -> this.tavernMenu();
                 case 4 -> this.alchemistMenu();
-                case 5 -> this.blacksmithService.blacksmithMenu(this.hero, this.itemsLists);
+                case 5 -> this.blacksmithService.blacksmithMenu(this.hero);
                 case 6 -> this.fileService.saveGame(this.hero, this.currentLevel, this.forestRegionService);
                 case 7 -> {
                     System.out.println("Are you sure?");
@@ -104,7 +100,7 @@ public class GameManager {
 
     private void tavernMenu() {
         final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
-                this.itemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
+                ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
 
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8);
         questGiverCharacter.addQuest(QuestList.questList.get(0));
@@ -130,9 +126,9 @@ public class GameManager {
 
     private void alchemistMenu() {
         final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8,
-                this.itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0));
+                ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0));
         final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
-                this.itemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
+                ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
 
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");
@@ -154,18 +150,18 @@ public class GameManager {
     }
 
     private void initGame() {
-        this.itemsLists.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
-        this.itemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
-        this.itemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
-        this.itemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
-        this.itemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
-        this.itemsLists.initializeAllItemsMapToStringItemMap();
+        ItemsLists.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
+        ItemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
+        ItemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
+        ItemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
+        ItemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
+        ItemsLists.initializeAllItemsMapToStringItemMap();
 
         QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
 
-        EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile(this.itemsLists));
+        EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
-        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.itemsLists, this.hero, 1, 1);
+        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 1);
 
         HintUtil.initializeHintList();
 

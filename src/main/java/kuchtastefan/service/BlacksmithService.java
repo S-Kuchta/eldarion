@@ -24,11 +24,11 @@ import java.util.Map;
 
 public class BlacksmithService {
 
-    public void blacksmithMenu(Hero hero, ItemsLists itemsLists) {
+    public void blacksmithMenu(Hero hero) {
         final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
-                itemsLists.returnWearableItemListByItemLevel(hero.getLevel(), null));
+                ItemsLists.returnWearableItemListByItemLevel(hero.getLevel(), null));
         final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
-                itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
+                ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
 
         HintUtil.printHint(HintName.BLACKSMITH_HINT);
 
@@ -50,8 +50,8 @@ public class BlacksmithService {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> this.refinementItemQuality(hero, itemsLists);
-            case 2 -> this.dismantleItem(hero, itemsLists);
+            case 1 -> this.refinementItemQuality(hero);
+            case 2 -> this.dismantleItem(hero);
             case 3 -> citySmithVendor.vendorMenu(hero);
             case 4 -> cityReagentVendor.vendorMenu(hero);
             case 5 -> questGiverCharacter.questGiverMenu(hero);
@@ -59,7 +59,7 @@ public class BlacksmithService {
         }
     }
 
-    public void refinementItemQuality(Hero hero, ItemsLists itemsLists) {
+    public void refinementItemQuality(Hero hero) {
         while (true) {
             PrintUtil.printDivider();
             System.out.println("\t\tRefinement item");
@@ -77,7 +77,7 @@ public class BlacksmithService {
                     if (!item.getKey().getItemQuality().equals(WearableItemQuality.SUPERIOR)) {
                         System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                         PrintUtil.printItemDescription(item.getKey(), false, hero);
-                        refinementItemMap.put(item.getKey(), itemsNeededToRefinement(item.getKey(), itemsLists));
+                        refinementItemMap.put(item.getKey(), itemsNeededToRefinement(item.getKey()));
                         tempItemList.add(item.getKey());
                         index++;
                     }
@@ -132,8 +132,8 @@ public class BlacksmithService {
         }
     }
 
-    private Map<CraftingReagentItem, Integer> itemsNeededToRefinement(WearableItem wearableItem, ItemsLists itemsLists) {
-        List<CraftingReagentItem> tempList = itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
+    private Map<CraftingReagentItem, Integer> itemsNeededToRefinement(WearableItem wearableItem) {
+        List<CraftingReagentItem> tempList = ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
         Map<CraftingReagentItem, Integer> itemsNeededForRefinement = new HashMap<>();
         int itemsNeededToRefinement = 0;
 
@@ -163,7 +163,7 @@ public class BlacksmithService {
         hero.equipItem(wearableItem);
     }
 
-    public void dismantleItem(Hero hero, ItemsLists itemsLists) {
+    public void dismantleItem(Hero hero) {
 
         PrintUtil.printDivider();
         System.out.println("\t\tDismantle item");
@@ -176,7 +176,7 @@ public class BlacksmithService {
         }
 
         PrintUtil.printLongDivider();
-        List<CraftingReagentItem> tempList = itemsLists.returnCraftingReagentItemListByTypeAndItemLevel(
+        List<CraftingReagentItem> tempList = ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(
                 CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
 
         CraftingReagentItem item = null;

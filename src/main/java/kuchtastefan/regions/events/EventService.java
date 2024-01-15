@@ -13,12 +13,10 @@ import java.util.List;
 
 public class EventService {
 
-    private final ItemsLists itemsLists;
     private final List<Location> allLocations;
     private final List<Location> discoveredLocations;
 
-    public EventService(ItemsLists itemsLists, List<Location> allLocations, List<Location> discoveredLocations) {
-        this.itemsLists = itemsLists;
+    public EventService(List<Location> allLocations, List<Location> discoveredLocations) {
         this.allLocations = allLocations;
         this.discoveredLocations = discoveredLocations;
     }
@@ -32,7 +30,7 @@ public class EventService {
 
         switch (randomNumber) {
             case 0 -> {
-                new MerchantEvent(eventLevel, this.itemsLists).eventOccurs(hero);
+                new MerchantEvent(eventLevel).eventOccurs(hero);
             }
             case 1, 2 -> {
                 List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, hero.getLevel(), null);
@@ -42,7 +40,7 @@ public class EventService {
                 new DiscoverLocationEvent(eventLevel, this.allLocations, this.discoveredLocations).eventOccurs(hero);
             }
             case 4 -> {
-                new FindItemEvent(eventLevel, this.itemsLists).eventOccurs(hero);
+                new FindItemEvent(eventLevel).eventOccurs(hero);
             }
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }

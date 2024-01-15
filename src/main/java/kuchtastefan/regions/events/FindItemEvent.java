@@ -10,11 +10,9 @@ import java.util.List;
 
 public class FindItemEvent extends Event {
 
-    private final ItemsLists itemsLists;
 
-    public FindItemEvent(int eventLevel, ItemsLists itemsLists) {
+    public FindItemEvent(int eventLevel) {
         super(eventLevel);
-        this.itemsLists = itemsLists;
     }
 
     @Override
@@ -41,7 +39,7 @@ public class FindItemEvent extends Event {
     }
 
     private CraftingReagentItem findRandomCraftingReagentItem() {
-        List<CraftingReagentItem> craftingReagentItemList = this.itemsLists.returnCraftingReagentItemListByItemLevel(this.eventLevel, 0);
+        List<CraftingReagentItem> craftingReagentItemList = ItemsLists.returnCraftingReagentItemListByItemLevel(this.eventLevel, 0);
         return craftingReagentItemList.get(RandomNumberGenerator.getRandomNumber(0, craftingReagentItemList.size() - 1));
     }
 }

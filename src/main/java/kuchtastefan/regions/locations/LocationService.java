@@ -2,6 +2,7 @@ package kuchtastefan.regions.locations;
 
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyList;
+import kuchtastefan.characters.enemy.EnemyRarity;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.regions.events.CombatEvent;
 import kuchtastefan.regions.events.FindItemEvent;
@@ -40,9 +41,14 @@ public class LocationService {
     public void exploreLocation(Hero hero, Location location) {
 
         for (int i = location.stageCompleted; i < location.stageTotal; i++) {
-            int randomNum = RandomNumberGenerator.getRandomNumber(0,1);
+            int randomNum = RandomNumberGenerator.getRandomNumber(0, 1);
             if (randomNum == 0) {
-                List<Enemy> suitableEnemies = EnemyList.returnStrongerEnemyListByLocationTypeAndLevel(location.getLocationType(), location.getLocationLevel(), null, 1.4);
+                int randomNumToGenerateEnemyRarity = RandomNumberGenerator.getRandomNumber(0, 5);
+                EnemyRarity enemyRarity = EnemyRarity.RARE;
+                if (randomNumToGenerateEnemyRarity == 0) {
+                    enemyRarity = EnemyRarity.ELITE;
+                }
+                List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(location.getLocationType(), hero.getLevel(), null, enemyRarity);
                 new CombatEvent(location.getLocationLevel(), suitableEnemies, location.getLocationType()).eventOccurs(hero);
             } else if (randomNum == 1) {
                 new FindItemEvent(location.getLocationLevel()).eventOccurs(hero);

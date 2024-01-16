@@ -2,7 +2,6 @@ package kuchtastefan.regions.events;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.enemy.Enemy;
-import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
 import kuchtastefan.regions.locations.LocationType;
@@ -28,10 +27,6 @@ public class CombatEvent extends Event {
     @Override
     public void eventOccurs(Hero hero) {
 
-//        List<Enemy> suitableEnemies = this.enemyList.returnEnemyListByLocationTypeAndLevel(this.locationType, this.eventLevel, null);
-//        final int randomNumber = RandomNumberGenerator.getRandomNumber(0, suitableEnemies.size() - 1);
-//
-//        Enemy randomEnemy = suitableEnemies.get(randomNumber);
         final int randomNumber = RandomNumberGenerator.getRandomNumber(0, enemies.size() - 1);
         Enemy randomEnemy = enemies.get(randomNumber);
 
@@ -39,7 +34,7 @@ public class CombatEvent extends Event {
                 + "\n\tWill you attempt a silent evasion or initiate an attack?");
         System.out.println("\t0. Try to evasion");
         System.out.println("\t1. Attack");
-        int choice = InputUtil.intScanner();
+        final int choice = InputUtil.intScanner();
 
         switch (choice) {
             case 0 -> {
@@ -49,29 +44,23 @@ public class CombatEvent extends Event {
                 final boolean haveHeroWon = this.battleService.battle(hero, randomEnemy);
                 if (haveHeroWon) {
                     double goldEarn = randomEnemy.getGoldDrop();
-                    double experiencePointGained = randomEnemy.getLevel() * 20;
+                    double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getEnemyRarity().getExperienceGainedValue();
 
                     for (Item item : randomEnemy.getItemsDrop()) {
                         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
                         System.out.println("\tYou loot " + item.getName());
                     }
                     System.out.println("\tYou loot " + goldEarn + " golds");
+
                     hero.addGolds(goldEarn);
-
                     hero.gainExperiencePoints(experiencePointGained);
-
                     hero.getEnemyKilled().addEnemyKilled(randomEnemy.getName());
-
-                    hero.checkQuestProgress(randomEnemy.getName());
-
                     hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
+                    hero.checkQuestProgress(randomEnemy.getName());
                     hero.checkQuestObjectivesAndQuestCompleted();
                 }
-
-
+                hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
             }
         }
-
-
     }
 }

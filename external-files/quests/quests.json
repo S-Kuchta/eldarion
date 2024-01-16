@@ -53,5 +53,35 @@
       "experiencePointsReward": 70.0,
       "questLevel": 2
     }
+  },
+  {
+    "questId": 2,
+    "questName": "Wolf in the forest",
+    "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestBringItemObjective",
+        "enemyToKill": "Wolf",
+        "countEnemyToKill": 5
+      },
+      {
+        "type": "QuestKillObjective",
+        "enemyToKill": "Alpha Wolf",
+        "countEnemyToKill": 1
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        {
+          "name": "Iron sword of Skill",
+          "price": 50.0,
+          "itemLevel": 1
+        }
+      ],
+      "goldsReward": 30.0,
+      "experiencePointsReward": 70.0,
+      "questLevel": 2
+    }
   }
 ]

@@ -2,6 +2,7 @@ package kuchtastefan.service;
 
 import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.enemy.EnemyList;
+import kuchtastefan.characters.enemy.EnemyRarity;
 import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroAbilityManager;

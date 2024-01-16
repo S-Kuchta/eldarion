@@ -2,13 +2,12 @@ package kuchtastefan.regions.events;
 
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyList;
+import kuchtastefan.characters.enemy.EnemyRarity;
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventService {
@@ -33,7 +32,14 @@ public class EventService {
                 new MerchantEvent(eventLevel).eventOccurs(hero);
             }
             case 1, 2 -> {
-                List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, hero.getLevel(), null);
+                int randomNumToGenerateEnemyRarity = RandomNumberGenerator.getRandomNumber(0, 20);
+                EnemyRarity enemyRarity = EnemyRarity.COMMON;
+                if (randomNumToGenerateEnemyRarity == 0) {
+                    enemyRarity = EnemyRarity.RARE;
+                } else if (randomNumToGenerateEnemyRarity == 1) {
+                    enemyRarity = EnemyRarity.ELITE;
+                }
+                List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, hero.getLevel(), null, enemyRarity);
                 new CombatEvent(eventLevel, suitableEnemies, locationType).eventOccurs(hero);
             }
             case 3 -> {

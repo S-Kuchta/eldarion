@@ -1,11 +1,5 @@
 package kuchtastefan.regions.locations;
 
-import kuchtastefan.characters.enemy.Enemy;
-import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Location {
@@ -15,7 +9,6 @@ public class Location {
     protected int stageTotal;
     protected int stageCompleted;
     protected boolean cleared;
-    protected List<Enemy> enemyList;
     protected final LocationType locationType;
     protected boolean canLocationBeExplored;
 
@@ -25,27 +18,8 @@ public class Location {
         this.stageTotal = stageTotal;
         this.stageCompleted = 0;
         this.cleared = false;
-        this.enemyList = new ArrayList<>();
         this.locationType = locationType;
         this.canLocationBeExplored = canLocationBeExplored;
-    }
-
-    public void locationMenu() {
-//        PrintUtil.printLongDivider();
-//        System.out.println("\t\t" + this.locationName + "\t\t Location level: " + this.locationLevel);
-//        PrintUtil.printLongDivider();
-//
-//        System.out.println("\tWhat do you want to do?");
-//        System.out.println("\t0. Go back on the path");
-//        System.out.println("\t1. Explore location");
-//
-//        int choice = InputUtil.intScanner();
-//        switch (choice) {
-//            case 0 -> {
-//            }
-//            case 1 -> System.out.println("Exploring location");
-//            default -> System.out.println("Enter valid input");
-//        }
     }
 
     public String getLocationName() {
@@ -66,10 +40,6 @@ public class Location {
 
     public int getStageCompleted() {
         return stageCompleted;
-    }
-
-    public List<Enemy> getEnemyList() {
-        return enemyList;
     }
 
     public LocationType getLocationType() {

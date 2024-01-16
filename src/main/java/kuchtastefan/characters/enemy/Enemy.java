@@ -16,6 +16,7 @@ public class Enemy extends GameCharacter {
     private EnemyType enemyType;
     private final LocationType[] locationType;
     private final int maxStack;
+    private EnemyRarity enemyRarity;
 
     public Enemy(String name, Map<Ability, Integer> abilities,
                  EnemyType enemyType, LocationType[] locationType, int maxStack) {
@@ -76,6 +77,14 @@ public class Enemy extends GameCharacter {
 
     public void setItemsDrop(List<Item> itemsDrop) {
         this.itemsDrop = itemsDrop;
+    }
+
+    public EnemyRarity getEnemyRarity() {
+        return enemyRarity;
+    }
+
+    public void setEnemyRarity(EnemyRarity enemyRarity) {
+        this.enemyRarity = enemyRarity;
     }
 
     @Override

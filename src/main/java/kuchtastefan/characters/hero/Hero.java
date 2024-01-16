@@ -5,6 +5,7 @@ import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.items.Item;
+import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
@@ -14,6 +15,7 @@ import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -175,13 +177,25 @@ public class Hero extends GameCharacter {
      * and print QuestObjectiveAssignment with QuestObjective progress.
      *
      * @param enemyName Enemy killed in Combat Event
-     * @param item
      */
-    public void checkQuestProgress(String enemyName, Item item) {
+    public void checkQuestProgress(String enemyName) {
         for (Quest quest : this.listOfAcceptedQuests) {
             for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                if (questObjective instanceof QuestKillObjective && ((QuestKillObjective) questObjective).getEnemyToKill().equals(enemyName)) {
+                if (questObjective instanceof QuestKillObjective
+                        && ((QuestKillObjective) questObjective).getEnemyToKill().equals(enemyName)) {
+
                     this.enemyKilled.addQuestEnemyKilled(enemyName);
+                    questObjective.printQuestObjectiveAssignment(this);
+                }
+
+                if (questObjective instanceof QuestBringItemObjective
+                        && ((QuestBringItemObjective) questObjective).checkEnemy(enemyName)
+                        && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
+
+
+                    // TODO fix .. is not hero inventory
+//                    this.heroInventory.getQuestItemInventory().put(((QuestBringItemObjective) questObjective).getItemDropNeeded(), 1);
+                    this.heroInventory.addQuestItemToQuestItemMap(((QuestBringItemObjective) questObjective).getItemDropNeeded());
                     questObjective.printQuestObjectiveAssignment(this);
                 }
             }

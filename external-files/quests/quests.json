@@ -62,7 +62,7 @@
     "questObjectives": [
       {
         "type": "QuestBringItemObjective",
-        "enemyNeededToItemDrop": ["Wolf", "Alpha Wolf"],
+        "itemDropFromEnemy": ["Wolf", "Alpha Wolf"],
         "itemDropCountNeeded": "10",
         "itemDropNeeded": {
           "name": "Wolf meat",

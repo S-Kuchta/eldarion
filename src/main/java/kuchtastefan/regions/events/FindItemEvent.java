@@ -35,7 +35,7 @@ public class FindItemEvent extends Event {
             }
 
             hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-            hero.checkQuestProgress(null, item);
+//            hero.checkQuestProgress(null, item);
         }
 
 

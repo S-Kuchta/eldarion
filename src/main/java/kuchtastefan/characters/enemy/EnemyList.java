@@ -45,7 +45,7 @@ public class EnemyList {
             newEnemy.setEnemyRarity(EnemyRarity.COMMON);
         }
 
-        newEnemy.setName(newEnemy.getName() + " - " + enemyRarity.name() + " -");
+//        newEnemy.setName(newEnemy.getName() + " - " + enemyRarity.name() + " -");
         return newEnemy;
     }
 

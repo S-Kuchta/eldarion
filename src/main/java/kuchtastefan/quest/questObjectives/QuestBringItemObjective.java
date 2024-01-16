@@ -1,6 +1,5 @@
 package kuchtastefan.quest.questObjectives;
 
-
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.regions.locations.LocationType;
@@ -11,26 +10,25 @@ import java.util.Map;
 
 public class QuestBringItemObjective extends QuestObjective {
 
-//    private final Map<Item, Integer> questItemAndCountNeeded;
     private final QuestItem itemDropNeeded;
-    private final String[] enemyNeededToItemDrop;
+    private final String[] itemDropFromEnemy;
     private final int itemDropCountNeeded;
     private final LocationType[] locationsType;
 
 
-    public QuestBringItemObjective(String questObjectiveName, String[] enemyNeededToItemDrop, LocationType[] locationsType, QuestItem itemDropNeeded, int itemDropCountNeeded) {
+    public QuestBringItemObjective(String questObjectiveName, String[] itemDropFromEnemy, LocationType[] locationsType, QuestItem itemDropNeeded, int itemDropCountNeeded) {
         super(questObjectiveName);
         this.locationsType = locationsType;
         this.itemDropNeeded = itemDropNeeded;
         this.itemDropCountNeeded = itemDropCountNeeded;
-        this.enemyNeededToItemDrop = enemyNeededToItemDrop;
+        this.itemDropFromEnemy = itemDropFromEnemy;
     }
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
-//        for (Map.Entry<Item, Integer> questItem : this.questItemAndCountNeeded.entrySet()) {
-            System.out.println("\tBring " + this.itemDropNeeded.getName() + "x - " + this.itemDropCountNeeded );
-//        }
+        hero.getHeroInventory().getQuestItemInventory().putIfAbsent(this.itemDropNeeded, 0);
+        System.out.println("\tBring " + this.itemDropCountNeeded + "x " + this.itemDropNeeded.getName() + " - You have: "
+                + hero.getHeroInventory().getQuestItemInventory().get(this.itemDropNeeded) + " / " + this.itemDropCountNeeded);
     }
 
     @Override
@@ -62,13 +60,13 @@ public class QuestBringItemObjective extends QuestObjective {
     }
 
     public boolean checkEnemy(String enemyNameParam) {
-//        for (String enemyName : this.enemyNeededToItemDrop) {
-//            if (enemyName.equals(enemyNameParam)) {
-//                return true;
-//            }
-//        }
-        return Arrays.asList(enemyNeededToItemDrop).contains(enemyNameParam);
-//        return false;
+        for (String enemyName : this.itemDropFromEnemy) {
+            if (enemyName.equals(enemyNameParam)) {
+                return true;
+            }
+        }
+//        return Arrays.asList(this.itemDropFromEnemy).contains(enemyNameParam);
+        return false;
     }
 
     public LocationType[] getLocationsType() {
@@ -83,7 +81,7 @@ public class QuestBringItemObjective extends QuestObjective {
         return itemDropCountNeeded;
     }
 
-    public String[] getEnemyNeededToItemDrop() {
-        return enemyNeededToItemDrop;
+    public String[] getItemDropFromEnemy() {
+        return itemDropFromEnemy;
     }
 }

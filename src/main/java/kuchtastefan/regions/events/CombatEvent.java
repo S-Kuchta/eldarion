@@ -34,7 +34,7 @@ public class CombatEvent extends Event {
         final int randomNumber = RandomNumberGenerator.getRandomNumber(0, enemies.size() - 1);
         Enemy randomEnemy = enemies.get(randomNumber);
 
-        System.out.println("\tIn the distance, you've caught sight of " + randomEnemy.getName() + " (Level " + randomEnemy.getLevel() + "), "
+        System.out.println("\tIn the distance, you've caught sight of " + randomEnemy.getName() + " - " + randomEnemy.getEnemyRarity().name() + "- (Level " + randomEnemy.getLevel() + "), "
                 + "\n\tWill you attempt a silent evasion or initiate an attack?");
         System.out.println("\t0. Try to evasion");
         System.out.println("\t1. Attack");
@@ -48,7 +48,7 @@ public class CombatEvent extends Event {
                 final boolean haveHeroWon = this.battleService.battle(hero, randomEnemy);
                 if (haveHeroWon) {
 
-                    QuestItem questItem = null;
+//                    QuestItem questItem = null;
 //                    for (Quest quest : hero.getListOfAcceptedQuests()) {
 //                        for (QuestObjective questBringItemObjective : quest.getQuestObjectives()) {
 //                            if (questBringItemObjective instanceof QuestBringItemObjective
@@ -62,17 +62,17 @@ public class CombatEvent extends Event {
 //                        }
 //                    }
 
-                    for (Quest quest : hero.getListOfAcceptedQuests()) {
-                        for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                            if (questObjective instanceof QuestBringItemObjective
-                                    && ((QuestBringItemObjective) questObjective).checkEnemy(randomEnemy.getName())
-                                    && ((QuestBringItemObjective) questObjective).checkLocation(this.locationType)) {
-
-                                questItem = ((QuestBringItemObjective) questObjective).getItemDropNeeded();
-                                randomEnemy.addItemToItemDrop(questItem);
-                            }
-                        }
-                    }
+//                    for (Quest quest : hero.getListOfAcceptedQuests()) {
+//                        for (QuestObjective questObjective : quest.getQuestObjectives()) {
+//                            if (questObjective instanceof QuestBringItemObjective
+//                                    && ((QuestBringItemObjective) questObjective).checkEnemy(randomEnemy.getName())
+//                                    && ((QuestBringItemObjective) questObjective).checkLocation(this.locationType)) {
+//
+//                                questItem = ((QuestBringItemObjective) questObjective).getItemDropNeeded();
+//                                randomEnemy.addItemToItemDrop(questItem);
+//                            }
+//                        }
+//                    }
 
                     double goldEarn = randomEnemy.getGoldDrop();
                     double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getEnemyRarity().getExperienceGainedValue();
@@ -87,7 +87,7 @@ public class CombatEvent extends Event {
                     hero.gainExperiencePoints(experiencePointGained);
                     hero.getEnemyKilled().addEnemyKilled(randomEnemy.getName());
                     hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
-                    hero.checkQuestProgress(randomEnemy.getName(), questItem);
+                    hero.checkQuestProgress(randomEnemy.getName());
                     hero.checkQuestObjectivesAndQuestCompleted();
                 }
                 hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);

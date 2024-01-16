@@ -47,6 +47,10 @@ public class HeroInventory {
         }
     }
 
+    public void addQuestItemToQuestItemMap(QuestItem questItem) {
+        addItemToInventory(questItem);
+    }
+
     private void addItemToInventory(Item item) {
         if (this.getHeroInventory().isEmpty()) {
             this.getHeroInventory().put(item, 1);

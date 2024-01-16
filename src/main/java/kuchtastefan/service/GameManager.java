@@ -107,6 +107,10 @@ public class GameManager {
         questGiverCharacter.addQuest(QuestList.questList.get(0));
         questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
+        QuestGiverCharacter questGiverCharacter1 = new QuestGiverCharacter("Devom Of Cremora", 8);
+        questGiverCharacter1.addQuest(QuestList.questList.get(2));
+        questGiverCharacter1.setNameBasedOnQuestsAvailable(this.hero);
+
 
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
@@ -115,6 +119,7 @@ public class GameManager {
         System.out.println("\t0. Go back");
         System.out.println("\t1. " + cityFoodVendor.getName() + " (Food Merchant)");
         System.out.println("\t2. " + questGiverCharacter.getName());
+        System.out.println("\t3. " + questGiverCharacter1.getName());
 
         int choice = InputUtil.intScanner();
         switch (choice) {
@@ -122,6 +127,7 @@ public class GameManager {
             }
             case 1 -> cityFoodVendor.vendorMenu(this.hero);
             case 2 -> questGiverCharacter.questGiverMenu(this.hero);
+            case 3 -> questGiverCharacter1.questGiverMenu(this.hero);
         }
     }
 

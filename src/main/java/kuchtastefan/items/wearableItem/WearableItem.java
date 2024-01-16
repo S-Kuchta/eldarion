@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class WearableItem extends Item {
 
-
     private WearableItemType wearableItemType;
     private final Map<Ability, Integer> abilities;
     private WearableItemQuality wearableItemQuality;

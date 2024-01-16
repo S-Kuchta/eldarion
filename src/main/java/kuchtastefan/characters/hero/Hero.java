@@ -4,10 +4,12 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.items.Item;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
@@ -154,7 +156,7 @@ public class Hero extends GameCharacter {
             this.updateAbilityPoints(2);
 
             PrintUtil.printDivider();
-            System.out.println("\tYou reach a new level! Your level is " + this.level + "!");
+            System.out.println("\tYou reached a new level! Your level is " + this.level + "!");
             PrintUtil.printDivider();
 
             this.experiencePoints -= experiencePointsService.getNeededExperiencePointsForNewLevel();
@@ -168,7 +170,14 @@ public class Hero extends GameCharacter {
         PrintUtil.printLongDivider();
     }
 
-    public void checkQuestProgress(String enemyName) {
+    /**
+     * check if enemy killed in CombatEvent belongs to some of accepted Quest. If yes add enemy to questEnemyKilled
+     * and print QuestObjectiveAssignment with QuestObjective progress.
+     *
+     * @param enemyName Enemy killed in Combat Event
+     * @param item
+     */
+    public void checkQuestProgress(String enemyName, Item item) {
         for (Quest quest : this.listOfAcceptedQuests) {
             for (QuestObjective questObjective : quest.getQuestObjectives()) {
                 if (questObjective instanceof QuestKillObjective && ((QuestKillObjective) questObjective).getEnemyToKill().equals(enemyName)) {

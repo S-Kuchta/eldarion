@@ -35,7 +35,10 @@ public class FindItemEvent extends Event {
             }
 
             hero.getHeroInventory().addItemWithNewCopyToItemList(item);
+            hero.checkQuestProgress(null, item);
         }
+
+
     }
 
     private CraftingReagentItem findRandomCraftingReagentItem() {

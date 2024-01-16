@@ -25,4 +25,8 @@ public class QuestClearLocation extends QuestObjective {
     public void printQuestObjectiveAssignment(Hero hero) {
 
     }
+
+    public Location getLocation() {
+        return location;
+    }
 }

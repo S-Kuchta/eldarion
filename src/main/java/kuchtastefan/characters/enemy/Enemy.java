@@ -47,6 +47,12 @@ public class Enemy extends GameCharacter {
         this.setItemsDrop(tempList);
     }
 
+    public void addItemToItemDrop(Item item) {
+        if (!this.itemsDrop.contains(item)) {
+            this.itemsDrop.add(item);
+        }
+    }
+
     public List<Item> getItemsDrop() {
         return itemsDrop;
     }

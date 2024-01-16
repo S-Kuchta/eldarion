@@ -4,6 +4,10 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
+import kuchtastefan.items.questItem.QuestItem;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
+import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.service.BattleService;
 import kuchtastefan.utility.InputUtil;
@@ -43,6 +47,33 @@ public class CombatEvent extends Event {
                 final int heroHealthBeforeBattle = hero.getAbilities().get(Ability.HEALTH);
                 final boolean haveHeroWon = this.battleService.battle(hero, randomEnemy);
                 if (haveHeroWon) {
+
+                    QuestItem questItem = null;
+//                    for (Quest quest : hero.getListOfAcceptedQuests()) {
+//                        for (QuestObjective questBringItemObjective : quest.getQuestObjectives()) {
+//                            if (questBringItemObjective instanceof QuestBringItemObjective
+//                                    && ((QuestBringItemObjective) questBringItemObjective).getLocationType().equals(this.locationType)
+//                                    && ((QuestBringItemObjective) questBringItemObjective).getEnemyNeededToItemDrop().equals(randomEnemy.getName())
+//                                    && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
+//
+//                                questItem = ((QuestBringItemObjective) questBringItemObjective).getItemDropNeeded();
+//                                randomEnemy.addItemToItemDrop(((QuestBringItemObjective) questBringItemObjective).getItemDropNeeded());
+//                            }
+//                        }
+//                    }
+
+                    for (Quest quest : hero.getListOfAcceptedQuests()) {
+                        for (QuestObjective questObjective : quest.getQuestObjectives()) {
+                            if (questObjective instanceof QuestBringItemObjective
+                                    && ((QuestBringItemObjective) questObjective).checkEnemy(randomEnemy.getName())
+                                    && ((QuestBringItemObjective) questObjective).checkLocation(this.locationType)) {
+
+                                questItem = ((QuestBringItemObjective) questObjective).getItemDropNeeded();
+                                randomEnemy.addItemToItemDrop(questItem);
+                            }
+                        }
+                    }
+
                     double goldEarn = randomEnemy.getGoldDrop();
                     double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getEnemyRarity().getExperienceGainedValue();
 
@@ -56,7 +87,7 @@ public class CombatEvent extends Event {
                     hero.gainExperiencePoints(experiencePointGained);
                     hero.getEnemyKilled().addEnemyKilled(randomEnemy.getName());
                     hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
-                    hero.checkQuestProgress(randomEnemy.getName());
+                    hero.checkQuestProgress(randomEnemy.getName(), questItem);
                     hero.checkQuestObjectivesAndQuestCompleted();
                 }
                 hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);

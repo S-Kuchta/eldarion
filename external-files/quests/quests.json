@@ -56,19 +56,20 @@
   },
   {
     "questId": 2,
-    "questName": "Wolf in the forest",
-    "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+    "questName": "Bring me 10 Wolf meat",
+    "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
     "questLevel": 2,
     "questObjectives": [
       {
         "type": "QuestBringItemObjective",
-        "enemyToKill": "Wolf",
-        "countEnemyToKill": 5
-      },
-      {
-        "type": "QuestKillObjective",
-        "enemyToKill": "Alpha Wolf",
-        "countEnemyToKill": 1
+        "enemyNeededToItemDrop": ["Wolf", "Alpha Wolf"],
+        "itemDropCountNeeded": "10",
+        "itemDropNeeded": {
+          "name": "Wolf meat",
+          "price": 0,
+          "itemLevel": 2
+        },
+        "locationType": ["FOREST"]
       }
     ],
     "questReward": {

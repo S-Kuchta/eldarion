@@ -1,5 +1,8 @@
 package kuchtastefan.ability;
 
+import lombok.Getter;
+
+@Getter
 public enum Ability {
     ATTACK("Attack is the ability to deal damage. Final damage is also affected by dexterity and skill."),
     DEFENCE("Defence is the ability to reduce damage. Final damage is also affected by dexterity."),
@@ -14,7 +17,4 @@ public enum Ability {
         this.description = description;
     }
 
-    public String getDescription() {
-        return description;
-    }
 }

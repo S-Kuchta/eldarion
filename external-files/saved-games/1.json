@@ -1,15 +1,32 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
+    "heroGold": 150.0,
+    "experiencePoints": 0.0,
     "equippedItem": {
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
           "ATTACK": 0,
-          "HEALTH": 0,
           "DEFENCE": 0,
-          "SKILL": 0,
+          "HEALTH": 0,
           "LUCK": 0,
+          "SKILL": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -21,40 +38,10 @@
         "wearableItemType": "HANDS",
         "abilities": {
           "ATTACK": 0,
-          "HEALTH": 0,
           "DEFENCE": 0,
-          "SKILL": 0,
-          "LUCK": 0,
-          "DEXTERITY": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "HEAD": {
-        "wearableItemType": "HEAD",
-        "abilities": {
-          "ATTACK": 0,
           "HEALTH": 0,
-          "DEFENCE": 0,
-          "SKILL": 0,
           "LUCK": 0,
-          "DEXTERITY": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "WEAPON": {
-        "wearableItemType": "WEAPON",
-        "abilities": {
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "DEFENCE": 0,
           "SKILL": 0,
-          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -66,10 +53,25 @@
         "wearableItemType": "BOOTS",
         "abilities": {
           "ATTACK": 0,
-          "HEALTH": 0,
           "DEFENCE": 0,
-          "SKILL": 0,
+          "HEALTH": 0,
           "LUCK": 0,
+          "SKILL": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "ATTACK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "LUCK": 0,
+          "SKILL": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -80,83 +82,157 @@
     },
     "wearingItemAbilityPoints": {
       "ATTACK": 0,
-      "HEALTH": 0,
       "DEFENCE": 0,
-      "SKILL": 0,
+      "HEALTH": 0,
       "LUCK": 0,
+      "SKILL": 0,
       "DEXTERITY": 0
     },
-    "itemInventoryList": {
+    "heroInventory": {
       "heroInventory": {},
-      "wearableItemInventory": [
+      "wearableItemInventory": {},
+      "craftingReagentItemInventory": {},
+      "consumableItemInventory": {},
+      "questItemInventory": [
         [
           {
-            "wearableItemType": "HANDS",
-            "abilities": {
-              "DEFENCE": 1,
-              "SKILL": 1,
-              "ATTACK": 0,
-              "DEXTERITY": 0,
-              "LUCK": 0,
-              "HEALTH": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Basic hands",
-            "price": 50.0,
-            "itemLevel": 1
-          },
-          1
-        ],
-        [
-          {
-            "wearableItemType": "BODY",
-            "abilities": {
-              "DEFENCE": 1,
-              "HEALTH": 5,
-              "ATTACK": 0,
-              "DEXTERITY": 0,
-              "SKILL": 0,
-              "LUCK": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Leather armor of Health",
-            "price": 50.0,
-            "itemLevel": 1
-          },
-          1
-        ]
-      ],
-      "craftingReagentItemInventory": [
-        [
-          {
-            "craftingReagentItemType": "BLACKSMITH_REAGENT",
-            "name": "Iron ore",
-            "price": 10.0,
+            "name": "Wolf meat",
+            "price": 0.0,
             "itemLevel": 2
           },
-          1
+          0
         ]
       ],
-      "consumableItemInventory": {},
-      "questItemInventory": {}
+      "junkItemInventory": {}
     },
-    "heroGold": 40.0,
+    "experiencePointsService": {
+      "neededExperiencePointsForNewLevel": 0.0
+    },
+    "enemyKilled": {
+      "enemyKilled": {},
+      "questEnemyKilled": {
+        "Defias Bandit": 0,
+        "Alpha Wolf": 0,
+        "Wolf": 0
+      }
+    },
+    "listOfAcceptedQuests": [
+      {
+        "questId": 0,
+        "questName": "Shadow Raiders",
+        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "enemyToKill": "Defias Bandit",
+            "countEnemyToKill": 1,
+            "completed": false
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      },
+      {
+        "questId": 2,
+        "questName": "Bring me 10 Wolf meat",
+        "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestBringItemObjective",
+            "itemDropNeeded": {
+              "name": "Wolf meat",
+              "price": 0.0,
+              "itemLevel": 2
+            },
+            "itemDropFromEnemy": [
+              "Wolf",
+              "Alpha Wolf"
+            ],
+            "itemDropCountNeeded": 10,
+            "completed": false
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      },
+      {
+        "questId": 1,
+        "questName": "Wolf in the forest",
+        "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "enemyToKill": "Wolf",
+            "countEnemyToKill": 5,
+            "completed": false
+          },
+          {
+            "type": "QuestKillObjective",
+            "enemyToKill": "Alpha Wolf",
+            "countEnemyToKill": 1,
+            "completed": false
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      }
+    ],
     "name": "1",
     "abilities": {
       "ATTACK": 8,
-      "HEALTH": 50,
       "DEFENCE": 1,
-      "SKILL": 1,
+      "HEALTH": 50,
       "LUCK": 1,
+      "SKILL": 1,
       "DEXTERITY": 1
     },
     "level": 1
   },
   "level": 1,
   "hintUtil": {
-    "BLACKSMITH": {
+    "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
       "showed": true
     }
-  }
+  },
+  "forestRegionDiscoveredLocation": []
 }

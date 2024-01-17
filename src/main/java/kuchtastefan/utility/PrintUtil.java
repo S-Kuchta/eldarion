@@ -1,13 +1,13 @@
 package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.domain.GameCharacter;
-import kuchtastefan.domain.Hero;
+import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.gameSettings.GameSettings;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.items.consumeableItem.ConsumableItem;
+import kuchtastefan.items.craftingItem.CraftingReagentItem;
+import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.items.wearableItem.WearableItemType;
 
 import java.util.Map;
 
@@ -25,8 +25,9 @@ public class PrintUtil {
     }
 
     public static void printCurrentAbilityPointsWithItems(Hero hero) {
-        System.out.println();
-        System.out.println("Ability points with items:");
+        printLongDivider();
+        System.out.println("\t\t\t\t\t------ Ability points with items ------");
+        System.out.print("\t");
         for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
             System.out.print(entry.getKey() + ": "
                     + (entry.getValue()
@@ -36,12 +37,30 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printItemAbilityPoints(WearableItem wearableItem) {
+    /**
+     * Print full wearable item description.
+     * Includes: if is right now equipped, item name, item type, item quality,
+     * item level, buy/sell price and ability points of item
+     *
+     * @param wearableItem show this item description
+     * @param sellItem     if this param is true, price will be set to sell price
+     */
+    public static void printItemDescription(WearableItem wearableItem, boolean sellItem, Hero hero) {
+
+        if (hero.getEquippedItem().containsValue(wearableItem)) {
+            System.out.print("-- EQUIPPED -- ");
+        }
         System.out.print(wearableItem.getWearableItemType() + ": "
                 + wearableItem.getName()
                 + " (" + wearableItem.getItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
+        if (!sellItem) {
+            System.out.print(", Item Price: " + wearableItem.getPrice());
+        } else {
+            System.out.print(", Sell Price: " + wearableItem.returnSellItemPrice());
+        }
+
         if (!wearableItem.getName().equals("No item")) {
-            System.out.print(", Item stats: ");
+            System.out.print("\n\t\tItem stats: ");
         }
         for (Map.Entry<Ability, Integer> ability : wearableItem.getAbilities().entrySet()) {
             if (ability.getValue() != 0) {
@@ -51,16 +70,11 @@ public class PrintUtil {
         System.out.println();
     }
 
-    public static void printFullItemDescription(WearableItem wearableItem) {
-        printItemAbilityPoints(wearableItem);
-        System.out.println("\t\t\tItem Price: "
-                + wearableItem.getPrice()
-                + " golds");
-    }
-
     public static void printCurrentWearingArmor(Hero hero) {
+        printLongDivider();
+        System.out.println("\t\t\t\t------ Current Wearing Armor and Weapon ------");
         for (Map.Entry<WearableItemType, WearableItem> item : hero.getEquippedItem().entrySet()) {
-            System.out.print(item.getKey() + ": " + item.getValue().getName());
+            System.out.print("\t" + item.getKey() + ": " + item.getValue().getName());
             if (!item.getValue().getName().equals("No item")) {
                 System.out.print(", Item stats: ");
             }
@@ -94,6 +108,36 @@ public class PrintUtil {
         System.out.println();
     }
 
+    public static void printTextWrap(String text) {
+//        char[] charArray = text.toCharArray();
+//        int numberOfTextWrap = 1;
+//        for (int i = 0; i <charArray.length; i++) {
+//            System.out.print(charArray[i]);
+//            if (i == (55 * numberOfTextWrap)) {
+//                System.out.print(" -");
+//                System.out.println("");
+//                numberOfTextWrap++;
+//            }
+//        }
+
+        // TODO add \t in front of each line
+        StringBuilder line = new StringBuilder();
+
+        for (String word : text.split("\\s")) {
+            if (line.length() + word.length() <= 60) {
+                line.append(word).append(" ");
+            } else {
+                printStringSlowly(line.toString().trim());
+                line.setLength(0);
+                line.append(word).append(" ");
+            }
+        }
+
+        if (!line.isEmpty()) {
+            printStringSlowly(line.toString().trim());
+        }
+    }
+
     public static void printDivider() {
         System.out.println("|-----------------------------------------------|");
     }
@@ -104,7 +148,7 @@ public class PrintUtil {
 
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
-        for (Map.Entry<WearableItem, Integer> item : hero.getItemInventoryList().returnInventoryWearableItemMap().entrySet()) {
+        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
             if (item.getKey().getWearableItemType().equals(wearableItemType)) {
                 count += item.getValue();
             }
@@ -120,38 +164,24 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printInventoryHeader(WearableItemType wearableItemType) {
-        printDivider();
-        System.out.println("\t\t" + wearableItemType + " inventory");
-        printDivider();
+    public static void printInventoryWearableItemTypeHeader(WearableItemType wearableItemType) {
+        printLongDivider();
+        System.out.println("\t\t\t\t\t\t------ " + wearableItemType + " inventory ------");
+        printLongDivider();
     }
 
     public static void printInventoryHeader(String inventory) {
-        printDivider();
-        System.out.println("\t\t" + inventory + " items Inventory");
-        printDivider();
+        printLongDivider();
+        System.out.println("\t\t\t\t------ " + inventory + " items Inventory ------");
+        printLongDivider();
     }
 
     public static void printConsumableItemFromList(Map<ConsumableItem, Integer> consumableItemMap) {
         int index = 1;
         for (Map.Entry<ConsumableItem, Integer> item : consumableItemMap.entrySet()) {
-            System.out.print(index + ". ("
-                    + item.getValue() + "x) "
-                    + item.getKey().getName()
-                    + ", Item type: "
-                    + item.getKey().getConsumableItemType());
-            if (item.getKey().getRestoreAmount() != 0) {
-                System.out.print(", Restore Amount: " + item.getKey().getRestoreAmount() + " health");
-            }
-
-            for (Ability ability : Ability.values()) {
-                if (item.getKey().getIncreaseAbilityPoint().get(ability) != 0) {
-                    System.out.print(", increase " + ability + ": "
-                            + item.getKey().getIncreaseAbilityPoint().get(ability) + ", ");
-                }
-            }
+            System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+            printConsumableItemInfo(item.getKey());
             System.out.println();
-
             index++;
         }
     }
@@ -159,7 +189,7 @@ public class PrintUtil {
     public static void printConsumableItemInfo(ConsumableItem consumableItem) {
         System.out.print(consumableItem.getName()
                 + ", " + consumableItem.getConsumableItemType()
-                + ", iLevel" + consumableItem.getItemLevel());
+                + ", iLevel: " + consumableItem.getItemLevel());
         if (consumableItem.getRestoreAmount() != 0) {
             System.out.print(", Restore Amount: " + consumableItem.getRestoreAmount() + " health");
         }

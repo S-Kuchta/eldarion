@@ -1,59 +1,56 @@
 package kuchtastefan.service;
 
-import kuchtastefan.ability.Ability;
-import kuchtastefan.ability.HeroAbilityManager;
+import kuchtastefan.characters.QuestGiverCharacter;
+import kuchtastefan.characters.enemy.EnemyList;
+import kuchtastefan.characters.enemy.EnemyRarity;
+import kuchtastefan.characters.hero.GameLoaded;
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.characters.hero.HeroAbilityManager;
+import kuchtastefan.characters.hero.HeroCharacterService;
+import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
+import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
+import kuchtastefan.characters.vendor.JunkVendorCharacter;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.domain.Enemy;
-import kuchtastefan.domain.GameLoaded;
-import kuchtastefan.domain.Hero;
-import kuchtastefan.domain.vendor.ConsumableVendorCharacter;
-import kuchtastefan.domain.vendor.CraftingReagentItemVendorCharacter;
-import kuchtastefan.domain.vendor.WearableItemVendorCharacter;
-import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
-import kuchtastefan.item.ItemsLists;
-import kuchtastefan.item.consumeableItem.ConsumableItemType;
-import kuchtastefan.item.craftingItem.CraftingReagentItemType;
-import kuchtastefan.utility.EnemyGenerator;
+import kuchtastefan.items.ItemsLists;
+import kuchtastefan.items.consumeableItem.ConsumableItemType;
+import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.items.wearableItem.WearableItemQuality;
+import kuchtastefan.quest.QuestList;
+import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class GameManager {
     private Hero hero;
     private final HeroAbilityManager heroAbilityManager;
     private int currentLevel;
     private final FileService fileService;
-    private final Map<Integer, Enemy> enemiesByLevel;
-    private final BattleService battleService;
-    private final ItemsLists itemsLists;
     private final BlacksmithService blacksmithService;
-    private final InventoryService inventoryService;
-    private final HintUtil hintUtil;
+    private ForestRegionService forestRegionService;
+    private final HeroCharacterService heroCharacterService;
 
     public GameManager() {
         this.hero = new Hero("");
         this.currentLevel = Constant.INITIAL_LEVEL;
         this.fileService = new FileService();
-        this.battleService = new BattleService();
-        this.enemiesByLevel = EnemyGenerator.createEnemies();
-        this.heroAbilityManager = new HeroAbilityManager(hero);
-        this.inventoryService = new InventoryService();
+        this.heroAbilityManager = new HeroAbilityManager(this.hero);
         this.blacksmithService = new BlacksmithService();
-        this.hintUtil = new HintUtil(new HashMap<>());
-        this.itemsLists = new ItemsLists();
+        this.heroCharacterService = new HeroCharacterService(this.heroAbilityManager);
     }
 
     public void startGame() {
         this.initGame();
 
-        while (this.currentLevel <= this.enemiesByLevel.size()) {
-            final Enemy enemy = this.enemiesByLevel.get(this.currentLevel);
-            System.out.println("\t0. Fight " + enemy.getName() + " (level " + this.currentLevel + ")");
-            System.out.println("\t1. Upgrade abilities (" + this.hero.getUnspentAbilityPoints() + " points to spend)");
-            System.out.println("\t2. Inventory");
+        while (true) {
+            PrintUtil.printLongDivider();
+            System.out.println("\t\t\t\t\t\t\t------ Mystic Hollow ------");
+            PrintUtil.printLongDivider();
+            System.out.println("\t0. Explore surrounding regions");
+            System.out.println("\t1. Hero menu");
+            System.out.println("\t2. Junk Merchant");
             System.out.println("\t3. Tavern");
             System.out.println("\t4. Alchemist");
             System.out.println("\t5. Blacksmith");
@@ -62,31 +59,17 @@ public class GameManager {
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
-                case 0 -> {
-                    if (this.battleService.isHeroReadyToBattle(this.hero, enemy, this.itemsLists.getWearableItemList())) {
-                        final int heroHealthBeforeBattle = this.hero.getAbilities().get(Ability.HEALTH);
-                        final boolean haveHeroWon = battleService.battle(this.hero, enemy);
-                        if (haveHeroWon) {
-                            PrintUtil.printDivider();
-                            System.out.println("You have won this battle! You have gained " + this.currentLevel + " points to spend");
-                            this.hero.updateAbilityPoints(this.currentLevel);
-                            this.hero.setHeroGold(50 * this.currentLevel);
-                            this.currentLevel++;
-                        } else {
-                            System.out.println("You have lost!");
-                        }
-
-                        this.hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
-                        System.out.println("You have full health now!");
-                        PrintUtil.printDivider();
-                    }
+                case 0 -> exploreSurroundingRegions();
+                case 1 -> this.heroCharacterService.heroCharacterMenu(this.hero);
+                case 2 -> {
+                    JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8,
+                            ItemsLists.returnJunkItemListByItemLevel(this.hero.getLevel(), 0));
+                    junkVendorCharacter.vendorMenu(this.hero);
                 }
-                case 1 -> this.upgradeAbilityMenu();
-                case 2 -> this.inventoryService.inventoryMenu(this.hero);
                 case 3 -> this.tavernMenu();
                 case 4 -> this.alchemistMenu();
-                case 5 -> this.blacksmithMenu();
-                case 6 -> fileService.saveGame(this.hero, this.currentLevel, this.hintUtil.getHintList());
+                case 5 -> this.blacksmithService.blacksmithMenu(this.hero);
+                case 6 -> this.fileService.saveGame(this.hero, this.currentLevel, this.forestRegionService);
                 case 7 -> {
                     System.out.println("Are you sure?");
                     System.out.println("0. No");
@@ -103,31 +86,58 @@ public class GameManager {
                 default -> System.out.println("Invalid choice.");
             }
         }
+    }
 
-        System.out.println("You have won the game! Congratulations!");
+    private void exploreSurroundingRegions() {
+        System.out.println("\t0. Go back to the city");
+        System.out.println("\t1. Go to " + this.forestRegionService.getRegionName());
+        System.out.println("\t2. Go to highlands");
+        final int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+            }
+            case 1 -> this.forestRegionService.adventuringAcrossTheRegion(this.heroCharacterService);
+            default -> System.out.println("\tEnter valid input");
+        }
     }
 
     private void tavernMenu() {
-        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.FOOD), ConsumableItemType.FOOD);
+        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
+                ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
+
+        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8);
+        questGiverCharacter.addQuest(QuestList.questList.get(0));
+        questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
+
+        QuestGiverCharacter questGiverCharacter1 = new QuestGiverCharacter("Devom Of Cremora", 8);
+        questGiverCharacter1.addQuest(QuestList.questList.get(2));
+        questGiverCharacter1.setNameBasedOnQuestsAvailable(this.hero);
+
 
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
         PrintUtil.printDivider();
 
-        System.out.println("0. Go back");
-        System.out.println("1. " + cityFoodVendor.getName() + " (Food Merchant)");
+        System.out.println("\t0. Go back");
+        System.out.println("\t1. " + cityFoodVendor.getName() + " (Food Merchant)");
+        System.out.println("\t2. " + questGiverCharacter.getName());
+        System.out.println("\t3. " + questGiverCharacter1.getName());
 
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
             case 1 -> cityFoodVendor.vendorMenu(this.hero);
+            case 2 -> questGiverCharacter.questGiverMenu(this.hero);
+            case 3 -> questGiverCharacter1.questGiverMenu(this.hero);
         }
     }
 
     private void alchemistMenu() {
-        final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8, this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.ALCHEMY_REAGENT));
-        final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8, this.itemsLists.returnConsumableItemListByType(ConsumableItemType.POTION), ConsumableItemType.POTION);
+        final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8,
+                ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0));
+        final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
+                ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
 
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");
@@ -146,55 +156,23 @@ public class GameManager {
             case 2 -> cityAlchemistReagentVendor.vendorMenu(this.hero);
             case 3 -> cityPotionsVendor.vendorMenu(this.hero);
         }
-
-    }
-
-    public void blacksmithMenu() {
-        final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8, this.itemsLists.getWearableItemList());
-        final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8, this.itemsLists.returnCraftingReagentItemListByType(CraftingReagentItemType.BLACKSMITH_REAGENT));
-        hintUtil.printHint(HintName.BLACKSMITH);
-
-        PrintUtil.printDivider();
-        System.out.println("\t\tBlacksmith");
-        PrintUtil.printDivider();
-
-        System.out.println("\t0. Go back");
-        System.out.println("\t1. Refinement item");
-        System.out.println("\t2. Dismantle item");
-        System.out.println("\t3. " + citySmithVendor.getName() + " (Wearable Items Merchant)");
-        System.out.println("\t4. " + cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
-        int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> {
-            }
-            case 1 -> this.blacksmithService.refinementItemQuality(this.hero);
-            case 2 -> this.blacksmithService.dismantleItem(this.hero, this.itemsLists);
-            case 3 -> citySmithVendor.vendorMenu(this.hero);
-            case 4 -> cityReagentVendor.vendorMenu(this.hero);
-            default -> System.out.println("Enter valid input");
-        }
-    }
-
-    private void upgradeAbilityMenu() {
-        System.out.println("\t0. Go Back");
-        System.out.println("\t1. Spend points (" + this.hero.getUnspentAbilityPoints() + " points left)");
-        System.out.println("\t2. Remove points");
-        final int upgradeChoice = InputUtil.intScanner();
-        if (upgradeChoice == 1) {
-            this.heroAbilityManager.spendAbilityPoints();
-        } else if (upgradeChoice == 2) {
-            this.heroAbilityManager.removeAbilityPoints();
-        }
     }
 
     private void initGame() {
-        this.itemsLists.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
-        this.itemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
-        this.itemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
-        this.itemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
+        ItemsLists.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
+        ItemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
+        ItemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
+        ItemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
+        ItemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
+        ItemsLists.initializeAllItemsMapToStringItemMap();
 
-        this.hintUtil.initializeHintList();
+        QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
 
+        EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
+
+        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 1);
+
+        HintUtil.initializeHintList();
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");
@@ -209,12 +187,15 @@ public class GameManager {
                     this.hero = gameLoaded.getHero();
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
-                    this.hintUtil.getHintList().putAll(gameLoaded.getHintUtil());
+                    HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
+                    this.forestRegionService.setHero(this.hero);
+                    this.forestRegionService.getDiscoveredLocations().addAll(gameLoaded.getForestRegionDiscoveredLocation());
                     return;
                 }
             }
             default -> System.out.println("Invalid choice");
         }
+
 
         System.out.println("Enter your name: ");
         final String name = InputUtil.stringScanner();

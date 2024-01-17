@@ -3,5 +3,15 @@
     "name": "Iron ore",
     "price": 10,
     "itemLevel": 2
+  },
+  {
+    "name": "Silver ore",
+    "price": 25,
+    "itemLevel": 3
+  },
+  {
+    "name": "Gold ore",
+    "price": 25,
+    "itemLevel": 5
   }
 ]

@@ -1,0 +1,88 @@
+[
+  {
+    "questId": 0,
+    "questName": "Shadow Raiders",
+    "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestKillObjective",
+        "enemyToKill": "Defias Bandit",
+        "countEnemyToKill": 1
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        {
+          "name": "Iron sword of Skill",
+          "price": 50.0,
+          "itemLevel": 1
+        }
+      ],
+      "goldsReward": 30.0,
+      "experiencePointsReward": 70.0,
+      "questLevel": 2
+    }
+  },
+  {
+    "questId": 1,
+    "questName": "Wolf in the forest",
+    "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestKillObjective",
+        "enemyToKill": "Wolf",
+        "countEnemyToKill": 5
+      },
+      {
+        "type": "QuestKillObjective",
+        "enemyToKill": "Alpha Wolf",
+        "countEnemyToKill": 1
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        {
+          "name": "Iron sword of Skill",
+          "price": 50.0,
+          "itemLevel": 1
+        }
+      ],
+      "goldsReward": 30.0,
+      "experiencePointsReward": 70.0,
+      "questLevel": 2
+    }
+  },
+  {
+    "questId": 2,
+    "questName": "Bring me 10 Wolf meat",
+    "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestBringItemObjective",
+        "itemDropFromEnemy": ["Wolf", "Alpha Wolf"],
+        "itemDropCountNeeded": "10",
+        "itemDropNeeded": {
+          "name": "Wolf meat",
+          "price": 0,
+          "itemLevel": 2
+        },
+        "locationType": ["FOREST"]
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        {
+          "name": "Iron sword of Skill",
+          "price": 50.0,
+          "itemLevel": 1
+        }
+      ],
+      "goldsReward": 30.0,
+      "experiencePointsReward": 70.0,
+      "questLevel": 2
+    }
+  }
+]

@@ -1,16 +1,9 @@
 package kuchtastefan.regions.locations;
 
-import kuchtastefan.characters.enemy.Enemy;
-import kuchtastefan.characters.enemy.EnemyList;
-import kuchtastefan.characters.enemy.EnemyRarity;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.regions.events.CombatEvent;
-import kuchtastefan.regions.events.FindItemEvent;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.utility.RandomNumberGenerator;
-
-import java.util.List;
 
 public class LocationService {
 
@@ -39,20 +32,22 @@ public class LocationService {
     }
 
     public void exploreLocation(Hero hero, Location location) {
+        while (location.stageCompleted < location.stageTotal) {
+            PrintUtil.printLongDivider();
+            System.out.println("\t\t\t" + location.locationName + "\t\t\tStages completed " + location.stageCompleted + " / " + location.stageTotal);
+            PrintUtil.printLongDivider();
+            if (new CombatEvent(location.getLocationLevel(), location.enemyList(), location.getLocationType()).eventOccurs(hero)) {
+                location.stageCompleted++;
+            } else {
+                return;
+            }
 
-        for (int i = location.stageCompleted; i < location.stageTotal; i++) {
-            int randomNum = RandomNumberGenerator.getRandomNumber(0, 1);
-            if (randomNum == 0) {
-                int randomNumToGenerateEnemyRarity = RandomNumberGenerator.getRandomNumber(0, 5);
-                EnemyRarity enemyRarity = EnemyRarity.RARE;
-                if (randomNumToGenerateEnemyRarity == 0) {
-                    enemyRarity = EnemyRarity.ELITE;
-                }
-                List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(location.getLocationType(), hero.getLevel(), null, enemyRarity);
-                new CombatEvent(location.getLocationLevel(), suitableEnemies, location.getLocationType()).eventOccurs(hero);
-            } else if (randomNum == 1) {
-                new FindItemEvent(location.getLocationLevel()).eventOccurs(hero);
+            if (location.stageCompleted == location.stageTotal) {
+                location.setCleared(true);
+                location.rewardAfterCompletedAllStages(hero);
             }
         }
     }
 }
+
+

@@ -14,5 +14,5 @@ public abstract class Event {
         this.eventLevel = eventLevel;
     }
 
-    public abstract void eventOccurs(Hero hero);
+    public abstract boolean eventOccurs(Hero hero);
 }

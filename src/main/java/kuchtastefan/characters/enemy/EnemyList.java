@@ -1,7 +1,6 @@
 package kuchtastefan.characters.enemy;
 
 import com.google.gson.Gson;
-import kuchtastefan.ability.Ability;
 import kuchtastefan.regions.locations.LocationType;
 import lombok.Getter;
 
@@ -38,11 +37,7 @@ public class EnemyList {
                 newEnemy.setEnemyRarity(EnemyRarity.ELITE);
                 multiplier = 1.7;
             }
-            for (Ability ability : Ability.values()) {
-                if (newEnemy.getAbilities().containsKey(ability)) {
-                    newEnemy.getAbilities().put(ability, (int) (newEnemy.getAbilities().get(ability) * multiplier));
-                }
-            }
+            newEnemy.increaseAbilityPointsByMultiplier(multiplier);
             newEnemy.setGoldDrop(newEnemy.getGoldDrop() * multiplier);
         } else {
             newEnemy.setEnemyRarity(EnemyRarity.COMMON);
@@ -76,7 +71,6 @@ public class EnemyList {
         List<Enemy> enemies = new ArrayList<>();
         for (Enemy enemy : returnEnemyListByLocationType(locationType, enemyRarity)) {
             if (checkEnemyLevelCondition(enemy, maxEnemyLevel, minEnemyLevel)) {
-//                enemies.add(returnEnemyWithNewCopy(enemy, enemyRarity));
                 enemies.add(enemy);
             }
         }

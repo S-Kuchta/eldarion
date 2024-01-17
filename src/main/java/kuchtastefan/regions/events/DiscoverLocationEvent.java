@@ -21,7 +21,7 @@ public class DiscoverLocationEvent extends Event {
     }
 
     @Override
-    public void eventOccurs(Hero hero) {
+    public boolean eventOccurs(Hero hero) {
         if (RandomNumberGenerator.getRandomNumber(0,5) > 4) {
             while (true) {
                 int randomNumber = RandomNumberGenerator.getRandomNumber(0, this.allLocations.size() - 1);
@@ -42,6 +42,7 @@ public class DiscoverLocationEvent extends Event {
         } else {
             System.out.println("\t--> You believed you caught a glimpse of something, yet it proved to be unremarkable <--");
         }
+        return true;
     }
 
 }

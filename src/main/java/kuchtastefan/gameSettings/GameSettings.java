@@ -6,7 +6,7 @@ import lombok.Setter;
 public class GameSettings {
     @Getter
     @Setter
-    private static boolean printStringSlowly = true;
+    private static boolean printStringSlowly = false;
 
     public static void setPrintStringSlowly() {
         printStringSlowly = !printStringSlowly;

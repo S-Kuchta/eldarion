@@ -15,6 +15,8 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;

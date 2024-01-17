@@ -13,6 +13,7 @@ public class Item {
     protected double price;
     protected Integer itemLevel;
 
+
     public Item(String name, double price, int itemLevel) {
         this.name = name;
         this.price = price;

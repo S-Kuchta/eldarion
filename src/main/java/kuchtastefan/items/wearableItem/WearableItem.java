@@ -27,7 +27,7 @@ public class WearableItem extends Item {
         this.wearableItemQuality = wearableItemQuality;
     }
 
-    public void setItemAbilities(WearableItem wearableItem) {
+    public void increaseWearableItemAbilityValue(WearableItem wearableItem) {
         for (Ability ability : Ability.values()) {
             if (wearableItem.getAbilities().get(ability) != 0) {
                 if (ability.equals(Ability.HEALTH)) {

@@ -17,7 +17,7 @@ public class MerchantEvent extends Event {
     }
 
     @Override
-    public void eventOccurs(Hero hero) {
+    public boolean eventOccurs(Hero hero) {
         System.out.println("\tYou meet merchant caravan, what will you do?");
         System.out.println("\t0. Pass around");
         System.out.println("\t1. Talk");
@@ -28,7 +28,7 @@ public class MerchantEvent extends Event {
                 int randomNumber = RandomNumberGenerator.getRandomNumber(0, 3);
                 switch (randomNumber) {
                     case 0 -> {
-                        WearableItemVendorCharacter wearableItemVendorCharacter = new WearableItemVendorCharacter("Random name", 8, ItemsLists.returnWearableItemListByItemLevel(this.getEventLevel(), null));
+                        WearableItemVendorCharacter wearableItemVendorCharacter = new WearableItemVendorCharacter("Random name", 8, ItemsLists.returnWearableItemListByItemLevel(this.getEventLevel(), null, false));
                         wearableItemVendorCharacter.vendorMenu(hero);
                     }
                     case 1 -> {
@@ -47,5 +47,6 @@ public class MerchantEvent extends Event {
             }
             default -> System.out.println("\tEnter valid input");
         }
+        return true;
     }
 }

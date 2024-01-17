@@ -32,7 +32,7 @@ public class CombatEvent extends Event {
     }
 
     @Override
-    public void eventOccurs(Hero hero) {
+    public boolean eventOccurs(Hero hero) {
 
         final int randomNumber = RandomNumberGenerator.getRandomNumber(0, enemies.size() - 1);
         Enemy randomEnemy = enemies.get(randomNumber);
@@ -66,9 +66,11 @@ public class CombatEvent extends Event {
                     hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
                     hero.checkQuestProgress(randomEnemy.getName());
                     hero.checkQuestObjectivesAndQuestCompleted();
+                    return true;
                 }
                 hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
             }
         }
+        return false;
     }
 }

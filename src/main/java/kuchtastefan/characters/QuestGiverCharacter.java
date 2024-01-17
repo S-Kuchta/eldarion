@@ -3,7 +3,6 @@ package kuchtastefan.characters;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestService;
-import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +39,12 @@ public class QuestGiverCharacter extends GameCharacter {
         this.questService.questGiverMenu(hero, this.quests, this.name);
     }
 
+    /**
+     * Set name based on Quest progress
+     * If quest is not accepted there will appear after name - ! -
+     * If quest is completed but not turned in yet, there will appear after name - ? -
+     * If quest is turned in there will appear after name - Completed -
+     */
     public void setNameBasedOnQuestsAvailable(Hero hero) {
         connectHeroQuestListWithCharacterQuestList(hero);
         boolean haveQuestAvailable = false;
@@ -71,7 +76,6 @@ public class QuestGiverCharacter extends GameCharacter {
             this.setName(this.baseName + " - ? -");
         }
 
-        System.out.println(this.quests.size() + " / " + numberOfCompletedQuests);
         if (this.quests.size() == numberOfCompletedQuests) {
             this.setName(this.baseName);
         }

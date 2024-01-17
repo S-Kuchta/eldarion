@@ -7,6 +7,7 @@ import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.items.wearableItem.WearableItemQuality;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -127,11 +128,17 @@ public class ItemsLists {
         return tempList;
     }
 
-    public static List<WearableItem> returnWearableItemListByItemLevel(int maxItemLevel, Integer minItemLevel) {
+    public static List<WearableItem> returnWearableItemListByItemLevel(int maxItemLevel, Integer minItemLevel, boolean specialItems) {
         List<WearableItem> tempList = new ArrayList<>();
         for (WearableItem wearableItem : wearableItemList) {
             if (checkItemLevelCondition(wearableItem, maxItemLevel, minItemLevel)) {
-                tempList.add(wearableItem);
+                if (!specialItems && !wearableItem.getWearableItemQuality().equals(WearableItemQuality.SPECIAL)) {
+                    tempList.add(wearableItem);
+                }
+
+                if (specialItems && wearableItem.getItemQuality().equals(WearableItemQuality.SPECIAL)) {
+                    tempList.add(wearableItem);
+                }
             }
         }
         return tempList;

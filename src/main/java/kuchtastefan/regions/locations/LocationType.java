@@ -4,14 +4,14 @@ import lombok.Getter;
 
 @Getter
 public enum LocationType {
-    CAVE(""),
-    TOWER(""),
-    MINE(""),
-    CASTLE(""),
-    FOREST(""),
-    HIGHLAND(""),
-    CEMETERY(""),
-    VILLAGE("");
+    FOREST("Region"),
+    HIGHLAND("Region"),
+    MINE("Location"),
+    CAVE("Location"),
+    TOWER("Location"),
+    CASTLE("Location"),
+    CEMETERY("Location"),
+    VILLAGE("Location");
 
     private final String description;
 

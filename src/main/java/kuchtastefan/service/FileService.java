@@ -194,9 +194,14 @@ public class FileService {
 
                 for (WearableItem wearableItem : WearableItems) {
                     wearableItem.setWearableItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
-                    wearableItem.setPrice(50 * wearableItem.getItemLevel());
+                    wearableItem.setPrice(70 * wearableItem.getItemLevel());
+
                     if (wearableItem.getItemQuality() == null) {
                         wearableItem.setItemQuality(WearableItemQuality.BASIC);
+                    }
+
+                    if (wearableItem.getItemQuality() == WearableItemQuality.SPECIAL) {
+
                     }
 
                     for (Ability ability : Ability.values()) {

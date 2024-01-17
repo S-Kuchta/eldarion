@@ -28,6 +28,7 @@ public class QuestBringItemObjective extends QuestObjective {
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
+        hero.getHeroInventory().getHeroInventory().putIfAbsent(this.itemDropNeeded, 0);
         if (hero.getHeroInventory().getHeroInventory().get(this.itemDropNeeded) < this.itemDropCountNeeded) {
             System.out.println("\tBring " + this.itemDropCountNeeded + "x " + this.itemDropNeeded.getName() + " - You have: "
                     + hero.getHeroInventory().getHeroInventory().get(this.itemDropNeeded) + " / " + this.itemDropCountNeeded);

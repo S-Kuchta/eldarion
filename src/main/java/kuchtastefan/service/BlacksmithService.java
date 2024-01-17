@@ -26,7 +26,7 @@ public class BlacksmithService {
 
     public void blacksmithMenu(Hero hero) {
         final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
-                ItemsLists.returnWearableItemListByItemLevel(hero.getLevel(), null));
+                ItemsLists.returnWearableItemListByItemLevel(hero.getLevel(), null, false));
         final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
                 ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
 
@@ -153,7 +153,7 @@ public class BlacksmithService {
     }
 
     private void afterSuccessFullRefinementItem(WearableItem wearableItem, Hero hero) {
-        wearableItem.setItemAbilities(wearableItem);
+        wearableItem.increaseWearableItemAbilityValue(wearableItem);
         wearableItem.setPrice(wearableItem.getPrice() * 2);
         hero.getHeroInventory().addItemToItemList(wearableItem);
 

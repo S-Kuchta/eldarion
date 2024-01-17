@@ -16,13 +16,13 @@ public class FindItemEvent extends Event {
     }
 
     @Override
-    public void eventOccurs(Hero hero) {
+    public boolean eventOccurs(Hero hero) {
         CraftingReagentItem item = findRandomCraftingReagentItem();
         int numberOfFindingItems = RandomNumberGenerator.getRandomNumber(0, 2);
 
         if (numberOfFindingItems == 0) {
             System.out.println("\t--> This is unlucky, you were clumsy and ruined " + item.getName() + " <--");
-            return;
+            return true;
         }
 
         for (int i = 0; i < numberOfFindingItems; i++) {
@@ -38,6 +38,7 @@ public class FindItemEvent extends Event {
 //            hero.checkQuestProgress(null, item);
         }
 
+        return true;
 
     }
 

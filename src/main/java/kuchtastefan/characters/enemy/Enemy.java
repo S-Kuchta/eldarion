@@ -38,6 +38,14 @@ public class Enemy extends GameCharacter {
         }
     }
 
+    public void increaseAbilityPointsByMultiplier(double multiplier) {
+        for (Ability ability : Ability.values()) {
+            if (this.getAbilities().containsKey(ability)) {
+                this.getAbilities().put(ability, (int) (this.getAbilities().get(ability) * multiplier));
+            }
+        }
+    }
+
     public void itemsDrop() {
         List<Item> tempList = new ArrayList<>();
         List<Item> itemList = ItemsLists.returnItemListByLevel(getLevel(), null);
@@ -62,12 +70,12 @@ public class Enemy extends GameCharacter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Enemy enemy = (Enemy) o;
-        return this.name.equals(enemy.name) && enemyType == enemy.enemyType && Arrays.equals(locationType, enemy.locationType);
+        return this.name.equals(enemy.name) && enemyType == enemy.enemyType && Arrays.equals(locationType, enemy.locationType) && enemy.enemyRarity.equals(((Enemy) o).enemyRarity);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(name, goldDrop, enemyType);
+        int result = Objects.hash(name, goldDrop, enemyType, enemyRarity);
         result = 31 * result + Arrays.hashCode(locationType);
         return result;
     }

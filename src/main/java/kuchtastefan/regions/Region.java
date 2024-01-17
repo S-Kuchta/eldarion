@@ -1,15 +1,17 @@
 package kuchtastefan.regions;
 
-import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroCharacterService;
-import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.events.EventService;
 import kuchtastefan.regions.locations.Location;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public abstract class Region {
     protected String regionName;
     protected String regionDescription;
@@ -38,19 +40,4 @@ public abstract class Region {
 
     protected abstract List<Location> initializeLocationForRegion();
 
-    public String getRegionName() {
-        return regionName;
-    }
-
-    public List<Location> getDiscoveredLocations() {
-        return discoveredLocations;
-    }
-
-    public List<Location> getAllLocations() {
-        return allLocations;
-    }
-
-    public void setHero(Hero hero) {
-        this.hero = hero;
-    }
 }

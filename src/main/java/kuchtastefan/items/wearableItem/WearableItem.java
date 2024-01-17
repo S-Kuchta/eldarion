@@ -3,10 +3,14 @@ package kuchtastefan.items.wearableItem;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.items.Item;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Map;
 import java.util.Objects;
 
+@Getter
+@Setter
 public class WearableItem extends Item {
 
     private WearableItemType wearableItemType;
@@ -35,18 +39,6 @@ public class WearableItem extends Item {
         }
     }
 
-    public Map<Ability, Integer> getAbilities() {
-        return abilities;
-    }
-
-    public WearableItemType getWearableItemType() {
-        return wearableItemType;
-    }
-
-    public void setWearableItemType(WearableItemType wearableItemType) {
-        this.wearableItemType = wearableItemType;
-    }
-
     public WearableItemQuality getItemQuality() {
         return wearableItemQuality;
     }
@@ -61,7 +53,7 @@ public class WearableItem extends Item {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         WearableItem that = (WearableItem) o;
-        return itemLevel == that.itemLevel && wearableItemType == that.wearableItemType && Objects.equals(abilities, that.abilities) && wearableItemQuality == that.wearableItemQuality;
+        return Objects.equals(itemLevel, that.itemLevel) && wearableItemType == that.wearableItemType && Objects.equals(abilities, that.abilities) && wearableItemQuality == that.wearableItemQuality;
     }
 
     @Override

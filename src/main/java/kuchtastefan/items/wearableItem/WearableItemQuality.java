@@ -1,5 +1,8 @@
 package kuchtastefan.items.wearableItem;
 
+import lombok.Getter;
+
+@Getter
 public enum WearableItemQuality {
     BASIC("Basic item quality"),
     IMPROVED("Improved item quality - item ability stats are increased by 1"),
@@ -11,7 +14,4 @@ public enum WearableItemQuality {
         this.description = description;
     }
 
-    public String getDescription() {
-        return description;
-    }
 }

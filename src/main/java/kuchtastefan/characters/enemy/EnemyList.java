@@ -3,6 +3,7 @@ package kuchtastefan.characters.enemy;
 import com.google.gson.Gson;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.regions.locations.LocationType;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EnemyList {
+    @Getter
     private static final List<Enemy> enemyList = new ArrayList<>();
 
     public static Map<String, Enemy> returnEnemyMap() {
@@ -46,9 +48,6 @@ public class EnemyList {
             newEnemy.setEnemyRarity(EnemyRarity.COMMON);
         }
 
-
-
-//        newEnemy.setName(newEnemy.getName() + " - " + enemyRarity.name() + " -");
         return newEnemy;
     }
 
@@ -82,9 +81,5 @@ public class EnemyList {
             }
         }
         return enemies;
-    }
-
-    public static List<Enemy> getEnemyList() {
-        return enemyList;
     }
 }

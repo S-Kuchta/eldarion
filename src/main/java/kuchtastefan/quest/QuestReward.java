@@ -2,17 +2,20 @@ package kuchtastefan.quest;
 
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
-import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.utility.RandomNumberGenerator;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public class QuestReward {
-    private List<Item> itemsReward;
-    private double goldsReward;
-    private double experiencePointsReward;
+    private final List<Item> itemsReward;
+    private final double goldsReward;
+    private final double experiencePointsReward;
     private int questLevel;
 
     public QuestReward(List<Item> itemsReward, double goldsReward, double experiencePointsReward, int questLevel) {
@@ -44,17 +47,5 @@ public class QuestReward {
             int randomItemGet = RandomNumberGenerator.getRandomNumber(0, itemsToReward.size() - 1);
             this.itemsReward.add(itemsToReward.get(randomItemGet));
         }
-    }
-
-    public void setQuestLevel(int questLevel) {
-        this.questLevel = questLevel;
-    }
-
-    public int getQuestLevel() {
-        return questLevel;
-    }
-
-    public List<Item> getItemsReward() {
-        return itemsReward;
     }
 }

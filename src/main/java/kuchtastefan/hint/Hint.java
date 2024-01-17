@@ -1,5 +1,10 @@
 package kuchtastefan.hint;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class Hint {
     private final String text;
     private boolean showed;
@@ -9,15 +14,15 @@ public class Hint {
         this.showed = false;
     }
 
-    public String getText() {
-        return text;
-    }
+//    public String getText() {
+//        return text;
+//    }
 
-    public boolean isShowed() {
-        return showed;
-    }
+//    public boolean isShowed() {
+//        return showed;
+//    }
 
-    public void setShowed(boolean showed) {
-        this.showed = showed;
-    }
+//    public void setShowed(boolean showed) {
+//        this.showed = showed;
+//    }
 }

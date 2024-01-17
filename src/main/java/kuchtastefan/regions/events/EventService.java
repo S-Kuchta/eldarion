@@ -7,9 +7,11 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class EventService {
 
     private final List<Location> allLocations;

@@ -6,9 +6,13 @@ import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.*;
 
+@Getter
+@Setter
 public class Enemy extends GameCharacter {
 
     private List<Item> itemsDrop;
@@ -51,46 +55,6 @@ public class Enemy extends GameCharacter {
         if (!this.itemsDrop.contains(item)) {
             this.itemsDrop.add(item);
         }
-    }
-
-    public List<Item> getItemsDrop() {
-        return itemsDrop;
-    }
-
-    public double getGoldDrop() {
-        return goldDrop;
-    }
-
-    public void setGoldDrop(double goldDrop) {
-        this.goldDrop = goldDrop;
-    }
-
-    public EnemyType getEnemyType() {
-        return enemyType;
-    }
-
-    public LocationType[] getLocationType() {
-        return locationType;
-    }
-
-    public int getMaxStack() {
-        return maxStack;
-    }
-
-    public void setEnemyType(EnemyType enemyType) {
-        this.enemyType = enemyType;
-    }
-
-    public void setItemsDrop(List<Item> itemsDrop) {
-        this.itemsDrop = itemsDrop;
-    }
-
-    public EnemyRarity getEnemyRarity() {
-        return enemyRarity;
-    }
-
-    public void setEnemyRarity(EnemyRarity enemyRarity) {
-        this.enemyRarity = enemyRarity;
     }
 
     @Override

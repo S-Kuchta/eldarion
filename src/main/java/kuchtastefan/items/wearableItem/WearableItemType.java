@@ -1,5 +1,8 @@
 package kuchtastefan.items.wearableItem;
 
+import lombok.Getter;
+
+@Getter
 public enum WearableItemType {
 
     WEAPON("Weapon"),
@@ -14,8 +17,5 @@ public enum WearableItemType {
         this.description = description;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
 }

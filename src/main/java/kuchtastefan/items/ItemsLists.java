@@ -7,6 +7,7 @@ import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,11 +15,17 @@ import java.util.List;
 import java.util.Map;
 
 public class ItemsLists {
+    @Getter
     private static final Map<String, Item> allItemsMap = new HashMap<>();
+    @Getter
     private static final List<WearableItem> wearableItemList = new ArrayList<>();
+    @Getter
     private static final List<CraftingReagentItem> craftingReagentItems = new ArrayList<>();
+    @Getter
     private static final List<QuestItem> questItems = new ArrayList<>();
+    @Getter
     private static final List<ConsumableItem> consumableItems = new ArrayList<>();
+    @Getter
     private static final List<JunkItem> junkItems = new ArrayList<>();
 
 
@@ -138,29 +145,5 @@ public class ItemsLists {
             }
         }
         return tempList;
-    }
-
-    public static Map<String, Item> getAllItemsMap() {
-        return allItemsMap;
-    }
-
-    public static List<WearableItem> getWearableItemList() {
-        return wearableItemList;
-    }
-
-    public static List<CraftingReagentItem> getCraftingReagentItems() {
-        return craftingReagentItems;
-    }
-
-    public static List<QuestItem> getQuestItems() {
-        return questItems;
-    }
-
-    public static List<ConsumableItem> getConsumableItems() {
-        return consumableItems;
-    }
-
-    public static List<JunkItem> getJunkItems() {
-        return junkItems;
     }
 }

@@ -2,7 +2,9 @@ package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.regions.locations.Location;
+import lombok.Getter;
 
+@Getter
 public class QuestClearLocation extends QuestObjective {
     private final Location location;
 
@@ -24,9 +26,5 @@ public class QuestClearLocation extends QuestObjective {
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
 
-    }
-
-    public Location getLocation() {
-        return location;
     }
 }

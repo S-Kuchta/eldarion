@@ -71,12 +71,12 @@ public class BattleService {
         int maxDamage;
         if (gameCharacter instanceof Hero) {
             minDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
-                    ((Hero) gameCharacter).getItemAbilityValue(Ability.ATTACK);
+                    ((Hero) gameCharacter).returnItemAbilityValue(Ability.ATTACK);
             maxDamage = minDamage
                     + gameCharacter.getAbilityValue(Ability.DEXTERITY)
-                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEXTERITY)
+                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY)
                     + gameCharacter.getAbilityValue(Ability.SKILL)
-                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.SKILL);
+                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.SKILL);
         } else {
             minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
             maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK)
@@ -92,10 +92,10 @@ public class BattleService {
         int maxDefence;
         if (gameCharacter instanceof Hero) {
             minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE)
-                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEFENCE);
+                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEFENCE);
             maxDefence = minDefence
                     + gameCharacter.getAbilityValue(Ability.DEXTERITY)
-                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.DEXTERITY);
+                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY);
         } else {
             minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE);
             maxDefence = minDefence + gameCharacter.getAbilityValue(Ability.DEXTERITY);
@@ -109,8 +109,8 @@ public class BattleService {
         if (gameCharacter instanceof Hero) {
             criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
                     + gameCharacter.getAbilityValue(Ability.SKILL)
-                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.SKILL)
-                    + ((Hero) gameCharacter).getItemAbilityValue(Ability.LUCK);
+                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.SKILL)
+                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.LUCK);
         } else {
             criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
                     + gameCharacter.getAbilityValue(Ability.SKILL);

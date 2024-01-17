@@ -65,7 +65,7 @@ public class QuestService {
                     System.out.print(" -- Completed --");
                 } else if (!hero.getListOfAcceptedQuests().contains(quest)) {
                     System.out.print(" - ! -");
-                } else if (hero.getListOfAcceptedQuests().contains(quest) && quest.isCompleted() && !quest.isTurnedIn()) {
+                } else if (hero.getListOfAcceptedQuests().contains(quest) && quest.isQuestCompleted() && !quest.isTurnedIn()) {
                     System.out.print(" - ? -");
                 }
                 index++;
@@ -79,9 +79,9 @@ public class QuestService {
         if (!quest.isTurnedIn()) {
             this.printQuestDetails(quest, hero);
             System.out.println("\t0. Go back");
-            if (!quest.isCompleted() && !hero.getListOfAcceptedQuests().contains(quest)) {
+            if (!quest.isQuestCompleted() && !hero.getListOfAcceptedQuests().contains(quest)) {
                 System.out.println("\t1. Accept quest");
-            } else if (!quest.isTurnedIn() && quest.isCompleted()) {
+            } else if (!quest.isTurnedIn() && quest.isQuestCompleted()) {
                 System.out.println("\t1. Complete quest");
             }
         } else {
@@ -93,11 +93,11 @@ public class QuestService {
         switch (choice) {
             case 0 -> this.questGiverMenu(hero, quests, name);
             case 1 -> {
-                if (!quest.isCompleted() && !hero.getListOfAcceptedQuests().contains(quest)) {
+                if (!quest.isQuestCompleted() && !hero.getListOfAcceptedQuests().contains(quest)) {
                     System.out.println("\t\t --> Quest accepted <--");
                     this.startTheQuest(quest, hero);
                     this.questGiverMenu(hero, quests, name);
-                } else if (!quest.isTurnedIn() && quest.isCompleted()) {
+                } else if (!quest.isTurnedIn() && quest.isQuestCompleted()) {
                     this.completeTheQuest(quest, hero);
                     this.questGiverMenu(hero, quests, name);
                 }

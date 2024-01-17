@@ -1,8 +1,14 @@
 package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.characters.hero.Hero;
+import lombok.Getter;
+import lombok.Setter;
 
+
+@Setter
+@Getter
 public abstract class QuestObjective {
+
     protected boolean completed;
     protected final String questObjectiveName;
 
@@ -17,15 +23,4 @@ public abstract class QuestObjective {
 
     public abstract void removeCompletedItemsOrEnemies(Hero hero);
 
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
-    public String getQuestObjectiveName() {
-        return questObjectiveName;
-    }
 }

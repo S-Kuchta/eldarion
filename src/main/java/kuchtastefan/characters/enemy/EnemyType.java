@@ -1,5 +1,8 @@
 package kuchtastefan.characters.enemy;
 
+import lombok.Getter;
+
+@Getter
 public enum EnemyType {
 
     HUMANOID("Humanoid creatures, bearing semblance to humans, vary in appearance and temperament. Some are noble and wise, while others, shrouded in mystery, wield arcane powers or possess unmatched strength"),
@@ -12,7 +15,4 @@ public enum EnemyType {
         this.description = description;
     }
 
-    public String getDescription() {
-        return description;
-    }
 }

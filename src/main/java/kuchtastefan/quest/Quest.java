@@ -3,10 +3,14 @@ package kuchtastefan.quest;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.PrintUtil;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Objects;
 
+@Getter
+@Setter
 public class Quest {
     private final int questId;
     private final String questName;
@@ -38,7 +42,7 @@ public class Quest {
                 break;
             }
         }
-        if (completed && !this.isCompleted()) {
+        if (completed && !this.questCompleted) {
             System.out.println("\t--> You have completed Quest " + this.questName + " <--");
             this.questCompleted = true;
         }
@@ -53,53 +57,53 @@ public class Quest {
         }
     }
 
-    public String getQuestName() {
-        return questName;
-    }
-
-    public String getQuestDescription() {
-        return questDescription;
-    }
-
-    public int getQuestLevel() {
-        return questLevel;
-    }
-
-    public QuestReward getQuestReward() {
-        return questReward;
-    }
-
-    public boolean isCompleted() {
-        return questCompleted;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.questCompleted = completed;
-    }
-
-    public List<? extends QuestObjective> getQuestObjectives() {
-        return questObjectives;
-    }
-
-    public void setQuestObjectives(List<? extends QuestObjective> questObjectives) {
-        this.questObjectives = questObjectives;
-    }
-
-    public boolean isTurnedIn() {
-        return isTurnedIn;
-    }
-
-    public void setTurnedIn(boolean turnedIn) {
-        isTurnedIn = turnedIn;
-    }
-
-    public boolean isQuestCompleted() {
-        return questCompleted;
-    }
-
-    public int getQuestId() {
-        return questId;
-    }
+//    public String getQuestName() {
+//        return questName;
+//    }
+//
+//    public String getQuestDescription() {
+//        return questDescription;
+//    }
+//
+//    public int getQuestLevel() {
+//        return questLevel;
+//    }
+//
+//    public QuestReward getQuestReward() {
+//        return questReward;
+//    }
+//
+//    public boolean isCompleted() {
+//        return questCompleted;
+//    }
+//
+//    public void setCompleted(boolean completed) {
+//        this.questCompleted = completed;
+//    }
+//
+//    public List<? extends QuestObjective> getQuestObjectives() {
+//        return questObjectives;
+//    }
+//
+//    public void setQuestObjectives(List<? extends QuestObjective> questObjectives) {
+//        this.questObjectives = questObjectives;
+//    }
+//
+//    public boolean isTurnedIn() {
+//        return isTurnedIn;
+//    }
+//
+//    public void setTurnedIn(boolean turnedIn) {
+//        isTurnedIn = turnedIn;
+//    }
+//
+//    public boolean isQuestCompleted() {
+//        return questCompleted;
+//    }
+//
+//    public int getQuestId() {
+//        return questId;
+//    }
 
     @Override
     public boolean equals(Object o) {

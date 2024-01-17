@@ -12,9 +12,12 @@ import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.service.BattleService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
 public class CombatEvent extends Event {
 
     private final BattleService battleService;

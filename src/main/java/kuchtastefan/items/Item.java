@@ -1,12 +1,17 @@
 package kuchtastefan.items;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
+@Getter
+@Setter
 public class Item {
 
     protected String name;
     protected double price;
-    protected int itemLevel;
+    protected Integer itemLevel;
 
     public Item(String name, double price, int itemLevel) {
         this.name = name;
@@ -16,30 +21,6 @@ public class Item {
 
     public double returnSellItemPrice() {
         return Math.floor(this.price * 0.7);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getItemLevel() {
-        return itemLevel;
-    }
-
-    public void setItemLevel(int itemLevel) {
-        this.itemLevel = itemLevel;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     @Override

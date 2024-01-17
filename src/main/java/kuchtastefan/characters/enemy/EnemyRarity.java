@@ -1,5 +1,8 @@
 package kuchtastefan.characters.enemy;
 
+import lombok.Getter;
+
+@Getter
 public enum EnemyRarity {
     COMMON(0),
     RARE(20),
@@ -11,7 +14,4 @@ public enum EnemyRarity {
         this.experienceGainedValue = experienceGainedValue;
     }
 
-    public int getExperienceGainedValue() {
-        return experienceGainedValue;
-    }
 }

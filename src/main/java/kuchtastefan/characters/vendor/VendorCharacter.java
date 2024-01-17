@@ -8,10 +8,14 @@ import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 public abstract class VendorCharacter extends GameCharacter {
 
     protected final List<? extends Item> itemsForSale;

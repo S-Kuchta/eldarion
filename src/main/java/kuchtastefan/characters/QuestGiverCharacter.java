@@ -52,7 +52,7 @@ public class QuestGiverCharacter extends GameCharacter {
                 haveQuestAvailable = true;
             }
 
-            if (hero.getListOfAcceptedQuests().contains(quest) && quest.isCompleted() && !quest.isTurnedIn()) {
+            if (hero.getListOfAcceptedQuests().contains(quest) && quest.isQuestCompleted() && !quest.isTurnedIn()) {
                 haveQuestComplete = true;
             }
 

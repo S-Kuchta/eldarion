@@ -1,7 +1,12 @@
 package kuchtastefan.regions.locations;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Objects;
 
+@Getter
+@Setter
 public class Location {
 
     protected final String locationName;
@@ -19,38 +24,6 @@ public class Location {
         this.stageCompleted = 0;
         this.cleared = false;
         this.locationType = locationType;
-        this.canLocationBeExplored = canLocationBeExplored;
-    }
-
-    public String getLocationName() {
-        return locationName;
-    }
-
-    public int getLocationLevel() {
-        return locationLevel;
-    }
-
-    public boolean isCleared() {
-        return cleared;
-    }
-
-    public int getStageTotal() {
-        return stageTotal;
-    }
-
-    public int getStageCompleted() {
-        return stageCompleted;
-    }
-
-    public LocationType getLocationType() {
-        return locationType;
-    }
-
-    public boolean isCanLocationBeExplored() {
-        return canLocationBeExplored;
-    }
-
-    public void setCanLocationBeExplored(boolean canLocationBeExplored) {
         this.canLocationBeExplored = canLocationBeExplored;
     }
 

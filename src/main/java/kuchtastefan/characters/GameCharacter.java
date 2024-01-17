@@ -1,10 +1,14 @@
 package kuchtastefan.characters;
 
 import kuchtastefan.ability.Ability;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Setter
+@Getter
 public abstract class GameCharacter {
     protected String name;
     protected Map<Ability, Integer> abilities;
@@ -37,27 +41,8 @@ public abstract class GameCharacter {
         ));
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getAbilityValue(Ability ability) {
         return this.abilities.get(ability);
     }
 
-    public Map<Ability, Integer> getAbilities() {
-        return abilities;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
 }

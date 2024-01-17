@@ -1,5 +1,8 @@
 package kuchtastefan.regions.locations;
 
+import lombok.Getter;
+
+@Getter
 public enum LocationType {
     CAVE(""),
     TOWER(""),
@@ -14,9 +17,5 @@ public enum LocationType {
 
     LocationType(String description) {
         this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
     }
 }

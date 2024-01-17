@@ -14,12 +14,16 @@ import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Getter
+@Setter
 public class Hero extends GameCharacter {
 
     private int unspentAbilityPoints;
@@ -110,28 +114,6 @@ public class Hero extends GameCharacter {
         return itemMap;
     }
 
-    private Map<Ability, Integer> getInitialAbilityPoints() {
-        return new HashMap<>(Map.of(
-                Ability.ATTACK, 1,
-                Ability.DEFENCE, 1,
-                Ability.DEXTERITY, 1,
-                Ability.SKILL, 1,
-                Ability.LUCK, 1,
-                Ability.HEALTH, 50
-        ));
-    }
-
-    private Map<Ability, Integer> getItemsInitialAbilityPoints() {
-        return new HashMap<>(Map.of(
-                Ability.ATTACK, 0,
-                Ability.DEFENCE, 0,
-                Ability.DEXTERITY, 0,
-                Ability.SKILL, 0,
-                Ability.LUCK, 0,
-                Ability.HEALTH, 0
-        ));
-    }
-
     private Map<WearableItemType, WearableItem> returnNoItemToEquippedMap(WearableItemType wearableItemType) {
         return new HashMap<>(Map.of(wearableItemType, new WearableItem("No item", 0, 0, wearableItemType, getItemsInitialAbilityPoints(), WearableItemQuality.BASIC)));
     }
@@ -156,6 +138,14 @@ public class Hero extends GameCharacter {
 
             updateAbilityPoints(heroAvailablePointsChange);
         }
+    }
+
+    public void updateAbilityPoints(int numberOfPoints) {
+        this.unspentAbilityPoints += numberOfPoints;
+    }
+
+    public void setAbility(Ability ability, int abilityValueToSet) {
+        this.abilities.put(ability, abilityValueToSet);
     }
 
     /**
@@ -205,7 +195,7 @@ public class Hero extends GameCharacter {
 
                 if (questObjective instanceof QuestBringItemObjective && enemyName != null
                         && ((QuestBringItemObjective) questObjective).checkEnemy(enemyName)
-                        && RandomNumberGenerator.getRandomNumber(0, 2) == 0)  {
+                        && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
 
                     this.heroInventory.addItemWithNewCopyToItemList(((QuestBringItemObjective) questObjective).getItemDropNeeded());
                     questObjective.printQuestObjectiveAssignment(this);
@@ -214,6 +204,9 @@ public class Hero extends GameCharacter {
         }
     }
 
+    /**
+     * Check if quest or quest objective is completed.
+     */
     public void checkQuestObjectivesAndQuestCompleted() {
         for (Quest quest : this.listOfAcceptedQuests) {
             if (!quest.isTurnedIn()) {
@@ -239,47 +232,30 @@ public class Hero extends GameCharacter {
         this.heroGold += golds;
     }
 
-    public void updateAbilityPoints(int numberOfPoints) {
-        this.unspentAbilityPoints += numberOfPoints;
-    }
-
-    public void setAbility(Ability ability, int heroHealthBeforeBattle) {
-        this.abilities.put(ability, heroHealthBeforeBattle);
-    }
-
-    public int getItemAbilityValue(Ability ability) {
+    public int returnItemAbilityValue(Ability ability) {
         return this.wearingItemAbilityPoints.get(ability);
     }
 
-    public int getUnspentAbilityPoints() {
-        return unspentAbilityPoints;
+    private Map<Ability, Integer> getInitialAbilityPoints() {
+        return new HashMap<>(Map.of(
+                Ability.ATTACK, 1,
+                Ability.DEFENCE, 1,
+                Ability.DEXTERITY, 1,
+                Ability.SKILL, 1,
+                Ability.LUCK, 1,
+                Ability.HEALTH, 50
+        ));
     }
 
-    public Map<WearableItemType, WearableItem> getEquippedItem() {
-        return equippedItem;
+    private Map<Ability, Integer> getItemsInitialAbilityPoints() {
+        return new HashMap<>(Map.of(
+                Ability.ATTACK, 0,
+                Ability.DEFENCE, 0,
+                Ability.DEXTERITY, 0,
+                Ability.SKILL, 0,
+                Ability.LUCK, 0,
+                Ability.HEALTH, 0
+        ));
     }
 
-    public Map<Ability, Integer> getWearingItemAbilityPoints() {
-        return wearingItemAbilityPoints;
-    }
-
-    public double getHeroGold() {
-        return heroGold;
-    }
-
-    public void setHeroGold(double heroGold) {
-        this.heroGold = heroGold;
-    }
-
-    public HeroInventory getHeroInventory() {
-        return heroInventory;
-    }
-
-    public EnemyKilled getEnemyKilled() {
-        return enemyKilled;
-    }
-
-    public List<Quest> getListOfAcceptedQuests() {
-        return listOfAcceptedQuests;
-    }
 }

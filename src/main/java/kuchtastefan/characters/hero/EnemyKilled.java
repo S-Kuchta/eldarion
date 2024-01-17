@@ -1,14 +1,16 @@
 package kuchtastefan.characters.hero;
 
-import kuchtastefan.characters.enemy.Enemy;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
 public class EnemyKilled {
 
     private final Map<String, Integer> enemyKilled;
     private final Map<String, Integer> questEnemyKilled;
+
 
     public EnemyKilled() {
         this.enemyKilled = new HashMap<>();
@@ -37,13 +39,5 @@ public class EnemyKilled {
 
     public boolean checkIfHeroContainsEnoughQuestEnemyKilled(String enemyName, int numberOfEnemies) {
         return this.questEnemyKilled.containsKey(enemyName) && this.questEnemyKilled.get(enemyName) >= numberOfEnemies;
-    }
-
-    public Map<String, Integer> getEnemyKilled() {
-        return enemyKilled;
-    }
-
-    public Map<String, Integer> getQuestEnemyKilled() {
-        return questEnemyKilled;
     }
 }

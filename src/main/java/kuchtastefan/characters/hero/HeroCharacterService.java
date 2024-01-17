@@ -4,7 +4,9 @@ import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.quest.QuestService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+import lombok.Getter;
 
+@Getter
 public class HeroCharacterService {
     private final InventoryService inventoryService;
     private final HeroAbilityManager heroAbilityManager;
@@ -51,13 +53,5 @@ public class HeroCharacterService {
     private void showHeroInfo(Hero hero) {
         PrintUtil.printCurrentAbilityPointsWithItems(hero);
         PrintUtil.printCurrentWearingArmor(hero);
-    }
-
-    public InventoryService getInventoryService() {
-        return inventoryService;
-    }
-
-    public HeroAbilityManager getHeroAbilityManager() {
-        return heroAbilityManager;
     }
 }

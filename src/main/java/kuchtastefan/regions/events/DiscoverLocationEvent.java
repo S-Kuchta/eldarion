@@ -4,9 +4,11 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationService;
 import kuchtastefan.utility.RandomNumberGenerator;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class DiscoverLocationEvent extends Event {
 
     private final List<Location> allLocations;

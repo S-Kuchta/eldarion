@@ -2,7 +2,10 @@ package kuchtastefan.regions.events;
 
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.Quest;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
 public abstract class Event {
 
     protected final int eventLevel;
@@ -12,8 +15,4 @@ public abstract class Event {
     }
 
     public abstract void eventOccurs(Hero hero);
-
-    public int getEventLevel() {
-        return eventLevel;
-    }
 }

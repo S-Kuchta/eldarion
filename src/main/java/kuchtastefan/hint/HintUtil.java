@@ -1,12 +1,14 @@
 package kuchtastefan.hint;
 
 import kuchtastefan.utility.PrintUtil;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class HintUtil {
 
+    @Getter
     private static final Map<HintName, Hint> hintList = new HashMap<>();
 
     public static void initializeHintList() {
@@ -23,9 +25,5 @@ public class HintUtil {
                 hint.getValue().setShowed(true);
             }
         }
-    }
-
-    public static Map<HintName, Hint> getHintList() {
-        return hintList;
     }
 }

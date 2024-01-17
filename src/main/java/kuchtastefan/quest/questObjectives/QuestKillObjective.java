@@ -1,8 +1,9 @@
 package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.characters.hero.Hero;
+import lombok.Getter;
 
-
+@Getter
 public class QuestKillObjective extends QuestObjective {
     private final String enemyToKill;
     private final int countEnemyToKill;
@@ -37,13 +38,5 @@ public class QuestKillObjective extends QuestObjective {
     @Override
     public void removeCompletedItemsOrEnemies(Hero hero) {
         hero.getEnemyKilled().removeQuestEnemyKilled(this.enemyToKill);
-    }
-
-    public String getEnemyToKill() {
-        return enemyToKill;
-    }
-
-    public int getCountEnemyToKill() {
-        return countEnemyToKill;
     }
 }

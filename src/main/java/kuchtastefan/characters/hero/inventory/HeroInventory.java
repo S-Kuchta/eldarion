@@ -7,9 +7,13 @@ import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.*;
 
+@Getter
+@Setter
 public class HeroInventory {
 
     private final Map<Item, Integer> heroInventory;
@@ -29,10 +33,6 @@ public class HeroInventory {
         this.junkItemInventory = new HashMap<>();
     }
 
-    public Map<Item, Integer> getHeroInventory() {
-        return heroInventory;
-    }
-
     public void addItemToItemList(Item item) {
         addItemToInventory(item);
     }
@@ -45,10 +45,6 @@ public class HeroInventory {
             Item itemCopy = gson.fromJson(gson.toJson(item), itemClass);
             addItemToInventory(itemCopy);
         }
-    }
-
-    public void addQuestItemToQuestItemMap(QuestItem questItem) {
-        addItemToInventory(questItem);
     }
 
     private void addItemToInventory(Item item) {
@@ -75,7 +71,6 @@ public class HeroInventory {
             if (this.heroInventory.containsKey(neededItem.getKey()) && neededItem.getValue() <= this.heroInventory.get(neededItem.getKey())) {
                 if (removeItem) {
                     this.heroInventory.put(neededItem.getKey(), this.heroInventory.get(neededItem.getKey()) - neededItem.getValue());
-//                    this.removeItemFromItemList(neededItem.getKey());
                 }
                 return true;
             }
@@ -84,6 +79,10 @@ public class HeroInventory {
         return false;
     }
 
+    /**
+     * This method is used for save game. When you save game, all items will be added to own list
+     * belonging to its inherited class
+     */
     public void changeList() {
         Gson gson = new Gson();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
@@ -204,26 +203,6 @@ public class HeroInventory {
             }
         }
         return consumableItems;
-    }
-
-    public Map<WearableItem, Integer> getWearableItemInventory() {
-        return wearableItemInventory;
-    }
-
-    public Map<CraftingReagentItem, Integer> getCraftingReagentItemInventory() {
-        return craftingReagentItemInventory;
-    }
-
-    public Map<ConsumableItem, Integer> getConsumableItemInventory() {
-        return consumableItemInventory;
-    }
-
-    public Map<QuestItem, Integer> getQuestItemInventory() {
-        return questItemInventory;
-    }
-
-    public Map<JunkItem, Integer> getJunkItemInventory() {
-        return junkItemInventory;
     }
 
     @Override

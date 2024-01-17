@@ -3,15 +3,15 @@ package kuchtastefan.characters.hero;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class HeroAbilityManager {
     private Hero hero;
 
     public HeroAbilityManager(Hero hero) {
-        this.hero = hero;
-    }
-
-    public void setHero(Hero hero) {
         this.hero = hero;
     }
 
@@ -21,7 +21,7 @@ public class HeroAbilityManager {
             PrintUtil.printDivider();
         } else {
             while (this.hero.getUnspentAbilityPoints() > 0) {
-                PrintUtil.printCurrentAbilityPoints(hero);
+                PrintUtil.printCurrentAbilityPoints(this.hero);
                 System.out.println("Choose ability to upgrade:");
                 System.out.println("You have " + this.hero.getUnspentAbilityPoints() + " to spend.");
                 printPossibleAbilitiesToUpgrade("spend");
@@ -35,12 +35,12 @@ public class HeroAbilityManager {
 
     public void removeAbilityPoints() {
         while (true) {
-            PrintUtil.printCurrentAbilityPoints(hero);
+            PrintUtil.printCurrentAbilityPoints(this.hero);
             System.out.println("Choose ability to remove:");
             printPossibleAbilitiesToUpgrade("remove");
             int removeAbilityInput = InputUtil.intScanner();
             if (removeAbilityInput == 0) {
-                PrintUtil.printCurrentAbilityPoints(hero);
+                PrintUtil.printCurrentAbilityPoints(this.hero);
                 break;
             }
 

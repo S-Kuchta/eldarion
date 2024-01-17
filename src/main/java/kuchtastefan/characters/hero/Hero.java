@@ -4,8 +4,6 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
@@ -63,14 +61,25 @@ public class Hero extends GameCharacter {
         updateWearingItemAbilityPoints();
     }
 
+    /**
+     * If dismantled or sold item is wearing by hero, item will be wear down and ability stats will update
+     *
+     * @param wearableItem item checked for wear down
+     */
     public void unEquipItem(WearableItem wearableItem) {
-        if (this.heroInventory.getHeroInventory().get(wearableItem) < 2) {
+        if (this.equippedItem.get(wearableItem.getWearableItemType()).equals(wearableItem)) {
             this.equippedItem.putAll(returnNoItemToEquippedMap(wearableItem.getWearableItemType()));
         }
 
         updateWearingItemAbilityPoints();
     }
 
+
+    /**
+     * call this method when you want to update ability points of wearable items depending on
+     * current wearing armor
+     * Call this method always when change equipped item. Sell item, Wear on item, dismantle or refinement item
+     */
     public void updateWearingItemAbilityPoints() {
         for (Ability ability : Ability.values()) {
             this.wearingItemAbilityPoints.put(ability, 0);
@@ -149,6 +158,12 @@ public class Hero extends GameCharacter {
         }
     }
 
+    /**
+     * Method takes care of hero experience points. If you have enough experience points, you gain a new level
+     * and experience points will be set to new value. After each new level you will gain 2 ability points
+     *
+     * @param experiencePointsGained from kill, quest, discover location,
+     */
     public void gainExperiencePoints(double experiencePointsGained) {
         this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
         this.experiencePoints += experiencePointsGained;
@@ -176,7 +191,7 @@ public class Hero extends GameCharacter {
      * check if enemy killed in CombatEvent belongs to some of accepted Quest. If yes add enemy to questEnemyKilled
      * and print QuestObjectiveAssignment with QuestObjective progress.
      *
-     * @param enemyName Enemy killed in Combat Event
+     * @param enemyName Enemy killed in CombatEvent
      */
     public void checkQuestProgress(String enemyName) {
         for (Quest quest : this.listOfAcceptedQuests) {
@@ -188,14 +203,11 @@ public class Hero extends GameCharacter {
                     questObjective.printQuestObjectiveAssignment(this);
                 }
 
-                if (questObjective instanceof QuestBringItemObjective
+                if (questObjective instanceof QuestBringItemObjective && enemyName != null
                         && ((QuestBringItemObjective) questObjective).checkEnemy(enemyName)
-                        && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
+                        && RandomNumberGenerator.getRandomNumber(0, 2) == 0)  {
 
-
-                    // TODO fix .. is not hero inventory
-//                    this.heroInventory.getQuestItemInventory().put(((QuestBringItemObjective) questObjective).getItemDropNeeded(), 1);
-                    this.heroInventory.addQuestItemToQuestItemMap(((QuestBringItemObjective) questObjective).getItemDropNeeded());
+                    this.heroInventory.addItemWithNewCopyToItemList(((QuestBringItemObjective) questObjective).getItemDropNeeded());
                     questObjective.printQuestObjectiveAssignment(this);
                 }
             }

@@ -37,6 +37,14 @@ public class PrintUtil {
         printLongDivider();
     }
 
+    /**
+     * Print full wearable item description.
+     * Includes: if is right now equipped, item name, item type, item quality,
+     * item level, buy/sell price and ability points of item
+     *
+     * @param wearableItem show this item description
+     * @param sellItem     if this param is true, price will be set to sell price
+     */
     public static void printItemDescription(WearableItem wearableItem, boolean sellItem, Hero hero) {
 
         if (hero.getEquippedItem().containsValue(wearableItem)) {
@@ -61,13 +69,6 @@ public class PrintUtil {
         }
         System.out.println();
     }
-
-//    public static void printFullItemDescription(WearableItem wearableItem) {
-//        printItemAbilityPoints(wearableItem);
-//        System.out.println("\t\t\tItem Price: "
-//                + wearableItem.getPrice()
-//                + " golds");
-//    }
 
     public static void printCurrentWearingArmor(Hero hero) {
         printLongDivider();
@@ -126,14 +127,14 @@ public class PrintUtil {
             if (line.length() + word.length() <= 60) {
                 line.append(word).append(" ");
             } else {
-                System.out.println(line.toString().trim());
+                printStringSlowly(line.toString().trim());
                 line.setLength(0);
                 line.append(word).append(" ");
             }
         }
 
         if (!line.isEmpty()) {
-            System.out.println(line.toString().trim());
+            printStringSlowly(line.toString().trim());
         }
     }
 
@@ -163,7 +164,7 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printInventoryHeader(WearableItemType wearableItemType) {
+    public static void printInventoryWearableItemTypeHeader(WearableItemType wearableItemType) {
         printLongDivider();
         System.out.println("\t\t\t\t\t\t------ " + wearableItemType + " inventory ------");
         printLongDivider();
@@ -178,23 +179,9 @@ public class PrintUtil {
     public static void printConsumableItemFromList(Map<ConsumableItem, Integer> consumableItemMap) {
         int index = 1;
         for (Map.Entry<ConsumableItem, Integer> item : consumableItemMap.entrySet()) {
-            System.out.print("\t" + index + ". ("
-                    + item.getValue() + "x) "
-                    + item.getKey().getName()
-                    + ", Item type: "
-                    + item.getKey().getConsumableItemType());
-            if (item.getKey().getRestoreAmount() != 0) {
-                System.out.print(", Restore Amount: " + item.getKey().getRestoreAmount() + " health");
-            }
-
-            for (Ability ability : Ability.values()) {
-                if (item.getKey().getIncreaseAbilityPoint().get(ability) != 0) {
-                    System.out.print(", increase " + ability + ": "
-                            + item.getKey().getIncreaseAbilityPoint().get(ability) + ", ");
-                }
-            }
+            System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+            printConsumableItemInfo(item.getKey());
             System.out.println();
-
             index++;
         }
     }
@@ -202,7 +189,7 @@ public class PrintUtil {
     public static void printConsumableItemInfo(ConsumableItem consumableItem) {
         System.out.print(consumableItem.getName()
                 + ", " + consumableItem.getConsumableItemType()
-                + ", iLevel" + consumableItem.getItemLevel());
+                + ", iLevel: " + consumableItem.getItemLevel());
         if (consumableItem.getRestoreAmount() != 0) {
             System.out.print(", Restore Amount: " + consumableItem.getRestoreAmount() + " health");
         }

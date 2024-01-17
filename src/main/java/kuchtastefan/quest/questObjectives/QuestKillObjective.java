@@ -20,9 +20,9 @@ public class QuestKillObjective extends QuestObjective {
             System.out.println("\tKill " + this.countEnemyToKill + "x " + this.enemyToKill + " - " +
                     "You have " + hero.getEnemyKilled().getQuestEnemyKilled().get(this.enemyToKill) +
                     " / " + this.countEnemyToKill + " killed");
-        } else if (hero.getEnemyKilled().getQuestEnemyKilled().get(this.enemyToKill) == this.countEnemyToKill) {
+        } else /*if (hero.getEnemyKilled().getQuestEnemyKilled().get(this.enemyToKill) >= this.countEnemyToKill)*/ {
             System.out.println("\tKill " + this.countEnemyToKill + "x " + this.enemyToKill + " - " +
-                    "You have " + this.countEnemyToKill + " killed" +
+                    "You have " + this.countEnemyToKill +
                     " / " + this.countEnemyToKill + " killed");
         }
     }

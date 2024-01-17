@@ -97,6 +97,9 @@ public class Quest {
         return questCompleted;
     }
 
+    public int getQuestId() {
+        return questId;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -125,7 +128,5 @@ public class Quest {
                 '}';
     }
 
-    public int getQuestId() {
-        return questId;
-    }
+
 }

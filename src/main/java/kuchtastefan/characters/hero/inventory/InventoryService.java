@@ -63,7 +63,7 @@ public class InventoryService {
     }
 
     private void printWearableItemInventoryMenuByItemType(WearableItemType wearableItemType, Hero hero) {
-        PrintUtil.printInventoryHeader(wearableItemType);
+        PrintUtil.printInventoryWearableItemTypeHeader(wearableItemType);
         int index = 1;
         List<WearableItem> tempList = new ArrayList<>();
 
@@ -71,9 +71,6 @@ public class InventoryService {
         for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
             if (item.getKey().getWearableItemType() == wearableItemType) {
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-//                if (hero.getEquippedItem().containsValue(item.getKey())) {
-//                    System.out.print("-- EQUIPPED -- ");
-//                }
                 PrintUtil.printItemDescription(item.getKey(), true, hero);
 
                 tempList.add(item.getKey());
@@ -115,7 +112,6 @@ public class InventoryService {
     }
 
     public void consumableItemsMenu(Hero hero) {
-//        int index = 1;
         PrintUtil.printInventoryHeader("Consumable");
         System.out.println("\t0. Go back");
         PrintUtil.printConsumableItemFromList(hero.getHeroInventory().returnInventoryConsumableItemMap());

@@ -48,32 +48,6 @@ public class CombatEvent extends Event {
                 final boolean haveHeroWon = this.battleService.battle(hero, randomEnemy);
                 if (haveHeroWon) {
 
-//                    QuestItem questItem = null;
-//                    for (Quest quest : hero.getListOfAcceptedQuests()) {
-//                        for (QuestObjective questBringItemObjective : quest.getQuestObjectives()) {
-//                            if (questBringItemObjective instanceof QuestBringItemObjective
-//                                    && ((QuestBringItemObjective) questBringItemObjective).getLocationType().equals(this.locationType)
-//                                    && ((QuestBringItemObjective) questBringItemObjective).getEnemyNeededToItemDrop().equals(randomEnemy.getName())
-//                                    && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
-//
-//                                questItem = ((QuestBringItemObjective) questBringItemObjective).getItemDropNeeded();
-//                                randomEnemy.addItemToItemDrop(((QuestBringItemObjective) questBringItemObjective).getItemDropNeeded());
-//                            }
-//                        }
-//                    }
-
-//                    for (Quest quest : hero.getListOfAcceptedQuests()) {
-//                        for (QuestObjective questObjective : quest.getQuestObjectives()) {
-//                            if (questObjective instanceof QuestBringItemObjective
-//                                    && ((QuestBringItemObjective) questObjective).checkEnemy(randomEnemy.getName())
-//                                    && ((QuestBringItemObjective) questObjective).checkLocation(this.locationType)) {
-//
-//                                questItem = ((QuestBringItemObjective) questObjective).getItemDropNeeded();
-//                                randomEnemy.addItemToItemDrop(questItem);
-//                            }
-//                        }
-//                    }
-
                     double goldEarn = randomEnemy.getGoldDrop();
                     double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getEnemyRarity().getExperienceGainedValue();
 

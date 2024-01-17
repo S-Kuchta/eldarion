@@ -1,36 +1,36 @@
 {
   "hero": {
-    "unspentAbilityPoints": 0,
-    "heroGold": 65.0,
-    "experiencePoints": 270.0,
+    "unspentAbilityPoints": 2,
+    "heroGold": 52.0,
+    "experiencePoints": 90.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "ATTACK": 1,
-          "DEXTERITY": 1,
+          "ATTACK": 0,
+          "HEALTH": 0,
           "DEFENCE": 0,
           "SKILL": 0,
           "LUCK": 0,
-          "HEALTH": 0
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Iron sword of Dexterity",
-        "price": 50.0,
-        "itemLevel": 1
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
       },
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
           "DEFENCE": 1,
-          "DEXTERITY": 1,
-          "ATTACK": 0,
+          "ATTACK": 1,
+          "DEXTERITY": 0,
           "SKILL": 0,
           "LUCK": 0,
           "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Leather armor of Dexterity",
+        "name": "Leather armor of Attack",
         "price": 50.0,
         "itemLevel": 1
       },
@@ -38,8 +38,8 @@
         "wearableItemType": "HANDS",
         "abilities": {
           "ATTACK": 0,
-          "DEFENCE": 0,
           "HEALTH": 0,
+          "DEFENCE": 0,
           "SKILL": 0,
           "LUCK": 0,
           "DEXTERITY": 0
@@ -52,24 +52,24 @@
       "BOOTS": {
         "wearableItemType": "BOOTS",
         "abilities": {
+          "DEFENCE": 1,
+          "SKILL": 1,
           "ATTACK": 0,
-          "DEFENCE": 0,
-          "HEALTH": 0,
-          "SKILL": 0,
+          "DEXTERITY": 0,
           "LUCK": 0,
-          "DEXTERITY": 0
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "name": "Basic boots",
+        "price": 50.0,
+        "itemLevel": 1
       },
       "HEAD": {
         "wearableItemType": "HEAD",
         "abilities": {
           "ATTACK": 0,
-          "DEFENCE": 0,
           "HEALTH": 0,
+          "DEFENCE": 0,
           "SKILL": 0,
           "LUCK": 0,
           "DEXTERITY": 0
@@ -82,33 +82,15 @@
     },
     "wearingItemAbilityPoints": {
       "ATTACK": 1,
-      "DEFENCE": 1,
       "HEALTH": 0,
-      "SKILL": 0,
+      "DEFENCE": 2,
+      "SKILL": 1,
       "LUCK": 0,
-      "DEXTERITY": 2
+      "DEXTERITY": 0
     },
     "heroInventory": {
       "heroInventory": {},
       "wearableItemInventory": [
-        [
-          {
-            "wearableItemType": "BODY",
-            "abilities": {
-              "DEFENCE": 1,
-              "DEXTERITY": 1,
-              "ATTACK": 0,
-              "SKILL": 0,
-              "LUCK": 0,
-              "HEALTH": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Leather armor of Dexterity",
-            "price": 50.0,
-            "itemLevel": 1
-          },
-          1
-        ],
         [
           {
             "wearableItemType": "BODY",
@@ -129,17 +111,107 @@
         ],
         [
           {
-            "wearableItemType": "WEAPON",
+            "wearableItemType": "BODY",
             "abilities": {
-              "ATTACK": 1,
-              "DEXTERITY": 1,
-              "DEFENCE": 0,
+              "DEFENCE": 1,
+              "HEALTH": 5,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Health",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 4,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
               "SKILL": 0,
               "LUCK": 0,
               "HEALTH": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Iron sword of Dexterity",
+            "name": "Heavy armor",
+            "price": 100.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 3,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Steel sword of Attack",
+            "price": 100.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BODY",
+            "abilities": {
+              "DEFENCE": 1,
+              "ATTACK": 1,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Attack",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "BOOTS",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Basic boots",
+            "price": 50.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "SKILL": 1,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Skill",
             "price": 50.0,
             "itemLevel": 1
           },
@@ -154,7 +226,7 @@
             "price": 10.0,
             "itemLevel": 2
           },
-          4
+          1
         ],
         [
           {
@@ -163,7 +235,7 @@
             "price": 10.0,
             "itemLevel": 2
           },
-          4
+          11
         ],
         [
           {
@@ -172,15 +244,83 @@
             "price": 25.0,
             "itemLevel": 3
           },
-          1
+          2
         ]
       ],
-      "consumableItemInventory": {},
-      "questItemInventory": {},
+      "consumableItemInventory": [
+        [
+          {
+            "restoreAmount": 20,
+            "increaseAbilityPoint": {
+              "SKILL": 0,
+              "ATTACK": 0,
+              "DEFENCE": 0,
+              "HEALTH": 0,
+              "LUCK": 0,
+              "DEXTERITY": 0
+            },
+            "consumableItemType": "FOOD",
+            "name": "Bread",
+            "price": 15.0,
+            "itemLevel": 1
+          },
+          3
+        ]
+      ],
+      "questItemInventory": [
+        [
+          {
+            "name": "Wolf meat",
+            "price": 0.0,
+            "itemLevel": 2
+          },
+          2
+        ]
+      ],
       "junkItemInventory": [
         [
           {
-            "name": "Flute with Silver decorating",
+            "name": "Butter Silver Knife",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Linen wrap",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Sapphire Ring",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Teapot",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Embalming Tool",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Lute with Silver decorating",
             "price": 15.0,
             "itemLevel": 0
           },
@@ -188,27 +328,27 @@
         ],
         [
           {
-            "name": "Gold Jug",
+            "name": "Empty Mead Bottle",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Parchment",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Ring",
             "price": 23.0,
             "itemLevel": 0
           },
           1
-        ],
-        [
-          {
-            "name": "Inkwell",
-            "price": 9.0,
-            "itemLevel": 0
-          },
-          1
-        ],
-        [
-          {
-            "name": "Tongs",
-            "price": 18.0,
-            "itemLevel": 0
-          },
-          2
         ],
         [
           {
@@ -220,8 +360,16 @@
         ],
         [
           {
-            "name": "Basket",
-            "price": 7.0,
+            "name": "Lantern",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Gold Weeding Ring",
+            "price": 23.0,
             "itemLevel": 0
           },
           1
@@ -229,22 +377,59 @@
       ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 480.0
+      "neededExperiencePointsForNewLevel": 960.0
     },
     "enemyKilled": {
       "enemyKilled": {
-        "NightBane Dark Runner": 1,
+        "Defias Looter": 2,
         "Defias Bandit": 1,
-        "Alpha Wolf": 1,
-        "Wolf": 1
+        "Defias Thief": 1,
+        "Alpha Wolf": 3,
+        "Wolf": 2
       },
       "questEnemyKilled": {
         "Defias Bandit": 1,
-        "Alpha Wolf": 1,
-        "Wolf": 1
+        "Alpha Wolf": 3,
+        "Wolf": 2
       }
     },
     "listOfAcceptedQuests": [
+      {
+        "questId": 2,
+        "questName": "Bring me 10 Wolf meat",
+        "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestBringItemObjective",
+            "itemDropNeeded": {
+              "name": "Wolf meat",
+              "price": 0.0,
+              "itemLevel": 2
+            },
+            "itemDropFromEnemy": [
+              "Wolf",
+              "Alpha Wolf"
+            ],
+            "itemDropCountNeeded": 10,
+            "completed": false
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      },
       {
         "questId": 1,
         "questName": "Wolf in the forest",
@@ -310,14 +495,14 @@
     ],
     "name": "1",
     "abilities": {
-      "ATTACK": 8,
-      "DEFENCE": 1,
-      "HEALTH": 50,
+      "ATTACK": 4,
+      "HEALTH": 55,
+      "DEFENCE": 3,
       "SKILL": 1,
       "LUCK": 1,
-      "DEXTERITY": 1
+      "DEXTERITY": 2
     },
-    "level": 1
+    "level": 2
   },
   "level": 1,
   "hintUtil": {
@@ -328,22 +513,13 @@
   },
   "forestRegionDiscoveredLocation": [
     {
-      "locationName": "Tower of Damned",
-      "locationLevel": 5,
-      "stageTotal": 10,
-      "stageCompleted": 0,
-      "cleared": false,
-      "enemyList": [],
-      "locationType": "TOWER"
-    },
-    {
       "locationName": "Old mine",
       "locationLevel": 2,
       "stageTotal": 10,
       "stageCompleted": 0,
       "cleared": false,
-      "enemyList": [],
-      "locationType": "MINE"
+      "locationType": "MINE",
+      "canLocationBeExplored": true
     },
     {
       "locationName": "Cemetery",
@@ -351,8 +527,35 @@
       "stageTotal": 10,
       "stageCompleted": 0,
       "cleared": false,
-      "enemyList": [],
-      "locationType": "CEMETERY"
+      "locationType": "CEMETERY",
+      "canLocationBeExplored": true
+    },
+    {
+      "locationName": "Mystic cave",
+      "locationLevel": 2,
+      "stageTotal": 10,
+      "stageCompleted": 0,
+      "cleared": false,
+      "locationType": "CAVE",
+      "canLocationBeExplored": true
+    },
+    {
+      "locationName": "Castle ruins",
+      "locationLevel": 3,
+      "stageTotal": 10,
+      "stageCompleted": 0,
+      "cleared": false,
+      "locationType": "CASTLE",
+      "canLocationBeExplored": true
+    },
+    {
+      "locationName": "Tower of Damned",
+      "locationLevel": 5,
+      "stageTotal": 10,
+      "stageCompleted": 0,
+      "cleared": false,
+      "locationType": "TOWER",
+      "canLocationBeExplored": true
     }
   ]
 }

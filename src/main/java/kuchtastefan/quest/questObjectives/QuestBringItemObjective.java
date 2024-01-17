@@ -26,9 +26,16 @@ public class QuestBringItemObjective extends QuestObjective {
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
-        hero.getHeroInventory().getQuestItemInventory().putIfAbsent(this.itemDropNeeded, 0);
-        System.out.println("\tBring " + this.itemDropCountNeeded + "x " + this.itemDropNeeded.getName() + " - You have: "
-                + hero.getHeroInventory().getQuestItemInventory().get(this.itemDropNeeded) + " / " + this.itemDropCountNeeded);
+//        hero.getHeroInventory().getQuestItemInventory().putIfAbsent(this.itemDropNeeded, 0);
+
+        if (hero.getHeroInventory().getHeroInventory().get(this.itemDropNeeded) < this.itemDropCountNeeded) {
+            System.out.println("\tBring " + this.itemDropCountNeeded + "x " + this.itemDropNeeded.getName() + " - You have: "
+                    + hero.getHeroInventory().getHeroInventory().get(this.itemDropNeeded) + " / " + this.itemDropCountNeeded);
+        } else {
+            System.out.println("\tBring " + this.itemDropCountNeeded + "x " + this.itemDropNeeded.getName() + " - You have: "
+                    + this.itemDropCountNeeded + " / " + this.itemDropCountNeeded);
+        }
+
     }
 
     @Override
@@ -60,13 +67,13 @@ public class QuestBringItemObjective extends QuestObjective {
     }
 
     public boolean checkEnemy(String enemyNameParam) {
-        for (String enemyName : this.itemDropFromEnemy) {
-            if (enemyName.equals(enemyNameParam)) {
-                return true;
-            }
-        }
-//        return Arrays.asList(this.itemDropFromEnemy).contains(enemyNameParam);
-        return false;
+//        for (String enemyName : this.itemDropFromEnemy) {
+//            if (enemyName.equals(enemyNameParam)) {
+//                return true;
+//            }
+//        }
+        return Arrays.asList(this.itemDropFromEnemy).contains(enemyNameParam);
+//        return false;
     }
 
     public LocationType[] getLocationsType() {

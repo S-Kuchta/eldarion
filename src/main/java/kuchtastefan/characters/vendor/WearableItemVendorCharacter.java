@@ -43,9 +43,6 @@ public class WearableItemVendorCharacter extends VendorCharacter {
             for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
                 wearableItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                if (hero.getEquippedItem().containsValue(item.getKey())) {
-                    System.out.print("-- EQUIPPED -- ");
-                }
                 PrintUtil.printItemDescription(item.getKey(), true, hero);
                 index++;
             }

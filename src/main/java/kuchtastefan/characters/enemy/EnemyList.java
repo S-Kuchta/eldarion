@@ -41,9 +41,12 @@ public class EnemyList {
                     newEnemy.getAbilities().put(ability, (int) (newEnemy.getAbilities().get(ability) * multiplier));
                 }
             }
+            newEnemy.setGoldDrop(newEnemy.getGoldDrop() * multiplier);
         } else {
             newEnemy.setEnemyRarity(EnemyRarity.COMMON);
         }
+
+
 
 //        newEnemy.setName(newEnemy.getName() + " - " + enemyRarity.name() + " -");
         return newEnemy;

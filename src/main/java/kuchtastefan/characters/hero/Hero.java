@@ -9,8 +9,10 @@ import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
+import kuchtastefan.quest.questObjectives.QuestEnemy;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -191,24 +193,27 @@ public class Hero extends GameCharacter {
      * and print QuestObjectiveAssignment with QuestObjective progress.
      * Use this method always before checkQuestObjectivesAndQuestComplete() method.
      *
-     * @param enemyName Enemy killed in CombatEvent
+     * @param questEnemy Enemy killed in CombatEvent
      */
-    public void checkQuestProgress(String enemyName) {
+    public void checkQuestProgress(QuestEnemy questEnemy) {
         for (Quest quest : this.listOfAcceptedQuests) {
             for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                if (questObjective instanceof QuestKillObjective
-                        && ((QuestKillObjective) questObjective).getEnemyToKill().equals(enemyName)) {
+                if (!questObjective.isCompleted()) {
+                    if (questObjective instanceof QuestKillObjective
+                            && ((QuestKillObjective) questObjective).getQuestEnemyToKill().equals(questEnemy)) {
 
-                    this.enemyKilled.addQuestEnemyKilled(enemyName);
-                    questObjective.printQuestObjectiveAssignment(this);
-                }
+                        ((QuestKillObjective) questObjective).increaseCurrentCountEnemyProgress();
+                        questObjective.printQuestObjectiveAssignment(this);
+                    }
 
-                if (questObjective instanceof QuestBringItemObjective && enemyName != null
-                        && ((QuestBringItemObjective) questObjective).checkEnemy(enemyName)
-                        && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
+                    if (questObjective instanceof QuestBringItemObjective && questEnemy != null
+                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemy)
+                            && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
 
-                    this.heroInventory.addItemWithNewCopyToItemList(((QuestBringItemObjective) questObjective).getItemDropNeeded());
-                    questObjective.printQuestObjectiveAssignment(this);
+                        System.out.println("\t-- You loot " + ((QuestBringItemObjective) questObjective).getItemDropNeeded().getName() + " --");
+                        this.heroInventory.addItemWithNewCopyToItemList(((QuestBringItemObjective) questObjective).getItemDropNeeded());
+                        questObjective.printQuestObjectiveAssignment(this);
+                    }
                 }
             }
         }

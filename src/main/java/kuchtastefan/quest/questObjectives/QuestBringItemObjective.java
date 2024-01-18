@@ -13,12 +13,12 @@ import java.util.Map;
 public class QuestBringItemObjective extends QuestObjective {
 
     private final QuestItem itemDropNeeded;
-    private final String[] itemDropFromEnemy;
+    private final QuestEnemy[] itemDropFromEnemy;
     private final int itemDropCountNeeded;
     private final LocationType[] locationsType;
 
 
-    public QuestBringItemObjective(String questObjectiveName, String[] itemDropFromEnemy, LocationType[] locationsType, QuestItem itemDropNeeded, int itemDropCountNeeded) {
+    public QuestBringItemObjective(String questObjectiveName, QuestEnemy[] itemDropFromEnemy, LocationType[] locationsType, QuestItem itemDropNeeded, int itemDropCountNeeded) {
         super(questObjectiveName);
         this.locationsType = locationsType;
         this.itemDropNeeded = itemDropNeeded;
@@ -57,7 +57,7 @@ public class QuestBringItemObjective extends QuestObjective {
         return Arrays.asList(this.locationsType).contains(locationTypeParam);
     }
 
-    public boolean checkEnemy(String enemyNameParam) {
+    public boolean checkEnemy(QuestEnemy enemyNameParam) {
         return Arrays.asList(this.itemDropFromEnemy).contains(enemyNameParam);
     }
 }

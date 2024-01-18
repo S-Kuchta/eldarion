@@ -1,8 +1,8 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
-    "heroGold": 74.5,
-    "experiencePoints": 340.0,
+    "heroGold": 150.0,
+    "experiencePoints": 40.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
@@ -37,17 +37,17 @@
       "HANDS": {
         "wearableItemType": "HANDS",
         "abilities": {
-          "DEFENCE": 1,
-          "SKILL": 1,
           "ATTACK": 0,
-          "DEXTERITY": 0,
+          "HEALTH": 0,
+          "DEFENCE": 0,
+          "SKILL": 0,
           "LUCK": 0,
-          "HEALTH": 0
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Basic hands",
-        "price": 70.0,
-        "itemLevel": 1
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
       },
       "BOOTS": {
         "wearableItemType": "BOOTS",
@@ -83,88 +83,24 @@
     "wearingItemAbilityPoints": {
       "ATTACK": 0,
       "HEALTH": 0,
-      "DEFENCE": 1,
-      "SKILL": 1,
+      "DEFENCE": 0,
+      "SKILL": 0,
       "LUCK": 0,
       "DEXTERITY": 0
     },
     "heroInventory": {
       "heroInventory": {},
-      "wearableItemInventory": [
-        [
-          {
-            "wearableItemType": "WEAPON",
-            "abilities": {
-              "ATTACK": 1,
-              "HEALTH": 5,
-              "DEFENCE": 0,
-              "DEXTERITY": 0,
-              "SKILL": 0,
-              "LUCK": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Iron sword of Health",
-            "price": 70.0,
-            "itemLevel": 1
-          },
-          1
-        ],
-        [
-          {
-            "wearableItemType": "HANDS",
-            "abilities": {
-              "DEFENCE": 1,
-              "SKILL": 1,
-              "ATTACK": 0,
-              "DEXTERITY": 0,
-              "LUCK": 0,
-              "HEALTH": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Basic hands",
-            "price": 70.0,
-            "itemLevel": 1
-          },
-          1
-        ],
-        [
-          {
-            "wearableItemType": "BODY",
-            "abilities": {
-              "DEFENCE": 1,
-              "SKILL": 1,
-              "ATTACK": 0,
-              "DEXTERITY": 0,
-              "LUCK": 0,
-              "HEALTH": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Leather armor of Skill",
-            "price": 70.0,
-            "itemLevel": 1
-          },
-          1
-        ],
-        [
-          {
-            "wearableItemType": "BODY",
-            "abilities": {
-              "DEFENCE": 1,
-              "DEXTERITY": 1,
-              "ATTACK": 0,
-              "SKILL": 0,
-              "LUCK": 0,
-              "HEALTH": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Leather armor of Dexterity",
-            "price": 70.0,
-            "itemLevel": 1
-          },
-          1
-        ]
-      ],
+      "wearableItemInventory": {},
       "craftingReagentItemInventory": [
+        [
+          {
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "name": "DeathBloom",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          4
+        ],
         [
           {
             "craftingReagentItemType": "BLACKSMITH_REAGENT",
@@ -172,29 +108,10 @@
             "price": 10.0,
             "itemLevel": 2
           },
-          2
+          4
         ]
       ],
-      "consumableItemInventory": [
-        [
-          {
-            "restoreAmount": 30,
-            "increaseAbilityPoint": {
-              "SKILL": 0,
-              "ATTACK": 0,
-              "DEFENCE": 0,
-              "HEALTH": 0,
-              "LUCK": 0,
-              "DEXTERITY": 0
-            },
-            "consumableItemType": "FOOD",
-            "name": "Goulash",
-            "price": 20.0,
-            "itemLevel": 2
-          },
-          1
-        ]
-      ],
+      "consumableItemInventory": {},
       "questItemInventory": [
         [
           {
@@ -202,22 +119,46 @@
             "price": 0.0,
             "itemLevel": 2
           },
-          0
+          1
         ]
       ],
       "junkItemInventory": [
         [
           {
-            "name": "Glass",
-            "price": 21.0,
+            "name": "Broom",
+            "price": 3.0,
             "itemLevel": 0
           },
           1
         ],
         [
           {
-            "name": "Goblet",
-            "price": 9.0,
+            "name": "Jug with Silver decorating",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Blunt Axe",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Empty Skooma Bottle",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "name": "Clothes Iron",
+            "price": 7.0,
             "itemLevel": 0
           },
           1
@@ -229,17 +170,9 @@
     },
     "enemyKilled": {
       "enemyKilled": {
-        "Defias Looter": 1,
-        "NightBane Dark Runner": 1,
-        "Defias Bandit": 1,
-        "Defias Thief": 1,
-        "Bear": 2
+        "Wolf": 2
       },
-      "questEnemyKilled": {
-        "Defias Bandit": 1,
-        "Alpha Wolf": 0,
-        "Wolf": 0
-      }
+      "questEnemyKilled": {}
     },
     "listOfAcceptedQuests": [
       {
@@ -257,39 +190,26 @@
               "itemLevel": 2
             },
             "itemDropFromEnemy": [
-              "Wolf",
-              "Alpha Wolf"
+              {
+                "questEnemyName": "Wolf",
+                "questEnemyRarity": "COMMON"
+              },
+              {
+                "questEnemyName": "Alpha Wolf",
+                "questEnemyRarity": "COMMON"
+              },
+              {
+                "questEnemyName": "Wolf",
+                "questEnemyRarity": "RARE"
+              },
+              {
+                "questEnemyName": "Alpha Wolf",
+                "questEnemyRarity": "RARE"
+              }
             ],
             "itemDropCountNeeded": 10,
+            "currentItemDropCountProgress": 0,
             "completed": false
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            {
-              "name": "Iron sword of Skill",
-              "price": 50.0,
-              "itemLevel": 1
-            }
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0,
-          "questLevel": 2
-        },
-        "isTurnedIn": false
-      },
-      {
-        "questId": 0,
-        "questName": "Shadow Raiders",
-        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
-        "questLevel": 2,
-        "questCompleted": true,
-        "questObjectives": [
-          {
-            "type": "QuestKillObjective",
-            "enemyToKill": "Defias Bandit",
-            "countEnemyToKill": 1,
-            "completed": true
           }
         ],
         "questReward": {
@@ -315,14 +235,22 @@
         "questObjectives": [
           {
             "type": "QuestKillObjective",
-            "enemyToKill": "Wolf",
+            "questEnemyToKill": {
+              "questEnemyName": "Wolf",
+              "questEnemyRarity": "COMMON"
+            },
             "countEnemyToKill": 5,
+            "currentCountEnemyProgress": 2,
             "completed": false
           },
           {
             "type": "QuestKillObjective",
-            "enemyToKill": "Alpha Wolf",
+            "questEnemyToKill": {
+              "questEnemyName": "Alpha Wolf",
+              "questEnemyRarity": "COMMON"
+            },
             "countEnemyToKill": 1,
+            "currentCountEnemyProgress": 0,
             "completed": false
           }
         ],
@@ -343,12 +271,12 @@
     ],
     "name": "1",
     "abilities": {
-      "ATTACK": 4,
-      "HEALTH": 55,
+      "ATTACK": 6,
+      "HEALTH": 50,
       "DEFENCE": 3,
       "SKILL": 1,
       "LUCK": 1,
-      "DEXTERITY": 2
+      "DEXTERITY": 1
     },
     "level": 1
   },
@@ -359,24 +287,5 @@
       "showed": true
     }
   },
-  "forestRegionDiscoveredLocation": [
-    {
-      "locationName": "Ruins of Eldoria",
-      "locationLevel": 3,
-      "stageTotal": 10,
-      "stageCompleted": 0,
-      "cleared": false,
-      "locationType": "CASTLE",
-      "canLocationBeExplored": true
-    },
-    {
-      "locationName": "Enchanted Mines",
-      "locationLevel": 2,
-      "stageTotal": 10,
-      "stageCompleted": 1,
-      "cleared": false,
-      "locationType": "MINE",
-      "canLocationBeExplored": true
-    }
-  ]
+  "forestRegionDiscoveredLocation": []
 }

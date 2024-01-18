@@ -7,7 +7,10 @@
     "questObjectives": [
       {
         "type": "QuestKillObjective",
-        "enemyToKill": "Defias Bandit",
+        "questEnemyToKill": {
+          "questEnemyName": "Defias Bandit",
+          "questEnemyRarity": "COMMON"
+        },
         "countEnemyToKill": 1
       }
     ],
@@ -32,12 +35,18 @@
     "questObjectives": [
       {
         "type": "QuestKillObjective",
-        "enemyToKill": "Wolf",
+        "questEnemyToKill": {
+          "questEnemyName": "Wolf",
+          "questEnemyRarity": "COMMON"
+        },
         "countEnemyToKill": 5
       },
       {
         "type": "QuestKillObjective",
-        "enemyToKill": "Alpha Wolf",
+        "questEnemyToKill": {
+          "questEnemyName": "Alpha Wolf",
+          "questEnemyRarity": "COMMON"
+        },
         "countEnemyToKill": 1
       }
     ],
@@ -62,14 +71,33 @@
     "questObjectives": [
       {
         "type": "QuestBringItemObjective",
-        "itemDropFromEnemy": ["Wolf", "Alpha Wolf"],
+        "itemDropFromEnemy": [
+          {
+            "questEnemyName": "Wolf",
+            "questEnemyRarity": "COMMON"
+          },
+          {
+            "questEnemyName": "Alpha Wolf",
+            "questEnemyRarity": "COMMON"
+          },
+          {
+            "questEnemyName": "Wolf",
+            "questEnemyRarity": "RARE"
+          },
+          {
+            "questEnemyName": "Alpha Wolf",
+            "questEnemyRarity": "RARE"
+          }
+        ],
         "itemDropCountNeeded": "10",
         "itemDropNeeded": {
           "name": "Wolf meat",
           "price": 0,
           "itemLevel": 2
         },
-        "locationType": ["FOREST"]
+        "locationsType": [
+          "FOREST"
+        ]
       }
     ],
     "questReward": {

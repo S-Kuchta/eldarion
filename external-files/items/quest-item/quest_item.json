@@ -3,5 +3,10 @@
     "name": "Wolf meat",
     "price": 0,
     "itemLevel": 2
+  },
+  {
+    "name": "Enchanted Gem",
+    "price": 0,
+    "itemLevel": 2
   }
 ]

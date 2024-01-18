@@ -4,16 +4,11 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
-import kuchtastefan.items.questItem.QuestItem;
-import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.service.BattleService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.List;
 
@@ -65,7 +60,7 @@ public class CombatEvent extends Event {
                     hero.getEnemyKilled().addEnemyKilled(randomEnemy.getName());
                     hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
                     hero.checkQuestProgress(randomEnemy.getName());
-                    hero.checkQuestObjectivesAndQuestCompleted();
+                    hero.checkIfQuestObjectivesAndQuestIsCompleted();
                     return true;
                 }
                 hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);

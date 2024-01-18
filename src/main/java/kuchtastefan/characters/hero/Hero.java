@@ -218,13 +218,13 @@ public class Hero extends GameCharacter {
      * Check if quest or quest objective is completed.
      * Add this method at the end of each event which can complete quest or quest objective
      */
-    public void checkQuestObjectivesAndQuestCompleted() {
+    public void checkIfQuestObjectivesAndQuestIsCompleted() {
         for (Quest quest : this.listOfAcceptedQuests) {
             if (!quest.isTurnedIn()) {
                 for (QuestObjective questObjective : quest.getQuestObjectives()) {
                     questObjective.checkIfQuestObjectiveIsCompleted(this);
                 }
-                quest.checkIfQuestAndQuestObjectivesIsCompleted();
+                quest.checkIfQuestIsCompleted();
             }
         }
     }

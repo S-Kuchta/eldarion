@@ -59,6 +59,15 @@ public class BlacksmithService {
         }
     }
 
+    /**
+     * Allows the hero to refine wearable items in their inventory to enhance their quality.
+     * The method presents a list of wearable items that can be refined, based on their current quality.
+     * The hero must have the required crafting reagents to proceed with the refinement.
+     * Successfully refined items are upgraded to the next quality level (e.g., BASIC to IMPROVED).
+     * The method continues until the hero decides to go back.
+     *
+     * @param hero The hero whose inventory is being refined.
+     */
     public void refinementItemQuality(Hero hero) {
         while (true) {
             PrintUtil.printDivider();
@@ -125,7 +134,7 @@ public class BlacksmithService {
 
                 } else {
                     PrintUtil.printLongDivider();
-                    System.out.println("\t\tYou can not refinement your item. Your item has the highest quality");
+                    System.out.println("\t--- You can not refinement your item. Your item has the highest quality ---");
                     PrintUtil.printLongDivider();
                 }
             }

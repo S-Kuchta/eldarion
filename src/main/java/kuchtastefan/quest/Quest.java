@@ -34,7 +34,7 @@ public class Quest {
         questReward.setQuestLevel(this.questLevel);
     }
 
-    public void checkQuestAndQuestObjectivesCompleted() {
+    public void checkIfQuestAndQuestObjectivesIsCompleted() {
         boolean completed = true;
         for (QuestObjective questObjective : this.questObjectives) {
             if (!questObjective.isCompleted()) {
@@ -48,7 +48,7 @@ public class Quest {
         }
     }
 
-    public void completeTheQuest(Hero hero) {
+    public void turnInTheQuestAndGiveReward(Hero hero) {
         if (this.questCompleted) {
             PrintUtil.printLongDivider();
             System.out.println("\t\t-- You have completed Quest " + this.questName);

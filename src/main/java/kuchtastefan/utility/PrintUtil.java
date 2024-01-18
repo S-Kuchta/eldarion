@@ -14,8 +14,9 @@ import java.util.Map;
 public class PrintUtil {
 
     public static void printCurrentAbilityPoints(GameCharacter gameCharacter) {
-        System.out.println();
-        System.out.println(gameCharacter instanceof Hero ? "\tYour abilities:" : "\tEnemy abilities:");
+        printLongDivider();
+        System.out.print("\t\t\t\t\t\t\t\t");
+        System.out.println(gameCharacter instanceof Hero ? "Your abilities:" : "Enemy abilities:");
         System.out.print("\t");
         for (Map.Entry<Ability, Integer> entry : gameCharacter.getAbilities().entrySet()) {
             System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");

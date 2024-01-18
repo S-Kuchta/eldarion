@@ -9,7 +9,6 @@ import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.wearableItem.WearableItem;
-import kuchtastefan.quest.Quest;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -61,7 +60,7 @@ public class Location {
     }
 
     public List<Enemy> enemyList() {
-        double stageMultiplier = 1 + (0.1 * stageCompleted);
+        double stageMultiplier = 1 + (0.1 * this.stageCompleted);
         List<Enemy> enemies = EnemyList.returnEnemyListByLocationTypeAndLevel(this.locationType, this.locationLevel, null, EnemyRarity.ELITE);
         for (Enemy enemy : enemies) {
             enemy.increaseAbilityPointsByMultiplier(stageMultiplier);

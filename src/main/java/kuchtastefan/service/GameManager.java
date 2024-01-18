@@ -2,7 +2,6 @@ package kuchtastefan.service;
 
 import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.enemy.EnemyList;
-import kuchtastefan.characters.enemy.EnemyRarity;
 import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroAbilityManager;
@@ -15,8 +14,6 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
-import kuchtastefan.items.wearableItem.WearableItem;
-import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
@@ -31,6 +28,7 @@ public class GameManager {
     private final BlacksmithService blacksmithService;
     private ForestRegionService forestRegionService;
     private final HeroCharacterService heroCharacterService;
+
 
     public GameManager() {
         this.hero = new Hero("");

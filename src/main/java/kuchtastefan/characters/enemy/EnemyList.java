@@ -22,7 +22,7 @@ public class EnemyList {
         return enemyMap;
     }
 
-    private static Enemy returnEnemyWithNewCopy(Enemy enemy, EnemyRarity enemyRarity) {
+    public static Enemy returnEnemyWithNewCopy(Enemy enemy, EnemyRarity enemyRarity) {
         Gson gson = new Gson();
         Enemy newEnemy = gson.fromJson(gson.toJson(enemy), Enemy.class);
         newEnemy.itemsDrop();
@@ -46,14 +46,6 @@ public class EnemyList {
         return newEnemy;
     }
 
-    private static boolean checkEnemyLevelCondition(Enemy enemy, int maxEnemyLevel, Integer minEnemyLevel) {
-        if (minEnemyLevel == null) {
-            minEnemyLevel = maxEnemyLevel;
-        }
-
-        return maxEnemyLevel + 1 >= enemy.getLevel() && minEnemyLevel - 1 <= enemy.getLevel();
-    }
-
     public static List<Enemy> returnEnemyListByLocationType(LocationType locationType, EnemyRarity enemyRarity) {
         List<Enemy> enemies = new ArrayList<>();
         for (Enemy enemy : enemyList) {
@@ -75,5 +67,13 @@ public class EnemyList {
             }
         }
         return enemies;
+    }
+
+    private static boolean checkEnemyLevelCondition(Enemy enemy, int maxEnemyLevel, Integer minEnemyLevel) {
+        if (minEnemyLevel == null) {
+            minEnemyLevel = maxEnemyLevel;
+        }
+
+        return maxEnemyLevel + 1 >= enemy.getLevel() && minEnemyLevel - 1 <= enemy.getLevel();
     }
 }

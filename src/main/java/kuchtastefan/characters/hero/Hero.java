@@ -99,6 +99,9 @@ public class Hero extends GameCharacter {
         }
     }
 
+    /**
+     * Set all items to NoItem and set all wearingItemAbilityPoints to 0 for each ability.
+     */
     public void wearDownAllEquippedItems() {
         this.equippedItem = initialEquip();
         for (Ability ability : Ability.values()) {
@@ -106,6 +109,12 @@ public class Hero extends GameCharacter {
         }
     }
 
+    /**
+     * Set initial equip to No Item.
+     * It also can be used when you want to set all WearableItemType to No Item.
+     *
+     * @return Map which contains NoItem for each WearableItemType.
+     */
     private Map<WearableItemType, WearableItem> initialEquip() {
         Map<WearableItemType, WearableItem> itemMap = new HashMap<>();
         for (WearableItemType wearableItemType : WearableItemType.values()) {
@@ -180,6 +189,7 @@ public class Hero extends GameCharacter {
     /**
      * check if enemy killed in CombatEvent belongs to some of accepted Quest. If yes add enemy to questEnemyKilled
      * and print QuestObjectiveAssignment with QuestObjective progress.
+     * Use this method always before checkQuestObjectivesAndQuestComplete() method.
      *
      * @param enemyName Enemy killed in CombatEvent
      */
@@ -206,14 +216,15 @@ public class Hero extends GameCharacter {
 
     /**
      * Check if quest or quest objective is completed.
+     * Add this method at the end of each event which can complete quest or quest objective
      */
     public void checkQuestObjectivesAndQuestCompleted() {
         for (Quest quest : this.listOfAcceptedQuests) {
             if (!quest.isTurnedIn()) {
                 for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                    questObjective.checkQuestObjectiveCompleted(this);
+                    questObjective.checkIfQuestObjectiveIsCompleted(this);
                 }
-                quest.checkQuestAndQuestObjectivesCompleted();
+                quest.checkIfQuestAndQuestObjectivesIsCompleted();
             }
         }
     }

@@ -200,10 +200,6 @@ public class FileService {
                         wearableItem.setItemQuality(WearableItemQuality.BASIC);
                     }
 
-                    if (wearableItem.getItemQuality() == WearableItemQuality.SPECIAL) {
-
-                    }
-
                     for (Ability ability : Ability.values()) {
                         wearableItem.getAbilities().putIfAbsent(ability, 0);
                     }
@@ -251,6 +247,7 @@ public class FileService {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
                 consumableItemList = new Gson().fromJson(reader, new TypeToken<List<ConsumableItem>>() {
                 }.getType());
+
 
                 for (ConsumableItem consumableItem : consumableItemList) {
                     consumableItem.setConsumableItemType(

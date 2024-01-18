@@ -39,7 +39,7 @@ public class QuestBringItemObjective extends QuestObjective {
     }
 
     @Override
-    public void checkQuestObjectiveCompleted(Hero hero) {
+    public void checkIfQuestObjectiveIsCompleted(Hero hero) {
         if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(new HashMap<>(Map.of(this.itemDropNeeded, this.itemDropCountNeeded)), false)) {
             System.out.println("\t--> You completed " + getQuestObjectiveName() + " quest objective <--");
             setCompleted(true);

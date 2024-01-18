@@ -29,7 +29,7 @@ public class QuestKillObjective extends QuestObjective {
     }
 
     @Override
-    public void checkQuestObjectiveCompleted(Hero hero) {
+    public void checkIfQuestObjectiveIsCompleted(Hero hero) {
         if (hero.getEnemyKilled().checkIfHeroContainsEnoughQuestEnemyKilled(this.enemyToKill, this.countEnemyToKill)) {
             setCompleted(true);
         }

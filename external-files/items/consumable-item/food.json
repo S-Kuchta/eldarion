@@ -3,12 +3,26 @@
     "name": "Goulash",
     "price": 20,
     "itemLevel": 2,
-    "restoreAmount": 30
+    "valueOfAction": 30,
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "Restore health",
+        "actionValue": 30
+      }
+    ]
   },
   {
     "name": "Bread",
     "price": 15,
     "itemLevel": 1,
-    "restoreAmount": 20
+    "valueOfAction": 20,
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "Restore health",
+        "actionValue": 20
+      }
+    ]
   }
 ]

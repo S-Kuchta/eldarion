@@ -12,7 +12,6 @@ import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
 import kuchtastefan.quest.questObjectives.QuestEnemy;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -51,6 +50,13 @@ public class Hero extends GameCharacter {
         this.experiencePointsService = new ExperiencePointsService();
         this.enemyKilled = new EnemyKilled();
         this.listOfAcceptedQuests = new ArrayList<>();
+        this.setHeroMaxAbilities();
+    }
+
+    private void setHeroMaxAbilities() {
+        for (Ability ability : Ability.values()) {
+            this.maxAbilities.put(ability, this.abilities.get(ability) + this.wearingItemAbilityPoints.get(ability));
+        }
     }
 
     public void equipItem(WearableItem wearableItem) {
@@ -82,9 +88,7 @@ public class Hero extends GameCharacter {
 
 
     /**
-     * call this method when you want to update ability points of wearable items depending on
-     * current wearing armor
-     * Call this method always when change equipped item. Sell item, Wear on item, dismantle or refinement item
+     * call this method when you want to update ability points of wearable items depending on current wearing armor
      */
     public void updateWearingItemAbilityPoints() {
         for (Ability ability : Ability.values()) {
@@ -99,6 +103,8 @@ public class Hero extends GameCharacter {
                                 + this.wearingItemAbilityPoints.get(ability));
             }
         }
+
+        this.setHeroMaxAbilities();
     }
 
     /**
@@ -147,6 +153,7 @@ public class Hero extends GameCharacter {
                 this.abilities.put(ability, this.abilities.get(ability) + pointsToChange);
             }
 
+            this.setHeroMaxAbilities();
             updateAbilityPoints(heroAvailablePointsChange);
         }
     }
@@ -189,7 +196,8 @@ public class Hero extends GameCharacter {
     }
 
     /**
-     * check if enemy killed in CombatEvent belongs to some of accepted Quest. If yes add enemy to questEnemyKilled
+     * check if enemy killed in CombatEvent belongs to some of accepted Quest.
+     * If yes increase current count progress in questObjective
      * and print QuestObjectiveAssignment with QuestObjective progress.
      * Use this method always before checkQuestObjectivesAndQuestComplete() method.
      *

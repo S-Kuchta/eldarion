@@ -12,22 +12,29 @@ import java.util.Map;
 public abstract class GameCharacter {
     protected String name;
     protected Map<Ability, Integer> abilities;
+    protected Map<Ability, Integer> maxAbilities;
+    protected Map<Ability, Integer> currentAbilities;
     protected int level;
+
 
     public GameCharacter(String name, Map<Ability, Integer> abilities) {
         this.name = name;
         this.abilities = abilities;
         this.level = 1;
+        this.maxAbilities = abilities;
+        this.currentAbilities = abilities;
     }
 
     public GameCharacter(String name, int level) {
         this.name = name;
         this.level = level;
         this.abilities = initializeAbilityForNonEnemyCharacters();
+        this.maxAbilities = this.abilities;
+        this.currentAbilities = maxAbilities;
     }
 
     public void receiveDamage(int damage) {
-        this.abilities.put(Ability.HEALTH, this.getAbilityValue(Ability.HEALTH) - damage);
+        this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
     }
 
     public Map<Ability, Integer> initializeAbilityForNonEnemyCharacters() {
@@ -41,8 +48,8 @@ public abstract class GameCharacter {
         ));
     }
 
-    public int getAbilityValue(Ability ability) {
-        return this.abilities.get(ability);
+    public int getCurrentAbilityValue(Ability ability) {
+        return this.currentAbilities.get(ability);
     }
 
 }

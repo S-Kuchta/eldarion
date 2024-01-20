@@ -43,7 +43,6 @@ public class CombatEvent extends Event {
             case 0 -> {
             }
             case 1 -> {
-                final int heroHealthBeforeBattle = hero.getAbilities().get(Ability.HEALTH);
                 final boolean haveHeroWon = this.battleService.battle(hero, randomEnemy);
                 if (haveHeroWon) {
 
@@ -59,12 +58,10 @@ public class CombatEvent extends Event {
                     hero.addGolds(goldEarn);
                     hero.gainExperiencePoints(experiencePointGained);
                     hero.getEnemyKilled().addEnemyKilled(randomEnemy.getName());
-                    hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
                     hero.checkQuestProgress(new QuestEnemy(randomEnemy.getName(), randomEnemy.getEnemyRarity()));
                     hero.checkIfQuestObjectivesAndQuestIsCompleted();
                     return true;
                 }
-                hero.setAbility(Ability.HEALTH, heroHealthBeforeBattle);
             }
         }
         return false;

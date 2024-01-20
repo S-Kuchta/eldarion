@@ -1,26 +1,32 @@
 package kuchtastefan.items.consumeableItem;
 
-import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.Action;
+import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @Getter
 @Setter
 public class ConsumableItem extends Item {
 
-    private Integer restoreAmount;
-    private Map<Ability, Integer> increaseAbilityPoint;
     private ConsumableItemType consumableItemType;
+    private final List<? extends Action> actionList;
 
 
-    public ConsumableItem(String name, double price, int itemLevel, int restoreAmount, ConsumableItemType consumableItemType) {
+    public ConsumableItem(String name, double price, int itemLevel, ConsumableItemType consumableItemType, List<? extends Action> actionList) {
         super(name, price, itemLevel);
-        this.restoreAmount = restoreAmount;
         this.consumableItemType = consumableItemType;
-        this.increaseAbilityPoint = new HashMap<>();
+        this.actionList = actionList;
+    }
+
+    public void performActions(Hero hero) {
+        for (Action action : this.actionList) {
+            action.performAction(hero);
+        }
+
+        hero.getHeroInventory().removeItemFromItemList(this);
     }
 }

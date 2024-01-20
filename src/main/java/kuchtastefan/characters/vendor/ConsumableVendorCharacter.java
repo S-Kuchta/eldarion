@@ -36,9 +36,8 @@ public class ConsumableVendorCharacter extends VendorCharacter {
         System.out.println("\t0. Go back");
         for (Item consumableItem : this.itemsForSale) {
             if (consumableItem instanceof ConsumableItem) {
-                System.out.print("\t" + index + ". " + consumableItem.getName()
-                        + ", Item Type: " + ((ConsumableItem) consumableItem).getConsumableItemType()
-                        + ", Item Price: " + consumableItem.getPrice() + " golds");
+                System.out.print("\t" + index + ". ");
+                PrintUtil.printConsumableItemInfo((ConsumableItem) consumableItem);
 
                 index++;
                 System.out.println();

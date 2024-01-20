@@ -1,6 +1,8 @@
 package kuchtastefan.characters.hero.inventory;
 
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.consumeableItem.ConsumableItem;
+import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
@@ -30,7 +32,7 @@ public class InventoryService {
             }
             case 1 -> this.wearableItemsMenu(hero);
             case 2 -> this.craftingReagentsItemMenu(hero);
-            case 3 -> this.consumableItemsMenu(hero);
+            case 3 -> this.consumableItemsMenu(hero, false);
             case 4 -> this.questItemsMenu(hero);
             default -> System.out.println("\tEnter valid input");
         }
@@ -111,16 +113,40 @@ public class InventoryService {
         }
     }
 
-    public void consumableItemsMenu(Hero hero) {
+    public void consumableItemsMenu(Hero hero, boolean isHeroInCombat) {
         PrintUtil.printInventoryHeader("Consumable");
         System.out.println("\t0. Go back");
-        PrintUtil.printConsumableItemFromList(hero.getHeroInventory().returnInventoryConsumableItemMap());
+
+        List<ConsumableItem> consumableItems = new ArrayList<>();
+        int index = 1;
+        for (Map.Entry<ConsumableItem, Integer> item : hero.getHeroInventory().returnInventoryConsumableItemMap().entrySet()) {
+            if (isHeroInCombat) {
+                if (item.getKey().getConsumableItemType().equals(ConsumableItemType.POTION)) {
+                    System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                    PrintUtil.printConsumableItemInfo(item.getKey());
+                    consumableItems.add(item.getKey());
+                }
+
+            } else {
+                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                PrintUtil.printConsumableItemInfo(item.getKey());
+                System.out.println();
+
+                index++;
+            }
+        }
 
         int choice = InputUtil.intScanner();
         if (choice == 0) {
             this.inventoryMenu(hero);
         } else {
-            System.out.println("\tEnter valid number");
+            try {
+                consumableItems.get(choice - 1).performActions(hero);
+                this.inventoryMenu(hero);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("\tEnter valid input");
+                this.consumableItemsMenu(hero, isHeroInCombat);
+            }
         }
     }
 

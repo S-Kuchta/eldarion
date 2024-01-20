@@ -39,10 +39,6 @@ public class WearableItem extends Item {
         }
     }
 
-    public WearableItemQuality getItemQuality() {
-        return wearableItemQuality;
-    }
-
     public void setItemQuality(WearableItemQuality wearableItemQuality) {
         this.wearableItemQuality = wearableItemQuality;
     }

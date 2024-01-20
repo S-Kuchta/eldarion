@@ -28,6 +28,7 @@ import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -44,15 +45,6 @@ public class FileService {
             .registerSubtype(QuestKillObjective.class)
             .registerSubtype(QuestBringItemObjective.class)
             .registerSubtype(QuestClearLocation.class);
-
-    private final RuntimeTypeAdapterFactory<Item> itemRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
-            .of(Item.class)
-            .registerSubtype(ConsumableItem.class)
-            .registerSubtype(CraftingReagentItem.class)
-            .registerSubtype(WearableItem.class)
-            .registerSubtype(QuestItem.class)
-            .registerSubtype(JunkItem.class);
-
     private final Gson gson = new GsonBuilder().registerTypeAdapterFactory(this.questObjectiveRuntimeTypeAdapterFactory).enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
@@ -118,7 +110,7 @@ public class FileService {
                 String selectedSavedGame = selectSaveGame(listOfSavedGames);
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedSavedGame));
 
-                GameLoaded gameLoaded = gson.fromJson(bufferedReader, GameLoaded.class);
+                GameLoaded gameLoaded = this.gson.fromJson(bufferedReader, GameLoaded.class);
 
                 HeroInventory itemInventoryList = gameLoaded.getHero().getHeroInventory();
                 Map<Item, Integer> heroInventory = itemInventoryList.getHeroInventory();
@@ -196,7 +188,7 @@ public class FileService {
                     wearableItem.setWearableItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
                     wearableItem.setPrice(70 * wearableItem.getItemLevel());
 
-                    if (wearableItem.getItemQuality() == null) {
+                    if (wearableItem.getWearableItemQuality() == null) {
                         wearableItem.setItemQuality(WearableItemQuality.BASIC);
                     }
 
@@ -245,26 +237,15 @@ public class FileService {
             List<ConsumableItem> consumableItemList;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                consumableItemList = new Gson().fromJson(reader, new TypeToken<List<ConsumableItem>>() {
+                consumableItemList = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create().fromJson(reader, new TypeToken<List<ConsumableItem>>() {
                 }.getType());
 
 
                 for (ConsumableItem consumableItem : consumableItemList) {
                     consumableItem.setConsumableItemType(
                             ConsumableItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
-
-                    if (consumableItem.getIncreaseAbilityPoint() == null) {
-                        consumableItem.setIncreaseAbilityPoint(new HashMap<>());
-                    }
-
-                    for (Ability ability : Ability.values()) {
-                        consumableItem.getIncreaseAbilityPoint().putIfAbsent(ability, 0);
-                    }
-
-                    if (consumableItem.getRestoreAmount() == null) {
-                        consumableItem.setRestoreAmount(0);
-                    }
                 }
+
                 consumableItems.addAll(consumableItemList);
                 reader.close();
             }

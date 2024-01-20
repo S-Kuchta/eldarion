@@ -11,8 +11,8 @@ public class BattleService {
     public boolean battle(Hero hero, Enemy enemy) {
         boolean heroPlay = true;
         while (true) {
-            int heroHealth = hero.getAbilityValue(Ability.HEALTH);
-            int enemyHealth = enemy.getAbilityValue(Ability.HEALTH);
+            int heroHealth = hero.getCurrentAbilityValue(Ability.HEALTH);
+            int enemyHealth = enemy.getCurrentAbilityValue(Ability.HEALTH);
 
             System.out.println("Your healths: " + heroHealth);
             System.out.println("Enemy healths: " + enemyHealth);
@@ -25,11 +25,11 @@ public class BattleService {
                 heroPlay = true;
             }
 
-            if (enemy.getAbilityValue(Ability.HEALTH) <= 0) {
+            if (enemy.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
                 return true;
             }
 
-            if (hero.getAbilityValue(Ability.HEALTH) <= 0) {
+            if (hero.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
                 return false;
             }
 
@@ -56,7 +56,7 @@ public class BattleService {
 
         defender.receiveDamage(finalDamage);
         System.out.println(attacker.getName() + " attacked " + defender.getName() + " for " + finalDamage + " damage!");
-        System.out.println(defender.getName() + " healths are: " + defender.getAbilityValue(Ability.HEALTH));
+        System.out.println(defender.getName() + " healths are: " + defender.getCurrentAbilityValue(Ability.HEALTH));
         PrintUtil.printDivider();
     }
 
@@ -70,18 +70,18 @@ public class BattleService {
         int minDamage;
         int maxDamage;
         if (gameCharacter instanceof Hero) {
-            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
+            minDamage = gameCharacter.getCurrentAbilityValue(Ability.ATTACK) +
                     ((Hero) gameCharacter).returnItemAbilityValue(Ability.ATTACK);
             maxDamage = minDamage
-                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+                    + gameCharacter.getCurrentAbilityValue(Ability.DEXTERITY)
                     + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY)
-                    + gameCharacter.getAbilityValue(Ability.SKILL)
+                    + gameCharacter.getCurrentAbilityValue(Ability.SKILL)
                     + ((Hero) gameCharacter).returnItemAbilityValue(Ability.SKILL);
         } else {
-            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
-            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK)
-                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
-                    + gameCharacter.getAbilityValue(Ability.SKILL);
+            minDamage = gameCharacter.getCurrentAbilityValue(Ability.ATTACK);
+            maxDamage = gameCharacter.getCurrentAbilityValue(Ability.ATTACK)
+                    + gameCharacter.getCurrentAbilityValue(Ability.DEXTERITY)
+                    + gameCharacter.getCurrentAbilityValue(Ability.SKILL);
         }
 
         return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
@@ -91,29 +91,67 @@ public class BattleService {
         int minDefence;
         int maxDefence;
         if (gameCharacter instanceof Hero) {
-            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE)
+            minDefence = gameCharacter.getCurrentAbilityValue(Ability.DEFENCE)
                     + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEFENCE);
             maxDefence = minDefence
-                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+                    + gameCharacter.getCurrentAbilityValue(Ability.DEXTERITY)
                     + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY);
         } else {
-            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE);
-            maxDefence = minDefence + gameCharacter.getAbilityValue(Ability.DEXTERITY);
+            minDefence = gameCharacter.getCurrentAbilityValue(Ability.DEFENCE);
+            maxDefence = minDefence + gameCharacter.getCurrentAbilityValue(Ability.DEXTERITY);
         }
 
         return RandomNumberGenerator.getRandomNumber(minDefence, maxDefence);
     }
 
+//    private int attack(GameCharacter gameCharacter) {
+//        int minDamage;
+//        int maxDamage;
+//        if (gameCharacter instanceof Hero) {
+//            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
+//                    ((Hero) gameCharacter).returnItemAbilityValue(Ability.ATTACK);
+//            maxDamage = minDamage
+//                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+//                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY)
+//                    + gameCharacter.getAbilityValue(Ability.SKILL)
+//                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.SKILL);
+//        } else {
+//            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
+//            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK)
+//                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+//                    + gameCharacter.getAbilityValue(Ability.SKILL);
+//        }
+//
+//        return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
+//    }
+//
+//    private int defense(GameCharacter gameCharacter) {
+//        int minDefence;
+//        int maxDefence;
+//        if (gameCharacter instanceof Hero) {
+//            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE)
+//                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEFENCE);
+//            maxDefence = minDefence
+//                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
+//                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY);
+//        } else {
+//            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE);
+//            maxDefence = minDefence + gameCharacter.getAbilityValue(Ability.DEXTERITY);
+//        }
+//
+//        return RandomNumberGenerator.getRandomNumber(minDefence, maxDefence);
+//    }
+
     private boolean criticalHit(GameCharacter gameCharacter) {
         int criticalHit;
         if (gameCharacter instanceof Hero) {
-            criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
-                    + gameCharacter.getAbilityValue(Ability.SKILL)
+            criticalHit = gameCharacter.getCurrentAbilityValue(Ability.LUCK)
+                    + gameCharacter.getCurrentAbilityValue(Ability.SKILL)
                     + ((Hero) gameCharacter).returnItemAbilityValue(Ability.SKILL)
                     + ((Hero) gameCharacter).returnItemAbilityValue(Ability.LUCK);
         } else {
-            criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
-                    + gameCharacter.getAbilityValue(Ability.SKILL);
+            criticalHit = gameCharacter.getCurrentAbilityValue(Ability.LUCK)
+                    + gameCharacter.getCurrentAbilityValue(Ability.SKILL);
         }
         return criticalHit >= RandomNumberGenerator.getRandomNumber(0, 100);
     }

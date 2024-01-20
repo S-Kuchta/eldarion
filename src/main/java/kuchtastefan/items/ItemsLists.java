@@ -136,7 +136,7 @@ public class ItemsLists {
                     tempList.add(wearableItem);
                 }
 
-                if (specialItems && wearableItem.getItemQuality().equals(WearableItemQuality.SPECIAL)) {
+                if (specialItems && wearableItem.getWearableItemQuality().equals(WearableItemQuality.SPECIAL)) {
                     tempList.add(wearableItem);
                 }
             }

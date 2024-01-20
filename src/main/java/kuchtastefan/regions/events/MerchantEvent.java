@@ -21,7 +21,7 @@ public class MerchantEvent extends Event {
         int randomNumberToMeet = RandomNumberGenerator.getRandomNumber(0, 1);
 
         if (randomNumberToMeet == 0) {
-            System.out.println("\t--> The merchant was too fast for you, you couldn't catch up talk to him <--");
+            System.out.println("\t--> The merchant was too fast for you, you couldn't catch up and talk to him <--");
         } else {
             System.out.println("\tYou meet merchant caravan, what will you do?");
             System.out.println("\t0. Pass around");

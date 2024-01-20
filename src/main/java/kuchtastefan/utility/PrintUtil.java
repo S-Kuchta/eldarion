@@ -1,6 +1,7 @@
 package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.Action;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.gameSettings.GameSettings;
@@ -29,10 +30,13 @@ public class PrintUtil {
         printLongDivider();
         System.out.println("\t\t\t\t\t------ Ability points with items ------");
         System.out.print("\t");
-        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
-            System.out.print(entry.getKey() + ": "
-                    + (entry.getValue()
-                    + hero.getWearingItemAbilityPoints().get(entry.getKey())) + ", ");
+//        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
+//            System.out.print(entry.getKey() + ": "
+//                    + (entry.getValue()
+//                    + hero.getWearingItemAbilityPoints().get(entry.getKey())) + ", ");
+//        }
+        for (Map.Entry<Ability, Integer> abilityPoints : hero.getMaxAbilities().entrySet()) {
+            System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
         }
         System.out.println();
         printLongDivider();
@@ -53,7 +57,7 @@ public class PrintUtil {
         }
         System.out.print(wearableItem.getWearableItemType() + ": "
                 + wearableItem.getName()
-                + " (" + wearableItem.getItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
+                + " (" + wearableItem.getWearableItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
         if (!sellItem) {
             System.out.print(", Item Price: " + wearableItem.getPrice());
         } else {
@@ -190,16 +194,9 @@ public class PrintUtil {
     public static void printConsumableItemInfo(ConsumableItem consumableItem) {
         System.out.print(consumableItem.getName()
                 + ", " + consumableItem.getConsumableItemType()
-                + ", iLevel: " + consumableItem.getItemLevel());
-        if (consumableItem.getRestoreAmount() != 0) {
-            System.out.print(", Restore Amount: " + consumableItem.getRestoreAmount() + " health");
-        }
-
-        for (Ability ability : Ability.values()) {
-            if (consumableItem.getIncreaseAbilityPoint().get(ability) != 0) {
-                System.out.print(", increase " + ability + ": "
-                        + consumableItem.getIncreaseAbilityPoint().get(ability) + ", ");
-            }
+                + ", iLevel: " + consumableItem.getItemLevel() + "\n");
+        for (Action action : consumableItem.getActionList()) {
+            System.out.print("\t\t" + action.getActionName() + ": " + action.getActionValue() + ", ");
         }
     }
 

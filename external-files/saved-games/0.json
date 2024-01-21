@@ -1,47 +1,17 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
-    "heroGold": 150.0,
-    "experiencePoints": 40.0,
+    "heroGold": 10.0,
+    "experiencePoints": 0.0,
     "equippedItem": {
-      "WEAPON": {
-        "wearableItemType": "WEAPON",
+      "HEAD": {
+        "wearableItemType": "HEAD",
         "abilities": {
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "DEFENCE": 0,
           "SKILL": 0,
           "LUCK": 0,
-          "DEXTERITY": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "BODY": {
-        "wearableItemType": "BODY",
-        "abilities": {
+          "DEFENCE": 0,
           "ATTACK": 0,
           "HEALTH": 0,
-          "DEFENCE": 0,
-          "SKILL": 0,
-          "LUCK": 0,
-          "DEXTERITY": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "HANDS": {
-        "wearableItemType": "HANDS",
-        "abilities": {
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "DEFENCE": 0,
-          "SKILL": 0,
-          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -52,11 +22,11 @@
       "BOOTS": {
         "wearableItemType": "BOOTS",
         "abilities": {
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "DEFENCE": 0,
           "SKILL": 0,
           "LUCK": 0,
+          "DEFENCE": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -64,14 +34,44 @@
         "price": 0.0,
         "itemLevel": 0
       },
-      "HEAD": {
-        "wearableItemType": "HEAD",
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
         "abilities": {
-          "ATTACK": 0,
-          "HEALTH": 0,
-          "DEFENCE": 0,
           "SKILL": 0,
           "LUCK": 0,
+          "DEFENCE": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -81,204 +81,91 @@
       }
     },
     "wearingItemAbilityPoints": {
-      "ATTACK": 0,
-      "HEALTH": 0,
-      "DEFENCE": 0,
       "SKILL": 0,
       "LUCK": 0,
+      "DEFENCE": 0,
+      "ATTACK": 0,
+      "HEALTH": 0,
       "DEXTERITY": 0
     },
     "heroInventory": {
-      "heroInventory": {},
-      "wearableItemInventory": {},
-      "craftingReagentItemInventory": [
+      "heroInventory": [
         [
           {
-            "craftingReagentItemType": "ALCHEMY_REAGENT",
-            "name": "DeathBloom",
-            "price": 10.0,
-            "itemLevel": 2
-          },
-          4
-        ],
-        [
-          {
-            "craftingReagentItemType": "BLACKSMITH_REAGENT",
-            "name": "Iron ore",
-            "price": 10.0,
-            "itemLevel": 2
-          },
-          4
-        ]
-      ],
-      "consumableItemInventory": {},
-      "questItemInventory": [
-        [
-          {
-            "name": "Wolf meat",
-            "price": 0.0,
-            "itemLevel": 2
-          },
-          1
-        ]
-      ],
-      "junkItemInventory": [
-        [
-          {
-            "name": "Broom",
-            "price": 3.0,
-            "itemLevel": 0
+            "type": "WearableItem",
+            "wearableItemType": "BOOTS",
+            "abilities": {
+              "DEFENCE": 1,
+              "SKILL": 1,
+              "ATTACK": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Basic boots",
+            "price": 70.0,
+            "itemLevel": 1
           },
           1
         ],
         [
           {
-            "name": "Jug with Silver decorating",
-            "price": 18.0,
-            "itemLevel": 0
-          },
-          1
-        ],
-        [
-          {
-            "name": "Blunt Axe",
-            "price": 18.0,
-            "itemLevel": 0
-          },
-          1
-        ],
-        [
-          {
-            "name": "Empty Skooma Bottle",
-            "price": 7.0,
-            "itemLevel": 0
-          },
-          1
-        ],
-        [
-          {
-            "name": "Clothes Iron",
-            "price": 7.0,
-            "itemLevel": 0
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "HEALTH": 5,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "SKILL": 0,
+              "LUCK": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Health",
+            "price": 70.0,
+            "itemLevel": 1
           },
           1
         ]
       ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 480.0
+      "neededExperiencePointsForNewLevel": 0.0
     },
     "enemyKilled": {
-      "enemyKilled": {
-        "Wolf": 2
-      },
+      "enemyKilled": {},
       "questEnemyKilled": {}
     },
-    "listOfAcceptedQuests": [
-      {
-        "questId": 2,
-        "questName": "Bring me 10 Wolf meat",
-        "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestBringItemObjective",
-            "itemDropNeeded": {
-              "name": "Wolf meat",
-              "price": 0.0,
-              "itemLevel": 2
-            },
-            "itemDropFromEnemy": [
-              {
-                "questEnemyName": "Wolf",
-                "questEnemyRarity": "COMMON"
-              },
-              {
-                "questEnemyName": "Alpha Wolf",
-                "questEnemyRarity": "COMMON"
-              },
-              {
-                "questEnemyName": "Wolf",
-                "questEnemyRarity": "RARE"
-              },
-              {
-                "questEnemyName": "Alpha Wolf",
-                "questEnemyRarity": "RARE"
-              }
-            ],
-            "itemDropCountNeeded": 10,
-            "currentItemDropCountProgress": 0,
-            "completed": false
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            {
-              "name": "Iron sword of Skill",
-              "price": 50.0,
-              "itemLevel": 1
-            }
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0,
-          "questLevel": 2
-        },
-        "isTurnedIn": false
-      },
-      {
-        "questId": 1,
-        "questName": "Wolf in the forest",
-        "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestKillObjective",
-            "questEnemyToKill": {
-              "questEnemyName": "Wolf",
-              "questEnemyRarity": "COMMON"
-            },
-            "countEnemyToKill": 5,
-            "currentCountEnemyProgress": 2,
-            "completed": false
-          },
-          {
-            "type": "QuestKillObjective",
-            "questEnemyToKill": {
-              "questEnemyName": "Alpha Wolf",
-              "questEnemyRarity": "COMMON"
-            },
-            "countEnemyToKill": 1,
-            "currentCountEnemyProgress": 0,
-            "completed": false
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            {
-              "name": "Iron sword of Skill",
-              "price": 50.0,
-              "itemLevel": 1
-            }
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0,
-          "questLevel": 2
-        },
-        "isTurnedIn": false
-      }
-    ],
-    "name": "1",
+    "listOfAcceptedQuests": [],
+    "name": "0",
+    "level": 1,
     "abilities": {
-      "ATTACK": 6,
-      "HEALTH": 50,
-      "DEFENCE": 3,
       "SKILL": 1,
       "LUCK": 1,
+      "DEFENCE": 1,
+      "ATTACK": 8,
+      "HEALTH": 50,
       "DEXTERITY": 1
     },
-    "level": 1
+    "maxAbilities": {
+      "DEXTERITY": 1,
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEFENCE": 1,
+      "ATTACK": 8,
+      "HEALTH": 50
+    },
+    "currentAbilities": {
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEFENCE": 1,
+      "ATTACK": 1,
+      "HEALTH": 50,
+      "DEXTERITY": 1
+    },
+    "regionActionsWithDuration": [],
+    "battleActionsWithDuration": []
   },
   "level": 1,
   "hintUtil": {
@@ -287,5 +174,46 @@
       "showed": true
     }
   },
-  "forestRegionDiscoveredLocation": []
+  "forestRegionDiscoveredLocation": [],
+  "regionActionsWithDuration": [],
+  "itemList": [
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "DEFENCE": 1,
+          "SKILL": 1,
+          "ATTACK": 0,
+          "DEXTERITY": 0,
+          "LUCK": 0,
+          "HEALTH": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Basic boots",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 1,
+          "HEALTH": 5,
+          "DEFENCE": 0,
+          "DEXTERITY": 0,
+          "SKILL": 0,
+          "LUCK": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Iron sword of Health",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ]
+  ]
 }

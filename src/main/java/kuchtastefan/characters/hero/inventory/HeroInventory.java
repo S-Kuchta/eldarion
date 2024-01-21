@@ -19,20 +19,20 @@ import java.util.*;
 public class HeroInventory {
 
     private final Map<Item, Integer> heroInventory;
-    private final Map<WearableItem, Integer> wearableItemInventory;
+/*    private final Map<WearableItem, Integer> wearableItemInventory;
     private final Map<CraftingReagentItem, Integer> craftingReagentItemInventory;
     private final Map<ConsumableItem, Integer> consumableItemInventory;
     private final Map<QuestItem, Integer> questItemInventory;
-    private final Map<JunkItem, Integer> junkItemInventory;
+    private final Map<JunkItem, Integer> junkItemInventory;*/
 
 
     public HeroInventory() {
         this.heroInventory = new HashMap<>();
-        this.wearableItemInventory = new HashMap<>();
+/*        this.wearableItemInventory = new HashMap<>();
         this.craftingReagentItemInventory = new HashMap<>();
         this.consumableItemInventory = new HashMap<>();
         this.questItemInventory = new HashMap<>();
-        this.junkItemInventory = new HashMap<>();
+        this.junkItemInventory = new HashMap<>();*/
     }
 
     public void addItemToItemList(Item item) {
@@ -85,7 +85,7 @@ public class HeroInventory {
      * This method is used for save game. When you save game, all items will be added to own list
      * belonging to its inherited class
      */
-    public void changeList() {
+/*    public void changeList() {
         Gson gson = new Gson();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
             if (item.getKey() instanceof WearableItem) {
@@ -115,8 +115,7 @@ public class HeroInventory {
         }
 
         this.heroInventory.clear();
-    }
-
+    }*/
     public void removeItemFromItemList(Item item) {
         Map<Item, Integer> heroInventory = this.getHeroInventory();
 

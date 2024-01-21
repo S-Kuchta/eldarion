@@ -54,7 +54,10 @@
       "itemsReward": [
         {
           "name": "Iron sword of Skill",
-          "price": 50.0,
+          "abilities": {
+            "ATTACK": 1,
+            "SKILL": 1
+          },
           "itemLevel": 1
         }
       ],

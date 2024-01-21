@@ -18,12 +18,13 @@ import java.util.Set;
 @Getter
 public abstract class GameCharacter {
     protected String name;
+    protected int level;
     protected Map<Ability, Integer> abilities;
     protected Map<Ability, Integer> maxAbilities;
     protected Map<Ability, Integer> currentAbilities;
     protected Set<ActionWithDuration> regionActionsWithDuration;
-    protected Set<ActionWithDuration> battleActionWithDuration;
-    protected int level;
+    protected Set<ActionWithDuration> battleActionsWithDuration;
+
 
 
     public GameCharacter(String name, Map<Ability, Integer> abilities) {
@@ -33,7 +34,7 @@ public abstract class GameCharacter {
         this.maxAbilities = new HashMap<>(abilities);
         this.currentAbilities = new HashMap<>(abilities);
         this.regionActionsWithDuration = new HashSet<>();
-        this.battleActionWithDuration = new HashSet<>();
+        this.battleActionsWithDuration = new HashSet<>();
     }
 
     public GameCharacter(String name, int level) {
@@ -48,11 +49,11 @@ public abstract class GameCharacter {
 
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.REGION_ACTION)) {
             addActionOrIncreaseStack(actionWithDuration, this.regionActionsWithDuration);
-            addActionOrIncreaseStack(actionWithDuration, this.battleActionWithDuration);
+            addActionOrIncreaseStack(actionWithDuration, this.battleActionsWithDuration);
         }
 
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.BATTLE_ACTION)) {
-            addActionOrIncreaseStack(actionWithDuration, this.battleActionWithDuration);
+            addActionOrIncreaseStack(actionWithDuration, this.battleActionsWithDuration);
         }
 
         updateCurrentAbilitiesDependsOnActiveActions(null);
@@ -92,14 +93,14 @@ public abstract class GameCharacter {
     }
 
     /**
-     * Call this method when you want to update ability points depending on active actions(buff, de buff)
+     * Call this method when you want to update ability points depending on active actions (buff, de buff)
      * If actionDurationType is same as type from parameter, you will get turn for action
-     * Method also check if you reach max turns. If yes, action is removed and abilities are updated.
+     * Method also check if you reach max turns. If yes, action is removed.
      *
      * @param actionDurationType from where you call method (BATTLE or REGION(EVENT)
      */
     public void updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType actionDurationType) {
-        updateAbilities();
+        updateCurrentAbilitiesWithMaxAbilities();
 
         for (ActionWithDuration actionWithDuration : this.regionActionsWithDuration) {
             actionWithDuration.performAction(this);
@@ -109,13 +110,12 @@ public abstract class GameCharacter {
 
             if (actionWithDuration.checkIfActionReachMaxActionTurns()) {
                 this.regionActionsWithDuration.remove(actionWithDuration);
-                this.battleActionWithDuration.remove(actionWithDuration);
-                updateAbilities();
+                this.battleActionsWithDuration.remove(actionWithDuration);
             }
         }
     }
 
-    private void updateAbilities() {
+    private void updateCurrentAbilitiesWithMaxAbilities() {
         for (Ability ability : Ability.values()) {
             if (!ability.equals(Ability.HEALTH)) {
                 this.currentAbilities.put(ability, this.maxAbilities.get(ability));

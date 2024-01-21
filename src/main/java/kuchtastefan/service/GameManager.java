@@ -186,6 +186,7 @@ public class GameManager {
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
+                    this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
                     this.forestRegionService.setHero(this.hero);
                     this.forestRegionService.getDiscoveredLocations().addAll(gameLoaded.getForestRegionDiscoveredLocation());
                     return;

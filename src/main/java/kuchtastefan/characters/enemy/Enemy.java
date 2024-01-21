@@ -22,6 +22,7 @@ public class Enemy extends GameCharacter {
     private final int maxStack;
     private EnemyRarity enemyRarity;
 
+
     public Enemy(String name, Map<Ability, Integer> abilities,
                  EnemyType enemyType, LocationType[] locationType, int maxStack) {
         super(name, abilities);
@@ -30,6 +31,16 @@ public class Enemy extends GameCharacter {
         this.locationType = locationType;
         this.maxStack = maxStack;
         this.itemsDrop = new ArrayList<>();
+    }
+
+    public void setMaxAbilitiesAndCurrentAbilities() {
+        this.currentAbilities = new HashMap<>();
+        this.maxAbilities = new HashMap<>();
+
+        for (Ability ability : Ability.values()) {
+            this.currentAbilities.putIfAbsent(ability, this.abilities.get(ability));
+            this.maxAbilities.putIfAbsent(ability, this.abilities.get(ability));
+        }
     }
 
     public void goldDrop() {

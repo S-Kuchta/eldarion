@@ -1,6 +1,7 @@
 package kuchtastefan.items.consumeableItem;
 
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
 import lombok.Getter;
@@ -24,7 +25,11 @@ public class ConsumableItem extends Item {
 
     public void performActions(Hero hero) {
         for (Action action : this.actionList) {
-            action.performAction(hero);
+            if (action instanceof ActionWithDuration) {
+                hero.addActionWithDuration((ActionWithDuration) action);
+            } else {
+                action.performAction(hero);
+            }
         }
 
         hero.getHeroInventory().removeItemFromItemList(this);

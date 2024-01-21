@@ -20,6 +20,14 @@
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
         "actionValue": 20
+      },
+      {
+        "type": "ActionRestoreHealthOverTime",
+        "actionName": "Increase Attack",
+        "actionValue": 5,
+        "maxActionTurns": 3,
+        "actionDurationType": "REGION_ACTION",
+        "actionMaxStacks": 1
       }
     ]
   }

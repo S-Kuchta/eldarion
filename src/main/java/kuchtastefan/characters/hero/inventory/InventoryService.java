@@ -125,13 +125,13 @@ public class InventoryService {
                     System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                     PrintUtil.printConsumableItemInfo(item.getKey());
                     consumableItems.add(item.getKey());
+                    index++;
                 }
-
             } else {
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printConsumableItemInfo(item.getKey());
+                consumableItems.add(item.getKey());
                 System.out.println();
-
                 index++;
             }
         }

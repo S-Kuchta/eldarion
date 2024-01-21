@@ -8,15 +8,13 @@ import lombok.Setter;
 @Setter
 public abstract class Action {
 
-    private String actionName;
-    private int actionValue;
+    protected String actionName;
+    protected int actionValue;
 
     public Action(String actionName, int actionValue) {
         this.actionName = actionName;
         this.actionValue = actionValue;
     }
 
-    public void performAction(GameCharacter gameCharacter) {
-        System.out.println("in actions");
-    }
+    public abstract void performAction(GameCharacter gameCharacter);
 }

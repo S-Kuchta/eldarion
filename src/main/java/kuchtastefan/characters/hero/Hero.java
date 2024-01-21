@@ -41,6 +41,7 @@ public class Hero extends GameCharacter {
     public Hero(String name) {
         super(name, new HashMap<>());
         this.abilities = this.getInitialAbilityPoints();
+        this.currentAbilities = this.getInitialAbilityPoints();
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
         this.wearingItemAbilityPoints = getItemsInitialAbilityPoints();
         this.equippedItem = initialEquip();
@@ -50,7 +51,6 @@ public class Hero extends GameCharacter {
         this.experiencePointsService = new ExperiencePointsService();
         this.enemyKilled = new EnemyKilled();
         this.listOfAcceptedQuests = new ArrayList<>();
-        this.setHeroMaxAbilities();
     }
 
     private void setHeroMaxAbilities() {
@@ -74,7 +74,7 @@ public class Hero extends GameCharacter {
     }
 
     /**
-     * If dismantled or sold item is wearing by hero, item will be wear down and ability stats will update
+     * If dismantled or sold item is wearing by hero, item will be wear down and ability stats will be updated
      *
      * @param wearableItem item checked for wear down
      */

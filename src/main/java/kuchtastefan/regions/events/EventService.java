@@ -1,5 +1,6 @@
 package kuchtastefan.regions.events;
 
+import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.enemy.EnemyRarity;
@@ -47,5 +48,7 @@ public class EventService {
 
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
+
+        hero.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.REGION_ACTION);
     }
 }

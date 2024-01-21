@@ -10,6 +10,7 @@ import kuchtastefan.utility.RandomNumberGenerator;
 public class BattleService {
     public boolean battle(Hero hero, Enemy enemy) {
         boolean heroPlay = true;
+
         while (true) {
             int heroHealth = hero.getCurrentAbilityValue(Ability.HEALTH);
             int enemyHealth = enemy.getCurrentAbilityValue(Ability.HEALTH);

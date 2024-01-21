@@ -290,6 +290,7 @@ public class FileService {
                     enemy.setEnemyType(
                             EnemyType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
+
                 }
 
                 enemies.addAll(enemyList);

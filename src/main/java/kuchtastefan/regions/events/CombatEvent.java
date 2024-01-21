@@ -1,6 +1,5 @@
 package kuchtastefan.regions.events;
 
-import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;

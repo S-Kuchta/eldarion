@@ -26,7 +26,7 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printCurrentAbilityPointsWithItems(Hero hero) {
+    public static void printMaxAbilityPointsWithItems(Hero hero) {
         printLongDivider();
         System.out.println("\t\t\t\t\t------ Ability points with items ------");
         System.out.print("\t");
@@ -36,6 +36,17 @@ public class PrintUtil {
 //                    + hero.getWearingItemAbilityPoints().get(entry.getKey())) + ", ");
 //        }
         for (Map.Entry<Ability, Integer> abilityPoints : hero.getMaxAbilities().entrySet()) {
+            System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
+        }
+        System.out.println();
+        printLongDivider();
+    }
+
+    public static void printCurrentAbilityPointsWithItems(Hero hero) {
+        printLongDivider();
+        System.out.println("\t\t\t\t\t------ Current Ability points with items ------");
+        System.out.print("\t");
+        for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {
             System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
         }
         System.out.println();

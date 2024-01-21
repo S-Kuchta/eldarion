@@ -37,11 +37,14 @@ public class EnemyList {
                 newEnemy.setEnemyRarity(EnemyRarity.ELITE);
                 multiplier = 1.7;
             }
+
             newEnemy.increaseAbilityPointsByMultiplier(multiplier);
             newEnemy.setGoldDrop(newEnemy.getGoldDrop() * multiplier);
         } else {
             newEnemy.setEnemyRarity(EnemyRarity.COMMON);
         }
+
+        newEnemy.setMaxAbilitiesAndCurrentAbilities();
 
         return newEnemy;
     }

@@ -9,6 +9,15 @@
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
         "actionValue": 30
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "Increase Attack",
+        "actionValue": 2,
+        "maxActionTurns": 2,
+        "actionDurationType": "REGION_ACTION",
+        "actionMaxStacks": 2,
+        "ability": "ATTACK"
       }
     ]
   },

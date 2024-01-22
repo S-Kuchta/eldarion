@@ -1,22 +1,21 @@
 [
   {
     "name": "Goulash",
-    "price": 20,
+    "price": 40,
     "itemLevel": 2,
-    "valueOfAction": 30,
     "actionList": [
       {
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
-        "actionValue": 30
+        "actionValue": 25
       },
       {
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "Increase Attack",
-        "actionValue": 2,
-        "maxActionTurns": 2,
+        "actionValue": 1,
+        "maxActionTurns": 10,
         "actionDurationType": "REGION_ACTION",
-        "actionMaxStacks": 2,
+        "actionMaxStacks": 1,
         "ability": "ATTACK"
       }
     ]
@@ -25,7 +24,6 @@
     "name": "Bread",
     "price": 15,
     "itemLevel": 1,
-    "valueOfAction": 20,
     "actionList": [
       {
         "type": "ActionRestoreHealth",

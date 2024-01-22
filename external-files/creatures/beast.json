@@ -24,7 +24,7 @@
       "DEXTERITY": 1
     },
     "level": 2,
-    "locationType": ["FOREST","HIGHLAND"],
+    "locationType": [],
     "maxStack": 5
   },
   {
@@ -52,7 +52,7 @@
       "DEXTERITY": 4
     },
     "level": 3,
-    "locationType": ["FOREST","HIGHLAND"],
+    "locationType": [],
     "maxStack": 5
   }
 ]

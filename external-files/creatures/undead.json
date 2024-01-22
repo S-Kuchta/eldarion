@@ -24,7 +24,7 @@
       "DEXTERITY": 2
     },
     "level": 2,
-    "locationType": ["TOWER","CASTLE","FOREST","CEMETERY"],
+    "locationType": [],
     "maxStack": 5
   },
   {
@@ -38,7 +38,7 @@
       "DEXTERITY": 3
     },
     "level": 2,
-    "locationType": ["TOWER","CASTLE","FOREST","CEMETERY"],
+    "locationType": [],
     "maxStack": 5
   },
   {

@@ -3,16 +3,14 @@ package kuchtastefan.characters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 @Getter
@@ -100,9 +98,13 @@ public abstract class GameCharacter {
      * @param actionDurationType from where you call method (BATTLE or REGION(EVENT)
      */
     public void updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType actionDurationType) {
-        updateCurrentAbilitiesWithMaxAbilities();
+        resetCurrentAbilitiesToMaxAbilities();
+        Set<ActionWithDuration> actions = new HashSet<>();
+        actions.addAll(this.regionActionsWithDuration);
+        actions.addAll(this.battleActionsWithDuration);
 
-        for (ActionWithDuration actionWithDuration : this.regionActionsWithDuration) {
+//        for (ActionWithDuration actionWithDuration : this.regionActionsWithDuration) {
+        for (ActionWithDuration actionWithDuration : actions) {
             actionWithDuration.performAction(this);
             if (actionWithDuration.getActionDurationType().equals(actionDurationType)) {
                 actionWithDuration.actionAddTurn();
@@ -115,10 +117,13 @@ public abstract class GameCharacter {
         }
     }
 
-    private void updateCurrentAbilitiesWithMaxAbilities() {
+    private void resetCurrentAbilitiesToMaxAbilities() {
+        int currentHealth = this.getCurrentAbilityValue(Ability.HEALTH);
         for (Ability ability : Ability.values()) {
             if (!ability.equals(Ability.HEALTH)) {
                 this.currentAbilities.put(ability, this.maxAbilities.get(ability));
+            } else {
+                this.currentAbilities.put(Ability.HEALTH, currentHealth);
             }
         }
     }

@@ -123,13 +123,13 @@ public class InventoryService {
             if (isHeroInCombat) {
                 if (item.getKey().getConsumableItemType().equals(ConsumableItemType.POTION)) {
                     System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                    PrintUtil.printConsumableItemInfo(item.getKey());
+                    PrintUtil.printConsumableItemInfo(item.getKey(), true);
                     consumableItems.add(item.getKey());
                     index++;
                 }
             } else {
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printConsumableItemInfo(item.getKey());
+                PrintUtil.printConsumableItemInfo(item.getKey(), true);
                 consumableItems.add(item.getKey());
                 System.out.println();
                 index++;

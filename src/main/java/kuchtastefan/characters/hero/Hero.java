@@ -53,12 +53,6 @@ public class Hero extends GameCharacter {
         this.listOfAcceptedQuests = new ArrayList<>();
     }
 
-    private void setHeroMaxAbilities() {
-        for (Ability ability : Ability.values()) {
-            this.maxAbilities.put(ability, this.abilities.get(ability) + this.wearingItemAbilityPoints.get(ability));
-        }
-    }
-
     public void equipItem(WearableItem wearableItem) {
         if (this.level < wearableItem.getItemLevel()) {
             PrintUtil.printLongDivider();
@@ -86,6 +80,17 @@ public class Hero extends GameCharacter {
         updateWearingItemAbilityPoints();
     }
 
+    /**
+     * Set all items to NoItem and set all wearingItemAbilityPoints to 0 for each ability.
+     */
+    public void wearDownAllEquippedItems() {
+        this.equippedItem = initialEquip();
+        for (Ability ability : Ability.values()) {
+            this.wearingItemAbilityPoints.put(ability, 0);
+        }
+
+        this.updateWearingItemAbilityPoints();
+    }
 
     /**
      * call this method when you want to update ability points of wearable items depending on current wearing armor
@@ -105,15 +110,18 @@ public class Hero extends GameCharacter {
         }
 
         this.setHeroMaxAbilities();
+        this.updateCurrentAbilitiesDependsOnActiveActions(null);
     }
 
     /**
-     * Set all items to NoItem and set all wearingItemAbilityPoints to 0 for each ability.
+     * Method is responsible for setHeroMax abilities depending on abilities + wearing item abilities
+     * Call this method whenever you change your equip (best in updateWearingAbilityPoints),
+     * or update basic ability points
      */
-    public void wearDownAllEquippedItems() {
-        this.equippedItem = initialEquip();
+    private void setHeroMaxAbilities() {
         for (Ability ability : Ability.values()) {
-            this.wearingItemAbilityPoints.put(ability, 0);
+            this.maxAbilities.put(ability, this.abilities.get(ability)
+                    + this.wearingItemAbilityPoints.get(ability));
         }
     }
 
@@ -132,7 +140,8 @@ public class Hero extends GameCharacter {
     }
 
     private Map<WearableItemType, WearableItem> returnNoItemToEquippedMap(WearableItemType wearableItemType) {
-        return new HashMap<>(Map.of(wearableItemType, new WearableItem("No item", 0, 0, wearableItemType, getItemsInitialAbilityPoints(), WearableItemQuality.BASIC)));
+        return new HashMap<>(Map.of(wearableItemType, new WearableItem("No item", 0, 0,
+                wearableItemType, getItemsInitialAbilityPoints(), WearableItemQuality.BASIC)));
     }
 
     public void setNewAbilityPoint(Ability ability, int pointsToChange, int heroAvailablePointsChange) {
@@ -154,6 +163,7 @@ public class Hero extends GameCharacter {
             }
 
             this.setHeroMaxAbilities();
+            this.updateCurrentAbilitiesDependsOnActiveActions(null);
             updateAbilityPoints(heroAvailablePointsChange);
         }
     }
@@ -218,8 +228,10 @@ public class Hero extends GameCharacter {
                             && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemy)
                             && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
 
-                        System.out.println("\t-- You loot " + ((QuestBringItemObjective) questObjective).getItemDropNeeded().getName() + " --");
-                        this.heroInventory.addItemWithNewCopyToItemList(((QuestBringItemObjective) questObjective).getItemDropNeeded());
+                        System.out.println("\t-- You loot " + ((QuestBringItemObjective) questObjective)
+                                .getItemDropNeeded().getName() + " --");
+                        this.heroInventory.addItemWithNewCopyToItemList(
+                                ((QuestBringItemObjective) questObjective).getItemDropNeeded());
                         questObjective.printQuestObjectiveAssignment(this);
                     }
                 }

@@ -1,8 +1,8 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
-    "heroGold": 100.0,
-    "experiencePoints": 0.0,
+    "heroGold": 115.0,
+    "experiencePoints": 20.0,
     "equippedItem": {
       "HEAD": {
         "wearableItemType": "HEAD",
@@ -10,9 +10,9 @@
           "SKILL": 0,
           "LUCK": 0,
           "DEFENCE": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
-          "HEALTH": 0
+          "HEALTH": 0,
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -25,9 +25,9 @@
           "SKILL": 0,
           "LUCK": 0,
           "DEFENCE": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
-          "HEALTH": 0
+          "HEALTH": 0,
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -40,9 +40,9 @@
           "SKILL": 0,
           "LUCK": 0,
           "DEFENCE": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
-          "HEALTH": 0
+          "HEALTH": 0,
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -55,9 +55,9 @@
           "SKILL": 0,
           "LUCK": 0,
           "DEFENCE": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
-          "HEALTH": 0
+          "HEALTH": 0,
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -70,9 +70,9 @@
           "SKILL": 0,
           "LUCK": 0,
           "DEFENCE": 0,
-          "DEXTERITY": 0,
           "ATTACK": 0,
-          "HEALTH": 0
+          "HEALTH": 0,
+          "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -84,35 +84,147 @@
       "SKILL": 0,
       "LUCK": 0,
       "DEFENCE": 0,
-      "DEXTERITY": 0,
       "ATTACK": 0,
-      "HEALTH": 0
+      "HEALTH": 0,
+      "DEXTERITY": 0
     },
     "heroInventory": {
-      "heroInventory": {},
-      "wearableItemInventory": {},
-      "craftingReagentItemInventory": {},
-      "consumableItemInventory": {},
-      "questItemInventory": {},
-      "junkItemInventory": {}
+      "heroInventory": [
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "SKILL": 2,
+              "DEFENCE": 0,
+              "DEXTERITY": 0,
+              "LUCK": 0,
+              "HEALTH": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Steel sword of Skill",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Bloody Rags",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Lute with Gold Decorating",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ]
+      ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 0.0
+      "neededExperiencePointsForNewLevel": 480.0
     },
     "enemyKilled": {
-      "enemyKilled": {},
+      "enemyKilled": {
+        "Defias Bandit": 1
+      },
       "questEnemyKilled": {}
     },
-    "listOfAcceptedQuests": [],
+    "listOfAcceptedQuests": [
+      {
+        "questId": 1,
+        "questName": "Wolf in the forest",
+        "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "questEnemyToKill": {
+              "questEnemyName": "Wolf",
+              "questEnemyRarity": "COMMON"
+            },
+            "countEnemyToKill": 5,
+            "currentCountEnemyProgress": 0,
+            "completed": false
+          },
+          {
+            "type": "QuestKillObjective",
+            "questEnemyToKill": {
+              "questEnemyName": "Alpha Wolf",
+              "questEnemyRarity": "COMMON"
+            },
+            "countEnemyToKill": 1,
+            "currentCountEnemyProgress": 0,
+            "completed": false
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "type": "WearableItem",
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      },
+      {
+        "questId": 0,
+        "questName": "Shadow Raiders",
+        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
+        "questLevel": 2,
+        "questCompleted": true,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "questEnemyToKill": {
+              "questEnemyName": "Defias Bandit",
+              "questEnemyRarity": "COMMON"
+            },
+            "countEnemyToKill": 1,
+            "currentCountEnemyProgress": 1,
+            "completed": true
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "type": "WearableItem",
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      }
+    ],
     "name": "1",
     "level": 1,
     "abilities": {
       "SKILL": 1,
       "LUCK": 1,
       "DEFENCE": 1,
-      "DEXTERITY": 1,
       "ATTACK": 8,
-      "HEALTH": 50
+      "HEALTH": 50,
+      "DEXTERITY": 1
     },
     "maxAbilities": {
       "DEXTERITY": 1,
@@ -126,87 +238,59 @@
       "SKILL": 1,
       "LUCK": 1,
       "DEFENCE": 1,
-      "DEXTERITY": 1,
-      "ATTACK": 10,
-      "HEALTH": 50
+      "ATTACK": 8,
+      "HEALTH": 43,
+      "DEXTERITY": 1
     },
-    "regionActionsWithDuration": [
-      {
-        "type": "ActionRestoreHealthWithDuration",
-        "maxActionTurns": 3,
-        "currentActionTurn": 0,
-        "actionDurationType": "REGION_ACTION",
-        "actionMaxStacks": 1,
-        "actionCurrentStacks": 1,
-        "actionName": "Increase Attack",
-        "actionValue": 5
-      },
-      {
-        "type": "ActionIncreaseAbilityPointWithDuration",
-        "ability": "ATTACK",
-        "maxActionTurns": 2,
-        "currentActionTurn": 0,
-        "actionDurationType": "REGION_ACTION",
-        "actionMaxStacks": 2,
-        "actionCurrentStacks": 1,
-        "actionName": "Increase Attack",
-        "actionValue": 2
-      }
-    ],
-    "battleActionsWithDuration": [
-      {
-        "type": "ActionRestoreHealthWithDuration",
-        "maxActionTurns": 3,
-        "currentActionTurn": 0,
-        "actionDurationType": "REGION_ACTION",
-        "actionMaxStacks": 1,
-        "actionCurrentStacks": 1,
-        "actionName": "Increase Attack",
-        "actionValue": 5
-      },
-      {
-        "type": "ActionIncreaseAbilityPointWithDuration",
-        "ability": "ATTACK",
-        "maxActionTurns": 2,
-        "currentActionTurn": 0,
-        "actionDurationType": "REGION_ACTION",
-        "actionMaxStacks": 2,
-        "actionCurrentStacks": 1,
-        "actionName": "Increase Attack",
-        "actionValue": 2
-      }
-    ]
+    "regionActionsWithDuration": [],
+    "battleActionsWithDuration": []
   },
   "level": 1,
   "hintUtil": {
     "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": false
+      "showed": true
     }
   },
   "forestRegionDiscoveredLocation": [],
-  "regionActionsWithDuration": [
-    {
-      "type": "ActionRestoreHealthWithDuration",
-      "maxActionTurns": 3,
-      "currentActionTurn": 0,
-      "actionDurationType": "REGION_ACTION",
-      "actionMaxStacks": 1,
-      "actionCurrentStacks": 1,
-      "actionName": "Increase Attack",
-      "actionValue": 5
-    },
-    {
-      "type": "ActionIncreaseAbilityPointWithDuration",
-      "ability": "ATTACK",
-      "maxActionTurns": 2,
-      "currentActionTurn": 0,
-      "actionDurationType": "REGION_ACTION",
-      "actionMaxStacks": 2,
-      "actionCurrentStacks": 1,
-      "actionName": "Increase Attack",
-      "actionValue": 2
-    }
-  ],
-  "itemList": {}
+  "regionActionsWithDuration": [],
+  "itemList": [
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 2,
+          "SKILL": 2,
+          "DEFENCE": 0,
+          "DEXTERITY": 0,
+          "LUCK": 0,
+          "HEALTH": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Steel sword of Skill",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Bloody Rags",
+        "price": 7.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Lute with Gold Decorating",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      1
+    ]
+  ]
 }

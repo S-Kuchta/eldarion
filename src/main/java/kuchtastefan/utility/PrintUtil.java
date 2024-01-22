@@ -2,6 +2,7 @@ package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.gameSettings.GameSettings;
@@ -30,11 +31,7 @@ public class PrintUtil {
         printLongDivider();
         System.out.println("\t\t\t\t\t------ Ability points with items ------");
         System.out.print("\t");
-//        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
-//            System.out.print(entry.getKey() + ": "
-//                    + (entry.getValue()
-//                    + hero.getWearingItemAbilityPoints().get(entry.getKey())) + ", ");
-//        }
+
         for (Map.Entry<Ability, Integer> abilityPoints : hero.getMaxAbilities().entrySet()) {
             System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
         }
@@ -164,7 +161,8 @@ public class PrintUtil {
 
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
-        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
+        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory()
+                .returnInventoryWearableItemMap().entrySet()) {
             if (item.getKey().getWearableItemType().equals(wearableItemType)) {
                 count += item.getValue();
             }
@@ -192,23 +190,34 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printConsumableItemFromList(Map<ConsumableItem, Integer> consumableItemMap) {
-        int index = 1;
-        for (Map.Entry<ConsumableItem, Integer> item : consumableItemMap.entrySet()) {
-            System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-            printConsumableItemInfo(item.getKey());
-            System.out.println();
-            index++;
+    public static void printConsumableItemInfo(ConsumableItem consumableItem, boolean sellItem) {
+        System.out.print(consumableItem.getName()
+                + ", " + consumableItem.getConsumableItemType()
+                + ", iLevel: " + consumableItem.getItemLevel());
+        if (!sellItem) {
+            System.out.print(", Item Price: " + consumableItem.getPrice());
+        } else {
+            System.out.print(", Sell Price: " + consumableItem.returnSellItemPrice());
+        }
+        System.out.println();
+        for (Action action : consumableItem.getActionList()) {
+            printActionDetails(action);
         }
     }
 
-    public static void printConsumableItemInfo(ConsumableItem consumableItem) {
-        System.out.print(consumableItem.getName()
-                + ", " + consumableItem.getConsumableItemType()
-                + ", iLevel: " + consumableItem.getItemLevel() + "\n");
-        for (Action action : consumableItem.getActionList()) {
-            System.out.print("\t\t" + action.getActionName() + ": " + action.getActionValue() + ", ");
+    public static void printActionDetails(Action action) {
+        System.out.print("\t\t");
+        System.out.print(action.getActionName() + ": " + action.getActionValue());
+        if (action instanceof ActionWithDuration) {
+            System.out.print(" (duration: " + ((ActionWithDuration) action).getMaxActionTurns()
+                    + " " + ((ActionWithDuration) action)
+                    .getActionDurationType()
+                    .toString()
+                    .toLowerCase()
+                    .replace("_", " ")
+                    + " turns, max stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + ")");
         }
+        System.out.println();
     }
 
     public static void printCraftingReagentItemInfo(CraftingReagentItem craftingReagentItem) {

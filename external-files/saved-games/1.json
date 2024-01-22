@@ -1,0 +1,185 @@
+{
+  "hero": {
+    "unspentAbilityPoints": 0,
+    "heroGold": 150.0,
+    "experiencePoints": 0.0,
+    "equippedItem": {
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "ATTACK": 0,
+          "HEALTH": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "SKILL": 0,
+      "LUCK": 0,
+      "DEFENCE": 0,
+      "ATTACK": 0,
+      "HEALTH": 0,
+      "DEXTERITY": 0
+    },
+    "heroInventory": {
+      "heroInventory": {}
+    },
+    "experiencePointsService": {
+      "neededExperiencePointsForNewLevel": 0.0
+    },
+    "enemyKilled": {
+      "enemyKilled": {},
+      "questEnemyKilled": {}
+    },
+    "listOfAcceptedQuests": [
+      {
+        "questId": 1,
+        "questName": "Wolf in the forest",
+        "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "questEnemyToKill": {
+              "questEnemyName": "Wolf",
+              "questEnemyRarity": "COMMON"
+            },
+            "countEnemyToKill": 5,
+            "currentCountEnemyProgress": 0,
+            "completed": false
+          },
+          {
+            "type": "QuestKillObjective",
+            "questEnemyToKill": {
+              "questEnemyName": "Alpha Wolf",
+              "questEnemyRarity": "COMMON"
+            },
+            "countEnemyToKill": 1,
+            "currentCountEnemyProgress": 0,
+            "completed": false
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "type": "WearableItem",
+              "name": "Iron sword of Skill",
+              "price": 50.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      }
+    ],
+    "name": "1",
+    "level": 1,
+    "abilities": {
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEFENCE": 1,
+      "ATTACK": 8,
+      "HEALTH": 50,
+      "DEXTERITY": 1
+    },
+    "maxAbilities": {
+      "DEXTERITY": 1,
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEFENCE": 1,
+      "ATTACK": 8,
+      "HEALTH": 50
+    },
+    "currentAbilities": {
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEFENCE": 1,
+      "ATTACK": 1,
+      "HEALTH": 50,
+      "DEXTERITY": 1
+    },
+    "regionActionsWithDuration": [],
+    "battleActionsWithDuration": []
+  },
+  "level": 1,
+  "hintUtil": {
+    "BLACKSMITH_HINT": {
+      "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
+      "showed": true
+    }
+  },
+  "forestRegionDiscoveredLocation": [],
+  "regionActionsWithDuration": [],
+  "itemList": {}
+}

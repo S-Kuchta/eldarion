@@ -24,7 +24,7 @@
       "DEXTERITY": 3
     },
     "level": 1,
-    "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
+    "locationType": [],
     "maxStack": 5
   },
   {
@@ -38,7 +38,7 @@
       "DEXTERITY": 3
     },
     "level": 2,
-    "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
+    "locationType": [],
     "maxStack": 5
   },
   {
@@ -52,7 +52,7 @@
       "DEXTERITY": 4
     },
     "level": 3,
-    "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
+    "locationType": [],
     "maxStack": 5
   }
 ]

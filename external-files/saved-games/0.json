@@ -1,8 +1,8 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
-    "heroGold": 10.0,
-    "experiencePoints": 0.0,
+    "heroGold": 137.0,
+    "experiencePoints": 70.0,
     "equippedItem": {
       "HEAD": {
         "wearableItemType": "HEAD",
@@ -11,8 +11,8 @@
           "LUCK": 0,
           "DEFENCE": 0,
           "ATTACK": 0,
-          "HEALTH": 0,
-          "DEXTERITY": 0
+          "DEXTERITY": 0,
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -26,8 +26,8 @@
           "LUCK": 0,
           "DEFENCE": 0,
           "ATTACK": 0,
-          "HEALTH": 0,
-          "DEXTERITY": 0
+          "DEXTERITY": 0,
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -41,8 +41,8 @@
           "LUCK": 0,
           "DEFENCE": 0,
           "ATTACK": 0,
-          "HEALTH": 0,
-          "DEXTERITY": 0
+          "DEXTERITY": 0,
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -56,8 +56,8 @@
           "LUCK": 0,
           "DEFENCE": 0,
           "ATTACK": 0,
-          "HEALTH": 0,
-          "DEXTERITY": 0
+          "DEXTERITY": 0,
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -71,8 +71,8 @@
           "LUCK": 0,
           "DEFENCE": 0,
           "ATTACK": 0,
-          "HEALTH": 0,
-          "DEXTERITY": 0
+          "DEXTERITY": 0,
+          "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -85,68 +85,133 @@
       "LUCK": 0,
       "DEFENCE": 0,
       "ATTACK": 0,
-      "HEALTH": 0,
-      "DEXTERITY": 0
+      "DEXTERITY": 0,
+      "HEALTH": 0
     },
     "heroInventory": {
       "heroInventory": [
         [
           {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "name": "DeathBloom",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          4
+        ],
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Iron ore",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          3
+        ],
+        [
+          {
             "type": "WearableItem",
-            "wearableItemType": "BOOTS",
+            "wearableItemType": "BODY",
             "abilities": {
-              "DEFENCE": 1,
-              "SKILL": 1,
+              "DEFENCE": 4,
               "ATTACK": 0,
               "DEXTERITY": 0,
+              "SKILL": 0,
               "LUCK": 0,
               "HEALTH": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Basic boots",
-            "price": 70.0,
-            "itemLevel": 1
+            "name": "Heavy armor",
+            "price": 140.0,
+            "itemLevel": 2
           },
           1
         ],
         [
           {
-            "type": "WearableItem",
-            "wearableItemType": "WEAPON",
-            "abilities": {
-              "ATTACK": 1,
-              "HEALTH": 5,
-              "DEFENCE": 0,
-              "DEXTERITY": 0,
-              "SKILL": 0,
-              "LUCK": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Iron sword of Health",
-            "price": 70.0,
-            "itemLevel": 1
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Silver ore",
+            "price": 25.0,
+            "itemLevel": 3
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Silver ring",
+            "price": 21.0,
+            "itemLevel": 0
           },
           1
         ]
       ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 0.0
+      "neededExperiencePointsForNewLevel": 480.0
     },
     "enemyKilled": {
-      "enemyKilled": {},
+      "enemyKilled": {
+        "Defias Bandit": 1
+      },
       "questEnemyKilled": {}
     },
-    "listOfAcceptedQuests": [],
-    "name": "0",
+    "listOfAcceptedQuests": [
+      {
+        "questId": 0,
+        "questName": "Shadow Raiders",
+        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
+        "questLevel": 2,
+        "questCompleted": true,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "questEnemyToKill": {
+              "questEnemyName": "Defias Bandit",
+              "questEnemyRarity": "COMMON"
+            },
+            "countEnemyToKill": 1,
+            "currentCountEnemyProgress": 1,
+            "completed": true
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "type": "WearableItem",
+              "wearableItemType": "WEAPON",
+              "abilities": {
+                "ATTACK": 1,
+                "SKILL": 1,
+                "DEXTERITY": 0,
+                "LUCK": 0,
+                "HEALTH": 0,
+                "DEFENCE": 0
+              },
+              "wearableItemQuality": "BASIC",
+              "price": 70.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0,
+          "questLevel": 2
+        },
+        "isTurnedIn": false
+      }
+    ],
+    "name": "1",
     "level": 1,
     "abilities": {
       "SKILL": 1,
       "LUCK": 1,
       "DEFENCE": 1,
       "ATTACK": 8,
-      "HEALTH": 50,
-      "DEXTERITY": 1
+      "DEXTERITY": 1,
+      "HEALTH": 50
     },
     "maxAbilities": {
       "DEXTERITY": 1,
@@ -160,9 +225,9 @@
       "SKILL": 1,
       "LUCK": 1,
       "DEFENCE": 1,
-      "ATTACK": 1,
-      "HEALTH": 50,
-      "DEXTERITY": 1
+      "ATTACK": 8,
+      "DEXTERITY": 1,
+      "HEALTH": 36
     },
     "regionActionsWithDuration": [],
     "battleActionsWithDuration": []
@@ -171,47 +236,77 @@
   "hintUtil": {
     "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": true
+      "showed": false
     }
   },
-  "forestRegionDiscoveredLocation": [],
+  "forestRegionDiscoveredLocation": [
+    {
+      "locationName": "Tower of Damned",
+      "locationLevel": 5,
+      "stageTotal": 10,
+      "stageCompleted": 0,
+      "cleared": false,
+      "locationType": "TOWER",
+      "canLocationBeExplored": true
+    }
+  ],
   "regionActionsWithDuration": [],
   "itemList": [
     [
       {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "ALCHEMY_REAGENT",
+        "name": "DeathBloom",
+        "price": 10.0,
+        "itemLevel": 2
+      },
+      4
+    ],
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "BLACKSMITH_REAGENT",
+        "name": "Iron ore",
+        "price": 10.0,
+        "itemLevel": 2
+      },
+      3
+    ],
+    [
+      {
         "type": "WearableItem",
-        "wearableItemType": "BOOTS",
+        "wearableItemType": "BODY",
         "abilities": {
-          "DEFENCE": 1,
-          "SKILL": 1,
+          "DEFENCE": 4,
           "ATTACK": 0,
           "DEXTERITY": 0,
+          "SKILL": 0,
           "LUCK": 0,
           "HEALTH": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Basic boots",
-        "price": 70.0,
-        "itemLevel": 1
+        "name": "Heavy armor",
+        "price": 140.0,
+        "itemLevel": 2
       },
       1
     ],
     [
       {
-        "type": "WearableItem",
-        "wearableItemType": "WEAPON",
-        "abilities": {
-          "ATTACK": 1,
-          "HEALTH": 5,
-          "DEFENCE": 0,
-          "DEXTERITY": 0,
-          "SKILL": 0,
-          "LUCK": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "Iron sword of Health",
-        "price": 70.0,
-        "itemLevel": 1
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "BLACKSMITH_REAGENT",
+        "name": "Silver ore",
+        "price": 25.0,
+        "itemLevel": 3
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Silver ring",
+        "price": 21.0,
+        "itemLevel": 0
       },
       1
     ]

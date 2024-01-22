@@ -7,38 +7,29 @@ import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 public class QuestReward {
-    private final List<Item> itemsReward;
+    private List<Item> itemsReward;
     private final double goldsReward;
     private final double experiencePointsReward;
-    private int questLevel;
 
-    public QuestReward(List<Item> itemsReward, double goldsReward, double experiencePointsReward, int questLevel) {
+    public QuestReward(List<Item> itemsReward, double goldsReward, double experiencePointsReward) {
         this.itemsReward = itemsReward;
         this.goldsReward = goldsReward;
         this.experiencePointsReward = experiencePointsReward;
-        this.questLevel = questLevel;
-    }
-
-    public QuestReward(double goldsReward, double experiencePointsReward, int questLevel) {
-        this.goldsReward = goldsReward;
-        this.experiencePointsReward = experiencePointsReward;
-        this.questLevel = questLevel;
-        this.itemsReward = new ArrayList<>();
     }
 
     protected void giveQuestReward(Hero hero) {
         hero.gainExperiencePoints(this.experiencePointsReward);
-        System.out.println("You gained " + this.goldsReward + " golds");
+        System.out.println("\tYou gained " + this.goldsReward + " golds");
         hero.addGolds(this.goldsReward);
-        for (Item item : this.itemsReward) {
-            System.out.println("Your quest reward is " + item.getName());
+
+        for (Item item : getItemsReward()) {
             hero.getHeroInventory().addItemWithNewCopyToItemList(item);
+            System.out.println("\tReward for completing the quest: " + item.getName());
         }
     }
 

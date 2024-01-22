@@ -31,7 +31,6 @@ public class Quest {
         this.questReward = questReward;
         this.questCompleted = false;
         this.isTurnedIn = false;
-        questReward.setQuestLevel(this.questLevel);
     }
 
     /**

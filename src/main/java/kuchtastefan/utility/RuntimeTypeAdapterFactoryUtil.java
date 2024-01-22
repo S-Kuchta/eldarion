@@ -3,15 +3,14 @@ package kuchtastefan.utility;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.ActionIncreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionRestoreHealthOverTime;
-import kuchtastefan.actions.instantActions.ActionRestoreHealth;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.instantActions.ActionRestoreHealth;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
-import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
 import kuchtastefan.quest.questObjectives.QuestClearLocation;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
@@ -36,10 +35,6 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(QuestKillObjective.class)
             .registerSubtype(QuestBringItemObjective.class)
             .registerSubtype(QuestClearLocation.class);
-
-    public static final RuntimeTypeAdapterFactory<Quest> questRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
-            .of(Quest.class);
-
 
     public static final RuntimeTypeAdapterFactory<? extends Item> itemsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Item.class)

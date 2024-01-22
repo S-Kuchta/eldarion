@@ -18,12 +18,12 @@ public class JunkVendorCharacter extends VendorCharacter {
     @Override
     protected void vendorOffer(Hero hero) {
         PrintUtil.printShopHeader(hero, "Junk");
-        this.printItems(hero);
+        this.printVendorItemsForSale(hero);
         super.buyItem(hero);
     }
 
     @Override
-    public void printItemsForSale(Hero hero) {
+    public void printHeroItemsForSale(Hero hero) {
         List<JunkItem> junkItems = new ArrayList<>();
         PrintUtil.printShopHeader(hero, "Junk");
         int index = 1;
@@ -47,7 +47,7 @@ public class JunkVendorCharacter extends VendorCharacter {
     }
 
     @Override
-    protected void printItems(Hero hero) {
+    protected void printVendorItemsForSale(Hero hero) {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item junkItem : this.itemsForSale) {

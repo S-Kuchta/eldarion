@@ -13,9 +13,9 @@ public class ActionWithDuration extends Action {
 
     private final int maxActionTurns;
     private int currentActionTurn;
-    private final ActionDurationType actionDurationType;
     private final int actionMaxStacks;
     private int actionCurrentStacks;
+    private final ActionDurationType actionDurationType;
 
 
     public ActionWithDuration(String actionName, int actionValue, int maxActionTurns, ActionDurationType actionDurationType, int actionMaxStacks) {
@@ -27,13 +27,8 @@ public class ActionWithDuration extends Action {
         this.currentActionTurn = 0;
     }
 
-    public void addActionToGameCharacter(GameCharacter gameCharacter) {
-        gameCharacter.addActionWithDuration(this);
-    }
-
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        System.out.println("Vykonala sa tato akcia");
     }
 
     public void addActionStack() {

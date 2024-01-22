@@ -8,9 +8,9 @@ import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyType;
 import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.Item;
+import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
@@ -31,7 +31,9 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,8 +47,6 @@ public class FileService {
 
     public void saveGame(Hero hero, int currentLevel, ForestRegionService forestRegionService) {
         GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, HintUtil.getHintList(), forestRegionService.getDiscoveredLocations(), hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
-//        Map<Item, Integer> tempItemMap = new HashMap<>(gameLoaded.getHero().getHeroInventory().getHeroInventory());
-//        gameLoaded.getHero().getHeroInventory().changeList();
 
         while (true) {
             System.out.println("How do you want to name your save?");
@@ -81,7 +81,6 @@ public class FileService {
                 System.out.println("\tGame Saved");
                 PrintUtil.printDivider();
 
-//                hero.getHeroInventory().getHeroInventory().putAll(tempItemMap);
                 writer.close();
             } catch (IOException e) {
                 System.out.println("\tError while saving game");
@@ -105,23 +104,7 @@ public class FileService {
                 String selectedSavedGame = selectSaveGame(listOfSavedGames);
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedSavedGame));
 
-                GameLoaded gameLoaded = this.gson.fromJson(bufferedReader, GameLoaded.class);
-
-//                HeroInventory itemInventoryList = gameLoaded.getHero().getHeroInventory();
-//                Map<Item, Integer> heroInventory = itemInventoryList.getHeroInventory();
-//
-//                Map<WearableItem, Integer> wearableItems = itemInventoryList.getWearableItemInventory();
-//                Map<CraftingReagentItem, Integer> craftingReagentItems = itemInventoryList.getCraftingReagentItemInventory();
-//                Map<ConsumableItem, Integer> consumableItems = itemInventoryList.getConsumableItemInventory();
-//                Map<QuestItem, Integer> questItems = itemInventoryList.getQuestItemInventory();
-//                Map<JunkItem, Integer> junkItems = itemInventoryList.getJunkItemInventory();
-
-//                for (Map<? extends Item, Integer> inventory : List.of(wearableItems, craftingReagentItems, consumableItems, questItems, junkItems)) {
-//                    heroInventory.putAll(inventory);
-//                    inventory.clear();
-//                }
-
-                return gameLoaded;
+                return this.gson.fromJson(bufferedReader, GameLoaded.class);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
                 return null;
@@ -181,15 +164,7 @@ public class FileService {
 
                 for (WearableItem wearableItem : WearableItems) {
                     wearableItem.setWearableItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
-                    wearableItem.setPrice(70 * wearableItem.getItemLevel());
-
-                    if (wearableItem.getWearableItemQuality() == null) {
-                        wearableItem.setItemQuality(WearableItemQuality.BASIC);
-                    }
-
-                    for (Ability ability : Ability.values()) {
-                        wearableItem.getAbilities().putIfAbsent(ability, 0);
-                    }
+                    wearableItemMissingValuesSet(wearableItem);
                 }
                 wearableItemList.addAll(WearableItems);
                 reader.close();
@@ -199,6 +174,18 @@ public class FileService {
         }
 
         return wearableItemList;
+    }
+
+    private void wearableItemMissingValuesSet(WearableItem wearableItem) {
+        wearableItem.setPrice(70 * wearableItem.getItemLevel());
+
+        if (wearableItem.getWearableItemQuality() == null) {
+            wearableItem.setItemQuality(WearableItemQuality.BASIC);
+        }
+
+        for (Ability ability : Ability.values()) {
+            wearableItem.getAbilities().putIfAbsent(ability, 0);
+        }
     }
 
     public List<CraftingReagentItem> importCraftingReagentItemsFromFile() {
@@ -232,9 +219,9 @@ public class FileService {
             List<ConsumableItem> consumableItemList;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                consumableItemList = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create().fromJson(reader, new TypeToken<List<ConsumableItem>>() {
-                }.getType());
 
+                consumableItemList = this.gson.fromJson(reader, new TypeToken<List<ConsumableItem>>() {
+                }.getType());
 
                 for (ConsumableItem consumableItem : consumableItemList) {
                     consumableItem.setConsumableItemType(
@@ -325,15 +312,32 @@ public class FileService {
     }
 
     public List<Quest> importQuestsListFromFile() {
-        Gson gson1 = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory).create();
         String path = "external-files/quests";
         List<Quest> questList = new ArrayList<>();
         try {
+            List<Quest> quests;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                Quest[] quests = gson1.fromJson(reader, Quest[].class);
-                questList = Arrays.asList(quests);
+                quests = this.gson.fromJson(reader, new TypeToken<List<Quest>>() {
+                }.getType());
 
+                for (Quest quest : quests) {
+                    if (quest.getQuestReward().getItemsReward().isEmpty()) {
+                        quest.getQuestReward().generateRandomWearableItemsReward(
+                                1, ItemsLists.returnWearableItemListByItemLevel(
+                                        quest.getQuestLevel(), null, false)
+                        );
+                    }
+
+                    for (Item item : quest.getQuestReward().getItemsReward()) {
+                        if (item instanceof WearableItem) {
+                            wearableItemMissingValuesSet((WearableItem) item);
+                        }
+                    }
+
+                }
+
+                questList.addAll(quests);
                 reader.close();
             }
         } catch (IOException e) {

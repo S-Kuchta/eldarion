@@ -2,8 +2,7 @@
   {
     "name": "Basic hands",
     "abilities": {
-      "DEFENCE": 1,
-      "SKILL": 1
+      "RESIST_DAMAGE": 1
     },
     "itemLevel": 1
   }

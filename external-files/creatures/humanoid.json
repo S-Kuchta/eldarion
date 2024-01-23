@@ -2,40 +2,32 @@
   {
     "name": "Defias Bandit",
     "abilities": {
-      "ATTACK": 2,
-      "DEFENCE": 2,
-      "HEALTH": 40,
-      "SKILL": 1,
-      "LUCK": 1,
-      "DEXTERITY": 2
+      "ATTACK": 4,
+      "RESIST_DAMAGE": 2,
+      "STRENGTH": 2,
+      "INTELLECT": 1,
+      "HASTE": 4,
+      "CRITICAL_HIT_CHANCE": 3,
+      "HEALTH": 55,
+      "MANA": 40,
+      "ABSORB_DAMAGE": 0
     },
     "level": 1,
     "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
     "maxStack": 5
   },
   {
-    "name": "Defias Thief",
-    "abilities": {
-      "ATTACK": 3,
-      "DEFENCE": 1,
-      "HEALTH": 35,
-      "SKILL": 1,
-      "LUCK": 2,
-      "DEXTERITY": 3
-    },
-    "level": 1,
-    "locationType": [],
-    "maxStack": 5
-  },
-  {
     "name": "Defias Looter",
     "abilities": {
-      "ATTACK": 3,
-      "DEFENCE": 3,
-      "HEALTH": 45,
-      "SKILL": 2,
-      "LUCK": 2,
-      "DEXTERITY": 3
+      "ATTACK": 5,
+      "RESIST_DAMAGE": 3,
+      "STRENGTH": 4,
+      "INTELLECT": 1,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 4,
+      "HEALTH": 80,
+      "MANA": 40,
+      "ABSORB_DAMAGE": 0
     },
     "level": 2,
     "locationType": [],
@@ -44,12 +36,15 @@
   {
     "name": "Defias Raider",
     "abilities": {
-      "ATTACK": 4,
-      "DEFENCE": 4,
-      "HEALTH": 60,
-      "SKILL": 2,
-      "LUCK": 2,
-      "DEXTERITY": 4
+      "ATTACK": 5,
+      "RESIST_DAMAGE": 4,
+      "STRENGTH": 5,
+      "INTELLECT": 1,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 6,
+      "HEALTH": 110,
+      "MANA": 40,
+      "ABSORB_DAMAGE": 0
     },
     "level": 3,
     "locationType": [],

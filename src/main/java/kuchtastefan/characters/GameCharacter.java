@@ -158,11 +158,13 @@ public abstract class GameCharacter {
     public Map<Ability, Integer> initializeAbilityForNonEnemyCharacters() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 15,
-                Ability.DEFENCE, 15,
-                Ability.DEXTERITY, 15,
-                Ability.SKILL, 15,
-                Ability.LUCK, 15,
-                Ability.HEALTH, 250
+                Ability.RESIST_DAMAGE, 15,
+                Ability.STRENGTH, 15,
+                Ability.INTELLECT, 15,
+                Ability.HASTE, 10,
+                Ability.HEALTH, 250,
+                Ability.MANA, 150,
+                Ability.ABSORB_DAMAGE, 0
         ));
     }
 

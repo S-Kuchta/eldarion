@@ -53,6 +53,7 @@ public class RuntimeTypeAdapterFactoryUtil {
 
     public static final RuntimeTypeAdapterFactory<Spell> spellObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Spell.class)
+            .registerSubtype(Spell.class)
             .registerSubtype(MageSpell.class)
             .registerSubtype(WarriorSpell.class);
 }

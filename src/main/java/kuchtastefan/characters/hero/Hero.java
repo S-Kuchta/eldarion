@@ -85,9 +85,9 @@ public class Hero extends GameCharacter {
      */
     public void wearDownAllEquippedItems() {
         this.equippedItem = initialEquip();
-        for (Ability ability : Ability.values()) {
-            this.wearingItemAbilityPoints.put(ability, 0);
-        }
+//        for (Ability ability : Ability.values()) {
+//            this.wearingItemAbilityPoints.put(ability, 0);
+//        }
 
         this.updateWearingItemAbilityPoints();
     }
@@ -146,7 +146,7 @@ public class Hero extends GameCharacter {
 
     public void setNewAbilityPoint(Ability ability, int pointsToChange, int heroAvailablePointsChange) {
         int minimumPoints = 1;
-        if (ability.equals(Ability.HEALTH)) {
+        if (ability.equals(Ability.HEALTH) || ability.equals(Ability.MANA)) {
             minimumPoints = 50;
         }
 
@@ -158,6 +158,8 @@ public class Hero extends GameCharacter {
             }
             if (ability.equals(Ability.HEALTH)) {
                 this.abilities.put(ability, this.abilities.get(ability) + pointsToChange * Constant.HEALTH_OF_ONE_POINT);
+            } else if (ability.equals(Ability.MANA)) {
+                this.abilities.put(ability, this.abilities.get(ability) + pointsToChange * Constant.MANA_OF_ONE_POINT);
             } else {
                 this.abilities.put(ability, this.abilities.get(ability) + pointsToChange);
             }
@@ -275,22 +277,28 @@ public class Hero extends GameCharacter {
     private Map<Ability, Integer> getInitialAbilityPoints() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 1,
-                Ability.DEFENCE, 1,
-                Ability.DEXTERITY, 1,
-                Ability.SKILL, 1,
-                Ability.LUCK, 1,
-                Ability.HEALTH, 50
+                Ability.RESIST_DAMAGE, 1,
+                Ability.STRENGTH, 1,
+                Ability.INTELLECT, 1,
+                Ability.HASTE, 1,
+                Ability.CRITICAL_HIT_CHANCE, 1,
+                Ability.HEALTH, 50,
+                Ability.MANA, 60,
+                Ability.ABSORB_DAMAGE, 0
         ));
     }
 
     private Map<Ability, Integer> getItemsInitialAbilityPoints() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 0,
-                Ability.DEFENCE, 0,
-                Ability.DEXTERITY, 0,
-                Ability.SKILL, 0,
-                Ability.LUCK, 0,
-                Ability.HEALTH, 0
+                Ability.RESIST_DAMAGE, 0,
+                Ability.STRENGTH, 0,
+                Ability.INTELLECT, 0,
+                Ability.HASTE, 0,
+                Ability.CRITICAL_HIT_CHANCE, 1,
+                Ability.HEALTH, 0,
+                Ability.MANA, 0,
+                Ability.ABSORB_DAMAGE, 0
         ));
     }
 

@@ -7,58 +7,19 @@
     "itemLevel": 1
   },
   {
-    "name": "Iron sword of Dexterity",
+    "name": "Iron sword of Strength",
     "abilities": {
       "ATTACK": 1,
-      "DEXTERITY": 1
+      "STRENGTH": 1
     },
     "itemLevel": 1
   },
   {
-    "name": "Iron sword of Skill",
+    "name": "Staff of Intellect",
     "abilities": {
       "ATTACK": 1,
-      "SKILL": 1
+      "INTELLECT": 1
     },
     "itemLevel": 1
-  },
-  {
-    "name": "Iron sword of Health",
-    "abilities": {
-      "ATTACK": 1,
-      "HEALTH": 5
-    },
-    "itemLevel": 1
-  },
-  {
-    "name": "Steel sword of Attack",
-    "abilities": {
-      "ATTACK": 3
-    },
-    "itemLevel": 2
-  },
-  {
-    "name": "Steel sword of Dexterity",
-    "abilities": {
-      "ATTACK": 2,
-      "DEXTERITY": 2
-    },
-    "itemLevel": 2
-  },
-  {
-    "name": "Steel sword of Skill",
-    "abilities": {
-      "ATTACK": 2,
-      "SKILL": 2
-    },
-    "itemLevel": 2
-  },
-  {
-    "name": "Steel sword of Health",
-    "abilities": {
-      "ATTACK": 2,
-      "HEALTH": 10
-    },
-    "itemLevel": 2
   }
 ]

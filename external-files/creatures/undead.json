@@ -2,12 +2,15 @@
   {
     "name": "Weak Zombie",
     "abilities": {
-      "ATTACK": 2,
-      "DEFENCE": 2,
-      "HEALTH": 30,
-      "SKILL": 1,
-      "LUCK": 1,
-      "DEXTERITY": 1
+      "ATTACK": 3,
+      "RESIST_DAMAGE": 3,
+      "STRENGTH": 2,
+      "INTELLECT": 1,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 3,
+      "HEALTH": 50,
+      "MANA": 40,
+      "ABSORB_DAMAGE": 0
     },
     "level": 1,
     "locationType": ["TOWER","CASTLE","CEMETERY"],
@@ -16,26 +19,15 @@
   {
     "name": "NightBane Dark Runner",
     "abilities": {
-      "ATTACK": 3,
-      "DEFENCE": 3,
-      "HEALTH": 40,
-      "SKILL": 2,
-      "LUCK": 2,
-      "DEXTERITY": 2
-    },
-    "level": 2,
-    "locationType": [],
-    "maxStack": 5
-  },
-  {
-    "name": "NightBane Tainted One",
-    "abilities": {
-      "ATTACK": 4,
-      "DEFENCE": 1,
-      "HEALTH": 40,
-      "SKILL": 2,
-      "LUCK": 1,
-      "DEXTERITY": 3
+      "ATTACK": 5,
+      "RESIST_DAMAGE": 4,
+      "STRENGTH": 5,
+      "INTELLECT": 1,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 4,
+      "HEALTH": 80,
+      "MANA": 40,
+      "ABSORB_DAMAGE": 0
     },
     "level": 2,
     "locationType": [],
@@ -44,12 +36,15 @@
   {
     "name": "Insane Ghoul",
     "abilities": {
-      "ATTACK": 5,
-      "DEFENCE": 2,
-      "HEALTH": 55,
-      "SKILL": 3,
-      "LUCK": 3,
-      "DEXTERITY": 3
+      "ATTACK": 7,
+      "RESIST_DAMAGE": 3,
+      "STRENGTH": 3,
+      "INTELLECT": 1,
+      "HASTE": 4,
+      "CRITICAL_HIT_CHANCE": 5,
+      "HEALTH": 90,
+      "MANA": 40,
+      "ABSORB_DAMAGE": 0
     },
     "level": 3,
     "locationType": ["TOWER","CASTLE"],

@@ -23,6 +23,8 @@
     "bonusValueFromAbility": {
       "ATTACK": 1
     },
-    "spellLevel": 1
+    "spellLevel": 1,
+    "spellManaCost": 0,
+    "turnCoolDown": 2
   }
 ]

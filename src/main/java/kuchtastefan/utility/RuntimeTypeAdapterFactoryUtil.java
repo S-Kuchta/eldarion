@@ -20,15 +20,16 @@ import kuchtastefan.spell.mageSpell.MageSpell;
 import kuchtastefan.spell.warriorSpell.WarriorSpell;
 
 public class RuntimeTypeAdapterFactoryUtil {
+
     public static final RuntimeTypeAdapterFactory<Action> actionsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Action.class)
-            .registerSubtype(ActionWithDuration.class, "ActionWithDuration")
-            .registerSubtype(ActionRestoreHealth.class, "ActionRestoreHealth")
-            .registerSubtype(ActionDealDamage.class, "ActionDealDamage")
-            .registerSubtype(ActionDealDamageOverTime.class, "ActionDealDamageOverTime")
-            .registerSubtype(ActionRestoreHealthOverTime.class, "ActionRestoreHealthOverTime")
-            .registerSubtype(ActionIncreaseAbilityPoint.class, "ActionIncreaseAbilityPoint")
-            .registerSubtype(ActionAbsorbDamage.class, "ActionAbsorbDamage");
+            .registerSubtype(ActionWithDuration.class)
+            .registerSubtype(ActionRestoreHealth.class)
+            .registerSubtype(ActionDealDamage.class)
+            .registerSubtype(ActionDealDamageOverTime.class)
+            .registerSubtype(ActionRestoreHealthOverTime.class)
+            .registerSubtype(ActionIncreaseAbilityPoint.class)
+            .registerSubtype(ActionAbsorbDamage.class);
 
     public static final RuntimeTypeAdapterFactory<ActionWithDuration> actionsWithDurationTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(ActionWithDuration.class)

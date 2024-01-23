@@ -9,7 +9,9 @@ import java.util.Map;
 
 public class WarriorSpell extends Spell {
 
-    public WarriorSpell(String spellName, String spellDescription, List<Action> spellActions, Map<Ability, Integer> bonusValueFromAbility, int spellLevel) {
-        super(spellName, spellDescription, spellActions, bonusValueFromAbility, spellLevel);
+    public WarriorSpell(String spellName, String spellDescription, List<Action> spellActions, int turnCoolDown,
+                        Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost) {
+        super(spellName, spellDescription, spellActions, turnCoolDown, bonusValueFromAbility,
+                spellLevel, spellManaCost);
     }
 }

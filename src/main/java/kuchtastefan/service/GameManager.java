@@ -184,6 +184,31 @@ public class GameManager {
             this.hero.getCharacterSpellList().add(gson.fromJson(gson.toJson(spell), Spell.class));
         }
 
+//        int maxHealth = 100;
+//        int currentHealth = 70;
+//        double healthBarValue = (double) maxHealth / 15;
+//        System.out.println(healthBarValue);
+//        System.out.println(healthBarValue * 15);
+//        char charToPrint;
+//
+//        System.out.println();
+//        System.out.print("\tHealths »");
+//        for (int i = 0; i < 15; i++) {
+//            if (i * healthBarValue >= currentHealth) {
+//                charToPrint = ' ';
+//            } else {
+//                charToPrint = '■';
+//            }
+//            System.out.print(charToPrint);
+//        }
+//        System.out.print("« [" + currentHealth + "/" + maxHealth + "]");
+
+//        System.out.println();
+//        System.out.println("|--------------------------------------------------------------------------------------------------------------|");
+//        System.out.println("\tHealths »■■■■■■■■■■■■■■■« [50/100]\tMana » [■■■■■■■■■■■■■■■[25/70]\tAbsorb damage » [■■■■■■■■■■■■■■■[20]");
+//        System.out.println("|--------------------------------------------------------------------------------------------------------------|");
+
+
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");
         System.out.println("1. Load game");

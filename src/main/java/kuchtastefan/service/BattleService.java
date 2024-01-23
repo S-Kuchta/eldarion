@@ -7,6 +7,7 @@ import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.spell.Spell;
 import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.PrintUtil;
 
 public class BattleService {
 
@@ -20,24 +21,23 @@ public class BattleService {
             int heroHealth = hero.getCurrentAbilityValue(Ability.HEALTH);
             int enemyHealth = enemy.getCurrentAbilityValue(Ability.HEALTH);
 
-            System.out.println("Your healths: " + heroHealth);
-            System.out.println("Enemy healths: " + enemyHealth);
-            System.out.println();
 
             if (heroPlay) {
-                System.out.println("\tHero TURN");
+                PrintUtil.printHeaderWithStatsBar(hero);
+                PrintUtil.printHeaderWithStatsBar(enemy);
                 heroUseSpell(hero, enemy);
                 checkSpellsCoolDowns(hero);
+                System.out.println("\tYou get from actions over time");
                 hero.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.BATTLE_ACTION);
                 heroPlay = false;
             } else {
-                System.out.println("\tEnemy TURN");
+                PrintUtil.printLongDivider();
                 enemyUseSpell(enemy, hero);
                 checkSpellsCoolDowns(enemy);
+                System.out.println("\tYou get from actions over time");
                 enemy.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.BATTLE_ACTION);
                 heroPlay = true;
             }
-
 
             if (enemy.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
                 hero.getBattleActionsWithDuration().clear();
@@ -55,7 +55,7 @@ public class BattleService {
     private void heroUseSpell(Hero hero, Enemy enemy) {
         int index = 0;
         for (Spell spell : hero.getCharacterSpellList()) {
-            System.out.println(index + ". " + spell.getSpellName() + ", " + spell.getSpellDescription());
+            System.out.println("\t" + index + ". " + spell.getSpellName() + ", " + spell.getSpellDescription());
             index++;
         }
 

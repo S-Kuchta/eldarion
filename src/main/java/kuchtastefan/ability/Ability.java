@@ -1,6 +1,7 @@
 package kuchtastefan.ability;
 
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 @Getter
 public enum Ability {
@@ -20,4 +21,8 @@ public enum Ability {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
+    }
 }

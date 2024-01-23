@@ -51,7 +51,7 @@ public class HeroCharacterService {
     }
 
     private void showHeroInfo(Hero hero) {
-        PrintUtil.printMaxAbilityPointsWithItems(hero);
+//        PrintUtil.printMaxAbilityPointsWithItems(hero);
         PrintUtil.printCurrentAbilityPointsWithItems(hero);
         PrintUtil.printCurrentWearingArmor(hero);
     }

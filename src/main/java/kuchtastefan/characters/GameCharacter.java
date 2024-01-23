@@ -73,7 +73,7 @@ public abstract class GameCharacter {
      * you will get a new stack.
      *
      * @param actionWithDuration action with duration
-     * @param actions list where you want to add new action
+     * @param actions            list where you want to add new action
      */
     private void addActionOrIncreaseStack(ActionWithDuration actionWithDuration, Set<ActionWithDuration> actions) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
@@ -106,7 +106,7 @@ public abstract class GameCharacter {
      * @param actionDurationType from where you call method (BATTLE or REGION(EVENT))
      */
     public void updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType actionDurationType) {
-        resetCurrentAbilitiesToMaxAbilities();
+        resetCurrentAbilitiesToMaxAbilities(false);
 
         Set<ActionWithDuration> actions = new HashSet<>();
         actions.addAll(this.regionActionsWithDuration);
@@ -126,13 +126,17 @@ public abstract class GameCharacter {
         }
     }
 
-    private void resetCurrentAbilitiesToMaxAbilities() {
+    protected void resetCurrentAbilitiesToMaxAbilities(boolean setHealth) {
         int currentHealth = this.getCurrentAbilityValue(Ability.HEALTH);
         for (Ability ability : Ability.values()) {
             if (!ability.equals(Ability.HEALTH)) {
                 this.currentAbilities.put(ability, this.maxAbilities.get(ability));
             } else {
-                this.currentAbilities.put(Ability.HEALTH, currentHealth);
+                if (setHealth) {
+                    this.currentAbilities.put(ability, this.maxAbilities.get(ability));
+                } else {
+                    this.currentAbilities.put(Ability.HEALTH, currentHealth);
+                }
             }
         }
     }

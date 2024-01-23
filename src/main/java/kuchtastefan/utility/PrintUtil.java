@@ -15,6 +15,39 @@ import java.util.Map;
 
 public class PrintUtil {
 
+    public static void printHeaderWithStatsBar(GameCharacter gameCharacter) {
+        printExtraLongDivider();
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t" + gameCharacter.getName());
+        printBar(gameCharacter, Ability.HEALTH);
+        printBar(gameCharacter, Ability.MANA);
+        printBar(gameCharacter, Ability.ABSORB_DAMAGE);
+        System.out.println();
+        printExtraLongDivider();
+    }
+
+    private static void printBar(GameCharacter gameCharacter, Ability ability) {
+        int maxValue = gameCharacter.getMaxAbilities().get(ability);
+        int currentValue = gameCharacter.getCurrentAbilityValue(ability);
+        double oneBarValue = (double) maxValue / 15;
+
+        char charToPrint;
+        System.out.print("\t" + ability + " »");
+        for (int i = 0; i < 15; i++) {
+            if (i * oneBarValue >= currentValue) {
+                charToPrint = '_';
+            } else {
+                charToPrint = '■';
+            }
+            System.out.print(charToPrint);
+        }
+
+        if (ability.equals(Ability.ABSORB_DAMAGE)) {
+            System.out.print("« [" + currentValue + "]");
+        } else {
+            System.out.print("« [" + currentValue + "/" + maxValue + "]");
+        }
+    }
+
     public static void printCurrentAbilityPoints(GameCharacter gameCharacter) {
         printLongDivider();
         System.out.print("\t\t\t\t\t\t\t\t");
@@ -40,14 +73,23 @@ public class PrintUtil {
     }
 
     public static void printCurrentAbilityPointsWithItems(Hero hero) {
-        printLongDivider();
+        printHeaderWithStatsBar(hero);
+        printExtraLongDivider();
         System.out.println("\t\t\t\t\t------ Current Ability points with items ------");
         System.out.print("\t");
         for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {
-            System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
+
+            if (abilityPoints.getKey().equals(Ability.HEALTH)
+                    || abilityPoints.getKey().equals(Ability.MANA)
+                    || abilityPoints.getKey().equals(Ability.ABSORB_DAMAGE)) {
+
+            } else {
+                System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
+            }
+
         }
         System.out.println();
-        printLongDivider();
+        printExtraLongDivider();
     }
 
     /**
@@ -157,6 +199,10 @@ public class PrintUtil {
 
     public static void printLongDivider() {
         System.out.println("|----------------------------------------------------------------------------------|");
+    }
+
+    public static void printExtraLongDivider() {
+        System.out.println("|-------------------------------------------------------------------------------------------------------------|");
     }
 
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {

@@ -165,6 +165,7 @@ public class Hero extends GameCharacter {
             }
 
             this.setHeroMaxAbilities();
+            this.resetCurrentAbilitiesToMaxAbilities(true);
             this.updateCurrentAbilitiesDependsOnActiveActions(null);
             updateAbilityPoints(heroAvailablePointsChange);
         }
@@ -295,7 +296,7 @@ public class Hero extends GameCharacter {
                 Ability.STRENGTH, 0,
                 Ability.INTELLECT, 0,
                 Ability.HASTE, 0,
-                Ability.CRITICAL_HIT_CHANCE, 1,
+                Ability.CRITICAL_HIT_CHANCE, 0,
                 Ability.HEALTH, 0,
                 Ability.MANA, 0,
                 Ability.ABSORB_DAMAGE, 0

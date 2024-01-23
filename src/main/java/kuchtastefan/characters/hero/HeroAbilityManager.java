@@ -73,8 +73,6 @@ public class HeroAbilityManager {
     }
 
     private void setAbilityToUpgrade(int numberOfAbility, int numberOfPoints, int heroAvailablePointsChange, String spendOrRemovePoint) {
-
-        Ability tempAbility = null;
         if (numberOfAbility == 0) {
             if (spendOrRemovePoint.equals("spend")) {
                 explainAbilities();
@@ -83,11 +81,8 @@ public class HeroAbilityManager {
             if (numberOfAbility < 1 || numberOfAbility > abilityList().size()) {
                 System.out.println("Enter Valid number");
             } else {
-                tempAbility = abilityList().get(numberOfAbility - 1);
+                this.hero.setNewAbilityPoint(abilityList().get(numberOfAbility - 1), numberOfPoints, heroAvailablePointsChange);
             }
-
-            assert tempAbility != null;
-            this.hero.setNewAbilityPoint(tempAbility, numberOfPoints, heroAvailablePointsChange);
         }
     }
 

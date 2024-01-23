@@ -14,9 +14,10 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration {
 
 
     public ActionIncreaseAbilityPoint(String actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                                      int maxActionTurns, int actionMaxStacks,
-                                      ActionDurationType actionDurationType, Ability ability) {
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, actionDurationType);
+                                      int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType,
+                                      Ability ability, int chanceToPerformAction) {
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns,
+                actionMaxStacks, actionDurationType, chanceToPerformAction);
         this.ability = ability;
     }
 

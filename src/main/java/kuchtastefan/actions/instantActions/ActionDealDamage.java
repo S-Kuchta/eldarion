@@ -5,13 +5,14 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.characters.GameCharacter;
 
 public class ActionDealDamage extends Action {
-    public ActionDealDamage(String actionName, ActionEffectOn actionEffectOn, int maxActionValue) {
-        super(actionName, actionEffectOn, maxActionValue);
+    public ActionDealDamage(String actionName, ActionEffectOn actionEffectOn,
+                            int maxActionValue, int chanceToPerformAction) {
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        System.out.println("\t" + this.getActionName() + " deal " + getCurrentActionValue() + " damage!");
-        gameCharacter.receiveDamage(this.currentActionValue);
+            System.out.println("\t" + this.getActionName() + " deal " + getCurrentActionValue() + " damage!");
+            gameCharacter.receiveDamage(this.currentActionValue);
     }
 }

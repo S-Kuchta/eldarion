@@ -108,6 +108,14 @@ public abstract class GameCharacter {
     public void updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType actionDurationType) {
         resetCurrentAbilitiesToMaxAbilities(false);
 
+        if (this.regionActionsWithDuration == null) {
+            this.regionActionsWithDuration = new HashSet<>();
+        }
+
+        if (this.battleActionsWithDuration == null) {
+            this.battleActionsWithDuration = new HashSet<>();
+        }
+
         Set<ActionWithDuration> actions = new HashSet<>();
         actions.addAll(this.regionActionsWithDuration);
         actions.addAll(this.battleActionsWithDuration);

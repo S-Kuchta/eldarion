@@ -74,9 +74,9 @@ public class PrintUtil {
 
     public static void printCurrentAbilityPointsWithItems(Hero hero) {
         printHeaderWithStatsBar(hero);
-        printExtraLongDivider();
-        System.out.println("\t\t\t\t\t------ Current Ability points with items ------");
-        System.out.print("\t");
+//        printExtraLongDivider();
+        System.out.println("\t\t\t\t\t\t\t\t------ Current Ability points with items ------");
+        System.out.print("\t\t\t");
         for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {
 
             if (abilityPoints.getKey().equals(Ability.HEALTH)

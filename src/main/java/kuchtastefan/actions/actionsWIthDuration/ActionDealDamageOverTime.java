@@ -4,9 +4,11 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.characters.GameCharacter;
 
 public class ActionDealDamageOverTime extends ActionWithDuration {
-    public ActionDealDamageOverTime(String actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                                    int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType) {
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, actionDurationType);
+    public ActionDealDamageOverTime(String actionName, ActionEffectOn actionEffectOn,
+                                    int maxActionValue, int maxActionTurns, int actionMaxStacks,
+                                    ActionDurationType actionDurationType, int chanceToPerformAction) {
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns,
+                actionMaxStacks, actionDurationType, chanceToPerformAction);
     }
 
     @Override

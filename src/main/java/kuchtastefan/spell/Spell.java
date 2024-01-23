@@ -27,6 +27,7 @@ public class Spell {
 
     public Spell(String spellName, String spellDescription, List<Action> spellActions, int turnCoolDown,
                  Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost) {
+
         this.spellName = spellName;
         this.spellDescription = spellDescription;
         this.spellActions = spellActions;
@@ -41,22 +42,25 @@ public class Spell {
     public void useSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
         if (this.canSpellBeCasted) {
             for (Action action : this.spellActions) {
-                if (this.bonusValueFromAbility != null) {
-                    for (Map.Entry<Ability, Integer> abilityBonus : this.bonusValueFromAbility.entrySet()) {
-                        final int totalActionValue = action.getMaxActionValue()
-                                + spellCaster.getCurrentAbilityValue(abilityBonus.getKey())
-                                * abilityBonus.getValue();
+                if (action.isPossibleToPerformAction()) {
 
-                        action.setCurrentActionValue(totalActionValue);
+                    if (this.bonusValueFromAbility != null) {
+                        for (Map.Entry<Ability, Integer> abilityBonus : this.bonusValueFromAbility.entrySet()) {
+                            final int totalActionValue = action.getMaxActionValue()
+                                    + spellCaster.getCurrentAbilityValue(abilityBonus.getKey())
+                                    * abilityBonus.getValue();
+
+                            action.setCurrentActionValue(totalActionValue);
+                        }
                     }
-                }
 
-                if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-                    actionOrActionWithDuration(action, spellTarget);
-                }
+                    if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
+                        actionOrActionWithDuration(action, spellTarget);
+                    }
 
-                if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
-                    actionOrActionWithDuration(action, spellCaster);
+                    if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
+                        actionOrActionWithDuration(action, spellCaster);
+                    }
                 }
 
                 this.currentTurnCoolDown = 0;
@@ -83,7 +87,6 @@ public class Spell {
             checkTurnCoolDown();
             this.currentTurnCoolDown++;
         }
-
     }
 
     private void checkTurnCoolDown() {

@@ -8,7 +8,8 @@
         "type": "ActionDealDamage",
         "actionName": "Attack with weapon",
         "maxActionValue": 1,
-        "actionEffectOn": "SPELL_TARGET"
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100
       },
       {
         "type": "ActionDealDamageOverTime",
@@ -17,7 +18,8 @@
         "maxActionValue": 2,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION"
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 10
       }
     ],
     "bonusValueFromAbility": {
@@ -25,6 +27,6 @@
     },
     "spellLevel": 1,
     "spellManaCost": 0,
-    "turnCoolDown": 2
+    "turnCoolDown": 0
   }
 ]

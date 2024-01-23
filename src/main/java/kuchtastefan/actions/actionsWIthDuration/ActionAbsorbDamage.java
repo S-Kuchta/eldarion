@@ -6,8 +6,10 @@ import kuchtastefan.characters.GameCharacter;
 public class ActionAbsorbDamage extends ActionWithDuration {
 
     public ActionAbsorbDamage(String actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                              int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType) {
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, actionDurationType);
+                              int maxActionTurns, int actionMaxStacks,
+                              ActionDurationType actionDurationType, int chanceToPerformAction) {
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns,
+                actionMaxStacks, actionDurationType, chanceToPerformAction);
     }
 
     @Override

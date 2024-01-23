@@ -22,6 +22,7 @@ import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.regions.ForestRegionService;
+import kuchtastefan.spell.Spell;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
@@ -42,6 +43,7 @@ public class FileService {
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsWithDurationTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.spellObjectiveRuntimeTypeAdapterFactory)
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
@@ -346,6 +348,27 @@ public class FileService {
 
         questList.sort(Comparator.comparingInt(Quest::getQuestId));
         return questList;
+    }
+
+    public List<Spell> importSpellsFromFile() {
+        String path = "external-files/spells";
+        List<Spell> spellList = new ArrayList<>();
+        try {
+            List<Spell> spells;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                spells = this.gson.fromJson(reader, new TypeToken<List<Spell>>() {
+                }.getType());
+
+
+                spellList.addAll(spells);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return spellList;
     }
 }
 

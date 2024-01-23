@@ -1,6 +1,7 @@
 package kuchtastefan.actions.actionsWIthDuration;
 
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.characters.GameCharacter;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,13 +19,14 @@ public class ActionWithDuration extends Action {
     private final ActionDurationType actionDurationType;
 
 
-    public ActionWithDuration(String actionName, int actionValue, int maxActionTurns, ActionDurationType actionDurationType, int actionMaxStacks) {
-        super(actionName, actionValue);
-        this.actionMaxStacks = actionMaxStacks;
+    public ActionWithDuration(String actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+                              int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType) {
+        super(actionName, actionEffectOn, maxActionValue);
         this.maxActionTurns = maxActionTurns;
-        this.actionDurationType = actionDurationType;
-        this.actionCurrentStacks = 0;
         this.currentActionTurn = 0;
+        this.actionMaxStacks = actionMaxStacks;
+        this.actionCurrentStacks = 0;
+        this.actionDurationType = actionDurationType;
     }
 
     @Override

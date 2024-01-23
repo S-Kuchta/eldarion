@@ -1,16 +1,20 @@
 package kuchtastefan.actions.actionsWIthDuration;
 
+import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.characters.GameCharacter;
 
 public class ActionRestoreHealthOverTime extends ActionWithDuration {
 
-    public ActionRestoreHealthOverTime(String actionName, int actionValue, int maxActionTurns, ActionDurationType actionDurationType, int actionMaxStacks) {
-        super(actionName, actionValue, maxActionTurns, actionDurationType, actionMaxStacks);
+
+    public ActionRestoreHealthOverTime(String actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+                                       int maxActionTurns, int actionMaxStacks,
+                                       ActionDurationType actionDurationType) {
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, actionDurationType);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.restoreHealth(getActionValue());
+        gameCharacter.restoreHealth(getCurrentActionValue());
     }
 
 }

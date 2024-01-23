@@ -1,6 +1,7 @@
 package kuchtastefan.actions.actionsWIthDuration;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.characters.GameCharacter;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,15 +13,17 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration {
     private final Ability ability;
 
 
-    public ActionIncreaseAbilityPoint(String actionName, int actionValue, int maxActionTurns, ActionDurationType actionDurationType, int actionMaxStacks, Ability ability) {
-        super(actionName, actionValue, maxActionTurns, actionDurationType, actionMaxStacks);
+    public ActionIncreaseAbilityPoint(String actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+                                      int maxActionTurns, int actionMaxStacks,
+                                      ActionDurationType actionDurationType, Ability ability) {
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, actionDurationType);
         this.ability = ability;
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
 
-        int increaseAbilityWithStacks = this.getActionValue() * this.getActionCurrentStacks();
+        int increaseAbilityWithStacks = this.getCurrentActionValue() * this.getActionCurrentStacks();
         gameCharacter.getCurrentAbilities().put(this.ability,
                 gameCharacter.getCurrentAbilityValue(this.ability)
                         + (increaseAbilityWithStacks));

@@ -4,14 +4,14 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.characters.GameCharacter;
 
-public class ActionRestoreHealth extends Action {
-
-    public ActionRestoreHealth(String actionName, ActionEffectOn actionEffectOn, int maxActionValue) {
+public class ActionDealDamage extends Action {
+    public ActionDealDamage(String actionName, ActionEffectOn actionEffectOn, int maxActionValue) {
         super(actionName, actionEffectOn, maxActionValue);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.restoreHealth(this.getCurrentActionValue());
+        System.out.println("\t" + this.getActionName() + " deal " + getCurrentActionValue() + " damage!");
+        gameCharacter.receiveDamage(this.currentActionValue);
     }
 }

@@ -16,6 +16,7 @@ import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.ForestRegionService;
+import kuchtastefan.spell.SpellsList;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -167,6 +168,8 @@ public class GameManager {
         QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
 
         EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
+
+        SpellsList.getSpellList().addAll(this.fileService.importSpellsFromFile());
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 1);
 

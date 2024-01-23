@@ -7,27 +7,30 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
-        "actionValue": 20
+        "actionValue": 20,
+        "actionEffectOn": "SPELL_CASTER"
       }
     ]
   },
   {
     "name": "Big health potion",
-    "price": 30,
+    "price": 50,
     "itemLevel": 2,
     "actionList": [
       {
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
-        "actionValue": 20
+        "actionValue": 15,
+        "actionEffectOn": "SPELL_CASTER"
       },
       {
         "type": "ActionRestoreHealthOverTime",
-        "actionName": "Increase Attack",
+        "actionName": "Restore health",
         "actionValue": 5,
         "maxActionTurns": 3,
         "actionDurationType": "REGION_ACTION",
-        "actionMaxStacks": 1
+        "actionMaxStacks": 1,
+        "actionEffectOn": "SPELL_CASTER"
       }
     ]
   }

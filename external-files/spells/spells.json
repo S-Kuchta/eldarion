@@ -1,0 +1,28 @@
+[
+  {
+    "type": "WarriorSpell",
+    "spellName": "Attack",
+    "spellDescription": "Basic attack with weapon",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "Attack with weapon",
+        "maxActionValue": 1,
+        "actionEffectOn": "SPELL_TARGET"
+      },
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "Bleed",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 2,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1
+    },
+    "spellLevel": 1
+  }
+]

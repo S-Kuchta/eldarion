@@ -9,12 +9,21 @@ import lombok.Setter;
 public abstract class Action {
 
     protected String actionName;
-    protected int actionValue;
+    protected final int maxActionValue;
+    protected int currentActionValue;
+    protected final ActionEffectOn actionEffectOn;
 
-    public Action(String actionName, int actionValue) {
+
+    public Action(String actionName, ActionEffectOn actionEffectOn, int maxActionValue) {
         this.actionName = actionName;
-        this.actionValue = actionValue;
+        this.maxActionValue = maxActionValue;
+        this.currentActionValue = maxActionValue;
+        this.actionEffectOn = actionEffectOn;
     }
 
     public abstract void performAction(GameCharacter gameCharacter);
+
+    public void setNewActionValue(int value) {
+        this.currentActionValue += value;
+    }
 }

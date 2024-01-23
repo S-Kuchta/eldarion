@@ -207,7 +207,7 @@ public class PrintUtil {
 
     public static void printActionDetails(Action action) {
         System.out.print("\t\t");
-        System.out.print(action.getActionName() + ": " + action.getActionValue());
+        System.out.print(action.getActionName() + ": " + action.getCurrentActionValue());
         if (action instanceof ActionWithDuration) {
             System.out.print(" (duration: " + ((ActionWithDuration) action).getMaxActionTurns()
                     + " " + ((ActionWithDuration) action)

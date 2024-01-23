@@ -1,9 +1,15 @@
 package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.Action;
+import kuchtastefan.actions.ActionEffectOn;
+import kuchtastefan.actions.actionsWIthDuration.ActionDealDamageOverTime;
+import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
+import kuchtastefan.actions.instantActions.ActionDealDamage;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.spell.SpellsList;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
@@ -27,10 +33,12 @@ public class BattleService {
             }
 
             if (enemy.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+                hero.getBattleActionsWithDuration().clear();
                 return true;
             }
 
             if (hero.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+                hero.getBattleActionsWithDuration().clear();
                 return false;
             }
 
@@ -40,6 +48,8 @@ public class BattleService {
                 System.out.println(e.getMessage());
             }
         }
+
+
     }
 
     private void battleRound(GameCharacter attacker, GameCharacter defender) {
@@ -55,8 +65,19 @@ public class BattleService {
 
         finalDamage = finalDamage(damage, defense(defender));
 
-        defender.receiveDamage(finalDamage);
-        System.out.println(attacker.getName() + " attacked " + defender.getName() + " for " + finalDamage + " damage!");
+//        defender.receiveDamage(finalDamage);
+//        new ActionDealDamage("Attack", finalDamage, ActionEffectOn.SPELL_TARGET).performAction(defender);
+
+        SpellsList.getSpellList().get(0).useSpell(attacker, defender);
+
+//        new ActionDealDamageOverTime("Attack over time", 2, 3, ActionDurationType.REGION_ACTION, 3).performAction(defender);
+//        defender.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.BATTLE_ACTION);
+//        if (defender instanceof Enemy) {
+//            defender.addActionWithDuration(new ActionDealDamageOverTime("Attack over time", 2, 3, ActionDurationType.BATTLE_ACTION, 3, ActionEffectOn.SPELL_TARGET));
+//        }
+
+
+//        System.out.println(attacker.getName() + " attacked " + defender.getName() + " for " + finalDamage + " damage!");
         System.out.println(defender.getName() + " healths are: " + defender.getCurrentAbilityValue(Ability.HEALTH));
         PrintUtil.printDivider();
     }
@@ -86,6 +107,7 @@ public class BattleService {
         }
 
         return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
+//        return new ActionDealDamage("Attack", RandomNumberGenerator.getRandomNumber(minDamage, maxDamage)).performAction();
     }
 
     private int defense(GameCharacter gameCharacter) {
@@ -104,44 +126,6 @@ public class BattleService {
 
         return RandomNumberGenerator.getRandomNumber(minDefence, maxDefence);
     }
-
-//    private int attack(GameCharacter gameCharacter) {
-//        int minDamage;
-//        int maxDamage;
-//        if (gameCharacter instanceof Hero) {
-//            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
-//                    ((Hero) gameCharacter).returnItemAbilityValue(Ability.ATTACK);
-//            maxDamage = minDamage
-//                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
-//                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY)
-//                    + gameCharacter.getAbilityValue(Ability.SKILL)
-//                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.SKILL);
-//        } else {
-//            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
-//            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK)
-//                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
-//                    + gameCharacter.getAbilityValue(Ability.SKILL);
-//        }
-//
-//        return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
-//    }
-//
-//    private int defense(GameCharacter gameCharacter) {
-//        int minDefence;
-//        int maxDefence;
-//        if (gameCharacter instanceof Hero) {
-//            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE)
-//                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEFENCE);
-//            maxDefence = minDefence
-//                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
-//                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY);
-//        } else {
-//            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE);
-//            maxDefence = minDefence + gameCharacter.getAbilityValue(Ability.DEXTERITY);
-//        }
-//
-//        return RandomNumberGenerator.getRandomNumber(minDefence, maxDefence);
-//    }
 
     private boolean criticalHit(GameCharacter gameCharacter) {
         int criticalHit;

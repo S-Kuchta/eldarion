@@ -7,7 +7,8 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
-        "actionValue": 25
+        "actionValue": 25,
+        "actionEffectOn": "SPELL_CASTER"
       },
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -16,7 +17,8 @@
         "maxActionTurns": 10,
         "actionDurationType": "REGION_ACTION",
         "actionMaxStacks": 1,
-        "ability": "ATTACK"
+        "ability": "ATTACK",
+        "actionEffectOn": "SPELL_CASTER"
       }
     ]
   },
@@ -28,7 +30,8 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
-        "actionValue": 20
+        "actionValue": 20,
+        "actionEffectOn": "SPELL_CASTER"
       }
     ]
   }

@@ -3,14 +3,16 @@ package kuchtastefan.characters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -22,7 +24,6 @@ public abstract class GameCharacter {
     protected Map<Ability, Integer> currentAbilities;
     protected Set<ActionWithDuration> regionActionsWithDuration;
     protected Set<ActionWithDuration> battleActionsWithDuration;
-
 
 
     public GameCharacter(String name, Map<Ability, Integer> abilities) {
@@ -44,6 +45,14 @@ public abstract class GameCharacter {
     }
 
     public void addActionWithDuration(ActionWithDuration actionWithDuration) {
+
+        if (this.regionActionsWithDuration == null) {
+            this.regionActionsWithDuration = new HashSet<>();
+        }
+
+        if (this.battleActionsWithDuration == null) {
+            this.battleActionsWithDuration = new HashSet<>();
+        }
 
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.REGION_ACTION)) {
             addActionOrIncreaseStack(actionWithDuration, this.regionActionsWithDuration);
@@ -77,7 +86,6 @@ public abstract class GameCharacter {
         } else {
             for (ActionWithDuration action : actions) {
                 if (action.equals(actionWithDuration) && action.getActionCurrentStacks() < action.getActionMaxStacks()) {
-                    System.out.println(action.equals(actionWithDuration));
                     action.addActionStack();
                     action.actionCurrentTurnReset();
                 }
@@ -87,7 +95,6 @@ public abstract class GameCharacter {
                 }
             }
         }
-
     }
 
     /**
@@ -95,10 +102,11 @@ public abstract class GameCharacter {
      * If actionDurationType is same as type from parameter, you will get turn for action
      * Method also check if you reach max turns. If yes, action is removed.
      *
-     * @param actionDurationType from where you call method (BATTLE or REGION(EVENT)
+     * @param actionDurationType from where you call method (BATTLE or REGION(EVENT))
      */
     public void updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType actionDurationType) {
         resetCurrentAbilitiesToMaxAbilities();
+
         Set<ActionWithDuration> actions = new HashSet<>();
         actions.addAll(this.regionActionsWithDuration);
         actions.addAll(this.battleActionsWithDuration);

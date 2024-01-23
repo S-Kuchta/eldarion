@@ -360,6 +360,10 @@ public class FileService {
                 spells = this.gson.fromJson(reader, new TypeToken<List<Spell>>() {
                 }.getType());
 
+                for (Spell spell : spells) {
+                    spell.setCanSpellBeCasted(true);
+                    System.out.println(spell.getClass().getSimpleName());
+                }
 
                 spellList.addAll(spells);
                 reader.close();

@@ -1,20 +1,80 @@
 package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.spell.Spell;
-import kuchtastefan.spell.SpellsList;
-import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.utility.RandomNumberGenerator;
+import kuchtastefan.utility.InputUtil;
 
 public class BattleService {
 
 
+    public boolean battle(Hero hero, Enemy enemy) {
+
+        boolean heroPlay = true;
 
 
+        while (true) {
+            int heroHealth = hero.getCurrentAbilityValue(Ability.HEALTH);
+            int enemyHealth = enemy.getCurrentAbilityValue(Ability.HEALTH);
 
+            System.out.println("Your healths: " + heroHealth);
+            System.out.println("Enemy healths: " + enemyHealth);
+            System.out.println();
+
+            if (heroPlay) {
+                System.out.println("\tHero TURN");
+                heroUseSpell(hero, enemy);
+                checkSpellsCoolDowns(hero);
+                hero.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.BATTLE_ACTION);
+                heroPlay = false;
+            } else {
+                System.out.println("\tEnemy TURN");
+                enemyUseSpell(enemy, hero);
+                checkSpellsCoolDowns(enemy);
+                enemy.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.BATTLE_ACTION);
+                heroPlay = true;
+            }
+
+
+            if (enemy.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+                hero.getBattleActionsWithDuration().clear();
+                return true;
+            }
+
+            if (hero.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+                hero.getBattleActionsWithDuration().clear();
+                return false;
+            }
+
+        }
+    }
+
+    private void heroUseSpell(Hero hero, Enemy enemy) {
+        int index = 0;
+        for (Spell spell : hero.getCharacterSpellList()) {
+            System.out.println(index + ". " + spell.getSpellName() + ", " + spell.getSpellDescription());
+            index++;
+        }
+
+        final int choice = InputUtil.intScanner();
+        if (choice == 1) {
+            return;
+        }
+        hero.getCharacterSpellList().get(choice).useSpell(hero, enemy);
+    }
+
+    private void enemyUseSpell(Enemy enemy, Hero hero) {
+        enemy.getCharacterSpellList().get(0).useSpell(enemy, hero);
+    }
+
+    private void checkSpellsCoolDowns(GameCharacter gameCharacter) {
+        for (Spell spell : gameCharacter.getCharacterSpellList()) {
+            spell.increaseTurnCoolDown();
+        }
+    }
 
 //    public boolean battle(Hero hero, Enemy enemy) {
 //        boolean heroPlay = true;

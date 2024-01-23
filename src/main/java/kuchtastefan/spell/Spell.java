@@ -34,7 +34,7 @@ public class Spell {
         this.spellLevel = spellLevel;
         this.spellManaCost = spellManaCost;
         this.turnCoolDown = turnCoolDown;
-        this.currentTurnCoolDown = 0;
+        this.currentTurnCoolDown = turnCoolDown;
         this.canSpellBeCasted = true;
     }
 
@@ -60,18 +60,19 @@ public class Spell {
                 }
 
                 this.currentTurnCoolDown = 0;
+                checkTurnCoolDown();
             }
         } else {
             System.out.println("\tYou can not cast spell. Spell is on coolDown! (You have to wait "
-                    + (this.turnCoolDown - this.currentTurnCoolDown) + " turns)");
+                    + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)");
         }
     }
 
-    private void actionOrActionWithDuration(Action action, GameCharacter effectOn) {
+    private void actionOrActionWithDuration(Action action, GameCharacter effectOnCharacter) {
         if (action instanceof ActionWithDuration) {
-            effectOn.addActionWithDuration((ActionWithDuration) action);
+            effectOnCharacter.addActionWithDuration((ActionWithDuration) action);
         } else {
-            action.performAction(effectOn);
+            action.performAction(effectOnCharacter);
         }
     }
 
@@ -79,8 +80,8 @@ public class Spell {
         if (this.turnCoolDown == 0) {
             this.canSpellBeCasted = true;
         } else {
-            this.currentTurnCoolDown++;
             checkTurnCoolDown();
+            this.currentTurnCoolDown++;
         }
 
     }

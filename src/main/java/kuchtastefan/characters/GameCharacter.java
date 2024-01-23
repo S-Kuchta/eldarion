@@ -5,14 +5,12 @@ import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.spell.Spell;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Setter
 @Getter
@@ -24,6 +22,7 @@ public abstract class GameCharacter {
     protected Map<Ability, Integer> currentAbilities;
     protected Set<ActionWithDuration> regionActionsWithDuration;
     protected Set<ActionWithDuration> battleActionsWithDuration;
+    protected List<Spell> characterSpellList;
 
 
     public GameCharacter(String name, Map<Ability, Integer> abilities) {
@@ -34,6 +33,7 @@ public abstract class GameCharacter {
         this.currentAbilities = new HashMap<>(abilities);
         this.regionActionsWithDuration = new HashSet<>();
         this.battleActionsWithDuration = new HashSet<>();
+        this.characterSpellList = new ArrayList<>();
     }
 
     public GameCharacter(String name, int level) {
@@ -42,6 +42,7 @@ public abstract class GameCharacter {
         this.abilities = initializeAbilityForNonEnemyCharacters();
         this.maxAbilities = new HashMap<>(initializeAbilityForNonEnemyCharacters());
         this.currentAbilities = new HashMap<>(initializeAbilityForNonEnemyCharacters());
+        this.characterSpellList = new ArrayList<>();
     }
 
     public void addActionWithDuration(ActionWithDuration actionWithDuration) {
@@ -63,7 +64,7 @@ public abstract class GameCharacter {
             addActionOrIncreaseStack(actionWithDuration, this.battleActionsWithDuration);
         }
 
-        updateCurrentAbilitiesDependsOnActiveActions(null);
+//        updateCurrentAbilitiesDependsOnActiveActions(null);
     }
 
     /**

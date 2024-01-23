@@ -1,6 +1,6 @@
 [
   {
-    "type": "WarriorSpell",
+    "type": "Spell",
     "spellName": "Attack",
     "spellDescription": "Basic attack with weapon",
     "spellActions": [

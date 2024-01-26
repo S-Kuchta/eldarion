@@ -11,9 +11,106 @@ import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemType;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class PrintUtil {
+
+    public static void printBattleBuffs(GameCharacter gameCharacter) {
+        if (gameCharacter.getBattleActionsWithDuration() == null) {
+            gameCharacter.setBattleActionsWithDuration(new HashSet<>());
+        }
+
+//        if (gameCharacter instanceof Hero) {
+//            gameCharacter.getBattleActionsWithDuration().addAll(gameCharacter.getRegionActionsWithDuration());
+//        }
+
+        generateTableWithBuffs(gameCharacter.getBattleActionsWithDuration());
+
+//        generateTableWithBuffs(gameCharacter.getBattleActionsWithDuration());
+
+
+//        asciiTable.addRow("↑ Attack", "↑ Critical hit chance", "Heal", "↓ Resist damage", "Bleed Damage");
+//        asciiTable.addRow("» 1 «", "» 1 «", "» 1 «", "» 1 «", "» 1 «");
+//        asciiTable.addRow("■■■■■■■■■■■■■■■","■■■■■■■■■■■■■__", "■■■■■■■■■■■____", "■■■■■■■■■■_____", "■■■■■■■■_______");
+//        asciiTable.addRule();
+
+    }
+
+    public static void printRegionBuffs(GameCharacter gameCharacter) {
+        generateTableWithBuffs(gameCharacter.getRegionActionsWithDuration());
+    }
+
+    public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {
+        String leftAlignment = "| %-30s | %-20s | %-28s | %-20s |%n";
+        for (ActionWithDuration actionWithDuration : actionWithDurationList) {
+
+            String specialSymbol;
+            if (actionWithDuration.getCurrentActionValue() == 0) {
+                specialSymbol = "";
+            } else if (actionWithDuration.getCurrentActionValue() < 0) {
+                specialSymbol = " - ";
+            } else {
+                specialSymbol = " + ";
+            }
+//            if (actionWithDuration instanceof ActionIncreaseAbilityPoint) {
+//                specialSymbol = " ↑ ";
+//            }
+//
+//            if (actionWithDuration instanceof ActionRestoreHealthOverTime) {
+//                specialSymbol = " + ";
+//            }
+//
+//            if (actionWithDuration instanceof ActionDealDamageOverTime) {
+//                specialSymbol = " - ";
+//            }
+
+            System.out.format(leftAlignment, specialSymbol + actionWithDuration.getActionName(),
+                    "Action Value: " + specialSymbol + actionWithDuration.getCurrentActionValue(),
+                    "Turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()),
+                    "Stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
+        }
+
+    }
+
+
+//    public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {
+//
+//        AsciiTable asciiTable = new AsciiTable();
+//
+//        for (ActionWithDuration actionWithDuration : actionWithDurationList) {
+//
+//            asciiTable.addRow(actionWithDuration.getActionName()
+//                    , "value: » " + actionWithDuration.getCurrentActionValue() + " «"
+//                    , "turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns())
+//                    , "stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
+////            asciiTable.addRow("» " + actionWithDuration.getCurrentActionValue() + " «");
+////            asciiTable.addRow(printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()));
+//
+//
+//            if (asciiTable.getColNumber() == 0) {
+//                return;
+//            }
+//
+//            asciiTable.setTextAlignment(TextAlignment.CENTER);
+//            String render = asciiTable.render(111);
+//            System.out.println(render);
+//            printExtraLongDivider();
+//        }
+//    }
+
+    public static StringBuilder printActionTurnRemaining(int currentTurn, int maxTurns) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < maxTurns; i++) {
+            if (i >= currentTurn) {
+                stringBuilder.append("_");
+            } else {
+                stringBuilder.append("■");
+            }
+        }
+        return stringBuilder;
+    }
 
     public static void printHeaderWithStatsBar(GameCharacter gameCharacter) {
         printExtraLongDivider();
@@ -48,8 +145,8 @@ public class PrintUtil {
         }
     }
 
-    public static void printCurrentAbilityPoints(GameCharacter gameCharacter) {
-        printLongDivider();
+    public static void printAbilityPoints(GameCharacter gameCharacter) {
+        printExtraLongDivider();
         System.out.print("\t\t\t\t\t\t\t\t");
         System.out.println(gameCharacter instanceof Hero ? "Your abilities:" : "Enemy abilities:");
         System.out.print("\t");
@@ -57,7 +154,7 @@ public class PrintUtil {
             System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
         }
         System.out.println();
-        printLongDivider();
+        printExtraLongDivider();
     }
 
     public static void printMaxAbilityPointsWithItems(Hero hero) {

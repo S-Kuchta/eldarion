@@ -63,8 +63,6 @@ public abstract class GameCharacter {
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.BATTLE_ACTION)) {
             addActionOrIncreaseStack(actionWithDuration, this.battleActionsWithDuration);
         }
-
-//        updateCurrentAbilitiesDependsOnActiveActions(null);
     }
 
     /**

@@ -208,6 +208,7 @@ public class GameManager {
 //        System.out.println("\tHealths »■■■■■■■■■■■■■■■« [50/100]\tMana » [■■■■■■■■■■■■■■■[25/70]\tAbsorb damage » [■■■■■■■■■■■■■■■[20]");
 //        System.out.println("|--------------------------------------------------------------------------------------------------------------|");
 
+//        PrintUtil.printBuffs();
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");

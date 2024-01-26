@@ -24,6 +24,7 @@ public class ForestRegionService extends Region {
         while (true) {
             System.out.println();
             PrintUtil.printHeaderWithStatsBar(getHero());
+            PrintUtil.printRegionBuffs(getHero());
             PrintUtil.printLongDivider();
             System.out.println("\t\t" + getRegionName()
                     + " \tRegion level: 1 - 5"

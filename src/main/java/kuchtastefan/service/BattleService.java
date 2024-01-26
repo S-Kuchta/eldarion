@@ -24,7 +24,11 @@ public class BattleService {
 
             if (heroPlay) {
                 PrintUtil.printHeaderWithStatsBar(hero);
+                PrintUtil.printBattleBuffs(hero);
+
                 PrintUtil.printHeaderWithStatsBar(enemy);
+                PrintUtil.printBattleBuffs(enemy);
+
                 heroUseSpell(hero, enemy);
                 checkSpellsCoolDowns(hero);
                 System.out.println("\tYou get from actions over time");
@@ -45,7 +49,10 @@ public class BattleService {
             }
 
             if (hero.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+                hero.getRegionActionsWithDuration().clear();
                 hero.getBattleActionsWithDuration().clear();
+                hero.checkHeroGoldsAndSubtractIfTrue(80 * hero.getLevel());
+                hero.getCurrentAbilities().put(Ability.HEALTH, hero.getMaxAbilities().get(Ability.HEALTH));
                 return false;
             }
 

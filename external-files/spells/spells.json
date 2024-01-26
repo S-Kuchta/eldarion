@@ -19,7 +19,7 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
-        "chanceToPerformAction": 10
+        "chanceToPerformAction": 50
       }
     ],
     "bonusValueFromAbility": {

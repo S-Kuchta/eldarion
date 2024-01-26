@@ -257,14 +257,17 @@ public class Hero extends GameCharacter {
         }
     }
 
-    public boolean checkHeroGoldsAndSubstractIfTrue(double goldNeeded) {
+    public void checkHeroGoldsAndSubtractIfTrue(double goldNeeded) {
         if (this.heroGold >= goldNeeded) {
             this.heroGold -= goldNeeded;
-            return true;
+//            return true;
+        } else {
+            this.heroGold = 0;
+//            return false;
         }
 
-        System.out.println("\tYou don't have enough golds");
-        return false;
+//        System.out.println("\tYou don't have enough golds");
+//        return false;
     }
 
     public void addGolds(double golds) {

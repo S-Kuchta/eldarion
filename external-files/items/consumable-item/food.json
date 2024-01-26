@@ -15,6 +15,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "Increase Attack",
         "maxActionValue": 1,
+        "currentActionValue": 1,
         "maxActionTurns": 10,
         "actionDurationType": "REGION_ACTION",
         "actionMaxStacks": 1,

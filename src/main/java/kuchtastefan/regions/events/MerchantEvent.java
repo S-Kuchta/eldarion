@@ -33,19 +33,27 @@ public class MerchantEvent extends Event {
                     int randomNumber = RandomNumberGenerator.getRandomNumber(0, 3);
                     switch (randomNumber) {
                         case 0 -> {
-                            WearableItemVendorCharacter wearableItemVendorCharacter = new WearableItemVendorCharacter("Random name", 8, ItemsLists.returnWearableItemListByItemLevel(this.getEventLevel(), null, false));
+                            WearableItemVendorCharacter wearableItemVendorCharacter =
+                                    new WearableItemVendorCharacter("Random name", 8,
+                                            ItemsLists.returnWearableItemListByItemLevel(this.getEventLevel(), null, false));
                             wearableItemVendorCharacter.vendorMenu(hero);
                         }
                         case 1 -> {
-                            CraftingReagentItemVendorCharacter craftingReagentItemVendorCharacter = new CraftingReagentItemVendorCharacter("Random name", 8, ItemsLists.returnCraftingReagentItemListByItemLevel(this.getEventLevel(), 0));
+                            CraftingReagentItemVendorCharacter craftingReagentItemVendorCharacter =
+                                    new CraftingReagentItemVendorCharacter("Random name", 8,
+                                            ItemsLists.returnCraftingReagentItemListByItemLevel(this.getEventLevel(), 0));
                             craftingReagentItemVendorCharacter.vendorMenu(hero);
                         }
                         case 2 -> {
-                            ConsumableVendorCharacter consumableVendorCharacter = new ConsumableVendorCharacter("Random name", 8, ItemsLists.returnConsumableItemListByItemLevel(this.getEventLevel(), 0));
+                            ConsumableVendorCharacter consumableVendorCharacter =
+                                    new ConsumableVendorCharacter("Random name", 8,
+                                            ItemsLists.returnConsumableItemListByItemLevel(this.getEventLevel(), 0));
                             consumableVendorCharacter.vendorMenu(hero);
                         }
                         case 3 -> {
-                            JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Random Name", 8, ItemsLists.getJunkItems());
+                            JunkVendorCharacter junkVendorCharacter =
+                                    new JunkVendorCharacter("Random Name", 8,
+                                            ItemsLists.getJunkItems());
                             junkVendorCharacter.vendorMenu(hero);
                         }
                     }

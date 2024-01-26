@@ -108,7 +108,7 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public void successfullyItemBought(Hero hero, Item item) {
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-        hero.checkHeroGoldsAndSubstractIfTrue(item.getPrice());
+        hero.checkHeroGoldsAndSubtractIfTrue(item.getPrice());
         System.out.println("\t" + item.getName() + " bought. You can find it in your inventory");
     }
 

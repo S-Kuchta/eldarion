@@ -8,10 +8,7 @@ import kuchtastefan.spell.SpellsList;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EnemyList {
     @Getter
@@ -37,11 +34,17 @@ public class EnemyList {
         if (newEnemy.getCharacterSpellList() == null) {
             newEnemy.setCharacterSpellList(new ArrayList<>());
         }
-
         newEnemy.getCharacterSpellList().addAll(SpellsList.getSpellList());
-
         for (Spell spell : SpellsList.getSpellList()) {
             newEnemy.getCharacterSpellList().add(gson.fromJson(gson.toJson(spell), Spell.class));
+        }
+
+        if (newEnemy.getRegionActionsWithDuration() == null) {
+            newEnemy.setRegionActionsWithDuration(new HashSet<>());
+        }
+
+        if (newEnemy.getBattleActionsWithDuration() == null) {
+            newEnemy.setBattleActionsWithDuration(new HashSet<>());
         }
 
         if (!enemyRarity.equals(EnemyRarity.COMMON)) {

@@ -28,5 +28,55 @@
     "spellLevel": 1,
     "spellManaCost": 0,
     "turnCoolDown": 0
+  },
+  {
+    "type": "Spell",
+    "spellName": "Barrier",
+    "spellDescription": "Cast a powerful barrier",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "Attack with weapon",
+        "maxActionValue": 1,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100
+      },
+      {
+        "type": "ActionAbsorbDamage",
+        "actionName": "Absorb Damage",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 20,
+        "maxActionTurns": 5,
+        "actionMaxStacks": 2,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1
+    },
+    "spellLevel": 1,
+    "spellManaCost": 15,
+    "turnCoolDown": 0
+  },
+  {
+    "type": "Spell",
+    "spellName": "Heal",
+    "spellDescription": "Heal",
+    "spellActions": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "Heal",
+        "maxActionValue": 20,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 1
+    },
+    "spellLevel": 1,
+    "spellManaCost": 10,
+    "turnCoolDown": 2
   }
 ]

@@ -15,19 +15,17 @@ public class BattleService {
     public boolean battle(Hero hero, Enemy enemy) {
 
         boolean heroPlay = true;
-
+        hero.getBattleActionsWithDuration().clear();
+        hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
 
         while (true) {
-            int heroHealth = hero.getCurrentAbilityValue(Ability.HEALTH);
-            int enemyHealth = enemy.getCurrentAbilityValue(Ability.HEALTH);
-
-
             if (heroPlay) {
                 PrintUtil.printHeaderWithStatsBar(hero);
                 PrintUtil.printBattleBuffs(hero);
 
                 PrintUtil.printHeaderWithStatsBar(enemy);
                 PrintUtil.printBattleBuffs(enemy);
+                PrintUtil.printExtraLongDivider();
 
                 heroUseSpell(hero, enemy);
                 checkSpellsCoolDowns(hero);
@@ -38,6 +36,7 @@ public class BattleService {
                 PrintUtil.printLongDivider();
                 enemyUseSpell(enemy, hero);
                 checkSpellsCoolDowns(enemy);
+
                 System.out.println("\tYou get from actions over time");
                 enemy.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.BATTLE_ACTION);
                 heroPlay = true;
@@ -66,11 +65,12 @@ public class BattleService {
             index++;
         }
 
-        final int choice = InputUtil.intScanner();
-        if (choice == 1) {
-            return;
+        try {
+            final int choice = InputUtil.intScanner();
+            hero.getCharacterSpellList().get(choice).useSpell(hero, enemy);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("\tEnter valid input");
         }
-        hero.getCharacterSpellList().get(choice).useSpell(hero, enemy);
     }
 
     private void enemyUseSpell(Enemy enemy, Hero hero) {

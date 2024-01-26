@@ -1,5 +1,6 @@
 package kuchtastefan.actions.actionsWIthDuration;
 
+import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.characters.GameCharacter;
 
@@ -14,6 +15,9 @@ public class ActionAbsorbDamage extends ActionWithDuration {
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        // TODO absorb damage
+        System.out.println("add absorb damage");
+        int increaseAbilityWithStacks = this.getCurrentActionValue() * this.getActionCurrentStacks();
+        gameCharacter.getCurrentAbilities().put(Ability.ABSORB_DAMAGE,
+                gameCharacter.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) + increaseAbilityWithStacks);
     }
 }

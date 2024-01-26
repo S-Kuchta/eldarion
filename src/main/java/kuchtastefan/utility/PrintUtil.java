@@ -22,24 +22,11 @@ public class PrintUtil {
             gameCharacter.setBattleActionsWithDuration(new HashSet<>());
         }
 
-//        if (gameCharacter instanceof Hero) {
-//            gameCharacter.getBattleActionsWithDuration().addAll(gameCharacter.getRegionActionsWithDuration());
-//        }
-
         generateTableWithBuffs(gameCharacter.getBattleActionsWithDuration());
-
-//        generateTableWithBuffs(gameCharacter.getBattleActionsWithDuration());
-
-
-//        asciiTable.addRow("↑ Attack", "↑ Critical hit chance", "Heal", "↓ Resist damage", "Bleed Damage");
-//        asciiTable.addRow("» 1 «", "» 1 «", "» 1 «", "» 1 «", "» 1 «");
-//        asciiTable.addRow("■■■■■■■■■■■■■■■","■■■■■■■■■■■■■__", "■■■■■■■■■■■____", "■■■■■■■■■■_____", "■■■■■■■■_______");
-//        asciiTable.addRule();
-
     }
 
-    public static void printRegionBuffs(GameCharacter gameCharacter) {
-        generateTableWithBuffs(gameCharacter.getRegionActionsWithDuration());
+    public static void printRegionBuffs(Hero hero) {
+        generateTableWithBuffs(hero.getRegionActionsWithDuration());
     }
 
     public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {
@@ -54,56 +41,18 @@ public class PrintUtil {
             } else {
                 specialSymbol = " + ";
             }
-//            if (actionWithDuration instanceof ActionIncreaseAbilityPoint) {
-//                specialSymbol = " ↑ ";
-//            }
-//
-//            if (actionWithDuration instanceof ActionRestoreHealthOverTime) {
-//                specialSymbol = " + ";
-//            }
-//
-//            if (actionWithDuration instanceof ActionDealDamageOverTime) {
-//                specialSymbol = " - ";
-//            }
 
             System.out.format(leftAlignment, specialSymbol + actionWithDuration.getActionName(),
                     "Action Value: " + specialSymbol + actionWithDuration.getCurrentActionValue(),
                     "Turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()),
                     "Stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
         }
-
     }
 
-
-//    public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {
-//
-//        AsciiTable asciiTable = new AsciiTable();
-//
-//        for (ActionWithDuration actionWithDuration : actionWithDurationList) {
-//
-//            asciiTable.addRow(actionWithDuration.getActionName()
-//                    , "value: » " + actionWithDuration.getCurrentActionValue() + " «"
-//                    , "turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns())
-//                    , "stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
-////            asciiTable.addRow("» " + actionWithDuration.getCurrentActionValue() + " «");
-////            asciiTable.addRow(printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()));
-//
-//
-//            if (asciiTable.getColNumber() == 0) {
-//                return;
-//            }
-//
-//            asciiTable.setTextAlignment(TextAlignment.CENTER);
-//            String render = asciiTable.render(111);
-//            System.out.println(render);
-//            printExtraLongDivider();
-//        }
-//    }
-
-    public static StringBuilder printActionTurnRemaining(int currentTurn, int maxTurns) {
+    public static StringBuilder printActionTurnRemaining(int currentValue, int maxValue) {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < maxTurns; i++) {
-            if (i >= currentTurn) {
+        for (int i = 0; i < maxValue; i++) {
+            if (i > currentValue - 1) {
                 stringBuilder.append("_");
             } else {
                 stringBuilder.append("■");

@@ -40,6 +40,7 @@ public class Spell {
     }
 
     public void useSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
+        System.out.println("current turn: " + currentTurnCoolDown);
         if (this.canSpellBeCasted) {
             for (Action action : this.spellActions) {
                 if (action.isPossibleToPerformAction()) {
@@ -73,7 +74,9 @@ public class Spell {
     }
 
     private void actionOrActionWithDuration(Action action, GameCharacter effectOnCharacter) {
+        System.out.println("action: " + action.getActionName());
         if (action instanceof ActionWithDuration) {
+            System.out.println("pridala sa ");
             effectOnCharacter.addActionWithDuration((ActionWithDuration) action);
         } else {
             action.performAction(effectOnCharacter);
@@ -81,12 +84,8 @@ public class Spell {
     }
 
     public void increaseTurnCoolDown() {
-        if (this.turnCoolDown == 0) {
-            this.canSpellBeCasted = true;
-        } else {
-            checkTurnCoolDown();
-            this.currentTurnCoolDown++;
-        }
+        checkTurnCoolDown();
+        this.currentTurnCoolDown++;
     }
 
     private void checkTurnCoolDown() {
@@ -94,7 +93,7 @@ public class Spell {
             this.canSpellBeCasted = false;
         }
 
-        if (this.currentTurnCoolDown == this.turnCoolDown) {
+        if (this.currentTurnCoolDown >= this.turnCoolDown) {
             this.canSpellBeCasted = true;
         }
     }

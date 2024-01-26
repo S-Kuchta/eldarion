@@ -35,6 +35,7 @@ public class RuntimeTypeAdapterFactoryUtil {
             .of(ActionWithDuration.class)
             .registerSubtype(ActionDealDamageOverTime.class, "ActionDealDamageOverTimeWithDuration")
             .registerSubtype(ActionRestoreHealthOverTime.class, "ActionRestoreHealthWithDuration")
+            .registerSubtype(ActionAbsorbDamage.class)
             .registerSubtype(ActionIncreaseAbilityPoint.class, "ActionIncreaseAbilityPointWithDuration");
 
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory

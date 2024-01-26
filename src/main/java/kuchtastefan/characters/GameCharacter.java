@@ -47,14 +47,6 @@ public abstract class GameCharacter {
 
     public void addActionWithDuration(ActionWithDuration actionWithDuration) {
 
-        if (this.regionActionsWithDuration == null) {
-            this.regionActionsWithDuration = new HashSet<>();
-        }
-
-        if (this.battleActionsWithDuration == null) {
-            this.battleActionsWithDuration = new HashSet<>();
-        }
-
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.REGION_ACTION)) {
             addActionOrIncreaseStack(actionWithDuration, this.regionActionsWithDuration);
             addActionOrIncreaseStack(actionWithDuration, this.battleActionsWithDuration);
@@ -106,14 +98,6 @@ public abstract class GameCharacter {
     public void updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType actionDurationType) {
         resetCurrentAbilitiesToMaxAbilities(false);
 
-        if (this.regionActionsWithDuration == null) {
-            this.regionActionsWithDuration = new HashSet<>();
-        }
-
-        if (this.battleActionsWithDuration == null) {
-            this.battleActionsWithDuration = new HashSet<>();
-        }
-
         Set<ActionWithDuration> actions = new HashSet<>();
         actions.addAll(this.regionActionsWithDuration);
         actions.addAll(this.battleActionsWithDuration);
@@ -148,7 +132,16 @@ public abstract class GameCharacter {
     }
 
     public void receiveDamage(int damage) {
-        this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
+//        if (this.currentAbilities.get(Ability.ABSORB_DAMAGE) > 0) {
+        System.out.println("you have: " + this.getCurrentAbilityValue(Ability.ABSORB_DAMAGE));
+            if (this.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) >= damage) {
+                this.currentAbilities.put(Ability.ABSORB_DAMAGE, this.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) - damage);
+            } else {
+                damage -= getCurrentAbilityValue(Ability.ABSORB_DAMAGE);
+                this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
+            }
+//        }
+
     }
 
     public void restoreHealth(int valueOfRestore) {

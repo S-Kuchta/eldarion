@@ -9,9 +9,10 @@ public class ActionRestoreHealthOverTime extends ActionWithDuration {
 
     public ActionRestoreHealthOverTime(String actionName, ActionEffectOn actionEffectOn,
                                        int maxActionValue, int maxActionTurns, int actionMaxStacks,
-                                       ActionDurationType actionDurationType, int chanceToPerformAction) {
+                                       ActionDurationType actionDurationType, int chanceToPerformAction,
+                                       boolean canBeActionCriticalHit) {
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns,
-                actionMaxStacks, actionDurationType, chanceToPerformAction);
+                actionMaxStacks, actionDurationType, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override

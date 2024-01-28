@@ -147,9 +147,13 @@ public abstract class GameCharacter {
      * @param damage dealt
      */
     public void receiveDamage(int damage) {
-        damage -= getCurrentAbilityValue(Ability.RESIST_DAMAGE);
-        System.out.println(damage + " damage!");
+        if (getCurrentAbilityValue(Ability.RESIST_DAMAGE) > damage) {
+            damage = 0;
+        } else {
+            damage -= getCurrentAbilityValue(Ability.RESIST_DAMAGE);
+        }
 
+        System.out.println(damage + " damage!");
         if (this.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) >= damage) {
             this.currentAbilities.put(Ability.ABSORB_DAMAGE, this.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) - damage);
         } else {

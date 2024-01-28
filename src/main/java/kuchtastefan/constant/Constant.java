@@ -9,4 +9,5 @@ public class Constant {
     public static final int MAX_VENDOR_ITEMS_FOR_SELL = 10;
     public static final int INITIAL_EXPERIENCE_POINT = 0;
     public static final int RESTORE_MANA_PER_ONE_INTELLECT = 5;
+    public static final int CRITICAL_HIT_MULTIPLIER = 2;
 }

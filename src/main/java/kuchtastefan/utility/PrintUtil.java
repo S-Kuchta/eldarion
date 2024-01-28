@@ -61,6 +61,18 @@ public class PrintUtil {
         return stringBuilder;
     }
 
+    public static StringBuilder printActionTurnCoolDown(int currentValue, int maxValue) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < maxValue; i++) {
+            if (i >= currentValue - 1) {
+                stringBuilder.append("_");
+            } else {
+                stringBuilder.append("■");
+            }
+        }
+        return stringBuilder;
+    }
+
     public static void printHeaderWithStatsBar(GameCharacter gameCharacter) {
         printExtraLongDivider();
         System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t" + gameCharacter.getName());

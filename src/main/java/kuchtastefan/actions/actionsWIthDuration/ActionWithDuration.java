@@ -20,8 +20,9 @@ public class ActionWithDuration extends Action {
 
 
     public ActionWithDuration(String actionName, ActionEffectOn actionEffectOn, int maxActionValue, int maxActionTurns,
-                              int actionMaxStacks, ActionDurationType actionDurationType, int chanceToPerformAction) {
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction);
+                              int actionMaxStacks, ActionDurationType actionDurationType, int chanceToPerformAction,
+                              boolean canBeActionCriticalHit) {
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
         this.maxActionTurns = maxActionTurns;
         this.currentActionTurn = 0;
         this.actionMaxStacks = actionMaxStacks;

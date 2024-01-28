@@ -9,7 +9,8 @@
         "actionName": "Attack with weapon",
         "maxActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
       },
       {
         "type": "ActionDealDamageOverTime",
@@ -19,7 +20,8 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
-        "chanceToPerformAction": 50
+        "chanceToPerformAction": 50,
+        "canBeActionCriticalHit": false
       }
     ],
     "bonusValueFromAbility": {
@@ -42,7 +44,8 @@
         "maxActionTurns": 5,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
-        "chanceToPerformAction": 100
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
       }
     ],
     "bonusValueFromAbility": {
@@ -62,7 +65,8 @@
         "actionName": "Heal",
         "maxActionValue": 20,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
       }
     ],
     "bonusValueFromAbility": {

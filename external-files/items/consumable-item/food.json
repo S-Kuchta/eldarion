@@ -9,7 +9,8 @@
         "actionName": "Restore health",
         "maxActionValue": 25,
         "currentActionValue": 25,
-        "actionEffectOn": "SPELL_CASTER"
+        "actionEffectOn": "SPELL_CASTER",
+        "canBeActionCriticalHit": false
       },
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -20,7 +21,8 @@
         "actionDurationType": "REGION_ACTION",
         "actionMaxStacks": 1,
         "ability": "ATTACK",
-        "actionEffectOn": "SPELL_CASTER"
+        "actionEffectOn": "SPELL_CASTER",
+        "canBeActionCriticalHit": false
       }
     ]
   },
@@ -33,7 +35,8 @@
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
         "maxActionValue": 20,
-        "actionEffectOn": "SPELL_CASTER"
+        "actionEffectOn": "SPELL_CASTER",
+        "canBeActionCriticalHit": false
       }
     ]
   }

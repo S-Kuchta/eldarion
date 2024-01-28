@@ -5,6 +5,8 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.constant.Constant;
+import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,17 +41,37 @@ public class Spell {
         this.canSpellBeCasted = true;
     }
 
+    /**
+     * Attempts to use the spell on the specified target by the caster.
+     * Checks if the spell can be cast and if the caster has enough mana.
+     * If successful, performs the spell actions, applies bonuses from caster's abilities,
+     * and handles critical hit chance. Then updates caster's mana, coolDown, and performs actions on the target.
+     *
+     * @param spellCaster The character casting the spell.
+     * @param spellTarget The character targeted by the spell.
+     * @return True if the spell was successfully cast, false otherwise.
+     */
     public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
+
+            boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100)
+                    <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+
             for (Action action : this.spellActions) {
                 if (action.willPerformAction()) {
 
                     int totalActionValue = action.getMaxActionValue();
+
                     if (this.bonusValueFromAbility != null) {
                         for (Map.Entry<Ability, Integer> abilityBonus : this.bonusValueFromAbility.entrySet()) {
                             totalActionValue += spellCaster.getCurrentAbilityValue(abilityBonus.getKey())
                                     * abilityBonus.getValue();
                         }
+                    }
+
+                    if (criticalHit && action.isCanBeActionCriticalHit()) {
+                        System.out.println("\t" + action.getActionName() + " Critical hit!");
+                        totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
                     }
                     action.setNewActionValue(totalActionValue);
 
@@ -74,7 +96,6 @@ public class Spell {
                 System.out.println("\tYou can not cast " + this.spellName + ". Spell is on coolDown! (You have to wait "
                         + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)");
             }
-
             return false;
         }
     }
@@ -92,7 +113,7 @@ public class Spell {
         this.currentTurnCoolDown++;
     }
 
-    private void checkTurnCoolDown() {
+    public void checkTurnCoolDown() {
         if (this.currentTurnCoolDown < this.turnCoolDown) {
             this.canSpellBeCasted = false;
         }

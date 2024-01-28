@@ -8,9 +8,10 @@ public class ActionAbsorbDamage extends ActionWithDuration {
 
     public ActionAbsorbDamage(String actionName, ActionEffectOn actionEffectOn, int maxActionValue,
                               int maxActionTurns, int actionMaxStacks,
-                              ActionDurationType actionDurationType, int chanceToPerformAction) {
+                              ActionDurationType actionDurationType, int chanceToPerformAction,
+                              boolean canBeActionCriticalHit) {
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns,
-                actionMaxStacks, actionDurationType, chanceToPerformAction);
+                actionMaxStacks, actionDurationType, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override
@@ -19,8 +20,6 @@ public class ActionAbsorbDamage extends ActionWithDuration {
             int increaseAbilityWithStacks = this.getCurrentActionValue() * this.getActionCurrentStacks();
             gameCharacter.getCurrentAbilities().put(Ability.ABSORB_DAMAGE,
                     gameCharacter.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) + increaseAbilityWithStacks);
-        }/* else {
-            gameCharacter.getCurrentAbilities().put(Ability.ABSORB_DAMAGE, gameCharacter.getCurrentAbilityValue(Ability.ABSORB_DAMAGE));
-        }*/
+        }
     }
 }

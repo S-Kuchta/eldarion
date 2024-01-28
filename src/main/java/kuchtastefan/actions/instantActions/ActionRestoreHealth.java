@@ -8,8 +8,8 @@ import kuchtastefan.characters.GameCharacter;
 public class ActionRestoreHealth extends Action {
 
     public ActionRestoreHealth(String actionName, ActionEffectOn actionEffectOn,
-                               int maxActionValue, int chanceToPerformAction) {
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction);
+                               int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override

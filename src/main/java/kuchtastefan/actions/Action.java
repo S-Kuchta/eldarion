@@ -14,14 +14,16 @@ public abstract class Action {
     protected int currentActionValue;
     protected final ActionEffectOn actionEffectOn;
     protected final int chanceToPerformAction;
+    protected final boolean canBeActionCriticalHit;
 
 
-    public Action(String actionName, ActionEffectOn actionEffectOn, int maxActionValue, int chanceToPerformAction) {
+    public Action(String actionName, ActionEffectOn actionEffectOn, int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
         this.actionName = actionName;
         this.maxActionValue = maxActionValue;
         this.currentActionValue = maxActionValue;
         this.actionEffectOn = actionEffectOn;
         this.chanceToPerformAction = chanceToPerformAction;
+        this.canBeActionCriticalHit = canBeActionCriticalHit;
     }
 
     public abstract void performAction(GameCharacter gameCharacter);

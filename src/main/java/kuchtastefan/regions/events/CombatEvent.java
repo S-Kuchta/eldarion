@@ -7,6 +7,7 @@ import kuchtastefan.quest.questObjectives.QuestEnemy;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.service.BattleService;
 import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 
@@ -55,6 +56,7 @@ public class CombatEvent extends Event {
                     double goldEarn = randomEnemy.getGoldDrop();
                     double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getEnemyRarity().getExperienceGainedValue();
 
+                    PrintUtil.printLongDivider();
                     for (Item item : randomEnemy.getItemsDrop()) {
                         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
                         System.out.println("\tYou loot " + item.getName());

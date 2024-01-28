@@ -40,7 +40,6 @@ public class Spell {
     }
 
     public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
-        System.out.println("current turn: " + currentTurnCoolDown);
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
             for (Action action : this.spellActions) {
                 if (action.willPerformAction()) {
@@ -50,11 +49,8 @@ public class Spell {
                         for (Map.Entry<Ability, Integer> abilityBonus : this.bonusValueFromAbility.entrySet()) {
                             totalActionValue += spellCaster.getCurrentAbilityValue(abilityBonus.getKey())
                                     * abilityBonus.getValue();
-                            System.out.println("ability: " + abilityBonus.getKey() + ", value: " + abilityBonus.getValue());
                         }
                     }
-
-                    System.out.println("total value: " + totalActionValue);
                     action.setNewActionValue(totalActionValue);
 
                     if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {

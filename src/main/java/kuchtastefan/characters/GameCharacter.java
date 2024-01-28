@@ -3,6 +3,7 @@ package kuchtastefan.characters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.actionsWIthDuration.ActionAbsorbDamage;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.spell.Spell;
@@ -46,14 +47,13 @@ public abstract class GameCharacter {
     }
 
     public void addActionWithDuration(ActionWithDuration actionWithDuration) {
-
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.REGION_ACTION)) {
-            addActionOrIncreaseStack(actionWithDuration, this.regionActionsWithDuration);
-            addActionOrIncreaseStack(actionWithDuration, this.battleActionsWithDuration);
+            setNewActionOrAddStackToExistingAction(actionWithDuration, this.regionActionsWithDuration);
+            setNewActionOrAddStackToExistingAction(actionWithDuration, this.battleActionsWithDuration);
         }
 
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.BATTLE_ACTION)) {
-            addActionOrIncreaseStack(actionWithDuration, this.battleActionsWithDuration);
+            setNewActionOrAddStackToExistingAction(actionWithDuration, this.battleActionsWithDuration);
         }
     }
 
@@ -65,7 +65,7 @@ public abstract class GameCharacter {
      * @param actionWithDuration action with duration
      * @param actions            list where you want to add new action
      */
-    private void addActionOrIncreaseStack(ActionWithDuration actionWithDuration, Set<ActionWithDuration> actions) {
+    private void setNewActionOrAddStackToExistingAction(ActionWithDuration actionWithDuration, Set<ActionWithDuration> actions) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
         if (!actions.contains(actionWithDuration)) {
@@ -117,16 +117,19 @@ public abstract class GameCharacter {
     }
 
     protected void resetCurrentAbilitiesToMaxAbilities(boolean setHealthOrManaToMaxValue) {
-        int currentHealth = this.getCurrentAbilityValue(Ability.HEALTH);
-        int currentMana = this.getCurrentAbilityValue(Ability.MANA);
+/*        int currentHealth = this.getCurrentAbilityValue(Ability.HEALTH);
+        int currentMana = this.getCurrentAbilityValue(Ability.MANA);*/
 
         for (Ability ability : Ability.values()) {
-            if (ability.equals(Ability.HEALTH) || ability.equals(Ability.MANA)) {
+            if (ability.equals(Ability.HEALTH)
+                    || ability.equals(Ability.MANA)
+                    || ability.equals(Ability.ABSORB_DAMAGE)) {
                 if (setHealthOrManaToMaxValue) {
                     this.currentAbilities.put(ability, this.maxAbilities.get(ability));
                 } else {
-                    this.currentAbilities.put(Ability.HEALTH, currentHealth);
-                    this.currentAbilities.put(Ability.MANA, currentMana);
+                    this.currentAbilities.put(Ability.HEALTH, getCurrentAbilityValue(Ability.HEALTH));
+                    this.currentAbilities.put(Ability.MANA, getCurrentAbilityValue(Ability.MANA));
+                    this.currentAbilities.put(Ability.ABSORB_DAMAGE, getCurrentAbilityValue(Ability.ABSORB_DAMAGE));
                 }
             } else {
                 this.currentAbilities.put(ability, this.maxAbilities.get(ability));
@@ -139,46 +142,22 @@ public abstract class GameCharacter {
      * Damage is calculated damage - character resist damage
      * If character have active absorb damage, absorb damage will take corresponding amount of damage instead of health
      * If damage is higher than absorb damage, then absorb damage drop to 0 and left amount of damage will be dealt to health
+     * If Absorb damage is 0, all actions with duration will be removed from battleActionsWithDuration.
      *
      * @param damage dealt
      */
     public void receiveDamage(int damage) {
         damage -= getCurrentAbilityValue(Ability.RESIST_DAMAGE);
+        System.out.println(damage + " damage!");
 
         if (this.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) >= damage) {
             this.currentAbilities.put(Ability.ABSORB_DAMAGE, this.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) - damage);
         } else {
             damage -= getCurrentAbilityValue(Ability.ABSORB_DAMAGE);
+            this.currentAbilities.put(Ability.ABSORB_DAMAGE, 0);
             this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
+            this.battleActionsWithDuration.removeIf(actionWithDuration -> actionWithDuration instanceof ActionAbsorbDamage);
         }
-    }
-
-    public void restoreHealth(int valueOfRestoreHealth) {
-        int maxCharacterHealth = this.getMaxAbilities().get(Ability.HEALTH);
-        int currentCharacterHealth = this.getCurrentAbilityValue(Ability.HEALTH);
-
-        if (maxCharacterHealth - currentCharacterHealth <= valueOfRestoreHealth) {
-            this.getCurrentAbilities().put(Ability.HEALTH, maxCharacterHealth);
-        } else {
-            this.getCurrentAbilities().put(Ability.HEALTH, currentCharacterHealth + valueOfRestoreHealth);
-        }
-
-        System.out.println("\tYou have restored " + valueOfRestoreHealth + " Healths. Your healths are: "
-                + this.getCurrentAbilityValue(Ability.HEALTH));
-    }
-
-    public void restoreMana(int valueOfRestoreMana) {
-        int maxCharacterMana = this.getMaxAbilities().get(Ability.MANA);
-        int currentCharacterMana = this.getCurrentAbilityValue(Ability.MANA);
-
-        if (maxCharacterMana - currentCharacterMana <= valueOfRestoreMana) {
-            this.getCurrentAbilities().put(Ability.MANA, maxCharacterMana);
-        } else {
-            this.getCurrentAbilities().put(Ability.MANA, currentCharacterMana + valueOfRestoreMana);
-        }
-
-        System.out.println("\tYou have restored " + valueOfRestoreMana + " Mana. Your healths are: "
-                + this.getCurrentAbilityValue(Ability.HEALTH));
     }
 
     public void restoreAbility(int valueOfRestore, Ability ability) {
@@ -200,6 +179,10 @@ public abstract class GameCharacter {
         this.currentAbilities.put(ability, Math.max(currentAbility - valueOfLower, 0));
     }
 
+    public int getCurrentAbilityValue(Ability ability) {
+        return this.currentAbilities.get(ability);
+    }
+
     public Map<Ability, Integer> initializeAbilityForNonEnemyCharacters() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 15,
@@ -213,8 +196,5 @@ public abstract class GameCharacter {
         ));
     }
 
-    public int getCurrentAbilityValue(Ability ability) {
-        return this.currentAbilities.get(ability);
-    }
 
 }

@@ -15,7 +15,7 @@
         "type": "ActionDealDamageOverTime",
         "actionName": "Bleed",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 2,
+        "maxActionValue": 1,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -35,19 +35,12 @@
     "spellDescription": "Cast a powerful barrier",
     "spellActions": [
       {
-        "type": "ActionDealDamage",
-        "actionName": "Attack with weapon",
-        "maxActionValue": 1,
-        "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100
-      },
-      {
         "type": "ActionAbsorbDamage",
         "actionName": "Absorb Damage",
         "actionEffectOn": "SPELL_CASTER",
         "maxActionValue": 10,
         "maxActionTurns": 5,
-        "actionMaxStacks": 2,
+        "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100
       }

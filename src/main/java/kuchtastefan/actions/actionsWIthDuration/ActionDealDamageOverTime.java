@@ -15,8 +15,9 @@ public class ActionDealDamageOverTime extends ActionWithDuration {
     public void performAction(GameCharacter gameCharacter) {
         int damageWithStacks = this.getCurrentActionValue() * this.getActionCurrentStacks();
 
-        System.out.println("\t" + this.getActionName() + " deal " + damageWithStacks + " damage to " + gameCharacter.getName() + "!" );
+//        System.out.println("\t" + this.getActionName() + " deal " + damageWithStacks + " damage to " + gameCharacter.getName() + "!" );
 
+        System.out.print("\t"+ this.getActionName() + ", action deal: ");
         gameCharacter.receiveDamage(damageWithStacks);
     }
 }

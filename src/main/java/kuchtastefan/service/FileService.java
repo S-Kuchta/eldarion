@@ -362,7 +362,7 @@ public class FileService {
 
                 for (Spell spell : spells) {
                     spell.setCanSpellBeCasted(true);
-                    System.out.println(spell.getClass().getSimpleName());
+                    spell.setCurrentTurnCoolDown(spell.getTurnCoolDown());
                 }
 
                 spellList.addAll(spells);

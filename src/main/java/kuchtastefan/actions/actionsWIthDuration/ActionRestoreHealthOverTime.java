@@ -1,5 +1,6 @@
 package kuchtastefan.actions.actionsWIthDuration;
 
+import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.characters.GameCharacter;
 
@@ -15,7 +16,8 @@ public class ActionRestoreHealthOverTime extends ActionWithDuration {
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.restoreHealth(getCurrentActionValue());
+        gameCharacter.restoreAbility(getCurrentActionValue(), Ability.HEALTH);
+//        gameCharacter.restoreHealth(getCurrentActionValue());
     }
 
 }

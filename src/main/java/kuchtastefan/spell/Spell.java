@@ -39,21 +39,23 @@ public class Spell {
         this.canSpellBeCasted = true;
     }
 
-    public void useSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
+    public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.println("current turn: " + currentTurnCoolDown);
-        if (this.canSpellBeCasted) {
+        if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
             for (Action action : this.spellActions) {
-                if (action.isPossibleToPerformAction()) {
+                if (action.willPerformAction()) {
 
+                    int totalActionValue = action.getMaxActionValue();
                     if (this.bonusValueFromAbility != null) {
                         for (Map.Entry<Ability, Integer> abilityBonus : this.bonusValueFromAbility.entrySet()) {
-                            final int totalActionValue = action.getMaxActionValue()
-                                    + spellCaster.getCurrentAbilityValue(abilityBonus.getKey())
+                            totalActionValue += spellCaster.getCurrentAbilityValue(abilityBonus.getKey())
                                     * abilityBonus.getValue();
-
-                            action.setCurrentActionValue(totalActionValue);
+                            System.out.println("ability: " + abilityBonus.getKey() + ", value: " + abilityBonus.getValue());
                         }
                     }
+
+                    System.out.println("total value: " + totalActionValue);
+                    action.setNewActionValue(totalActionValue);
 
                     if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
                         actionOrActionWithDuration(action, spellTarget);
@@ -63,20 +65,26 @@ public class Spell {
                         actionOrActionWithDuration(action, spellCaster);
                     }
                 }
-
-                this.currentTurnCoolDown = 0;
-                checkTurnCoolDown();
             }
+
+            spellCaster.lowerAbility(this.spellManaCost, Ability.MANA);
+            this.currentTurnCoolDown = 0;
+            checkTurnCoolDown();
+            return true;
         } else {
-            System.out.println("\tYou can not cast spell. Spell is on coolDown! (You have to wait "
-                    + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)");
+            if (spellCaster.getCurrentAbilityValue(Ability.MANA) < this.spellManaCost) {
+                System.out.println("\tYou do not have enough Mana to perform this ability!");
+            } else {
+                System.out.println("\tYou can not cast " + this.spellName + ". Spell is on coolDown! (You have to wait "
+                        + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)");
+            }
+
+            return false;
         }
     }
 
     private void actionOrActionWithDuration(Action action, GameCharacter effectOnCharacter) {
-        System.out.println("action: " + action.getActionName());
         if (action instanceof ActionWithDuration) {
-            System.out.println("pridala sa ");
             effectOnCharacter.addActionWithDuration((ActionWithDuration) action);
         } else {
             action.performAction(effectOnCharacter);

@@ -1,5 +1,6 @@
 package kuchtastefan.actions.instantActions;
 
+import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.characters.GameCharacter;
@@ -13,6 +14,7 @@ public class ActionRestoreHealth extends Action {
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.restoreHealth(this.getCurrentActionValue());
+        gameCharacter.restoreAbility(this.getCurrentActionValue(), Ability.HEALTH);
+//        gameCharacter.restoreHealth(this.getCurrentActionValue());
     }
 }

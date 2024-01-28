@@ -26,11 +26,11 @@ public abstract class Action {
 
     public abstract void performAction(GameCharacter gameCharacter);
 
-    public boolean isPossibleToPerformAction() {
+    public boolean willPerformAction() {
         return RandomNumberGenerator.getRandomNumber(0, 100) <= this.chanceToPerformAction;
     }
 
     public void setNewActionValue(int value) {
-        this.currentActionValue += value;
+        this.currentActionValue = value;
     }
 }

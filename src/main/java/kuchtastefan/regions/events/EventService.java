@@ -49,6 +49,6 @@ public class EventService {
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
 
-        hero.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.REGION_ACTION);
+        hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.REGION_ACTION);
     }
 }

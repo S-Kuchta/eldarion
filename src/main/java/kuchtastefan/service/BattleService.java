@@ -30,7 +30,7 @@ public class BattleService {
                 heroUseSpell(hero, enemy);
                 checkSpellsCoolDowns(hero);
                 System.out.println("\tYou get from actions over time");
-                hero.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.BATTLE_ACTION);
+                hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
                 heroPlay = false;
             } else {
                 PrintUtil.printLongDivider();
@@ -38,7 +38,7 @@ public class BattleService {
                 checkSpellsCoolDowns(enemy);
 
                 System.out.println("\tYou get from actions over time");
-                enemy.updateCurrentAbilitiesDependsOnActiveActions(ActionDurationType.BATTLE_ACTION);
+                enemy.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
                 heroPlay = true;
             }
 
@@ -65,11 +65,15 @@ public class BattleService {
             index++;
         }
 
-        try {
-            final int choice = InputUtil.intScanner();
-            hero.getCharacterSpellList().get(choice).useSpell(hero, enemy);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("\tEnter valid input");
+        while (true) {
+            try {
+                final int choice = InputUtil.intScanner();
+                if (hero.getCharacterSpellList().get(choice).useSpell(hero, enemy)) {
+                    break;
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("\tEnter valid input");
+            }
         }
     }
 

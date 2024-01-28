@@ -82,8 +82,10 @@ public abstract class GameCharacter {
                 }
 
                 if (action.equals(actionWithDuration) && action.getActionCurrentStacks() == action.getActionMaxStacks()) {
+                    action.setNewCurrentActionValue(actionWithDuration.getCurrentActionValue());
                     action.actionCurrentTurnReset();
                 }
+
             }
         }
     }
@@ -117,19 +119,15 @@ public abstract class GameCharacter {
     }
 
     protected void resetCurrentAbilitiesToMaxAbilities(boolean setHealthOrManaToMaxValue) {
-/*        int currentHealth = this.getCurrentAbilityValue(Ability.HEALTH);
-        int currentMana = this.getCurrentAbilityValue(Ability.MANA);*/
-
         for (Ability ability : Ability.values()) {
             if (ability.equals(Ability.HEALTH)
-                    || ability.equals(Ability.MANA)
-                    || ability.equals(Ability.ABSORB_DAMAGE)) {
+                    || ability.equals(Ability.MANA)) {
+
                 if (setHealthOrManaToMaxValue) {
                     this.currentAbilities.put(ability, this.maxAbilities.get(ability));
                 } else {
                     this.currentAbilities.put(Ability.HEALTH, getCurrentAbilityValue(Ability.HEALTH));
                     this.currentAbilities.put(Ability.MANA, getCurrentAbilityValue(Ability.MANA));
-                    this.currentAbilities.put(Ability.ABSORB_DAMAGE, getCurrentAbilityValue(Ability.ABSORB_DAMAGE));
                 }
             } else {
                 this.currentAbilities.put(ability, this.maxAbilities.get(ability));
@@ -154,14 +152,26 @@ public abstract class GameCharacter {
         }
 
         System.out.println(damage + " damage!");
-        if (this.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) >= damage) {
-            this.currentAbilities.put(Ability.ABSORB_DAMAGE, this.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) - damage);
-        } else {
-            damage -= getCurrentAbilityValue(Ability.ABSORB_DAMAGE);
-            this.currentAbilities.put(Ability.ABSORB_DAMAGE, 0);
-            this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
-            this.battleActionsWithDuration.removeIf(actionWithDuration -> actionWithDuration instanceof ActionAbsorbDamage);
+
+        int absorbDamage = 0;
+        Iterator<ActionWithDuration> iterator = this.battleActionsWithDuration.iterator();
+        while (iterator.hasNext()) {
+            ActionWithDuration actionAbsorbDamage = iterator.next();
+            if (actionAbsorbDamage instanceof ActionAbsorbDamage) {
+                if (actionAbsorbDamage.getCurrentActionValue() > damage) {
+                    actionAbsorbDamage.setNewCurrentActionValue(actionAbsorbDamage.getCurrentActionValue() - damage);
+                    damage = 0;
+                } else {
+                    damage -= actionAbsorbDamage.getCurrentActionValue();
+                    actionAbsorbDamage.setNewCurrentActionValue(0);
+                    iterator.remove();
+                }
+                absorbDamage += actionAbsorbDamage.getCurrentActionValue();
+            }
         }
+
+        this.currentAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
+        this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
     }
 
     public void restoreAbility(int valueOfRestore, Ability ability) {

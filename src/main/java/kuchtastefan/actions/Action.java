@@ -32,7 +32,7 @@ public abstract class Action {
         return RandomNumberGenerator.getRandomNumber(0, 100) <= this.chanceToPerformAction;
     }
 
-    public void setNewActionValue(int value) {
+    public void setNewCurrentActionValue(int value) {
         this.currentActionValue = value;
     }
 }

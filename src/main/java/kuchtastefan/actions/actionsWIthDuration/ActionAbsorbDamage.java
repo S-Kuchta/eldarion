@@ -16,10 +16,9 @@ public class ActionAbsorbDamage extends ActionWithDuration {
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        if (this.getCurrentActionTurn() == 0) {
-            int increaseAbilityWithStacks = this.getCurrentActionValue() * this.getActionCurrentStacks();
-            gameCharacter.getCurrentAbilities().put(Ability.ABSORB_DAMAGE,
-                    gameCharacter.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) + increaseAbilityWithStacks);
-        }
+        int increaseAbilityWithStacks = this.getCurrentActionValue() * this.getActionCurrentStacks();
+        gameCharacter.getCurrentAbilities().put(Ability.ABSORB_DAMAGE,
+                gameCharacter.getCurrentAbilityValue(Ability.ABSORB_DAMAGE) + increaseAbilityWithStacks);
+
     }
 }

@@ -1,7 +1,5 @@
 package kuchtastefan.service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.characters.GameCharacter;
@@ -11,7 +9,6 @@ import kuchtastefan.spell.Spell;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,19 +17,20 @@ import java.util.Objects;
 
 public class BattleService {
 
-    public boolean battle(Hero hero, Enemy enemy) {
+    public boolean battle(Hero hero, List<Enemy> enemies) {
+        List<Enemy> enemyList = new ArrayList<>(enemies);
+
         String selectedHero = "A";
-
-        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-
-        Enemy newEnemy = gson.fromJson(gson.toJson(enemy), Enemy.class);
-
-        List<Enemy> enemyList = new ArrayList<>();
-        enemyList.add(enemy);
-        enemyList.add(newEnemy);
-        Enemy enemyChoice = null;
+        Enemy enemyChoosen = enemyList.getFirst();
 
         boolean heroPlay = true;
+        for (Enemy enemy : enemyList) {
+            if (enemy.getCurrentAbilityValue(Ability.HASTE) > hero.getCurrentAbilityValue(Ability.HASTE)) {
+                heroPlay = false;
+                break;
+            }
+        }
+
         hero.getBattleActionsWithDuration().clear();
         hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
 
@@ -40,14 +38,14 @@ public class BattleService {
 
             if (heroPlay) {
                 while (true) {
-                    if (enemyChoice == null) {
-                        enemyChoice = enemyList.getFirst();
-                    }
+/*                    if (enemyChoosen == null) {
+                        enemyChoosen = enemyList.getFirst();
+                    }*/
 
                     PrintUtil.printHeaderWithStatsBar(hero);
                     PrintUtil.printBattleBuffs(hero);
-                    PrintUtil.printHeaderWithStatsBar(enemyChoice);
-                    PrintUtil.printBattleBuffs(enemyChoice);
+                    PrintUtil.printHeaderWithStatsBar(enemyChoosen);
+                    PrintUtil.printBattleBuffs(enemyChoosen);
                     PrintUtil.printExtraLongDivider();
 
                     int index = 1;
@@ -75,26 +73,29 @@ public class BattleService {
                         spellIndex++;
                     }
 
+
                     String choice = InputUtil.stringScanner().toUpperCase();
                     if (choice.matches("\\d+")) {
                         try {
                             int number = Integer.parseInt(choice);
-                            if (hero.getCharacterSpellList().get(number).useSpell(hero, enemyChoice)) {
+                            if (hero.getCharacterSpellList().get(number).useSpell(hero, enemyChoosen)) {
                                 checkSpellsCoolDowns(hero);
                                 break;
+                            } else {
+                                continue;
                             }
                         } catch (IndexOutOfBoundsException e) {
                             System.out.println("\tEnter valid input");
-                            continue;
                         }
                     }
 
+
                     try {
-//                        selectedHero = LetterToNumber.valueOf(choice).name();
-                        enemyChoice = enemyList.get(LetterToNumber.valueOf(choice).ordinal());
+                        selectedHero = choice;
+                        enemyChoosen = enemyList.get(LetterToNumber.valueOf(choice).ordinal());
                     } catch (IndexOutOfBoundsException e) {
                         selectedHero = "A";
-                        enemyChoice = enemyList.getFirst();
+                        enemyChoosen = enemyList.getFirst();
                         System.out.println("\tEnter valid input");
                     } catch (IllegalArgumentException e) {
                         System.out.println("\tBad value");
@@ -109,28 +110,42 @@ public class BattleService {
                 Iterator<Enemy> iterator = enemyList.iterator();
                 while (iterator.hasNext()) {
 
-                    Enemy enemy1 = iterator.next();
-                    if (enemy1.getCurrentAbilityValue(Ability.HEALTH) > 0) {
+                    Enemy enemyInCombat = iterator.next();
+                    if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) > 0) {
+                        try {
+                            Thread.sleep(800);
+                        } catch (InterruptedException e) {
+                            System.out.println(e.getMessage());
+                        }
+
                         PrintUtil.printLongDivider();
-                        System.out.println("\t" + enemy1.getName() + " TURN!");
+                        System.out.println("\t\t" + enemyInCombat.getName() + " is Attacking!");
 
-                        enemyUseSpell(enemy1, hero);
-                        checkSpellsCoolDowns(enemy1);
+                        enemyUseSpell(enemyInCombat, hero);
+                        checkSpellsCoolDowns(enemyInCombat);
 
-                        System.out.println("\n\t" + enemy1.getName() + " suffered from actions over time");
-                        enemy1.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                        System.out.println("\n\t" + enemyInCombat.getName() + " suffered from actions over time");
+                        enemyInCombat.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
                     }
 
-                    if (enemy1.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
-                        System.out.println("\tYou killed " + enemy1.getName());
+                    if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+                        PrintUtil.printDivider();
+                        System.out.println("\t\tYou killed " + enemyInCombat.getName());
+                        PrintUtil.printDivider();
+
                         iterator.remove();
                         if (!enemyList.isEmpty()) {
-                            enemyChoice = enemyList.getFirst();
+                            enemyChoosen = enemyList.getFirst();
                         }
                         selectedHero = "A";
                     }
                 }
 
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
                 heroPlay = true;
             }
 

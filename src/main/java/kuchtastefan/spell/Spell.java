@@ -58,8 +58,9 @@ public class Spell {
                     <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
 
             for (Action action : this.spellActions) {
-                if (action.willPerformAction()) {
+                action.setNewCurrentActionValue(action.getMaxActionValue());
 
+                if (action.willPerformAction()) {
                     int totalActionValue = action.getMaxActionValue();
 
                     if (this.bonusValueFromAbility != null) {
@@ -73,7 +74,7 @@ public class Spell {
                         System.out.println("\t" + action.getActionName() + " Critical hit!");
                         totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
                     }
-                    action.setNewActionValue(totalActionValue);
+                    action.setNewCurrentActionValue(totalActionValue);
 
                     if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
                         actionOrActionWithDuration(action, spellTarget);

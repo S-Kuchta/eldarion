@@ -57,6 +57,30 @@
   },
   {
     "type": "Spell",
+    "spellName": "Barrier 2",
+    "spellDescription": "Cast a powerful barrier",
+    "spellActions": [
+      {
+        "type": "ActionAbsorbDamage",
+        "actionName": "Absorb Damage 2",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 10,
+        "maxActionTurns": 5,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1
+    },
+    "spellLevel": 1,
+    "spellManaCost": 15,
+    "turnCoolDown": 0
+  },
+  {
+    "type": "Spell",
     "spellName": "Heal",
     "spellDescription": "Heal",
     "spellActions": [

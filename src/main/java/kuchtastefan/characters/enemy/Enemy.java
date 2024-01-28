@@ -21,6 +21,7 @@ public class Enemy extends GameCharacter {
     private final LocationType[] locationType;
     private final int maxStack;
     private EnemyRarity enemyRarity;
+    protected boolean defeated;
 
 
     public Enemy(String name, Map<Ability, Integer> abilities,
@@ -31,6 +32,7 @@ public class Enemy extends GameCharacter {
         this.locationType = locationType;
         this.maxStack = maxStack;
         this.itemsDrop = new ArrayList<>();
+        this.defeated = false;
     }
 
     public void setMaxAbilitiesAndCurrentAbilities() {

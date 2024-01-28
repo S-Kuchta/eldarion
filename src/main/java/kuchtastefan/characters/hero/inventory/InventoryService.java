@@ -142,6 +142,7 @@ public class InventoryService {
         } else {
             try {
                 consumableItems.get(choice - 1).performActions(hero);
+                hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(null);
                 this.inventoryMenu(hero);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("\tEnter valid input");

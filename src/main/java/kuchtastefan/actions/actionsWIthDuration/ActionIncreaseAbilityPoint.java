@@ -29,7 +29,7 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration {
                 gameCharacter.getCurrentAbilityValue(this.ability)
                         + (increaseAbilityWithStacks));
 
-        System.out.println("\tAbility " + this.ability + " was increase by " + increaseAbilityWithStacks);
+//        System.out.println("\tAbility " + this.ability + " was increase by " + increaseAbilityWithStacks);
     }
 
 }

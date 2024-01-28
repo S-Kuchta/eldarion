@@ -5,6 +5,7 @@ import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.spell.Spell;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumber;
@@ -38,9 +39,6 @@ public class BattleService {
 
             if (heroPlay) {
                 while (true) {
-/*                    if (enemyChoosen == null) {
-                        enemyChoosen = enemyList.getFirst();
-                    }*/
 
                     PrintUtil.printHeaderWithStatsBar(hero);
                     PrintUtil.printBattleBuffs(hero);
@@ -73,7 +71,6 @@ public class BattleService {
                         spellIndex++;
                     }
 
-
                     String choice = InputUtil.stringScanner().toUpperCase();
                     if (choice.matches("\\d+")) {
                         try {
@@ -89,7 +86,6 @@ public class BattleService {
                         }
                     }
 
-
                     try {
                         selectedHero = choice;
                         enemyChoosen = enemyList.get(LetterToNumber.valueOf(choice).ordinal());
@@ -98,12 +94,14 @@ public class BattleService {
                         enemyChoosen = enemyList.getFirst();
                         System.out.println("\tEnter valid input");
                     } catch (IllegalArgumentException e) {
-                        System.out.println("\tBad value");
+                        System.out.println("\tEnter valid input");
                     }
                 }
 
                 System.out.println("\n\t" + hero.getName() + " suffered from actions over time");
                 hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                hero.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
+                        * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
 
                 heroPlay = false;
             } else {
@@ -126,6 +124,8 @@ public class BattleService {
 
                         System.out.println("\n\t" + enemyInCombat.getName() + " suffered from actions over time");
                         enemyInCombat.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                        enemyInCombat.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
+                                * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
                     }
 
                     if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
@@ -142,7 +142,7 @@ public class BattleService {
                 }
 
                 try {
-                    Thread.sleep(1500);
+                    Thread.sleep(2200);
                 } catch (InterruptedException e) {
                     System.out.println(e.getMessage());
                 }

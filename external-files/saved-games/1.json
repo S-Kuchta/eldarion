@@ -1,39 +1,75 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
-    "heroGold": 150.0,
+    "heroGold": 10.0,
     "experiencePoints": 0.0,
     "equippedItem": {
-      "HANDS": {
-        "wearableItemType": "HANDS",
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
         "abilities": {
-          "ABSORB_DAMAGE": 0,
+          "ATTACK": 2,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Iron sword of Attack",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "RESIST_DAMAGE": 3,
+          "ATTACK": 1,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Leather armor of Attack",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
           "STRENGTH": 0,
           "MANA": 0,
-          "INTELLECT": 0,
-          "HEALTH": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "CRITICAL_HIT_CHANCE": 1,
-          "ATTACK": 0
+          "ATTACK": 0,
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
         "price": 0.0,
         "itemLevel": 0
       },
-      "BOOTS": {
-        "wearableItemType": "BOOTS",
+      "HANDS": {
+        "wearableItemType": "HANDS",
         "abilities": {
-          "ABSORB_DAMAGE": 0,
           "STRENGTH": 0,
           "MANA": 0,
-          "INTELLECT": 0,
-          "HEALTH": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "CRITICAL_HIT_CHANCE": 1,
-          "ATTACK": 0
+          "ATTACK": 0,
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -43,51 +79,15 @@
       "HEAD": {
         "wearableItemType": "HEAD",
         "abilities": {
-          "ABSORB_DAMAGE": 0,
           "STRENGTH": 0,
           "MANA": 0,
-          "INTELLECT": 0,
-          "HEALTH": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "CRITICAL_HIT_CHANCE": 1,
-          "ATTACK": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "WEAPON": {
-        "wearableItemType": "WEAPON",
-        "abilities": {
+          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
-          "STRENGTH": 0,
-          "MANA": 0,
-          "INTELLECT": 0,
+          "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "HASTE": 0,
-          "RESIST_DAMAGE": 0,
-          "CRITICAL_HIT_CHANCE": 1,
-          "ATTACK": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "BODY": {
-        "wearableItemType": "BODY",
-        "abilities": {
-          "ABSORB_DAMAGE": 0,
-          "STRENGTH": 0,
-          "MANA": 0,
-          "INTELLECT": 0,
-          "HEALTH": 0,
-          "HASTE": 0,
-          "RESIST_DAMAGE": 0,
-          "CRITICAL_HIT_CHANCE": 1,
-          "ATTACK": 0
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -96,18 +96,63 @@
       }
     },
     "wearingItemAbilityPoints": {
-      "ABSORB_DAMAGE": 0,
       "STRENGTH": 0,
       "MANA": 0,
-      "INTELLECT": 0,
-      "HEALTH": 0,
       "HASTE": 0,
-      "RESIST_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
-      "ATTACK": 0
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 3,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 0,
+      "HEALTH": 0,
+      "INTELLECT": 0
     },
     "heroInventory": {
-      "heroInventory": {}
+      "heroInventory": [
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Attack",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BODY",
+            "abilities": {
+              "RESIST_DAMAGE": 3,
+              "ATTACK": 1,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Attack",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ]
+      ]
     },
     "experiencePointsService": {
       "neededExperiencePointsForNewLevel": 0.0
@@ -120,37 +165,37 @@
     "name": "1",
     "level": 1,
     "abilities": {
-      "ABSORB_DAMAGE": 0,
       "STRENGTH": 1,
       "MANA": 60,
-      "INTELLECT": 1,
-      "HEALTH": 50,
       "HASTE": 1,
-      "RESIST_DAMAGE": 1,
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 4,
+      "ABSORB_DAMAGE": 0,
       "CRITICAL_HIT_CHANCE": 1,
-      "ATTACK": 8
+      "HEALTH": 60,
+      "INTELLECT": 1
     },
     "maxAbilities": {
-      "ABSORB_DAMAGE": 0,
       "STRENGTH": 1,
       "MANA": 60,
-      "INTELLECT": 1,
-      "HEALTH": 50,
       "HASTE": 1,
-      "RESIST_DAMAGE": 1,
-      "ATTACK": 8,
-      "CRITICAL_HIT_CHANCE": 2
+      "RESIST_DAMAGE": 6,
+      "ATTACK": 7,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 60,
+      "INTELLECT": 1
     },
     "currentAbilities": {
-      "ABSORB_DAMAGE": 0,
       "STRENGTH": 1,
       "MANA": 60,
-      "INTELLECT": 1,
-      "HEALTH": 50,
       "HASTE": 1,
-      "RESIST_DAMAGE": 1,
-      "CRITICAL_HIT_CHANCE": 2,
-      "ATTACK": 8
+      "RESIST_DAMAGE": 6,
+      "ATTACK": 7,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 60,
+      "INTELLECT": 1
     },
     "regionActionsWithDuration": [],
     "battleActionsWithDuration": [],
@@ -163,9 +208,11 @@
           {
             "type": "ActionDealDamage",
             "actionName": "Attack with weapon",
-            "maxActionValue": 1,
+            "maxActionValue": 3,
             "currentActionValue": 0,
-            "actionEffectOn": "SPELL_TARGET"
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
           },
           {
             "type": "ActionDealDamageOverTime",
@@ -175,9 +222,11 @@
             "actionCurrentStacks": 0,
             "actionDurationType": "BATTLE_ACTION",
             "actionName": "Bleed",
-            "maxActionValue": 2,
+            "maxActionValue": 1,
             "currentActionValue": 0,
-            "actionEffectOn": "SPELL_TARGET"
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 50,
+            "canBeActionCriticalHit": false
           }
         ],
         "bonusValueFromAbility": {
@@ -185,8 +234,90 @@
         },
         "spellLevel": 1,
         "spellManaCost": 0,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true
+      },
+      {
+        "type": "Spell",
+        "spellName": "Barrier",
+        "spellDescription": "Cast a powerful barrier",
+        "spellActions": [
+          {
+            "type": "ActionAbsorbDamage",
+            "maxActionTurns": 5,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "Absorb Damage",
+            "maxActionValue": 10,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 15,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true
+      },
+      {
+        "type": "Spell",
+        "spellName": "Barrier 2",
+        "spellDescription": "Cast a powerful barrier",
+        "spellActions": [
+          {
+            "type": "ActionAbsorbDamage",
+            "maxActionTurns": 5,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "Absorb Damage 2",
+            "maxActionValue": 10,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 15,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true
+      },
+      {
+        "type": "Spell",
+        "spellName": "Heal",
+        "spellDescription": "Heal",
+        "spellActions": [
+          {
+            "type": "ActionRestoreHealth",
+            "actionName": "Heal",
+            "maxActionValue": 20,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 10,
         "turnCoolDown": 2,
-        "currentTurnCoolDown": 0,
+        "currentTurnCoolDown": 3,
         "canSpellBeCasted": true
       }
     ]
@@ -195,10 +326,55 @@
   "hintUtil": {
     "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": false
+      "showed": true
     }
   },
   "forestRegionDiscoveredLocation": [],
   "regionActionsWithDuration": [],
-  "itemList": {}
+  "itemList": [
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 2,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Iron sword of Attack",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BODY",
+        "abilities": {
+          "RESIST_DAMAGE": 3,
+          "ATTACK": 1,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Leather armor of Attack",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ]
+  ]
 }

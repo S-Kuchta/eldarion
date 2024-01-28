@@ -1,48 +1,21 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
-    "heroGold": 137.0,
-    "experiencePoints": 70.0,
+    "heroGold": 10.0,
+    "experiencePoints": 0.0,
     "equippedItem": {
-      "HEAD": {
-        "wearableItemType": "HEAD",
-        "abilities": {
-          "SKILL": 0,
-          "LUCK": 0,
-          "DEFENCE": 0,
-          "ATTACK": 0,
-          "DEXTERITY": 0,
-          "HEALTH": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "BOOTS": {
-        "wearableItemType": "BOOTS",
-        "abilities": {
-          "SKILL": 0,
-          "LUCK": 0,
-          "DEFENCE": 0,
-          "ATTACK": 0,
-          "DEXTERITY": 0,
-          "HEALTH": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "SKILL": 0,
-          "LUCK": 0,
-          "DEFENCE": 0,
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
           "ATTACK": 0,
-          "DEXTERITY": 0,
-          "HEALTH": 0
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -52,12 +25,33 @@
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
-          "SKILL": 0,
-          "LUCK": 0,
-          "DEFENCE": 0,
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
           "ATTACK": 0,
-          "DEXTERITY": 0,
-          "HEALTH": 0
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ATTACK": 0,
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -67,12 +61,33 @@
       "HANDS": {
         "wearableItemType": "HANDS",
         "abilities": {
-          "SKILL": 0,
-          "LUCK": 0,
-          "DEFENCE": 0,
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
           "ATTACK": 0,
-          "DEXTERITY": 0,
-          "HEALTH": 0
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ATTACK": 0,
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -81,232 +96,283 @@
       }
     },
     "wearingItemAbilityPoints": {
-      "SKILL": 0,
-      "LUCK": 0,
-      "DEFENCE": 0,
+      "STRENGTH": 0,
+      "MANA": 0,
+      "HASTE": 0,
+      "RESIST_DAMAGE": 0,
       "ATTACK": 0,
-      "DEXTERITY": 0,
-      "HEALTH": 0
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 0,
+      "HEALTH": 0,
+      "INTELLECT": 0
     },
     "heroInventory": {
       "heroInventory": [
         [
           {
-            "type": "CraftingReagentItem",
-            "craftingReagentItemType": "ALCHEMY_REAGENT",
-            "name": "DeathBloom",
-            "price": 10.0,
-            "itemLevel": 2
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Attack",
+            "price": 70.0,
+            "itemLevel": 1
           },
-          4
-        ],
-        [
-          {
-            "type": "CraftingReagentItem",
-            "craftingReagentItemType": "BLACKSMITH_REAGENT",
-            "name": "Iron ore",
-            "price": 10.0,
-            "itemLevel": 2
-          },
-          3
+          1
         ],
         [
           {
             "type": "WearableItem",
             "wearableItemType": "BODY",
             "abilities": {
-              "DEFENCE": 4,
-              "ATTACK": 0,
-              "DEXTERITY": 0,
-              "SKILL": 0,
-              "LUCK": 0,
-              "HEALTH": 0
+              "RESIST_DAMAGE": 3,
+              "ATTACK": 1,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
             },
             "wearableItemQuality": "BASIC",
-            "name": "Heavy armor",
-            "price": 140.0,
-            "itemLevel": 2
-          },
-          1
-        ],
-        [
-          {
-            "type": "CraftingReagentItem",
-            "craftingReagentItemType": "BLACKSMITH_REAGENT",
-            "name": "Silver ore",
-            "price": 25.0,
-            "itemLevel": 3
-          },
-          1
-        ],
-        [
-          {
-            "type": "JunkItem",
-            "name": "Silver ring",
-            "price": 21.0,
-            "itemLevel": 0
+            "name": "Leather armor of Attack",
+            "price": 70.0,
+            "itemLevel": 1
           },
           1
         ]
       ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 480.0
+      "neededExperiencePointsForNewLevel": 0.0
     },
     "enemyKilled": {
-      "enemyKilled": {
-        "Defias Bandit": 1
-      },
+      "enemyKilled": {},
       "questEnemyKilled": {}
     },
-    "listOfAcceptedQuests": [
-      {
-        "questId": 0,
-        "questName": "Shadow Raiders",
-        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
-        "questLevel": 2,
-        "questCompleted": true,
-        "questObjectives": [
-          {
-            "type": "QuestKillObjective",
-            "questEnemyToKill": {
-              "questEnemyName": "Defias Bandit",
-              "questEnemyRarity": "COMMON"
-            },
-            "countEnemyToKill": 1,
-            "currentCountEnemyProgress": 1,
-            "completed": true
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            {
-              "type": "WearableItem",
-              "wearableItemType": "WEAPON",
-              "abilities": {
-                "ATTACK": 1,
-                "SKILL": 1,
-                "DEXTERITY": 0,
-                "LUCK": 0,
-                "HEALTH": 0,
-                "DEFENCE": 0
-              },
-              "wearableItemQuality": "BASIC",
-              "price": 70.0,
-              "itemLevel": 1
-            }
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0,
-          "questLevel": 2
-        },
-        "isTurnedIn": false
-      }
-    ],
+    "listOfAcceptedQuests": [],
     "name": "1",
     "level": 1,
     "abilities": {
-      "SKILL": 1,
-      "LUCK": 1,
-      "DEFENCE": 1,
-      "ATTACK": 8,
-      "DEXTERITY": 1,
-      "HEALTH": 50
+      "STRENGTH": 1,
+      "MANA": 60,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 4,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 60,
+      "INTELLECT": 1
     },
     "maxAbilities": {
-      "DEXTERITY": 1,
-      "SKILL": 1,
-      "LUCK": 1,
-      "DEFENCE": 1,
-      "ATTACK": 8,
-      "HEALTH": 50
+      "STRENGTH": 1,
+      "MANA": 60,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 4,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 60,
+      "INTELLECT": 1
     },
     "currentAbilities": {
-      "SKILL": 1,
-      "LUCK": 1,
-      "DEFENCE": 1,
-      "ATTACK": 8,
-      "DEXTERITY": 1,
-      "HEALTH": 36
+      "STRENGTH": 1,
+      "MANA": 60,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 4,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 60,
+      "INTELLECT": 1
     },
     "regionActionsWithDuration": [],
-    "battleActionsWithDuration": []
+    "battleActionsWithDuration": [],
+    "characterSpellList": [
+      {
+        "type": "Spell",
+        "spellName": "Attack",
+        "spellDescription": "Basic attack with weapon",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "Attack with weapon",
+            "maxActionValue": 3,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          },
+          {
+            "type": "ActionDealDamageOverTime",
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "Bleed",
+            "maxActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 50,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 0,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true
+      },
+      {
+        "type": "Spell",
+        "spellName": "Barrier",
+        "spellDescription": "Cast a powerful barrier",
+        "spellActions": [
+          {
+            "type": "ActionAbsorbDamage",
+            "maxActionTurns": 5,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "Absorb Damage",
+            "maxActionValue": 10,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 15,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true
+      },
+      {
+        "type": "Spell",
+        "spellName": "Barrier 2",
+        "spellDescription": "Cast a powerful barrier",
+        "spellActions": [
+          {
+            "type": "ActionAbsorbDamage",
+            "maxActionTurns": 5,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "Absorb Damage 2",
+            "maxActionValue": 10,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 15,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true
+      },
+      {
+        "type": "Spell",
+        "spellName": "Heal",
+        "spellDescription": "Heal",
+        "spellActions": [
+          {
+            "type": "ActionRestoreHealth",
+            "actionName": "Heal",
+            "maxActionValue": 20,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 10,
+        "turnCoolDown": 2,
+        "currentTurnCoolDown": 3,
+        "canSpellBeCasted": true
+      }
+    ]
   },
   "level": 1,
   "hintUtil": {
     "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": false
+      "showed": true
     }
   },
-  "forestRegionDiscoveredLocation": [
-    {
-      "locationName": "Tower of Damned",
-      "locationLevel": 5,
-      "stageTotal": 10,
-      "stageCompleted": 0,
-      "cleared": false,
-      "locationType": "TOWER",
-      "canLocationBeExplored": true
-    }
-  ],
+  "forestRegionDiscoveredLocation": [],
   "regionActionsWithDuration": [],
   "itemList": [
     [
       {
-        "type": "CraftingReagentItem",
-        "craftingReagentItemType": "ALCHEMY_REAGENT",
-        "name": "DeathBloom",
-        "price": 10.0,
-        "itemLevel": 2
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 2,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Iron sword of Attack",
+        "price": 70.0,
+        "itemLevel": 1
       },
-      4
-    ],
-    [
-      {
-        "type": "CraftingReagentItem",
-        "craftingReagentItemType": "BLACKSMITH_REAGENT",
-        "name": "Iron ore",
-        "price": 10.0,
-        "itemLevel": 2
-      },
-      3
+      1
     ],
     [
       {
         "type": "WearableItem",
         "wearableItemType": "BODY",
         "abilities": {
-          "DEFENCE": 4,
-          "ATTACK": 0,
-          "DEXTERITY": 0,
-          "SKILL": 0,
-          "LUCK": 0,
-          "HEALTH": 0
+          "RESIST_DAMAGE": 3,
+          "ATTACK": 1,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Heavy armor",
-        "price": 140.0,
-        "itemLevel": 2
-      },
-      1
-    ],
-    [
-      {
-        "type": "CraftingReagentItem",
-        "craftingReagentItemType": "BLACKSMITH_REAGENT",
-        "name": "Silver ore",
-        "price": 25.0,
-        "itemLevel": 3
-      },
-      1
-    ],
-    [
-      {
-        "type": "JunkItem",
-        "name": "Silver ring",
-        "price": 21.0,
-        "itemLevel": 0
+        "name": "Leather armor of Attack",
+        "price": 70.0,
+        "itemLevel": 1
       },
       1
     ]

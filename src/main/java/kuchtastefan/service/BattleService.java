@@ -24,7 +24,7 @@ public class BattleService {
         List<Enemy> enemyList = new ArrayList<>(enemies);
 
         String selectedHeroForShowSelected = "A";
-        Enemy enemyChoosen = enemyList.getFirst();
+        Enemy enemyChosen = enemyList.getFirst();
 
         boolean heroPlay = true;
         for (Enemy enemy : enemyList) {
@@ -38,10 +38,9 @@ public class BattleService {
         hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
 
         while (true) {
-
             if (heroPlay) {
                 while (true) {
-                    printBattleMenu(hero, enemyChoosen, selectedHeroForShowSelected, enemyList);
+                    printBattleMenu(hero, enemyChosen, selectedHeroForShowSelected, enemyList);
 
                     String choice = InputUtil.stringScanner().toUpperCase();
                     if (choice.matches("\\d+")) {
@@ -53,7 +52,7 @@ public class BattleService {
                                     break;
                                 }
                             } else {
-                                if (hero.getCharacterSpellList().get(number).useSpell(hero, enemyChoosen)) {
+                                if (hero.getCharacterSpellList().get(number).useSpell(hero, enemyChosen)) {
                                     checkSpellsCoolDowns(hero);
                                     break;
                                 }
@@ -64,10 +63,10 @@ public class BattleService {
                     } else {
                         try {
                             selectedHeroForShowSelected = choice;
-                            enemyChoosen = enemyList.get(LetterToNumber.valueOf(choice).ordinal());
+                            enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).ordinal());
                         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
                             selectedHeroForShowSelected = "A";
-                            enemyChoosen = enemyList.getFirst();
+                            enemyChosen = enemyList.getFirst();
                             System.out.println("\tEnter valid input");
                         }
                     }
@@ -110,7 +109,7 @@ public class BattleService {
 
                         iterator.remove();
                         if (!enemyList.isEmpty()) {
-                            enemyChoosen = enemyList.getFirst();
+                            enemyChosen = enemyList.getFirst();
                             selectedHeroForShowSelected = "A";
                         }
                     }

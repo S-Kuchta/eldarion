@@ -15,6 +15,5 @@ public class ActionRestoreHealth extends Action {
     @Override
     public void performAction(GameCharacter gameCharacter) {
         gameCharacter.restoreAbility(this.getCurrentActionValue(), Ability.HEALTH);
-//        gameCharacter.restoreHealth(this.getCurrentActionValue());
     }
 }

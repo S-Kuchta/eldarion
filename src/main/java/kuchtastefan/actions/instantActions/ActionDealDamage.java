@@ -12,7 +12,6 @@ public class ActionDealDamage extends Action {
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-//            System.out.println("\t" + this.getActionName() + " deal " + getCurrentActionValue() + " damage!");
         System.out.print("\t"+ this.getActionName() + ", action deal: ");
         gameCharacter.receiveDamage(this.currentActionValue);
     }

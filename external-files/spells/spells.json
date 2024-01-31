@@ -2,11 +2,11 @@
   {
     "type": "Spell",
     "spellName": "Attack",
-    "spellDescription": "Basic attack with weapon",
+    "spellDescription": "Attack",
     "spellActions": [
       {
         "type": "ActionDealDamage",
-        "actionName": "Attack with weapon",
+        "actionName": "Attack",
         "maxActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,

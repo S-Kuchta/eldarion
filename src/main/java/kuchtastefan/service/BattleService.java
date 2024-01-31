@@ -5,6 +5,7 @@ import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.spell.Spell;
 import kuchtastefan.utility.InputUtil;
@@ -19,9 +20,10 @@ import java.util.Objects;
 public class BattleService {
 
     public boolean battle(Hero hero, List<Enemy> enemies) {
+        InventoryService inventoryService = new InventoryService();
         List<Enemy> enemyList = new ArrayList<>(enemies);
 
-        String selectedHero = "A";
+        String selectedHeroForShowSelected = "A";
         Enemy enemyChoosen = enemyList.getFirst();
 
         boolean heroPlay = true;
@@ -39,62 +41,35 @@ public class BattleService {
 
             if (heroPlay) {
                 while (true) {
-
-                    PrintUtil.printHeaderWithStatsBar(hero);
-                    PrintUtil.printBattleBuffs(hero);
-                    PrintUtil.printHeaderWithStatsBar(enemyChoosen);
-                    PrintUtil.printBattleBuffs(enemyChoosen);
-                    PrintUtil.printExtraLongDivider();
-
-                    int index = 1;
-                    for (Enemy enemyFromList : enemyList) {
-                        if (!enemyFromList.isDefeated()) {
-                            System.out.print("\t" + LetterToNumber.getStringFromValue(index)
-                                    + ". " + enemyFromList.getName() + " - " + enemyFromList.getEnemyRarity() + " - "
-                                    + " Healths: "
-                                    + enemyFromList.getCurrentAbilityValue(Ability.HEALTH));
-
-                            if (Objects.equals(LetterToNumber.getStringFromValue(index), selectedHero)) {
-                                System.out.print(" - SELECTED - ");
-                            }
-                            index++;
-                        }
-                    }
-
-                    int spellIndex = 0;
-                    System.out.println();
-                    for (Spell spell : hero.getCharacterSpellList()) {
-                        System.out.println("\t" + spellIndex + ". " + spell.getSpellName() + ", "
-                                + spell.getSpellDescription() + " "
-                                + PrintUtil.printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()));
-
-                        spellIndex++;
-                    }
+                    printBattleMenu(hero, enemyChoosen, selectedHeroForShowSelected, enemyList);
 
                     String choice = InputUtil.stringScanner().toUpperCase();
                     if (choice.matches("\\d+")) {
                         try {
                             int number = Integer.parseInt(choice);
-                            if (hero.getCharacterSpellList().get(number).useSpell(hero, enemyChoosen)) {
-                                checkSpellsCoolDowns(hero);
-                                break;
+                            if (number == hero.getCharacterSpellList().size()) {
+                                if (inventoryService.consumableItemsMenu(hero, true)) {
+                                    checkSpellsCoolDowns(hero);
+                                    break;
+                                }
                             } else {
-                                continue;
+                                if (hero.getCharacterSpellList().get(number).useSpell(hero, enemyChoosen)) {
+                                    checkSpellsCoolDowns(hero);
+                                    break;
+                                }
                             }
                         } catch (IndexOutOfBoundsException e) {
                             System.out.println("\tEnter valid input");
                         }
-                    }
-
-                    try {
-                        selectedHero = choice;
-                        enemyChoosen = enemyList.get(LetterToNumber.valueOf(choice).ordinal());
-                    } catch (IndexOutOfBoundsException e) {
-                        selectedHero = "A";
-                        enemyChoosen = enemyList.getFirst();
-                        System.out.println("\tEnter valid input");
-                    } catch (IllegalArgumentException e) {
-                        System.out.println("\tEnter valid input");
+                    } else {
+                        try {
+                            selectedHeroForShowSelected = choice;
+                            enemyChoosen = enemyList.get(LetterToNumber.valueOf(choice).ordinal());
+                        } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
+                            selectedHeroForShowSelected = "A";
+                            enemyChoosen = enemyList.getFirst();
+                            System.out.println("\tEnter valid input");
+                        }
                     }
                 }
 
@@ -136,8 +111,8 @@ public class BattleService {
                         iterator.remove();
                         if (!enemyList.isEmpty()) {
                             enemyChoosen = enemyList.getFirst();
+                            selectedHeroForShowSelected = "A";
                         }
-                        selectedHero = "A";
                     }
                 }
 
@@ -166,26 +141,38 @@ public class BattleService {
         }
     }
 
-    private void heroUseSpell(Hero hero, Enemy enemy) {
-        int index = 0;
+    private void printBattleMenu(Hero hero, Enemy enemyChosen, String selectedHeroForShowSelected, List<Enemy> enemyList) {
+        PrintUtil.printHeaderWithStatsBar(hero);
+        PrintUtil.printBattleBuffs(hero);
+        PrintUtil.printHeaderWithStatsBar(enemyChosen);
+        PrintUtil.printBattleBuffs(enemyChosen);
+        PrintUtil.printExtraLongDivider();
+
+        int index = 1;
+        for (Enemy enemyFromList : enemyList) {
+            if (!enemyFromList.isDefeated()) {
+                System.out.print("\t" + LetterToNumber.getStringFromValue(index)
+                        + ". " + enemyFromList.getName() + " - " + enemyFromList.getEnemyRarity() + " - "
+                        + " Healths: "
+                        + enemyFromList.getCurrentAbilityValue(Ability.HEALTH));
+
+                if (Objects.equals(LetterToNumber.getStringFromValue(index), selectedHeroForShowSelected)) {
+                    System.out.print(" - SELECTED - ");
+                }
+                index++;
+            }
+        }
+
+        int spellIndex = 0;
+        System.out.println();
         for (Spell spell : hero.getCharacterSpellList()) {
-            System.out.println("\t" + index + ". " + spell.getSpellName() + ", "
+            System.out.println("\t" + spellIndex + ". " + spell.getSpellName() + ", "
                     + spell.getSpellDescription() + " "
                     + PrintUtil.printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()));
 
-            index++;
+            spellIndex++;
         }
-
-        while (true) {
-            try {
-                final int choice = InputUtil.intScanner();
-                if (hero.getCharacterSpellList().get(choice).useSpell(hero, enemy)) {
-                    break;
-                }
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("\tEnter valid input");
-            }
-        }
+        System.out.println("\t" + spellIndex + ". Potions");
     }
 
     private void enemyUseSpell(Enemy enemy, Hero hero) {

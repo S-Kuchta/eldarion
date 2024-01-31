@@ -104,7 +104,6 @@ public abstract class GameCharacter {
         actions.addAll(this.regionActionsWithDuration);
         actions.addAll(this.battleActionsWithDuration);
 
-//        for (ActionWithDuration actionWithDuration : this.regionActionsWithDuration) {
         for (ActionWithDuration actionWithDuration : actions) {
             actionWithDuration.performAction(this);
             if (actionWithDuration.getActionDurationType().equals(actionDurationType)) {
@@ -184,8 +183,11 @@ public abstract class GameCharacter {
             this.currentAbilities.put(ability, currentCharacterAbility + valueOfRestore);
         }
 
-        System.out.println("\tYou have restored " + valueOfRestore + " " + ability.name()
-                + ". Your " + ability.name() + " is " + this.getCurrentAbilityValue(ability));
+        if (ability.equals(Ability.MANA) && this.getCurrentAbilityValue(Ability.MANA) != 0) {
+            System.out.println("\t" + this.name + " have restored " + valueOfRestore + " " + ability.name()
+                    + ". " + this.name + " " + ability.name() + " is " + this.getCurrentAbilityValue(ability));
+        }
+
     }
 
     public void lowerAbility(int valueOfLower, Ability ability) {

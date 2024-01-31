@@ -113,7 +113,7 @@ public class InventoryService {
         }
     }
 
-    public void consumableItemsMenu(Hero hero, boolean isHeroInCombat) {
+    public boolean consumableItemsMenu(Hero hero, boolean isHeroInCombat) {
         PrintUtil.printInventoryHeader("Consumable");
         System.out.println("\t0. Go back");
 
@@ -136,17 +136,27 @@ public class InventoryService {
             }
         }
 
-        int choice = InputUtil.intScanner();
-        if (choice == 0) {
-            this.inventoryMenu(hero);
-        } else {
-            try {
-                consumableItems.get(choice - 1).performActions(hero);
-                hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(null);
-                this.inventoryMenu(hero);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("\tEnter valid input");
-                this.consumableItemsMenu(hero, isHeroInCombat);
+        while (true) {
+            int choice = InputUtil.intScanner();
+            if (choice == 0) {
+                if (!isHeroInCombat) {
+                    consumableItemsMenu(hero, false);
+                } else {
+                    return false;
+                }
+            } else {
+                try {
+                    consumableItems.get(choice - 1).performActions(hero);
+                    hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(null);
+                    if (!isHeroInCombat) {
+                        consumableItemsMenu(hero, false);
+                    } else {
+                        return true;
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("\tEnter valid input");
+                    this.consumableItemsMenu(hero, isHeroInCombat);
+                }
             }
         }
     }

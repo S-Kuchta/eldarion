@@ -3,22 +3,22 @@ package kuchtastefan.utility;
 import lombok.Getter;
 
 @Getter
-public enum LetterToNumber {
+public enum LetterToNumberSpellLevel {
 
     A(1),
-    B(2),
-    C(3),
-    D(4),
-    E(5);
+    B(3),
+    C(5),
+    D(7),
+    E(9);
 
     private final int value;
 
-    LetterToNumber(int value) {
+    LetterToNumberSpellLevel(int value) {
         this.value = value;
     }
 
     public static String getStringFromValue(int value) {
-        for (LetterToNumber enumValue : LetterToNumber.values()) {
+        for (LetterToNumberSpellLevel enumValue : LetterToNumberSpellLevel.values()) {
             if (enumValue.value == value) {
                 return enumValue.name();
             }

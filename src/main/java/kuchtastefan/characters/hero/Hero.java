@@ -13,6 +13,7 @@ import kuchtastefan.quest.questObjectives.QuestEnemy;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
+import kuchtastefan.spell.Spell;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -27,6 +28,7 @@ import java.util.Map;
 @Setter
 public class Hero extends GameCharacter {
 
+    private HeroClass heroClass;
     private int unspentAbilityPoints;
     private double heroGold;
     private double experiencePoints;
@@ -36,6 +38,7 @@ public class Hero extends GameCharacter {
     private final ExperiencePointsService experiencePointsService;
     private final EnemyKilled enemyKilled;
     private final List<Quest> listOfAcceptedQuests;
+    private final Map<Integer, Spell> learnedSpells;
 
 
     public Hero(String name) {
@@ -51,6 +54,7 @@ public class Hero extends GameCharacter {
         this.experiencePointsService = new ExperiencePointsService();
         this.enemyKilled = new EnemyKilled();
         this.listOfAcceptedQuests = new ArrayList<>();
+        this.learnedSpells = new HashMap<>();
     }
 
     public void equipItem(WearableItem wearableItem) {

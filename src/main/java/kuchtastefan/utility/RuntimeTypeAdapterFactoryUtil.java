@@ -16,8 +16,7 @@ import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
 import kuchtastefan.spell.Spell;
-import kuchtastefan.spell.mageSpell.MageSpell;
-import kuchtastefan.spell.warriorSpell.WarriorSpell;
+
 
 public class RuntimeTypeAdapterFactoryUtil {
 
@@ -52,9 +51,9 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(QuestItem.class)
             .registerSubtype(WearableItem.class);
 
-    public static final RuntimeTypeAdapterFactory<Spell> spellObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
-            .of(Spell.class)
-            .registerSubtype(Spell.class)
-            .registerSubtype(MageSpell.class)
-            .registerSubtype(WarriorSpell.class);
+//    public static final RuntimeTypeAdapterFactory<Spell> spellObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
+//            .of(Spell.class)
+//            .registerSubtype(Spell.class);
+//            .registerSubtype(MageSpell.class)
+//            .registerSubtype(WarriorSpell.class);
 }

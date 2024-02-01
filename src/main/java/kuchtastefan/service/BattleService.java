@@ -63,7 +63,7 @@ public class BattleService {
                     } else {
                         try {
                             selectedHeroForShowSelected = choice;
-                            enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).ordinal());
+                            enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue());
                         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
                             selectedHeroForShowSelected = "A";
                             enemyChosen = enemyList.getFirst();
@@ -116,7 +116,7 @@ public class BattleService {
                 }
 
                 try {
-                    Thread.sleep(2200);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     System.out.println(e.getMessage());
                 }

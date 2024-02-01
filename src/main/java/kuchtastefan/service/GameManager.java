@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.enemy.EnemyList;
-import kuchtastefan.characters.hero.GameLoaded;
-import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.HeroAbilityManager;
-import kuchtastefan.characters.hero.HeroCharacterService;
+import kuchtastefan.characters.hero.*;
 import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
 import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.characters.vendor.JunkVendorCharacter;
@@ -23,6 +20,8 @@ import kuchtastefan.spell.SpellsList;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
+
+import java.util.stream.Collectors;
 
 
 public class GameManager {
@@ -179,10 +178,10 @@ public class GameManager {
 
         HintUtil.initializeHintList();
 
-        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-        for (Spell spell : SpellsList.getSpellList()) {
-            this.hero.getCharacterSpellList().add(gson.fromJson(gson.toJson(spell), Spell.class));
-        }
+//        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
+//        for (Spell spell : SpellsList.getSpellList()) {
+//            this.hero.getCharacterSpellList().add(gson.fromJson(gson.toJson(spell), Spell.class));
+//        }
 
 //        int maxHealth = 100;
 //        int currentHealth = 70;
@@ -234,12 +233,37 @@ public class GameManager {
         }
 
 
-        System.out.println("Enter your name: ");
+        System.out.println("\tEnter your name: ");
         final String name = InputUtil.stringScanner();
         PrintUtil.printDivider();
 
+        System.out.println("\tSelect your class: ");
+        int index = 0;
+
+        for (HeroClass heroClass : HeroClass.values()) {
+            System.out.println("\t" + index + ". " + heroClass.name());
+            index++;
+        }
+
+        while (true) {
+            try {
+                final int heroClassChoice = InputUtil.intScanner();
+                this.hero.setHeroClass(HeroClass.values()[heroClassChoice]);
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("\tEnter valid input");
+            }
+        }
+
+        for (Spell spell : SpellsList.getSpellList()) {
+            if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.hero.getHeroClass())) {
+                this.hero.getCharacterSpellList().add(spell);
+            }
+        }
+
+
         this.hero.setName(name);
-        System.out.println("\t\tHello " + hero.getName() + ". Let's start the game!");
+        System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getHeroClass() + ". Let's start the game!");
         PrintUtil.printDivider();
 
         this.heroAbilityManager.spendAbilityPoints();

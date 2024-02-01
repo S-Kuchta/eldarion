@@ -1,12 +1,33 @@
 [
   {
-    "type": "Spell",
-    "spellName": "Attack",
-    "spellDescription": "Attack",
+    "spellName": "Weapon Attack",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Attack with weapon",
     "spellActions": [
       {
         "type": "ActionDealDamage",
-        "actionName": "Attack",
+        "actionName": "Weapon Attack",
+        "maxActionValue": 3,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
+    "spellName": "Strong Weapon Attack",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Attack with weapon",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "Weapon Attack",
         "maxActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
@@ -20,20 +41,21 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
-        "chanceToPerformAction": 50,
+        "chanceToPerformAction": 20,
         "canBeActionCriticalHit": false
       }
     ],
     "bonusValueFromAbility": {
+      "STRENGTH": 1,
       "ATTACK": 1
     },
-    "spellLevel": 1,
-    "spellManaCost": 0,
-    "turnCoolDown": 0
+    "spellLevel": 0,
+    "spellManaCost": 10,
+    "turnCoolDown": 2
   },
   {
-    "type": "Spell",
     "spellName": "Barrier",
+    "spellClass": "WARRIOR",
     "spellDescription": "Cast a powerful barrier",
     "spellActions": [
       {
@@ -56,8 +78,8 @@
     "turnCoolDown": 0
   },
   {
-    "type": "Spell",
     "spellName": "Barrier 2",
+    "spellClass": "WARRIOR",
     "spellDescription": "Cast a powerful barrier",
     "spellActions": [
       {
@@ -75,13 +97,13 @@
     "bonusValueFromAbility": {
       "ATTACK": 1
     },
-    "spellLevel": 1,
+    "spellLevel": 3,
     "spellManaCost": 15,
     "turnCoolDown": 0
   },
   {
-    "type": "Spell",
     "spellName": "Heal",
+    "spellClass": "WARRIOR",
     "spellDescription": "Heal",
     "spellActions": [
       {

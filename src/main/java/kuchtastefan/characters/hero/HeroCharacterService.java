@@ -2,6 +2,7 @@ package kuchtastefan.characters.hero;
 
 import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.quest.QuestService;
+import kuchtastefan.spell.SpellService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
@@ -11,11 +12,13 @@ public class HeroCharacterService {
     private final InventoryService inventoryService;
     private final HeroAbilityManager heroAbilityManager;
     private final QuestService questService;
+    private final SpellService spellService;
 
     public HeroCharacterService(HeroAbilityManager heroAbilityManager) {
         this.inventoryService = new InventoryService();
         this.heroAbilityManager = heroAbilityManager;
         this.questService = new QuestService();
+        this.spellService = new SpellService();
     }
 
     public void heroCharacterMenu(Hero hero) {
@@ -24,6 +27,7 @@ public class HeroCharacterService {
         System.out.println("\t2. Inventory");
         System.out.println("\t3. Abilities");
         System.out.println("\t4. Quests");
+        System.out.println("\t5. Spells");
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -35,6 +39,7 @@ public class HeroCharacterService {
             case 2 -> this.inventoryService.inventoryMenu(hero);
             case 3 -> this.upgradeAbilityMenu(hero);
             case 4 -> this.questService.heroAcceptedQuestMenu(hero, hero.getListOfAcceptedQuests());
+            case 5 -> this.spellService.spellMenu(hero);
         }
     }
 

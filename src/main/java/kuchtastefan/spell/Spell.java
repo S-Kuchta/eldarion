@@ -5,6 +5,7 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.characters.hero.HeroClass;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -25,10 +26,11 @@ public class Spell {
     private final int turnCoolDown;
     private int currentTurnCoolDown;
     private boolean canSpellBeCasted;
+    private final HeroClass spellClass;
 
 
     public Spell(String spellName, String spellDescription, List<Action> spellActions, int turnCoolDown,
-                 Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost) {
+                 Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost, HeroClass spellClass) {
 
         this.spellName = spellName;
         this.spellDescription = spellDescription;
@@ -39,6 +41,7 @@ public class Spell {
         this.turnCoolDown = turnCoolDown;
         this.currentTurnCoolDown = turnCoolDown;
         this.canSpellBeCasted = true;
+        this.spellClass = spellClass;
     }
 
     /**

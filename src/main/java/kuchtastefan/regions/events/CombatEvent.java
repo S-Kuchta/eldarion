@@ -22,7 +22,7 @@ public class CombatEvent extends Event {
     private final List<Enemy> enemies;
     private final LocationType locationType;
     private final int minimumEnemiesCount;
-    private final int maximumEnemiesCount;
+    private int maximumEnemiesCount;
 
     public CombatEvent(int eventLevel, List<Enemy> enemies, LocationType locationType, int minimumEnemiesCount, int maximumEnemiesCount) {
         super(eventLevel);
@@ -40,6 +40,10 @@ public class CombatEvent extends Event {
         System.out.println(enemies.size());
 
         List<Enemy> enemyList = new ArrayList<>();
+        if (hero.getLevel() == 1) {
+            this.maximumEnemiesCount = 1;
+        }
+
         for (int i = 0; i < RandomNumberGenerator.getRandomNumber(this.minimumEnemiesCount, this.maximumEnemiesCount); i++) {
             if (!this.enemies.isEmpty()) {
                 randomNumber = RandomNumberGenerator.getRandomNumber(0, enemies.size() - 1);

@@ -55,10 +55,12 @@ public class SpellService {
             System.out.println("\n\t0. Go back");
             int index = 1;
             for (Spell spell : spellsByClassAndLevel) {
-                System.out.print("\t" + index + ". " + spell.getSpellName() + ", ");
-                for (Action action : spell.getSpellActions()) {
-                    System.out.print(action.getActionName() + ": " + action.getMaxActionValue() + ", ");
-                }
+                System.out.print("\t" + index + ". ");
+                spell.printSpellDescription(hero);
+//                System.out.print("\t" + index + ". " + spell.getSpellName() + ", ");
+//                for (Action action : spell.getSpellActions()) {
+//                    System.out.print(action.getActionName() + ": " + action.getMaxActionValue() + ", ");
+//                }
                 index++;
                 System.out.println();
             }
@@ -70,7 +72,7 @@ public class SpellService {
                     System.out.println(parsedChoice);
 
                     if (parsedChoice == 0) {
-                        hero.getCharacterSpellList().clear();
+                        hero.getCharacterSpellList().removeIf(spell -> spell.getSpellLevel() != 0);
                         for (Map.Entry<Integer, Spell> spellEntry : hero.getLearnedSpells().entrySet()) {
                             hero.getCharacterSpellList().add(gson.fromJson(gson.toJson(spellEntry.getValue()), Spell.class));
                         }
@@ -113,7 +115,7 @@ public class SpellService {
 
     private void resetSpells(Hero hero) {
         hero.getLearnedSpells().clear();
-        hero.getCharacterSpellList().clear();
+        hero.getCharacterSpellList().removeIf(spell -> spell.getSpellLevel() != 0);
     }
 
     private void checkLearnedSpells(Hero hero) {

@@ -5,8 +5,10 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroClass;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -77,7 +79,8 @@ public class Spell {
                         System.out.println("\t" + action.getActionName() + " Critical hit!");
                         totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
                     }
-                    action.setNewCurrentActionValue(totalActionValue);
+                    action.setNewCurrentActionValue(RandomNumberGenerator.getRandomNumber(action.getMaxActionValue(), totalActionValue));
+//                    action.setNewCurrentActionValue(totalActionValue);
 
                     if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
                         actionOrActionWithDuration(action, spellTarget);
@@ -102,6 +105,35 @@ public class Spell {
             }
             return false;
         }
+    }
+
+    public void printSpellDescription(Hero hero) {
+        int bonusFromAbility = 0;
+        for (Map.Entry<Ability, Integer> abilityIntegerMap : bonusValueFromAbility.entrySet()) {
+            bonusFromAbility += hero.getCurrentAbilityValue(abilityIntegerMap.getKey()) * abilityIntegerMap.getValue();
+        }
+
+        System.out.print(this.spellName + " [Mana Cost: " + spellManaCost + "]");
+        if (this.getTurnCoolDown() > 0) {
+            System.out.print("[CoolDown: "
+                    + PrintUtil.printActionTurnCoolDown(this.getCurrentTurnCoolDown(), this.getTurnCoolDown()) + "]");
+        }
+
+        System.out.println("\n\t" + this.spellDescription);
+
+        for (Action action : this.spellActions) {
+            System.out.print("\t\t" + action.getActionName() + " -> [Action value: " + action.getMaxActionValue()
+                    + " - " + (action.getMaxActionValue() + bonusFromAbility) + "] ");
+            if (action instanceof ActionWithDuration) {
+                System.out.println("[Turns: " + PrintUtil.printActionTurnRemaining
+                        (((ActionWithDuration) action).getCurrentActionTurn(), ((ActionWithDuration) action).getMaxActionTurns()) + "]"
+                        + " [Stacks: " + PrintUtil.printActionTurnRemaining
+                        (((ActionWithDuration) action).getActionCurrentStacks(), ((ActionWithDuration) action).getActionMaxStacks()) + "]");
+//                System.out.print("[Max stack: " + ((ActionWithDuration) action).getActionMaxStacks() + "] " +
+//                        "[Turns duration: " + ((ActionWithDuration) action).getMaxActionTurns() + "]");
+            }
+        }
+//        System.out.println();
     }
 
     private void actionOrActionWithDuration(Action action, GameCharacter effectOnCharacter) {

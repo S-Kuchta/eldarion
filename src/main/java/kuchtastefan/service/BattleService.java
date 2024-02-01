@@ -45,14 +45,14 @@ public class BattleService {
                     String choice = InputUtil.stringScanner().toUpperCase();
                     if (choice.matches("\\d+")) {
                         try {
-                            int number = Integer.parseInt(choice);
-                            if (number == hero.getCharacterSpellList().size()) {
+                            int parsedChoice = Integer.parseInt(choice);
+                            if (parsedChoice == hero.getCharacterSpellList().size()) {
                                 if (inventoryService.consumableItemsMenu(hero, true)) {
                                     checkSpellsCoolDowns(hero);
                                     break;
                                 }
                             } else {
-                                if (hero.getCharacterSpellList().get(number).useSpell(hero, enemyChosen)) {
+                                if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, enemyChosen)) {
                                     checkSpellsCoolDowns(hero);
                                     break;
                                 }
@@ -165,11 +165,14 @@ public class BattleService {
         int spellIndex = 0;
         System.out.println();
         for (Spell spell : hero.getCharacterSpellList()) {
-            System.out.println("\t" + spellIndex + ". " + spell.getSpellName() + ", "
-                    + spell.getSpellDescription() + " "
-                    + PrintUtil.printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()));
+            System.out.print("\t" + spellIndex + ". ");
+            spell.printSpellDescription(hero);
+//            System.out.println("\t" + spellIndex + ". " + spell.getSpellName() + ", "
+//                    + spell.getSpellDescription() + " "
+//                    + PrintUtil.printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()));
 
             spellIndex++;
+            System.out.println();
         }
         System.out.println("\t" + spellIndex + ". Potions");
     }

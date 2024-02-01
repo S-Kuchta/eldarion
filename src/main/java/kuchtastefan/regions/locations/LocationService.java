@@ -32,20 +32,31 @@ public class LocationService {
     }
 
     public void exploreLocation(Hero hero, Location location) {
-        while (location.stageCompleted < location.stageTotal) {
-            PrintUtil.printLongDivider();
-            System.out.println("\t\t\t" + location.locationName + "\t\t\tStages completed " + location.stageCompleted + " / " + location.stageTotal);
-            PrintUtil.printLongDivider();
-            if (new CombatEvent(location.getLocationLevel(), location.enemyList(), location.getLocationType()).eventOccurs(hero)) {
-                location.stageCompleted++;
-            } else {
-                return;
-            }
+        PrintUtil.printLongDivider();
+        System.out.println("\t\t\t" + location.locationName + "\t\t\tStages completed "
+                + location.stageCompleted + " / " + location.stageTotal);
+        PrintUtil.printLongDivider();
 
-            if (location.stageCompleted == location.stageTotal) {
-                location.setCleared(true);
-                location.rewardAfterCompletedAllStages(hero);
-            }
+        boolean isStageCompleted;
+
+        if (location.stageCompleted < 9) {
+            isStageCompleted = new CombatEvent(location.getLocationLevel(), location.enemyList(),
+                    location.getLocationType(), 1, 1).eventOccurs(hero);
+        } else {
+            isStageCompleted = new CombatEvent(location.getLocationLevel(), location.enemyList(),
+                    location.getLocationType(), 2, 2).eventOccurs(hero);
+        }
+
+        if (isStageCompleted) {
+            location.stageCompleted++;
+        } else {
+            return;
+        }
+
+        if (location.stageCompleted == location.stageTotal) {
+            location.setCleared(true);
+            location.rewardAfterCompletedAllStages(hero);
+            location.setCanLocationBeExplored(false);
         }
     }
 }

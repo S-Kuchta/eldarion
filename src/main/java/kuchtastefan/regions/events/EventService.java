@@ -39,7 +39,7 @@ public class EventService {
                     enemyRarity = EnemyRarity.RARE;
                 }
                 List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, hero.getLevel(), null, enemyRarity);
-                new CombatEvent(eventLevel, suitableEnemies, locationType).eventOccurs(hero);
+                new CombatEvent(eventLevel, suitableEnemies, locationType, 1, 3).eventOccurs(hero);
             }
             case 3 -> new DiscoverLocationEvent(eventLevel, this.allLocations, this.discoveredLocations)
                     .eventOccurs(hero);

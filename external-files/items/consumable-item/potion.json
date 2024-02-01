@@ -7,7 +7,7 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
-        "actionValue": 20,
+        "maxActionValue": 20,
         "actionEffectOn": "SPELL_CASTER",
         "canBeActionCriticalHit": false
       }
@@ -21,16 +21,16 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
-        "actionValue": 15,
+        "maxActionValue": 15,
         "actionEffectOn": "SPELL_CASTER",
         "canBeActionCriticalHit": false
       },
       {
         "type": "ActionRestoreHealthOverTime",
         "actionName": "Restore health",
-        "actionValue": 5,
+        "maxActionValue": 5,
         "maxActionTurns": 3,
-        "actionDurationType": "REGION_ACTION",
+        "actionDurationType": "BATTLE_ACTION",
         "actionMaxStacks": 1,
         "actionEffectOn": "SPELL_CASTER",
         "canBeActionCriticalHit": false

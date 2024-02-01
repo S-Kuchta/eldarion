@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.Action;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyType;
 import kuchtastefan.characters.hero.GameLoaded;
@@ -228,7 +229,13 @@ public class FileService {
                 for (ConsumableItem consumableItem : consumableItemList) {
                     consumableItem.setConsumableItemType(
                             ConsumableItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
+
+                    for (Action action : consumableItem.getActionList()) {
+                        action.setNewCurrentActionValue(action.getMaxActionValue());
+                    }
                 }
+
+
 
                 consumableItems.addAll(consumableItemList);
                 reader.close();

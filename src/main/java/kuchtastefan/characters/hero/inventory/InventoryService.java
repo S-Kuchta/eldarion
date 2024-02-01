@@ -139,11 +139,7 @@ public class InventoryService {
         while (true) {
             int choice = InputUtil.intScanner();
             if (choice == 0) {
-                if (!isHeroInCombat) {
-                    consumableItemsMenu(hero, false);
-                } else {
-                    return false;
-                }
+                return false;
             } else {
                 try {
                     consumableItems.get(choice - 1).performActions(hero);

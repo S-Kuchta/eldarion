@@ -70,7 +70,6 @@ public class Location {
 
     public void questGiveForLocation() {
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Random Name", 8);
-
     }
 
     @Override

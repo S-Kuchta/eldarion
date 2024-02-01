@@ -8,7 +8,6 @@
         "type": "ActionRestoreHealth",
         "actionName": "Restore health",
         "maxActionValue": 25,
-        "currentActionValue": 25,
         "actionEffectOn": "SPELL_CASTER",
         "canBeActionCriticalHit": false
       },
@@ -16,7 +15,6 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "Increase Attack",
         "maxActionValue": 1,
-        "currentActionValue": 1,
         "maxActionTurns": 10,
         "actionDurationType": "REGION_ACTION",
         "actionMaxStacks": 1,

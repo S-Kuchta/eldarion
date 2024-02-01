@@ -21,12 +21,16 @@ public class CombatEvent extends Event {
     private final BattleService battleService;
     private final List<Enemy> enemies;
     private final LocationType locationType;
+    private final int minimumEnemiesCount;
+    private final int maximumEnemiesCount;
 
-    public CombatEvent(int eventLevel, List<Enemy> enemies, LocationType locationType) {
+    public CombatEvent(int eventLevel, List<Enemy> enemies, LocationType locationType, int minimumEnemiesCount, int maximumEnemiesCount) {
         super(eventLevel);
         this.battleService = new BattleService();
         this.enemies = enemies;
         this.locationType = locationType;
+        this.minimumEnemiesCount = minimumEnemiesCount;
+        this.maximumEnemiesCount = maximumEnemiesCount;
     }
 
     @Override
@@ -36,7 +40,7 @@ public class CombatEvent extends Event {
         System.out.println(enemies.size());
 
         List<Enemy> enemyList = new ArrayList<>();
-        for (int i = 0; i < RandomNumberGenerator.getRandomNumber(1, 3); i++) {
+        for (int i = 0; i < RandomNumberGenerator.getRandomNumber(this.minimumEnemiesCount, this.maximumEnemiesCount); i++) {
             if (!this.enemies.isEmpty()) {
                 randomNumber = RandomNumberGenerator.getRandomNumber(0, enemies.size() - 1);
             } else {

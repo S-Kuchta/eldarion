@@ -5,17 +5,51 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemType;
+import kuchtastefan.spell.Spell;
 
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 public class PrintUtil {
+
+    public static void printSpellDescription(Hero hero, Spell spell) {
+
+        System.out.print(spell.getSpellName() + " [Mana Cost: " + spell.getSpellManaCost() + "]");
+        if (spell.getTurnCoolDown() > 0) {
+            System.out.print("[CoolDown: "
+                    + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
+        }
+
+        System.out.println("\n\t" + spell.getSpellDescription());
+
+        for (Action action : spell.getSpellActions()) {
+            int totalActionValue = action.getMaxActionValue();
+
+            if (spell.getBonusValueFromAbility() != null) {
+                for (Map.Entry<Ability, Integer> abilityBonus : spell.getBonusValueFromAbility().entrySet()) {
+                    totalActionValue += hero.getCurrentAbilityValue(abilityBonus.getKey())
+                            * abilityBonus.getValue();
+                }
+            }
+
+            System.out.print("\t- " + action.getActionName() + " -> [Action value: "
+                    + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
+                    + " - " + totalActionValue + "] [Chance to Perform: " + action.getChanceToPerformAction() + "%]");
+
+            if (action instanceof ActionWithDuration) {
+                System.out.print(" [Turns Duration: " + ((ActionWithDuration) action).getMaxActionTurns() + "]"
+                        + " [Max Stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + "]");
+            }
+            System.out.println();
+        }
+    }
 
     public static void printBattleBuffs(GameCharacter gameCharacter) {
         if (gameCharacter.getBattleActionsWithDuration() == null) {

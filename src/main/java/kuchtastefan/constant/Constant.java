@@ -10,4 +10,5 @@ public class Constant {
     public static final int INITIAL_EXPERIENCE_POINT = 0;
     public static final int RESTORE_MANA_PER_ONE_INTELLECT = 5;
     public static final int CRITICAL_HIT_MULTIPLIER = 2;
+    public static final double LOWER_DAMAGE_MULTIPLIER = 0.75;
 }

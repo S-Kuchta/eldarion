@@ -56,7 +56,8 @@ public class SpellService {
             int index = 1;
             for (Spell spell : spellsByClassAndLevel) {
                 System.out.print("\t" + index + ". ");
-                spell.printSpellDescription(hero);
+                PrintUtil.printSpellDescription(hero, spell);
+//                spell.printSpellDescription(hero);
 //                System.out.print("\t" + index + ". " + spell.getSpellName() + ", ");
 //                for (Action action : spell.getSpellActions()) {
 //                    System.out.print(action.getActionName() + ": " + action.getMaxActionValue() + ", ");

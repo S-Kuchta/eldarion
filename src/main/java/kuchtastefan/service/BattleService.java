@@ -166,7 +166,8 @@ public class BattleService {
         System.out.println();
         for (Spell spell : hero.getCharacterSpellList()) {
             System.out.print("\t" + spellIndex + ". ");
-            spell.printSpellDescription(hero);
+            PrintUtil.printSpellDescription(hero, spell);
+//            spell.printSpellDescription(hero);
 //            System.out.println("\t" + spellIndex + ". " + spell.getSpellName() + ", "
 //                    + spell.getSpellDescription() + " "
 //                    + PrintUtil.printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()));

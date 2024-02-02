@@ -3,8 +3,8 @@ package kuchtastefan.characters.enemy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.regions.locations.LocationType;
-import kuchtastefan.spell.Spell;
-import kuchtastefan.spell.SpellsList;
+import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.characters.spell.SpellsList;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 

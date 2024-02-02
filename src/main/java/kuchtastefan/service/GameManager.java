@@ -1,7 +1,5 @@
 package kuchtastefan.service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.*;
@@ -15,13 +13,10 @@ import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.ForestRegionService;
-import kuchtastefan.spell.Spell;
-import kuchtastefan.spell.SpellsList;
+import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.characters.spell.SpellsList;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
-
-import java.util.stream.Collectors;
 
 
 public class GameManager {

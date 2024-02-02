@@ -1,8 +1,7 @@
-package kuchtastefan.spell;
+package kuchtastefan.characters.spell;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import kuchtastefan.actions.Action;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumberSpellLevel;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class SpellService {
+public class HeroSpellManager {
 
     public void spellMenu(Hero hero) {
         System.out.println("\t0. Go back");

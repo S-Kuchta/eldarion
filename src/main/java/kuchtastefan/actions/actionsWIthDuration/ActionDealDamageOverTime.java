@@ -1,10 +1,11 @@
 package kuchtastefan.actions.actionsWIthDuration;
 
 import kuchtastefan.actions.ActionEffectOn;
+import kuchtastefan.actions.ActionName;
 import kuchtastefan.characters.GameCharacter;
 
 public class ActionDealDamageOverTime extends ActionWithDuration {
-    public ActionDealDamageOverTime(String actionName, ActionEffectOn actionEffectOn,
+    public ActionDealDamageOverTime(ActionName actionName, ActionEffectOn actionEffectOn,
                                     int maxActionValue, int maxActionTurns, int actionMaxStacks,
                                     ActionDurationType actionDurationType, int chanceToPerformAction,
                                     boolean canBeActionCriticalHit) {

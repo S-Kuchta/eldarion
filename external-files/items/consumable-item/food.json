@@ -6,14 +6,14 @@
     "actionList": [
       {
         "type": "ActionRestoreHealth",
-        "actionName": "Restore health",
+        "actionName": "HEAL",
         "maxActionValue": 25,
         "actionEffectOn": "SPELL_CASTER",
         "canBeActionCriticalHit": false
       },
       {
         "type": "ActionIncreaseAbilityPoint",
-        "actionName": "Increase Attack",
+        "actionName": "INCREASE_ABILITY_POINTS",
         "maxActionValue": 1,
         "maxActionTurns": 10,
         "actionDurationType": "REGION_ACTION",
@@ -31,7 +31,7 @@
     "actionList": [
       {
         "type": "ActionRestoreHealth",
-        "actionName": "Restore health",
+        "actionName": "HEAL",
         "maxActionValue": 20,
         "actionEffectOn": "SPELL_CASTER",
         "canBeActionCriticalHit": false

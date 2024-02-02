@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public abstract class Action {
 
-    protected String actionName;
+    protected ActionName actionName;
     protected final int maxActionValue;
     protected int currentActionValue;
     protected final ActionEffectOn actionEffectOn;
@@ -17,7 +17,7 @@ public abstract class Action {
     protected final boolean canBeActionCriticalHit;
 
 
-    public Action(String actionName, ActionEffectOn actionEffectOn, int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
+    public Action(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
         this.actionName = actionName;
         this.maxActionValue = maxActionValue;
         this.currentActionValue = maxActionValue;

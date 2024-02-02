@@ -15,7 +15,6 @@ import kuchtastefan.quest.questObjectives.QuestClearLocation;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
-import kuchtastefan.spell.Spell;
 
 
 public class RuntimeTypeAdapterFactoryUtil {

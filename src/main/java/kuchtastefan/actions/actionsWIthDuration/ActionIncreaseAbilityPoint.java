@@ -2,6 +2,7 @@ package kuchtastefan.actions.actionsWIthDuration;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
+import kuchtastefan.actions.ActionName;
 import kuchtastefan.characters.GameCharacter;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration {
     private final Ability ability;
 
 
-    public ActionIncreaseAbilityPoint(String actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+    public ActionIncreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
                                       int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType,
                                       Ability ability, int chanceToPerformAction, boolean canBeActionCriticalHit) {
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns,

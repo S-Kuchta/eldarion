@@ -2,12 +2,13 @@ package kuchtastefan.actions.actionsWIthDuration;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
+import kuchtastefan.actions.ActionName;
 import kuchtastefan.characters.GameCharacter;
 
 public class ActionRestoreHealthOverTime extends ActionWithDuration {
 
 
-    public ActionRestoreHealthOverTime(String actionName, ActionEffectOn actionEffectOn,
+    public ActionRestoreHealthOverTime(ActionName actionName, ActionEffectOn actionEffectOn,
                                        int maxActionValue, int maxActionTurns, int actionMaxStacks,
                                        ActionDurationType actionDurationType, int chanceToPerformAction,
                                        boolean canBeActionCriticalHit) {

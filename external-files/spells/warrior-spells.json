@@ -6,7 +6,7 @@
     "spellActions": [
       {
         "type": "ActionDealDamage",
-        "actionName": "Weapon Attack",
+        "actionName": "DAMAGE",
         "maxActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
@@ -27,7 +27,7 @@
     "spellActions": [
       {
         "type": "ActionDealDamage",
-        "actionName": "Weapon Attack",
+        "actionName": "DAMAGE",
         "maxActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
@@ -35,7 +35,7 @@
       },
       {
         "type": "ActionDealDamageOverTime",
-        "actionName": "Bleed",
+        "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
         "maxActionValue": 1,
         "maxActionTurns": 3,
@@ -60,7 +60,7 @@
     "spellActions": [
       {
         "type": "ActionAbsorbDamage",
-        "actionName": "Absorb Damage",
+        "actionName": "ABSORB_DAMAGE",
         "actionEffectOn": "SPELL_CASTER",
         "maxActionValue": 10,
         "maxActionTurns": 5,
@@ -84,7 +84,7 @@
     "spellActions": [
       {
         "type": "ActionAbsorbDamage",
-        "actionName": "Absorb Damage 2",
+        "actionName": "ABSORB_DAMAGE",
         "actionEffectOn": "SPELL_CASTER",
         "maxActionValue": 10,
         "maxActionTurns": 5,
@@ -108,7 +108,7 @@
     "spellActions": [
       {
         "type": "ActionRestoreHealth",
-        "actionName": "Heal",
+        "actionName": "HEAL",
         "maxActionValue": 20,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,

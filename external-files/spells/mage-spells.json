@@ -6,7 +6,7 @@
     "spellActions": [
       {
         "type": "ActionDealDamage",
-        "actionName": "Weapon Attack",
+        "actionName": "DAMAGE",
         "maxActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
@@ -27,7 +27,7 @@
     "spellActions": [
       {
         "type": "ActionDealDamage",
-        "actionName": "Attack",
+        "actionName": "DAMAGE",
         "maxActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
@@ -35,7 +35,7 @@
       },
       {
         "type": "ActionDealDamageOverTime",
-        "actionName": "Burn Damage",
+        "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
         "maxActionValue": 1,
         "maxActionTurns": 3,

@@ -1,14 +1,12 @@
-package kuchtastefan.spell;
+package kuchtastefan.characters.spell;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
-import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroClass;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -81,9 +79,6 @@ public class Spell {
                     }
                     action.setNewCurrentActionValue(RandomNumberGenerator.getRandomNumber(
                             (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER), totalActionValue));
-//                    action.setNewCurrentActionValue((int) (action.getMaxActionValue() + (double) (bonusFromAbility / 2)),
-//                            totalActionValue);
-//                    action.setNewCurrentActionValue(totalActionValue);
 
                     if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
                         actionOrActionWithDuration(action, spellTarget);
@@ -109,40 +104,6 @@ public class Spell {
             return false;
         }
     }
-
-//    public void printSpellDescription(Hero hero) {
-//
-//        System.out.print(this.spellName + " [Mana Cost: " + spellManaCost + "]");
-//        if (this.getTurnCoolDown() > 0) {
-//            System.out.print("[CoolDown: "
-//                    + PrintUtil.printActionTurnCoolDown(this.getCurrentTurnCoolDown(), this.getTurnCoolDown()) + "]");
-//        }
-//
-//        System.out.println("\n\t" + this.spellDescription);
-//
-//        for (Action action : this.spellActions) {
-//            int totalActionValue = action.getMaxActionValue();
-//
-//            if (this.bonusValueFromAbility != null) {
-//                for (Map.Entry<Ability, Integer> abilityBonus : this.bonusValueFromAbility.entrySet()) {
-//                    totalActionValue += hero.getCurrentAbilityValue(abilityBonus.getKey())
-//                            * abilityBonus.getValue();
-//                }
-//            }
-//
-//            System.out.print("\t\t" + action.getActionName() + " -> [Action value: "
-//                    + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
-//                    + " - " + totalActionValue + "] ");
-//
-//            if (action instanceof ActionWithDuration) {
-//                System.out.print("[Turns: " + PrintUtil.printActionTurnRemaining
-//                        (((ActionWithDuration) action).getCurrentActionTurn(), ((ActionWithDuration) action).getMaxActionTurns()) + "]"
-//                        + " [Stacks: " + PrintUtil.printActionTurnRemaining
-//                        (((ActionWithDuration) action).getActionCurrentStacks(), ((ActionWithDuration) action).getActionMaxStacks()) + "]");
-//            }
-//            System.out.println();
-//        }
-//    }
 
     private void actionOrActionWithDuration(Action action, GameCharacter effectOnCharacter) {
         if (action instanceof ActionWithDuration) {

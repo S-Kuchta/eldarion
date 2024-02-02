@@ -7,7 +7,7 @@ import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.spell.Spell;
+import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.PrintUtil;
@@ -39,6 +39,7 @@ public class BattleService {
 
         while (true) {
             if (heroPlay) {
+                checkSpellsCoolDowns(hero);
                 while (true) {
                     printBattleMenu(hero, enemyChosen, selectedHeroForShowSelected, enemyList);
 
@@ -48,12 +49,10 @@ public class BattleService {
                             int parsedChoice = Integer.parseInt(choice);
                             if (parsedChoice == hero.getCharacterSpellList().size()) {
                                 if (inventoryService.consumableItemsMenu(hero, true)) {
-                                    checkSpellsCoolDowns(hero);
                                     break;
                                 }
                             } else {
                                 if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, enemyChosen)) {
-                                    checkSpellsCoolDowns(hero);
                                     break;
                                 }
                             }
@@ -167,15 +166,11 @@ public class BattleService {
         for (Spell spell : hero.getCharacterSpellList()) {
             System.out.print("\t" + spellIndex + ". ");
             PrintUtil.printSpellDescription(hero, spell);
-//            spell.printSpellDescription(hero);
-//            System.out.println("\t" + spellIndex + ". " + spell.getSpellName() + ", "
-//                    + spell.getSpellDescription() + " "
-//                    + PrintUtil.printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()));
 
             spellIndex++;
             System.out.println();
         }
-        System.out.println("\t" + spellIndex + ". Potions");
+        System.out.println("\t" + spellIndex + ". Potions Menu");
     }
 
     private void enemyUseSpell(Enemy enemy, Hero hero) {

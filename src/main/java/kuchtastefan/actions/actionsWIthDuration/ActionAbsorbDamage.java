@@ -2,11 +2,12 @@ package kuchtastefan.actions.actionsWIthDuration;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
+import kuchtastefan.actions.ActionName;
 import kuchtastefan.characters.GameCharacter;
 
 public class ActionAbsorbDamage extends ActionWithDuration {
 
-    public ActionAbsorbDamage(String actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+    public ActionAbsorbDamage(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
                               int maxActionTurns, int actionMaxStacks,
                               ActionDurationType actionDurationType, int chanceToPerformAction,
                               boolean canBeActionCriticalHit) {

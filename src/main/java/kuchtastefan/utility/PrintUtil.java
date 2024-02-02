@@ -2,6 +2,8 @@ package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.ActionEffectOn;
+import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
@@ -11,7 +13,7 @@ import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemType;
-import kuchtastefan.spell.Spell;
+import kuchtastefan.characters.spell.Spell;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -39,7 +41,9 @@ public class PrintUtil {
                 }
             }
 
-            System.out.print("\t- " + action.getActionName() + " -> [Action value: "
+            System.out.print("\t- " + action.getActionName() + " "
+                    + action.getActionEffectOn()
+                    +  " [Action value: "
                     + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
                     + " - " + totalActionValue + "] [Chance to Perform: " + action.getChanceToPerformAction() + "%]");
 
@@ -47,7 +51,8 @@ public class PrintUtil {
                 System.out.print(" [Turns Duration: " + ((ActionWithDuration) action).getMaxActionTurns() + "]"
                         + " [Max Stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + "]");
             }
-            System.out.println();
+            System.out.println("\n\t\t" + action.getActionName().getDescription());
+//            System.out.println();
         }
     }
 

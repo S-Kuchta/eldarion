@@ -14,7 +14,7 @@ public class QuestClearLocation extends QuestObjective {
     }
 
     @Override
-    public void checkQuestObjectiveCompleted(Hero hero) {
+    public void checkIfQuestObjectiveIsCompleted(Hero hero) {
         setCompleted(this.location.isCleared());
     }
 

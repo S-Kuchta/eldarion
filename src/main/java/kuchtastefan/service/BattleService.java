@@ -1,120 +1,192 @@
 package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.characters.hero.inventory.InventoryService;
+import kuchtastefan.constant.Constant;
+import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.utility.RandomNumberGenerator;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 
 public class BattleService {
-    public boolean battle(Hero hero, Enemy enemy) {
+
+    public boolean battle(Hero hero, List<Enemy> enemies) {
+        InventoryService inventoryService = new InventoryService();
+        List<Enemy> enemyList = new ArrayList<>(enemies);
+
+        String selectedHeroForShowSelected = "A";
+        Enemy enemyChosen = enemyList.getFirst();
+
         boolean heroPlay = true;
+        for (Enemy enemy : enemyList) {
+            if (enemy.getCurrentAbilityValue(Ability.HASTE) > hero.getCurrentAbilityValue(Ability.HASTE)) {
+                heroPlay = false;
+                break;
+            }
+        }
+
+        hero.getBattleActionsWithDuration().clear();
+        hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
+
         while (true) {
-            int heroHealth = hero.getAbilityValue(Ability.HEALTH);
-            int enemyHealth = enemy.getAbilityValue(Ability.HEALTH);
-
-            System.out.println("Your healths: " + heroHealth);
-            System.out.println("Enemy healths: " + enemyHealth);
-
             if (heroPlay) {
-                battleRound(hero, enemy);
+                checkSpellsCoolDowns(hero);
+                while (true) {
+                    printBattleMenu(hero, enemyChosen, selectedHeroForShowSelected, enemyList);
+
+                    String choice = InputUtil.stringScanner().toUpperCase();
+                    if (choice.matches("\\d+")) {
+                        try {
+                            int parsedChoice = Integer.parseInt(choice);
+                            if (parsedChoice == hero.getCharacterSpellList().size()) {
+                                if (inventoryService.consumableItemsMenu(hero, true)) {
+                                    break;
+                                }
+                            } else {
+                                if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, enemyChosen)) {
+                                    break;
+                                }
+                            }
+                        } catch (IndexOutOfBoundsException e) {
+                            System.out.println("\tEnter valid input");
+                        }
+                    } else {
+                        try {
+                            selectedHeroForShowSelected = choice;
+                            enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue());
+                        } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
+                            selectedHeroForShowSelected = "A";
+                            enemyChosen = enemyList.getFirst();
+                            System.out.println("\tEnter valid input");
+                        }
+                    }
+                }
+
+                System.out.println("\n\t" + hero.getName() + " suffered from actions over time");
+                hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                hero.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
+                        * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
+
                 heroPlay = false;
             } else {
-                battleRound(enemy, hero);
+                Iterator<Enemy> iterator = enemyList.iterator();
+                while (iterator.hasNext()) {
+
+                    Enemy enemyInCombat = iterator.next();
+                    if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) > 0) {
+                        try {
+                            Thread.sleep(800);
+                        } catch (InterruptedException e) {
+                            System.out.println(e.getMessage());
+                        }
+
+                        PrintUtil.printLongDivider();
+                        System.out.println("\t\t" + enemyInCombat.getName() + " is Attacking!");
+
+                        enemyUseSpell(enemyInCombat, hero);
+                        checkSpellsCoolDowns(enemyInCombat);
+
+                        System.out.println("\n\t" + enemyInCombat.getName() + " suffered from actions over time");
+                        enemyInCombat.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                        enemyInCombat.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
+                                * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
+                    }
+
+                    if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+                        PrintUtil.printDivider();
+                        System.out.println("\t\tYou killed " + enemyInCombat.getName());
+                        PrintUtil.printDivider();
+
+                        iterator.remove();
+                        if (!enemyList.isEmpty()) {
+                            enemyChosen = enemyList.getFirst();
+                            selectedHeroForShowSelected = "A";
+                        }
+                    }
+                }
+
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
                 heroPlay = true;
             }
 
-            if (enemy.getAbilityValue(Ability.HEALTH) <= 0) {
+            if (enemyList.isEmpty()) {
+                hero.getBattleActionsWithDuration().clear();
+                this.resetSpellsCoolDowns(hero);
                 return true;
             }
 
-            if (hero.getAbilityValue(Ability.HEALTH) <= 0) {
+            if (hero.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+                hero.getRegionActionsWithDuration().clear();
+                hero.getBattleActionsWithDuration().clear();
+                hero.checkHeroGoldsAndSubtractIfTrue(80 * hero.getLevel());
+                hero.getCurrentAbilities().put(Ability.HEALTH, hero.getMaxAbilities().get(Ability.HEALTH));
+                this.resetSpellsCoolDowns(hero);
                 return false;
             }
+        }
+    }
 
-            try {
-                Thread.sleep(800);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
+    private void printBattleMenu(Hero hero, Enemy enemyChosen, String selectedHeroForShowSelected, List<Enemy> enemyList) {
+        PrintUtil.printHeaderWithStatsBar(hero);
+        PrintUtil.printBattleBuffs(hero);
+        PrintUtil.printHeaderWithStatsBar(enemyChosen);
+        PrintUtil.printBattleBuffs(enemyChosen);
+        PrintUtil.printExtraLongDivider();
+
+        int index = 1;
+        for (Enemy enemyFromList : enemyList) {
+            if (!enemyFromList.isDefeated()) {
+                System.out.print("\t" + LetterToNumber.getStringFromValue(index)
+                        + ". " + enemyFromList.getName() + " - " + enemyFromList.getEnemyRarity() + " - "
+                        + " Healths: "
+                        + enemyFromList.getCurrentAbilityValue(Ability.HEALTH));
+
+                if (Objects.equals(LetterToNumber.getStringFromValue(index), selectedHeroForShowSelected)) {
+                    System.out.print(" - SELECTED - ");
+                }
+                index++;
             }
         }
-    }
 
-    private void battleRound(GameCharacter attacker, GameCharacter defender) {
-        int damage = 0;
-        int finalDamage;
+        int spellIndex = 0;
+        System.out.println();
+        for (Spell spell : hero.getCharacterSpellList()) {
+            System.out.print("\t" + spellIndex + ". ");
+            PrintUtil.printSpellDescription(hero, spell);
 
-        if (criticalHit(attacker)) {
-            System.out.println("Critical hit!");
-            damage += (attack(attacker) * 2);
-        } else {
-            damage = attack(attacker);
+            spellIndex++;
+            System.out.println();
         }
-
-        finalDamage = finalDamage(damage, defense(defender));
-
-        defender.receiveDamage(finalDamage);
-        System.out.println(attacker.getName() + " attacked " + defender.getName() + " for " + finalDamage + " damage!");
-        System.out.println(defender.getName() + " healths are: " + defender.getAbilityValue(Ability.HEALTH));
-        PrintUtil.printDivider();
+        System.out.println("\t" + spellIndex + ". Potions Menu");
     }
 
-    private int finalDamage(int damage, int defence) {
-        int totalDamage = damage - defence;
-
-        return Math.max(totalDamage, 0);
+    private void enemyUseSpell(Enemy enemy, Hero hero) {
+        enemy.getCharacterSpellList().get(0).useSpell(enemy, hero);
     }
 
-    private int attack(GameCharacter gameCharacter) {
-        int minDamage;
-        int maxDamage;
-        if (gameCharacter instanceof Hero) {
-            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK) +
-                    ((Hero) gameCharacter).returnItemAbilityValue(Ability.ATTACK);
-            maxDamage = minDamage
-                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
-                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY)
-                    + gameCharacter.getAbilityValue(Ability.SKILL)
-                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.SKILL);
-        } else {
-            minDamage = gameCharacter.getAbilityValue(Ability.ATTACK);
-            maxDamage = gameCharacter.getAbilityValue(Ability.ATTACK)
-                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
-                    + gameCharacter.getAbilityValue(Ability.SKILL);
+    private void checkSpellsCoolDowns(GameCharacter gameCharacter) {
+        for (Spell spell : gameCharacter.getCharacterSpellList()) {
+            spell.increaseTurnCoolDown();
         }
-
-        return RandomNumberGenerator.getRandomNumber(minDamage, maxDamage);
     }
 
-    private int defense(GameCharacter gameCharacter) {
-        int minDefence;
-        int maxDefence;
-        if (gameCharacter instanceof Hero) {
-            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE)
-                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEFENCE);
-            maxDefence = minDefence
-                    + gameCharacter.getAbilityValue(Ability.DEXTERITY)
-                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.DEXTERITY);
-        } else {
-            minDefence = gameCharacter.getAbilityValue(Ability.DEFENCE);
-            maxDefence = minDefence + gameCharacter.getAbilityValue(Ability.DEXTERITY);
+    private void resetSpellsCoolDowns(Hero hero) {
+        for (Spell spell : hero.getCharacterSpellList()) {
+            spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
+            spell.checkTurnCoolDown();
         }
-
-        return RandomNumberGenerator.getRandomNumber(minDefence, maxDefence);
-    }
-
-    private boolean criticalHit(GameCharacter gameCharacter) {
-        int criticalHit;
-        if (gameCharacter instanceof Hero) {
-            criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
-                    + gameCharacter.getAbilityValue(Ability.SKILL)
-                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.SKILL)
-                    + ((Hero) gameCharacter).returnItemAbilityValue(Ability.LUCK);
-        } else {
-            criticalHit = gameCharacter.getAbilityValue(Ability.LUCK)
-                    + gameCharacter.getAbilityValue(Ability.SKILL);
-        }
-        return criticalHit >= RandomNumberGenerator.getRandomNumber(0, 100);
     }
 }

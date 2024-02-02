@@ -19,7 +19,7 @@ public abstract class QuestObjective {
 
     public abstract void printQuestObjectiveAssignment(Hero hero);
 
-    public abstract void checkQuestObjectiveCompleted(Hero hero);
+    public abstract void checkIfQuestObjectiveIsCompleted(Hero hero);
 
     public abstract void removeCompletedItemsOrEnemies(Hero hero);
 

@@ -27,12 +27,12 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         });
 
         PrintUtil.printShopHeader(hero, "Blacksmith");
-        this.printItems(hero);
+        this.printVendorItemsForSale(hero);
         super.buyItem(hero);
     }
 
     @Override
-    public void printItemsForSale(Hero hero) {
+    public void printHeroItemsForSale(Hero hero) {
         List<WearableItem> wearableItemList = new ArrayList<>();
         PrintUtil.printShopHeader(hero, "Blacksmith");
         int index = 1;
@@ -52,7 +52,7 @@ public class WearableItemVendorCharacter extends VendorCharacter {
     }
 
     @Override
-    protected void printItems(Hero hero) {
+    protected void printVendorItemsForSale(Hero hero) {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item wearableItem : this.itemsForSale) {

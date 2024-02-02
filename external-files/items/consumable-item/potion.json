@@ -3,12 +3,38 @@
     "name": "Minor health potion",
     "price": 20,
     "itemLevel": 1,
-    "restoreAmount": 20
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "maxActionValue": 20,
+        "actionEffectOn": "SPELL_CASTER",
+        "canBeActionCriticalHit": false
+      }
+    ]
   },
   {
     "name": "Big health potion",
-    "price": 30,
+    "price": 50,
     "itemLevel": 2,
-    "restoreAmount": 40
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "maxActionValue": 15,
+        "actionEffectOn": "SPELL_CASTER",
+        "canBeActionCriticalHit": false
+      },
+      {
+        "type": "ActionRestoreHealthOverTime",
+        "actionName": "HEAL_OVER_TIME",
+        "maxActionValue": 5,
+        "maxActionTurns": 3,
+        "actionDurationType": "BATTLE_ACTION",
+        "actionMaxStacks": 1,
+        "actionEffectOn": "SPELL_CASTER",
+        "canBeActionCriticalHit": false
+      }
+    ]
   }
 ]

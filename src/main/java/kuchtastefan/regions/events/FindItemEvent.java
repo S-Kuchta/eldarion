@@ -4,6 +4,7 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.List;
@@ -33,10 +34,11 @@ public class FindItemEvent extends Event {
             if (item.getCraftingReagentItemType().equals(CraftingReagentItemType.BLACKSMITH_REAGENT)) {
                 System.out.println("\t--> You mined " + item.getName() + " <--");
             }
-
-            hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-//            hero.checkQuestProgress(null, item);
         }
+
+        hero.getHeroInventory().addItemWithNewCopyToItemList(item);
+        hero.checkQuestProgress(null);
+        hero.checkIfQuestObjectivesAndQuestIsCompleted();
 
         return true;
 

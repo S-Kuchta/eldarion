@@ -1,5 +1,6 @@
 package kuchtastefan.regions.events;
 
+import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.enemy.EnemyRarity;
@@ -30,27 +31,24 @@ public class EventService {
         }
 
         switch (randomNumber) {
-            case 0 -> {
-                new MerchantEvent(eventLevel).eventOccurs(hero);
-            }
+            case 0 -> new MerchantEvent(eventLevel).eventOccurs(hero);
             case 1, 2 -> {
                 int randomNumToGenerateEnemyRarity = RandomNumberGenerator.getRandomNumber(0, 20);
                 EnemyRarity enemyRarity = EnemyRarity.COMMON;
                 if (randomNumToGenerateEnemyRarity == 0) {
                     enemyRarity = EnemyRarity.RARE;
-                } else if (randomNumToGenerateEnemyRarity == 1) {
-                    enemyRarity = EnemyRarity.ELITE;
                 }
                 List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, hero.getLevel(), null, enemyRarity);
-                new CombatEvent(eventLevel, suitableEnemies, locationType).eventOccurs(hero);
+                new CombatEvent(eventLevel, suitableEnemies, locationType, 1, 3).eventOccurs(hero);
             }
-            case 3 -> {
-                new DiscoverLocationEvent(eventLevel, this.allLocations, this.discoveredLocations).eventOccurs(hero);
-            }
-            case 4 -> {
-                new FindItemEvent(eventLevel).eventOccurs(hero);
-            }
+            case 3 -> new DiscoverLocationEvent(eventLevel, this.allLocations, this.discoveredLocations)
+                    .eventOccurs(hero);
+            case 4 -> new FindItemEvent(eventLevel)
+                    .eventOccurs(hero);
+
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
+
+        hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.REGION_ACTION);
     }
 }

@@ -2,11 +2,7 @@ package kuchtastefan.service;
 
 import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.enemy.EnemyList;
-import kuchtastefan.characters.enemy.EnemyRarity;
-import kuchtastefan.characters.hero.GameLoaded;
-import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.HeroAbilityManager;
-import kuchtastefan.characters.hero.HeroCharacterService;
+import kuchtastefan.characters.hero.*;
 import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
 import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.characters.vendor.JunkVendorCharacter;
@@ -15,10 +11,10 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
-import kuchtastefan.items.wearableItem.WearableItem;
-import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.ForestRegionService;
+import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.characters.spell.SpellsList;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -31,6 +27,7 @@ public class GameManager {
     private final BlacksmithService blacksmithService;
     private ForestRegionService forestRegionService;
     private final HeroCharacterService heroCharacterService;
+
 
     public GameManager() {
         this.hero = new Hero("");
@@ -170,9 +167,42 @@ public class GameManager {
 
         EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
+        SpellsList.getSpellList().addAll(this.fileService.importSpellsFromFile());
+
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 1);
 
         HintUtil.initializeHintList();
+
+//        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
+//        for (Spell spell : SpellsList.getSpellList()) {
+//            this.hero.getCharacterSpellList().add(gson.fromJson(gson.toJson(spell), Spell.class));
+//        }
+
+//        int maxHealth = 100;
+//        int currentHealth = 70;
+//        double healthBarValue = (double) maxHealth / 15;
+//        System.out.println(healthBarValue);
+//        System.out.println(healthBarValue * 15);
+//        char charToPrint;
+//
+//        System.out.println();
+//        System.out.print("\tHealths »");
+//        for (int i = 0; i < 15; i++) {
+//            if (i * healthBarValue >= currentHealth) {
+//                charToPrint = ' ';
+//            } else {
+//                charToPrint = '■';
+//            }
+//            System.out.print(charToPrint);
+//        }
+//        System.out.print("« [" + currentHealth + "/" + maxHealth + "]");
+
+//        System.out.println();
+//        System.out.println("|--------------------------------------------------------------------------------------------------------------|");
+//        System.out.println("\tHealths »■■■■■■■■■■■■■■■« [50/100]\tMana » [■■■■■■■■■■■■■■■[25/70]\tAbsorb damage » [■■■■■■■■■■■■■■■[20]");
+//        System.out.println("|--------------------------------------------------------------------------------------------------------------|");
+
+//        PrintUtil.printBuffs();
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");
@@ -188,6 +218,7 @@ public class GameManager {
                     this.currentLevel = gameLoaded.getLevel();
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
+                    this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
                     this.forestRegionService.setHero(this.hero);
                     this.forestRegionService.getDiscoveredLocations().addAll(gameLoaded.getForestRegionDiscoveredLocation());
                     return;
@@ -197,12 +228,37 @@ public class GameManager {
         }
 
 
-        System.out.println("Enter your name: ");
+        System.out.println("\tEnter your name: ");
         final String name = InputUtil.stringScanner();
         PrintUtil.printDivider();
 
+        System.out.println("\tSelect your class: ");
+        int index = 0;
+
+        for (HeroClass heroClass : HeroClass.values()) {
+            System.out.println("\t" + index + ". " + heroClass.name());
+            index++;
+        }
+
+        while (true) {
+            try {
+                final int heroClassChoice = InputUtil.intScanner();
+                this.hero.setHeroClass(HeroClass.values()[heroClassChoice]);
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("\tEnter valid input");
+            }
+        }
+
+        for (Spell spell : SpellsList.getSpellList()) {
+            if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.hero.getHeroClass())) {
+                this.hero.getCharacterSpellList().add(spell);
+            }
+        }
+
+
         this.hero.setName(name);
-        System.out.println("\t\tHello " + hero.getName() + ". Let's start the game!");
+        System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getHeroClass() + ". Let's start the game!");
         PrintUtil.printDivider();
 
         this.heroAbilityManager.spendAbilityPoints();

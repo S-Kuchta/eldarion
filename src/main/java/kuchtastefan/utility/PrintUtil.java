@@ -1,40 +1,192 @@
 package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.Action;
+import kuchtastefan.actions.ActionEffectOn;
+import kuchtastefan.actions.ActionName;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemType;
+import kuchtastefan.characters.spell.Spell;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class PrintUtil {
 
-    public static void printCurrentAbilityPoints(GameCharacter gameCharacter) {
+    public static void printSpellDescription(Hero hero, Spell spell) {
+
+        System.out.print(spell.getSpellName() + " [Mana Cost: " + spell.getSpellManaCost() + "]");
+        if (spell.getTurnCoolDown() > 0) {
+            System.out.print("[CoolDown: "
+                    + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
+        }
+
+        System.out.println("\n\t" + spell.getSpellDescription());
+
+        for (Action action : spell.getSpellActions()) {
+            int totalActionValue = action.getMaxActionValue();
+
+            if (spell.getBonusValueFromAbility() != null) {
+                for (Map.Entry<Ability, Integer> abilityBonus : spell.getBonusValueFromAbility().entrySet()) {
+                    totalActionValue += hero.getCurrentAbilityValue(abilityBonus.getKey())
+                            * abilityBonus.getValue();
+                }
+            }
+
+            System.out.print("\t- " + action.getActionName() + " "
+                    + action.getActionEffectOn()
+                    +  " [Action value: "
+                    + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
+                    + " - " + totalActionValue + "] [Chance to Perform: " + action.getChanceToPerformAction() + "%]");
+
+            if (action instanceof ActionWithDuration) {
+                System.out.print(" [Turns Duration: " + ((ActionWithDuration) action).getMaxActionTurns() + "]"
+                        + " [Max Stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + "]");
+            }
+            System.out.println("\n\t\t" + action.getActionName().getDescription());
+//            System.out.println();
+        }
+    }
+
+    public static void printBattleBuffs(GameCharacter gameCharacter) {
+        if (gameCharacter.getBattleActionsWithDuration() == null) {
+            gameCharacter.setBattleActionsWithDuration(new HashSet<>());
+        }
+
+        generateTableWithBuffs(gameCharacter.getBattleActionsWithDuration());
+    }
+
+    public static void printRegionBuffs(Hero hero) {
+        generateTableWithBuffs(hero.getRegionActionsWithDuration());
+    }
+
+    public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {
+        String leftAlignment = "| %-30s | %-20s | %-28s | %-20s |%n";
+        for (ActionWithDuration actionWithDuration : actionWithDurationList) {
+
+            String specialSymbol;
+            if (actionWithDuration.getCurrentActionValue() == 0) {
+                specialSymbol = "";
+            } else if (actionWithDuration.getCurrentActionValue() < 0) {
+                specialSymbol = " - ";
+            } else {
+                specialSymbol = " + ";
+            }
+
+            System.out.format(leftAlignment, specialSymbol + actionWithDuration.getActionName(),
+                    "Action Value: " + specialSymbol + actionWithDuration.getCurrentActionValue(),
+                    "Turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()),
+                    "Stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
+        }
+    }
+
+    public static StringBuilder printActionTurnRemaining(int currentValue, int maxValue) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < maxValue; i++) {
+            if (i > currentValue - 1) {
+                stringBuilder.append("_");
+            } else {
+                stringBuilder.append("■");
+            }
+        }
+        return stringBuilder;
+    }
+
+    public static StringBuilder printActionTurnCoolDown(int currentValue, int maxValue) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < maxValue; i++) {
+            if (i >= currentValue - 1) {
+                stringBuilder.append("_");
+            } else {
+                stringBuilder.append("■");
+            }
+        }
+        return stringBuilder;
+    }
+
+    public static void printHeaderWithStatsBar(GameCharacter gameCharacter) {
+        printExtraLongDivider();
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t" + gameCharacter.getName());
+        printBar(gameCharacter, Ability.HEALTH);
+        printBar(gameCharacter, Ability.MANA);
+        printBar(gameCharacter, Ability.ABSORB_DAMAGE);
         System.out.println();
-        System.out.println(gameCharacter instanceof Hero ? "\tYour abilities:" : "\tEnemy abilities:");
+        printExtraLongDivider();
+    }
+
+    private static void printBar(GameCharacter gameCharacter, Ability ability) {
+        int maxValue = gameCharacter.getMaxAbilities().get(ability);
+        int currentValue = gameCharacter.getCurrentAbilityValue(ability);
+        double oneBarValue = (double) maxValue / 15;
+
+        char charToPrint;
+        System.out.print("\t" + ability + " »");
+        for (int i = 0; i < 15; i++) {
+            if (i * oneBarValue >= currentValue) {
+                charToPrint = '_';
+            } else {
+                charToPrint = '■';
+            }
+            System.out.print(charToPrint);
+        }
+
+        if (ability.equals(Ability.ABSORB_DAMAGE)) {
+            System.out.print("« [" + currentValue + "]");
+        } else {
+            System.out.print("« [" + currentValue + "/" + maxValue + "]");
+        }
+    }
+
+    public static void printAbilityPoints(GameCharacter gameCharacter) {
+        printExtraLongDivider();
+        System.out.print("\t\t\t\t\t\t\t\t");
+        System.out.println(gameCharacter instanceof Hero ? "Your abilities:" : "Enemy abilities:");
         System.out.print("\t");
         for (Map.Entry<Ability, Integer> entry : gameCharacter.getAbilities().entrySet()) {
             System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
+        }
+        System.out.println();
+        printExtraLongDivider();
+    }
+
+    public static void printMaxAbilityPointsWithItems(Hero hero) {
+        printLongDivider();
+        System.out.println("\t\t\t\t\t------ Ability points with items ------");
+        System.out.print("\t");
+
+        for (Map.Entry<Ability, Integer> abilityPoints : hero.getMaxAbilities().entrySet()) {
+            System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
         }
         System.out.println();
         printLongDivider();
     }
 
     public static void printCurrentAbilityPointsWithItems(Hero hero) {
-        printLongDivider();
-        System.out.println("\t\t\t\t\t------ Ability points with items ------");
-        System.out.print("\t");
-        for (Map.Entry<Ability, Integer> entry : hero.getAbilities().entrySet()) {
-            System.out.print(entry.getKey() + ": "
-                    + (entry.getValue()
-                    + hero.getWearingItemAbilityPoints().get(entry.getKey())) + ", ");
+        printHeaderWithStatsBar(hero);
+//        printExtraLongDivider();
+        System.out.println("\t\t\t\t\t\t\t\t------ Current Ability points with items ------");
+        System.out.print("\t\t\t");
+        for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {
+
+            if (abilityPoints.getKey().equals(Ability.HEALTH)
+                    || abilityPoints.getKey().equals(Ability.MANA)
+                    || abilityPoints.getKey().equals(Ability.ABSORB_DAMAGE)) {
+
+            } else {
+                System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
+            }
+
         }
         System.out.println();
-        printLongDivider();
+        printExtraLongDivider();
     }
 
     /**
@@ -52,7 +204,7 @@ public class PrintUtil {
         }
         System.out.print(wearableItem.getWearableItemType() + ": "
                 + wearableItem.getName()
-                + " (" + wearableItem.getItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
+                + " (" + wearableItem.getWearableItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
         if (!sellItem) {
             System.out.print(", Item Price: " + wearableItem.getPrice());
         } else {
@@ -146,9 +298,14 @@ public class PrintUtil {
         System.out.println("|----------------------------------------------------------------------------------|");
     }
 
+    public static void printExtraLongDivider() {
+        System.out.println("|-------------------------------------------------------------------------------------------------------------|");
+    }
+
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
-        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
+        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory()
+                .returnInventoryWearableItemMap().entrySet()) {
             if (item.getKey().getWearableItemType().equals(wearableItemType)) {
                 count += item.getValue();
             }
@@ -176,30 +333,34 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printConsumableItemFromList(Map<ConsumableItem, Integer> consumableItemMap) {
-        int index = 1;
-        for (Map.Entry<ConsumableItem, Integer> item : consumableItemMap.entrySet()) {
-            System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-            printConsumableItemInfo(item.getKey());
-            System.out.println();
-            index++;
-        }
-    }
-
-    public static void printConsumableItemInfo(ConsumableItem consumableItem) {
+    public static void printConsumableItemInfo(ConsumableItem consumableItem, boolean sellItem) {
         System.out.print(consumableItem.getName()
                 + ", " + consumableItem.getConsumableItemType()
                 + ", iLevel: " + consumableItem.getItemLevel());
-        if (consumableItem.getRestoreAmount() != 0) {
-            System.out.print(", Restore Amount: " + consumableItem.getRestoreAmount() + " health");
+        if (!sellItem) {
+            System.out.print(", Item Price: " + consumableItem.getPrice());
+        } else {
+            System.out.print(", Sell Price: " + consumableItem.returnSellItemPrice());
         }
+        System.out.println();
+        for (Action action : consumableItem.getActionList()) {
+            printActionDetails(action);
+        }
+    }
 
-        for (Ability ability : Ability.values()) {
-            if (consumableItem.getIncreaseAbilityPoint().get(ability) != 0) {
-                System.out.print(", increase " + ability + ": "
-                        + consumableItem.getIncreaseAbilityPoint().get(ability) + ", ");
-            }
+    public static void printActionDetails(Action action) {
+        System.out.print("\t\t");
+        System.out.print(action.getActionName() + ": " + action.getCurrentActionValue());
+        if (action instanceof ActionWithDuration) {
+            System.out.print(" (duration: " + ((ActionWithDuration) action).getMaxActionTurns()
+                    + " " + ((ActionWithDuration) action)
+                    .getActionDurationType()
+                    .toString()
+                    .toLowerCase()
+                    .replace("_", " ")
+                    + " turns, max stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + ")");
         }
+        System.out.println();
     }
 
     public static void printCraftingReagentItemInfo(CraftingReagentItem craftingReagentItem) {

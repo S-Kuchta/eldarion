@@ -25,12 +25,12 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
         });
 
         PrintUtil.printShopHeader(hero, "Crafting reagents");
-        this.printItems(hero);
+        this.printVendorItemsForSale(hero);
         super.buyItem(hero);
     }
 
     @Override
-    protected void printItems(Hero hero) {
+    protected void printVendorItemsForSale(Hero hero) {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item craftingReagentItem : this.itemsForSale) {
@@ -50,7 +50,7 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
     }
 
     @Override
-    public void printItemsForSale(Hero hero) {
+    public void printHeroItemsForSale(Hero hero) {
         List<CraftingReagentItem> craftingReagentItems = new ArrayList<>();
         PrintUtil.printShopHeader(hero, "Crafting reagents");
         int index = 1;

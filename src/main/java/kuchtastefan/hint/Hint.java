@@ -13,16 +13,4 @@ public class Hint {
         this.text = text;
         this.showed = false;
     }
-
-//    public String getText() {
-//        return text;
-//    }
-
-//    public boolean isShowed() {
-//        return showed;
-//    }
-
-//    public void setShowed(boolean showed) {
-//        this.showed = showed;
-//    }
 }

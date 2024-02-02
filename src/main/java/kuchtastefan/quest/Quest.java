@@ -31,10 +31,13 @@ public class Quest {
         this.questReward = questReward;
         this.questCompleted = false;
         this.isTurnedIn = false;
-        questReward.setQuestLevel(this.questLevel);
     }
 
-    public void checkQuestAndQuestObjectivesCompleted() {
+    /**
+     * Check if is Quest completed, Quest is completed if all
+     * questObjectives belonging to quest are completed.
+     */
+    public void checkIfQuestIsCompleted() {
         boolean completed = true;
         for (QuestObjective questObjective : this.questObjectives) {
             if (!questObjective.isCompleted()) {
@@ -48,7 +51,7 @@ public class Quest {
         }
     }
 
-    public void completeTheQuest(Hero hero) {
+    public void turnInTheQuestAndGiveReward(Hero hero) {
         if (this.questCompleted) {
             PrintUtil.printLongDivider();
             System.out.println("\t\t-- You have completed Quest " + this.questName);
@@ -56,54 +59,6 @@ public class Quest {
             this.questReward.giveQuestReward(hero);
         }
     }
-
-//    public String getQuestName() {
-//        return questName;
-//    }
-//
-//    public String getQuestDescription() {
-//        return questDescription;
-//    }
-//
-//    public int getQuestLevel() {
-//        return questLevel;
-//    }
-//
-//    public QuestReward getQuestReward() {
-//        return questReward;
-//    }
-//
-//    public boolean isCompleted() {
-//        return questCompleted;
-//    }
-//
-//    public void setCompleted(boolean completed) {
-//        this.questCompleted = completed;
-//    }
-//
-//    public List<? extends QuestObjective> getQuestObjectives() {
-//        return questObjectives;
-//    }
-//
-//    public void setQuestObjectives(List<? extends QuestObjective> questObjectives) {
-//        this.questObjectives = questObjectives;
-//    }
-//
-//    public boolean isTurnedIn() {
-//        return isTurnedIn;
-//    }
-//
-//    public void setTurnedIn(boolean turnedIn) {
-//        isTurnedIn = turnedIn;
-//    }
-//
-//    public boolean isQuestCompleted() {
-//        return questCompleted;
-//    }
-//
-//    public int getQuestId() {
-//        return questId;
-//    }
 
     @Override
     public boolean equals(Object o) {

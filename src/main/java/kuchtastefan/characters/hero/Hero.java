@@ -9,9 +9,11 @@ import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
+import kuchtastefan.quest.questObjectives.QuestEnemy;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
+import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -26,6 +28,7 @@ import java.util.Map;
 @Setter
 public class Hero extends GameCharacter {
 
+    private HeroClass heroClass;
     private int unspentAbilityPoints;
     private double heroGold;
     private double experiencePoints;
@@ -35,11 +38,13 @@ public class Hero extends GameCharacter {
     private final ExperiencePointsService experiencePointsService;
     private final EnemyKilled enemyKilled;
     private final List<Quest> listOfAcceptedQuests;
+    private final Map<Integer, Spell> learnedSpells;
 
 
     public Hero(String name) {
         super(name, new HashMap<>());
         this.abilities = this.getInitialAbilityPoints();
+        this.currentAbilities = this.getInitialAbilityPoints();
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
         this.wearingItemAbilityPoints = getItemsInitialAbilityPoints();
         this.equippedItem = initialEquip();
@@ -49,6 +54,7 @@ public class Hero extends GameCharacter {
         this.experiencePointsService = new ExperiencePointsService();
         this.enemyKilled = new EnemyKilled();
         this.listOfAcceptedQuests = new ArrayList<>();
+        this.learnedSpells = new HashMap<>();
     }
 
     public void equipItem(WearableItem wearableItem) {
@@ -66,7 +72,7 @@ public class Hero extends GameCharacter {
     }
 
     /**
-     * If dismantled or sold item is wearing by hero, item will be wear down and ability stats will update
+     * If dismantled or sold item is wearing by hero, item will be wear down and ability stats will be updated
      *
      * @param wearableItem item checked for wear down
      */
@@ -78,11 +84,20 @@ public class Hero extends GameCharacter {
         updateWearingItemAbilityPoints();
     }
 
+    /**
+     * Set all items to NoItem and set all wearingItemAbilityPoints to 0 for each ability.
+     */
+    public void wearDownAllEquippedItems() {
+        this.equippedItem = initialEquip();
+//        for (Ability ability : Ability.values()) {
+//            this.wearingItemAbilityPoints.put(ability, 0);
+//        }
+
+        this.updateWearingItemAbilityPoints();
+    }
 
     /**
-     * call this method when you want to update ability points of wearable items depending on
-     * current wearing armor
-     * Call this method always when change equipped item. Sell item, Wear on item, dismantle or refinement item
+     * call this method when you want to update ability points of wearable items depending on current wearing armor
      */
     public void updateWearingItemAbilityPoints() {
         for (Ability ability : Ability.values()) {
@@ -97,15 +112,29 @@ public class Hero extends GameCharacter {
                                 + this.wearingItemAbilityPoints.get(ability));
             }
         }
+
+        this.setHeroMaxAbilities();
+        this.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(null);
     }
 
-    public void wearDownAllEquippedItems() {
-        this.equippedItem = initialEquip();
+    /**
+     * Method is responsible for setHeroMax abilities depending on abilities + wearing item abilities
+     * Call this method whenever you change your equip (best in updateWearingAbilityPoints),
+     * or update basic ability points
+     */
+    private void setHeroMaxAbilities() {
         for (Ability ability : Ability.values()) {
-            this.wearingItemAbilityPoints.put(ability, 0);
+            this.maxAbilities.put(ability, this.abilities.get(ability)
+                    + this.wearingItemAbilityPoints.get(ability));
         }
     }
 
+    /**
+     * Set initial equip to No Item.
+     * It also can be used when you want to set all WearableItemType to No Item.
+     *
+     * @return Map which contains NoItem for each WearableItemType.
+     */
     private Map<WearableItemType, WearableItem> initialEquip() {
         Map<WearableItemType, WearableItem> itemMap = new HashMap<>();
         for (WearableItemType wearableItemType : WearableItemType.values()) {
@@ -115,12 +144,13 @@ public class Hero extends GameCharacter {
     }
 
     private Map<WearableItemType, WearableItem> returnNoItemToEquippedMap(WearableItemType wearableItemType) {
-        return new HashMap<>(Map.of(wearableItemType, new WearableItem("No item", 0, 0, wearableItemType, getItemsInitialAbilityPoints(), WearableItemQuality.BASIC)));
+        return new HashMap<>(Map.of(wearableItemType, new WearableItem("No item", 0, 0,
+                wearableItemType, getItemsInitialAbilityPoints(), WearableItemQuality.BASIC)));
     }
 
     public void setNewAbilityPoint(Ability ability, int pointsToChange, int heroAvailablePointsChange) {
         int minimumPoints = 1;
-        if (ability.equals(Ability.HEALTH)) {
+        if (ability.equals(Ability.HEALTH) || ability.equals(Ability.MANA)) {
             minimumPoints = 50;
         }
 
@@ -132,10 +162,15 @@ public class Hero extends GameCharacter {
             }
             if (ability.equals(Ability.HEALTH)) {
                 this.abilities.put(ability, this.abilities.get(ability) + pointsToChange * Constant.HEALTH_OF_ONE_POINT);
+            } else if (ability.equals(Ability.MANA)) {
+                this.abilities.put(ability, this.abilities.get(ability) + pointsToChange * Constant.MANA_OF_ONE_POINT);
             } else {
                 this.abilities.put(ability, this.abilities.get(ability) + pointsToChange);
             }
 
+            this.setHeroMaxAbilities();
+            this.resetCurrentAbilitiesToMaxAbilities(true);
+            this.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(null);
             updateAbilityPoints(heroAvailablePointsChange);
         }
     }
@@ -178,27 +213,34 @@ public class Hero extends GameCharacter {
     }
 
     /**
-     * check if enemy killed in CombatEvent belongs to some of accepted Quest. If yes add enemy to questEnemyKilled
+     * check if enemy killed in CombatEvent belongs to some of accepted Quest.
+     * If yes increase current count progress in questObjective
      * and print QuestObjectiveAssignment with QuestObjective progress.
+     * Use this method always before checkQuestObjectivesAndQuestComplete() method.
      *
-     * @param enemyName Enemy killed in CombatEvent
+     * @param questEnemy Enemy killed in CombatEvent
      */
-    public void checkQuestProgress(String enemyName) {
+    public void checkQuestProgress(QuestEnemy questEnemy) {
         for (Quest quest : this.listOfAcceptedQuests) {
             for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                if (questObjective instanceof QuestKillObjective
-                        && ((QuestKillObjective) questObjective).getEnemyToKill().equals(enemyName)) {
+                if (!questObjective.isCompleted()) {
+                    if (questObjective instanceof QuestKillObjective
+                            && ((QuestKillObjective) questObjective).getQuestEnemyToKill().equals(questEnemy)) {
 
-                    this.enemyKilled.addQuestEnemyKilled(enemyName);
-                    questObjective.printQuestObjectiveAssignment(this);
-                }
+                        ((QuestKillObjective) questObjective).increaseCurrentCountEnemyProgress();
+                        questObjective.printQuestObjectiveAssignment(this);
+                    }
 
-                if (questObjective instanceof QuestBringItemObjective && enemyName != null
-                        && ((QuestBringItemObjective) questObjective).checkEnemy(enemyName)
-                        && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
+                    if (questObjective instanceof QuestBringItemObjective && questEnemy != null
+                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemy)
+                            && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
 
-                    this.heroInventory.addItemWithNewCopyToItemList(((QuestBringItemObjective) questObjective).getItemDropNeeded());
-                    questObjective.printQuestObjectiveAssignment(this);
+                        System.out.println("\t-- You loot " + ((QuestBringItemObjective) questObjective)
+                                .getItemDropNeeded().getName() + " --");
+                        this.heroInventory.addItemWithNewCopyToItemList(
+                                ((QuestBringItemObjective) questObjective).getItemDropNeeded());
+                        questObjective.printQuestObjectiveAssignment(this);
+                    }
                 }
             }
         }
@@ -206,26 +248,30 @@ public class Hero extends GameCharacter {
 
     /**
      * Check if quest or quest objective is completed.
+     * Add this method at the end of each event which can complete quest or quest objective
      */
-    public void checkQuestObjectivesAndQuestCompleted() {
+    public void checkIfQuestObjectivesAndQuestIsCompleted() {
         for (Quest quest : this.listOfAcceptedQuests) {
             if (!quest.isTurnedIn()) {
                 for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                    questObjective.checkQuestObjectiveCompleted(this);
+                    questObjective.checkIfQuestObjectiveIsCompleted(this);
                 }
-                quest.checkQuestAndQuestObjectivesCompleted();
+                quest.checkIfQuestIsCompleted();
             }
         }
     }
 
-    public boolean checkHeroGoldsAndSubstractIfTrue(double goldNeeded) {
+    public void checkHeroGoldsAndSubtractIfTrue(double goldNeeded) {
         if (this.heroGold >= goldNeeded) {
             this.heroGold -= goldNeeded;
-            return true;
+//            return true;
+        } else {
+            this.heroGold = 0;
+//            return false;
         }
 
-        System.out.println("\tYou don't have enough golds");
-        return false;
+//        System.out.println("\tYou don't have enough golds");
+//        return false;
     }
 
     public void addGolds(double golds) {
@@ -239,22 +285,28 @@ public class Hero extends GameCharacter {
     private Map<Ability, Integer> getInitialAbilityPoints() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 1,
-                Ability.DEFENCE, 1,
-                Ability.DEXTERITY, 1,
-                Ability.SKILL, 1,
-                Ability.LUCK, 1,
-                Ability.HEALTH, 50
+                Ability.RESIST_DAMAGE, 1,
+                Ability.STRENGTH, 1,
+                Ability.INTELLECT, 1,
+                Ability.HASTE, 1,
+                Ability.CRITICAL_HIT_CHANCE, 1,
+                Ability.HEALTH, 50,
+                Ability.MANA, 60,
+                Ability.ABSORB_DAMAGE, 0
         ));
     }
 
     private Map<Ability, Integer> getItemsInitialAbilityPoints() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 0,
-                Ability.DEFENCE, 0,
-                Ability.DEXTERITY, 0,
-                Ability.SKILL, 0,
-                Ability.LUCK, 0,
-                Ability.HEALTH, 0
+                Ability.RESIST_DAMAGE, 0,
+                Ability.STRENGTH, 0,
+                Ability.INTELLECT, 0,
+                Ability.HASTE, 0,
+                Ability.CRITICAL_HIT_CHANCE, 0,
+                Ability.HEALTH, 0,
+                Ability.MANA, 0,
+                Ability.ABSORB_DAMAGE, 0
         ));
     }
 

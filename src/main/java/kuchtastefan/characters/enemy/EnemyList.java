@@ -1,13 +1,14 @@
 package kuchtastefan.characters.enemy;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import kuchtastefan.regions.locations.LocationType;
+import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.characters.spell.SpellsList;
+import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class EnemyList {
     @Getter
@@ -22,11 +23,29 @@ public class EnemyList {
         return enemyMap;
     }
 
-    private static Enemy returnEnemyWithNewCopy(Enemy enemy, EnemyRarity enemyRarity) {
-        Gson gson = new Gson();
+    public static Enemy returnEnemyWithNewCopy(Enemy enemy, EnemyRarity enemyRarity) {
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
+
         Enemy newEnemy = gson.fromJson(gson.toJson(enemy), Enemy.class);
         newEnemy.itemsDrop();
         newEnemy.goldDrop();
+
+        // TODO just for test
+        if (newEnemy.getCharacterSpellList() == null) {
+            newEnemy.setCharacterSpellList(new ArrayList<>());
+        }
+        newEnemy.getCharacterSpellList().addAll(SpellsList.getSpellList());
+        for (Spell spell : SpellsList.getSpellList()) {
+            newEnemy.getCharacterSpellList().add(gson.fromJson(gson.toJson(spell), Spell.class));
+        }
+
+        if (newEnemy.getRegionActionsWithDuration() == null) {
+            newEnemy.setRegionActionsWithDuration(new HashSet<>());
+        }
+
+        if (newEnemy.getBattleActionsWithDuration() == null) {
+            newEnemy.setBattleActionsWithDuration(new HashSet<>());
+        }
 
         if (!enemyRarity.equals(EnemyRarity.COMMON)) {
             double multiplier = 0;
@@ -37,21 +56,16 @@ public class EnemyList {
                 newEnemy.setEnemyRarity(EnemyRarity.ELITE);
                 multiplier = 1.7;
             }
+
             newEnemy.increaseAbilityPointsByMultiplier(multiplier);
             newEnemy.setGoldDrop(newEnemy.getGoldDrop() * multiplier);
         } else {
             newEnemy.setEnemyRarity(EnemyRarity.COMMON);
         }
 
+        newEnemy.setMaxAbilitiesAndCurrentAbilities();
+
         return newEnemy;
-    }
-
-    private static boolean checkEnemyLevelCondition(Enemy enemy, int maxEnemyLevel, Integer minEnemyLevel) {
-        if (minEnemyLevel == null) {
-            minEnemyLevel = maxEnemyLevel;
-        }
-
-        return maxEnemyLevel + 1 >= enemy.getLevel() && minEnemyLevel - 1 <= enemy.getLevel();
     }
 
     public static List<Enemy> returnEnemyListByLocationType(LocationType locationType, EnemyRarity enemyRarity) {
@@ -75,5 +89,13 @@ public class EnemyList {
             }
         }
         return enemies;
+    }
+
+    private static boolean checkEnemyLevelCondition(Enemy enemy, int maxEnemyLevel, Integer minEnemyLevel) {
+        if (minEnemyLevel == null) {
+            minEnemyLevel = maxEnemyLevel;
+        }
+
+        return maxEnemyLevel + 1 >= enemy.getLevel() && minEnemyLevel - 1 <= enemy.getLevel();
     }
 }

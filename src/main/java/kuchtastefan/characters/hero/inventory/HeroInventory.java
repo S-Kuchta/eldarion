@@ -1,12 +1,14 @@
 package kuchtastefan.characters.hero.inventory;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,20 +19,10 @@ import java.util.*;
 public class HeroInventory {
 
     private final Map<Item, Integer> heroInventory;
-    private final Map<WearableItem, Integer> wearableItemInventory;
-    private final Map<CraftingReagentItem, Integer> craftingReagentItemInventory;
-    private final Map<ConsumableItem, Integer> consumableItemInventory;
-    private final Map<QuestItem, Integer> questItemInventory;
-    private final Map<JunkItem, Integer> junkItemInventory;
 
 
     public HeroInventory() {
         this.heroInventory = new HashMap<>();
-        this.wearableItemInventory = new HashMap<>();
-        this.craftingReagentItemInventory = new HashMap<>();
-        this.consumableItemInventory = new HashMap<>();
-        this.questItemInventory = new HashMap<>();
-        this.junkItemInventory = new HashMap<>();
     }
 
     public void addItemToItemList(Item item) {
@@ -38,7 +30,7 @@ public class HeroInventory {
     }
 
     public void addItemWithNewCopyToItemList(Item item) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
         Class<? extends Item> itemClass = item.getClass();
 
         if (Item.class.isAssignableFrom(itemClass)) {
@@ -68,7 +60,8 @@ public class HeroInventory {
 
     public boolean checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(Map<? extends Item, Integer> neededItems, boolean removeItem) {
         for (Map.Entry<? extends Item, Integer> neededItem : neededItems.entrySet()) {
-            if (this.heroInventory.containsKey(neededItem.getKey()) && neededItem.getValue() <= this.heroInventory.get(neededItem.getKey())) {
+            if (this.heroInventory.containsKey(neededItem.getKey())
+                    && neededItem.getValue() <= this.heroInventory.get(neededItem.getKey())) {
                 if (removeItem) {
                     this.heroInventory.put(neededItem.getKey(), this.heroInventory.get(neededItem.getKey()) - neededItem.getValue());
                 }
@@ -77,42 +70,6 @@ public class HeroInventory {
         }
 
         return false;
-    }
-
-    /**
-     * This method is used for save game. When you save game, all items will be added to own list
-     * belonging to its inherited class
-     */
-    public void changeList() {
-        Gson gson = new Gson();
-        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof WearableItem) {
-                WearableItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), WearableItem.class);
-                this.wearableItemInventory.put(itemCopy, item.getValue());
-            }
-
-            if (item.getKey() instanceof CraftingReagentItem) {
-                CraftingReagentItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), CraftingReagentItem.class);
-                this.craftingReagentItemInventory.put(itemCopy, item.getValue());
-            }
-
-            if (item.getKey() instanceof ConsumableItem) {
-                ConsumableItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), ConsumableItem.class);
-                this.consumableItemInventory.put(itemCopy, item.getValue());
-            }
-
-            if (item.getKey() instanceof QuestItem) {
-                QuestItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), QuestItem.class);
-                this.questItemInventory.put(itemCopy, item.getValue());
-            }
-
-            if (item.getKey() instanceof JunkItem) {
-                JunkItem itemCopy = gson.fromJson(gson.toJson(item.getKey()), JunkItem.class);
-                this.junkItemInventory.put(itemCopy, item.getValue());
-            }
-        }
-
-        this.heroInventory.clear();
     }
 
     public void removeItemFromItemList(Item item) {

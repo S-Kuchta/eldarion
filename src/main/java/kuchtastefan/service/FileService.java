@@ -4,13 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.Action;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyType;
 import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.inventory.HeroInventory;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.Item;
+import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
@@ -21,45 +22,34 @@ import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
-import kuchtastefan.quest.questObjectives.QuestClearLocation;
-import kuchtastefan.quest.questObjectives.QuestKillObjective;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.regions.ForestRegionService;
+import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileService {
-    private final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
-            .of(QuestObjective.class)
-            .registerSubtype(QuestKillObjective.class)
-            .registerSubtype(QuestBringItemObjective.class)
-            .registerSubtype(QuestClearLocation.class);
-
-    private final RuntimeTypeAdapterFactory<Item> itemRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
-            .of(Item.class)
-            .registerSubtype(ConsumableItem.class)
-            .registerSubtype(CraftingReagentItem.class)
-            .registerSubtype(WearableItem.class)
-            .registerSubtype(QuestItem.class)
-            .registerSubtype(JunkItem.class);
-
-    private final Gson gson = new GsonBuilder().registerTypeAdapterFactory(this.questObjectiveRuntimeTypeAdapterFactory).enableComplexMapKeySerialization().setPrettyPrinting().create();
+    private final Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsWithDurationTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
+//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.spellObjectiveRuntimeTypeAdapterFactory)
+            .enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
     public void saveGame(Hero hero, int currentLevel, ForestRegionService forestRegionService) {
-        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, HintUtil.getHintList(), forestRegionService.getDiscoveredLocations());
-        Map<Item, Integer> tempItemMap = new HashMap<>(gameLoaded.getHero().getHeroInventory().getHeroInventory());
-        gameLoaded.getHero().getHeroInventory().changeList();
+        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, HintUtil.getHintList(), forestRegionService.getDiscoveredLocations(), hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
 
         while (true) {
             System.out.println("How do you want to name your save?");
@@ -94,13 +84,12 @@ public class FileService {
                 System.out.println("\tGame Saved");
                 PrintUtil.printDivider();
 
-                hero.getHeroInventory().getHeroInventory().putAll(tempItemMap);
                 writer.close();
             } catch (IOException e) {
-                System.out.println("Error while saving game");
+                System.out.println("\tError while saving game");
                 continue;
             } catch (InvalidPathException e) {
-                System.out.println("Invalid characters in file name");
+                System.out.println("\tInvalid characters in file name");
                 continue;
             }
 
@@ -118,23 +107,7 @@ public class FileService {
                 String selectedSavedGame = selectSaveGame(listOfSavedGames);
                 BufferedReader bufferedReader = new BufferedReader(new FileReader(selectedSavedGame));
 
-                GameLoaded gameLoaded = gson.fromJson(bufferedReader, GameLoaded.class);
-
-                HeroInventory itemInventoryList = gameLoaded.getHero().getHeroInventory();
-                Map<Item, Integer> heroInventory = itemInventoryList.getHeroInventory();
-
-                Map<WearableItem, Integer> wearableItems = itemInventoryList.getWearableItemInventory();
-                Map<CraftingReagentItem, Integer> craftingReagentItems = itemInventoryList.getCraftingReagentItemInventory();
-                Map<ConsumableItem, Integer> consumableItems = itemInventoryList.getConsumableItemInventory();
-                Map<QuestItem, Integer> questItems = itemInventoryList.getQuestItemInventory();
-                Map<JunkItem, Integer> junkItems = itemInventoryList.getJunkItemInventory();
-
-                for (Map<? extends Item, Integer> inventory : List.of(wearableItems, craftingReagentItems, consumableItems, questItems, junkItems)) {
-                    heroInventory.putAll(inventory);
-                    inventory.clear();
-                }
-
-                return gameLoaded;
+                return this.gson.fromJson(bufferedReader, GameLoaded.class);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
                 return null;
@@ -194,19 +167,7 @@ public class FileService {
 
                 for (WearableItem wearableItem : WearableItems) {
                     wearableItem.setWearableItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
-                    wearableItem.setPrice(70 * wearableItem.getItemLevel());
-
-                    if (wearableItem.getItemQuality() == null) {
-                        wearableItem.setItemQuality(WearableItemQuality.BASIC);
-                    }
-
-                    if (wearableItem.getItemQuality() == WearableItemQuality.SPECIAL) {
-
-                    }
-
-                    for (Ability ability : Ability.values()) {
-                        wearableItem.getAbilities().putIfAbsent(ability, 0);
-                    }
+                    wearableItemMissingValuesSet(wearableItem);
                 }
                 wearableItemList.addAll(WearableItems);
                 reader.close();
@@ -216,6 +177,18 @@ public class FileService {
         }
 
         return wearableItemList;
+    }
+
+    private void wearableItemMissingValuesSet(WearableItem wearableItem) {
+        wearableItem.setPrice(70 * wearableItem.getItemLevel());
+
+        if (wearableItem.getWearableItemQuality() == null) {
+            wearableItem.setItemQuality(WearableItemQuality.BASIC);
+        }
+
+        for (Ability ability : Ability.values()) {
+            wearableItem.getAbilities().putIfAbsent(ability, 0);
+        }
     }
 
     public List<CraftingReagentItem> importCraftingReagentItemsFromFile() {
@@ -249,25 +222,21 @@ public class FileService {
             List<ConsumableItem> consumableItemList;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                consumableItemList = new Gson().fromJson(reader, new TypeToken<List<ConsumableItem>>() {
+
+                consumableItemList = this.gson.fromJson(reader, new TypeToken<List<ConsumableItem>>() {
                 }.getType());
 
                 for (ConsumableItem consumableItem : consumableItemList) {
                     consumableItem.setConsumableItemType(
                             ConsumableItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
-                    if (consumableItem.getIncreaseAbilityPoint() == null) {
-                        consumableItem.setIncreaseAbilityPoint(new HashMap<>());
-                    }
-
-                    for (Ability ability : Ability.values()) {
-                        consumableItem.getIncreaseAbilityPoint().putIfAbsent(ability, 0);
-                    }
-
-                    if (consumableItem.getRestoreAmount() == null) {
-                        consumableItem.setRestoreAmount(0);
+                    for (Action action : consumableItem.getActionList()) {
+                        action.setNewCurrentActionValue(action.getMaxActionValue());
                     }
                 }
+
+
+
                 consumableItems.addAll(consumableItemList);
                 reader.close();
             }
@@ -312,6 +281,7 @@ public class FileService {
                     enemy.setEnemyType(
                             EnemyType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
+
                 }
 
                 enemies.addAll(enemyList);
@@ -350,36 +320,33 @@ public class FileService {
         return junkItems;
     }
 
-//    public List<Quest> importQuestsListFromFile() {
-//        String path = "external-files/quests";
-//        List<Quest> questList = new ArrayList<>();
-//        try {
-//            List<? extends Quest> quests;
-//            for (String file : returnFileList(path)) {
-//                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-//                quests = new Gson().fromJson(reader, new TypeToken<List<Quest>>() {
-//                }.getType());
-//
-//                questList.addAll(quests);
-//
-//                reader.close();
-//            }
-//        } catch (IOException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
-//        return questList;
-//    }
-
     public List<Quest> importQuestsListFromFile() {
         String path = "external-files/quests";
         List<Quest> questList = new ArrayList<>();
         try {
+            List<Quest> quests;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                Quest[] quests = gson.fromJson(reader, Quest[].class);
-                questList = Arrays.asList(quests);
+                quests = this.gson.fromJson(reader, new TypeToken<List<Quest>>() {
+                }.getType());
 
+                for (Quest quest : quests) {
+                    if (quest.getQuestReward().getItemsReward().isEmpty()) {
+                        quest.getQuestReward().generateRandomWearableItemsReward(
+                                1, ItemsLists.returnWearableItemListByItemLevel(
+                                        quest.getQuestLevel(), null, false)
+                        );
+                    }
+
+                    for (Item item : quest.getQuestReward().getItemsReward()) {
+                        if (item instanceof WearableItem) {
+                            wearableItemMissingValuesSet((WearableItem) item);
+                        }
+                    }
+
+                }
+
+                questList.addAll(quests);
                 reader.close();
             }
         } catch (IOException e) {
@@ -388,6 +355,31 @@ public class FileService {
 
         questList.sort(Comparator.comparingInt(Quest::getQuestId));
         return questList;
+    }
+
+    public List<Spell> importSpellsFromFile() {
+        String path = "external-files/spells";
+        List<Spell> spellList = new ArrayList<>();
+        try {
+            List<Spell> spells;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                spells = this.gson.fromJson(reader, new TypeToken<List<Spell>>() {
+                }.getType());
+
+                for (Spell spell : spells) {
+                    spell.setCanSpellBeCasted(true);
+                    spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
+                }
+
+                spellList.addAll(spells);
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return spellList;
     }
 }
 

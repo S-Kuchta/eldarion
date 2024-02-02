@@ -1,47 +1,17 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
-    "heroGold": 150.0,
-    "experiencePoints": 0.0,
+    "heroGold": 145.0,
+    "experiencePoints": 20.0,
     "equippedItem": {
-      "WEAPON": {
-        "wearableItemType": "WEAPON",
+      "HEAD": {
+        "wearableItemType": "HEAD",
         "abilities": {
-          "ATTACK": 0,
-          "DEFENCE": 0,
-          "HEALTH": 0,
           "SKILL": 0,
           "LUCK": 0,
-          "DEXTERITY": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "BODY": {
-        "wearableItemType": "BODY",
-        "abilities": {
-          "ATTACK": 0,
           "DEFENCE": 0,
           "HEALTH": 0,
-          "SKILL": 0,
-          "LUCK": 0,
-          "DEXTERITY": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "HANDS": {
-        "wearableItemType": "HANDS",
-        "abilities": {
           "ATTACK": 0,
-          "DEFENCE": 0,
-          "HEALTH": 0,
-          "SKILL": 0,
-          "LUCK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -52,11 +22,11 @@
       "BOOTS": {
         "wearableItemType": "BOOTS",
         "abilities": {
-          "ATTACK": 0,
-          "DEFENCE": 0,
-          "HEALTH": 0,
           "SKILL": 0,
           "LUCK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "ATTACK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -64,14 +34,44 @@
         "price": 0.0,
         "itemLevel": 0
       },
-      "HEAD": {
-        "wearableItemType": "HEAD",
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
         "abilities": {
-          "ATTACK": 0,
-          "DEFENCE": 0,
-          "HEALTH": 0,
           "SKILL": 0,
           "LUCK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "ATTACK": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "ATTACK": 0,
+          "DEXTERITY": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "SKILL": 0,
+          "LUCK": 0,
+          "DEFENCE": 0,
+          "HEALTH": 0,
+          "ATTACK": 0,
           "DEXTERITY": 0
         },
         "wearableItemQuality": "BASIC",
@@ -81,51 +81,80 @@
       }
     },
     "wearingItemAbilityPoints": {
-      "ATTACK": 0,
-      "DEFENCE": 0,
-      "HEALTH": 0,
       "SKILL": 0,
       "LUCK": 0,
+      "DEFENCE": 0,
+      "HEALTH": 0,
+      "ATTACK": 0,
       "DEXTERITY": 0
     },
     "heroInventory": {
-      "heroInventory": {},
-      "wearableItemInventory": {},
-      "craftingReagentItemInventory": {},
-      "consumableItemInventory": {},
-      "questItemInventory": {},
-      "junkItemInventory": {}
+      "heroInventory": [
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "name": "DeathBloom",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Damaged Scarf",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "name": "Iron ore",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          1
+        ]
+      ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 0.0
+      "neededExperiencePointsForNewLevel": 480.0
     },
     "enemyKilled": {
-      "enemyKilled": {},
-      "questEnemyKilled": {
-        "Defias Bandit": 0
-      }
+      "enemyKilled": {
+        "Defias Bandit": 1
+      },
+      "questEnemyKilled": {}
     },
     "listOfAcceptedQuests": [
       {
+        "questId": 0,
         "questName": "Shadow Raiders",
-        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear.\n\tAnswer the call of duty to undertake a quest of paramount importance\n\t– eliminate ten notorious bandit.\n\tYour courage will be tested in the face of danger.",
+        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
         "questLevel": 2,
-        "questCompleted": false,
+        "questCompleted": true,
         "questObjectives": [
           {
             "type": "QuestKillObjective",
-            "enemyToKill": "Defias Bandit",
-            "countEnemyToKill": 10,
-            "completed": false,
-            "questObjectiveName": "Kill 10 bandits"
+            "questEnemyToKill": {
+              "questEnemyName": "Defias Bandit",
+              "questEnemyRarity": "COMMON"
+            },
+            "countEnemyToKill": 1,
+            "currentCountEnemyProgress": 1,
+            "completed": true
           }
         ],
         "questReward": {
           "itemsReward": [
             {
+              "type": "WearableItem",
               "name": "Iron sword of Skill",
-              "price": 50.0,
-              "itemLevel": 1
+              "price": 0.0
             }
           ],
           "goldsReward": 30.0,
@@ -136,22 +165,72 @@
       }
     ],
     "name": "1",
+    "level": 1,
     "abilities": {
-      "ATTACK": 8,
-      "DEFENCE": 1,
-      "HEALTH": 50,
       "SKILL": 1,
       "LUCK": 1,
+      "DEFENCE": 1,
+      "HEALTH": 50,
+      "ATTACK": 8,
       "DEXTERITY": 1
     },
-    "level": 1
+    "maxAbilities": {
+      "DEXTERITY": 1,
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEFENCE": 1,
+      "ATTACK": 8,
+      "HEALTH": 50
+    },
+    "currentAbilities": {
+      "SKILL": 1,
+      "LUCK": 1,
+      "DEFENCE": 1,
+      "HEALTH": 35,
+      "ATTACK": 8,
+      "DEXTERITY": 1
+    },
+    "regionActionsWithDuration": [],
+    "battleActionsWithDuration": []
   },
   "level": 1,
   "hintUtil": {
     "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": true
+      "showed": false
     }
   },
-  "forestRegionDiscoveredLocation": []
+  "forestRegionDiscoveredLocation": [],
+  "regionActionsWithDuration": [],
+  "itemList": [
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "ALCHEMY_REAGENT",
+        "name": "DeathBloom",
+        "price": 10.0,
+        "itemLevel": 2
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Damaged Scarf",
+        "price": 3.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "BLACKSMITH_REAGENT",
+        "name": "Iron ore",
+        "price": 10.0,
+        "itemLevel": 2
+      },
+      1
+    ]
+  ]
 }

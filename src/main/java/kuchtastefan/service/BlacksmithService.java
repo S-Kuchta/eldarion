@@ -59,6 +59,15 @@ public class BlacksmithService {
         }
     }
 
+    /**
+     * Allows the hero to refine wearable items in their inventory to enhance their quality.
+     * The method presents a list of wearable items that can be refined, based on their current quality.
+     * The hero must have the required crafting reagents to proceed with the refinement.
+     * Successfully refined items are upgraded to the next quality level (e.g., BASIC to IMPROVED).
+     * The method continues until the hero decides to go back.
+     *
+     * @param hero The hero whose inventory is being refined.
+     */
     public void refinementItemQuality(Hero hero) {
         while (true) {
             PrintUtil.printDivider();
@@ -74,7 +83,7 @@ public class BlacksmithService {
                 System.out.println("\tItem list is empty");
             } else {
                 for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
-                    if (!item.getKey().getItemQuality().equals(WearableItemQuality.SUPERIOR)) {
+                    if (!item.getKey().getWearableItemQuality().equals(WearableItemQuality.SUPERIOR)) {
                         System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                         PrintUtil.printItemDescription(item.getKey(), false, hero);
                         refinementItemMap.put(item.getKey(), itemsNeededToRefinement(item.getKey()));
@@ -109,7 +118,7 @@ public class BlacksmithService {
             if (wearableItem == null) {
                 break;
             } else {
-                WearableItemQuality wearableItemQuality = wearableItem.getItemQuality();
+                WearableItemQuality wearableItemQuality = wearableItem.getWearableItemQuality();
                 Gson gson = new Gson();
                 WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
 
@@ -125,7 +134,7 @@ public class BlacksmithService {
 
                 } else {
                     PrintUtil.printLongDivider();
-                    System.out.println("\t\tYou can not refinement your item. Your item has the highest quality");
+                    System.out.println("\t--- You can not refinement your item. Your item has the highest quality ---");
                     PrintUtil.printLongDivider();
                 }
             }
@@ -138,11 +147,11 @@ public class BlacksmithService {
         int itemsNeededToRefinement = 0;
 
         CraftingReagentItem craftingReagentItem = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
-        if (wearableItem.getItemQuality().equals(WearableItemQuality.BASIC)) {
+        if (wearableItem.getWearableItemQuality().equals(WearableItemQuality.BASIC)) {
             itemsNeededToRefinement = wearableItem.getItemLevel() * 3;
         }
 
-        if (wearableItem.getItemQuality().equals(WearableItemQuality.IMPROVED)) {
+        if (wearableItem.getWearableItemQuality().equals(WearableItemQuality.IMPROVED)) {
             itemsNeededToRefinement = wearableItem.getItemLevel() * 4;
         }
 
@@ -158,7 +167,7 @@ public class BlacksmithService {
         hero.getHeroInventory().addItemToItemList(wearableItem);
 
         PrintUtil.printLongDivider();
-        System.out.println("\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getItemQuality() + " quality");
+        System.out.println("\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getWearableItemQuality() + " quality");
         PrintUtil.printLongDivider();
         hero.equipItem(wearableItem);
     }

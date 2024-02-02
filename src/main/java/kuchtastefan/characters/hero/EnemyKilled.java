@@ -1,5 +1,6 @@
 package kuchtastefan.characters.hero;
 
+import kuchtastefan.quest.questObjectives.QuestEnemy;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.Map;
 public class EnemyKilled {
 
     private final Map<String, Integer> enemyKilled;
-    private final Map<String, Integer> questEnemyKilled;
+    private final Map<QuestEnemy, Integer> questEnemyKilled;
 
 
     public EnemyKilled() {
@@ -23,21 +24,5 @@ public class EnemyKilled {
         } else {
             this.enemyKilled.put(enemyName, 1);
         }
-    }
-
-    public void addQuestEnemyKilled(String enemyName) {
-        if (this.questEnemyKilled.containsKey(enemyName)) {
-            this.questEnemyKilled.put(enemyName, this.questEnemyKilled.get(enemyName) + 1);
-        } else {
-            this.questEnemyKilled.put(enemyName, 1);
-        }
-    }
-
-    public void removeQuestEnemyKilled(String enemy) {
-        this.questEnemyKilled.remove(enemy);
-    }
-
-    public boolean checkIfHeroContainsEnoughQuestEnemyKilled(String enemyName, int numberOfEnemies) {
-        return this.questEnemyKilled.containsKey(enemyName) && this.questEnemyKilled.get(enemyName) >= numberOfEnemies;
     }
 }

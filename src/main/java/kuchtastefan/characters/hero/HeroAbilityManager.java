@@ -6,6 +6,9 @@ import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 public class HeroAbilityManager {
@@ -15,13 +18,24 @@ public class HeroAbilityManager {
         this.hero = hero;
     }
 
+    private List<Ability> abilityList() {
+        List<Ability> abilityList = new ArrayList<>();
+        for (Ability ability : Ability.values()) {
+            if (!ability.equals(Ability.ABSORB_DAMAGE)) {
+                abilityList.add(ability);
+            }
+        }
+
+        return abilityList;
+    }
+
     public void spendAbilityPoints() {
         if (this.hero.getUnspentAbilityPoints() <= 0) {
             System.out.println("You don't have any ability points to spend.");
             PrintUtil.printDivider();
         } else {
             while (this.hero.getUnspentAbilityPoints() > 0) {
-                PrintUtil.printCurrentAbilityPoints(this.hero);
+                PrintUtil.printAbilityPoints(this.hero);
                 System.out.println("Choose ability to upgrade:");
                 System.out.println("You have " + this.hero.getUnspentAbilityPoints() + " to spend.");
                 printPossibleAbilitiesToUpgrade("spend");
@@ -29,18 +43,18 @@ public class HeroAbilityManager {
             }
 
             System.out.println("You have spent all your available points. Your abilities are: ");
-            PrintUtil.printCurrentAbilityPoints(hero);
+            PrintUtil.printAbilityPoints(this.hero);
         }
     }
 
     public void removeAbilityPoints() {
         while (true) {
-            PrintUtil.printCurrentAbilityPoints(this.hero);
+            PrintUtil.printAbilityPoints(this.hero);
             System.out.println("Choose ability to remove:");
             printPossibleAbilitiesToUpgrade("remove");
             int removeAbilityInput = InputUtil.intScanner();
             if (removeAbilityInput == 0) {
-                PrintUtil.printCurrentAbilityPoints(this.hero);
+                PrintUtil.printAbilityPoints(this.hero);
                 break;
             }
 
@@ -52,31 +66,22 @@ public class HeroAbilityManager {
         spendOrRemovePoint = spendOrRemovePoint.equals("spend") ? "\t0. Explain abilities" : "\t0. I am done";
         System.out.println(spendOrRemovePoint);
         int index = 1;
-        for (Ability ability : Ability.values()) {
+        for (Ability ability : this.abilityList()) {
             System.out.println("\t" + index + ". " + ability.toString());
             index++;
         }
     }
 
     private void setAbilityToUpgrade(int numberOfAbility, int numberOfPoints, int heroAvailablePointsChange, String spendOrRemovePoint) {
-        Ability tempAbility = null;
         if (numberOfAbility == 0) {
             if (spendOrRemovePoint.equals("spend")) {
                 explainAbilities();
             }
         } else {
-            int index = 1;
-            if (numberOfAbility < 1 || numberOfAbility > Ability.values().length) {
+            if (numberOfAbility < 1 || numberOfAbility > abilityList().size()) {
                 System.out.println("Enter Valid number");
             } else {
-                for (Ability ability : Ability.values()) {
-                    if (index == numberOfAbility) {
-                        tempAbility = ability;
-                    }
-                    index++;
-                }
-                assert tempAbility != null;
-                this.hero.setNewAbilityPoint(tempAbility, numberOfPoints, heroAvailablePointsChange);
+                this.hero.setNewAbilityPoint(abilityList().get(numberOfAbility - 1), numberOfPoints, heroAvailablePointsChange);
             }
         }
     }

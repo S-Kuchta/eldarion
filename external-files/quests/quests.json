@@ -7,16 +7,31 @@
     "questObjectives": [
       {
         "type": "QuestKillObjective",
-        "enemyToKill": "Defias Bandit",
+        "questEnemyToKill": {
+          "questEnemyName": "Defias Bandit",
+          "questEnemyRarity": "COMMON"
+        },
         "countEnemyToKill": 1
       }
     ],
     "questReward": {
       "itemsReward": [
         {
-          "name": "Iron sword of Skill",
-          "price": 50.0,
+          "type": "WearableItem",
+          "name": "Death Bringer",
+          "wearableItemType": "WEAPON",
+          "abilities": {
+            "ATTACK": 1,
+            "SKILL": 1
+          },
           "itemLevel": 1
+        },
+        {
+          "type": "CraftingReagentItem",
+          "craftingReagentItemType": "BLACKSMITH_REAGENT",
+          "name": "Iron ore",
+          "price": 10,
+          "itemLevel": 2
         }
       ],
       "goldsReward": 30.0,
@@ -26,26 +41,36 @@
   },
   {
     "questId": 1,
-    "questName": "Wolf in the forest",
-    "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
+    "questName": "Wolfs in the forest",
+    "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us and revenge them.",
     "questLevel": 2,
     "questObjectives": [
       {
         "type": "QuestKillObjective",
-        "enemyToKill": "Wolf",
+        "questEnemyToKill": {
+          "questEnemyName": "Wolf",
+          "questEnemyRarity": "COMMON"
+        },
         "countEnemyToKill": 5
       },
       {
         "type": "QuestKillObjective",
-        "enemyToKill": "Alpha Wolf",
+        "questEnemyToKill": {
+          "questEnemyName": "Alpha Wolf",
+          "questEnemyRarity": "COMMON"
+        },
         "countEnemyToKill": 1
       }
     ],
     "questReward": {
       "itemsReward": [
         {
+          "type": "WearableItem",
           "name": "Iron sword of Skill",
-          "price": 50.0,
+          "abilities": {
+            "ATTACK": 1,
+            "SKILL": 1
+          },
           "itemLevel": 1
         }
       ],
@@ -62,21 +87,44 @@
     "questObjectives": [
       {
         "type": "QuestBringItemObjective",
-        "itemDropFromEnemy": ["Wolf", "Alpha Wolf"],
+        "itemDropFromEnemy": [
+          {
+            "questEnemyName": "Wolf",
+            "questEnemyRarity": "COMMON"
+          },
+          {
+            "questEnemyName": "Alpha Wolf",
+            "questEnemyRarity": "COMMON"
+          },
+          {
+            "questEnemyName": "Wolf",
+            "questEnemyRarity": "RARE"
+          },
+          {
+            "questEnemyName": "Alpha Wolf",
+            "questEnemyRarity": "RARE"
+          }
+        ],
         "itemDropCountNeeded": "10",
         "itemDropNeeded": {
           "name": "Wolf meat",
           "price": 0,
           "itemLevel": 2
         },
-        "locationType": ["FOREST"]
+        "locationsType": [
+          "FOREST"
+        ]
       }
     ],
     "questReward": {
       "itemsReward": [
         {
+          "type": "WearableItem",
           "name": "Iron sword of Skill",
-          "price": 50.0,
+          "abilities": {
+            "ATTACK": 1,
+            "SKILL": 1
+          },
           "itemLevel": 1
         }
       ],

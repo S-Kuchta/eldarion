@@ -1,0 +1,56 @@
+[
+  {
+    "spellName": "Weapon Attack",
+    "spellClass": "MAGE",
+    "spellDescription": "Attack with weapon",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 3,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
+    "spellName": "Fireball",
+    "spellClass": "MAGE",
+    "spellDescription": "Cast a fireball",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 5,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 20,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 1,
+      "ATTACK": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 10,
+    "turnCoolDown": 2
+  }
+]

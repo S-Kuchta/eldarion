@@ -26,19 +26,18 @@ public class ConsumableVendorCharacter extends VendorCharacter {
         });
 
         PrintUtil.printShopHeader(hero, "Consumable");
-        this.printItems(hero);
+        this.printVendorItemsForSale(hero);
         super.buyItem(hero);
     }
 
     @Override
-    protected void printItems(Hero hero) {
+    protected void printVendorItemsForSale(Hero hero) {
         int index = 1;
         System.out.println("\t0. Go back");
         for (Item consumableItem : this.itemsForSale) {
             if (consumableItem instanceof ConsumableItem) {
-                System.out.print("\t" + index + ". " + consumableItem.getName()
-                        + ", Item Type: " + ((ConsumableItem) consumableItem).getConsumableItemType()
-                        + ", Item Price: " + consumableItem.getPrice() + " golds");
+                System.out.print("\t" + index + ". ");
+                PrintUtil.printConsumableItemInfo((ConsumableItem) consumableItem, false);
 
                 index++;
                 System.out.println();
@@ -47,7 +46,7 @@ public class ConsumableVendorCharacter extends VendorCharacter {
     }
 
     @Override
-    public void printItemsForSale(Hero hero) {
+    public void printHeroItemsForSale(Hero hero) {
         List<ConsumableItem> consumableItemList = new ArrayList<>();
         PrintUtil.printShopHeader(hero, "Consumable");
         int index = 1;
@@ -58,7 +57,7 @@ public class ConsumableVendorCharacter extends VendorCharacter {
             for (Map.Entry<ConsumableItem, Integer> item : hero.getHeroInventory().returnInventoryConsumableItemMap().entrySet()) {
                 consumableItemList.add(item.getKey());
                 System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printConsumableItemInfo(item.getKey());
+                PrintUtil.printConsumableItemInfo(item.getKey(), true);
                 System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
             }
         }

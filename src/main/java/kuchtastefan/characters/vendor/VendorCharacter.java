@@ -27,11 +27,11 @@ public abstract class VendorCharacter extends GameCharacter {
 
     protected abstract void vendorOffer(Hero hero);
 
-    public abstract void printItemsForSale(Hero hero);
+    public abstract void printHeroItemsForSale(Hero hero);
 
     public abstract void printGreeting();
 
-    protected abstract void printItems(Hero hero);
+    protected abstract void printVendorItemsForSale(Hero hero);
 
     public void vendorMenu(Hero hero) {
         printGreeting();
@@ -45,7 +45,7 @@ public abstract class VendorCharacter extends GameCharacter {
             case 0 -> {
             }
             case 1 -> vendorOffer(hero);
-            case 2 -> printItemsForSale(hero);
+            case 2 -> printHeroItemsForSale(hero);
             default -> System.out.println("Enter valid input");
         }
     }
@@ -108,7 +108,7 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public void successfullyItemBought(Hero hero, Item item) {
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-        hero.checkHeroGoldsAndSubstractIfTrue(item.getPrice());
+        hero.checkHeroGoldsAndSubtractIfTrue(item.getPrice());
         System.out.println("\t" + item.getName() + " bought. You can find it in your inventory");
     }
 

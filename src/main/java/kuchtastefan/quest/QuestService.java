@@ -65,7 +65,7 @@ public class QuestService {
                     System.out.print(" -- Completed --");
                 } else if (!hero.getListOfAcceptedQuests().contains(quest)) {
                     System.out.print(" - ! -");
-                } else if (hero.getListOfAcceptedQuests().contains(quest) && quest.isQuestCompleted() && !quest.isTurnedIn()) {
+                } else if (hero.getListOfAcceptedQuests().contains(quest) && quest.isQuestCompleted() /*&& !quest.isTurnedIn()*/) {
                     System.out.print(" - ? -");
                 }
                 index++;
@@ -74,6 +74,15 @@ public class QuestService {
         }
     }
 
+    /**
+     * Method is responsible for Accepting or Completing selected quest.
+     * If hero does not contain selected quest you can to take it
+     * If you have quest completed but not turned it yet, you can turn in
+     *
+     * @param quest quest which come dynamically depending on you choice
+     * @param quests only needed for switching between menus
+     * @param name same as quests
+     */
     private void selectedQuestForQuestGiverMenu(Quest quest, Hero hero, List<Quest> quests, String name) {
 
         if (!quest.isTurnedIn()) {
@@ -98,7 +107,7 @@ public class QuestService {
                     this.startTheQuest(quest, hero);
                     this.questGiverMenu(hero, quests, name);
                 } else if (!quest.isTurnedIn() && quest.isQuestCompleted()) {
-                    this.completeTheQuest(quest, hero);
+                    this.turnInTheQuest(quest, hero);
                     this.questGiverMenu(hero, quests, name);
                 }
             }
@@ -112,8 +121,13 @@ public class QuestService {
         }
     }
 
-    private void completeTheQuest(Quest quest, Hero hero) {
-        quest.completeTheQuest(hero);
+    /**
+     * Turn in the quest, give quest reward to hero and remove items/killed enemy etc. from hero
+     *
+     * @param quest quest to turn in
+     */
+    private void turnInTheQuest(Quest quest, Hero hero) {
+        quest.turnInTheQuestAndGiveReward(hero);
         quest.setTurnedIn(true);
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             questObjective.removeCompletedItemsOrEnemies(hero);

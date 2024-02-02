@@ -22,26 +22,26 @@ public class DiscoverLocationEvent extends Event {
 
     @Override
     public boolean eventOccurs(Hero hero) {
-        if (RandomNumberGenerator.getRandomNumber(0,5) > 4) {
+//        if (RandomNumberGenerator.getRandomNumber(0,5) > 4) {
             while (true) {
                 int randomNumber = RandomNumberGenerator.getRandomNumber(0, this.allLocations.size() - 1);
-                Location location = allLocations.get(randomNumber);
-                if (!discoveredLocations.contains(location)) {
-                    discoveredLocations.add(location);
+                Location location = this.allLocations.get(randomNumber);
+                if (!this.discoveredLocations.contains(location)) {
+                    this.discoveredLocations.add(location);
                     System.out.println("\t--> You discovered " + location.getLocationName() + ", recommended level: " + location.getLocationLevel() + " level <--");
                     hero.gainExperiencePoints(50);
                     new LocationService().locationMenu(hero, location);
                     break;
                 }
 
-                if (allLocations.size() == discoveredLocations.size()) {
+                if (this.allLocations.size() == this.discoveredLocations.size()) {
                     System.out.println("\tYou discovered all locations in this region");
                     break;
                 }
             }
-        } else {
-            System.out.println("\t--> You believed you caught a glimpse of something, yet it proved to be unremarkable <--");
-        }
+//        } else {
+//            System.out.println("\t--> You believed you caught a glimpse of something, yet it proved to be unremarkable <--");
+//        }
         return true;
     }
 

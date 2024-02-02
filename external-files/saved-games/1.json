@@ -1,33 +1,57 @@
 {
   "hero": {
     "unspentAbilityPoints": 0,
-    "heroGold": 150.0,
+    "heroGold": 10.0,
     "experiencePoints": 0.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "ATTACK": 0,
-          "DEFENCE": 0,
+          "ATTACK": 2,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
-          "SKILL": 0,
-          "DEXTERITY": 0
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "name": "Iron sword of Attack",
+        "price": 70.0,
+        "itemLevel": 1
       },
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
-          "ATTACK": 0,
-          "DEFENCE": 0,
+          "RESIST_DAMAGE": 3,
+          "ATTACK": 1,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
-          "SKILL": 0,
-          "DEXTERITY": 0
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Leather armor of Attack",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ATTACK": 0,
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -37,27 +61,15 @@
       "HANDS": {
         "wearableItemType": "HANDS",
         "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
           "ATTACK": 0,
-          "DEFENCE": 0,
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
-          "SKILL": 0,
-          "DEXTERITY": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
-      },
-      "BOOTS": {
-        "wearableItemType": "BOOTS",
-        "abilities": {
-          "ATTACK": 0,
-          "DEFENCE": 0,
-          "HEALTH": 0,
-          "LUCK": 0,
-          "SKILL": 0,
-          "DEXTERITY": 0
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -67,12 +79,15 @@
       "HEAD": {
         "wearableItemType": "HEAD",
         "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
           "ATTACK": 0,
-          "DEFENCE": 0,
+          "ABSORB_DAMAGE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "LUCK": 0,
-          "SKILL": 0,
-          "DEXTERITY": 0
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
         "name": "No item",
@@ -81,151 +96,231 @@
       }
     },
     "wearingItemAbilityPoints": {
-      "ATTACK": 0,
-      "DEFENCE": 0,
+      "STRENGTH": 0,
+      "MANA": 0,
+      "HASTE": 0,
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 3,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 0,
       "HEALTH": 0,
-      "LUCK": 0,
-      "SKILL": 0,
-      "DEXTERITY": 0
+      "INTELLECT": 0
     },
     "heroInventory": {
-      "heroInventory": {},
-      "wearableItemInventory": {},
-      "craftingReagentItemInventory": {},
-      "consumableItemInventory": {},
-      "questItemInventory": [
+      "heroInventory": [
         [
           {
-            "name": "Wolf meat",
-            "price": 0.0,
-            "itemLevel": 2
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Iron sword of Attack",
+            "price": 70.0,
+            "itemLevel": 1
           },
-          0
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BODY",
+            "abilities": {
+              "RESIST_DAMAGE": 3,
+              "ATTACK": 1,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "name": "Leather armor of Attack",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
         ]
-      ],
-      "junkItemInventory": {}
+      ]
     },
     "experiencePointsService": {
       "neededExperiencePointsForNewLevel": 0.0
     },
     "enemyKilled": {
       "enemyKilled": {},
-      "questEnemyKilled": {
-        "Defias Bandit": 0,
-        "Alpha Wolf": 0,
-        "Wolf": 0
-      }
+      "questEnemyKilled": {}
     },
-    "listOfAcceptedQuests": [
+    "listOfAcceptedQuests": [],
+    "name": "1",
+    "level": 1,
+    "abilities": {
+      "STRENGTH": 1,
+      "MANA": 60,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 4,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 60,
+      "INTELLECT": 1
+    },
+    "maxAbilities": {
+      "STRENGTH": 1,
+      "MANA": 60,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 6,
+      "ATTACK": 7,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 60,
+      "INTELLECT": 1
+    },
+    "currentAbilities": {
+      "STRENGTH": 1,
+      "MANA": 60,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 6,
+      "ATTACK": 7,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 60,
+      "INTELLECT": 1
+    },
+    "regionActionsWithDuration": [],
+    "battleActionsWithDuration": [],
+    "characterSpellList": [
       {
-        "questId": 0,
-        "questName": "Shadow Raiders",
-        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
+        "type": "Spell",
+        "spellName": "Attack",
+        "spellDescription": "Basic attack with weapon",
+        "spellActions": [
           {
-            "type": "QuestKillObjective",
-            "enemyToKill": "Defias Bandit",
-            "countEnemyToKill": 1,
-            "completed": false
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            {
-              "name": "Iron sword of Skill",
-              "price": 50.0,
-              "itemLevel": 1
-            }
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0,
-          "questLevel": 2
-        },
-        "isTurnedIn": false
-      },
-      {
-        "questId": 2,
-        "questName": "Bring me 10 Wolf meat",
-        "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestBringItemObjective",
-            "itemDropNeeded": {
-              "name": "Wolf meat",
-              "price": 0.0,
-              "itemLevel": 2
-            },
-            "itemDropFromEnemy": [
-              "Wolf",
-              "Alpha Wolf"
-            ],
-            "itemDropCountNeeded": 10,
-            "completed": false
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            {
-              "name": "Iron sword of Skill",
-              "price": 50.0,
-              "itemLevel": 1
-            }
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0,
-          "questLevel": 2
-        },
-        "isTurnedIn": false
-      },
-      {
-        "questId": 1,
-        "questName": "Wolf in the forest",
-        "questDescription": "In the forest, there are dangerous wolf, who killed our miners. Please help us and revenge them.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestKillObjective",
-            "enemyToKill": "Wolf",
-            "countEnemyToKill": 5,
-            "completed": false
+            "type": "ActionDealDamage",
+            "actionName": "Attack with weapon",
+            "maxActionValue": 3,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
           },
           {
-            "type": "QuestKillObjective",
-            "enemyToKill": "Alpha Wolf",
-            "countEnemyToKill": 1,
-            "completed": false
+            "type": "ActionDealDamageOverTime",
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "Bleed",
+            "maxActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 50,
+            "canBeActionCriticalHit": false
           }
         ],
-        "questReward": {
-          "itemsReward": [
-            {
-              "name": "Iron sword of Skill",
-              "price": 50.0,
-              "itemLevel": 1
-            }
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0,
-          "questLevel": 2
+        "bonusValueFromAbility": {
+          "ATTACK": 1
         },
-        "isTurnedIn": false
+        "spellLevel": 1,
+        "spellManaCost": 0,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true
+      },
+      {
+        "type": "Spell",
+        "spellName": "Barrier",
+        "spellDescription": "Cast a powerful barrier",
+        "spellActions": [
+          {
+            "type": "ActionAbsorbDamage",
+            "maxActionTurns": 5,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "Absorb Damage",
+            "maxActionValue": 10,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 15,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true
+      },
+      {
+        "type": "Spell",
+        "spellName": "Barrier 2",
+        "spellDescription": "Cast a powerful barrier",
+        "spellActions": [
+          {
+            "type": "ActionAbsorbDamage",
+            "maxActionTurns": 5,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "Absorb Damage 2",
+            "maxActionValue": 10,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 15,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true
+      },
+      {
+        "type": "Spell",
+        "spellName": "Heal",
+        "spellDescription": "Heal",
+        "spellActions": [
+          {
+            "type": "ActionRestoreHealth",
+            "actionName": "Heal",
+            "maxActionValue": 20,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 10,
+        "turnCoolDown": 2,
+        "currentTurnCoolDown": 3,
+        "canSpellBeCasted": true
       }
-    ],
-    "name": "1",
-    "abilities": {
-      "ATTACK": 8,
-      "DEFENCE": 1,
-      "HEALTH": 50,
-      "LUCK": 1,
-      "SKILL": 1,
-      "DEXTERITY": 1
-    },
-    "level": 1
+    ]
   },
   "level": 1,
   "hintUtil": {
@@ -234,5 +329,52 @@
       "showed": true
     }
   },
-  "forestRegionDiscoveredLocation": []
+  "forestRegionDiscoveredLocation": [],
+  "regionActionsWithDuration": [],
+  "itemList": [
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 2,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Iron sword of Attack",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BODY",
+        "abilities": {
+          "RESIST_DAMAGE": 3,
+          "ATTACK": 1,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "Leather armor of Attack",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ]
+  ]
 }

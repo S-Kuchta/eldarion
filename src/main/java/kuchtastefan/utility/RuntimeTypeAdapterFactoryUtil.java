@@ -3,7 +3,9 @@ package kuchtastefan.utility;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.actions.instantActions.ActionDealDamage;
+import kuchtastefan.actions.instantActions.ActionInstantStun;
 import kuchtastefan.actions.instantActions.ActionRestoreHealth;
+import kuchtastefan.actions.instantActions.ActionRestoreMana;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
@@ -11,7 +13,6 @@ import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
-import kuchtastefan.quest.questObjectives.QuestClearLocation;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
@@ -27,20 +28,26 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionDealDamageOverTime.class)
             .registerSubtype(ActionRestoreHealthOverTime.class)
             .registerSubtype(ActionIncreaseAbilityPoint.class)
-            .registerSubtype(ActionAbsorbDamage.class);
+            .registerSubtype(ActionAbsorbDamage.class)
+            .registerSubtype(ActionRestoreMana.class)
+            .registerSubtype(ActionRestoreManaOverTime.class)
+            .registerSubtype(ActionStun.class)
+            .registerSubtype(ActionInstantStun.class);
 
     public static final RuntimeTypeAdapterFactory<ActionWithDuration> actionsWithDurationTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(ActionWithDuration.class)
             .registerSubtype(ActionDealDamageOverTime.class, "ActionDealDamageOverTimeWithDuration")
             .registerSubtype(ActionRestoreHealthOverTime.class, "ActionRestoreHealthWithDuration")
-            .registerSubtype(ActionAbsorbDamage.class)
-            .registerSubtype(ActionIncreaseAbilityPoint.class, "ActionIncreaseAbilityPointWithDuration");
+            .registerSubtype(ActionAbsorbDamage.class, "ActionAbsorbDamageWithDuration")
+            .registerSubtype(ActionIncreaseAbilityPoint.class, "ActionIncreaseAbilityPointWithDuration")
+            .registerSubtype(ActionRestoreManaOverTime.class, "ActionRestoreManaWithDuration")
+            .registerSubtype(ActionStun.class, "ActionStunWithDuration");
 
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(QuestObjective.class)
             .registerSubtype(QuestKillObjective.class)
-            .registerSubtype(QuestBringItemObjective.class)
-            .registerSubtype(QuestClearLocation.class);
+            .registerSubtype(QuestBringItemObjective.class);
+//            .registerSubtype(QuestClearLocation.class);
 
     public static final RuntimeTypeAdapterFactory<? extends Item> itemsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Item.class)

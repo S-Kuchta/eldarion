@@ -41,7 +41,7 @@ public class CombatEvent extends Event {
 
         List<Enemy> enemyList = new ArrayList<>();
         if (hero.getLevel() == 1) {
-            this.maximumEnemiesCount = 1;
+            this.maximumEnemiesCount = 2;
         }
 
         for (int i = 0; i < RandomNumberGenerator.getRandomNumber(this.minimumEnemiesCount, this.maximumEnemiesCount); i++) {

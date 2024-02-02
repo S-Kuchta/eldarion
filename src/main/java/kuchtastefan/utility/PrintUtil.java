@@ -2,18 +2,16 @@ package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.ActionEffectOn;
-import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemType;
-import kuchtastefan.characters.spell.Spell;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -43,7 +41,7 @@ public class PrintUtil {
 
             System.out.print("\t- " + action.getActionName() + " "
                     + action.getActionEffectOn()
-                    +  " [Action value: "
+                    + " [Action value: "
                     + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
                     + " - " + totalActionValue + "] [Chance to Perform: " + action.getChanceToPerformAction() + "%]");
 
@@ -89,6 +87,7 @@ public class PrintUtil {
     }
 
     public static StringBuilder printActionTurnRemaining(int currentValue, int maxValue) {
+
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < maxValue; i++) {
             if (i > currentValue - 1) {
@@ -103,7 +102,7 @@ public class PrintUtil {
     public static StringBuilder printActionTurnCoolDown(int currentValue, int maxValue) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < maxValue; i++) {
-            if (i >= currentValue - 1) {
+            if (i + 1 >= currentValue) {
                 stringBuilder.append("_");
             } else {
                 stringBuilder.append("■");

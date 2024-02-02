@@ -34,6 +34,7 @@ public class HeroSpellManager {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(
                 RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
+
         List<Spell> spellsByClass = new ArrayList<>();
         for (Spell spellForAdd : SpellsList.getSpellList()) {
             if (spellForAdd.getSpellClass().equals(hero.getHeroClass())) {

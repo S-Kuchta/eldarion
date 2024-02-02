@@ -41,7 +41,7 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
-        "chanceToPerformAction": 20,
+        "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
       }
     ],
@@ -52,5 +52,38 @@
     "spellLevel": 0,
     "spellManaCost": 10,
     "turnCoolDown": 2
+  },
+  {
+    "spellName": "Freeze Enemy",
+    "spellClass": "MAGE",
+    "spellDescription": "Cast ice cube.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      },
+      {
+        "type": "ActionStun",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 0,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 1,
+      "ATTACK": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 20,
+    "turnCoolDown": 5
   }
 ]

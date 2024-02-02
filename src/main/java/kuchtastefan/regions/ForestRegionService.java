@@ -28,7 +28,7 @@ public class ForestRegionService extends Region {
             PrintUtil.printExtraLongDivider();
             PrintUtil.printLongDivider();
             System.out.println("\t\t" + getRegionName()
-                    + " \tRegion level: 1 - 5"
+                    + " \tRegion level: " + this.minimumRegionLevel + " - " + this.maximumRegionLevel
                     + " \tDiscovered locations: "
                     + getDiscoveredLocations().size() + " / "
                     + allLocations.size());

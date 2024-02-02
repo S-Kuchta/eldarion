@@ -24,6 +24,7 @@ public abstract class GameCharacter {
     protected Set<ActionWithDuration> regionActionsWithDuration;
     protected Set<ActionWithDuration> battleActionsWithDuration;
     protected List<Spell> characterSpellList;
+    protected boolean canPerformAction;
 
 
     public GameCharacter(String name, Map<Ability, Integer> abilities) {
@@ -35,6 +36,7 @@ public abstract class GameCharacter {
         this.regionActionsWithDuration = new HashSet<>();
         this.battleActionsWithDuration = new HashSet<>();
         this.characterSpellList = new ArrayList<>();
+        this.canPerformAction = true;
     }
 
     public GameCharacter(String name, int level) {
@@ -85,7 +87,6 @@ public abstract class GameCharacter {
                     action.setNewCurrentActionValue(actionWithDuration.getCurrentActionValue());
                     action.actionCurrentTurnReset();
                 }
-
             }
         }
     }
@@ -97,7 +98,7 @@ public abstract class GameCharacter {
      *
      * @param actionDurationType from where you call method (BATTLE or REGION(EVENT))
      */
-    public void updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType actionDurationType) {
+    public void updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType actionDurationType) {
         resetCurrentAbilitiesToMaxAbilities(false);
 
         Set<ActionWithDuration> actions = new HashSet<>();
@@ -105,19 +106,25 @@ public abstract class GameCharacter {
         actions.addAll(this.battleActionsWithDuration);
 
         for (ActionWithDuration actionWithDuration : actions) {
+//            if (actionWithDuration.checkIfActionReachMaxActionTurns()) {
+//                this.regionActionsWithDuration.remove(actionWithDuration);
+//                this.battleActionsWithDuration.remove(actionWithDuration);
+//            }
+
             actionWithDuration.performAction(this);
             if (actionWithDuration.getActionDurationType().equals(actionDurationType)) {
                 actionWithDuration.actionAddTurn();
             }
-
-            if (actionWithDuration.checkIfActionReachMaxActionTurns()) {
-                this.regionActionsWithDuration.remove(actionWithDuration);
-                this.battleActionsWithDuration.remove(actionWithDuration);
-            }
         }
     }
 
+    public void checkActionTurns() {
+        this.battleActionsWithDuration.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
+        this.regionActionsWithDuration.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
+    }
+
     protected void resetCurrentAbilitiesToMaxAbilities(boolean setHealthOrManaToMaxValue) {
+        this.canPerformAction = true;
         for (Ability ability : Ability.values()) {
             if (ability.equals(Ability.HEALTH)
                     || ability.equals(Ability.MANA)) {

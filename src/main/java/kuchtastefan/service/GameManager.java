@@ -3,6 +3,8 @@ package kuchtastefan.service;
 import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.*;
+import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.characters.spell.SpellsList;
 import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
 import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.characters.vendor.JunkVendorCharacter;
@@ -13,8 +15,6 @@ import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.ForestRegionService;
-import kuchtastefan.characters.spell.Spell;
-import kuchtastefan.characters.spell.SpellsList;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -169,40 +169,11 @@ public class GameManager {
 
         SpellsList.getSpellList().addAll(this.fileService.importSpellsFromFile());
 
-        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 1);
+        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 5);
 
         HintUtil.initializeHintList();
 
-//        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-//        for (Spell spell : SpellsList.getSpellList()) {
-//            this.hero.getCharacterSpellList().add(gson.fromJson(gson.toJson(spell), Spell.class));
-//        }
 
-//        int maxHealth = 100;
-//        int currentHealth = 70;
-//        double healthBarValue = (double) maxHealth / 15;
-//        System.out.println(healthBarValue);
-//        System.out.println(healthBarValue * 15);
-//        char charToPrint;
-//
-//        System.out.println();
-//        System.out.print("\tHealths »");
-//        for (int i = 0; i < 15; i++) {
-//            if (i * healthBarValue >= currentHealth) {
-//                charToPrint = ' ';
-//            } else {
-//                charToPrint = '■';
-//            }
-//            System.out.print(charToPrint);
-//        }
-//        System.out.print("« [" + currentHealth + "/" + maxHealth + "]");
-
-//        System.out.println();
-//        System.out.println("|--------------------------------------------------------------------------------------------------------------|");
-//        System.out.println("\tHealths »■■■■■■■■■■■■■■■« [50/100]\tMana » [■■■■■■■■■■■■■■■[25/70]\tAbsorb damage » [■■■■■■■■■■■■■■■[20]");
-//        System.out.println("|--------------------------------------------------------------------------------------------------------------|");
-
-//        PrintUtil.printBuffs();
 
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");

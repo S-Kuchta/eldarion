@@ -114,7 +114,7 @@ public class Hero extends GameCharacter {
         }
 
         this.setHeroMaxAbilities();
-        this.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(null);
+        this.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(null);
     }
 
     /**
@@ -170,7 +170,7 @@ public class Hero extends GameCharacter {
 
             this.setHeroMaxAbilities();
             this.resetCurrentAbilitiesToMaxAbilities(true);
-            this.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(null);
+            this.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(null);
             updateAbilityPoints(heroAvailablePointsChange);
         }
     }

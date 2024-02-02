@@ -143,7 +143,7 @@ public class InventoryService {
             } else {
                 try {
                     consumableItems.get(choice - 1).performActions(hero);
-                    hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(null);
+//                    hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(null, false);
                     if (!isHeroInCombat) {
                         consumableItemsMenu(hero, false);
                     } else {

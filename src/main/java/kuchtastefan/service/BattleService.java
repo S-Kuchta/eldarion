@@ -6,8 +6,8 @@ import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.inventory.InventoryService;
-import kuchtastefan.constant.Constant;
 import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.PrintUtil;
@@ -38,8 +38,19 @@ public class BattleService {
         hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
 
         while (true) {
+//            checkSpellsCoolDowns(hero);
+
             if (heroPlay) {
-                checkSpellsCoolDowns(hero);
+                hero.checkActionTurns();
+
+                System.out.println(hero.isCanPerformAction());
+                if (!hero.isCanPerformAction()) {
+                    heroPlay = false;
+                    hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                    checkSpellsCoolDowns(hero);
+                    continue;
+                }
+
                 while (true) {
                     printBattleMenu(hero, enemyChosen, selectedHeroForShowSelected, enemyList);
 
@@ -49,10 +60,12 @@ public class BattleService {
                             int parsedChoice = Integer.parseInt(choice);
                             if (parsedChoice == hero.getCharacterSpellList().size()) {
                                 if (inventoryService.consumableItemsMenu(hero, true)) {
+                                    checkSpellsCoolDowns(hero);
                                     break;
                                 }
                             } else {
                                 if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, enemyChosen)) {
+                                    checkSpellsCoolDowns(hero);
                                     break;
                                 }
                             }
@@ -72,7 +85,8 @@ public class BattleService {
                 }
 
                 System.out.println("\n\t" + hero.getName() + " suffered from actions over time");
-                hero.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+
                 hero.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
                         * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
 
@@ -80,9 +94,20 @@ public class BattleService {
             } else {
                 Iterator<Enemy> iterator = enemyList.iterator();
                 while (iterator.hasNext()) {
-
                     Enemy enemyInCombat = iterator.next();
+
+
                     if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) > 0) {
+
+                        enemyInCombat.checkActionTurns();
+                        checkSpellsCoolDowns(enemyInCombat);
+
+                        System.out.println(enemyInCombat.isCanPerformAction());
+                        if (!enemyInCombat.isCanPerformAction()) {
+                            enemyInCombat.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                            continue;
+                        }
+
                         try {
                             Thread.sleep(800);
                         } catch (InterruptedException e) {
@@ -93,10 +118,9 @@ public class BattleService {
                         System.out.println("\t\t" + enemyInCombat.getName() + " is Attacking!");
 
                         enemyUseSpell(enemyInCombat, hero);
-                        checkSpellsCoolDowns(enemyInCombat);
 
                         System.out.println("\n\t" + enemyInCombat.getName() + " suffered from actions over time");
-                        enemyInCombat.updateCurrentAbilitiesDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                        enemyInCombat.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
                         enemyInCombat.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
                                 * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
                     }

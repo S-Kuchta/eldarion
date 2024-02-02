@@ -1,6 +1,5 @@
 package kuchtastefan.regions.locations;
 
-import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.enemy.EnemyRarity;
@@ -66,10 +65,6 @@ public class Location {
             enemy.increaseAbilityPointsByMultiplier(stageMultiplier);
         }
         return enemies;
-    }
-
-    public void questGiveForLocation() {
-        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Random Name", 8);
     }
 
     @Override

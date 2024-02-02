@@ -29,12 +29,13 @@ public class EnemyList {
         Enemy newEnemy = gson.fromJson(gson.toJson(enemy), Enemy.class);
         newEnemy.itemsDrop();
         newEnemy.goldDrop();
+        newEnemy.setCanPerformAction(true);
 
         // TODO just for test
         if (newEnemy.getCharacterSpellList() == null) {
             newEnemy.setCharacterSpellList(new ArrayList<>());
         }
-        newEnemy.getCharacterSpellList().addAll(SpellsList.getSpellList());
+//        newEnemy.getCharacterSpellList().addAll(SpellsList.getSpellList());
         for (Spell spell : SpellsList.getSpellList()) {
             newEnemy.getCharacterSpellList().add(gson.fromJson(gson.toJson(spell), Spell.class));
         }

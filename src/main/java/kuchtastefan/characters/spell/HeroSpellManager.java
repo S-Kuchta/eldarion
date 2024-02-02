@@ -57,11 +57,6 @@ public class HeroSpellManager {
             for (Spell spell : spellsByClassAndLevel) {
                 System.out.print("\t" + index + ". ");
                 PrintUtil.printSpellDescription(hero, spell);
-//                spell.printSpellDescription(hero);
-//                System.out.print("\t" + index + ". " + spell.getSpellName() + ", ");
-//                for (Action action : spell.getSpellActions()) {
-//                    System.out.print(action.getActionName() + ": " + action.getMaxActionValue() + ", ");
-//                }
                 index++;
                 System.out.println();
             }

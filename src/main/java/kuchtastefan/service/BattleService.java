@@ -38,7 +38,6 @@ public class BattleService {
         hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
 
         while (true) {
-//            checkSpellsCoolDowns(hero);
 
             if (heroPlay) {
                 hero.checkActionTurns();
@@ -75,7 +74,7 @@ public class BattleService {
                     } else {
                         try {
                             selectedHeroForShowSelected = choice;
-                            enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue());
+                            enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue() - 1);
                         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
                             selectedHeroForShowSelected = "A";
                             enemyChosen = enemyList.getFirst();

@@ -49,7 +49,8 @@ public class ForestRegionService extends Region {
                 case 0 -> {
                     return;
                 }
-                case 1 -> super.eventService.randomRegionEventGenerate(super.hero, LocationType.FOREST);
+                case 1 -> super.eventService.randomRegionEventGenerate(super.hero, LocationType.FOREST,
+                        this.minimumRegionLevel, this.maximumRegionLevel);
                 case 2 -> heroCharacterService.heroCharacterMenu(this.hero);
                 default -> {
                     try {

@@ -42,7 +42,7 @@ import java.util.stream.Stream;
 public class FileService {
     private final Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
-            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsWithDurationTypeAdapterFactory)
+//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsWithDurationTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
 //            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.spellObjectiveRuntimeTypeAdapterFactory)
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
@@ -274,14 +274,12 @@ public class FileService {
             List<Enemy> enemyList;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                enemyList = new Gson().fromJson(reader, new TypeToken<List<Enemy>>() {
+                enemyList = this.gson.fromJson(reader, new TypeToken<List<Enemy>>() {
                 }.getType());
 
                 for (Enemy enemy : enemyList) {
                     enemy.setEnemyType(
                             EnemyType.valueOf(file.toUpperCase().replace(".JSON", "")));
-
-
                 }
 
                 enemies.addAll(enemyList);

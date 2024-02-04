@@ -8,6 +8,7 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.PrintUtil;
@@ -72,6 +73,10 @@ public class BattleService {
                             System.out.println("\tEnter valid input");
                         }
                     } else {
+                        if (choice.equals("X")) {
+                            GameSettings.setShowInformationAboutActionName();
+                        }
+
                         try {
                             selectedHeroForShowSelected = choice;
                             enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue() - 1);
@@ -183,6 +188,7 @@ public class BattleService {
                 index++;
             }
         }
+        System.out.println("\n\tX. Show/Hide action description");
 
         int spellIndex = 0;
         System.out.println();

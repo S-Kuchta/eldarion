@@ -32,7 +32,8 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionRestoreMana.class)
             .registerSubtype(ActionRestoreManaOverTime.class)
             .registerSubtype(ActionStun.class)
-            .registerSubtype(ActionInstantStun.class);
+            .registerSubtype(ActionInstantStun.class)
+            .registerSubtype(ActionInvulnerability.class);
 
     public static final RuntimeTypeAdapterFactory<ActionWithDuration> actionsWithDurationTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(ActionWithDuration.class)
@@ -41,7 +42,8 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionAbsorbDamage.class, "ActionAbsorbDamageWithDuration")
             .registerSubtype(ActionIncreaseAbilityPoint.class, "ActionIncreaseAbilityPointWithDuration")
             .registerSubtype(ActionRestoreManaOverTime.class, "ActionRestoreManaWithDuration")
-            .registerSubtype(ActionStun.class, "ActionStunWithDuration");
+            .registerSubtype(ActionStun.class, "ActionStunWithDuration")
+            .registerSubtype(ActionInvulnerability.class, "ActionInvulnerabilityWithDuration");
 
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(QuestObjective.class)

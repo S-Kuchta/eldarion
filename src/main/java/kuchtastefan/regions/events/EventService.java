@@ -23,7 +23,7 @@ public class EventService {
         this.discoveredLocations = discoveredLocations;
     }
 
-    public void randomRegionEventGenerate(Hero hero, LocationType locationType) {
+    public void randomRegionEventGenerate(Hero hero, LocationType locationType, int minRegionLevel, int maxRegionLevel) {
         int randomNumber = RandomNumberGenerator.getRandomNumber(0, 5);
         int eventLevel = hero.getLevel() + RandomNumberGenerator.getRandomNumber(-1, 1);
         if (eventLevel == 0) {
@@ -38,7 +38,7 @@ public class EventService {
                 if (randomNumToGenerateEnemyRarity == 0) {
                     enemyRarity = EnemyRarity.RARE;
                 }
-                List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, hero.getLevel(), null, enemyRarity);
+                List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, maxRegionLevel, minRegionLevel, enemyRarity);
                 new CombatEvent(eventLevel, suitableEnemies, locationType, 1, 3).eventOccurs(hero);
             }
             case 3 -> new DiscoverLocationEvent(eventLevel, this.allLocations, this.discoveredLocations)

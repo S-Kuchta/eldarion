@@ -164,9 +164,7 @@ public class GameManager {
         ItemsLists.initializeAllItemsMapToStringItemMap();
 
         QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
-
         EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
-
         SpellsList.getSpellList().addAll(this.fileService.importSpellsFromFile());
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 5);

@@ -21,5 +21,14 @@
       "INTELLECT": 1
     },
     "itemLevel": 1
+  },
+  {
+    "name": "Arcana Shard Spire",
+    "abilities": {
+      "ATTACK": 2,
+      "INTELLECT": 3
+    },
+    "wearableItemQuality": "SPECIAL",
+    "itemLevel": 1
   }
 ]

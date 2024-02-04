@@ -11,7 +11,8 @@ public enum ActionName {
     HEAL_OVER_TIME("Heal Over Time. Healths are restored every turn the action lasts."),
     INCREASE_ABILITY_POINTS("Increase Ability Point. It increases the ability points for the duration of the action."),
     ABSORB_DAMAGE("Absorb Damage Taken. It absorbs damage up to the specified value. The action lasts for a certain number of rounds."),
-    INVULNERABILITY("Invulnerability. It makes the player character invulnerable for a certain number of rounds. It is not dependent on the damage received.");
+    INVULNERABILITY("Invulnerability. It makes the player character invulnerable for a certain number of rounds. It is not dependent on the damage received."),
+    STUN("Stun. Target of action will not be able to perform any action. Battle turn of stunned character will be skipped.");
 
     private final String description;
 

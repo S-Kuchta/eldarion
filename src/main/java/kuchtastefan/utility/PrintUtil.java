@@ -39,18 +39,23 @@ public class PrintUtil {
                 }
             }
 
-            System.out.print("\t- " + action.getActionName() + " "
-                    + action.getActionEffectOn()
-                    + " [Action value: "
-                    + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
-                    + " - " + totalActionValue + "] [Chance to Perform: " + action.getChanceToPerformAction() + "%]");
+            System.out.print("\t- " + action.getActionName() + " on "
+                    + action.getActionEffectOn());
+            if (action.getMaxActionValue() != 0) {
+                System.out.print(" [Action value: "
+                        + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
+                        + " - " + totalActionValue + "]");
+            }
+            System.out.print(" [Chance to Perform: " + action.getChanceToPerformAction() + "%]");
 
             if (action instanceof ActionWithDuration) {
                 System.out.print(" [Turns Duration: " + ((ActionWithDuration) action).getMaxActionTurns() + "]"
                         + " [Max Stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + "]");
             }
-            System.out.println("\n\t\t" + action.getActionName().getDescription());
-//            System.out.println();
+            if (GameSettings.isShowInformationAboutActionName()) {
+                System.out.print("\n\t\t" + action.getActionName().getDescription());
+            }
+            System.out.println();
         }
     }
 
@@ -156,21 +161,8 @@ public class PrintUtil {
         printExtraLongDivider();
     }
 
-    public static void printMaxAbilityPointsWithItems(Hero hero) {
-        printLongDivider();
-        System.out.println("\t\t\t\t\t------ Ability points with items ------");
-        System.out.print("\t");
-
-        for (Map.Entry<Ability, Integer> abilityPoints : hero.getMaxAbilities().entrySet()) {
-            System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
-        }
-        System.out.println();
-        printLongDivider();
-    }
-
     public static void printCurrentAbilityPointsWithItems(Hero hero) {
         printHeaderWithStatsBar(hero);
-//        printExtraLongDivider();
         System.out.println("\t\t\t\t\t\t\t\t------ Current Ability points with items ------");
         System.out.print("\t\t\t");
         for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {

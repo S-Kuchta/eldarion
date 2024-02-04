@@ -12,8 +12,36 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
+    "characterSpellList": [
+      {
+        "spellName": "Weapon attack",
+        "spellDescription": "Attack with weapon",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 3,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 0,
+        "turnCoolDown": 0
+      }
+    ],
     "level": 1,
-    "locationType": ["FOREST","CASTLE","MINE","CAVE","TOWER"],
+    "locationType": [
+      "FOREST",
+      "CASTLE",
+      "MINE",
+      "CAVE",
+      "TOWER"
+    ],
     "maxStack": 5
   },
   {
@@ -29,6 +57,28 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
+    "characterSpellList": [
+      {
+        "spellName": "Bite",
+        "spellDescription": "Attack with weapon",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 4,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 0,
+        "turnCoolDown": 0
+      }
+    ],
     "level": 2,
     "locationType": [],
     "maxStack": 5
@@ -46,6 +96,28 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
+    "characterSpellList": [
+      {
+        "spellName": "Bite",
+        "spellDescription": "Attack with weapon",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 5,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 0,
+        "turnCoolDown": 0
+      }
+    ],
     "level": 3,
     "locationType": [],
     "maxStack": 5

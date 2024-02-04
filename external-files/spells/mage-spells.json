@@ -61,14 +61,14 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 0,
+        "maxActionValue": 1,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
       },
       {
         "type": "ActionStun",
-        "actionName": "DAMAGE_OVER_TIME",
+        "actionName": "STUN",
         "actionEffectOn": "SPELL_TARGET",
         "maxActionValue": 0,
         "maxActionTurns": 2,
@@ -85,5 +85,26 @@
     "spellLevel": 0,
     "spellManaCost": 20,
     "turnCoolDown": 5
+  },
+  {
+    "spellName": "Ice block",
+    "spellClass": "MAGE",
+    "spellDescription": "Cast ice block.",
+    "spellActions": [
+      {
+        "type": "ActionInvulnerability",
+        "actionName": "INVULNERABILITY",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 0,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "spellLevel": 0,
+    "spellManaCost": 30,
+    "turnCoolDown": 7
   }
 ]

@@ -2,6 +2,7 @@ package kuchtastefan.regions.locations;
 
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.regions.events.CombatEvent;
+import kuchtastefan.regions.events.FindTreasureEvent;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -39,12 +40,11 @@ public class LocationService {
 
         boolean isStageCompleted;
 
-        if (location.stageCompleted < 9) {
-            isStageCompleted = new CombatEvent(location.getLocationLevel(), location.enemyList(),
-                    location.getLocationType(), 1, 1).eventOccurs(hero);
+        if (location.stageCompleted == 5) {
+            isStageCompleted = new FindTreasureEvent(hero.getLevel()).eventOccurs(hero);
         } else {
             isStageCompleted = new CombatEvent(location.getLocationLevel(), location.enemyList(),
-                    location.getLocationType(), 2, 2).eventOccurs(hero);
+                    location.getLocationType(), 1, 1).eventOccurs(hero);
         }
 
         if (isStageCompleted) {

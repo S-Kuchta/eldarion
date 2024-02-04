@@ -56,6 +56,7 @@ public class Spell {
      */
     public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
+            System.out.println("\t" + spellCaster.getName() + " use " + this.spellName);
 
             boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100)
                     <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
@@ -93,6 +94,7 @@ public class Spell {
             spellCaster.lowerAbility(this.spellManaCost, Ability.MANA);
             this.currentTurnCoolDown = 0;
             checkTurnCoolDown();
+
             return true;
         } else {
             if (spellCaster.getCurrentAbilityValue(Ability.MANA) < this.spellManaCost) {

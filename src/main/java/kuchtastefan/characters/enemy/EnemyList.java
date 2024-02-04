@@ -31,15 +31,6 @@ public class EnemyList {
         newEnemy.goldDrop();
         newEnemy.setCanPerformAction(true);
 
-        // TODO just for test
-        if (newEnemy.getCharacterSpellList() == null) {
-            newEnemy.setCharacterSpellList(new ArrayList<>());
-        }
-//        newEnemy.getCharacterSpellList().addAll(SpellsList.getSpellList());
-        for (Spell spell : SpellsList.getSpellList()) {
-            newEnemy.getCharacterSpellList().add(gson.fromJson(gson.toJson(spell), Spell.class));
-        }
-
         if (newEnemy.getRegionActionsWithDuration() == null) {
             newEnemy.setRegionActionsWithDuration(new HashSet<>());
         }

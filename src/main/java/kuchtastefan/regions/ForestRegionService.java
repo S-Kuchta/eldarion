@@ -56,7 +56,7 @@ public class ForestRegionService extends Region {
                     try {
                         new LocationService().locationMenu(this.hero, this.discoveredLocations.get(choice - 3));
                     } catch (IndexOutOfBoundsException e) {
-                        System.out.println("\tEnter valid input");
+                        PrintUtil.printEnterValidInput();
                     }
                 }
             }

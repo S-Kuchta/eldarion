@@ -9,6 +9,7 @@ import kuchtastefan.characters.hero.inventory.InventoryService;
 import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettings;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.PrintUtil;
@@ -70,7 +71,7 @@ public class BattleService {
                                 }
                             }
                         } catch (IndexOutOfBoundsException e) {
-                            System.out.println("\tEnter valid input");
+                            PrintUtil.printEnterValidInput();
                         }
                     } else {
                         if (choice.equals("X")) {
@@ -83,7 +84,7 @@ public class BattleService {
                         } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
                             selectedHeroForShowSelected = "A";
                             enemyChosen = enemyList.getFirst();
-                            System.out.println("\tEnter valid input");
+                            PrintUtil.printEnterValidInput();
                         }
                     }
                 }
@@ -100,13 +101,11 @@ public class BattleService {
                 while (iterator.hasNext()) {
                     Enemy enemyInCombat = iterator.next();
 
-
                     if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) > 0) {
 
                         enemyInCombat.checkActionTurns();
                         checkSpellsCoolDowns(enemyInCombat);
 
-                        System.out.println(enemyInCombat.isCanPerformAction());
                         if (!enemyInCombat.isCanPerformAction()) {
                             enemyInCombat.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
                             continue;
@@ -119,7 +118,7 @@ public class BattleService {
                         }
 
                         PrintUtil.printLongDivider();
-                        System.out.println("\t\t" + enemyInCombat.getName() + " is Attacking!");
+                        System.out.println("\t\t" + ConsoleColor.YELLOW_BOLD + "—⟪=====> " + ConsoleColor.RESET + enemyInCombat.getName() + " is Attacking!" + ConsoleColor.YELLOW_BOLD + " ⚔" + ConsoleColor.RESET);
 
                         enemyUseSpell(enemyInCombat, hero);
 
@@ -177,7 +176,7 @@ public class BattleService {
         int index = 1;
         for (Enemy enemyFromList : enemyList) {
             if (!enemyFromList.isDefeated()) {
-                System.out.print("\t" + LetterToNumber.getStringFromValue(index)
+                System.out.print("\t" + ConsoleColor.CYAN + LetterToNumber.getStringFromValue(index) + ConsoleColor.RESET
                         + ". " + enemyFromList.getName() + " - " + enemyFromList.getEnemyRarity() + " - "
                         + " Healths: "
                         + enemyFromList.getCurrentAbilityValue(Ability.HEALTH));
@@ -188,18 +187,20 @@ public class BattleService {
                 index++;
             }
         }
-        System.out.println("\n\tX. Show/Hide action description");
+//        System.out.println(ConsoleColor.CYAN + "\n\tX. " + ConsoleColor.RESET + "Show/Hide action description");
+        PrintUtil.printIndexAndText("X", "Show/Hide action description");
 
         int spellIndex = 0;
         System.out.println();
         for (Spell spell : hero.getCharacterSpellList()) {
-            System.out.print("\t" + spellIndex + ". ");
+            System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
             PrintUtil.printSpellDescription(hero, spell);
 
             spellIndex++;
             System.out.println();
         }
-        System.out.println("\t" + spellIndex + ". Potions Menu");
+        PrintUtil.printIndexAndText(String.valueOf(spellIndex), "Potions Menu");
+//        System.out.println("\t" + ConsoleColor.CYAN + spellIndex + ". " + ConsoleColor.RESET + "Potions Menu");
     }
 
     private void enemyUseSpell(Enemy enemy, Hero hero) {

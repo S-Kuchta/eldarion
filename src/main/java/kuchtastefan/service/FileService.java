@@ -70,7 +70,7 @@ public class FileService {
                     case 1 -> {
                     }
                     default -> {
-                        System.out.println("\tEnter valid input");
+                        PrintUtil.printEnterValidInput();
                         continue;
                     }
                 }

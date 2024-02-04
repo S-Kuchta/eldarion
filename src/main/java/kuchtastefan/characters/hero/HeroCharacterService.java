@@ -40,6 +40,7 @@ public class HeroCharacterService {
             case 3 -> this.upgradeAbilityMenu(hero);
             case 4 -> this.questService.heroAcceptedQuestMenu(hero, hero.getListOfAcceptedQuests());
             case 5 -> this.heroSpellManager.spellMenu(hero);
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 
@@ -52,6 +53,7 @@ public class HeroCharacterService {
             case 0 -> heroCharacterMenu(hero);
             case 1 -> this.heroAbilityManager.spendAbilityPoints();
             case 2 -> this.heroAbilityManager.removeAbilityPoints();
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 

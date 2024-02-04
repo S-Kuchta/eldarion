@@ -82,7 +82,7 @@ public class CombatEvent extends Event {
                     }
                 }
                 case 1 -> battle = true;
-                default -> System.out.println("\tEnter valid input");
+                default -> PrintUtil.printEnterValidInput();
             }
 
             if (choice == 0 || choice == 1) {

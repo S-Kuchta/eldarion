@@ -79,7 +79,7 @@ public class HeroAbilityManager {
             }
         } else {
             if (numberOfAbility < 1 || numberOfAbility > abilityList().size()) {
-                System.out.println("Enter Valid number");
+                PrintUtil.printEnterValidInput();
             } else {
                 this.hero.setNewAbilityPoint(abilityList().get(numberOfAbility - 1), numberOfPoints, heroAvailablePointsChange);
             }

@@ -46,7 +46,7 @@ public abstract class VendorCharacter extends GameCharacter {
             }
             case 1 -> vendorOffer(hero);
             case 2 -> printHeroItemsForSale(hero);
-            default -> System.out.println("Enter valid input");
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 
@@ -78,7 +78,7 @@ public abstract class VendorCharacter extends GameCharacter {
             }
 
             if (choice < 1 || choice > itemsForSale.size()) {
-                System.out.println("\tEnter valid input");
+                PrintUtil.printEnterValidInput();
             } else {
                 Item item = itemsForSale.get(choice - 1);
                 if (hero.getHeroGold() >= item.getPrice()) {
@@ -95,7 +95,7 @@ public abstract class VendorCharacter extends GameCharacter {
                             successfullyItemBought(hero, item);
                             PrintUtil.printLongDivider();
                         }
-                        default -> System.out.println("\tEnter valid input");
+                        default -> PrintUtil.printEnterValidInput();
                     }
                     vendorMenu(hero);
                     return;
@@ -132,7 +132,7 @@ public abstract class VendorCharacter extends GameCharacter {
 
                 return;
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("\tEnter valid input");
+                PrintUtil.printEnterValidInput();
             }
         }
     }

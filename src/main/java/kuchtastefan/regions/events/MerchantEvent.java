@@ -7,6 +7,7 @@ import kuchtastefan.characters.vendor.JunkVendorCharacter;
 import kuchtastefan.characters.vendor.WearableItemVendorCharacter;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 
 public class MerchantEvent extends Event {
@@ -58,7 +59,7 @@ public class MerchantEvent extends Event {
                         }
                     }
                 }
-                default -> System.out.println("\tEnter valid input");
+                default -> PrintUtil.printEnterValidInput();
             }
         }
 

@@ -39,7 +39,7 @@ public class PrintUtil {
                 }
             }
 
-            System.out.print("\t- " + action.getActionName() + " on "
+            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on "
                     + action.getActionEffectOn());
             if (action.getMaxActionValue() != 0) {
                 System.out.print(" [Action value: "
@@ -131,13 +131,20 @@ public class PrintUtil {
         int currentValue = gameCharacter.getCurrentAbilityValue(ability);
         double oneBarValue = (double) maxValue / 15;
 
-        char charToPrint;
+        ConsoleColor consoleColor = ConsoleColor.RESET;
+        if (ability.equals(Ability.HEALTH)) {
+            consoleColor = ConsoleColor.RED_BRIGHT;
+        } else if (ability.equals(Ability.MANA)) {
+            consoleColor = ConsoleColor.BLUE_BRIGHT;
+        }
+
+        String charToPrint;
         System.out.print("\t" + ability + " »");
         for (int i = 0; i < 15; i++) {
             if (i * oneBarValue >= currentValue) {
-                charToPrint = '_';
+                charToPrint = "_";
             } else {
-                charToPrint = '■';
+                charToPrint = consoleColor + "■" + ConsoleColor.RESET;
             }
             System.out.print(charToPrint);
         }
@@ -263,7 +270,6 @@ public class PrintUtil {
 //            }
 //        }
 
-        // TODO add \t in front of each line
         StringBuilder line = new StringBuilder();
 
         for (String word : text.split("\\s")) {
@@ -358,6 +364,14 @@ public class PrintUtil {
         System.out.print(craftingReagentItem.getName()
                 + ", " + craftingReagentItem.getCraftingReagentItemType()
                 + ", iLevel: " + craftingReagentItem.getItemLevel());
+    }
+
+    public static void printEnterValidInput() {
+        System.out.println(ConsoleColor.RED + "\tEnter valid input" + ConsoleColor.RESET);
+    }
+
+    public static void printIndexAndText(String index, String text) {
+        System.out.println(ConsoleColor.CYAN + "\t" + index + ". " + ConsoleColor.RESET + text);
     }
 }
 

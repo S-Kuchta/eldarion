@@ -80,7 +80,7 @@ public class GameManager {
                         return;
                     }
                 }
-                default -> System.out.println("Invalid choice.");
+                default -> PrintUtil.printEnterValidInput();
             }
         }
     }
@@ -94,7 +94,7 @@ public class GameManager {
             case 0 -> {
             }
             case 1 -> this.forestRegionService.adventuringAcrossTheRegion(this.heroCharacterService);
-            default -> System.out.println("\tEnter valid input");
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 
@@ -152,6 +152,7 @@ public class GameManager {
             case 1 -> System.out.println("Work in progress");
             case 2 -> cityAlchemistReagentVendor.vendorMenu(this.hero);
             case 3 -> cityPotionsVendor.vendorMenu(this.hero);
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 
@@ -193,7 +194,7 @@ public class GameManager {
                     return;
                 }
             }
-            default -> System.out.println("Invalid choice");
+            default -> PrintUtil.printEnterValidInput();
         }
 
 
@@ -215,7 +216,7 @@ public class GameManager {
                 this.hero.setHeroClass(HeroClass.values()[heroClassChoice]);
                 break;
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("\tEnter valid input");
+                PrintUtil.printEnterValidInput();
             }
         }
 

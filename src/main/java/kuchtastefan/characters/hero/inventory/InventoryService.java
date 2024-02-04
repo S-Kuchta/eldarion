@@ -34,7 +34,7 @@ public class InventoryService {
             case 2 -> this.craftingReagentsItemMenu(hero);
             case 3 -> this.consumableItemsMenu(hero, false);
             case 4 -> this.questItemsMenu(hero);
-            default -> System.out.println("\tEnter valid input");
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 
@@ -60,7 +60,7 @@ public class InventoryService {
             case 4 -> printWearableItemInventoryMenuByItemType(WearableItemType.HANDS, hero);
             case 5 -> printWearableItemInventoryMenuByItemType(WearableItemType.BOOTS, hero);
             case 6 -> hero.wearDownAllEquippedItems();
-            default -> System.out.println("\tEnter valid number");
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 
@@ -92,7 +92,7 @@ public class InventoryService {
                 wearableItemsMenu(hero);
                 break;
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("\tEnter valid number");
+                PrintUtil.printEnterValidInput();
             }
         }
     }
@@ -109,7 +109,7 @@ public class InventoryService {
         if (choice == 0) {
             this.inventoryMenu(hero);
         } else {
-            System.out.println("\tEnter valid number");
+            PrintUtil.printEnterValidInput();
         }
     }
 
@@ -150,7 +150,7 @@ public class InventoryService {
                         return true;
                     }
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("\tEnter valid input");
+                    PrintUtil.printEnterValidInput();
                     this.consumableItemsMenu(hero, isHeroInCombat);
                 }
             }
@@ -169,7 +169,7 @@ public class InventoryService {
         if (choice == 0) {
             this.inventoryMenu(hero);
         } else {
-            System.out.println("\tEnter valid number");
+            PrintUtil.printEnterValidInput();
         }
     }
 

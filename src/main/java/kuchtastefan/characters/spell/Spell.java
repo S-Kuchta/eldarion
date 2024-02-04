@@ -7,6 +7,7 @@ import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.HeroClass;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -56,7 +57,7 @@ public class Spell {
      */
     public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
-            System.out.println("\t" + spellCaster.getName() + " use " + this.spellName);
+            System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.spellName + ConsoleColor.RESET);
 
             boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100)
                     <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);

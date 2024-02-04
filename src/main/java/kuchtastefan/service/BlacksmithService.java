@@ -55,7 +55,7 @@ public class BlacksmithService {
             case 3 -> citySmithVendor.vendorMenu(hero);
             case 4 -> cityReagentVendor.vendorMenu(hero);
             case 5 -> questGiverCharacter.questGiverMenu(hero);
-            default -> System.out.println("Enter valid input");
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 
@@ -111,7 +111,7 @@ public class BlacksmithService {
                     }
                     break;
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("\tInter valid input");
+                    PrintUtil.printEnterValidInput();
                 }
             }
 
@@ -216,7 +216,7 @@ public class BlacksmithService {
                 return tempItemList.get(choice - 1);
 
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("Inter valid input");
+                PrintUtil.printEnterValidInput();
             }
         }
     }

@@ -26,7 +26,7 @@ public class HeroSpellManager {
             case 1 -> learnNewSpell(hero);
             case 2 -> resetSpells(hero);
             case 3 -> checkLearnedSpells(hero);
-            default -> System.out.println("\tEnter valid input");
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 
@@ -86,14 +86,14 @@ public class HeroSpellManager {
                         hero.getLearnedSpells().put(spellChosen.getSpellLevel(), spellChosen);
                     }
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("\tEnter valid input");
+                    PrintUtil.printEnterValidInput();
                 }
             } else {
                 try {
                     levelChosen = LetterToNumberSpellLevel.valueOf(choice).getValue();
                     spellsByClassAndLevel = addSpellsToListFulfillingRequirements(levelChosen, spellsByClass);
                 } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-                    System.out.println("\tEnter valid input");
+                    PrintUtil.printEnterValidInput();
                 }
             }
         }

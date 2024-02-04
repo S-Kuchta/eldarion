@@ -28,7 +28,7 @@ public class LocationService {
                     System.out.println("Location can not be explored yet");
                 }
             }
-            default -> System.out.println("Enter valid input");
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 

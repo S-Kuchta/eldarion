@@ -76,15 +76,17 @@ public class BattleService {
                     } else {
                         if (choice.equals("X")) {
                             GameSettings.setShowInformationAboutActionName();
-                        }
-
-                        try {
-                            selectedHeroForShowSelected = choice;
-                            enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue() - 1);
-                        } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-                            selectedHeroForShowSelected = "A";
-                            enemyChosen = enemyList.getFirst();
-                            PrintUtil.printEnterValidInput();
+                        } else if (choice.equals("Y")) {
+                            GameSettings.setShowSpellsOnCoolDown();
+                        } else {
+                            try {
+                                selectedHeroForShowSelected = choice;
+                                enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue() - 1);
+                            } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
+                                selectedHeroForShowSelected = "A";
+                                enemyChosen = enemyList.getFirst();
+                                PrintUtil.printEnterValidInput();
+                            }
                         }
                     }
                 }
@@ -174,32 +176,51 @@ public class BattleService {
         PrintUtil.printExtraLongDivider();
 
         int index = 1;
+        System.out.print("\t");
         for (Enemy enemyFromList : enemyList) {
             if (!enemyFromList.isDefeated()) {
-                System.out.print("\t" + ConsoleColor.CYAN + LetterToNumber.getStringFromValue(index) + ConsoleColor.RESET
+//                String text = enemyFromList.getName() + " - " + enemyFromList.getEnemyRarity() + " - " + " Healths: "
+//                        + enemyFromList.getCurrentAbilityValue(Ability.HEALTH);
+//                PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index), text);
+
+                System.out.print(" " + ConsoleColor.CYAN + LetterToNumber.getStringFromValue(index) + ConsoleColor.RESET
                         + ". " + enemyFromList.getName() + " - " + enemyFromList.getEnemyRarity() + " - "
                         + " Healths: "
-                        + enemyFromList.getCurrentAbilityValue(Ability.HEALTH));
+                        + enemyFromList.getCurrentAbilityValue(Ability.HEALTH) + " ");
 
                 if (Objects.equals(LetterToNumber.getStringFromValue(index), selectedHeroForShowSelected)) {
-                    System.out.print(" - SELECTED - ");
+//                    System.out.print(" SELECTED ");
+                    System.out.print(ConsoleColor.RED_BOLD + "⚔" + ConsoleColor.RESET);
                 }
                 index++;
             }
         }
-//        System.out.println(ConsoleColor.CYAN + "\n\tX. " + ConsoleColor.RESET + "Show/Hide action description");
+
+        System.out.println();
         PrintUtil.printIndexAndText("X", "Show/Hide action description");
+        System.out.print("\t");
+        PrintUtil.printIndexAndText("Y", "Show/Hide spells on CoolDown");
 
         int spellIndex = 0;
         System.out.println();
         for (Spell spell : hero.getCharacterSpellList()) {
-            System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
-            PrintUtil.printSpellDescription(hero, spell);
+            if (GameSettings.isShowSpellsOnCoolDown()) {
+                if (spell.isCanSpellBeCasted()) {
+                    System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
+                    PrintUtil.printSpellDescription(hero, spell);
+                    System.out.println();
+                }
+            } else {
+                System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
+                PrintUtil.printSpellDescription(hero, spell);
+                System.out.println();
+            }
 
             spellIndex++;
-            System.out.println();
+
         }
         PrintUtil.printIndexAndText(String.valueOf(spellIndex), "Potions Menu");
+        System.out.println();
 //        System.out.println("\t" + ConsoleColor.CYAN + spellIndex + ". " + ConsoleColor.RESET + "Potions Menu");
     }
 

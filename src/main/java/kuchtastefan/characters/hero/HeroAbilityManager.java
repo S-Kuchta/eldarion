@@ -1,6 +1,7 @@
 package kuchtastefan.characters.hero;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
@@ -63,11 +64,13 @@ public class HeroAbilityManager {
     }
 
     private void printPossibleAbilitiesToUpgrade(String spendOrRemovePoint) {
-        spendOrRemovePoint = spendOrRemovePoint.equals("spend") ? "\t0. Explain abilities" : "\t0. I am done";
+        spendOrRemovePoint = spendOrRemovePoint.equals("spend") ?
+                ConsoleColor.CYAN + "\t0. " + ConsoleColor.RESET + "Explain abilities":
+                ConsoleColor.CYAN + "\t0. " + ConsoleColor.RESET + "I am done";
         System.out.println(spendOrRemovePoint);
         int index = 1;
         for (Ability ability : this.abilityList()) {
-            System.out.println("\t" + index + ". " + ability.toString());
+            System.out.println("\t" + ConsoleColor.CYAN + index + ". " + ConsoleColor.RESET + ability.toString());
             index++;
         }
     }
@@ -87,8 +90,9 @@ public class HeroAbilityManager {
     }
 
     private void explainAbilities() {
+        PrintUtil.printExtraLongDivider();
         for (Ability ability : Ability.values()) {
-            System.out.println(ability + ": " + ability.getDescription());
+            System.out.println(ConsoleColor.YELLOW + "\t" + ability.toString() +ConsoleColor.RESET + ": " + ability.getDescription());
         }
     }
 }

@@ -5,10 +5,11 @@ import lombok.Setter;
 
 public class GameSettings {
     @Getter
-    @Setter
     private static boolean printStringSlowly = false;
     @Getter
     private static boolean showInformationAboutActionName = true;
+    @Getter
+    private static boolean showSpellsOnCoolDown = false;
 
     public static void setPrintStringSlowly() {
         printStringSlowly = !printStringSlowly;
@@ -16,5 +17,9 @@ public class GameSettings {
 
     public static void setShowInformationAboutActionName() {
         showInformationAboutActionName = !showInformationAboutActionName;
+    }
+
+    public static void setShowSpellsOnCoolDown() {
+        showSpellsOnCoolDown = !showSpellsOnCoolDown;
     }
 }

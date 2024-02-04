@@ -371,7 +371,7 @@ public class PrintUtil {
     }
 
     public static void printIndexAndText(String index, String text) {
-        System.out.println(ConsoleColor.CYAN + "\t" + index + ". " + ConsoleColor.RESET + text);
+        System.out.print(ConsoleColor.CYAN + "\t" + index + ". " + ConsoleColor.RESET + text);
     }
 }
 

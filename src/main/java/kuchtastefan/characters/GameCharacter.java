@@ -7,6 +7,7 @@ import kuchtastefan.actions.actionsWIthDuration.ActionAbsorbDamage;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -106,11 +107,6 @@ public abstract class GameCharacter {
         actions.addAll(this.battleActionsWithDuration);
 
         for (ActionWithDuration actionWithDuration : actions) {
-//            if (actionWithDuration.checkIfActionReachMaxActionTurns()) {
-//                this.regionActionsWithDuration.remove(actionWithDuration);
-//                this.battleActionsWithDuration.remove(actionWithDuration);
-//            }
-
             actionWithDuration.performAction(this);
             if (actionWithDuration.getActionDurationType().equals(actionDurationType)) {
                 actionWithDuration.actionAddTurn();
@@ -157,7 +153,7 @@ public abstract class GameCharacter {
             damage -= getCurrentAbilityValue(Ability.RESIST_DAMAGE);
         }
 
-        System.out.println(damage + " damage!");
+        System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage to " + this.name);
 
         int absorbDamage = 0;
         Iterator<ActionWithDuration> iterator = this.battleActionsWithDuration.iterator();
@@ -190,11 +186,17 @@ public abstract class GameCharacter {
             this.currentAbilities.put(ability, currentCharacterAbility + valueOfRestore);
         }
 
-        if (ability.equals(Ability.MANA) && this.getCurrentAbilityValue(Ability.MANA) != 0) {
-            System.out.println("\t" + this.name + " have restored " + valueOfRestore + " " + ability.name()
-                    + ". " + this.name + " " + ability.name() + " is " + this.getCurrentAbilityValue(ability));
+        ConsoleColor consoleColor = ConsoleColor.RED;
+        if (ability.equals(Ability.MANA)) {
+            consoleColor = ConsoleColor.BLUE;
         }
 
+        if (ability.equals(Ability.MANA) && this.getCurrentAbilityValue(Ability.MANA) != 0) {
+            System.out.println("\t" + this.name + " have restored " + consoleColor + valueOfRestore + ConsoleColor.RESET
+                    + " " + ability.name()
+                    + ". " + this.name + " " + ability.name() + " is "
+                    + consoleColor + this.getCurrentAbilityValue(ability) + ConsoleColor.RESET);
+        }
     }
 
     public void lowerAbility(int valueOfLower, Ability ability) {

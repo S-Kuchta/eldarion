@@ -27,14 +27,20 @@ public class JunkVendorCharacter extends VendorCharacter {
         List<JunkItem> junkItems = new ArrayList<>();
         PrintUtil.printShopHeader(hero, "Junk");
         int index = 1;
-        System.out.println("\t0. Go back");
+//        System.out.println("\t0. Go back");
+        PrintUtil.printIndexAndText("0.", "Go back");
+        System.out.println();
         if (hero.getHeroInventory().returnInventoryJunkItemMap().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {
             for (Map.Entry<JunkItem, Integer> item : hero.getHeroInventory().returnInventoryJunkItemMap().entrySet()) {
                 junkItems.add(item.getKey());
-                System.out.print("\t" + index + ". (" + item.getValue() + "x) " + item.getKey().getName());
-                System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
+                PrintUtil.printIndexAndText(String.valueOf(index), "");
+                PrintUtil.printJunkItemInfo(item.getKey(), true);
+//                System.out.print("\t" + index + ". (" + item.getValue() + "x) " + item.getKey().getName());
+//                PrintUtil.printIndexAndText(String.valueOf(index)," ("
+//                        + item.getValue() + "x) " + item.getKey().getName());
+//                System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
                 index++;
             }
         }
@@ -49,11 +55,13 @@ public class JunkVendorCharacter extends VendorCharacter {
     @Override
     protected void printVendorItemsForSale(Hero hero) {
         int index = 1;
-        System.out.println("\t0. Go back");
+        PrintUtil.printIndexAndText("0", "Go back");
         for (Item junkItem : this.itemsForSale) {
             if (junkItem instanceof JunkItem) {
-                System.out.print("\t" + index + ". " + junkItem.getName()
-                        + ", Item price: " + junkItem.getPrice() + " golds");
+                PrintUtil.printIndexAndText(String.valueOf(index), "");
+                PrintUtil.printJunkItemInfo((JunkItem) junkItem, false);
+//                System.out.print("\t" + index + ". " + junkItem.getName()
+//                        + ", Item price: " + junkItem.getPrice() + " golds");
                 index++;
                 System.out.println();
             }

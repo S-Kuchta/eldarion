@@ -5,6 +5,7 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -35,10 +36,12 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public void vendorMenu(Hero hero) {
         printGreeting();
-        System.out.println("\t0. Go back");
-        System.out.println("\t1. Buy items");
-        System.out.println("\t2. Sell items");
-
+        PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Buy items");
+        System.out.println();
+        PrintUtil.printIndexAndText("2", "Sell items");
+        System.out.println();
 
         int choice = InputUtil.intScanner();
         switch (choice) {
@@ -84,8 +87,12 @@ public abstract class VendorCharacter extends GameCharacter {
                 if (hero.getHeroGold() >= item.getPrice()) {
                     PrintUtil.printLongDivider();
                     System.out.println("\tAre you sure you want to buy " + item.getName());
-                    System.out.println("\t0. no");
-                    System.out.println("\t1. yes");
+                    PrintUtil.printIndexAndText("0", "No");
+                    System.out.println();
+                    PrintUtil.printIndexAndText("0", "Yes");
+                    System.out.println(
+
+                    );
                     int confirmInput = InputUtil.intScanner();
                     switch (confirmInput) {
                         case 0 -> {

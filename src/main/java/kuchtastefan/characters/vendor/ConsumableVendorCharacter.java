@@ -56,7 +56,8 @@ public class ConsumableVendorCharacter extends VendorCharacter {
         } else {
             for (Map.Entry<ConsumableItem, Integer> item : hero.getHeroInventory().returnInventoryConsumableItemMap().entrySet()) {
                 consumableItemList.add(item.getKey());
-                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+//                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                PrintUtil.printIndexAndText(String.valueOf(index), " (" + item.getValue() + "x) ");
                 PrintUtil.printConsumableItemInfo(item.getKey(), true);
                 System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
             }

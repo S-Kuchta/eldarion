@@ -10,6 +10,7 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
+import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemType;
 
@@ -345,6 +346,19 @@ public class PrintUtil {
         }
     }
 
+    public static void printJunkItemInfo(JunkItem junkItem, boolean sellItem) {
+        double sellPrice = sellItem ? junkItem.returnSellItemPrice() : junkItem.getPrice();
+        System.out.print(junkItem.getName() + ", Item price: " + sellPrice + " golds");
+    }
+
+    public static void printCraftingReagentItemInfo(CraftingReagentItem craftingReagentItem, boolean sellItem) {
+        double sellPrice = sellItem ? craftingReagentItem.returnSellItemPrice() : craftingReagentItem.getPrice();
+
+        System.out.println(craftingReagentItem.getName() + ", Item Type: " + craftingReagentItem.getCraftingReagentItemType()
+                + ", iLevel: " + craftingReagentItem.getItemLevel() + ", Item price: " + sellPrice + " golds");
+
+    }
+
     public static void printActionDetails(Action action) {
         System.out.print("\t\t");
         System.out.print(action.getActionName() + ": " + action.getCurrentActionValue());
@@ -358,12 +372,6 @@ public class PrintUtil {
                     + " turns, max stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + ")");
         }
         System.out.println();
-    }
-
-    public static void printCraftingReagentItemInfo(CraftingReagentItem craftingReagentItem) {
-        System.out.print(craftingReagentItem.getName()
-                + ", " + craftingReagentItem.getCraftingReagentItemType()
-                + ", iLevel: " + craftingReagentItem.getItemLevel());
     }
 
     public static void printEnterValidInput() {

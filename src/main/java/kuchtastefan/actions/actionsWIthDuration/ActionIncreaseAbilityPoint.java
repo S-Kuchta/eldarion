@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,7 +31,7 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration {
                 gameCharacter.getCurrentAbilityValue(this.ability)
                         + (increaseAbilityWithStacks));
 
-//        System.out.println("\tAbility " + this.ability + " was increase by " + increaseAbilityWithStacks);
+        System.out.println("\t" + ConsoleColor.YELLOW + this.ability + ConsoleColor.RESET + " is increased by " + increaseAbilityWithStacks);
     }
 
 }

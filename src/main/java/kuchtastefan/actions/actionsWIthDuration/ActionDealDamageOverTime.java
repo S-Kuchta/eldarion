@@ -3,6 +3,7 @@ package kuchtastefan.actions.actionsWIthDuration;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.utility.ConsoleColor;
 
 public class ActionDealDamageOverTime extends ActionWithDuration {
     public ActionDealDamageOverTime(ActionName actionName, ActionEffectOn actionEffectOn,
@@ -19,7 +20,7 @@ public class ActionDealDamageOverTime extends ActionWithDuration {
 
 //        System.out.println("\t" + this.getActionName() + " deal " + damageWithStacks + " damage to " + gameCharacter.getName() + "!" );
 
-        System.out.print("\t"+ this.getActionName() + ", action deal: ");
+        System.out.print("\t" + ConsoleColor.YELLOW + this.getActionName() + ConsoleColor.RESET + ": ");
         gameCharacter.receiveDamage(damageWithStacks);
     }
 }

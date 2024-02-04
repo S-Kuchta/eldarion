@@ -3,6 +3,7 @@ package kuchtastefan.characters;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestService;
+import kuchtastefan.utility.ConsoleColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,13 +68,13 @@ public class QuestGiverCharacter extends GameCharacter {
         }
 
         if (!haveQuestAvailable) {
-            this.setName(this.baseName + " - ! -");
+            this.setName(this.baseName + " - " + ConsoleColor.YELLOW + "!" + ConsoleColor.RESET + " - ");
         } else {
             this.setName(this.baseName);
         }
 
         if (haveQuestComplete) {
-            this.setName(this.baseName + " - ? -");
+            this.setName(this.baseName + " - " + ConsoleColor.YELLOW + "?" + ConsoleColor.RESET + " - ");
         }
 
         if (this.quests.size() == numberOfCompletedQuests) {

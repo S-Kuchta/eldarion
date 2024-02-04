@@ -42,7 +42,8 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         } else {
             for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
                 wearableItemList.add(item.getKey());
-                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+//                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                PrintUtil.printIndexAndText(String.valueOf(index), " (" + item.getValue() + "x) ");
                 PrintUtil.printItemDescription(item.getKey(), true, hero);
                 index++;
             }
@@ -57,7 +58,8 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         System.out.println("\t0. Go back");
         for (Item wearableItem : this.itemsForSale) {
             if (wearableItem instanceof WearableItem) {
-                System.out.print("\t" + index + ". ");
+//                System.out.print("\t" + index + ". ");
+                PrintUtil.printIndexAndText(String.valueOf(index), "");
                 PrintUtil.printItemDescription((WearableItem) wearableItem, false, hero);
                 index++;
             }

@@ -44,7 +44,6 @@ public class BattleService {
             if (heroPlay) {
                 hero.checkActionTurns();
 
-                System.out.println(hero.isCanPerformAction());
                 if (!hero.isCanPerformAction()) {
                     heroPlay = false;
                     hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
@@ -58,6 +57,7 @@ public class BattleService {
                     String choice = InputUtil.stringScanner().toUpperCase();
                     if (choice.matches("\\d+")) {
                         try {
+                            PrintUtil.printExtraLongDivider();
                             int parsedChoice = Integer.parseInt(choice);
                             if (parsedChoice == hero.getCharacterSpellList().size()) {
                                 if (inventoryService.consumableItemsMenu(hero, true)) {
@@ -120,7 +120,10 @@ public class BattleService {
                         }
 
                         PrintUtil.printLongDivider();
-                        System.out.println("\t\t" + ConsoleColor.YELLOW_BOLD + "—⟪=====> " + ConsoleColor.RESET + enemyInCombat.getName() + " is Attacking!" + ConsoleColor.YELLOW_BOLD + " ⚔" + ConsoleColor.RESET);
+                        System.out.println("\t\t" + ConsoleColor.RED_BOLD + "—⟪=====> " + ConsoleColor.RESET
+                                + enemyInCombat.getName() + " is Attacking!"
+                                + ConsoleColor.RED_BOLD + " ⚔" + ConsoleColor.RESET);
+                        System.out.println();
 
                         enemyUseSpell(enemyInCombat, hero);
 
@@ -160,9 +163,16 @@ public class BattleService {
             if (hero.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
                 hero.getRegionActionsWithDuration().clear();
                 hero.getBattleActionsWithDuration().clear();
-                hero.checkHeroGoldsAndSubtractIfTrue(80 * hero.getLevel());
+                int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
+
+                hero.checkHeroGoldsAndSubtractIfTrue(goldToRemove);
                 hero.getCurrentAbilities().put(Ability.HEALTH, hero.getMaxAbilities().get(Ability.HEALTH));
                 this.resetSpellsCoolDowns(hero);
+
+                PrintUtil.printDivider();
+                System.out.println("\tYou lost " + goldToRemove + " golds!");
+                System.out.println("\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
+                PrintUtil.printDivider();
                 return false;
             }
         }
@@ -183,14 +193,13 @@ public class BattleService {
 //                        + enemyFromList.getCurrentAbilityValue(Ability.HEALTH);
 //                PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index), text);
 
-                System.out.print(" " + ConsoleColor.CYAN + LetterToNumber.getStringFromValue(index) + ConsoleColor.RESET
+                System.out.print(ConsoleColor.CYAN + LetterToNumber.getStringFromValue(index) + ConsoleColor.RESET
                         + ". " + enemyFromList.getName() + " - " + enemyFromList.getEnemyRarity() + " - "
                         + " Healths: "
                         + enemyFromList.getCurrentAbilityValue(Ability.HEALTH) + " ");
 
                 if (Objects.equals(LetterToNumber.getStringFromValue(index), selectedHeroForShowSelected)) {
-//                    System.out.print(" SELECTED ");
-                    System.out.print(ConsoleColor.RED_BOLD + "⚔" + ConsoleColor.RESET);
+                    System.out.print(ConsoleColor.RED_BOLD + "⚔ " + ConsoleColor.RESET);
                 }
                 index++;
             }

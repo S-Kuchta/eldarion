@@ -32,12 +32,11 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
     @Override
     protected void printVendorItemsForSale(Hero hero) {
         int index = 1;
-        System.out.println("\t0. Go back");
+        PrintUtil.printIndexAndText("0", "Go back");
         for (Item craftingReagentItem : this.itemsForSale) {
             if (craftingReagentItem instanceof CraftingReagentItem) {
-                System.out.print("\t" + index + ". " + craftingReagentItem.getName()
-                        + ", Item Type: " + ((CraftingReagentItem) craftingReagentItem).getCraftingReagentItemType()
-                        + ", Item price: " + craftingReagentItem.getPrice() + " golds");
+                PrintUtil.printIndexAndText(String.valueOf(index), "");
+                PrintUtil.printCraftingReagentItemInfo((CraftingReagentItem) craftingReagentItem, false);
                 index++;
                 System.out.println();
             }
@@ -52,17 +51,18 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
     @Override
     public void printHeroItemsForSale(Hero hero) {
         List<CraftingReagentItem> craftingReagentItems = new ArrayList<>();
+
         PrintUtil.printShopHeader(hero, "Crafting reagents");
         int index = 1;
-        System.out.println("\t0. Go back");
+
+        PrintUtil.printIndexAndText("0", "Go back");
         if (hero.getHeroInventory().returnInventoryCraftingReagentItemMap().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {
             for (Map.Entry<CraftingReagentItem, Integer> item : hero.getHeroInventory().returnInventoryCraftingReagentItemMap().entrySet()) {
                 craftingReagentItems.add(item.getKey());
-                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
-                PrintUtil.printCraftingReagentItemInfo(item.getKey());
-                System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
+                PrintUtil.printIndexAndText(String.valueOf(index), "");
+                PrintUtil.printCraftingReagentItemInfo(item.getKey(), true);
             }
         }
         super.sellItem(hero, craftingReagentItems);

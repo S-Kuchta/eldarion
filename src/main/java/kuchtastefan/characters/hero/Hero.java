@@ -10,7 +10,6 @@ import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
-import kuchtastefan.quest.questObjectives.QuestEnemy;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
@@ -217,25 +216,51 @@ public class Hero extends GameCharacter {
      * and print QuestObjectiveAssignment with QuestObjective progress.
      * Use this method always before checkIfQuestObjectivesAndQuestIsCompleted() method.
      *
-     * @param questEnemy Enemy killed in CombatEvent
      */
-    public void checkQuestProgress(QuestEnemy questEnemy) {
+//    public void checkQuestProgress(QuestEnemy questEnemy) {
+//        for (Quest quest : this.listOfAcceptedQuests) {
+//            for (QuestObjective questObjective : quest.getQuestObjectives()) {
+//                if (!questObjective.isCompleted()) {
+//                    if (questObjective instanceof QuestKillObjective
+//                            && ((QuestKillObjective) questObjective).getQuestEnemyToKill().equals(questEnemy)) {
+//
+//                        ((QuestKillObjective) questObjective).increaseCurrentCountEnemyProgress();
+//                        questObjective.printQuestObjectiveAssignment(this);
+//                    }
+//
+//                    if (questObjective instanceof QuestBringItemObjective && questEnemy != null
+//                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemy)
+//                        /*&& RandomNumberGenerator.getRandomNumber(0, 2) == 0*/) {
+//
+//                        System.out.println("\t-- You loot " + ((QuestBringItemObjective) questObjective)
+//                                .getItemDropNeeded().getName() + " --");
+//                        this.heroInventory.addItemWithNewCopyToItemList(
+//                                ((QuestBringItemObjective) questObjective).getItemDropNeeded());
+//                        questObjective.printQuestObjectiveAssignment(this);
+//                    }
+//                }
+//            }
+//        }
+//    }
+    public void checkQuestProgress(Integer questEnemyId) {
+
         for (Quest quest : this.listOfAcceptedQuests) {
             for (QuestObjective questObjective : quest.getQuestObjectives()) {
                 if (!questObjective.isCompleted()) {
                     if (questObjective instanceof QuestKillObjective
-                            && ((QuestKillObjective) questObjective).getQuestEnemyToKill().equals(questEnemy)) {
+                            && ((QuestKillObjective) questObjective).getQuestEnemyId().equals(questEnemyId)) {
 
                         ((QuestKillObjective) questObjective).increaseCurrentCountEnemyProgress();
                         questObjective.printQuestObjectiveAssignment(this);
                     }
 
-                    if (questObjective instanceof QuestBringItemObjective && questEnemy != null
-                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemy)
+                    if (questObjective instanceof QuestBringItemObjective
+                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemyId)
                         /*&& RandomNumberGenerator.getRandomNumber(0, 2) == 0*/) {
 
                         System.out.println("\t-- You loot " + ((QuestBringItemObjective) questObjective)
                                 .getItemDropNeeded().getName() + " --");
+
                         this.heroInventory.addItemWithNewCopyToItemList(
                                 ((QuestBringItemObjective) questObjective).getItemDropNeeded());
                         questObjective.printQuestObjectiveAssignment(this);

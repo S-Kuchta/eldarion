@@ -1,5 +1,7 @@
 package kuchtastefan.quest.questObjectives;
 
+import kuchtastefan.characters.enemy.Enemy;
+import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.Hero;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,22 +9,23 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QuestKillObjective extends QuestObjective {
-    private final QuestEnemy questEnemyToKill;
+    private final Integer questEnemyId;
     private final int countEnemyToKill;
     private int currentCountEnemyProgress;
 
 
-    public QuestKillObjective(String questObjectiveName, QuestEnemy questEnemyToKill, int countEnemyToKill) {
+    public QuestKillObjective(String questObjectiveName, Integer questEnemyId, int countEnemyToKill) {
         super(questObjectiveName);
-        this.questEnemyToKill = questEnemyToKill;
+        this.questEnemyId = questEnemyId;
         this.countEnemyToKill = countEnemyToKill;
     }
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
+        Enemy enemy = EnemyList.getEnemyMap().get(this.questEnemyId);
         if (currentCountEnemyProgress <= this.countEnemyToKill) {
-            System.out.println("\tKill " + this.countEnemyToKill + "x " + this.questEnemyToKill.getQuestEnemyRarity() + " "
-                    + this.questEnemyToKill.getQuestEnemyName() + " - " +
+            System.out.println("\tKill " + this.countEnemyToKill + "x " + enemy.getEnemyRarity() + " "
+                    + enemy.getName() + " - " +
                     "You have " + this.currentCountEnemyProgress +
                     " / " + this.countEnemyToKill + " killed");
         }

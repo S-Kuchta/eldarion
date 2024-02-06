@@ -44,6 +44,7 @@
     "turnCoolDown": 0
   },
   {
+    "spellId": 102,
     "spellName": "Claw Attack",
     "spellClass": "NPC",
     "spellDescription": "Gash target with claw",

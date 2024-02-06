@@ -8,10 +8,7 @@
       {
         "type": "QuestKillObjective",
         "questObjectiveName": "Kill bandit",
-        "questEnemyToKill": {
-          "questEnemyName": "Defias Bandit",
-          "questEnemyRarity": "COMMON"
-        },
+        "questEnemyId": 200,
         "countEnemyToKill": 1
       }
     ],
@@ -48,18 +45,12 @@
     "questObjectives": [
       {
         "type": "QuestKillObjective",
-        "questEnemyToKill": {
-          "questEnemyName": "Wolf",
-          "questEnemyRarity": "COMMON"
-        },
+        "questEnemyId": 100,
         "countEnemyToKill": 5
       },
       {
         "type": "QuestKillObjective",
-        "questEnemyToKill": {
-          "questEnemyName": "Alpha Wolf",
-          "questEnemyRarity": "COMMON"
-        },
+        "questEnemyId": 102,
         "countEnemyToKill": 1
       }
     ],
@@ -89,22 +80,8 @@
       {
         "type": "QuestBringItemObjective",
         "itemDropFromEnemy": [
-          {
-            "questEnemyName": "Wolf",
-            "questEnemyRarity": "COMMON"
-          },
-          {
-            "questEnemyName": "Alpha Wolf",
-            "questEnemyRarity": "COMMON"
-          },
-          {
-            "questEnemyName": "Wolf",
-            "questEnemyRarity": "RARE"
-          },
-          {
-            "questEnemyName": "Alpha Wolf",
-            "questEnemyRarity": "RARE"
-          }
+          100,
+          102
         ],
         "itemDropCountNeeded": "10",
         "itemDropNeeded": {
@@ -144,10 +121,7 @@
         "type": "QuestBringItemObjective",
         "questObjectiveName": "Bring bandit boss head",
         "itemDropFromEnemy": [
-          {
-            "questEnemyName": "Defias Boss",
-            "questEnemyRarity": "BOSS"
-          }
+          203
         ],
         "itemDropCountNeeded": "1",
         "itemDropNeeded": {

@@ -40,20 +40,9 @@ public class Enemy extends GameCharacter {
     }
 
     public void addSpells() {
-//        System.out.println(enemySpells.length);
-//        System.out.println(enemySpells[0]);
         for (int enemySpell : this.enemySpells) {
-            System.out.println(SpellsList.getSpellMap().get(enemySpell).getSpellName());
-            System.out.println(SpellsList.getSpellMap().get(enemySpell).getSpellActions().get(0).getActionName());
             this.characterSpellList.add(SpellsList.getSpellMap().get(enemySpell));
         }
-
-        System.out.println("Spell name from list: " + this.characterSpellList.get(0).getSpellName());
-
-//        for (Integer integer : this.enemySpells) {
-//            this.characterSpellList.add(SpellsList.getSpellMap().get(integer));
-//        }
-
     }
 
     public void setMaxAbilitiesAndCurrentAbilities() {

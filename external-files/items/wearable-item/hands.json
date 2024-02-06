@@ -1,5 +1,6 @@
 [
   {
+    "itemId": 400,
     "name": "Basic hands",
     "abilities": {
       "RESIST_DAMAGE": 1

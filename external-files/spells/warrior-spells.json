@@ -1,5 +1,6 @@
 [
   {
+    "spellId": 300,
     "spellName": "Weapon Attack",
     "spellClass": "WARRIOR",
     "spellDescription": "Attack with weapon",
@@ -22,6 +23,7 @@
     "turnCoolDown": 0
   },
   {
+    "spellId": 301,
     "spellName": "Strong Weapon Attack",
     "spellClass": "WARRIOR",
     "spellDescription": "Attack with weapon",
@@ -55,6 +57,7 @@
     "turnCoolDown": 2
   },
   {
+    "spellId": 302,
     "spellName": "Barrier",
     "spellClass": "WARRIOR",
     "spellDescription": "Cast a powerful barrier",
@@ -79,30 +82,7 @@
     "turnCoolDown": 0
   },
   {
-    "spellName": "Barrier 2",
-    "spellClass": "WARRIOR",
-    "spellDescription": "Cast a powerful barrier",
-    "spellActions": [
-      {
-        "type": "ActionAbsorbDamage",
-        "actionName": "ABSORB_DAMAGE",
-        "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 10,
-        "maxActionTurns": 5,
-        "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
-      }
-    ],
-    "bonusValueFromAbility": {
-      "ATTACK": 1
-    },
-    "spellLevel": 3,
-    "spellManaCost": 15,
-    "turnCoolDown": 0
-  },
-  {
+    "spellId": 303,
     "spellName": "Heal",
     "spellClass": "WARRIOR",
     "spellDescription": "Heal",

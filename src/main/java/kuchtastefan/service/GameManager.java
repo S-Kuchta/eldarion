@@ -18,6 +18,9 @@ import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GameManager {
     private Hero hero;
@@ -148,7 +151,7 @@ public class GameManager {
         System.out.println("\t1. Create potion");
         System.out.println("\t2. " + cityAlchemistReagentVendor.getName() + " (Alchemy reagents Merchant)");
         System.out.println("\t3. " + cityPotionsVendor.getName() + " (Potions Merchant)");
-        System.out.println("\t4. " + questGiverCharacter.getName() );
+        System.out.println("\t4. " + questGiverCharacter.getName());
 
         int choice = InputUtil.intScanner();
         switch (choice) {
@@ -180,7 +183,6 @@ public class GameManager {
         HintUtil.initializeHintList();
 
 
-
         System.out.println("Welcome to the Gladiatus game!");
         System.out.println("0. Start new game");
         System.out.println("1. Load game");
@@ -207,20 +209,23 @@ public class GameManager {
 
         System.out.println("\tEnter your name: ");
         final String name = InputUtil.stringScanner();
-        PrintUtil.printDivider();
+        PrintUtil.printLongDivider();
 
         System.out.println("\tSelect your class: ");
         int index = 0;
-
+        List<CharacterClass> characterClassList = new ArrayList<>();
         for (CharacterClass characterClass : CharacterClass.values()) {
-            System.out.println("\t" + index + ". " + characterClass.name());
-            index++;
+            if (!characterClass.equals(CharacterClass.NPC)) {
+                System.out.println("\t" + index + ". " + characterClass.name());
+                characterClassList.add(characterClass);
+                index++;
+            }
         }
 
         while (true) {
             try {
                 final int heroClassChoice = InputUtil.intScanner();
-                this.hero.setCharacterClass(CharacterClass.values()[heroClassChoice]);
+                this.hero.setCharacterClass(characterClassList.get(heroClassChoice));
                 break;
             } catch (IndexOutOfBoundsException e) {
                 PrintUtil.printEnterValidInput();
@@ -236,7 +241,7 @@ public class GameManager {
 
         this.hero.setName(name);
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
-        PrintUtil.printDivider();
+        PrintUtil.printLongDivider();
 
         this.heroAbilityManager.spendAbilityPoints();
     }

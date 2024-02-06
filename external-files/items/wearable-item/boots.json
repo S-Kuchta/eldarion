@@ -1,5 +1,6 @@
 [
   {
+    "itemId": 500,
     "name": "Basic boots",
     "abilities": {
       "RESIST_DAMAGE": 1

@@ -1,5 +1,6 @@
 [
   {
+    "itemId": 1000,
     "name": "Goulash",
     "price": 40,
     "itemLevel": 2,
@@ -25,6 +26,7 @@
     ]
   },
   {
+    "itemId": 1001,
     "name": "Bread",
     "price": 15,
     "itemLevel": 1,

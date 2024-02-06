@@ -1,5 +1,6 @@
 [
   {
+    "itemId": 900,
     "name": "Minor health potion",
     "price": 20,
     "itemLevel": 1,
@@ -14,6 +15,7 @@
     ]
   },
   {
+    "itemId": 901,
     "name": "Big health potion",
     "price": 50,
     "itemLevel": 2,

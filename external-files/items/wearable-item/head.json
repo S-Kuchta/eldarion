@@ -1,5 +1,6 @@
 [
   {
+    "itemId": 300,
     "name": "Basic helmet",
     "abilities": {
       "RESIST_DAMAGE": 1

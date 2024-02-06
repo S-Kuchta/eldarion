@@ -1,5 +1,6 @@
 [
   {
+    "spellId": 200,
     "spellName": "Weapon Attack",
     "spellClass": "MAGE",
     "spellDescription": "Attack with weapon",
@@ -22,6 +23,7 @@
     "turnCoolDown": 0
   },
   {
+    "spellId": 201,
     "spellName": "Fireball",
     "spellClass": "MAGE",
     "spellDescription": "Cast a fireball",
@@ -55,6 +57,7 @@
     "turnCoolDown": 2
   },
   {
+    "spellId": 202,
     "spellName": "Freeze Enemy",
     "spellClass": "MAGE",
     "spellDescription": "Cast ice cube.",
@@ -88,6 +91,7 @@
     "turnCoolDown": 5
   },
   {
+    "spellId": 203,
     "spellName": "Ice block",
     "spellClass": "MAGE",
     "spellDescription": "Cast ice block.",

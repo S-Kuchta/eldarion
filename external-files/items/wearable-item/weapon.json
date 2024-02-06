@@ -1,5 +1,6 @@
 [
   {
+    "itemId": 200,
     "name": "Iron sword of Attack",
     "abilities": {
       "ATTACK": 2
@@ -7,6 +8,7 @@
     "itemLevel": 1
   },
   {
+    "itemId": 201,
     "name": "Iron sword of Strength",
     "abilities": {
       "ATTACK": 1,
@@ -15,6 +17,7 @@
     "itemLevel": 1
   },
   {
+    "itemId": 202,
     "name": "Staff of Intellect",
     "abilities": {
       "ATTACK": 1,
@@ -23,12 +26,22 @@
     "itemLevel": 1
   },
   {
+    "itemId": 203,
     "name": "Arcana Shard Spire",
     "abilities": {
       "ATTACK": 2,
       "INTELLECT": 3
     },
-    "wearableItemQuality": "SPECIAL",
+    "itemLevel": 1
+  },
+  {
+    "itemId": 204,
+    "type": "WearableItem",
+    "name": "Death Bringer",
+    "wearableItemQuality": "QUEST_REWARD",
+    "abilities": {
+      "ATTACK": 1
+    },
     "itemLevel": 1
   }
 ]

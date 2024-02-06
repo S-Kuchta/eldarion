@@ -33,7 +33,7 @@ public class HeroAbilityManager {
     public void spendAbilityPoints() {
         if (this.hero.getUnspentAbilityPoints() <= 0) {
             System.out.println("You don't have any ability points to spend.");
-            PrintUtil.printDivider();
+            PrintUtil.printLongDivider();
         } else {
             while (this.hero.getUnspentAbilityPoints() > 0) {
                 PrintUtil.printAbilityPoints(this.hero);

@@ -14,22 +14,7 @@
     ],
     "questReward": {
       "itemsReward": [
-        {
-          "type": "WearableItem",
-          "name": "Death Bringer",
-          "wearableItemType": "WEAPON",
-          "abilities": {
-            "ATTACK": 1
-          },
-          "itemLevel": 1
-        },
-        {
-          "type": "CraftingReagentItem",
-          "craftingReagentItemType": "BLACKSMITH_REAGENT",
-          "name": "Iron ore",
-          "price": 10,
-          "itemLevel": 2
-        }
+        204
       ],
       "goldsReward": 30.0,
       "experiencePointsReward": 70.0,
@@ -55,15 +40,7 @@
     ],
     "questReward": {
       "itemsReward": [
-        {
-          "type": "WearableItem",
-          "name": "Iron sword of Skill",
-          "abilities": {
-            "ATTACK": 1,
-            "SKILL": 1
-          },
-          "itemLevel": 1
-        }
+        204
       ],
       "goldsReward": 30.0,
       "experiencePointsReward": 70.0,
@@ -91,15 +68,7 @@
     ],
     "questReward": {
       "itemsReward": [
-        {
-          "type": "WearableItem",
-          "name": "Iron sword of Skill",
-          "abilities": {
-            "ATTACK": 1,
-            "SKILL": 1
-          },
-          "itemLevel": 1
-        }
+        204
       ],
       "goldsReward": 30.0,
       "experiencePointsReward": 70.0,
@@ -127,15 +96,7 @@
     ],
     "questReward": {
       "itemsReward": [
-        {
-          "type": "WearableItem",
-          "name": "Iron sword of Skill",
-          "abilities": {
-            "ATTACK": 1,
-            "SKILL": 1
-          },
-          "itemLevel": 1
-        }
+        204
       ],
       "goldsReward": 30.0,
       "experiencePointsReward": 70.0,

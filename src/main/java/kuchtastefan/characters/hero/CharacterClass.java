@@ -1,6 +1,8 @@
 package kuchtastefan.characters.hero;
 
-public enum HeroClass {
+public enum CharacterClass {
+    NPC,
     WARRIOR,
     MAGE,
+
 }

@@ -15,13 +15,13 @@ public class QuestBringItemObjective extends QuestObjective {
     private final QuestItem itemDropNeeded;
     private final QuestEnemy[] itemDropFromEnemy;
     private final int itemDropCountNeeded;
-    private final LocationType[] locationsType;
+    private final LocationType[] locationType;
 
 
     public QuestBringItemObjective(String questObjectiveName, QuestEnemy[] itemDropFromEnemy,
-                                   LocationType[] locationsType, QuestItem itemDropNeeded, int itemDropCountNeeded) {
+                                   LocationType[] locationType, QuestItem itemDropNeeded, int itemDropCountNeeded) {
         super(questObjectiveName);
-        this.locationsType = locationsType;
+        this.locationType = locationType;
         this.itemDropNeeded = itemDropNeeded;
         this.itemDropCountNeeded = itemDropCountNeeded;
         this.itemDropFromEnemy = itemDropFromEnemy;
@@ -59,7 +59,7 @@ public class QuestBringItemObjective extends QuestObjective {
     }
 
     public boolean checkLocation(LocationType locationTypeParam) {
-        return Arrays.asList(this.locationsType).contains(locationTypeParam);
+        return Arrays.asList(this.locationType).contains(locationTypeParam);
     }
 
     public boolean checkEnemy(QuestEnemy enemyName) {

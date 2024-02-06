@@ -171,8 +171,9 @@ public class GameManager {
         ItemsLists.initializeAllItemsMapToStringItemMap();
 
         QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
-        EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
+
         SpellsList.getSpellList().addAll(this.fileService.importSpellsFromFile());
+        EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 5);
 
@@ -211,15 +212,15 @@ public class GameManager {
         System.out.println("\tSelect your class: ");
         int index = 0;
 
-        for (HeroClass heroClass : HeroClass.values()) {
-            System.out.println("\t" + index + ". " + heroClass.name());
+        for (CharacterClass characterClass : CharacterClass.values()) {
+            System.out.println("\t" + index + ". " + characterClass.name());
             index++;
         }
 
         while (true) {
             try {
                 final int heroClassChoice = InputUtil.intScanner();
-                this.hero.setHeroClass(HeroClass.values()[heroClassChoice]);
+                this.hero.setCharacterClass(CharacterClass.values()[heroClassChoice]);
                 break;
             } catch (IndexOutOfBoundsException e) {
                 PrintUtil.printEnterValidInput();
@@ -227,14 +228,14 @@ public class GameManager {
         }
 
         for (Spell spell : SpellsList.getSpellList()) {
-            if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.hero.getHeroClass())) {
+            if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.hero.getCharacterClass())) {
                 this.hero.getCharacterSpellList().add(spell);
             }
         }
 
 
         this.hero.setName(name);
-        System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getHeroClass() + ". Let's start the game!");
+        System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printDivider();
 
         this.heroAbilityManager.spendAbilityPoints();

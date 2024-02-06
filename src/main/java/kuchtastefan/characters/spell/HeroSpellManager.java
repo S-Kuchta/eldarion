@@ -37,7 +37,7 @@ public class HeroSpellManager {
 
         List<Spell> spellsByClass = new ArrayList<>();
         for (Spell spellForAdd : SpellsList.getSpellList()) {
-            if (spellForAdd.getSpellClass().equals(hero.getHeroClass())) {
+            if (spellForAdd.getSpellClass().equals(hero.getCharacterClass())) {
                 spellsByClass.add(spellForAdd);
             }
         }

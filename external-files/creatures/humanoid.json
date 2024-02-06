@@ -14,6 +14,9 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
+    "enemySpells": [
+      100
+    ],
     "characterSpellList": [
       {
         "spellName": "Weapon attack",
@@ -60,6 +63,9 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
+    "enemySpells": [
+      100
+    ],
     "characterSpellList": [
       {
         "spellName": "Bite",
@@ -100,6 +106,9 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
+    "enemySpells": [
+      100
+    ],
     "characterSpellList": [
       {
         "spellName": "Bite",
@@ -140,6 +149,9 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
+    "enemySpells": [
+      100
+    ],
     "characterSpellList": [
       {
         "spellName": "Weapon attack",

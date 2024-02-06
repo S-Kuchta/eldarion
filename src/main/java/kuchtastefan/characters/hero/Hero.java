@@ -27,7 +27,7 @@ import java.util.Map;
 @Setter
 public class Hero extends GameCharacter {
 
-    private HeroClass heroClass;
+    private CharacterClass characterClass;
     private int unspentAbilityPoints;
     private double heroGold;
     private double experiencePoints;

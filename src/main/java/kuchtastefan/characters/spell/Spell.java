@@ -5,7 +5,7 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
-import kuchtastefan.characters.hero.HeroClass;
+import kuchtastefan.characters.hero.CharacterClass;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -18,6 +18,7 @@ import java.util.Map;
 @Getter
 @Setter
 public class Spell {
+    private final int spellId;
     private final String spellName;
     private final String spellDescription;
     private final List<Action> spellActions;
@@ -27,12 +28,13 @@ public class Spell {
     private final int turnCoolDown;
     private int currentTurnCoolDown;
     private boolean canSpellBeCasted;
-    private final HeroClass spellClass;
+    private final CharacterClass spellClass;
 
 
-    public Spell(String spellName, String spellDescription, List<Action> spellActions, int turnCoolDown,
-                 Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost, HeroClass spellClass) {
+    public Spell(int spellId, String spellName, String spellDescription, List<Action> spellActions, int turnCoolDown,
+                 Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost, CharacterClass spellClass) {
 
+        this.spellId = spellId;
         this.spellName = spellName;
         this.spellDescription = spellDescription;
         this.spellActions = spellActions;
@@ -61,6 +63,7 @@ public class Spell {
 
             boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100)
                     <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+
 
             for (Action action : this.spellActions) {
                 action.setNewCurrentActionValue(action.getMaxActionValue());

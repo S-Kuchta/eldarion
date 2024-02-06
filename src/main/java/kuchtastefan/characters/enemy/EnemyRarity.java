@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum EnemyRarity {
     COMMON(0),
     RARE(20),
-    ELITE(40);
+    ELITE(40),
+    BOSS(80);
 
     private final int experienceGainedValue;
 

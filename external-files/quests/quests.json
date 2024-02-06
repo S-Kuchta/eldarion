@@ -132,5 +132,47 @@
       "experiencePointsReward": 70.0,
       "questLevel": 2
     }
+  },
+  {
+    "questId": 3,
+    "questName": "Kill Defias Boss",
+    "questDescription": "In Our mines there are bandits. Please clear mine, kill it's boss and bring us his head!.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestBringItemObjective",
+        "itemDropFromEnemy": [
+          {
+            "questEnemyName": "Defias Boss",
+            "questEnemyRarity": "BOSS"
+          }
+        ],
+        "itemDropCountNeeded": "1",
+        "itemDropNeeded": {
+          "name": "Boss Head",
+          "price": 0,
+          "itemLevel": 2
+        },
+        "locationsType": [
+          "MINE"
+        ]
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        {
+          "type": "WearableItem",
+          "name": "Iron sword of Skill",
+          "abilities": {
+            "ATTACK": 1,
+            "SKILL": 1
+          },
+          "itemLevel": 1
+        }
+      ],
+      "goldsReward": 30.0,
+      "experiencePointsReward": 70.0,
+      "questLevel": 2
+    }
   }
 ]

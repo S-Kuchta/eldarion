@@ -136,6 +136,10 @@ public class GameManager {
         final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
                 ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
 
+        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("High Priestess Elara", 8);
+        questGiverCharacter.addQuest(QuestList.questList.get(3));
+        questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
+
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");
         PrintUtil.printDivider();
@@ -144,6 +148,7 @@ public class GameManager {
         System.out.println("\t1. Create potion");
         System.out.println("\t2. " + cityAlchemistReagentVendor.getName() + " (Alchemy reagents Merchant)");
         System.out.println("\t3. " + cityPotionsVendor.getName() + " (Potions Merchant)");
+        System.out.println("\t4. " + questGiverCharacter.getName() );
 
         int choice = InputUtil.intScanner();
         switch (choice) {
@@ -152,6 +157,7 @@ public class GameManager {
             case 1 -> System.out.println("Work in progress");
             case 2 -> cityAlchemistReagentVendor.vendorMenu(this.hero);
             case 3 -> cityPotionsVendor.vendorMenu(this.hero);
+            case 4 -> questGiverCharacter.questGiverMenu(this.hero);
             default -> PrintUtil.printEnterValidInput();
         }
     }

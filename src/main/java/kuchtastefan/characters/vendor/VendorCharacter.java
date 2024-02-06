@@ -89,7 +89,7 @@ public abstract class VendorCharacter extends GameCharacter {
                     System.out.println("\tAre you sure you want to buy " + item.getName());
                     PrintUtil.printIndexAndText("0", "No");
                     System.out.println();
-                    PrintUtil.printIndexAndText("0", "Yes");
+                    PrintUtil.printIndexAndText("1", "Yes");
                     System.out.println(
 
                     );

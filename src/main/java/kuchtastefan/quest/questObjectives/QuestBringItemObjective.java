@@ -18,7 +18,8 @@ public class QuestBringItemObjective extends QuestObjective {
     private final LocationType[] locationsType;
 
 
-    public QuestBringItemObjective(String questObjectiveName, QuestEnemy[] itemDropFromEnemy, LocationType[] locationsType, QuestItem itemDropNeeded, int itemDropCountNeeded) {
+    public QuestBringItemObjective(String questObjectiveName, QuestEnemy[] itemDropFromEnemy,
+                                   LocationType[] locationsType, QuestItem itemDropNeeded, int itemDropCountNeeded) {
         super(questObjectiveName);
         this.locationsType = locationsType;
         this.itemDropNeeded = itemDropNeeded;
@@ -28,6 +29,7 @@ public class QuestBringItemObjective extends QuestObjective {
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
+
         hero.getHeroInventory().getHeroInventory().putIfAbsent(this.itemDropNeeded, 0);
         if (hero.getHeroInventory().getHeroInventory().get(this.itemDropNeeded) < this.itemDropCountNeeded) {
             System.out.println("\tBring " + this.itemDropCountNeeded + "x " + this.itemDropNeeded.getName() + " - You have: "
@@ -40,7 +42,9 @@ public class QuestBringItemObjective extends QuestObjective {
 
     @Override
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
-        if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(new HashMap<>(Map.of(this.itemDropNeeded, this.itemDropCountNeeded)), false)) {
+        if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
+                new HashMap<>(Map.of(this.itemDropNeeded, this.itemDropCountNeeded)), false)) {
+
             System.out.println("\t--> You completed " + getQuestObjectiveName() + " quest objective <--");
             setCompleted(true);
         } else {
@@ -50,14 +54,15 @@ public class QuestBringItemObjective extends QuestObjective {
 
     @Override
     public void removeCompletedItemsOrEnemies(Hero hero) {
-        hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(new HashMap<>(Map.of(this.itemDropNeeded, this.itemDropCountNeeded)), true);
+        hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
+                new HashMap<>(Map.of(this.itemDropNeeded, this.itemDropCountNeeded)), true);
     }
 
     public boolean checkLocation(LocationType locationTypeParam) {
         return Arrays.asList(this.locationsType).contains(locationTypeParam);
     }
 
-    public boolean checkEnemy(QuestEnemy enemyNameParam) {
-        return Arrays.asList(this.itemDropFromEnemy).contains(enemyNameParam);
+    public boolean checkEnemy(QuestEnemy enemyName) {
+        return Arrays.asList(this.itemDropFromEnemy).contains(enemyName);
     }
 }

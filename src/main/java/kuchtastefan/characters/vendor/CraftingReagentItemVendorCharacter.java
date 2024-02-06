@@ -37,8 +37,8 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
             if (craftingReagentItem instanceof CraftingReagentItem) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
                 PrintUtil.printCraftingReagentItemInfo((CraftingReagentItem) craftingReagentItem, false);
-                index++;
                 System.out.println();
+                index++;
             }
         }
     }
@@ -61,7 +61,7 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
         } else {
             for (Map.Entry<CraftingReagentItem, Integer> item : hero.getHeroInventory().returnInventoryCraftingReagentItemMap().entrySet()) {
                 craftingReagentItems.add(item.getKey());
-                PrintUtil.printIndexAndText(String.valueOf(index), "");
+                PrintUtil.printIndexAndText(String.valueOf(index), " (" + item.getValue() + "x) ");
                 PrintUtil.printCraftingReagentItemInfo(item.getKey(), true);
             }
         }

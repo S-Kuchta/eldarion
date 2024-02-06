@@ -1,44 +1,45 @@
 {
   "hero": {
+    "heroClass": "MAGE",
     "unspentAbilityPoints": 0,
-    "heroGold": 10.0,
-    "experiencePoints": 0.0,
+    "heroGold": 163.6,
+    "experiencePoints": 110.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "ATTACK": 2,
-          "RESIST_DAMAGE": 0,
           "STRENGTH": 0,
-          "INTELLECT": 0,
+          "MANA": 0,
           "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "MANA": 0,
-          "ABSORB_DAMAGE": 0
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Iron sword of Attack",
-        "price": 70.0,
-        "itemLevel": 1
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
       },
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
-          "RESIST_DAMAGE": 3,
-          "ATTACK": 1,
           "STRENGTH": 0,
-          "INTELLECT": 0,
+          "MANA": 0,
           "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "MANA": 0,
-          "ABSORB_DAMAGE": 0
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Leather armor of Attack",
-        "price": 70.0,
-        "itemLevel": 1
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
       },
       "BOOTS": {
         "wearableItemType": "BOOTS",
@@ -47,8 +48,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -65,8 +66,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -83,8 +84,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -99,9 +100,9 @@
       "STRENGTH": 0,
       "MANA": 0,
       "HASTE": 0,
-      "RESIST_DAMAGE": 3,
-      "ATTACK": 3,
+      "RESIST_DAMAGE": 0,
       "ABSORB_DAMAGE": 0,
+      "ATTACK": 0,
       "CRITICAL_HIT_CHANCE": 0,
       "HEALTH": 0,
       "INTELLECT": 0
@@ -110,106 +111,172 @@
       "heroInventory": [
         [
           {
-            "type": "WearableItem",
-            "wearableItemType": "WEAPON",
-            "abilities": {
-              "ATTACK": 2,
-              "RESIST_DAMAGE": 0,
-              "STRENGTH": 0,
-              "INTELLECT": 0,
-              "HASTE": 0,
-              "CRITICAL_HIT_CHANCE": 0,
-              "HEALTH": 0,
-              "MANA": 0,
-              "ABSORB_DAMAGE": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Iron sword of Attack",
-            "price": 70.0,
-            "itemLevel": 1
+            "type": "QuestItem",
+            "name": "Boss Head",
+            "price": 0.0,
+            "itemLevel": 2
           },
-          1
+          0
         ],
         [
           {
-            "type": "WearableItem",
-            "wearableItemType": "BODY",
-            "abilities": {
-              "RESIST_DAMAGE": 3,
-              "ATTACK": 1,
-              "STRENGTH": 0,
-              "INTELLECT": 0,
-              "HASTE": 0,
-              "CRITICAL_HIT_CHANCE": 0,
-              "HEALTH": 0,
-              "MANA": 0,
-              "ABSORB_DAMAGE": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Leather armor of Attack",
-            "price": 70.0,
-            "itemLevel": 1
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "name": "DeathBloom",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Bottle With Silver decorating",
+            "price": 18.0,
+            "itemLevel": 0
           },
           1
         ]
       ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 0.0
+      "neededExperiencePointsForNewLevel": 480.0
     },
     "enemyKilled": {
-      "enemyKilled": {},
+      "enemyKilled": {
+        "Defias Boss": 1
+      },
       "questEnemyKilled": {}
     },
-    "listOfAcceptedQuests": [],
-    "name": "1",
+    "listOfAcceptedQuests": [
+      {
+        "questId": 3,
+        "questName": "Kill Defias Boss",
+        "questDescription": "In Our mines there are bandits. Please clear mine and kill it\u0027s boss!.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestBringItemObjective",
+            "itemDropNeeded": {
+              "name": "Boss Head",
+              "price": 0.0,
+              "itemLevel": 2
+            },
+            "itemDropFromEnemy": [
+              {
+                "questEnemyName": "Defias Boss",
+                "questEnemyRarity": "BOSS"
+              }
+            ],
+            "itemDropCountNeeded": 1,
+            "locationsType": [
+              "MINE"
+            ],
+            "completed": false
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            {
+              "type": "WearableItem",
+              "abilities": {
+                "ATTACK": 1,
+                "null": 1,
+                "RESIST_DAMAGE": 0,
+                "STRENGTH": 0,
+                "INTELLECT": 0,
+                "HASTE": 0,
+                "CRITICAL_HIT_CHANCE": 0,
+                "HEALTH": 0,
+                "MANA": 0,
+                "ABSORB_DAMAGE": 0
+              },
+              "wearableItemQuality": "BASIC",
+              "name": "Iron sword of Skill",
+              "price": 70.0,
+              "itemLevel": 1
+            }
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0
+        },
+        "isTurnedIn": false
+      }
+    ],
+    "learnedSpells": {},
+    "name": "Gwyndeed",
     "level": 1,
     "abilities": {
-      "STRENGTH": 1,
-      "MANA": 60,
-      "HASTE": 1,
-      "RESIST_DAMAGE": 3,
-      "ATTACK": 4,
+      "STRENGTH": 30,
+      "MANA": 500,
+      "HASTE": 200,
+      "RESIST_DAMAGE": 200,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
-      "HEALTH": 60,
-      "INTELLECT": 1
+      "ATTACK": 400,
+      "CRITICAL_HIT_CHANCE": 50,
+      "HEALTH": 700,
+      "INTELLECT": 200
     },
     "maxAbilities": {
-      "STRENGTH": 1,
-      "MANA": 60,
-      "HASTE": 1,
-      "RESIST_DAMAGE": 6,
-      "ATTACK": 7,
+      "STRENGTH": 30,
+      "MANA": 500,
+      "HASTE": 200,
+      "RESIST_DAMAGE": 200,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
-      "HEALTH": 60,
-      "INTELLECT": 1
+      "ATTACK": 400,
+      "CRITICAL_HIT_CHANCE": 50,
+      "HEALTH": 700,
+      "INTELLECT": 200
     },
     "currentAbilities": {
-      "STRENGTH": 1,
-      "MANA": 60,
-      "HASTE": 1,
-      "RESIST_DAMAGE": 6,
-      "ATTACK": 7,
+      "STRENGTH": 30,
+      "MANA": 500,
+      "HASTE": 200,
+      "RESIST_DAMAGE": 200,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
-      "HEALTH": 60,
-      "INTELLECT": 1
+      "ATTACK": 400,
+      "CRITICAL_HIT_CHANCE": 50,
+      "HEALTH": 700,
+      "INTELLECT": 200
     },
     "regionActionsWithDuration": [],
     "battleActionsWithDuration": [],
     "characterSpellList": [
       {
-        "type": "Spell",
-        "spellName": "Attack",
-        "spellDescription": "Basic attack with weapon",
+        "spellName": "Weapon Attack",
+        "spellDescription": "Attack with weapon",
         "spellActions": [
           {
             "type": "ActionDealDamage",
-            "actionName": "Attack with weapon",
+            "actionName": "DAMAGE",
             "maxActionValue": 3,
             "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1,
+          "STRENGTH": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 0,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
+      },
+      {
+        "spellName": "Fireball",
+        "spellDescription": "Cast a fireball",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 5,
+            "currentActionValue": 1055,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
@@ -221,158 +288,138 @@
             "actionMaxStacks": 1,
             "actionCurrentStacks": 0,
             "actionDurationType": "BATTLE_ACTION",
-            "actionName": "Bleed",
+            "actionName": "DAMAGE_OVER_TIME",
             "maxActionValue": 1,
-            "currentActionValue": 0,
+            "currentActionValue": 483,
             "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 50,
-            "canBeActionCriticalHit": false
-          }
-        ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 1,
-        "spellManaCost": 0,
-        "turnCoolDown": 0,
-        "currentTurnCoolDown": 1,
-        "canSpellBeCasted": true
-      },
-      {
-        "type": "Spell",
-        "spellName": "Barrier",
-        "spellDescription": "Cast a powerful barrier",
-        "spellActions": [
-          {
-            "type": "ActionAbsorbDamage",
-            "maxActionTurns": 5,
-            "currentActionTurn": 0,
-            "actionMaxStacks": 1,
-            "actionCurrentStacks": 0,
-            "actionDurationType": "BATTLE_ACTION",
-            "actionName": "Absorb Damage",
-            "maxActionValue": 10,
-            "currentActionValue": 0,
-            "actionEffectOn": "SPELL_CASTER",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": false
           }
         ],
         "bonusValueFromAbility": {
+          "INTELLECT": 1,
           "ATTACK": 1
         },
-        "spellLevel": 1,
-        "spellManaCost": 15,
-        "turnCoolDown": 0,
-        "currentTurnCoolDown": 1,
-        "canSpellBeCasted": true
-      },
-      {
-        "type": "Spell",
-        "spellName": "Barrier 2",
-        "spellDescription": "Cast a powerful barrier",
-        "spellActions": [
-          {
-            "type": "ActionAbsorbDamage",
-            "maxActionTurns": 5,
-            "currentActionTurn": 0,
-            "actionMaxStacks": 1,
-            "actionCurrentStacks": 0,
-            "actionDurationType": "BATTLE_ACTION",
-            "actionName": "Absorb Damage 2",
-            "maxActionValue": 10,
-            "currentActionValue": 0,
-            "actionEffectOn": "SPELL_CASTER",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": false
-          }
-        ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 1,
-        "spellManaCost": 15,
-        "turnCoolDown": 0,
-        "currentTurnCoolDown": 1,
-        "canSpellBeCasted": true
-      },
-      {
-        "type": "Spell",
-        "spellName": "Heal",
-        "spellDescription": "Heal",
-        "spellActions": [
-          {
-            "type": "ActionRestoreHealth",
-            "actionName": "Heal",
-            "maxActionValue": 20,
-            "currentActionValue": 0,
-            "actionEffectOn": "SPELL_CASTER",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
-          }
-        ],
-        "bonusValueFromAbility": {
-          "INTELLECT": 1
-        },
-        "spellLevel": 1,
+        "spellLevel": 0,
         "spellManaCost": 10,
         "turnCoolDown": 2,
         "currentTurnCoolDown": 3,
-        "canSpellBeCasted": true
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
+      },
+      {
+        "spellName": "Freeze Enemy",
+        "spellDescription": "Cast ice cube.",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          },
+          {
+            "type": "ActionStun",
+            "maxActionTurns": 2,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "STUN",
+            "maxActionValue": 0,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1,
+          "ATTACK": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 20,
+        "turnCoolDown": 5,
+        "currentTurnCoolDown": 6,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
+      },
+      {
+        "spellName": "Ice block",
+        "spellDescription": "Cast ice block.",
+        "spellActions": [
+          {
+            "type": "ActionInvulnerability",
+            "maxActionTurns": 2,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "INVULNERABILITY",
+            "maxActionValue": 0,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "spellLevel": 0,
+        "spellManaCost": 30,
+        "turnCoolDown": 7,
+        "currentTurnCoolDown": 8,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
       }
-    ]
+    ],
+    "canPerformAction": true
   },
   "level": 1,
   "hintUtil": {
     "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": true
+      "showed": false
     }
   },
-  "forestRegionDiscoveredLocation": [],
+  "forestRegionDiscoveredLocation": [
+    {
+      "locationName": "Enchanted Mines",
+      "locationLevel": 2,
+      "stageTotal": 5,
+      "stageCompleted": 1,
+      "cleared": false,
+      "locationType": "MINE",
+      "canLocationBeExplored": true
+    }
+  ],
   "regionActionsWithDuration": [],
   "itemList": [
     [
       {
-        "type": "WearableItem",
-        "wearableItemType": "WEAPON",
-        "abilities": {
-          "ATTACK": 2,
-          "RESIST_DAMAGE": 0,
-          "STRENGTH": 0,
-          "INTELLECT": 0,
-          "HASTE": 0,
-          "CRITICAL_HIT_CHANCE": 0,
-          "HEALTH": 0,
-          "MANA": 0,
-          "ABSORB_DAMAGE": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "Iron sword of Attack",
-        "price": 70.0,
-        "itemLevel": 1
+        "type": "QuestItem",
+        "name": "Boss Head",
+        "price": 0.0,
+        "itemLevel": 2
       },
-      1
+      0
     ],
     [
       {
-        "type": "WearableItem",
-        "wearableItemType": "BODY",
-        "abilities": {
-          "RESIST_DAMAGE": 3,
-          "ATTACK": 1,
-          "STRENGTH": 0,
-          "INTELLECT": 0,
-          "HASTE": 0,
-          "CRITICAL_HIT_CHANCE": 0,
-          "HEALTH": 0,
-          "MANA": 0,
-          "ABSORB_DAMAGE": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "Leather armor of Attack",
-        "price": 70.0,
-        "itemLevel": 1
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "ALCHEMY_REAGENT",
+        "name": "DeathBloom",
+        "price": 10.0,
+        "itemLevel": 2
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Bottle With Silver decorating",
+        "price": 18.0,
+        "itemLevel": 0
       },
       1
     ]

@@ -42,7 +42,7 @@ public class BattleService {
         while (true) {
 
             if (heroPlay) {
-                hero.checkActionTurns();
+                hero.checkAndRemoveActionTurns();
 
                 if (!hero.isCanPerformAction()) {
                     heroPlay = false;
@@ -105,7 +105,7 @@ public class BattleService {
 
                     if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) > 0) {
 
-                        enemyInCombat.checkActionTurns();
+                        enemyInCombat.checkAndRemoveActionTurns();
                         checkSpellsCoolDowns(enemyInCombat);
 
                         if (!enemyInCombat.isCanPerformAction()) {
@@ -114,7 +114,7 @@ public class BattleService {
                         }
 
                         try {
-                            Thread.sleep(800);
+                            Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             System.out.println(e.getMessage());
                         }
@@ -146,11 +146,11 @@ public class BattleService {
                     }
                 }
 
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
-                }
+//                try {
+//                    Thread.sleep(2000);
+//                } catch (InterruptedException e) {
+//                    System.out.println(e.getMessage());
+//                }
                 heroPlay = true;
             }
 
@@ -230,7 +230,6 @@ public class BattleService {
         }
         PrintUtil.printIndexAndText(String.valueOf(spellIndex), "Potions Menu");
         System.out.println();
-//        System.out.println("\t" + ConsoleColor.CYAN + spellIndex + ". " + ConsoleColor.RESET + "Potions Menu");
     }
 
     private void enemyUseSpell(Enemy enemy, Hero hero) {

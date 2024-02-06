@@ -49,7 +49,7 @@ public class EventService {
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
 
-        hero.checkActionTurns();
+        hero.checkAndRemoveActionTurns();
         hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.REGION_ACTION);
 
     }

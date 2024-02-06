@@ -8,6 +8,7 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettings;
+import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.junkItem.JunkItem;
@@ -309,6 +310,10 @@ public class PrintUtil {
             }
         }
         return count;
+    }
+
+    public static int returnItemCountInHeroInventory(Hero hero, Item item) {
+        return hero.getHeroInventory().getHeroInventory().get(item);
     }
 
     public static void printShopHeader(Hero hero, String shop) {

@@ -37,10 +37,7 @@ public class JunkVendorCharacter extends VendorCharacter {
                 junkItems.add(item.getKey());
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
                 PrintUtil.printJunkItemInfo(item.getKey(), true);
-//                System.out.print("\t" + index + ". (" + item.getValue() + "x) " + item.getKey().getName());
-//                PrintUtil.printIndexAndText(String.valueOf(index)," ("
-//                        + item.getValue() + "x) " + item.getKey().getName());
-//                System.out.println("\n\t\tSell price: " + item.getKey().returnSellItemPrice());
+                System.out.println();
                 index++;
             }
         }
@@ -60,8 +57,6 @@ public class JunkVendorCharacter extends VendorCharacter {
             if (junkItem instanceof JunkItem) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
                 PrintUtil.printJunkItemInfo((JunkItem) junkItem, false);
-//                System.out.print("\t" + index + ". " + junkItem.getName()
-//                        + ", Item price: " + junkItem.getPrice() + " golds");
                 index++;
                 System.out.println();
             }

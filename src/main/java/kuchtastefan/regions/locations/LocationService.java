@@ -40,7 +40,7 @@ public class LocationService {
 
         boolean isStageCompleted;
 
-        if (location.stageCompleted == 5) {
+        if (location.stageCompleted == location.getStageTotal() / 2) {
             isStageCompleted = new FindTreasureEvent(hero.getLevel()).eventOccurs(hero);
         } else {
             isStageCompleted = new CombatEvent(location.getLocationLevel(), location.enemyList(),

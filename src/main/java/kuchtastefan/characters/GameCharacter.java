@@ -114,7 +114,7 @@ public abstract class GameCharacter {
         }
     }
 
-    public void checkActionTurns() {
+    public void checkAndRemoveActionTurns() {
         this.battleActionsWithDuration.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
         this.regionActionsWithDuration.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
     }

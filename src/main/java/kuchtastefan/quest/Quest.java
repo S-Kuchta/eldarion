@@ -22,7 +22,8 @@ public class Quest {
     private boolean isTurnedIn;
 
 
-    public Quest(int questId, String questName, String questDescription, int questLevel, List<? extends QuestObjective> questObjectives, QuestReward questReward) {
+    public Quest(int questId, String questName, String questDescription, int questLevel,
+                 List<? extends QuestObjective> questObjectives, QuestReward questReward) {
         this.questId = questId;
         this.questName = questName;
         this.questDescription = questDescription;
@@ -66,7 +67,8 @@ public class Quest {
         if (o == null || getClass() != o.getClass()) return false;
         Quest quest = (Quest) o;
 
-        return questLevel == quest.questLevel && Objects.equals(questName, quest.questName) && Objects.equals(questDescription, quest.questDescription);
+        return questLevel == quest.questLevel && Objects.equals(questName, quest.questName)
+                && Objects.equals(questDescription, quest.questDescription);
     }
 
     @Override

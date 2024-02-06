@@ -3,6 +3,7 @@ package kuchtastefan.characters.hero;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.inventory.HeroInventory;
+import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
@@ -13,9 +14,7 @@ import kuchtastefan.quest.questObjectives.QuestEnemy;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
-import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -216,7 +215,7 @@ public class Hero extends GameCharacter {
      * check if enemy killed in CombatEvent belongs to some of accepted Quest.
      * If yes increase current count progress in questObjective
      * and print QuestObjectiveAssignment with QuestObjective progress.
-     * Use this method always before checkQuestObjectivesAndQuestComplete() method.
+     * Use this method always before checkIfQuestObjectivesAndQuestIsCompleted() method.
      *
      * @param questEnemy Enemy killed in CombatEvent
      */
@@ -233,7 +232,7 @@ public class Hero extends GameCharacter {
 
                     if (questObjective instanceof QuestBringItemObjective && questEnemy != null
                             && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemy)
-                            && RandomNumberGenerator.getRandomNumber(0, 2) == 0) {
+                        /*&& RandomNumberGenerator.getRandomNumber(0, 2) == 0*/) {
 
                         System.out.println("\t-- You loot " + ((QuestBringItemObjective) questObjective)
                                 .getItemDropNeeded().getName() + " --");

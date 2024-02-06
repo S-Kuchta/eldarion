@@ -121,5 +121,47 @@
     "level": 3,
     "locationType": [],
     "maxStack": 5
+  },
+  {
+    "name": "Defias Boss",
+    "abilities": {
+      "ATTACK": 4,
+      "RESIST_DAMAGE": 2,
+      "STRENGTH": 2,
+      "INTELLECT": 1,
+      "HASTE": 4,
+      "CRITICAL_HIT_CHANCE": 3,
+      "HEALTH": 55,
+      "MANA": 40,
+      "ABSORB_DAMAGE": 0
+    },
+    "characterSpellList": [
+      {
+        "spellName": "Weapon attack",
+        "spellDescription": "Attack with weapon",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 3,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 0,
+        "turnCoolDown": 0
+      }
+    ],
+    "level": 1,
+    "locationType": [
+      "MINE"
+    ],
+    "enemyRarity": "BOSS",
+    "maxStack": 5
   }
 ]

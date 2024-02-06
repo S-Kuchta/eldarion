@@ -102,7 +102,9 @@ public class InventoryService {
         PrintUtil.printInventoryHeader("\tCrafting reagents");
         System.out.println("\t0. Go back");
         for (Map.Entry<CraftingReagentItem, Integer> item : hero.getHeroInventory().returnInventoryCraftingReagentItemMap().entrySet()) {
-            System.out.println("\t" + index + ". (" + item.getValue() + "x) " + item.getKey().getName());
+//            System.out.println("\t" + index + ". (" + item.getValue() + "x) " + item.getKey().getName());
+            PrintUtil.printIndexAndText(String.valueOf(index), " (" + item.getValue() + "x) ");
+            PrintUtil.printCraftingReagentItemInfo(item.getKey(), true);
         }
 
         int choice = InputUtil.intScanner();

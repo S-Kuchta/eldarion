@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.characters.enemy.Enemy;
+import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.enemy.EnemyType;
 import kuchtastefan.characters.hero.GameLoaded;
 import kuchtastefan.characters.hero.Hero;
@@ -35,6 +36,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -280,6 +282,16 @@ public class FileService {
                 for (Enemy enemy : enemyList) {
                     enemy.setEnemyType(
                             EnemyType.valueOf(file.toUpperCase().replace(".JSON", "")));
+
+                    if (enemy.getRegionActionsWithDuration() == null) {
+                        enemy.setRegionActionsWithDuration(new HashSet<>());
+                    }
+
+                    if (enemy.getBattleActionsWithDuration() == null) {
+                        enemy.setBattleActionsWithDuration(new HashSet<>());
+                    }
+
+                    EnemyList.getEnemyMap().put(enemy.getEnemyId(), enemy);
                 }
 
                 enemies.addAll(enemyList);

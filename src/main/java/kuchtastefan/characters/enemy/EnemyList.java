@@ -3,8 +3,6 @@ package kuchtastefan.characters.enemy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.regions.locations.LocationType;
-import kuchtastefan.characters.spell.Spell;
-import kuchtastefan.characters.spell.SpellsList;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 
@@ -13,15 +11,17 @@ import java.util.*;
 public class EnemyList {
     @Getter
     private static final List<Enemy> enemyList = new ArrayList<>();
+    @Getter
+    private static final Map<Integer, Enemy> enemyMap = new HashMap<>();
 
-    public static Map<String, Enemy> returnEnemyMap() {
-        Map<String, Enemy> enemyMap = new HashMap<>();
-        for (Enemy enemy : enemyList) {
-            enemyMap.put(enemy.getName(), enemy);
-        }
-
-        return enemyMap;
-    }
+//    public static Map<String, Enemy> returnEnemyMap() {
+//        Map<String, Enemy> enemyMap = new HashMap<>();
+//        for (Enemy enemy : enemyList) {
+//            enemyMap.put(enemy.getName(), enemy);
+//        }
+//
+//        return enemyMap;
+//    }
 
     public static Enemy returnEnemyWithNewCopy(Enemy enemy, EnemyRarity enemyRarity) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
@@ -55,6 +55,18 @@ public class EnemyList {
             newEnemy.setEnemyRarity(EnemyRarity.COMMON);
         }
 
+        newEnemy.setMaxAbilitiesAndCurrentAbilities();
+
+        return newEnemy;
+    }
+
+    public static Enemy returnNewEnemyCopy(int id) {
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
+
+        Enemy newEnemy = gson.fromJson(gson.toJson(enemyMap.get(id)), Enemy.class);
+        newEnemy.itemsDrop();
+        newEnemy.goldDrop();
+        newEnemy.setCanPerformAction(true);
         newEnemy.setMaxAbilitiesAndCurrentAbilities();
 
         return newEnemy;

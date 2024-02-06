@@ -7,6 +7,7 @@
     "questObjectives": [
       {
         "type": "QuestKillObjective",
+        "questObjectiveName": "Kill bandit",
         "questEnemyToKill": {
           "questEnemyName": "Defias Bandit",
           "questEnemyRarity": "COMMON"
@@ -136,11 +137,12 @@
   {
     "questId": 3,
     "questName": "Kill Defias Boss",
-    "questDescription": "In Our mines there are bandits. Please clear mine, kill it's boss and bring us his head!.",
+    "questDescription": "In Our mines there are bandits. Please clear our mine, kill it's boss and bring us his head!.",
     "questLevel": 2,
     "questObjectives": [
       {
         "type": "QuestBringItemObjective",
+        "questObjectiveName": "Bring bandit boss head",
         "itemDropFromEnemy": [
           {
             "questEnemyName": "Defias Boss",

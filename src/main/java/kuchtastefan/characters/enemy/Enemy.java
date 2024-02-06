@@ -15,6 +15,7 @@ import java.util.*;
 @Setter
 public class Enemy extends GameCharacter {
 
+    private int enemyId;
     private List<Item> itemsDrop;
     private double goldDrop;
     private EnemyType enemyType;
@@ -46,9 +47,12 @@ public class Enemy extends GameCharacter {
     }
 
     public void goldDrop() {
-        if (this.enemyType.equals(EnemyType.HUMANOID)) {
-            setGoldDrop(RandomNumberGenerator.getRandomNumber(5 + getLevel(), 15 + getLevel()));
-        }
+//        if (this.enemyType.equals(EnemyType.HUMANOID)) {
+//            double goldDrop = 15 + this.level + ((double) this.enemyRarity.getExperienceGainedValue() / 2);
+//
+//            setGoldDrop(RandomNumberGenerator.getRandomNumber(
+//                    (int) (goldDrop * 0.75), (int) goldDrop));
+//        }
     }
 
     public void increaseAbilityPointsByMultiplier(double multiplier) {

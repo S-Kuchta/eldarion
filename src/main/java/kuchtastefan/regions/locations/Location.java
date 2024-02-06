@@ -61,11 +61,12 @@ public class Location {
     public List<Enemy> enemyList() {
         double stageMultiplier = 1 + (0.1 * this.stageCompleted);
         EnemyRarity enemyRarity = EnemyRarity.ELITE;
-        if (this.stageCompleted == this.stageTotal - 1) {
-            enemyRarity = EnemyRarity.BOSS;
-        }
 
         List<Enemy> enemies = EnemyList.returnEnemyListByLocationTypeAndLevel(this.locationType, this.locationLevel, null, enemyRarity);
+        if (this.stageCompleted == this.stageTotal - 1) {
+            enemies.clear();
+            enemies.add(EnemyList.returnNewEnemyCopy(203));
+        }
         for (Enemy enemy : enemies) {
             enemy.increaseAbilityPointsByMultiplier(stageMultiplier);
         }

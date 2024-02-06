@@ -67,8 +67,7 @@ public class Quest {
         if (o == null || getClass() != o.getClass()) return false;
         Quest quest = (Quest) o;
 
-        return questLevel == quest.questLevel && Objects.equals(questName, quest.questName)
-                && Objects.equals(questDescription, quest.questDescription);
+        return questId == quest.questId && questLevel == quest.questLevel && Objects.equals(questName, quest.questName);
     }
 
     @Override

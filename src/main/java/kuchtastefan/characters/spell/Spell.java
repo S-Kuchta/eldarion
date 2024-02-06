@@ -101,8 +101,8 @@ public class Spell {
             if (spellCaster.getCurrentAbilityValue(Ability.MANA) < this.spellManaCost) {
                 System.out.println("\tYou do not have enough Mana to perform this ability!");
             } else {
-                System.out.println("\tYou can not cast " + this.spellName + ". Spell is on coolDown! (You have to wait "
-                        + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)");
+                System.out.println(ConsoleColor.RED + "\tYou can not cast " + this.spellName + ". Spell is on coolDown! (You have to wait "
+                        + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)" + ConsoleColor.RESET);
             }
             return false;
         }

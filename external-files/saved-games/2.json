@@ -1,44 +1,45 @@
 {
   "hero": {
+    "heroClass": "MAGE",
     "unspentAbilityPoints": 0,
-    "heroGold": 93.0,
-    "experiencePoints": 410.0,
+    "heroGold": 163.6,
+    "experiencePoints": 110.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "ATTACK": 2,
-          "RESIST_DAMAGE": 0,
           "STRENGTH": 0,
-          "INTELLECT": 0,
+          "MANA": 0,
           "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "MANA": 0,
-          "ABSORB_DAMAGE": 0
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Iron sword of Attack",
-        "price": 70.0,
-        "itemLevel": 1
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
       },
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
-          "RESIST_DAMAGE": 3,
-          "ATTACK": 1,
           "STRENGTH": 0,
-          "INTELLECT": 0,
+          "MANA": 0,
           "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "MANA": 0,
-          "ABSORB_DAMAGE": 0
+          "INTELLECT": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "Leather armor of Attack",
-        "price": 70.0,
-        "itemLevel": 1
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
       },
       "BOOTS": {
         "wearableItemType": "BOOTS",
@@ -47,8 +48,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -65,8 +66,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -83,8 +84,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -99,9 +100,9 @@
       "STRENGTH": 0,
       "MANA": 0,
       "HASTE": 0,
-      "RESIST_DAMAGE": 3,
-      "ATTACK": 3,
+      "RESIST_DAMAGE": 0,
       "ABSORB_DAMAGE": 0,
+      "ATTACK": 0,
       "CRITICAL_HIT_CHANCE": 0,
       "HEALTH": 0,
       "INTELLECT": 0
@@ -110,12 +111,12 @@
       "heroInventory": [
         [
           {
-            "type": "JunkItem",
-            "name": "Silver Kitchen Spoon",
-            "price": 12.0,
-            "itemLevel": 0
+            "type": "QuestItem",
+            "name": "Boss Head",
+            "price": 0.0,
+            "itemLevel": 2
           },
-          1
+          0
         ],
         [
           {
@@ -125,116 +126,14 @@
             "price": 10.0,
             "itemLevel": 2
           },
-          1
+          2
         ],
         [
           {
             "type": "JunkItem",
-            "name": "Cutlery",
-            "price": 2.0,
+            "name": "Bottle With Silver decorating",
+            "price": 18.0,
             "itemLevel": 0
-          },
-          1
-        ],
-        [
-          {
-            "type": "JunkItem",
-            "name": "Inkwell",
-            "price": 9.0,
-            "itemLevel": 0
-          },
-          1
-        ],
-        [
-          {
-            "type": "JunkItem",
-            "name": "Gold Jug",
-            "price": 23.0,
-            "itemLevel": 0
-          },
-          1
-        ],
-        [
-          {
-            "type": "WearableItem",
-            "wearableItemType": "WEAPON",
-            "abilities": {
-              "ATTACK": 2,
-              "RESIST_DAMAGE": 0,
-              "STRENGTH": 0,
-              "INTELLECT": 0,
-              "HASTE": 0,
-              "CRITICAL_HIT_CHANCE": 0,
-              "HEALTH": 0,
-              "MANA": 0,
-              "ABSORB_DAMAGE": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Iron sword of Attack",
-            "price": 70.0,
-            "itemLevel": 1
-          },
-          1
-        ],
-        [
-          {
-            "type": "CraftingReagentItem",
-            "craftingReagentItemType": "BLACKSMITH_REAGENT",
-            "name": "Iron ore",
-            "price": 10.0,
-            "itemLevel": 2
-          },
-          1
-        ],
-        [
-          {
-            "type": "ConsumableItem",
-            "consumableItemType": "FOOD",
-            "actionList": [
-              {
-                "type": "ActionRestoreHealth",
-                "actionName": "Restore health",
-                "maxActionValue": 20,
-                "currentActionValue": 0,
-                "actionEffectOn": "SPELL_CASTER",
-                "chanceToPerformAction": 0,
-                "canBeActionCriticalHit": false
-              }
-            ],
-            "name": "Bread",
-            "price": 15.0,
-            "itemLevel": 1
-          },
-          1
-        ],
-        [
-          {
-            "type": "QuestItem",
-            "name": "Wolf meat",
-            "price": 0.0,
-            "itemLevel": 2
-          },
-          1
-        ],
-        [
-          {
-            "type": "WearableItem",
-            "wearableItemType": "BODY",
-            "abilities": {
-              "RESIST_DAMAGE": 3,
-              "ATTACK": 1,
-              "STRENGTH": 0,
-              "INTELLECT": 0,
-              "HASTE": 0,
-              "CRITICAL_HIT_CHANCE": 0,
-              "HEALTH": 0,
-              "MANA": 0,
-              "ABSORB_DAMAGE": 0
-            },
-            "wearableItemQuality": "BASIC",
-            "name": "Leather armor of Attack",
-            "price": 70.0,
-            "itemLevel": 1
           },
           1
         ]
@@ -245,156 +144,35 @@
     },
     "enemyKilled": {
       "enemyKilled": {
-        "Defias Bandit": 1,
-        "Alpha Wolf": 4,
-        "Wolf": 4
+        "Defias Boss": 1
       },
       "questEnemyKilled": {}
     },
     "listOfAcceptedQuests": [
       {
-        "questId": 1,
-        "questName": "Wolfs in the forest",
-        "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us and revenge them.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestKillObjective",
-            "questEnemyToKill": {
-              "questEnemyName": "Wolf",
-              "questEnemyRarity": "COMMON"
-            },
-            "countEnemyToKill": 5,
-            "currentCountEnemyProgress": 2,
-            "completed": false
-          },
-          {
-            "type": "QuestKillObjective",
-            "questEnemyToKill": {
-              "questEnemyName": "Alpha Wolf",
-              "questEnemyRarity": "COMMON"
-            },
-            "countEnemyToKill": 1,
-            "currentCountEnemyProgress": 1,
-            "completed": true
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            {
-              "type": "WearableItem",
-              "abilities": {
-                "ATTACK": 1,
-                "null": 1,
-                "RESIST_DAMAGE": 0,
-                "STRENGTH": 0,
-                "INTELLECT": 0,
-                "HASTE": 0,
-                "CRITICAL_HIT_CHANCE": 0,
-                "HEALTH": 0,
-                "MANA": 0,
-                "ABSORB_DAMAGE": 0
-              },
-              "wearableItemQuality": "BASIC",
-              "name": "Iron sword of Skill",
-              "price": 70.0,
-              "itemLevel": 1
-            }
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0
-        },
-        "isTurnedIn": false
-      },
-      {
-        "questId": 0,
-        "questName": "Shadow Raiders",
-        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestKillObjective",
-            "questEnemyToKill": {
-              "questEnemyName": "Defias Bandit",
-              "questEnemyRarity": "COMMON"
-            },
-            "countEnemyToKill": 1,
-            "currentCountEnemyProgress": 0,
-            "completed": false
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            {
-              "type": "WearableItem",
-              "wearableItemType": "WEAPON",
-              "abilities": {
-                "ATTACK": 1,
-                "null": 1,
-                "RESIST_DAMAGE": 0,
-                "STRENGTH": 0,
-                "INTELLECT": 0,
-                "HASTE": 0,
-                "CRITICAL_HIT_CHANCE": 0,
-                "HEALTH": 0,
-                "MANA": 0,
-                "ABSORB_DAMAGE": 0
-              },
-              "wearableItemQuality": "BASIC",
-              "name": "Death Bringer",
-              "price": 70.0,
-              "itemLevel": 1
-            },
-            {
-              "type": "CraftingReagentItem",
-              "craftingReagentItemType": "BLACKSMITH_REAGENT",
-              "name": "Iron ore",
-              "price": 10.0,
-              "itemLevel": 2
-            }
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0
-        },
-        "isTurnedIn": false
-      },
-      {
-        "questId": 2,
-        "questName": "Bring me 10 Wolf meat",
-        "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
+        "questId": 3,
+        "questName": "Kill Defias Boss",
+        "questDescription": "In Our mines there are bandits. Please clear our mine, kill it's boss and bring us his head!.",
         "questLevel": 2,
         "questCompleted": false,
         "questObjectives": [
           {
             "type": "QuestBringItemObjective",
+            "questObjectiveName": "Bring bandit boss head",
             "itemDropNeeded": {
-              "name": "Wolf meat",
+              "name": "Boss Head",
               "price": 0.0,
               "itemLevel": 2
             },
             "itemDropFromEnemy": [
               {
-                "questEnemyName": "Wolf",
-                "questEnemyRarity": "COMMON"
-              },
-              {
-                "questEnemyName": "Alpha Wolf",
-                "questEnemyRarity": "COMMON"
-              },
-              {
-                "questEnemyName": "Wolf",
-                "questEnemyRarity": "RARE"
-              },
-              {
-                "questEnemyName": "Alpha Wolf",
-                "questEnemyRarity": "RARE"
+                "questEnemyName": "Defias Boss",
+                "questEnemyRarity": "BOSS"
               }
             ],
-            "itemDropCountNeeded": 10,
+            "itemDropCountNeeded": 1,
             "locationsType": [
-              "FOREST"
+              "MINE"
             ],
             "completed": false
           }
@@ -427,70 +205,79 @@
         "isTurnedIn": false
       }
     ],
-    "name": "1",
+    "learnedSpells": {},
+    "name": "Gwyndeed",
     "level": 1,
     "abilities": {
-      "STRENGTH": 1,
-      "MANA": 60,
-      "HASTE": 1,
-      "RESIST_DAMAGE": 3,
-      "ATTACK": 4,
+      "STRENGTH": 30,
+      "MANA": 500,
+      "HASTE": 200,
+      "RESIST_DAMAGE": 200,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
-      "HEALTH": 60,
-      "INTELLECT": 1
+      "ATTACK": 400,
+      "CRITICAL_HIT_CHANCE": 50,
+      "HEALTH": 700,
+      "INTELLECT": 200
     },
     "maxAbilities": {
-      "STRENGTH": 1,
-      "MANA": 60,
-      "HASTE": 1,
-      "RESIST_DAMAGE": 6,
-      "ATTACK": 7,
+      "STRENGTH": 30,
+      "MANA": 500,
+      "HASTE": 200,
+      "RESIST_DAMAGE": 200,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
-      "HEALTH": 60,
-      "INTELLECT": 1
+      "ATTACK": 400,
+      "CRITICAL_HIT_CHANCE": 50,
+      "HEALTH": 700,
+      "INTELLECT": 200
     },
     "currentAbilities": {
-      "STRENGTH": 1,
-      "MANA": 5,
-      "HASTE": 1,
-      "RESIST_DAMAGE": 6,
-      "ATTACK": 8,
+      "STRENGTH": 30,
+      "MANA": 500,
+      "HASTE": 200,
+      "RESIST_DAMAGE": 200,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
-      "HEALTH": 19,
-      "INTELLECT": 1
+      "ATTACK": 400,
+      "CRITICAL_HIT_CHANCE": 50,
+      "HEALTH": 700,
+      "INTELLECT": 200
     },
-    "regionActionsWithDuration": [
-      {
-        "type": "ActionIncreaseAbilityPointWithDuration",
-        "ability": "ATTACK",
-        "maxActionTurns": 10,
-        "currentActionTurn": 1,
-        "actionMaxStacks": 1,
-        "actionCurrentStacks": 1,
-        "actionDurationType": "REGION_ACTION",
-        "actionName": "Increase Attack",
-        "maxActionValue": 1,
-        "currentActionValue": 1,
-        "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 0,
-        "canBeActionCriticalHit": false
-      }
-    ],
+    "regionActionsWithDuration": [],
     "battleActionsWithDuration": [],
     "characterSpellList": [
       {
-        "type": "Spell",
-        "spellName": "Attack",
-        "spellDescription": "Basic attack with weapon",
+        "spellName": "Weapon Attack",
+        "spellDescription": "Attack with weapon",
         "spellActions": [
           {
             "type": "ActionDealDamage",
-            "actionName": "Attack with weapon",
+            "actionName": "DAMAGE",
             "maxActionValue": 3,
-            "currentActionValue": 11,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1,
+          "STRENGTH": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 0,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
+      },
+      {
+        "spellName": "Fireball",
+        "spellDescription": "Cast a fireball",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 5,
+            "currentActionValue": 1055,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
@@ -502,169 +289,121 @@
             "actionMaxStacks": 1,
             "actionCurrentStacks": 0,
             "actionDurationType": "BATTLE_ACTION",
-            "actionName": "Bleed",
+            "actionName": "DAMAGE_OVER_TIME",
             "maxActionValue": 1,
-            "currentActionValue": 9,
+            "currentActionValue": 483,
             "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 50,
-            "canBeActionCriticalHit": false
-          }
-        ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 1,
-        "spellManaCost": 0,
-        "turnCoolDown": 0,
-        "currentTurnCoolDown": 1,
-        "canSpellBeCasted": true
-      },
-      {
-        "type": "Spell",
-        "spellName": "Barrier",
-        "spellDescription": "Cast a powerful barrier",
-        "spellActions": [
-          {
-            "type": "ActionAbsorbDamage",
-            "maxActionTurns": 5,
-            "currentActionTurn": 0,
-            "actionMaxStacks": 1,
-            "actionCurrentStacks": 0,
-            "actionDurationType": "BATTLE_ACTION",
-            "actionName": "Absorb Damage",
-            "maxActionValue": 10,
-            "currentActionValue": 17,
-            "actionEffectOn": "SPELL_CASTER",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": false
           }
         ],
         "bonusValueFromAbility": {
+          "INTELLECT": 1,
           "ATTACK": 1
         },
-        "spellLevel": 1,
-        "spellManaCost": 15,
-        "turnCoolDown": 0,
-        "currentTurnCoolDown": 1,
-        "canSpellBeCasted": true
+        "spellLevel": 0,
+        "spellManaCost": 10,
+        "turnCoolDown": 2,
+        "currentTurnCoolDown": 3,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
       },
       {
-        "type": "Spell",
-        "spellName": "Barrier 2",
-        "spellDescription": "Cast a powerful barrier",
+        "spellName": "Freeze Enemy",
+        "spellDescription": "Cast ice cube.",
         "spellActions": [
           {
-            "type": "ActionAbsorbDamage",
-            "maxActionTurns": 5,
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          },
+          {
+            "type": "ActionStun",
+            "maxActionTurns": 2,
             "currentActionTurn": 0,
             "actionMaxStacks": 1,
             "actionCurrentStacks": 0,
             "actionDurationType": "BATTLE_ACTION",
-            "actionName": "Absorb Damage 2",
-            "maxActionValue": 10,
+            "actionName": "STUN",
+            "maxActionValue": 0,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1,
+          "ATTACK": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 20,
+        "turnCoolDown": 5,
+        "currentTurnCoolDown": 6,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
+      },
+      {
+        "spellName": "Ice block",
+        "spellDescription": "Cast ice block.",
+        "spellActions": [
+          {
+            "type": "ActionInvulnerability",
+            "maxActionTurns": 2,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "INVULNERABILITY",
+            "maxActionValue": 0,
             "currentActionValue": 0,
             "actionEffectOn": "SPELL_CASTER",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": false
           }
         ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 1,
-        "spellManaCost": 15,
-        "turnCoolDown": 0,
-        "currentTurnCoolDown": 1,
-        "canSpellBeCasted": true
-      },
-      {
-        "type": "Spell",
-        "spellName": "Heal",
-        "spellDescription": "Heal",
-        "spellActions": [
-          {
-            "type": "ActionRestoreHealth",
-            "actionName": "Heal",
-            "maxActionValue": 20,
-            "currentActionValue": 21,
-            "actionEffectOn": "SPELL_CASTER",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
-          }
-        ],
-        "bonusValueFromAbility": {
-          "INTELLECT": 1
-        },
-        "spellLevel": 1,
-        "spellManaCost": 10,
-        "turnCoolDown": 2,
-        "currentTurnCoolDown": 3,
-        "canSpellBeCasted": true
+        "spellLevel": 0,
+        "spellManaCost": 30,
+        "turnCoolDown": 7,
+        "currentTurnCoolDown": 8,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
       }
-    ]
+    ],
+    "canPerformAction": true
   },
   "level": 1,
   "hintUtil": {
     "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": true
+      "showed": false
     }
   },
   "forestRegionDiscoveredLocation": [
     {
-      "locationName": "Ruins of Eldoria",
-      "locationLevel": 3,
-      "stageTotal": 10,
-      "stageCompleted": 0,
-      "cleared": false,
-      "locationType": "CASTLE",
-      "canLocationBeExplored": true
-    },
-    {
-      "locationName": "Tower of Damned",
-      "locationLevel": 5,
-      "stageTotal": 10,
-      "stageCompleted": 0,
-      "cleared": false,
-      "locationType": "TOWER",
-      "canLocationBeExplored": true
-    },
-    {
-      "locationName": "Abyssal Hollows",
+      "locationName": "Enchanted Mines",
       "locationLevel": 2,
-      "stageTotal": 10,
-      "stageCompleted": 0,
+      "stageTotal": 5,
+      "stageCompleted": 1,
       "cleared": false,
-      "locationType": "CAVE",
+      "locationType": "MINE",
       "canLocationBeExplored": true
     }
   ],
-  "regionActionsWithDuration": [
-    {
-      "type": "ActionIncreaseAbilityPointWithDuration",
-      "ability": "ATTACK",
-      "maxActionTurns": 10,
-      "currentActionTurn": 1,
-      "actionMaxStacks": 1,
-      "actionCurrentStacks": 1,
-      "actionDurationType": "REGION_ACTION",
-      "actionName": "Increase Attack",
-      "maxActionValue": 1,
-      "currentActionValue": 1,
-      "actionEffectOn": "SPELL_CASTER",
-      "chanceToPerformAction": 0,
-      "canBeActionCriticalHit": false
-    }
-  ],
+  "regionActionsWithDuration": [],
   "itemList": [
     [
       {
-        "type": "JunkItem",
-        "name": "Silver Kitchen Spoon",
-        "price": 12.0,
-        "itemLevel": 0
+        "type": "QuestItem",
+        "name": "Boss Head",
+        "price": 0.0,
+        "itemLevel": 2
       },
-      1
+      0
     ],
     [
       {
@@ -674,116 +413,14 @@
         "price": 10.0,
         "itemLevel": 2
       },
-      1
+      2
     ],
     [
       {
         "type": "JunkItem",
-        "name": "Cutlery",
-        "price": 2.0,
+        "name": "Bottle With Silver decorating",
+        "price": 18.0,
         "itemLevel": 0
-      },
-      1
-    ],
-    [
-      {
-        "type": "JunkItem",
-        "name": "Inkwell",
-        "price": 9.0,
-        "itemLevel": 0
-      },
-      1
-    ],
-    [
-      {
-        "type": "JunkItem",
-        "name": "Gold Jug",
-        "price": 23.0,
-        "itemLevel": 0
-      },
-      1
-    ],
-    [
-      {
-        "type": "WearableItem",
-        "wearableItemType": "WEAPON",
-        "abilities": {
-          "ATTACK": 2,
-          "RESIST_DAMAGE": 0,
-          "STRENGTH": 0,
-          "INTELLECT": 0,
-          "HASTE": 0,
-          "CRITICAL_HIT_CHANCE": 0,
-          "HEALTH": 0,
-          "MANA": 0,
-          "ABSORB_DAMAGE": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "Iron sword of Attack",
-        "price": 70.0,
-        "itemLevel": 1
-      },
-      1
-    ],
-    [
-      {
-        "type": "CraftingReagentItem",
-        "craftingReagentItemType": "BLACKSMITH_REAGENT",
-        "name": "Iron ore",
-        "price": 10.0,
-        "itemLevel": 2
-      },
-      1
-    ],
-    [
-      {
-        "type": "ConsumableItem",
-        "consumableItemType": "FOOD",
-        "actionList": [
-          {
-            "type": "ActionRestoreHealth",
-            "actionName": "Restore health",
-            "maxActionValue": 20,
-            "currentActionValue": 0,
-            "actionEffectOn": "SPELL_CASTER",
-            "chanceToPerformAction": 0,
-            "canBeActionCriticalHit": false
-          }
-        ],
-        "name": "Bread",
-        "price": 15.0,
-        "itemLevel": 1
-      },
-      1
-    ],
-    [
-      {
-        "type": "QuestItem",
-        "name": "Wolf meat",
-        "price": 0.0,
-        "itemLevel": 2
-      },
-      1
-    ],
-    [
-      {
-        "type": "WearableItem",
-        "wearableItemType": "BODY",
-        "abilities": {
-          "RESIST_DAMAGE": 3,
-          "ATTACK": 1,
-          "STRENGTH": 0,
-          "INTELLECT": 0,
-          "HASTE": 0,
-          "CRITICAL_HIT_CHANCE": 0,
-          "HEALTH": 0,
-          "MANA": 0,
-          "ABSORB_DAMAGE": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "Leather armor of Attack",
-        "price": 70.0,
-        "itemLevel": 1
       },
       1
     ]

@@ -1,6 +1,8 @@
 [
   {
+    "enemyId": 200,
     "name": "Defias Bandit",
+    "enemyRarity": "COMMON",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 2,
@@ -45,6 +47,7 @@
     "maxStack": 5
   },
   {
+    "enemyId": 201,
     "name": "Defias Looter",
     "abilities": {
       "ATTACK": 5,
@@ -84,6 +87,7 @@
     "maxStack": 5
   },
   {
+    "enemyId": 202,
     "name": "Defias Raider",
     "abilities": {
       "ATTACK": 5,
@@ -123,6 +127,7 @@
     "maxStack": 5
   },
   {
+    "enemyId": 203,
     "name": "Defias Boss",
     "abilities": {
       "ATTACK": 4,

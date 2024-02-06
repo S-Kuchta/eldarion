@@ -1,5 +1,6 @@
 [
   {
+    "enemyId": 300,
     "name": "Weak Zombie",
     "abilities": {
       "ATTACK": 3,
@@ -39,6 +40,7 @@
     "maxStack": 5
   },
   {
+    "enemyId": 301,
     "name": "NightBane Dark Runner",
     "abilities": {
       "ATTACK": 5,
@@ -56,6 +58,7 @@
     "maxStack": 5
   },
   {
+    "enemyId": 302,
     "name": "Insane Ghoul",
     "abilities": {
       "ATTACK": 7,

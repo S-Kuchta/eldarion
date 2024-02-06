@@ -14,29 +14,7 @@
       "ABSORB_DAMAGE": 0
     },
     "enemySpells": [
-      100
-    ],
-    "characterSpellList": [
-      {
-        "spellName": "Bite",
-        "spellDescription": "Attack with weapon",
-        "spellActions": [
-          {
-            "type": "ActionDealDamage",
-            "actionName": "DAMAGE",
-            "maxActionValue": 3,
-            "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
-          }
-        ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 0,
-        "spellManaCost": 0,
-        "turnCoolDown": 0
-      }
+      102
     ],
     "level": 1,
     "locationType": [
@@ -61,7 +39,7 @@
       "ABSORB_DAMAGE": 0
     },
     "enemySpells": [
-      100
+      102
     ],
     "characterSpellList": [
     ],
@@ -84,29 +62,7 @@
       "ABSORB_DAMAGE": 0
     },
     "enemySpells": [
-      100
-    ],
-    "characterSpellList": [
-      {
-        "spellName": "Bite",
-        "spellDescription": "Attack with weapon",
-        "spellActions": [
-          {
-            "type": "ActionDealDamage",
-            "actionName": "DAMAGE",
-            "maxActionValue": 3,
-            "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
-          }
-        ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 0,
-        "spellManaCost": 0,
-        "turnCoolDown": 0
-      }
+      102
     ],
     "level": 3,
     "locationType": [

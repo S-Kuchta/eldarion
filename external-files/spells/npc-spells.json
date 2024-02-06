@@ -3,7 +3,50 @@
     "spellId": 100,
     "spellName": "Bite",
     "spellClass": "NPC",
+    "spellDescription": "Bite with teeth",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 3,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 101,
+    "spellName": "Weapon attack",
+    "spellClass": "NPC",
     "spellDescription": "Attack with weapon",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 3,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
+    "spellName": "Claw Attack",
+    "spellClass": "NPC",
+    "spellDescription": "Gash target with claw",
     "spellActions": [
       {
         "type": "ActionDealDamage",

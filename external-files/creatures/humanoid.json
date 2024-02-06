@@ -15,29 +15,7 @@
       "ABSORB_DAMAGE": 0
     },
     "enemySpells": [
-      100
-    ],
-    "characterSpellList": [
-      {
-        "spellName": "Weapon attack",
-        "spellDescription": "Attack with weapon",
-        "spellActions": [
-          {
-            "type": "ActionDealDamage",
-            "actionName": "DAMAGE",
-            "maxActionValue": 3,
-            "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
-          }
-        ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 0,
-        "spellManaCost": 0,
-        "turnCoolDown": 0
-      }
+      101
     ],
     "level": 1,
     "locationType": [
@@ -64,29 +42,7 @@
       "ABSORB_DAMAGE": 0
     },
     "enemySpells": [
-      100
-    ],
-    "characterSpellList": [
-      {
-        "spellName": "Bite",
-        "spellDescription": "Attack with weapon",
-        "spellActions": [
-          {
-            "type": "ActionDealDamage",
-            "actionName": "DAMAGE",
-            "maxActionValue": 4,
-            "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
-          }
-        ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 0,
-        "spellManaCost": 0,
-        "turnCoolDown": 0
-      }
+      101
     ],
     "level": 2,
     "locationType": [],
@@ -107,29 +63,7 @@
       "ABSORB_DAMAGE": 0
     },
     "enemySpells": [
-      100
-    ],
-    "characterSpellList": [
-      {
-        "spellName": "Bite",
-        "spellDescription": "Attack with weapon",
-        "spellActions": [
-          {
-            "type": "ActionDealDamage",
-            "actionName": "DAMAGE",
-            "maxActionValue": 5,
-            "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
-          }
-        ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 0,
-        "spellManaCost": 0,
-        "turnCoolDown": 0
-      }
+      101
     ],
     "level": 3,
     "locationType": [],
@@ -138,6 +72,7 @@
   {
     "enemyId": 203,
     "name": "Defias Boss",
+    "enemyRarity": "BOSS",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 2,
@@ -150,35 +85,13 @@
       "ABSORB_DAMAGE": 0
     },
     "enemySpells": [
-      100
-    ],
-    "characterSpellList": [
-      {
-        "spellName": "Weapon attack",
-        "spellDescription": "Attack with weapon",
-        "spellActions": [
-          {
-            "type": "ActionDealDamage",
-            "actionName": "DAMAGE",
-            "maxActionValue": 3,
-            "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
-          }
-        ],
-        "bonusValueFromAbility": {
-          "ATTACK": 1
-        },
-        "spellLevel": 0,
-        "spellManaCost": 0,
-        "turnCoolDown": 0
-      }
+      101
     ],
     "level": 1,
     "locationType": [
       "MINE"
     ],
-    "enemyRarity": "BOSS",
+
     "maxStack": 5
   }
 ]

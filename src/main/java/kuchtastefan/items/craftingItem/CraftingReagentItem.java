@@ -11,8 +11,8 @@ public class CraftingReagentItem extends Item {
     private CraftingReagentItemType craftingReagentItemType;
 
 
-    public CraftingReagentItem(String name, double price, CraftingReagentItemType craftingReagentItemType, int itemLevel) {
-        super(name, price, itemLevel);
+    public CraftingReagentItem(Integer itemId, String name, double price, CraftingReagentItemType craftingReagentItemType, int itemLevel) {
+        super(itemId, name, price, itemLevel);
         this.craftingReagentItemType = craftingReagentItemType;
     }
 }

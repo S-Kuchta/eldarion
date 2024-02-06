@@ -1,11 +1,19 @@
 [
   {
+    "itemId": 100,
     "name": "Wolf meat",
     "price": 0,
     "itemLevel": 2
   },
   {
+    "itemId": 101,
     "name": "Enchanted Gem",
+    "price": 0,
+    "itemLevel": 2
+  },
+  {
+    "itemId": 102,
+    "name": "Boss Head",
     "price": 0,
     "itemLevel": 2
   }

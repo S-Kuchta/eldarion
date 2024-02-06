@@ -9,12 +9,14 @@ import java.util.Objects;
 @Setter
 public class Item {
 
+    private final Integer itemId;
     protected String name;
     protected double price;
     protected Integer itemLevel;
 
 
-    public Item(String name, double price, int itemLevel) {
+    public Item(Integer itemId, String name, double price, int itemLevel) {
+        this.itemId = itemId;
         this.name = name;
         this.price = price;
         this.itemLevel = itemLevel;

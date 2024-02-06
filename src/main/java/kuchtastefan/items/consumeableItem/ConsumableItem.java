@@ -17,8 +17,8 @@ public class ConsumableItem extends Item {
     private final List<? extends Action> actionList;
 
 
-    public ConsumableItem(String name, double price, int itemLevel, ConsumableItemType consumableItemType, List<? extends Action> actionList) {
-        super(name, price, itemLevel);
+    public ConsumableItem(Integer itemId, String name, double price, int itemLevel, ConsumableItemType consumableItemType, List<? extends Action> actionList) {
+        super(itemId, name, price, itemLevel);
         this.consumableItemType = consumableItemType;
         this.actionList = actionList;
     }

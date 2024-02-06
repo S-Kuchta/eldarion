@@ -261,6 +261,11 @@ public class FileService {
                 questItemList = new Gson().fromJson(reader, new TypeToken<List<QuestItem>>() {
                 }.getType());
 
+                for (QuestItem questItem : questItemList) {
+                    ItemsLists.getItemMap().put(questItem.getItemId(), questItem);
+                }
+
+
                 questItems.addAll(questItemList);
                 reader.close();
             }

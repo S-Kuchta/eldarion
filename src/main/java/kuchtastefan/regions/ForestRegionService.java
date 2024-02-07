@@ -66,12 +66,13 @@ public class ForestRegionService extends Region {
     @Override
     protected List<Location> initializeLocationForRegion() {
         List<Location> locationList = new ArrayList<>();
-        locationList.add(new Location("Enchanted Mine", 2, 5, LocationType.MINE, true));
-        locationList.add(new Location("Abyssal Hollows", 2, 10, LocationType.CAVE, true));
-        locationList.add(new Location("Ruins of Eldoria", 3, 10, LocationType.CASTLE, true));
-        locationList.add(new Location("Necropolis Valley", 4, 10, LocationType.CEMETERY, true));
-        locationList.add(new Location("Tower of Damned", 5, 10, LocationType.TOWER, true));
-        LocationsList.getLocationList().addAll(locationList);
+        locationList.add(LocationsList.getLocationList().get(0));
+//        locationList.add(new Location(0, "Enchanted Mine", 2, 5, LocationType.MINE, true));
+//        locationList.add(new Location(0, "Abyssal Hollows", 2, 10, LocationType.CAVE, true));
+//        locationList.add(new Location(0, "Ruins of Eldoria", 3, 10, LocationType.CASTLE, true));
+//        locationList.add(new Location(0, "Necropolis Valley", 4, 10, LocationType.CEMETERY, true));
+//        locationList.add(new Location(0, "Tower of Damned", 5, 10, LocationType.TOWER, true));
+//        LocationsList.getLocationList().addAll(locationList);
         return locationList;
     }
 

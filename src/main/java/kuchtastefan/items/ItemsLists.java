@@ -19,7 +19,7 @@ public class ItemsLists {
     @Getter
     private static final Map<String, Item> allItemsMap = new HashMap<>();
     @Getter
-    private static final Map<Integer, Item> itemMap = new HashMap<>();
+    private static final Map<Integer, Item> itemMapIdItem = new HashMap<>();
     @Getter
     private static final List<WearableItem> wearableItemList = new ArrayList<>();
     @Getter

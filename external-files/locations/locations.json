@@ -1,0 +1,47 @@
+[
+  {
+    "locationId": 0,
+    "locationName": "Enchanted Mine",
+    "locationLevel": 2,
+    "locationType": "MINE",
+    "canLocationBeExplored": true,
+    "locationStages": {
+      "0": {
+        "type": "LocationStageCombat",
+        "stageName": "Mine main door",
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": [
+          700
+        ],
+        "locationEnemyIdList": [
+          200,
+          201
+        ]
+      },
+      "1": {
+        "type": "LocationStageCombat",
+        "stageName": "Mine Upper Floor",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          200,
+          201
+        ]
+      },
+      "2": {
+        "type": "LocationStageQuestGiver",
+        "stageName": "Mine cell block",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "questId": 0,
+        "questGiverName": "Saber"
+      },
+      "3": {
+        "type": "LocationStageFindTreasure",
+        "stageName": "Treasure Room",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": []
+      }
+    }
+  }
+]

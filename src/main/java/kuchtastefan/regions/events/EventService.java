@@ -10,6 +10,7 @@ import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -33,13 +34,30 @@ public class EventService {
         switch (randomNumber) {
             case 0 -> new MerchantEvent(eventLevel).eventOccurs(hero);
             case 1, 2 -> {
-                int randomNumToGenerateEnemyRarity = RandomNumberGenerator.getRandomNumber(0, 20);
-                EnemyRarity enemyRarity = EnemyRarity.COMMON;
-                if (randomNumToGenerateEnemyRarity == 0) {
-                    enemyRarity = EnemyRarity.RARE;
+//                int randomNumToGenerateEnemyRarity = RandomNumberGenerator.getRandomNumber(0, 20);
+//                EnemyRarity enemyRarity = EnemyRarity.COMMON;
+//                if (randomNumToGenerateEnemyRarity == 0) {
+//                    enemyRarity = EnemyRarity.RARE;
+//                }
+
+                List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, maxRegionLevel, minRegionLevel, EnemyRarity.COMMON);
+
+                int randomNumberForEnemyOrder = 0;
+                List<Enemy> enemyList = new ArrayList<>();
+
+                for (int i = 0; i < RandomNumberGenerator.getRandomNumber(1, 3); i++) {
+                    if (!suitableEnemies.isEmpty()) {
+                        randomNumberForEnemyOrder = RandomNumberGenerator.getRandomNumber(0, suitableEnemies.size() - 1);
+                    } else {
+                        return;
+                    }
+
+                    enemyList.add(EnemyList.returnEnemyWithNewCopy(
+                            suitableEnemies.get(randomNumberForEnemyOrder),
+                            suitableEnemies.get(randomNumberForEnemyOrder).getEnemyRarity()));
                 }
-                List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, maxRegionLevel, minRegionLevel, enemyRarity);
-                new CombatEvent(eventLevel, suitableEnemies, locationType, 1, 3).eventOccurs(hero);
+
+                new CombatEvent(eventLevel, enemyList, locationType, 1, 3).eventOccurs(hero);
             }
             case 3 -> new DiscoverLocationEvent(eventLevel, this.allLocations, this.discoveredLocations)
                     .eventOccurs(hero);

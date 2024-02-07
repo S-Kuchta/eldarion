@@ -29,7 +29,7 @@ public class QuestReward {
         hero.addGolds(this.goldsReward);
 
         for (Integer itemId : this.itemsReward) {
-            Item itemReward = ItemsLists.getItemMap().get(itemId);
+            Item itemReward = ItemsLists.getItemMapIdItem().get(itemId);
             hero.getHeroInventory().addItemWithNewCopyToItemList(itemReward);
             System.out.println("\tReward for completing the quest: " + itemReward.getName());
         }

@@ -259,7 +259,7 @@ public class Hero extends GameCharacter {
                             && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemyId)
                         /*&& RandomNumberGenerator.getRandomNumber(0, 2) == 0*/) {
 
-                        Item questItem = ItemsLists.getItemMap().get(((QuestBringItemObjective) questObjective).getObjectiveItemId());
+                        Item questItem = ItemsLists.getItemMapIdItem().get(((QuestBringItemObjective) questObjective).getObjectiveItemId());
                         System.out.println("\t-- You loot " + (questItem.getName() + " --"));
 
                         this.heroInventory.addItemWithNewCopyToItemList((questItem));

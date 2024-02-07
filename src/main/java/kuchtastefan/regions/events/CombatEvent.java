@@ -37,27 +37,27 @@ public class CombatEvent extends Event {
     @Override
     public boolean eventOccurs(Hero hero) {
 
-        int randomNumber;
-        List<Enemy> enemyList = new ArrayList<>();
-
-        for (int i = 0; i < RandomNumberGenerator.getRandomNumber(this.minimumEnemiesCount, this.maximumEnemiesCount); i++) {
-            if (!this.enemies.isEmpty()) {
-                randomNumber = RandomNumberGenerator.getRandomNumber(0, enemies.size() - 1);
-            } else {
-                return false;
-            }
-            enemyList.add(EnemyList.returnEnemyWithNewCopy(enemies.get(randomNumber), enemies.get(randomNumber).getEnemyRarity()));
-        }
+//        int randomNumber;
+//        List<Enemy> enemyList = new ArrayList<>();
+//
+//        for (int i = 0; i < RandomNumberGenerator.getRandomNumber(this.minimumEnemiesCount, this.maximumEnemiesCount); i++) {
+//            if (!this.enemies.isEmpty()) {
+//                randomNumber = RandomNumberGenerator.getRandomNumber(0, enemies.size() - 1);
+//            } else {
+//                return false;
+//            }
+//            enemyList.add(EnemyList.returnEnemyWithNewCopy(enemies.get(randomNumber), enemies.get(randomNumber).getEnemyRarity()));
+//        }
 
         System.out.println("\tIn the distance, you've caught sight of:");
-        for (Enemy enemy : enemyList) {
+        for (Enemy enemy : this.enemies) {
             System.out.println("\t" + enemy.getName() + " - " + enemy.getEnemyRarity().name() + " - (Level " + enemy.getLevel() + "), ");
         }
 
         System.out.println("\n\tWill you attempt a silent evasion or initiate an attack?");
         boolean battle = false;
         int enemyHaste = 0;
-        for (Enemy enemy : enemyList) {
+        for (Enemy enemy : this.enemies) {
             if (enemy.getCurrentAbilityValue(Ability.HASTE) > enemyHaste) {
                 enemyHaste = enemy.getCurrentAbilityValue(Ability.HASTE);
             }
@@ -91,10 +91,10 @@ public class CombatEvent extends Event {
         }
 
         if (battle) {
-            final boolean haveHeroWon = this.battleService.battle(hero, enemyList);
+            final boolean haveHeroWon = this.battleService.battle(hero, this.enemies);
             if (haveHeroWon) {
 
-                for (Enemy randomEnemy : enemyList) {
+                for (Enemy randomEnemy : this.enemies) {
                     double goldEarn = randomEnemy.getGoldDrop();
                     double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getEnemyRarity().getExperienceGainedValue();
 

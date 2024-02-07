@@ -178,6 +178,8 @@ public class GameManager {
         SpellsList.getSpellList().addAll(this.fileService.importSpellsFromFile());
         EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
+        this.fileService.importLocationsFromFile();
+
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 5);
 
         HintUtil.initializeHintList();

@@ -31,7 +31,7 @@ public class QuestBringItemObjective extends QuestObjective {
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
 
-        Item questItem = ItemsLists.getItemMap().get(this.objectiveItemId);
+        Item questItem = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
         hero.getHeroInventory().getHeroInventory().putIfAbsent(questItem, 0);
         if (hero.getHeroInventory().getHeroInventory().get(questItem) < this.itemDropCountNeeded) {
             System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "
@@ -44,7 +44,7 @@ public class QuestBringItemObjective extends QuestObjective {
 
     @Override
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
-        Item questItem = ItemsLists.getItemMap().get(this.objectiveItemId);
+        Item questItem = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
 
         if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
                 new HashMap<>(Map.of(questItem, this.itemDropCountNeeded)), false)) {
@@ -58,7 +58,7 @@ public class QuestBringItemObjective extends QuestObjective {
 
     @Override
     public void removeCompletedItemsOrEnemies(Hero hero) {
-        Item questItem = ItemsLists.getItemMap().get(this.objectiveItemId);
+        Item questItem = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
 
         hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
                 new HashMap<>(Map.of(questItem, this.itemDropCountNeeded)), true);

@@ -26,6 +26,8 @@ import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.regions.ForestRegionService;
+import kuchtastefan.regions.locations.Location;
+import kuchtastefan.regions.locations.LocationsList;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
@@ -45,6 +47,7 @@ import java.util.stream.Stream;
 public class FileService {
     private final Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationStageRuntimeTypeAdapterFactory)
 //            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsWithDurationTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
 //            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.spellObjectiveRuntimeTypeAdapterFactory)
@@ -171,7 +174,7 @@ public class FileService {
                 for (WearableItem wearableItem : WearableItems) {
                     wearableItem.setWearableItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
                     wearableItemMissingValuesSet(wearableItem);
-                    ItemsLists.getItemMap().put(wearableItem.getItemId(), wearableItem);
+                    ItemsLists.getItemMapIdItem().put(wearableItem.getItemId(), wearableItem);
                 }
                 wearableItemList.addAll(WearableItems);
                 reader.close();
@@ -209,7 +212,7 @@ public class FileService {
                     craftingReagentItem.setCraftingReagentItemType(
                             CraftingReagentItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
-                    ItemsLists.getItemMap().put(craftingReagentItem.getItemId(), craftingReagentItem);
+                    ItemsLists.getItemMapIdItem().put(craftingReagentItem.getItemId(), craftingReagentItem);
                 }
                 craftingReagents.addAll(craftingReagentItemsList);
                 reader.close();
@@ -240,7 +243,7 @@ public class FileService {
                         action.setNewCurrentActionValue(action.getMaxActionValue());
                     }
 
-                    ItemsLists.getItemMap().put(consumableItem.getItemId(), consumableItem);
+                    ItemsLists.getItemMapIdItem().put(consumableItem.getItemId(), consumableItem);
                 }
 
                 consumableItems.addAll(consumableItemList);
@@ -264,7 +267,7 @@ public class FileService {
                 }.getType());
 
                 for (QuestItem questItem : questItemList) {
-                    ItemsLists.getItemMap().put(questItem.getItemId(), questItem);
+                    ItemsLists.getItemMapIdItem().put(questItem.getItemId(), questItem);
                 }
 
 
@@ -395,6 +398,27 @@ public class FileService {
         }
 
         return spellList;
+    }
+
+    public void importLocationsFromFile() {
+        String path = "external-files/locations";
+        try {
+            List<Location> locations;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                locations = this.gson.fromJson(reader, new TypeToken<List<Location>>() {
+                }.getType());
+
+                for (Location location : locations) {
+                    location.setStageTotal(location.getLocationStages().size());
+                    LocationsList.getLocationList().put(location.getLocationId(), location);
+                }
+
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 

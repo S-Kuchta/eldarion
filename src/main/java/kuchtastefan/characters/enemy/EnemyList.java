@@ -14,14 +14,6 @@ public class EnemyList {
     @Getter
     private static final Map<Integer, Enemy> enemyMap = new HashMap<>();
 
-//    public static Map<String, Enemy> returnEnemyMap() {
-//        Map<String, Enemy> enemyMap = new HashMap<>();
-//        for (Enemy enemy : enemyList) {
-//            enemyMap.put(enemy.getName(), enemy);
-//        }
-//
-//        return enemyMap;
-//    }
 
     public static Enemy returnEnemyWithNewCopy(Enemy enemy, EnemyRarity enemyRarity) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();

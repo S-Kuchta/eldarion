@@ -6,6 +6,7 @@ import kuchtastefan.quest.QuestService;
 import kuchtastefan.utility.ConsoleColor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class QuestGiverCharacter extends GameCharacter {
@@ -85,4 +86,34 @@ public class QuestGiverCharacter extends GameCharacter {
     public void addQuest(Quest quest) {
         this.quests.add(quest);
     }
+
+    public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
+        List<Quest> tempQuestList = hero.getListOfAcceptedQuests();
+        tempQuestList.retainAll(this.quests);
+        boolean questCompleted = true;
+        for (Quest quest : tempQuestList) {
+            if (!quest.isQuestCompleted()) {
+                questCompleted = false;
+                break;
+            }
+        }
+
+        return questCompleted;
+//        return new HashSet<>(hero.getListOfAcceptedQuests()).containsAll(this.quests);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

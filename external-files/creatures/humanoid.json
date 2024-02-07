@@ -30,6 +30,7 @@
   {
     "enemyId": 201,
     "name": "Defias Looter",
+    "enemyRarity": "COMMON",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,

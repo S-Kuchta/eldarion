@@ -43,5 +43,16 @@
       "ATTACK": 1
     },
     "itemLevel": 1
+  },
+  {
+    "itemId": 205,
+    "type": "WearableItem",
+    "name": "ASH BRINGER",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "ATTACK": 1,
+      "STRENGTH": 2
+    },
+    "itemLevel": 1
   }
 ]

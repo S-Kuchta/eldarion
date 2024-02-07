@@ -13,8 +13,13 @@ import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
+import kuchtastefan.quest.questObjectives.QuestClearLocation;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.regions.locations.LocationStage;
+import kuchtastefan.regions.locations.LocationStageCombat;
+import kuchtastefan.regions.locations.LocationStageFindTreasure;
+import kuchtastefan.regions.locations.LocationStageQuestGiver;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
 
 
@@ -48,8 +53,8 @@ public class RuntimeTypeAdapterFactoryUtil {
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(QuestObjective.class)
             .registerSubtype(QuestKillObjective.class)
-            .registerSubtype(QuestBringItemObjective.class);
-//            .registerSubtype(QuestClearLocation.class);
+            .registerSubtype(QuestBringItemObjective.class)
+            .registerSubtype(QuestClearLocation.class);
 
     public static final RuntimeTypeAdapterFactory<? extends Item> itemsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Item.class)
@@ -58,6 +63,13 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(JunkItem.class)
             .registerSubtype(QuestItem.class)
             .registerSubtype(WearableItem.class);
+
+    public static final RuntimeTypeAdapterFactory<? extends LocationStage> locationStageRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
+            .of(LocationStage.class)
+            .registerSubtype(LocationStageQuestGiver.class)
+            .registerSubtype(LocationStageCombat.class)
+            .registerSubtype(LocationStageFindTreasure.class);
+
 
 //    public static final RuntimeTypeAdapterFactory<Spell> spellObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
 //            .of(Spell.class)

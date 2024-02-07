@@ -118,6 +118,7 @@ public class QuestService {
     private void startTheQuest(Quest quest, Hero hero) {
         if (!hero.getListOfAcceptedQuests().contains(quest)) {
             hero.getListOfAcceptedQuests().add(quest);
+            hero.checkIfQuestObjectivesAndQuestIsCompleted();
         }
     }
 

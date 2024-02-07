@@ -105,10 +105,10 @@ public class GameManager {
         final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
                 ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
 
-//        QuestGiverCharacter questGiverCharacter = CreateNewQuestGiverCharacter.questGiver("Freya", 4, this.hero);
-        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8);
-        questGiverCharacter.addQuest(QuestList.questList.get(4));
-        questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
+        QuestGiverCharacter questGiverCharacter = CreateNewQuestGiverCharacter.questGiver("Freya", 4, this.hero);
+//        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8);
+//        questGiverCharacter.addQuest(QuestList.questList.get(4));
+//        questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
         QuestGiverCharacter questGiverCharacter1 = new QuestGiverCharacter("Devom Of Cremora", 8);
         questGiverCharacter1.addQuest(QuestList.questList.get(2));

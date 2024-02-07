@@ -10,9 +10,7 @@
         "type": "LocationStageCombat",
         "stageName": "Mine main door",
         "stageDiscovered": true,
-        "itemsIdNeededToEnterStage": [
-          700
-        ],
+        "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           200,
           201
@@ -24,7 +22,7 @@
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "questId": 0,
-        "questGiverName": "Saber"
+        "questGiverName": "Gandau Aulnernilt"
       },
       "2": {
         "type": "LocationStageCombat",
@@ -37,9 +35,20 @@
         ]
       },
       "3": {
+        "type": "LocationStageCombat",
+        "stageName": "Mine Lower Floor",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          200,
+          201,
+          201
+        ]
+      },
+      "4": {
         "type": "LocationStageFindTreasure",
         "stageName": "Treasure Room",
-        "stageDiscovered": true,
+        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [
           103
         ]

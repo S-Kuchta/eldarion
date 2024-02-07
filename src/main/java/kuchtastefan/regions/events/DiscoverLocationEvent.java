@@ -26,15 +26,15 @@ public class DiscoverLocationEvent extends Event {
             while (true) {
                 int randomNumber = RandomNumberGenerator.getRandomNumber(0, this.allLocations.size() - 1);
                 Location location = this.allLocations.get(randomNumber);
-                if (!this.discoveredLocations.contains(location)) {
-                    this.discoveredLocations.add(location);
+                if (!hero.getDiscoveredLocationList().containsKey(location.getLocationId())) {
+                    hero.getDiscoveredLocationList().put(location.getLocationId(), location);
                     System.out.println("\t--> You discovered " + location.getLocationName() + ", recommended level: " + location.getLocationLevel() + " level <--");
                     hero.gainExperiencePoints(50);
                     new LocationService().locationMenu(hero, location);
                     break;
                 }
 
-                if (this.allLocations.size() == this.discoveredLocations.size()) {
+                if (this.allLocations.size() == hero.getDiscoveredLocationList().size()) {
                     System.out.println("\tYou discovered all locations in this region");
                     break;
                 }

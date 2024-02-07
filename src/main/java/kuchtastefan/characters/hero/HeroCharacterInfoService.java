@@ -8,13 +8,13 @@ import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 
 @Getter
-public class HeroCharacterService {
+public class HeroCharacterInfoService {
     private final InventoryService inventoryService;
     private final HeroAbilityManager heroAbilityManager;
     private final QuestService questService;
     private final HeroSpellManager heroSpellManager;
 
-    public HeroCharacterService(HeroAbilityManager heroAbilityManager) {
+    public HeroCharacterInfoService(HeroAbilityManager heroAbilityManager) {
         this.inventoryService = new InventoryService();
         this.heroAbilityManager = heroAbilityManager;
         this.questService = new QuestService();
@@ -58,7 +58,6 @@ public class HeroCharacterService {
     }
 
     private void showHeroInfo(Hero hero) {
-//        PrintUtil.printMaxAbilityPointsWithItems(hero);
         PrintUtil.printCurrentAbilityPointsWithItems(hero);
         PrintUtil.printCurrentWearingArmor(hero);
     }

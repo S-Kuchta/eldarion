@@ -1,7 +1,7 @@
 package kuchtastefan.regions;
 
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.HeroCharacterService;
+import kuchtastefan.characters.hero.HeroCharacterInfoService;
 import kuchtastefan.regions.events.EventService;
 import kuchtastefan.regions.locations.Location;
 import lombok.Getter;
@@ -36,7 +36,7 @@ public abstract class Region {
         this.eventService = new EventService(this.allLocations, this.discoveredLocations);
     }
 
-    public abstract void adventuringAcrossTheRegion(HeroCharacterService heroCharacterService);
+    public abstract void adventuringAcrossTheRegion(HeroCharacterInfoService heroCharacterInfoService);
 
     protected abstract List<Location> initializeLocationForRegion();
 

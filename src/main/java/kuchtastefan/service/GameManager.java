@@ -29,7 +29,7 @@ public class GameManager {
     private final FileService fileService;
     private final BlacksmithService blacksmithService;
     private ForestRegionService forestRegionService;
-    private final HeroCharacterService heroCharacterService;
+    private final HeroCharacterInfoService heroCharacterInfoService;
 
 
     public GameManager() {
@@ -38,7 +38,7 @@ public class GameManager {
         this.fileService = new FileService();
         this.heroAbilityManager = new HeroAbilityManager(this.hero);
         this.blacksmithService = new BlacksmithService();
-        this.heroCharacterService = new HeroCharacterService(this.heroAbilityManager);
+        this.heroCharacterInfoService = new HeroCharacterInfoService(this.heroAbilityManager);
     }
 
     public void startGame() {
@@ -60,7 +60,7 @@ public class GameManager {
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> exploreSurroundingRegions();
-                case 1 -> this.heroCharacterService.heroCharacterMenu(this.hero);
+                case 1 -> this.heroCharacterInfoService.heroCharacterMenu(this.hero);
                 case 2 -> {
                     JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8,
                             ItemsLists.returnJunkItemListByItemLevel(this.hero.getLevel(), 0));
@@ -69,7 +69,7 @@ public class GameManager {
                 case 3 -> this.tavernMenu();
                 case 4 -> this.alchemistMenu();
                 case 5 -> this.blacksmithService.blacksmithMenu(this.hero);
-                case 6 -> this.fileService.saveGame(this.hero, this.currentLevel, this.forestRegionService);
+                case 6 -> this.fileService.saveGame(this.hero, this.currentLevel/*, this.forestRegionService*/);
                 case 7 -> {
                     System.out.println("Are you sure?");
                     System.out.println("0. No");
@@ -96,7 +96,7 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> this.forestRegionService.adventuringAcrossTheRegion(this.heroCharacterService);
+            case 1 -> this.forestRegionService.adventuringAcrossTheRegion(this.heroCharacterInfoService);
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -105,8 +105,9 @@ public class GameManager {
         final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
                 ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
 
+//        QuestGiverCharacter questGiverCharacter = CreateNewQuestGiverCharacter.questGiver("Freya", 4, this.hero);
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8);
-        questGiverCharacter.addQuest(QuestList.questList.get(0));
+        questGiverCharacter.addQuest(QuestList.questList.get(4));
         questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
         QuestGiverCharacter questGiverCharacter1 = new QuestGiverCharacter("Devom Of Cremora", 8);
@@ -201,7 +202,7 @@ public class GameManager {
                     HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
                     this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
                     this.forestRegionService.setHero(this.hero);
-                    this.forestRegionService.getDiscoveredLocations().addAll(gameLoaded.getForestRegionDiscoveredLocation());
+//                    this.forestRegionService.getDiscoveredLocations().addAll(gameLoaded.getForestRegionDiscoveredLocation());
                     return;
                 }
             }

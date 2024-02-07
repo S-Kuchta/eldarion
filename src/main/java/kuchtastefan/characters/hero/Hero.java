@@ -14,6 +14,7 @@ import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.regions.locations.Location;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
@@ -39,6 +40,7 @@ public class Hero extends GameCharacter {
     private final EnemyKilled enemyKilled;
     private final List<Quest> listOfAcceptedQuests;
     private final Map<Integer, Spell> learnedSpells;
+    private final Map<Integer, Location> discoveredLocationList;
 
 
     public Hero(String name) {
@@ -55,6 +57,7 @@ public class Hero extends GameCharacter {
         this.enemyKilled = new EnemyKilled();
         this.listOfAcceptedQuests = new ArrayList<>();
         this.learnedSpells = new HashMap<>();
+        this.discoveredLocationList = new HashMap<>();
     }
 
     public void equipItem(WearableItem wearableItem) {

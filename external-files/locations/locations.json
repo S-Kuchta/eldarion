@@ -19,6 +19,14 @@
         ]
       },
       "1": {
+        "type": "LocationStageQuestGiver",
+        "stageName": "Mine cell block",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "questId": 0,
+        "questGiverName": "Saber"
+      },
+      "2": {
         "type": "LocationStageCombat",
         "stageName": "Mine Upper Floor",
         "stageDiscovered": false,
@@ -28,19 +36,13 @@
           201
         ]
       },
-      "2": {
-        "type": "LocationStageQuestGiver",
-        "stageName": "Mine cell block",
-        "stageDiscovered": false,
-        "itemsIdNeededToEnterStage": [],
-        "questId": 0,
-        "questGiverName": "Saber"
-      },
       "3": {
         "type": "LocationStageFindTreasure",
         "stageName": "Treasure Room",
-        "stageDiscovered": false,
-        "itemsIdNeededToEnterStage": []
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": [
+          103
+        ]
       }
     }
   }

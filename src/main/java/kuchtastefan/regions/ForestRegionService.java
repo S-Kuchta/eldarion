@@ -1,7 +1,7 @@
 package kuchtastefan.regions;
 
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.HeroCharacterService;
+import kuchtastefan.characters.hero.HeroCharacterInfoService;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationService;
 import kuchtastefan.regions.locations.LocationType;
@@ -11,6 +11,7 @@ import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ForestRegionService extends Region {
 
@@ -19,7 +20,7 @@ public class ForestRegionService extends Region {
     }
 
     @Override
-    public void adventuringAcrossTheRegion(HeroCharacterService heroCharacterService) {
+    public void adventuringAcrossTheRegion(HeroCharacterInfoService heroCharacterInfoService) {
 
         while (true) {
             System.out.println();
@@ -30,7 +31,7 @@ public class ForestRegionService extends Region {
             System.out.println("\t\t" + getRegionName()
                     + " \tRegion level: " + this.minimumRegionLevel + " - " + this.maximumRegionLevel
                     + " \tDiscovered locations: "
-                    + getDiscoveredLocations().size() + " / "
+                    + this.hero.getDiscoveredLocationList().size() + " / "
                     + allLocations.size());
             PrintUtil.printLongDivider();
 
@@ -39,10 +40,22 @@ public class ForestRegionService extends Region {
             System.out.println("\t2. Hero menu");
 
             int index = 3;
-            for (Location discoveredLocation : this.discoveredLocations) {
-                System.out.println("\t" + index + ". " + discoveredLocation.getLocationName() + " (recommended level: " + discoveredLocation.getLocationLevel() + ")");
+            List<Location> locations = new ArrayList<>();
+            for (Map.Entry<Integer, Location> location : this.hero.getDiscoveredLocationList().entrySet()) {
+                String s = location.getValue().getLocationName()
+                        + " (recommended level: "
+                        + location.getValue().getLocationLevel() + ")";
+
+                PrintUtil.printIndexAndText(String.valueOf(index), s);
+                locations.add(location.getValue());
+                System.out.println();
                 index++;
+
             }
+//            for (Location discoveredLocation : this.hero.getDiscoveredLocationList()) {
+//                System.out.println("\t" + index + ". " + discoveredLocation.getLocationName() + " (recommended level: " + discoveredLocation.getLocationLevel() + ")");
+//                index++;
+//            }
 
             int choice = InputUtil.intScanner();
             switch (choice) {
@@ -51,10 +64,10 @@ public class ForestRegionService extends Region {
                 }
                 case 1 -> super.eventService.randomRegionEventGenerate(super.hero, LocationType.FOREST,
                         this.minimumRegionLevel, this.maximumRegionLevel);
-                case 2 -> heroCharacterService.heroCharacterMenu(this.hero);
+                case 2 -> heroCharacterInfoService.heroCharacterMenu(this.hero);
                 default -> {
                     try {
-                        new LocationService().locationMenu(this.hero, this.discoveredLocations.get(choice - 3));
+                        new LocationService().locationMenu(this.hero, /*this.hero.getDiscoveredLocationList().get(choice - 3)*/locations.get(choice - 3));
                     } catch (IndexOutOfBoundsException e) {
                         PrintUtil.printEnterValidInput();
                     }

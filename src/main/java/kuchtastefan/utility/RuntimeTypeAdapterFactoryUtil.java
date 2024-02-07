@@ -13,7 +13,7 @@ import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
-import kuchtastefan.quest.questObjectives.QuestClearLocation;
+import kuchtastefan.quest.questObjectives.QuestClearLocationObjective;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.regions.locations.LocationStage;
@@ -54,7 +54,7 @@ public class RuntimeTypeAdapterFactoryUtil {
             .of(QuestObjective.class)
             .registerSubtype(QuestKillObjective.class)
             .registerSubtype(QuestBringItemObjective.class)
-            .registerSubtype(QuestClearLocation.class);
+            .registerSubtype(QuestClearLocationObjective.class);
 
     public static final RuntimeTypeAdapterFactory<? extends Item> itemsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Item.class)

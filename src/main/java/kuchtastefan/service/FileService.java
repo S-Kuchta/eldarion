@@ -54,8 +54,8 @@ public class FileService {
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
-    public void saveGame(Hero hero, int currentLevel, ForestRegionService forestRegionService) {
-        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, HintUtil.getHintList(), forestRegionService.getDiscoveredLocations(), hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
+    public void saveGame(Hero hero, int currentLevel/*, ForestRegionService forestRegionService*/) {
+        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, HintUtil.getHintList(), /*forestRegionService.getDiscoveredLocations(),*/ hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
 
         while (true) {
             System.out.println("How do you want to name your save?");

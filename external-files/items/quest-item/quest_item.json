@@ -16,5 +16,11 @@
     "name": "Boss Head",
     "price": 0,
     "itemLevel": 2
+  },
+  {
+    "itemId": 103,
+    "name": "Key to Treasure room in Enchanted Mines",
+    "price": 0,
+    "itemLevel": 2
   }
 ]

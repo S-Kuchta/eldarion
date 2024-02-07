@@ -17,15 +17,15 @@ public class GameLoaded {
     private final Hero hero;
     private final int level;
     private final Map<HintName, Hint> hintUtil;
-    private final List<Location> forestRegionDiscoveredLocation;
+//    private final List<Location> forestRegionDiscoveredLocation;
     private final Set<ActionWithDuration> regionActionsWithDuration;
     private final Map<Item, Integer> itemList;
 
-    public GameLoaded(int level, Hero hero, Map<HintName, Hint> hintUtil, List<Location> forestRegionDiscoveredLocation, Set<ActionWithDuration> regionActionsWithDuration, Map<Item, Integer> itemList) {
+    public GameLoaded(int level, Hero hero, Map<HintName, Hint> hintUtil, /*List<Location> forestRegionDiscoveredLocation,*/ Set<ActionWithDuration> regionActionsWithDuration, Map<Item, Integer> itemList) {
         this.level = level;
         this.hero = hero;
         this.hintUtil = hintUtil;
-        this.forestRegionDiscoveredLocation = forestRegionDiscoveredLocation;
+//        this.forestRegionDiscoveredLocation = forestRegionDiscoveredLocation;
         this.regionActionsWithDuration = regionActionsWithDuration;
         this.itemList = itemList;
     }

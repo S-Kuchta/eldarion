@@ -14,7 +14,7 @@
     ],
     "questReward": {
       "itemsReward": [
-        204
+        103
       ],
       "goldsReward": 30.0,
       "experiencePointsReward": 70.0,
@@ -100,6 +100,27 @@
       ],
       "goldsReward": 30.0,
       "experiencePointsReward": 70.0,
+      "questLevel": 2
+    }
+  },
+  {
+    "questId": 4,
+    "questName": "Clear Enchanted Mine",
+    "questDescription": "Please clear our mine.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestClearLocationObjective",
+        "questObjectiveName": "Clear Enchanted Mine",
+        "locationId": 0
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        200
+      ],
+      "goldsReward": 50.0,
+      "experiencePointsReward": 100.0,
       "questLevel": 2
     }
   }

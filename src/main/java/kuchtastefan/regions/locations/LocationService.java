@@ -18,8 +18,10 @@ public class LocationService {
             PrintUtil.printLongDivider();
 
             System.out.println("\tWhat do you want to do?");
-            System.out.println("\t0. Go back on the path");
-            System.out.println("\t1. Explore location");
+            PrintUtil.printIndexAndText(String.valueOf(0), "Go back on the path");
+            System.out.println();
+            PrintUtil.printIndexAndText(String.valueOf(1), "Explore location");
+            System.out.println();
 
             int index = 2;
             for (Map.Entry<Integer, LocationStage> locationStage : location.locationStages.entrySet()) {
@@ -27,6 +29,7 @@ public class LocationService {
                     String completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
                     PrintUtil.printIndexAndText(String.valueOf(index + locationStage.getKey()),
                             locationStage.getValue().getStageName() + " " + completed);
+
                     System.out.println();
                 }
             }
@@ -37,13 +40,14 @@ public class LocationService {
                     System.out.println("\tGoing back on path");
                     break;
                 } else if (choice == 1) {
-                    exploreLocation(hero, location, location.getLocationStages().get(location.stageCompleted));
+                    exploreLocation(hero, location, location.stageCompleted);
                 } else {
                     if (!location.getLocationStages().get(choice - index).isStageDiscovered()) {
+                        PrintUtil.printEnterValidInput();
                         continue;
                     }
 
-                    exploreLocation(hero, location, location.getLocationStages().get(choice - index));
+                    exploreLocation(hero, location, choice - index);
                 }
             } catch (IndexOutOfBoundsException e) {
                 PrintUtil.printEnterValidInput();
@@ -51,7 +55,24 @@ public class LocationService {
         }
     }
 
-    public void exploreLocation(Hero hero, Location location, LocationStage locationStage) {
+    public void exploreLocation(Hero hero, Location location, int locationStageOrder) {
+        LocationStage locationStage = location.locationStages.get(locationStageOrder);
+
+        if (location.getLocationStages().get(locationStageOrder + 1) != null) {
+            if (locationStageOrder == 0) {
+                location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
+
+            } else if (location.getLocationStages().get(locationStageOrder - 1) != null
+                    && location.getLocationStages().get(locationStageOrder - 1).isStageCompleted()) {
+
+                location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
+            }
+        }
+
+        if (location.isCleared()) {
+            System.out.println("\tLocation Cleared!");
+            return;
+        }
 
         if (!locationStage.isStageDiscovered()) {
             locationStage.setStageDiscovered(true);
@@ -89,6 +110,7 @@ public class LocationService {
             location.setCleared(true);
             location.rewardAfterCompletedAllStages(hero);
             location.setCanLocationBeExplored(false);
+            hero.checkIfQuestObjectivesAndQuestIsCompleted();
         }
     }
 }

@@ -88,18 +88,19 @@ public class QuestGiverCharacter extends GameCharacter {
     }
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
-        List<Quest> tempQuestList = hero.getListOfAcceptedQuests();
-        tempQuestList.retainAll(this.quests);
         boolean questCompleted = true;
-        for (Quest quest : tempQuestList) {
-            if (!quest.isQuestCompleted()) {
+        for (Quest quest : hero.getListOfAcceptedQuests()) {
+            if (this.quests.contains(quest) && !quest.isTurnedIn()) {
                 questCompleted = false;
                 break;
             }
         }
 
+        if (!new HashSet<>(hero.getListOfAcceptedQuests()).containsAll(this.quests)) {
+            questCompleted = false;
+        }
+
         return questCompleted;
-//        return new HashSet<>(hero.getListOfAcceptedQuests()).containsAll(this.quests);
     }
 }
 

@@ -366,7 +366,7 @@ public class PrintUtil {
 
     public static void printActionDetails(Action action) {
         System.out.print("\t\t");
-        System.out.print(action.getActionName() + ": " + action.getCurrentActionValue());
+        System.out.print(ConsoleColor.YELLOW + "" + action.getActionName() + ConsoleColor.RESET + ": " + action.getCurrentActionValue());
         if (action instanceof ActionWithDuration) {
             System.out.print(" (duration: " + ((ActionWithDuration) action).getMaxActionTurns()
                     + " " + ((ActionWithDuration) action)

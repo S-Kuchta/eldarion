@@ -7,9 +7,9 @@ public class GameSettings {
     @Getter
     private static boolean printStringSlowly = false;
     @Getter
-    private static boolean showInformationAboutActionName = true;
+    private static boolean showInformationAboutActionName = false;
     @Getter
-    private static boolean showSpellsOnCoolDown = false;
+    private static boolean showSpellsOnCoolDown = true;
 
     public static void setPrintStringSlowly() {
         printStringSlowly = !printStringSlowly;

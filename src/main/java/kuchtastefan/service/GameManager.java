@@ -15,6 +15,7 @@ import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.ForestRegionService;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -48,14 +49,22 @@ public class GameManager {
             PrintUtil.printLongDivider();
             System.out.println("\t\t\t\t\t\t\t------ Mystic Hollow ------");
             PrintUtil.printLongDivider();
-            System.out.println("\t0. Explore surrounding regions");
-            System.out.println("\t1. Hero menu");
-            System.out.println("\t2. Junk Merchant");
-            System.out.println("\t3. Tavern");
-            System.out.println("\t4. Alchemist");
-            System.out.println("\t5. Blacksmith");
-            System.out.println("\t6. Save game");
-            System.out.println("\t7. Exit game");
+            PrintUtil.printIndexAndText("0", "Explore surrounding regions");
+            System.out.println();
+            PrintUtil.printIndexAndText("1", "Hero menu");
+            System.out.println();
+            PrintUtil.printIndexAndText("2", "Junk Merchant");
+            System.out.println();
+            PrintUtil.printIndexAndText("3", "Tavern");
+            System.out.println();
+            PrintUtil.printIndexAndText("4", "Alchemist");
+            System.out.println();
+            PrintUtil.printIndexAndText("5", "Blacksmith");
+            System.out.println();
+            PrintUtil.printIndexAndText("6", "Save game");
+            System.out.println();
+            PrintUtil.printIndexAndText("7", "Exit game");
+            System.out.println();
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
@@ -72,14 +81,16 @@ public class GameManager {
                 case 6 -> this.fileService.saveGame(this.hero, this.currentLevel/*, this.forestRegionService*/);
                 case 7 -> {
                     System.out.println("Are you sure?");
-                    System.out.println("0. No");
-                    System.out.println("1. Yes");
+                    PrintUtil.printIndexAndText("0", "No");
+                    System.out.println();
+                    PrintUtil.printIndexAndText("1", "Yes");
+                    System.out.println();
                     final int exitChoice = InputUtil.intScanner();
                     if (exitChoice == 0) {
                         continue;
                     }
                     if (exitChoice == 1) {
-                        System.out.println("Bye");
+                        System.out.println("\tBye");
                         return;
                     }
                 }
@@ -89,9 +100,13 @@ public class GameManager {
     }
 
     private void exploreSurroundingRegions() {
-        System.out.println("\t0. Go back to the city");
-        System.out.println("\t1. Go to " + this.forestRegionService.getRegionName());
-        System.out.println("\t2. Go to highlands");
+        PrintUtil.printIndexAndText("0", "Go back to the city");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Go to " + this.forestRegionService.getRegionName());
+        System.out.println();
+        PrintUtil.printIndexAndText("2", "Go to highlands");
+        System.out.println();
+
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -114,15 +129,18 @@ public class GameManager {
         questGiverCharacter1.addQuest(QuestList.questList.get(2));
         questGiverCharacter1.setNameBasedOnQuestsAvailable(this.hero);
 
-
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
         PrintUtil.printDivider();
 
-        System.out.println("\t0. Go back");
-        System.out.println("\t1. " + cityFoodVendor.getName() + " (Food Merchant)");
-        System.out.println("\t2. " + questGiverCharacter.getName());
-        System.out.println("\t3. " + questGiverCharacter1.getName());
+        PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", cityFoodVendor.getName() + " (Food Merchant)");
+        System.out.println();
+        PrintUtil.printIndexAndText("2", questGiverCharacter.getName());
+        System.out.println();
+        PrintUtil.printIndexAndText("3", questGiverCharacter1.getName());
+        System.out.println();
 
         int choice = InputUtil.intScanner();
         switch (choice) {
@@ -148,11 +166,16 @@ public class GameManager {
         System.out.println("\t\tAlchemist shop");
         PrintUtil.printDivider();
 
-        System.out.println("\t0. Go back");
-        System.out.println("\t1. Create potion");
-        System.out.println("\t2. " + cityAlchemistReagentVendor.getName() + " (Alchemy reagents Merchant)");
-        System.out.println("\t3. " + cityPotionsVendor.getName() + " (Potions Merchant)");
-        System.out.println("\t4. " + questGiverCharacter.getName());
+        PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Create potion");
+        System.out.println();
+        PrintUtil.printIndexAndText("2", cityAlchemistReagentVendor.getName() + " (Alchemy reagents Merchant)");
+        System.out.println();
+        PrintUtil.printIndexAndText("3", cityPotionsVendor.getName() + " (Potions Merchant)");
+        System.out.println();
+        PrintUtil.printIndexAndText("4", questGiverCharacter.getName());
+        System.out.println();
 
         int choice = InputUtil.intScanner();
         switch (choice) {
@@ -187,12 +210,14 @@ public class GameManager {
 
 
         System.out.println("Welcome to the Gladiatus game!");
-        System.out.println("0. Start new game");
-        System.out.println("1. Load game");
+        PrintUtil.printIndexAndText("0", "Start new game");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Load game");
+        System.out.println();
 
         int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> System.out.println("Let's go then!");
+            case 0 -> System.out.println("\tLet's go then!");
             case 1 -> {
                 final GameLoaded gameLoaded = fileService.loadGame();
                 if (gameLoaded != null) {
@@ -202,7 +227,6 @@ public class GameManager {
                     HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
                     this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
                     this.forestRegionService.setHero(this.hero);
-//                    this.forestRegionService.getDiscoveredLocations().addAll(gameLoaded.getForestRegionDiscoveredLocation());
                     return;
                 }
             }

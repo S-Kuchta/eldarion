@@ -40,7 +40,14 @@ public class LocationService {
                     System.out.println("\tGoing back on path");
                     break;
                 } else if (choice == 1) {
-                    exploreLocation(hero, location, location.stageCompleted);
+                    if (location.locationStages.get(location.stageCompleted) instanceof LocationStageQuestGiver
+                            && location.locationStages.get(location.stageCompleted + 1) != null
+                            && location.locationStages.get(location.stageCompleted + 1).isStageDiscovered()) {
+
+                        exploreLocation(hero, location, location.stageCompleted + 1);
+                    } else {
+                        exploreLocation(hero, location, location.stageCompleted);
+                    }
                 } else {
                     if (!location.getLocationStages().get(choice - index).isStageDiscovered()) {
                         PrintUtil.printEnterValidInput();
@@ -58,16 +65,24 @@ public class LocationService {
     public void exploreLocation(Hero hero, Location location, int locationStageOrder) {
         LocationStage locationStage = location.locationStages.get(locationStageOrder);
 
-        if (location.getLocationStages().get(locationStageOrder + 1) != null) {
-            if (locationStageOrder == 0) {
-                location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
-
-            } else if (location.getLocationStages().get(locationStageOrder - 1) != null
-                    && location.getLocationStages().get(locationStageOrder - 1).isStageCompleted()) {
-
+        if (locationStage instanceof LocationStageQuestGiver) {
+            location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
+        } /*else {
+            if (locationStage.isStageCompleted()) {
                 location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
             }
-        }
+        }*/
+
+//        if (location.getLocationStages().get(locationStageOrder + 1) != null) {
+//            if (locationStageOrder == 0) {
+//                location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
+//
+//            } else if (location.getLocationStages().get(locationStageOrder - 1) != null
+//                    && location.getLocationStages().get(locationStageOrder - 1).isStageCompleted()) {
+//
+//                location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
+//            }
+//        }
 
         if (location.isCleared()) {
             System.out.println("\tLocation Cleared!");
@@ -102,6 +117,9 @@ public class LocationService {
             location.stageCompleted++;
             locationStage.setStageCompleted(true);
             locationStage.completeStage();
+            if (location.getLocationStages().get(locationStageOrder + 1) != null) {
+                location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
+            }
         } else {
             return;
         }

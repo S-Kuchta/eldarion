@@ -37,18 +37,6 @@ public class CombatEvent extends Event {
     @Override
     public boolean eventOccurs(Hero hero) {
 
-//        int randomNumber;
-//        List<Enemy> enemyList = new ArrayList<>();
-//
-//        for (int i = 0; i < RandomNumberGenerator.getRandomNumber(this.minimumEnemiesCount, this.maximumEnemiesCount); i++) {
-//            if (!this.enemies.isEmpty()) {
-//                randomNumber = RandomNumberGenerator.getRandomNumber(0, enemies.size() - 1);
-//            } else {
-//                return false;
-//            }
-//            enemyList.add(EnemyList.returnEnemyWithNewCopy(enemies.get(randomNumber), enemies.get(randomNumber).getEnemyRarity()));
-//        }
-
         System.out.println("\tIn the distance, you've caught sight of:");
         for (Enemy enemy : this.enemies) {
             System.out.println("\t" + enemy.getName() + " - " + enemy.getEnemyRarity().name() + " - (Level " + enemy.getLevel() + "), ");
@@ -64,17 +52,21 @@ public class CombatEvent extends Event {
         }
         int heroHaste = hero.getCurrentAbilityValue(Ability.HASTE);
         int chanceToEvasion = 50 + (heroHaste - enemyHaste);
+        if (chanceToEvasion > 100) {
+            chanceToEvasion = 100;
+        }
 
         System.out.println("\tYou have " + chanceToEvasion + "% chance to evasion from battle");
-        System.out.println("\t0. Try to evasion");
-        System.out.println("\t1. Attack");
-
+        PrintUtil.printIndexAndText("0", "Try to evasion");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Attack");
+        System.out.println();
 
         while (true) {
             int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
-                    if (RandomNumberGenerator.getRandomNumber(0, 100) >= chanceToEvasion) {
+                    if (RandomNumberGenerator.getRandomNumber(0, 100) > chanceToEvasion) {
                         battle = true;
                         System.out.println("\tYou were too slow. Enemy is attacking you!");
                     } else {
@@ -112,7 +104,6 @@ public class CombatEvent extends Event {
                     hero.gainExperiencePoints(experiencePointGained);
                     hero.getEnemyKilled().addEnemyKilled(randomEnemy.getName());
                     hero.checkQuestProgress(randomEnemy.getEnemyId());
-//                    hero.checkQuestProgress(new QuestEnemy(randomEnemy.getName(), randomEnemy.getEnemyRarity()));
                     hero.checkIfQuestObjectivesAndQuestIsCompleted();
                 }
                 return true;

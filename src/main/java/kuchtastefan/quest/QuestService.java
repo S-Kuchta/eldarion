@@ -2,6 +2,7 @@ package kuchtastefan.quest;
 
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -64,9 +65,9 @@ public class QuestService {
                 if (quest.isTurnedIn()) {
                     System.out.print(" -- Completed --");
                 } else if (!hero.getListOfAcceptedQuests().contains(quest)) {
-                    System.out.print(" - ! -");
-                } else if (hero.getListOfAcceptedQuests().contains(quest) && quest.isQuestCompleted() /*&& !quest.isTurnedIn()*/) {
-                    System.out.print(" - ? -");
+                    System.out.print(" - " + ConsoleColor.YELLOW + "!" + ConsoleColor.RESET + " - ");
+                } else if (hero.getListOfAcceptedQuests().contains(quest) && quest.isQuestCompleted()) {
+                    System.out.print(" - " + ConsoleColor.YELLOW + "?" + ConsoleColor.RESET + " - ");
                 }
                 index++;
                 System.out.println();

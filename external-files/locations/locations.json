@@ -13,12 +13,12 @@
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           200,
-          201
+          200
         ]
       },
       "1": {
         "type": "LocationStageQuestGiver",
-        "stageName": "Mine cell block",
+        "stageName": "Mine Cell Block",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "questId": 0,
@@ -40,12 +40,24 @@
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
-          200,
           201,
-          201
+          201,
+          202
         ]
       },
       "4": {
+        "type": "LocationStageCombat",
+        "stageName": "Mine Main Room",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          200,
+          200,
+          201,
+          203
+        ]
+      },
+      "5": {
         "type": "LocationStageFindTreasure",
         "stageName": "Treasure Room",
         "stageDiscovered": false,

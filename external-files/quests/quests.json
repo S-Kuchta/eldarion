@@ -9,7 +9,7 @@
         "type": "QuestKillObjective",
         "questObjectiveName": "Kill bandit",
         "questEnemyId": 200,
-        "countEnemyToKill": 1
+        "countEnemyToKill": 5
       }
     ],
     "questReward": {
@@ -29,11 +29,13 @@
     "questObjectives": [
       {
         "type": "QuestKillObjective",
+        "questObjectiveName": "Kill Wolf",
         "questEnemyId": 100,
         "countEnemyToKill": 5
       },
       {
         "type": "QuestKillObjective",
+        "questObjectiveName": "Kill Alpha Wolf",
         "questEnemyId": 102,
         "countEnemyToKill": 1
       }
@@ -55,6 +57,7 @@
     "questObjectives": [
       {
         "type": "QuestBringItemObjective",
+        "questObjectiveName": "Wolf Meat",
         "itemDropFromEnemy": [
           100,
           102

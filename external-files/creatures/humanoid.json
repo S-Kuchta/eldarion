@@ -52,6 +52,7 @@
   {
     "enemyId": 202,
     "name": "Defias Raider",
+    "enemyRarity": "RARE",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 4,
@@ -75,14 +76,14 @@
     "name": "Defias Boss",
     "enemyRarity": "BOSS",
     "abilities": {
-      "ATTACK": 4,
-      "RESIST_DAMAGE": 2,
-      "STRENGTH": 2,
+      "ATTACK": 5,
+      "RESIST_DAMAGE": 3,
+      "STRENGTH": 4,
       "INTELLECT": 1,
       "HASTE": 4,
       "CRITICAL_HIT_CHANCE": 3,
-      "HEALTH": 55,
-      "MANA": 40,
+      "HEALTH": 100,
+      "MANA": 50,
       "ABSORB_DAMAGE": 0
     },
     "enemySpells": [
@@ -92,7 +93,6 @@
     "locationType": [
       "MINE"
     ],
-
     "maxStack": 5
   }
 ]

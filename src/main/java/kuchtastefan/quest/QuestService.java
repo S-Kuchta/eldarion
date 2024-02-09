@@ -57,11 +57,14 @@ public class QuestService {
     }
 
     private void printQuestsMenu(Hero hero, List<Quest> quests) {
-        System.out.println("\t0. Go back");
+        PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
+
         int index = 1;
         for (Quest quest : quests) {
             if ((quest.getQuestLevel() - 1) <= hero.getLevel()) {
-                System.out.print("\t" + index + ". " + quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
+                PrintUtil.printIndexAndText(String.valueOf(index),
+                        quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
                 if (quest.isTurnedIn()) {
                     System.out.print(" -- Completed --");
                 } else if (!hero.getListOfAcceptedQuests().contains(quest)) {
@@ -80,23 +83,27 @@ public class QuestService {
      * If hero does not contain selected quest you can to take it
      * If you have quest completed but not turned it yet, you can turn in
      *
-     * @param quest quest which come dynamically depending on you choice
+     * @param quest  quest which come dynamically depending on you choice
      * @param quests only needed for switching between menus
-     * @param name same as quests
+     * @param name   same as quests
      */
     private void selectedQuestForQuestGiverMenu(Quest quest, Hero hero, List<Quest> quests, String name) {
 
         if (!quest.isTurnedIn()) {
             this.printQuestDetails(quest, hero);
-            System.out.println("\t0. Go back");
+            PrintUtil.printIndexAndText("0", "Go back");
+            System.out.println();
             if (!quest.isQuestCompleted() && !hero.getListOfAcceptedQuests().contains(quest)) {
-                System.out.println("\t1. Accept quest");
+                PrintUtil.printIndexAndText("1", "Accept quest");
+                System.out.println();
             } else if (!quest.isTurnedIn() && quest.isQuestCompleted()) {
-                System.out.println("\t1. Complete quest");
+                PrintUtil.printIndexAndText("1", "Complete quest");
+                System.out.println();
             }
         } else {
             System.out.println("\t-- Quest " + quest.getQuestName() + " Completed --");
-            System.out.println("\t0. Go back");
+            PrintUtil.printIndexAndText("0", "Go back");
+            System.out.println();
         }
 
         int choice = InputUtil.intScanner();

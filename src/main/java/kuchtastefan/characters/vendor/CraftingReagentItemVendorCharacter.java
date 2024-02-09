@@ -33,6 +33,7 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
     protected void printVendorItemsForSale(Hero hero) {
         int index = 1;
         PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
         for (Item craftingReagentItem : this.itemsForSale) {
             if (craftingReagentItem instanceof CraftingReagentItem) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
@@ -56,6 +57,7 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
         int index = 1;
 
         PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
         if (hero.getHeroInventory().returnInventoryCraftingReagentItemMap().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {

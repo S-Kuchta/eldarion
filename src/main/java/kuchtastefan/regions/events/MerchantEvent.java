@@ -25,8 +25,11 @@ public class MerchantEvent extends Event {
             System.out.println("\t--> The merchant was too fast for you, you couldn't catch up and talk to him <--");
         } else {
             System.out.println("\tYou meet merchant caravan, what will you do?");
-            System.out.println("\t0. Pass around");
-            System.out.println("\t1. Talk");
+            PrintUtil.printIndexAndText("0", "Pass around");
+            System.out.println();
+            PrintUtil.printIndexAndText("1", "Talk");
+            System.out.println();
+
             int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> System.out.println("\t--> You just walk around merchant and greets him <--");

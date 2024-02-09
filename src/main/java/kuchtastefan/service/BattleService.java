@@ -1,7 +1,10 @@
 package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
+import kuchtastefan.actions.Action;
+import kuchtastefan.actions.actionsWIthDuration.*;
+import kuchtastefan.actions.instantActions.ActionDealDamage;
+import kuchtastefan.actions.instantActions.ActionRestoreHealth;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
@@ -14,10 +17,7 @@ import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class BattleService {
 
@@ -40,13 +40,12 @@ public class BattleService {
         hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
 
         while (true) {
-
             if (heroPlay) {
                 hero.checkAndRemoveActionTurns();
 
                 if (!hero.isCanPerformAction()) {
                     heroPlay = false;
-                    hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+                    this.printAndPerformActionOverTime(hero);
                     checkSpellsCoolDowns(hero);
                     continue;
                 }
@@ -91,11 +90,7 @@ public class BattleService {
                     }
                 }
 
-                System.out.println("\n\t" + hero.getName() + " suffered from actions over time");
-                hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
-
-                hero.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
-                        * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
+                this.printAndPerformActionOverTime(hero);
 
                 heroPlay = false;
             } else {
@@ -108,11 +103,6 @@ public class BattleService {
                         enemyInCombat.checkAndRemoveActionTurns();
                         checkSpellsCoolDowns(enemyInCombat);
 
-                        if (!enemyInCombat.isCanPerformAction()) {
-                            enemyInCombat.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
-                            continue;
-                        }
-
                         try {
                             Thread.sleep(1000);
                         } catch (InterruptedException e) {
@@ -121,21 +111,22 @@ public class BattleService {
 
                         PrintUtil.printLongDivider();
                         System.out.println("\t\t" + ConsoleColor.RED_BOLD + "—⟪=====> " + ConsoleColor.RESET
-                                + enemyInCombat.getName() + " is Attacking!"
+                                + enemyInCombat.getName() + " Turn!"
                                 + ConsoleColor.RED_BOLD + " ⚔" + ConsoleColor.RESET);
                         System.out.println();
 
-                        enemyUseSpell(enemyInCombat, hero);
+                        if (!enemyInCombat.isCanPerformAction()) {
+                            this.printAndPerformActionOverTime(enemyInCombat);
+                            continue;
+                        }
 
-                        System.out.println("\n\t" + enemyInCombat.getName() + " suffered from actions over time");
-                        enemyInCombat.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
-                        enemyInCombat.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
-                                * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
+                        this.enemyUseSpell(enemyInCombat, hero);
+                        this.printAndPerformActionOverTime(enemyInCombat);
                     }
 
                     if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
                         PrintUtil.printDivider();
-                        System.out.println("\t\tYou killed " + enemyInCombat.getName());
+                        System.out.println(ConsoleColor.GREEN + "\t\tYou killed " + enemyInCombat.getName() + ConsoleColor.RESET);
                         PrintUtil.printDivider();
 
                         iterator.remove();
@@ -146,11 +137,11 @@ public class BattleService {
                     }
                 }
 
-//                try {
-//                    Thread.sleep(2000);
-//                } catch (InterruptedException e) {
-//                    System.out.println(e.getMessage());
-//                }
+                try {
+                    Thread.sleep(2500);
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
                 heroPlay = true;
             }
 
@@ -178,6 +169,13 @@ public class BattleService {
         }
     }
 
+    private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
+        System.out.println("\n\t" + gameCharacter.getName() + " actions over time");
+        gameCharacter.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+        gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.INTELLECT)
+                * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
+    }
+
     private void printBattleMenu(Hero hero, Enemy enemyChosen, String selectedHeroForShowSelected, List<Enemy> enemyList) {
         PrintUtil.printHeaderWithStatsBar(hero);
         PrintUtil.printBattleBuffs(hero);
@@ -189,10 +187,6 @@ public class BattleService {
         System.out.print("\t");
         for (Enemy enemyFromList : enemyList) {
             if (!enemyFromList.isDefeated()) {
-//                String text = enemyFromList.getName() + " - " + enemyFromList.getEnemyRarity() + " - " + " Healths: "
-//                        + enemyFromList.getCurrentAbilityValue(Ability.HEALTH);
-//                PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index), text);
-
                 System.out.print(ConsoleColor.CYAN + LetterToNumber.getStringFromValue(index) + ConsoleColor.RESET
                         + ". " + enemyFromList.getName() + " - " + enemyFromList.getEnemyRarity() + " - "
                         + " Healths: "
@@ -232,8 +226,79 @@ public class BattleService {
         System.out.println();
     }
 
-    private void enemyUseSpell(Enemy enemy, Hero hero) {
-        enemy.getCharacterSpellList().get(0).useSpell(enemy, hero);
+    private void enemyUseSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
+        Map<Spell, Integer> spells = new HashMap<>();
+
+        Spell spellToCast = spellCaster.getCharacterSpellList().getFirst();
+        int priorityPoints;
+
+        if (spellCaster.getCharacterSpellList().size() == 1) {
+            spellToCast = spellCaster.getCharacterSpellList().getFirst();
+        } else {
+            for (Spell spell : spellCaster.getCharacterSpellList()) {
+                spells.put(spell, 0);
+            }
+
+            spells.put(returnSpellWithTheHighestTotalDamage(spellCaster), 2);
+
+            for (Map.Entry<Spell, Integer> spellIntegerEntry : spells.entrySet()) {
+                if (spellIntegerEntry.getKey().isCanSpellBeCasted()) {
+                    priorityPoints = 0;
+                    for (Action action : spellIntegerEntry.getKey().getSpellActions()) {
+
+                        if (action instanceof ActionInvulnerability && spellTarget.isCanPerformAction()) {
+                            priorityPoints += 5;
+                        }
+
+                        if (action instanceof ActionRestoreHealth || action instanceof ActionRestoreHealthOverTime || action instanceof ActionAbsorbDamage) {
+                            if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 2) {
+                                priorityPoints += 2;
+                            } else if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 3) {
+                                priorityPoints += 4;
+                            }
+                        }
+
+                        if (action instanceof ActionStun) {
+                            priorityPoints += 3;
+                        }
+                    }
+
+                    spellIntegerEntry.setValue(spellIntegerEntry.getValue() + priorityPoints);
+                    if (spellIntegerEntry.getValue() > spells.get(spellToCast)) {
+                        spellToCast = spellIntegerEntry.getKey();
+                    }
+                }
+            }
+        }
+
+        spellToCast.useSpell(spellCaster, spellTarget);
+    }
+
+    private Spell returnSpellWithTheHighestTotalDamage(GameCharacter gameCharacter) {
+        Spell spellWithMaxDamage = gameCharacter.getCharacterSpellList().getFirst();
+        int totalDamage = 0;
+        int maxTotalDamage = 0;
+
+        for (Spell spell : gameCharacter.getCharacterSpellList()) {
+            for (Action action : spell.getSpellActions()) {
+                if (action instanceof ActionDealDamage) {
+                    totalDamage += action.totalActionValue(spell.getBonusValueFromAbility(), gameCharacter);
+                }
+
+                if (action instanceof ActionDealDamageOverTime) {
+                    int damageWithStacks = action.totalActionValue(spell.getBonusValueFromAbility(), gameCharacter)
+                            * ((ActionDealDamageOverTime) action).getActionMaxStacks();
+                    totalDamage += damageWithStacks;
+                }
+            }
+
+            if (totalDamage > maxTotalDamage) {
+                maxTotalDamage = totalDamage;
+                spellWithMaxDamage = spell;
+            }
+        }
+
+        return spellWithMaxDamage;
     }
 
     private void checkSpellsCoolDowns(GameCharacter gameCharacter) {

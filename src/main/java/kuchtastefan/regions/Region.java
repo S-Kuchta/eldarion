@@ -55,9 +55,13 @@ public abstract class Region {
                     + this.allLocations.size());
             PrintUtil.printLongDivider();
 
-            System.out.println("\t0. Go back to the city");
-            System.out.println("\t1. Travel across region " + getRegionName());
-            System.out.println("\t2. Hero menu");
+            PrintUtil.printIndexAndText("0", "Go back to the city");
+            System.out.println();
+            PrintUtil.printIndexAndText("1", "Travel across region " + getRegionName());
+            System.out.println();
+            PrintUtil.printIndexAndText("2", "Hero menu");
+            System.out.println();
+
 
             int index = 3;
             List<Location> locations = new ArrayList<>();
@@ -86,7 +90,7 @@ public abstract class Region {
                 case 2 -> heroCharacterInfoService.heroCharacterMenu(this.hero);
                 default -> {
                     try {
-                        new LocationService().locationMenu(this.hero, locations.get(choice - 3));
+                        new LocationService().locationMenu(this.hero, locations.get(choice - 3), heroCharacterInfoService);
                     } catch (IndexOutOfBoundsException e) {
                         PrintUtil.printEnterValidInput();
                     }

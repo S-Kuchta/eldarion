@@ -40,12 +40,19 @@ public class BlacksmithService {
         System.out.println("\t\tBlacksmith");
         PrintUtil.printDivider();
 
-        System.out.println("\t0. Go back");
-        System.out.println("\t1. Refinement item");
-        System.out.println("\t2. Dismantle item");
-        System.out.println("\t3. " + citySmithVendor.getName() + " (Wearable Items Merchant)");
-        System.out.println("\t4. " + cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
-        System.out.println("\t5. " + questGiverCharacter.getName());
+        PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Refinement item");
+        System.out.println();
+        PrintUtil.printIndexAndText("2", "Dismantle item");
+        System.out.println();
+        PrintUtil.printIndexAndText("3", citySmithVendor.getName() + " (Wearable Items Merchant)");
+        System.out.println();
+        PrintUtil.printIndexAndText("4", cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
+        System.out.println();
+        PrintUtil.printIndexAndText("5", questGiverCharacter.getName());
+        System.out.println();
+
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -78,13 +85,15 @@ public class BlacksmithService {
             List<WearableItem> tempItemList = new ArrayList<>();
 
             int index = 1;
-            System.out.println("\t0. Go back");
+            PrintUtil.printIndexAndText("0", "Go back");
+            System.out.println();
             if (hero.getHeroInventory().getHeroInventory().isEmpty()) {
                 System.out.println("\tItem list is empty");
             } else {
                 for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
                     if (!item.getKey().getWearableItemQuality().equals(WearableItemQuality.SUPERIOR)) {
-                        System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                        PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
+//                        System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                         PrintUtil.printItemDescription(item.getKey(), false, hero);
                         refinementItemMap.put(item.getKey(), itemsNeededToRefinement(item.getKey()));
                         tempItemList.add(item.getKey());
@@ -224,13 +233,14 @@ public class BlacksmithService {
     private List<WearableItem> printItemList(Hero hero) {
         List<WearableItem> tempItemList = new ArrayList<>();
         int index = 1;
-        System.out.println("\t0. Go back");
+        PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
         if (hero.getHeroInventory().getHeroInventory().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {
             for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
                 tempItemList.add(item.getKey());
-                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
+                PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
                 PrintUtil.printItemDescription(item.getKey(), false, hero);
                 index++;
             }

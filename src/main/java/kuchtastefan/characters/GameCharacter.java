@@ -191,7 +191,7 @@ public abstract class GameCharacter {
             consoleColor = ConsoleColor.BLUE;
         }
 
-        if (ability.equals(Ability.MANA) && this.getCurrentAbilityValue(Ability.MANA) != 0) {
+        if (ability.equals(Ability.HEALTH) || (ability.equals(Ability.MANA) && this.getCurrentAbilityValue(Ability.MANA) != 0)) {
             System.out.println("\t" + this.name + " have restored " + consoleColor + valueOfRestore + ConsoleColor.RESET
                     + " " + ability.name()
                     + ". " + this.name + " " + ability.name() + " is "

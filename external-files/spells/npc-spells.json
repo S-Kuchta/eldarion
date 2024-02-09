@@ -64,5 +64,74 @@
     "spellLevel": 0,
     "spellManaCost": 0,
     "turnCoolDown": 0
+  },
+  {
+    "spellId": 103,
+    "spellName": "Test heal",
+    "spellClass": "NPC",
+    "spellDescription": "Gash target with claw",
+    "spellActions": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "maxActionValue": 5,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 10,
+    "turnCoolDown": 4
+  },
+  {
+    "spellId": 104,
+    "spellName": "Test strong attack",
+    "spellClass": "NPC",
+    "spellDescription": "Strong attack",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 5,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 10,
+    "turnCoolDown": 4
+  },
+  {
+    "spellId": 105,
+    "spellName": "Test invulnerable",
+    "spellClass": "NPC",
+    "spellDescription": "Invulnerability",
+    "spellActions": [
+      {
+        "type": "ActionInvulnerability",
+        "actionName": "INVULNERABILITY",
+        "maxActionValue": 0,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 0
+    },
+    "spellLevel": 0,
+    "spellManaCost": 15,
+    "turnCoolDown": 5
   }
 ]

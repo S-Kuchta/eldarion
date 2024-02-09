@@ -1,17 +1,11 @@
 package kuchtastefan.regions;
 
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.HeroCharacterInfoService;
 import kuchtastefan.regions.locations.Location;
-import kuchtastefan.regions.locations.LocationService;
-import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.regions.locations.LocationsList;
-import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ForestRegionService extends Region {
 

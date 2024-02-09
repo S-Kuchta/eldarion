@@ -1,6 +1,7 @@
 package kuchtastefan.regions.locations;
 
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.characters.hero.HeroCharacterInfoService;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -9,7 +10,9 @@ import java.util.Map;
 
 public class LocationService {
 
-    public void locationMenu(Hero hero, Location location) {
+    public void locationMenu(Hero hero, Location location, HeroCharacterInfoService heroCharacterInfoService) {
+
+
         while (true) {
             PrintUtil.printLongDivider();
             System.out.println("\t" + location.getLocationName() + "\tLocation level: "
@@ -18,12 +21,14 @@ public class LocationService {
             PrintUtil.printLongDivider();
 
             System.out.println("\tWhat do you want to do?");
-            PrintUtil.printIndexAndText(String.valueOf(0), "Go back on the path");
+            PrintUtil.printIndexAndText("0", "Go back on the path");
             System.out.println();
-            PrintUtil.printIndexAndText(String.valueOf(1), "Explore location");
+            PrintUtil.printIndexAndText("1", "Explore location");
+            System.out.println();
+            PrintUtil.printIndexAndText("2", "Hero Menu");
             System.out.println();
 
-            int index = 2;
+            int index = 3;
             for (Map.Entry<Integer, LocationStage> locationStage : location.locationStages.entrySet()) {
                 if (locationStage.getValue().isStageDiscovered()) {
                     String completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
@@ -48,6 +53,8 @@ public class LocationService {
                     } else {
                         exploreLocation(hero, location, location.stageCompleted);
                     }
+                } else if (choice == 2) {
+                    heroCharacterInfoService.heroCharacterMenu(hero);
                 } else {
                     if (!location.getLocationStages().get(choice - index).isStageDiscovered()) {
                         PrintUtil.printEnterValidInput();

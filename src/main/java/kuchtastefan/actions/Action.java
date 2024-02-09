@@ -1,9 +1,12 @@
 package kuchtastefan.actions;
 
+import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Map;
 
 @Getter
 @Setter
@@ -34,5 +37,17 @@ public abstract class Action {
 
     public void setNewCurrentActionValue(int value) {
         this.currentActionValue = value;
+    }
+
+    public int totalActionValue(Map<Ability, Integer> bonusValueFromAbility, GameCharacter spellCaster) {
+        int totalActionValue = this.maxActionValue;
+        if (bonusValueFromAbility != null) {
+            for (Map.Entry<Ability, Integer> abilityBonus : bonusValueFromAbility.entrySet()) {
+                totalActionValue += spellCaster.getCurrentAbilityValue(abilityBonus.getKey())
+                        * abilityBonus.getValue();
+            }
+        }
+
+        return totalActionValue;
     }
 }

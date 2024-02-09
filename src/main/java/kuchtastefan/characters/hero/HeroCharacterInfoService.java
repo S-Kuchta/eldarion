@@ -22,12 +22,18 @@ public class HeroCharacterInfoService {
     }
 
     public void heroCharacterMenu(Hero hero) {
-        System.out.println("\t0. Go back");
-        System.out.println("\t1. Hero Info");
-        System.out.println("\t2. Inventory");
-        System.out.println("\t3. Abilities");
-        System.out.println("\t4. Quests");
-        System.out.println("\t5. Spells");
+        PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Hero Info");
+        System.out.println();
+        PrintUtil.printIndexAndText("2", "Inventory");
+        System.out.println();
+        PrintUtil.printIndexAndText("3", "Abilities");
+        System.out.println();
+        PrintUtil.printIndexAndText("4", "Quests");
+        System.out.println();
+        PrintUtil.printIndexAndText("5", "Spells");
+        System.out.println();
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
@@ -45,9 +51,12 @@ public class HeroCharacterInfoService {
     }
 
     private void upgradeAbilityMenu(Hero hero) {
-        System.out.println("\t0. Go Back");
-        System.out.println("\t1. Spend points (" + hero.getUnspentAbilityPoints() + " points left)");
-        System.out.println("\t2. Remove points");
+        PrintUtil.printIndexAndText("0", "Go back");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Spend points (" + hero.getUnspentAbilityPoints() + " points left)");
+        System.out.println();
+        PrintUtil.printIndexAndText("2", "Remove points");
+        System.out.println();
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> heroCharacterMenu(hero);

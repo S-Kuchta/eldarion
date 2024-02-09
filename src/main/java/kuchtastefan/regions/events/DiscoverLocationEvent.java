@@ -29,7 +29,6 @@ public class DiscoverLocationEvent extends Event {
                     hero.getDiscoveredLocationList().put(location.getLocationId(), location);
                     System.out.println("\t--> You discovered " + location.getLocationName() + ", recommended level: " + location.getLocationLevel() + " level <--");
                     hero.gainExperiencePoints(50);
-                    new LocationService().locationMenu(hero, location);
                     break;
                 }
 

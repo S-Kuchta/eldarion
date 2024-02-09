@@ -8,6 +8,7 @@ import kuchtastefan.items.Item;
 import kuchtastefan.quest.questObjectives.QuestEnemy;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.service.BattleService;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -93,11 +94,11 @@ public class CombatEvent extends Event {
                     PrintUtil.printLongDivider();
                     for (Item item : randomEnemy.getItemsDrop()) {
                         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-                        System.out.println("\tYou loot " + item.getName());
+                        System.out.println("\tYou loot " + ConsoleColor.GREEN + item.getName() + ConsoleColor.RESET);
                     }
 
                     if (goldEarn > 0) {
-                        System.out.println("\tYou loot " + goldEarn + " golds");
+                        System.out.println("\tYou loot " + ConsoleColor.YELLOW + goldEarn + ConsoleColor.RESET + " golds");
                     }
 
                     hero.addGolds(goldEarn);

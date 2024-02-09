@@ -1,16 +1,20 @@
-//package kuchtastefan.regions;
-//
-//import kuchtastefan.characters.hero.Hero;
-//import kuchtastefan.item.ItemsLists;
-//
-//public class HighlandsRegionService extends Region {
-//
-//    public HighlandsRegionService(String regionName, String regionDescription, ItemsLists itemsLists, Hero hero) {
-//        super(regionName, regionDescription, itemsLists, hero);
-//    }
-//
-//    @Override
-//    public void adventuringAcrossTheRegion() {
-//
-//    }
-//}
+package kuchtastefan.regions;
+
+import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.regions.locations.Location;
+
+import java.util.List;
+
+public class HighlandRegionService extends Region {
+
+    public HighlandRegionService(String regionName, String regionDescription, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
+        super(regionName, regionDescription, hero, minimumRegionLevel, maximumRegionLevel);
+    }
+
+
+
+    @Override
+    protected List<Location> initializeLocationForRegion() {
+        return null;
+    }
+}

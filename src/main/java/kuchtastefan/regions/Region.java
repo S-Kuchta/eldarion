@@ -4,11 +4,16 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroCharacterInfoService;
 import kuchtastefan.regions.events.EventService;
 import kuchtastefan.regions.locations.Location;
+import kuchtastefan.regions.locations.LocationService;
+import kuchtastefan.regions.locations.LocationType;
+import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -33,10 +38,62 @@ public abstract class Region {
         this.minimumRegionLevel = minimumRegionLevel;
         this.maximumRegionLevel = maximumRegionLevel;
         this.hero = hero;
-        this.eventService = new EventService(this.allLocations, this.discoveredLocations);
+        this.eventService = new EventService(this.allLocations);
     }
 
-    public abstract void adventuringAcrossTheRegion(HeroCharacterInfoService heroCharacterInfoService);
+    public void adventuringAcrossTheRegion(HeroCharacterInfoService heroCharacterInfoService) {
+        while (true) {
+            System.out.println();
+            PrintUtil.printHeaderWithStatsBar(getHero());
+            PrintUtil.printRegionBuffs(getHero());
+            PrintUtil.printExtraLongDivider();
+            PrintUtil.printLongDivider();
+            System.out.println("\t\t" + this.regionName
+                    + " \tRegion level: " + this.minimumRegionLevel + " - " + this.maximumRegionLevel
+                    + " \tDiscovered locations: "
+                    + this.hero.getDiscoveredLocationList().size() + " / "
+                    + this.allLocations.size());
+            PrintUtil.printLongDivider();
+
+            System.out.println("\t0. Go back to the city");
+            System.out.println("\t1. Travel across region " + getRegionName());
+            System.out.println("\t2. Hero menu");
+
+            int index = 3;
+            List<Location> locations = new ArrayList<>();
+            for (Map.Entry<Integer, Location> location : this.hero.getDiscoveredLocationList().entrySet()) {
+                String s = location.getValue().getLocationName()
+                        + " (recommended level: "
+                        + location.getValue().getLocationLevel() + ")";
+
+                PrintUtil.printIndexAndText(String.valueOf(index), s);
+                locations.add(location.getValue());
+                System.out.println();
+                index++;
+            }
+//            for (Location discoveredLocation : this.hero.getDiscoveredLocationList()) {
+//                System.out.println("\t" + index + ". " + discoveredLocation.getLocationName() + " (recommended level: " + discoveredLocation.getLocationLevel() + ")");
+//                index++;
+//            }
+
+            int choice = InputUtil.intScanner();
+            switch (choice) {
+                case 0 -> {
+                    return;
+                }
+                case 1 -> this.eventService.randomRegionEventGenerate(this.hero, LocationType.FOREST,
+                        this.minimumRegionLevel, this.maximumRegionLevel);
+                case 2 -> heroCharacterInfoService.heroCharacterMenu(this.hero);
+                default -> {
+                    try {
+                        new LocationService().locationMenu(this.hero, locations.get(choice - 3));
+                    } catch (IndexOutOfBoundsException e) {
+                        PrintUtil.printEnterValidInput();
+                    }
+                }
+            }
+        }
+    }
 
     protected abstract List<Location> initializeLocationForRegion();
 

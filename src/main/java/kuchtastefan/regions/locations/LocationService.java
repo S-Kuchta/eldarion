@@ -67,22 +67,7 @@ public class LocationService {
 
         if (locationStage instanceof LocationStageQuestGiver) {
             location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
-        } /*else {
-            if (locationStage.isStageCompleted()) {
-                location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
-            }
-        }*/
-
-//        if (location.getLocationStages().get(locationStageOrder + 1) != null) {
-//            if (locationStageOrder == 0) {
-//                location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
-//
-//            } else if (location.getLocationStages().get(locationStageOrder - 1) != null
-//                    && location.getLocationStages().get(locationStageOrder - 1).isStageCompleted()) {
-//
-//                location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
-//            }
-//        }
+        }
 
         if (location.isCleared()) {
             System.out.println("\tLocation Cleared!");
@@ -111,7 +96,6 @@ public class LocationService {
         PrintUtil.printLongDivider();
 
         boolean isStageCompleted = locationStage.exploreStage(hero, location);
-
 
         if (isStageCompleted) {
             location.stageCompleted++;

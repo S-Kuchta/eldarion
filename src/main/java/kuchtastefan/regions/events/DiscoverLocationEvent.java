@@ -12,12 +12,11 @@ import java.util.List;
 public class DiscoverLocationEvent extends Event {
 
     private final List<Location> allLocations;
-    private final List<Location> discoveredLocations;
 
-    public DiscoverLocationEvent(int eventLevel, List<Location> allLocations, List<Location> discoveredLocations) {
+
+    public DiscoverLocationEvent(int eventLevel, List<Location> allLocations) {
         super(eventLevel);
         this.allLocations = allLocations;
-        this.discoveredLocations = discoveredLocations;
     }
 
     @Override

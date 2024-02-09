@@ -17,11 +17,10 @@ import java.util.List;
 public class EventService {
 
     private final List<Location> allLocations;
-    private final List<Location> discoveredLocations;
 
-    public EventService(List<Location> allLocations, List<Location> discoveredLocations) {
+
+    public EventService(List<Location> allLocations) {
         this.allLocations = allLocations;
-        this.discoveredLocations = discoveredLocations;
     }
 
     public void randomRegionEventGenerate(Hero hero, LocationType locationType, int minRegionLevel, int maxRegionLevel) {
@@ -59,7 +58,7 @@ public class EventService {
 
                 new CombatEvent(eventLevel, enemyList, locationType, 1, 3).eventOccurs(hero);
             }
-            case 3 -> new DiscoverLocationEvent(eventLevel, this.allLocations, this.discoveredLocations)
+            case 3 -> new DiscoverLocationEvent(eventLevel, this.allLocations)
                     .eventOccurs(hero);
             case 4 -> new FindItemEvent(eventLevel)
                     .eventOccurs(hero);

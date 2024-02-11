@@ -2,6 +2,7 @@ package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.actionsWIthDuration.ActionIncreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
@@ -23,7 +24,8 @@ public class PrintUtil {
 
     public static void printSpellDescription(Hero hero, Spell spell) {
 
-        System.out.print(spell.getSpellName() + " [Mana Cost: " + spell.getSpellManaCost() + "]");
+        System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
+                + " [Mana Cost: " + spell.getSpellManaCost() + "]");
         if (spell.getTurnCoolDown() > 0) {
             System.out.print("[CoolDown: "
                     + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
@@ -361,12 +363,14 @@ public class PrintUtil {
 
         System.out.println(craftingReagentItem.getName() + ", Item Type: " + craftingReagentItem.getCraftingReagentItemType()
                 + ", iLevel: " + craftingReagentItem.getItemLevel() + ", Item price: " + sellPrice + " golds");
-
     }
 
     public static void printActionDetails(Action action) {
         System.out.print("\t\t");
         System.out.print(ConsoleColor.YELLOW + "" + action.getActionName() + ConsoleColor.RESET + ": " + action.getCurrentActionValue());
+        if (action instanceof ActionIncreaseAbilityPoint) {
+            System.out.print(" " + ((ActionIncreaseAbilityPoint) action).getAbility());
+        }
         if (action instanceof ActionWithDuration) {
             System.out.print(" (duration: " + ((ActionWithDuration) action).getMaxActionTurns()
                     + " " + ((ActionWithDuration) action)
@@ -385,6 +389,14 @@ public class PrintUtil {
 
     public static void printIndexAndText(String index, String text) {
         System.out.print(ConsoleColor.CYAN + "\t" + index + ". " + ConsoleColor.RESET + text);
+    }
+
+    public static void printGameSettings(boolean gameSetting) {
+        if (!gameSetting) {
+            System.out.print(ConsoleColor.WHITE + "True" + ConsoleColor.RESET + " / False");
+        } else {
+            System.out.print("True / " + ConsoleColor.WHITE + "False" + ConsoleColor.RESET);
+        }
     }
 }
 

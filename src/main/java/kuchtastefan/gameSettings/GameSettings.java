@@ -1,7 +1,6 @@
 package kuchtastefan.gameSettings;
 
 import lombok.Getter;
-import lombok.Setter;
 
 public class GameSettings {
     @Getter
@@ -9,7 +8,7 @@ public class GameSettings {
     @Getter
     private static boolean showInformationAboutActionName = false;
     @Getter
-    private static boolean showSpellsOnCoolDown = true;
+    private static boolean hideSpellsOnCoolDown = true;
 
     public static void setPrintStringSlowly() {
         printStringSlowly = !printStringSlowly;
@@ -19,7 +18,7 @@ public class GameSettings {
         showInformationAboutActionName = !showInformationAboutActionName;
     }
 
-    public static void setShowSpellsOnCoolDown() {
-        showSpellsOnCoolDown = !showSpellsOnCoolDown;
+    public static void setHideSpellsOnCoolDown() {
+        hideSpellsOnCoolDown = !hideSpellsOnCoolDown;
     }
 }

@@ -76,7 +76,7 @@ public class BattleService {
                         if (choice.equals("X")) {
                             GameSettings.setShowInformationAboutActionName();
                         } else if (choice.equals("Y")) {
-                            GameSettings.setShowSpellsOnCoolDown();
+                            GameSettings.setHideSpellsOnCoolDown();
                         } else {
                             try {
                                 selectedHeroForShowSelected = choice;
@@ -126,7 +126,7 @@ public class BattleService {
 
                     if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
                         PrintUtil.printDivider();
-                        System.out.println(ConsoleColor.GREEN + "\t\tYou killed " + enemyInCombat.getName() + ConsoleColor.RESET);
+                        System.out.println(ConsoleColor.YELLOW_BOLD + "\t\tYou killed " + enemyInCombat.getName() + ConsoleColor.RESET);
                         PrintUtil.printDivider();
 
                         iterator.remove();
@@ -201,13 +201,17 @@ public class BattleService {
 
         System.out.println();
         PrintUtil.printIndexAndText("X", "Show/Hide action description");
+
         System.out.print("\t");
         PrintUtil.printIndexAndText("Y", "Show/Hide spells on CoolDown");
+        PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
+        System.out.print(" spells on CoolDown");
+
 
         int spellIndex = 0;
         System.out.println();
         for (Spell spell : hero.getCharacterSpellList()) {
-            if (GameSettings.isShowSpellsOnCoolDown()) {
+            if (GameSettings.isHideSpellsOnCoolDown()) {
                 if (spell.isCanSpellBeCasted()) {
                     System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
                     PrintUtil.printSpellDescription(hero, spell);

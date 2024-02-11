@@ -1,6 +1,8 @@
 package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.regions.locations.LocationsList;
+import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 
 @Getter
@@ -29,6 +31,11 @@ public class QuestClearLocationObjective extends QuestObjective {
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
-
+        String cleared = this.isCompleted() ? "Cleared" : "Not Cleared Yet";
+        System.out.println("\tClear "
+                + ConsoleColor.YELLOW
+                + LocationsList.getLocationList().get(this.locationId).getLocationName()
+                + ConsoleColor.RESET
+                + " -> " + cleared);
     }
 }

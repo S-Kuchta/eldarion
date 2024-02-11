@@ -15,7 +15,6 @@ import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.ForestRegionService;
-import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 

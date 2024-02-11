@@ -3,6 +3,7 @@ package kuchtastefan.quest.questObjectives;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,7 +26,7 @@ public class QuestKillObjective extends QuestObjective {
         Enemy enemy = EnemyList.getEnemyMap().get(this.questEnemyId);
         if (currentCountEnemyProgress <= this.countEnemyToKill) {
             System.out.println("\tKill " + this.countEnemyToKill + "x " + enemy.getEnemyRarity() + " "
-                    + enemy.getName() + " - " +
+                    + ConsoleColor.YELLOW + enemy.getName() + ConsoleColor.RESET + " - " +
                     "You have " + this.currentCountEnemyProgress +
                     " / " + this.countEnemyToKill + " killed");
         }

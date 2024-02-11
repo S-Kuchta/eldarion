@@ -4,6 +4,7 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.LocationType;
+import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 
 import java.util.Arrays;
@@ -34,7 +35,9 @@ public class QuestBringItemObjective extends QuestObjective {
         Item questItem = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
         hero.getHeroInventory().getHeroInventory().putIfAbsent(questItem, 0);
         if (hero.getHeroInventory().getHeroInventory().get(questItem) < this.itemDropCountNeeded) {
-            System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "
+            System.out.println("\tBring " + this.itemDropCountNeeded + "x "
+                    + ConsoleColor.YELLOW + questItem.getName() + ConsoleColor.RESET
+                    + " - You have: "
                     + hero.getHeroInventory().getHeroInventory().get(questItem) + " / " + this.itemDropCountNeeded);
         } else {
             System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "

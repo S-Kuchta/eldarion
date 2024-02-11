@@ -2,10 +2,8 @@ package kuchtastefan.regions.events;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.enemy.Enemy;
-import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
-import kuchtastefan.quest.questObjectives.QuestEnemy;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.service.BattleService;
 import kuchtastefan.utility.ConsoleColor;
@@ -14,7 +12,6 @@ import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -103,7 +100,6 @@ public class CombatEvent extends Event {
 
                     hero.addGolds(goldEarn);
                     hero.gainExperiencePoints(experiencePointGained);
-                    hero.getEnemyKilled().addEnemyKilled(randomEnemy.getName());
                     hero.checkQuestProgress(randomEnemy.getEnemyId());
                     hero.checkIfQuestObjectivesAndQuestIsCompleted();
                 }

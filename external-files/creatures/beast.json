@@ -2,6 +2,7 @@
   {
     "enemyId": 100,
     "name": "Wolf",
+    "enemyRarity": "COMMON",
     "abilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 3,
@@ -26,6 +27,7 @@
   {
     "enemyId": 101,
     "name": "Bear",
+    "enemyRarity": "COMMON",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 4,
@@ -47,6 +49,7 @@
   {
     "enemyId": 102,
     "name": "Alpha Wolf",
+    "enemyRarity": "COMMON",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 3,
@@ -71,6 +74,7 @@
   {
     "enemyId": 103,
     "name": "Coyote",
+    "enemyRarity": "COMMON",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,

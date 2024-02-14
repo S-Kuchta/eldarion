@@ -13,7 +13,7 @@ public class LocationStageFindItem extends LocationStage {
 
     @Override
     public boolean exploreStage(Hero hero, Location location) {
-        new FindItemEvent(location.getLocationId(), this.itemId);
+        new FindItemEvent(location.getLocationId(), this.itemId).eventOccurs(hero);
         return true;
     }
 

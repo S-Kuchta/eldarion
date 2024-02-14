@@ -5,9 +5,7 @@ import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestService;
 import kuchtastefan.utility.ConsoleColor;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class QuestGiverCharacter extends GameCharacter {
 
@@ -23,16 +21,31 @@ public class QuestGiverCharacter extends GameCharacter {
         this.baseName = name;
     }
 
+//    private void connectHeroQuestListWithCharacterQuestList(Hero hero) {
+////        for (Quest heroQuest : hero.getListOfAcceptedQuests()) {
+//        for (Map.Entry<Integer, Quest> questMap : hero.getListOfAcceptedQuests().entrySet()) {
+//            for (Quest quest : this.quests) {
+//                if (quest.equals(heroQuest)) {
+//                    this.quests.remove(quest);
+//                    this.quests.add(heroQuest);
+//                }
+//            }
+//        }
+//    }
+
     private void connectHeroQuestListWithCharacterQuestList(Hero hero) {
-        for (Quest heroQuest : hero.getListOfAcceptedQuests()) {
-            for (Quest quest : this.quests) {
-                if (quest.equals(heroQuest)) {
-                    this.quests.remove(quest);
-                    this.quests.add(heroQuest);
-                }
-            }
-        }
+//        for (Quest heroQuest : hero.getListOfAcceptedQuests()) {
+//        for (Map.Entry<Integer, Quest> questMap : hero.getListOfAcceptedQuests().entrySet()) {
+//            for (Quest quest : this.quests) {
+//                if (quest.equals(questMap.getValue())) {
+//                    this.quests.remove(quest);
+//                    this.quests.add(questMap.getValue());
+//                }
+//            }
+//        }
+
     }
+
 
     public void questGiverMenu(Hero hero) {
         connectHeroQuestListWithCharacterQuestList(hero);
@@ -55,11 +68,11 @@ public class QuestGiverCharacter extends GameCharacter {
         int numberOfCompletedQuests = 0;
 
         for (Quest quest : this.quests) {
-            if (hero.getListOfAcceptedQuests().contains(quest)) {
+            if (hero.getListOfAcceptedQuests().containsValue(quest)) {
                 haveQuestAvailable = true;
             }
 
-            if (hero.getListOfAcceptedQuests().contains(quest) && quest.isQuestCompleted() && !quest.isTurnedIn()) {
+            if (hero.getListOfAcceptedQuests().containsValue(quest) && quest.isQuestCompleted() && !quest.isTurnedIn()) {
                 haveQuestComplete = true;
             }
 
@@ -89,16 +102,24 @@ public class QuestGiverCharacter extends GameCharacter {
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
         boolean questCompleted = true;
-        for (Quest quest : hero.getListOfAcceptedQuests()) {
-            if (this.quests.contains(quest) && !quest.isTurnedIn()) {
+//        for (Quest quest : hero.getListOfAcceptedQuests()) {
+        for (Map.Entry<Integer, Quest> questMap : hero.getListOfAcceptedQuests().entrySet()) {
+            if (this.quests.contains(questMap.getValue()) && !questMap.getValue().isTurnedIn()) {
                 questCompleted = false;
                 break;
             }
         }
 
-        if (!new HashSet<>(hero.getListOfAcceptedQuests()).containsAll(this.quests)) {
-            questCompleted = false;
+        for (Quest quest : this.quests) {
+            if (!hero.getListOfAcceptedQuests().containsValue(quest)) {
+                questCompleted = false;
+                break;
+            }
         }
+
+//        if (!new HashSet<>(hero.getListOfAcceptedQuests()).containsAll(this.quests)) {
+//            questCompleted = false;
+//        }
 
         return questCompleted;
     }

@@ -74,6 +74,7 @@ public class ForestRegionService extends Region {
     protected List<Location> initializeLocationForRegion() {
         List<Location> locationList = new ArrayList<>();
         locationList.add(LocationsList.getLocationList().get(0));
+        locationList.add(LocationsList.getLocationList().get(1));
 //        locationList.add(new Location(0, "Enchanted Mine", 2, 5, LocationType.MINE, true));
 //        locationList.add(new Location(0, "Abyssal Hollows", 2, 10, LocationType.CAVE, true));
 //        locationList.add(new Location(0, "Ruins of Eldoria", 3, 10, LocationType.CASTLE, true));

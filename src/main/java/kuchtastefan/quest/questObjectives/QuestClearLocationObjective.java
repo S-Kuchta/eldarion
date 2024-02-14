@@ -16,7 +16,9 @@ public class QuestClearLocationObjective extends QuestObjective {
 
     @Override
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
-        if (!hero.getDiscoveredLocationList().isEmpty()) {
+        if (!hero.getDiscoveredLocationList().isEmpty()
+                && hero.getDiscoveredLocationList().get(this.locationId) != null) {
+
             if (hero.getDiscoveredLocationList().get(this.locationId).isCleared()) {
                 System.out.println("\t--> You completed " + getQuestObjectiveName() + " quest objective <--");
                 this.setCompleted(true);

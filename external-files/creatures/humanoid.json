@@ -10,15 +10,14 @@
       "INTELLECT": 1,
       "HASTE": 4,
       "CRITICAL_HIT_CHANCE": 3,
-      "HEALTH": 550,
+      "HEALTH": 50,
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
     "enemySpells": [
       101,
       103,
-      104,
-      105
+      104
     ],
     "level": 1,
     "locationType": [
@@ -116,8 +115,7 @@
     "enemySpells": [
       101,
       103,
-      104,
-      105
+      104
     ],
     "level": 2,
     "locationType": [

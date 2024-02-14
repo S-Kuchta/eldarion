@@ -64,6 +64,19 @@
         "itemsIdNeededToEnterStage": [
           103
         ]
+      },
+      "6": {
+        "type": "LocationStageCombat",
+        "stageName": "Necromancer chamber",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          204,
+          300,
+          300,
+          300,
+          300
+        ]
       }
     }
   },
@@ -99,7 +112,7 @@
       "2": {
         "type": "LocationStageFindItem",
         "stageName": "Tower Top Floor",
-        "stageDiscovered": false,
+        "stageDiscovered": true,
         "itemsIdNeededToEnterStage": [],
         "itemId": 104
       }

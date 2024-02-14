@@ -1,51 +1,23 @@
 package kuchtastefan.regions.events;
 
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
-import kuchtastefan.items.craftingItem.CraftingReagentItem;
-import kuchtastefan.items.craftingItem.CraftingReagentItemType;
-import kuchtastefan.regions.locations.LocationType;
-import kuchtastefan.utility.RandomNumberGenerator;
-
-import java.util.List;
 
 public class FindItemEvent extends Event {
 
+    private final int itemId;
 
-    public FindItemEvent(int eventLevel) {
+    public FindItemEvent(int eventLevel, int itemId) {
         super(eventLevel);
+        this.itemId = itemId;
     }
 
     @Override
     public boolean eventOccurs(Hero hero) {
-        CraftingReagentItem item = findRandomCraftingReagentItem();
-        int numberOfFindingItems = RandomNumberGenerator.getRandomNumber(0, 2);
-
-        if (numberOfFindingItems == 0) {
-            System.out.println("\t--> This is unlucky, you were clumsy and ruined " + item.getName() + " <--");
-            return true;
-        }
-
-        for (int i = 0; i < numberOfFindingItems; i++) {
-            if (item.getCraftingReagentItemType().equals(CraftingReagentItemType.ALCHEMY_REAGENT)) {
-                System.out.println("\t--> You gather " + item.getName() + " <--");
-            }
-
-            if (item.getCraftingReagentItemType().equals(CraftingReagentItemType.BLACKSMITH_REAGENT)) {
-                System.out.println("\t--> You mined " + item.getName() + " <--");
-            }
-        }
-
+        Item item = ItemsLists.getItemMapIdItem().get(this.itemId);
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-        hero.checkQuestProgress(null);
-        hero.checkIfQuestObjectivesAndQuestIsCompleted();
-
+        System.out.println("\tYou found " + item.getName());
         return true;
-
-    }
-
-    private CraftingReagentItem findRandomCraftingReagentItem() {
-        List<CraftingReagentItem> craftingReagentItemList = ItemsLists.returnCraftingReagentItemListByItemLevel(this.eventLevel, 0);
-        return craftingReagentItemList.get(RandomNumberGenerator.getRandomNumber(0, craftingReagentItemList.size() - 1));
     }
 }

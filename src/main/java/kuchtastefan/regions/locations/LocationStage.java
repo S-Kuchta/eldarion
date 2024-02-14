@@ -32,4 +32,9 @@ public abstract class LocationStage {
         }
         return true;
     }
+
+    public void afterSuccessfullyCompletedStage() {
+        this.completeStage();
+        this.stageCompleted = true;
+    }
 }

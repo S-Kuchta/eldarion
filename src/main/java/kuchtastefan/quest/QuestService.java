@@ -22,7 +22,11 @@ public class QuestService {
                 if (choice == 0) {
                     break;
                 }
-                this.selectedQuestForQuestGiverMenu(quests.get(choice - 1), hero, quests, name);
+
+                if (canBeQuestAccepted(quests.get(choice - 1), hero)) {
+                    this.selectedQuestForQuestGiverMenu(quests.get(choice - 1), hero, quests, name);
+                }
+
                 break;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("\tEnter valid input");
@@ -62,7 +66,9 @@ public class QuestService {
 
         int index = 1;
         for (Quest quest : quests) {
-            if ((quest.getQuestLevel() - 1) <= hero.getLevel()) {
+//            if ((quest.getQuestLevel() - 1) <= hero.getLevel()) {
+            if (canBeQuestAccepted(quest, hero)) {
+
                 PrintUtil.printIndexAndText(String.valueOf(index),
                         quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
                 if (quest.isTurnedIn()) {
@@ -72,9 +78,14 @@ public class QuestService {
                 } else if (hero.getListOfAcceptedQuests().contains(quest) && quest.isQuestCompleted()) {
                     System.out.print(" - " + ConsoleColor.YELLOW + "?" + ConsoleColor.RESET + " - ");
                 }
-                index++;
-                System.out.println();
+            } else {
+                PrintUtil.printIndexAndText(String.valueOf(index),
+                        quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
+                System.out.print(ConsoleColor.WHITE + " - ! - " + ConsoleColor.RESET);
             }
+
+            index++;
+            System.out.println();
         }
     }
 
@@ -151,6 +162,25 @@ public class QuestService {
         System.out.println();
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             questObjective.printQuestObjectiveAssignment(hero);
+        }
+    }
+
+    private boolean canBeQuestAccepted(Quest quest, Hero hero) {
+
+        if (quest instanceof QuestChain) {
+            if (((QuestChain) quest).canBeQuestAccepted(hero)) {
+                return true;
+            } else {
+                System.out.println("\tQuest can not be accepted yet!");
+                return false;
+            }
+        }
+
+        if ((quest.getQuestLevel() - 1) <= hero.getLevel()) {
+            return true;
+        } else {
+            System.out.println("\tYou do not meet minimal level requirements for this Quest!");
+            return false;
         }
     }
 }

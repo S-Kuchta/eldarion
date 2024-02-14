@@ -20,16 +20,12 @@ public class CombatEvent extends Event {
     private final BattleService battleService;
     private final List<Enemy> enemies;
     private final LocationType locationType;
-    private final int minimumEnemiesCount;
-    private final int maximumEnemiesCount;
 
-    public CombatEvent(int eventLevel, List<Enemy> enemies, LocationType locationType, int minimumEnemiesCount, int maximumEnemiesCount) {
+    public CombatEvent(int eventLevel, List<Enemy> enemies, LocationType locationType) {
         super(eventLevel);
         this.battleService = new BattleService();
         this.enemies = enemies;
         this.locationType = locationType;
-        this.minimumEnemiesCount = minimumEnemiesCount;
-        this.maximumEnemiesCount = maximumEnemiesCount;
     }
 
     @Override

@@ -56,11 +56,11 @@ public class EventService {
                             suitableEnemies.get(randomNumberForEnemyOrder).getEnemyRarity()));
                 }
 
-                new CombatEvent(eventLevel, enemyList, locationType, 1, 3).eventOccurs(hero);
+                new CombatEvent(eventLevel, enemyList, locationType).eventOccurs(hero);
             }
             case 3 -> new DiscoverLocationEvent(eventLevel, this.allLocations)
                     .eventOccurs(hero);
-            case 4 -> new FindItemEvent(eventLevel)
+            case 4 -> new GatherCraftingReagentItemEvent(eventLevel)
                     .eventOccurs(hero);
 
             default -> new NoOutcomeEvent(0).eventOccurs(hero);

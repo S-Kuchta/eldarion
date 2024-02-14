@@ -31,7 +31,7 @@ public class LocationStageCombat extends LocationStage {
     @Override
     public boolean exploreStage(Hero hero, Location location) {
         return new CombatEvent(location.getLocationLevel(), this.returnLocationEnemies(),
-                location.getLocationType(), 1, 1).eventOccurs(hero);
+                location.getLocationType()).eventOccurs(hero);
     }
 
     @Override

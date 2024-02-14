@@ -213,7 +213,7 @@ public class Hero extends GameCharacter {
      * check if enemy killed in CombatEvent belongs to some of accepted Quest.
      * If yes increase current count progress in questObjective
      * and print QuestObjectiveAssignment with QuestObjective progress.
-     * Use this method always before checkIfQuestObjectivesAndQuestIsCompleted() method.
+     * If you need to use this method, Use it always before checkIfQuestObjectivesAndQuestIsCompleted() method.
      */
     public void checkQuestProgress(Integer questEnemyId) {
 

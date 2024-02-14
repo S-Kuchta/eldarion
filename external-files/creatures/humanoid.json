@@ -97,5 +97,32 @@
       "MINE"
     ],
     "maxStack": 5
+  },
+  {
+    "enemyId": 204,
+    "name": "Necromancer",
+    "enemyRarity": "BOSS",
+    "abilities": {
+      "ATTACK": 4,
+      "RESIST_DAMAGE": 2,
+      "STRENGTH": 2,
+      "INTELLECT": 10,
+      "HASTE": 4,
+      "CRITICAL_HIT_CHANCE": 3,
+      "HEALTH": 250,
+      "MANA": 200,
+      "ABSORB_DAMAGE": 0
+    },
+    "enemySpells": [
+      101,
+      103,
+      104,
+      105
+    ],
+    "level": 2,
+    "locationType": [
+      "MINE"
+    ],
+    "maxStack": 5
   }
 ]

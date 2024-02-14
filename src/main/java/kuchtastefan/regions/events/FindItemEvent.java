@@ -18,6 +18,7 @@ public class FindItemEvent extends Event {
         Item item = ItemsLists.getItemMapIdItem().get(this.itemId);
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
         System.out.println("\tYou found " + item.getName());
+        hero.checkIfQuestObjectivesAndQuestIsCompleted();
         return true;
     }
 }

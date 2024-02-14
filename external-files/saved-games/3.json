@@ -1,0 +1,302 @@
+{
+  "hero": {
+    "characterClass": "MAGE",
+    "unspentAbilityPoints": 0,
+    "heroGold": 150.0,
+    "experiencePoints": 0.0,
+    "equippedItem": {
+      "WEAPON": {
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BODY": {
+        "wearableItemType": "BODY",
+        "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "BOOTS": {
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      },
+      "HEAD": {
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "STRENGTH": 0,
+          "MANA": 0,
+          "HASTE": 0,
+          "RESIST_DAMAGE": 0,
+          "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "INTELLECT": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "name": "No item",
+        "price": 0.0,
+        "itemLevel": 0
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "STRENGTH": 0,
+      "MANA": 0,
+      "HASTE": 0,
+      "RESIST_DAMAGE": 0,
+      "ABSORB_DAMAGE": 0,
+      "ATTACK": 0,
+      "CRITICAL_HIT_CHANCE": 0,
+      "HEALTH": 0,
+      "INTELLECT": 0
+    },
+    "heroInventory": {
+      "heroInventory": {}
+    },
+    "experiencePointsService": {
+      "neededExperiencePointsForNewLevel": 0.0
+    },
+    "listOfAcceptedQuests": [],
+    "learnedSpells": {},
+    "discoveredLocationList": {},
+    "name": "1",
+    "level": 1,
+    "abilities": {
+      "STRENGTH": 5,
+      "MANA": 60,
+      "HASTE": 40,
+      "RESIST_DAMAGE": 40,
+      "ATTACK": 50,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 10,
+      "HEALTH": 250,
+      "INTELLECT": 20
+    },
+    "maxAbilities": {
+      "STRENGTH": 5,
+      "MANA": 60,
+      "HASTE": 40,
+      "RESIST_DAMAGE": 40,
+      "ATTACK": 50,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 10,
+      "HEALTH": 250,
+      "INTELLECT": 20
+    },
+    "currentAbilities": {
+      "STRENGTH": 5,
+      "MANA": 60,
+      "HASTE": 40,
+      "RESIST_DAMAGE": 40,
+      "ATTACK": 50,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 10,
+      "HEALTH": 250,
+      "INTELLECT": 20
+    },
+    "regionActionsWithDuration": [],
+    "battleActionsWithDuration": [],
+    "characterSpellList": [
+      {
+        "spellId": 200,
+        "spellName": "Weapon Attack",
+        "spellDescription": "Attack with weapon",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 3,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "ATTACK": 1,
+          "STRENGTH": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 0,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
+      },
+      {
+        "spellId": 201,
+        "spellName": "Fireball",
+        "spellDescription": "Cast a fireball",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 5,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          },
+          {
+            "type": "ActionDealDamageOverTime",
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "DAMAGE_OVER_TIME",
+            "maxActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1,
+          "ATTACK": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 10,
+        "turnCoolDown": 2,
+        "currentTurnCoolDown": 3,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
+      },
+      {
+        "spellId": 202,
+        "spellName": "Freeze Enemy",
+        "spellDescription": "Cast ice cube.",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          },
+          {
+            "type": "ActionStun",
+            "maxActionTurns": 2,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "STUN",
+            "maxActionValue": 0,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1,
+          "ATTACK": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 20,
+        "turnCoolDown": 5,
+        "currentTurnCoolDown": 6,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
+      },
+      {
+        "spellId": 203,
+        "spellName": "Ice block",
+        "spellDescription": "Cast ice block.",
+        "spellActions": [
+          {
+            "type": "ActionInvulnerability",
+            "maxActionTurns": 2,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "INVULNERABILITY",
+            "maxActionValue": 0,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "spellLevel": 0,
+        "spellManaCost": 30,
+        "turnCoolDown": 7,
+        "currentTurnCoolDown": 8,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE"
+      }
+    ],
+    "canPerformAction": true
+  },
+  "level": 1,
+  "hintUtil": {
+    "BLACKSMITH_HINT": {
+      "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
+      "showed": false
+    }
+  },
+  "regionActionsWithDuration": [],
+  "itemList": {}
+}

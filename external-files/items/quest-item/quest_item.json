@@ -22,5 +22,17 @@
     "name": "Key to Treasure room in Enchanted Mines",
     "price": 0,
     "itemLevel": 2
+  },
+  {
+    "itemId": 104,
+    "name": "Book of Elders",
+    "price": 0,
+    "itemLevel": 2
+  },
+  {
+    "itemId": 105,
+    "name": "Necromancer Staff",
+    "price": 0,
+    "itemLevel": 2
   }
 ]

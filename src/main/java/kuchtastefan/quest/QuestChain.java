@@ -22,6 +22,8 @@ public class QuestChain extends Quest {
     }
 
     public boolean canBeQuestAccepted(Hero hero) {
-        return hero.getListOfAcceptedQuests().get(this.previousQuestId).isTurnedIn();
+        if (!hero.getListOfAcceptedQuests().isEmpty()) {
+            return hero.getListOfAcceptedQuests().get(this.previousQuestId).isTurnedIn();
+        }
     }
 }

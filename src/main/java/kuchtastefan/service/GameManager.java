@@ -159,6 +159,9 @@ public class GameManager {
 
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("High Priestess Elara", 8);
         questGiverCharacter.addQuest(QuestList.questList.get(3));
+        questGiverCharacter.addQuest(QuestList.questList.get(5));
+        questGiverCharacter.addQuest(QuestList.questList.get(6));
+
         questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
         PrintUtil.printDivider();

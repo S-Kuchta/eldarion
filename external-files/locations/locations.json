@@ -66,5 +66,43 @@
         ]
       }
     }
+  },
+  {
+    "locationId": 1,
+    "locationName": "Tower of Damned",
+    "locationLevel": 2,
+    "locationType": "TOWER",
+    "canLocationBeExplored": true,
+    "locationStages": {
+      "0": {
+        "type": "LocationStageCombat",
+        "stageName": "Tower Enter",
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          200,
+          200
+        ]
+      },
+      "1": {
+        "type": "LocationStageCombat",
+        "stageName": "Tower Ground Floor",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          200,
+          200,
+          201,
+          201
+        ]
+      },
+      "2": {
+        "type": "LocationStageFindItem",
+        "stageName": "Tower Top Floor",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemId": 104
+      }
+    }
   }
 ]

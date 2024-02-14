@@ -12,14 +12,10 @@ import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.items.questItem.QuestItem;
 import kuchtastefan.items.wearableItem.WearableItem;
-import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
-import kuchtastefan.quest.questObjectives.QuestClearLocationObjective;
-import kuchtastefan.quest.questObjectives.QuestKillObjective;
-import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.regions.locations.LocationStage;
-import kuchtastefan.regions.locations.LocationStageCombat;
-import kuchtastefan.regions.locations.LocationStageFindTreasure;
-import kuchtastefan.regions.locations.LocationStageQuestGiver;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestChain;
+import kuchtastefan.quest.questObjectives.*;
+import kuchtastefan.regions.locations.*;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
 
 
@@ -54,7 +50,8 @@ public class RuntimeTypeAdapterFactoryUtil {
             .of(QuestObjective.class)
             .registerSubtype(QuestKillObjective.class)
             .registerSubtype(QuestBringItemObjective.class)
-            .registerSubtype(QuestClearLocationObjective.class);
+            .registerSubtype(QuestClearLocationObjective.class)
+            .registerSubtype(QuestFindObjective.class);
 
     public static final RuntimeTypeAdapterFactory<? extends Item> itemsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Item.class)
@@ -68,7 +65,13 @@ public class RuntimeTypeAdapterFactoryUtil {
             .of(LocationStage.class)
             .registerSubtype(LocationStageQuestGiver.class)
             .registerSubtype(LocationStageCombat.class)
-            .registerSubtype(LocationStageFindTreasure.class);
+            .registerSubtype(LocationStageFindTreasure.class)
+            .registerSubtype(LocationStageFindItem.class);
+
+    public static final RuntimeTypeAdapterFactory<? extends Quest> questRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
+            .of(Quest.class)
+            .registerSubtype(Quest.class)
+            .registerSubtype(QuestChain.class);
 
 
 //    public static final RuntimeTypeAdapterFactory<Spell> spellObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory

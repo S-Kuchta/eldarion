@@ -25,7 +25,6 @@ import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
-import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationsList;
 import kuchtastefan.utility.InputUtil;
@@ -45,17 +44,18 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileService {
-    private final Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
+    private final Gson gson = new GsonBuilder()
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationStageRuntimeTypeAdapterFactory)
-//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsWithDurationTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
-//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.spellObjectiveRuntimeTypeAdapterFactory)
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
-    public void saveGame(Hero hero, int currentLevel/*, ForestRegionService forestRegionService*/) {
-        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, HintUtil.getHintList(), /*forestRegionService.getDiscoveredLocations(),*/ hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
+    public void saveGame(Hero hero, int currentLevel) {
+        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, HintUtil.getHintList(),
+                hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
 
         while (true) {
             System.out.println("How do you want to name your save?");

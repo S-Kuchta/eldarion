@@ -1,5 +1,6 @@
 [
   {
+    "type": "Quest",
     "questId": 0,
     "questName": "Shadow Raiders",
     "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
@@ -22,6 +23,7 @@
     }
   },
   {
+    "type": "Quest",
     "questId": 1,
     "questName": "Wolfs in the forest",
     "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us and revenge them.",
@@ -50,6 +52,7 @@
     }
   },
   {
+    "type": "Quest",
     "questId": 2,
     "questName": "Bring me 10 Wolf meat",
     "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
@@ -79,6 +82,7 @@
     }
   },
   {
+    "type": "Quest",
     "questId": 3,
     "questName": "Kill Defias Boss",
     "questDescription": "There are bandits in Our mine called Enchanted Mine. Please clear our mine, kill it's boss and bring us his head!.",
@@ -107,7 +111,88 @@
     }
   },
   {
+    "type": "Quest",
     "questId": 4,
+    "questName": "Clear Enchanted Mine",
+    "questDescription": "Please clear our mine.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestClearLocationObjective",
+        "questObjectiveName": "Clear Enchanted Mine",
+        "locationId": 0
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        200
+      ],
+      "goldsReward": 50.0,
+      "experiencePointsReward": 100.0,
+      "questLevel": 2
+    }
+  },
+  {
+    "type": "Quest",
+    "questId": 5,
+    "questName": "Finding the Lost Book",
+    "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestFindObjective",
+        "questObjectiveName": "Find the Book of Elders",
+        "objectiveItemId": 104
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        200
+      ],
+      "goldsReward": 50.0,
+      "experiencePointsReward": 100.0,
+      "questLevel": 2
+    }
+  },
+  {
+    "type": "QuestChain",
+    "questId": 6,
+    "previousQuestId": 5,
+    "questName": "Explore the Cave and Defeat the Necromancer",
+    "questDescription": "Venture into the depths of Whispering Caves and confront the Necromancer. Defeat him and retrieve his Necromancer Staff, a source of dark power that must not fall into the wrong hands.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestClearLocationObjective",
+        "questObjectiveName": "Whispering Caves",
+        "locationId": 0
+      },
+      {
+        "type": "QuestBringItemObjective",
+        "questObjectiveName": "Retrieve Necromancer Staff",
+        "itemDropFromEnemy": [
+          204
+        ],
+        "objectiveItemId": 105,
+        "itemDropCountNeeded": 1,
+        "locationsType": [
+          "MINE"
+        ]
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        105
+      ],
+      "goldsReward": 80.0,
+      "experiencePointsReward": 100.0,
+      "questLevel": 2
+    }
+  },
+  {
+    "type": "QuestChain",
+    "questId": 7,
+    "previousQuestId": 6,
     "questName": "Clear Enchanted Mine",
     "questDescription": "Please clear our mine.",
     "questLevel": 2,

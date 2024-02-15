@@ -25,6 +25,7 @@ import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestList;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationsList;
 import kuchtastefan.utility.InputUtil;
@@ -37,7 +38,6 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -349,25 +349,24 @@ public class FileService {
         return enemies;
     }
 
-    public List<Quest> importQuestsListFromFile() {
+    public void importQuestsListFromFile() {
         String path = "external-files/quests";
-        List<Quest> questList = new ArrayList<>();
+
         try {
-            List<Quest> quests;
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                quests = this.gson.fromJson(reader, new TypeToken<List<Quest>>() {
+                List<Quest> quests = this.gson.fromJson(reader, new TypeToken<List<Quest>>() {
                 }.getType());
 
-                questList.addAll(quests);
+                for (Quest quest : quests) {
+                    QuestList.mapIdQuest.put(quest.getQuestId(), quest);
+                }
+
                 reader.close();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-        questList.sort(Comparator.comparingInt(Quest::getQuestId));
-        return questList;
     }
 
     public List<Spell> importSpellsFromFile() {

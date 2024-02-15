@@ -19,7 +19,7 @@ public class LocationStageQuestGiver extends LocationStage {
     @Override
     public boolean exploreStage(Hero hero, Location location) {
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter(this.questGiverName, 8);
-        questGiverCharacter.addQuest(QuestList.questList.get(this.questId));
+        questGiverCharacter.addQuest(QuestList.mapIdQuest.get(this.questId));
         questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
         questGiverCharacter.questGiverMenu(hero);
 

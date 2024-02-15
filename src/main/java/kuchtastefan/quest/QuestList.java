@@ -1,9 +1,9 @@
 package kuchtastefan.quest;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class QuestList {
-    public static List<Quest> questList = new ArrayList<>();
+    public static Map<Integer, Quest> mapIdQuest = new HashMap<>();
 
 }

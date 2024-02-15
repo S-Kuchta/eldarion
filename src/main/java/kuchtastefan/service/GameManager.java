@@ -125,7 +125,7 @@ public class GameManager {
 //        questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
         QuestGiverCharacter questGiverCharacter1 = new QuestGiverCharacter("Devom Of Cremora", 8);
-        questGiverCharacter1.addQuest(QuestList.questList.get(2));
+        questGiverCharacter1.addQuest(QuestList.mapIdQuest.get(2));
         questGiverCharacter1.setNameBasedOnQuestsAvailable(this.hero);
 
         PrintUtil.printDivider();
@@ -158,9 +158,9 @@ public class GameManager {
                 ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
 
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("High Priestess Elara", 8);
-        questGiverCharacter.addQuest(QuestList.questList.get(3));
-        questGiverCharacter.addQuest(QuestList.questList.get(5));
-        questGiverCharacter.addQuest(QuestList.questList.get(6));
+        questGiverCharacter.addQuest(QuestList.mapIdQuest.get(3));
+        questGiverCharacter.addQuest(QuestList.mapIdQuest.get(5));
+        questGiverCharacter.addQuest(QuestList.mapIdQuest.get(6));
 
         questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
@@ -199,11 +199,12 @@ public class GameManager {
         ItemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
         ItemsLists.initializeAllItemsMapToStringItemMap();
 
-        QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
+//        QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
 
         SpellsList.getSpellList().addAll(this.fileService.importSpellsFromFile());
         EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
+        this.fileService.importQuestsListFromFile();
         this.fileService.importLocationsFromFile();
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 5);

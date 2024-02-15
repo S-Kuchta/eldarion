@@ -75,10 +75,6 @@ public abstract class Region {
                 System.out.println();
                 index++;
             }
-//            for (Location discoveredLocation : this.hero.getDiscoveredLocationList()) {
-//                System.out.println("\t" + index + ". " + discoveredLocation.getLocationName() + " (recommended level: " + discoveredLocation.getLocationLevel() + ")");
-//                index++;
-//            }
 
             int choice = InputUtil.intScanner();
             switch (choice) {

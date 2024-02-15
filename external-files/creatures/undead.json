@@ -2,6 +2,7 @@
   {
     "enemyId": 300,
     "name": "Weak Zombie",
+    "enemyRarity": "COMMON",
     "abilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 3,
@@ -27,6 +28,7 @@
   {
     "enemyId": 301,
     "name": "NightBane Dark Runner",
+    "enemyRarity": "COMMON",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 4,
@@ -48,6 +50,7 @@
   {
     "enemyId": 302,
     "name": "Insane Ghoul",
+    "enemyRarity": "RARE",
     "abilities": {
       "ATTACK": 7,
       "RESIST_DAMAGE": 3,

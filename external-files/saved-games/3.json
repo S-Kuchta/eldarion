@@ -1,9 +1,9 @@
 {
   "hero": {
     "characterClass": "MAGE",
-    "unspentAbilityPoints": 0,
-    "heroGold": 150.0,
-    "experiencePoints": 0.0,
+    "unspentAbilityPoints": 2,
+    "heroGold": 587.0,
+    "experiencePoints": 820.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
@@ -12,8 +12,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -30,8 +30,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -48,8 +48,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -66,8 +66,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -84,8 +84,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -101,53 +101,957 @@
       "MANA": 0,
       "HASTE": 0,
       "RESIST_DAMAGE": 0,
-      "ATTACK": 0,
       "ABSORB_DAMAGE": 0,
+      "ATTACK": 0,
       "CRITICAL_HIT_CHANCE": 0,
       "HEALTH": 0,
       "INTELLECT": 0
     },
     "heroInventory": {
-      "heroInventory": {}
+      "heroInventory": [
+        [
+          {
+            "type": "QuestItem",
+            "itemId": 102,
+            "name": "Boss Head",
+            "price": 0.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "QuestItem",
+            "itemId": 100,
+            "name": "Wolf meat",
+            "price": 0.0,
+            "itemLevel": 2
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Old kitchen knife",
+            "price": 5.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Tongs",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          5
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Lute",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "itemId": 701,
+            "name": "Silver ore",
+            "price": 25.0,
+            "itemLevel": 3
+          },
+          3
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Silver Plate",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "itemId": 800,
+            "name": "DeathBloom",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          7
+        ],
+        [
+          {
+            "type": "ConsumableItem",
+            "consumableItemType": "FOOD",
+            "actionList": [
+              {
+                "type": "ActionRestoreHealth",
+                "actionName": "HEAL",
+                "maxActionValue": 20,
+                "currentActionValue": 20,
+                "actionEffectOn": "SPELL_CASTER",
+                "chanceToPerformAction": 0,
+                "canBeActionCriticalHit": false
+              }
+            ],
+            "itemId": 1001,
+            "name": "Bread",
+            "price": 15.0,
+            "itemLevel": 1
+          },
+          3
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Glamour",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Silver Kitchen Fork",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Empty Skooma Bottle",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Saw",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Silver Kitchen Spoon",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Wooden Bowl",
+            "price": 5.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Gold Necklace",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "HANDS",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 400,
+            "name": "Basic hands",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "STRENGTH": 2,
+              "RESIST_DAMAGE": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 205,
+            "name": "ASH BRINGER",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          5
+        ],
+        [
+          {
+            "type": "ConsumableItem",
+            "consumableItemType": "POTION",
+            "actionList": [
+              {
+                "type": "ActionRestoreHealth",
+                "actionName": "HEAL",
+                "maxActionValue": 20,
+                "currentActionValue": 20,
+                "actionEffectOn": "SPELL_CASTER",
+                "chanceToPerformAction": 0,
+                "canBeActionCriticalHit": false
+              }
+            ],
+            "itemId": 900,
+            "name": "Minor health potion",
+            "price": 20.0,
+            "itemLevel": 1
+          },
+          4
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 2,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 200,
+            "name": "Iron sword of Attack",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "QuestItem",
+            "itemId": 105,
+            "name": "Necromancer Staff",
+            "price": 0.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Gold Cutlery",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          3
+        ],
+        [
+          {
+            "type": "ConsumableItem",
+            "consumableItemType": "POTION",
+            "actionList": [
+              {
+                "type": "ActionRestoreHealth",
+                "actionName": "HEAL",
+                "maxActionValue": 15,
+                "currentActionValue": 15,
+                "actionEffectOn": "SPELL_CASTER",
+                "chanceToPerformAction": 0,
+                "canBeActionCriticalHit": false
+              },
+              {
+                "type": "ActionRestoreHealthOverTime",
+                "maxActionTurns": 3,
+                "currentActionTurn": 0,
+                "actionMaxStacks": 1,
+                "actionCurrentStacks": 0,
+                "actionDurationType": "BATTLE_ACTION",
+                "actionName": "HEAL_OVER_TIME",
+                "maxActionValue": 5,
+                "currentActionValue": 5,
+                "actionEffectOn": "SPELL_CASTER",
+                "chanceToPerformAction": 0,
+                "canBeActionCriticalHit": false
+              }
+            ],
+            "itemId": 901,
+            "name": "Big health potion",
+            "price": 50.0,
+            "itemLevel": 2
+          },
+          3
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Flute",
+            "price": 9.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Flower Basket",
+            "price": 9.0,
+            "itemLevel": 0
+          },
+          3
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Bucket",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Platter",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Haft",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Drum",
+            "price": 5.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Gold Sapphire Ring",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "HEAD",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 300,
+            "name": "Basic helmet",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Clothes Iron",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Fishing Rod",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "QuestItem",
+            "itemId": 103,
+            "name": "Key to Treasure room in Enchanted Mines",
+            "price": 0.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Empty Mead Bottle",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Gold Plate",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Torture Tools",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Burned Book",
+            "price": 5.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BOOTS",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 500,
+            "name": "Basic boots",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Chain",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Jug with Silver decorating",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Gold Pearl Necklace",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Embalming Tool",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "itemId": 700,
+            "name": "Iron ore",
+            "price": 10.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "ConsumableItem",
+            "consumableItemType": "FOOD",
+            "actionList": [
+              {
+                "type": "ActionRestoreHealth",
+                "actionName": "HEAL",
+                "maxActionValue": 25,
+                "currentActionValue": 25,
+                "actionEffectOn": "SPELL_CASTER",
+                "chanceToPerformAction": 0,
+                "canBeActionCriticalHit": false
+              },
+              {
+                "type": "ActionIncreaseAbilityPoint",
+                "ability": "ATTACK",
+                "maxActionTurns": 10,
+                "currentActionTurn": 0,
+                "actionMaxStacks": 1,
+                "actionCurrentStacks": 0,
+                "actionDurationType": "REGION_ACTION",
+                "actionName": "INCREASE_ABILITY_POINTS",
+                "maxActionValue": 1,
+                "currentActionValue": 1,
+                "actionEffectOn": "SPELL_CASTER",
+                "chanceToPerformAction": 0,
+                "canBeActionCriticalHit": false
+              }
+            ],
+            "itemId": 1000,
+            "name": "Goulash",
+            "price": 40.0,
+            "itemLevel": 2
+          },
+          2
+        ]
+      ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 0.0
+      "neededExperiencePointsForNewLevel": 960.0
     },
-    "listOfAcceptedQuests": {},
+    "heroAcceptedQuestIdQuest": {
+      "3": {
+        "type": "Quest",
+        "questId": 3,
+        "questName": "Kill Defias Boss",
+        "questDescription": "There are bandits in Our mine called Enchanted Mine. Please clear our mine, kill it\u0027s boss and bring us his head!.",
+        "questLevel": 2,
+        "questCompleted": true,
+        "questObjectives": [
+          {
+            "type": "QuestBringItemObjective",
+            "objectiveItemId": 102,
+            "itemDropFromEnemy": [
+              203
+            ],
+            "itemDropCountNeeded": 1,
+            "completed": true,
+            "questObjectiveName": "Bring bandit boss head"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            204
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0
+        },
+        "isTurnedIn": false
+      },
+      "5": {
+        "type": "Quest",
+        "questId": 5,
+        "questName": "Finding the Lost Book",
+        "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
+        "questLevel": 2,
+        "questCompleted": true,
+        "questObjectives": [
+          {
+            "type": "QuestFindObjective",
+            "objectiveItemId": 104,
+            "completed": true,
+            "questObjectiveName": "Find the Book of Elders"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            200
+          ],
+          "goldsReward": 50.0,
+          "experiencePointsReward": 100.0
+        },
+        "isTurnedIn": true
+      },
+      "4": {
+        "type": "Quest",
+        "questId": 4,
+        "questName": "Clear Enchanted Mine",
+        "questDescription": "Please clear our mine.",
+        "questLevel": 2,
+        "questCompleted": true,
+        "questObjectives": [
+          {
+            "type": "QuestClearLocationObjective",
+            "locationId": 0,
+            "completed": true,
+            "questObjectiveName": "Clear Enchanted Mine"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            200
+          ],
+          "goldsReward": 50.0,
+          "experiencePointsReward": 100.0
+        },
+        "isTurnedIn": false
+      },
+      "2": {
+        "type": "Quest",
+        "questId": 2,
+        "questName": "Bring me 10 Wolf meat",
+        "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestBringItemObjective",
+            "objectiveItemId": 100,
+            "itemDropFromEnemy": [
+              100,
+              102
+            ],
+            "itemDropCountNeeded": 10,
+            "completed": false,
+            "questObjectiveName": "Wolf Meat"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            204
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0
+        },
+        "isTurnedIn": false
+      },
+      "1": {
+        "type": "Quest",
+        "questId": 1,
+        "questName": "Wolfs in the forest",
+        "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us and revenge them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "questEnemyId": 100,
+            "countEnemyToKill": 5,
+            "currentCountEnemyProgress": 0,
+            "completed": false,
+            "questObjectiveName": "Kill Wolf"
+          },
+          {
+            "type": "QuestKillObjective",
+            "questEnemyId": 102,
+            "countEnemyToKill": 1,
+            "currentCountEnemyProgress": 1,
+            "completed": true,
+            "questObjectiveName": "Kill Alpha Wolf"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            204
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0
+        },
+        "isTurnedIn": false
+      },
+      "6": {
+        "type": "QuestChain",
+        "previousQuestId": 5,
+        "questId": 6,
+        "questName": "Explore the Cave and Defeat the Necromancer",
+        "questDescription": "Venture into the depths of Whispering Caves and confront the Necromancer. Defeat him and retrieve his Necromancer Staff, a source of dark power that must not fall into the wrong hands.",
+        "questLevel": 2,
+        "questCompleted": true,
+        "questObjectives": [
+          {
+            "type": "QuestClearLocationObjective",
+            "locationId": 0,
+            "completed": true,
+            "questObjectiveName": "Whispering Caves"
+          },
+          {
+            "type": "QuestBringItemObjective",
+            "objectiveItemId": 105,
+            "itemDropFromEnemy": [
+              204
+            ],
+            "itemDropCountNeeded": 1,
+            "completed": true,
+            "questObjectiveName": "Retrieve Necromancer Staff"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            105
+          ],
+          "goldsReward": 80.0,
+          "experiencePointsReward": 100.0
+        },
+        "isTurnedIn": false
+      },
+      "0": {
+        "type": "Quest",
+        "questId": 0,
+        "questName": "Shadow Raiders",
+        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
+        "questLevel": 2,
+        "questCompleted": true,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "questEnemyId": 200,
+            "countEnemyToKill": 3,
+            "currentCountEnemyProgress": 3,
+            "completed": true,
+            "questObjectiveName": "Kill bandit"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            103
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0
+        },
+        "isTurnedIn": true
+      }
+    },
     "learnedSpells": {},
-    "discoveredLocationList": {},
+    "discoveredLocationList": {
+      "1": {
+        "locationId": 1,
+        "locationName": "Tower of Damned",
+        "locationLevel": 2,
+        "stageTotal": 3,
+        "stageCompleted": 3,
+        "cleared": true,
+        "locationType": "TOWER",
+        "canLocationBeExplored": false,
+        "locationStages": {
+          "0": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null
+            ],
+            "stageName": "Tower Enter",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "1": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null,
+              null,
+              null
+            ],
+            "stageName": "Tower Ground Floor",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "2": {
+            "type": "LocationStageFindItem",
+            "itemId": 104,
+            "stageName": "Tower Top Floor",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          }
+        }
+      },
+      "0": {
+        "locationId": 0,
+        "locationName": "Enchanted Mine",
+        "locationLevel": 2,
+        "stageTotal": 7,
+        "stageCompleted": 7,
+        "cleared": true,
+        "locationType": "MINE",
+        "canLocationBeExplored": false,
+        "locationStages": {
+          "0": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null
+            ],
+            "stageName": "Mine main door",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "1": {
+            "type": "LocationStageQuestGiver",
+            "questId": 0,
+            "questGiverName": "Gandau Aulnernilt",
+            "stageName": "Mine Cell Block",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "2": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null
+            ],
+            "stageName": "Mine Upper Floor",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "3": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null,
+              null
+            ],
+            "stageName": "Mine Lower Floor",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "4": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null,
+              null,
+              null
+            ],
+            "stageName": "Mine Main Room",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "5": {
+            "type": "LocationStageFindTreasure",
+            "stageName": "Treasure Room",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": [
+              103
+            ]
+          },
+          "6": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "stageName": "Necromancer chamber",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          }
+        }
+      }
+    },
     "name": "1",
-    "level": 1,
+    "level": 2,
     "abilities": {
-      "STRENGTH": 5,
-      "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "STRENGTH": 1,
+      "MANA": 150,
+      "HASTE": 120,
+      "RESIST_DAMAGE": 50,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
+      "ATTACK": 80,
+      "CRITICAL_HIT_CHANCE": 50,
       "HEALTH": 250,
       "INTELLECT": 20
     },
     "maxAbilities": {
-      "STRENGTH": 5,
-      "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "STRENGTH": 1,
+      "MANA": 150,
+      "HASTE": 120,
+      "RESIST_DAMAGE": 50,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
+      "ATTACK": 80,
+      "CRITICAL_HIT_CHANCE": 50,
       "HEALTH": 250,
       "INTELLECT": 20
     },
     "currentAbilities": {
-      "STRENGTH": 5,
-      "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "STRENGTH": 1,
+      "MANA": 150,
+      "HASTE": 120,
+      "RESIST_DAMAGE": 50,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
+      "ATTACK": 80,
+      "CRITICAL_HIT_CHANCE": 50,
       "HEALTH": 250,
       "INTELLECT": 20
     },
@@ -163,7 +1067,7 @@
             "type": "ActionDealDamage",
             "actionName": "DAMAGE",
             "maxActionValue": 3,
-            "currentActionValue": 0,
+            "currentActionValue": 78,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
@@ -189,7 +1093,7 @@
             "type": "ActionDealDamage",
             "actionName": "DAMAGE",
             "maxActionValue": 5,
-            "currentActionValue": 0,
+            "currentActionValue": 210,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
@@ -203,7 +1107,7 @@
             "actionDurationType": "BATTLE_ACTION",
             "actionName": "DAMAGE_OVER_TIME",
             "maxActionValue": 1,
-            "currentActionValue": 0,
+            "currentActionValue": 84,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": false
@@ -294,9 +1198,576 @@
   "hintUtil": {
     "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": false
+      "showed": true
     }
   },
   "regionActionsWithDuration": [],
-  "itemList": {}
+  "itemList": [
+    [
+      {
+        "type": "QuestItem",
+        "itemId": 102,
+        "name": "Boss Head",
+        "price": 0.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "QuestItem",
+        "itemId": 100,
+        "name": "Wolf meat",
+        "price": 0.0,
+        "itemLevel": 2
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Old kitchen knife",
+        "price": 5.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Tongs",
+        "price": 18.0,
+        "itemLevel": 0
+      },
+      5
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Lute",
+        "price": 12.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "BLACKSMITH_REAGENT",
+        "itemId": 701,
+        "name": "Silver ore",
+        "price": 25.0,
+        "itemLevel": 3
+      },
+      3
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Silver Plate",
+        "price": 15.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "ALCHEMY_REAGENT",
+        "itemId": 800,
+        "name": "DeathBloom",
+        "price": 10.0,
+        "itemLevel": 2
+      },
+      7
+    ],
+    [
+      {
+        "type": "ConsumableItem",
+        "consumableItemType": "FOOD",
+        "actionList": [
+          {
+            "type": "ActionRestoreHealth",
+            "actionName": "HEAL",
+            "maxActionValue": 20,
+            "currentActionValue": 20,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 0,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "itemId": 1001,
+        "name": "Bread",
+        "price": 15.0,
+        "itemLevel": 1
+      },
+      3
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Glamour",
+        "price": 21.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Silver Kitchen Fork",
+        "price": 12.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Empty Skooma Bottle",
+        "price": 7.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Saw",
+        "price": 15.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Silver Kitchen Spoon",
+        "price": 12.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Wooden Bowl",
+        "price": 5.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Gold Necklace",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 400,
+        "name": "Basic hands",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 1,
+          "STRENGTH": 2,
+          "RESIST_DAMAGE": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 205,
+        "name": "ASH BRINGER",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      5
+    ],
+    [
+      {
+        "type": "ConsumableItem",
+        "consumableItemType": "POTION",
+        "actionList": [
+          {
+            "type": "ActionRestoreHealth",
+            "actionName": "HEAL",
+            "maxActionValue": 20,
+            "currentActionValue": 20,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 0,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "itemId": 900,
+        "name": "Minor health potion",
+        "price": 20.0,
+        "itemLevel": 1
+      },
+      4
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 2,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 200,
+        "name": "Iron sword of Attack",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "QuestItem",
+        "itemId": 105,
+        "name": "Necromancer Staff",
+        "price": 0.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Gold Cutlery",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      3
+    ],
+    [
+      {
+        "type": "ConsumableItem",
+        "consumableItemType": "POTION",
+        "actionList": [
+          {
+            "type": "ActionRestoreHealth",
+            "actionName": "HEAL",
+            "maxActionValue": 15,
+            "currentActionValue": 15,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 0,
+            "canBeActionCriticalHit": false
+          },
+          {
+            "type": "ActionRestoreHealthOverTime",
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionName": "HEAL_OVER_TIME",
+            "maxActionValue": 5,
+            "currentActionValue": 5,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 0,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "itemId": 901,
+        "name": "Big health potion",
+        "price": 50.0,
+        "itemLevel": 2
+      },
+      3
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Flute",
+        "price": 9.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Flower Basket",
+        "price": 9.0,
+        "itemLevel": 0
+      },
+      3
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Bucket",
+        "price": 3.0,
+        "itemLevel": 0
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Platter",
+        "price": 15.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Haft",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Drum",
+        "price": 5.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Gold Sapphire Ring",
+        "price": 25.0,
+        "itemLevel": 0
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 300,
+        "name": "Basic helmet",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Clothes Iron",
+        "price": 7.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Fishing Rod",
+        "price": 21.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "QuestItem",
+        "itemId": 103,
+        "name": "Key to Treasure room in Enchanted Mines",
+        "price": 0.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Empty Mead Bottle",
+        "price": 7.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Gold Plate",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Torture Tools",
+        "price": 18.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Burned Book",
+        "price": 5.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 500,
+        "name": "Basic boots",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Chain",
+        "price": 21.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Jug with Silver decorating",
+        "price": 18.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Gold Pearl Necklace",
+        "price": 25.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Embalming Tool",
+        "price": 7.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "BLACKSMITH_REAGENT",
+        "itemId": 700,
+        "name": "Iron ore",
+        "price": 10.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "ConsumableItem",
+        "consumableItemType": "FOOD",
+        "actionList": [
+          {
+            "type": "ActionRestoreHealth",
+            "actionName": "HEAL",
+            "maxActionValue": 25,
+            "currentActionValue": 25,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 0,
+            "canBeActionCriticalHit": false
+          },
+          {
+            "type": "ActionIncreaseAbilityPoint",
+            "ability": "ATTACK",
+            "maxActionTurns": 10,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "REGION_ACTION",
+            "actionName": "INCREASE_ABILITY_POINTS",
+            "maxActionValue": 1,
+            "currentActionValue": 1,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 0,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "itemId": 1000,
+        "name": "Goulash",
+        "price": 40.0,
+        "itemLevel": 2
+      },
+      2
+    ]
+  ]
 }

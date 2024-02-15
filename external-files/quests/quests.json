@@ -10,7 +10,7 @@
         "type": "QuestKillObjective",
         "questObjectiveName": "Kill bandit",
         "questEnemyId": 200,
-        "countEnemyToKill": 5
+        "countEnemyToKill": 3
       }
     ],
     "questReward": {

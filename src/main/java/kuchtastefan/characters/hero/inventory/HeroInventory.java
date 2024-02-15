@@ -12,7 +12,10 @@ import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -25,12 +28,9 @@ public class HeroInventory {
         this.heroInventory = new HashMap<>();
     }
 
-    public void addItemToItemList(Item item) {
-        addItemToInventory(item);
-    }
-
     public void addItemWithNewCopyToItemList(Item item) {
-        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
+        Gson gson = new GsonBuilder().
+                registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
         Class<? extends Item> itemClass = item.getClass();
 
         if (Item.class.isAssignableFrom(itemClass)) {
@@ -72,11 +72,15 @@ public class HeroInventory {
         return false;
     }
 
-    public void removeItemFromItemList(Item item) {
+    public void addItemToHeroInventory(Item item) {
+        addItemToInventory(item);
+    }
+
+    public void removeItemFromHeroInventory(Item item) {
         Map<Item, Integer> heroInventory = this.getHeroInventory();
 
         if (heroInventory == null) {
-            System.out.println("You don't have anything to remove");
+            System.out.println("\tYou don't have anything to remove");
             return;
         }
 
@@ -85,21 +89,11 @@ public class HeroInventory {
             Map.Entry<Item, Integer> entry = iterator.next();
             if (entry.getKey().equals(item) && entry.getValue() > 1) {
                 heroInventory.put(item, entry.getValue() - 1);
-                return;
+                break;
             } else if (entry.getKey().equals(item)) {
                 iterator.remove();
             }
         }
-    }
-
-    public List<WearableItem> returnInventoryWearableItemList() {
-        List<WearableItem> wearableItemList = new ArrayList<>();
-        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof WearableItem) {
-                wearableItemList.add((WearableItem) item.getKey());
-            }
-        }
-        return wearableItemList;
     }
 
     public Map<WearableItem, Integer> returnInventoryWearableItemMap() {
@@ -109,17 +103,8 @@ public class HeroInventory {
                 wearableItemMap.put((WearableItem) item.getKey(), item.getValue());
             }
         }
-        return wearableItemMap;
-    }
 
-    public List<CraftingReagentItem> returnInventoryCraftingReagentItemList() {
-        List<CraftingReagentItem> craftingReagentItems = new ArrayList<>();
-        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof CraftingReagentItem) {
-                craftingReagentItems.add((CraftingReagentItem) item.getKey());
-            }
-        }
-        return craftingReagentItems;
+        return wearableItemMap;
     }
 
     public Map<CraftingReagentItem, Integer> returnInventoryCraftingReagentItemMap() {
@@ -129,6 +114,7 @@ public class HeroInventory {
                 craftingReagentItems.put((CraftingReagentItem) item.getKey(), item.getValue());
             }
         }
+
         return craftingReagentItems;
     }
 
@@ -139,6 +125,7 @@ public class HeroInventory {
                 junkItems.put((JunkItem) item.getKey(), item.getValue());
             }
         }
+
         return junkItems;
     }
 
@@ -149,6 +136,7 @@ public class HeroInventory {
                 questItems.put((QuestItem) item.getKey(), item.getValue());
             }
         }
+
         return questItems;
     }
 
@@ -159,6 +147,7 @@ public class HeroInventory {
                 consumableItems.put((ConsumableItem) item.getKey(), item.getValue());
             }
         }
+
         return consumableItems;
     }
 

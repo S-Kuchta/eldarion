@@ -1,6 +1,5 @@
 package kuchtastefan.characters.enemy;
 
-import kuchtastefan.utility.LetterToNumberSpellLevel;
 import lombok.Getter;
 
 @Getter

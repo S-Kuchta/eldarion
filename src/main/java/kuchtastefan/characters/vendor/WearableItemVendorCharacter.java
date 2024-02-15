@@ -37,12 +37,12 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         PrintUtil.printShopHeader(hero, "Blacksmith");
         int index = 1;
         System.out.println("\t0. Go back");
+        PrintUtil.printIndexAndText("0", "Go back");
         if (hero.getHeroInventory().returnInventoryWearableItemMap().isEmpty()) {
             System.out.println("\tItem list is empty");
         } else {
             for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
                 wearableItemList.add(item.getKey());
-//                System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                 PrintUtil.printIndexAndText(String.valueOf(index), " (" + item.getValue() + "x) ");
                 PrintUtil.printItemDescription(item.getKey(), true, hero);
                 index++;

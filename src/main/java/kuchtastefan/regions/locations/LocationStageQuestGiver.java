@@ -2,7 +2,7 @@ package kuchtastefan.regions.locations;
 
 import kuchtastefan.characters.QuestGiverCharacter;
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.quest.QuestList;
+import kuchtastefan.quest.QuestMap;
 
 public class LocationStageQuestGiver extends LocationStage {
 
@@ -19,7 +19,7 @@ public class LocationStageQuestGiver extends LocationStage {
     @Override
     public boolean exploreStage(Hero hero, Location location) {
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter(this.questGiverName, 8);
-        questGiverCharacter.addQuest(QuestList.mapIdQuest.get(this.questId));
+        questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(this.questId));
         questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
         questGiverCharacter.questGiverMenu(hero);
 

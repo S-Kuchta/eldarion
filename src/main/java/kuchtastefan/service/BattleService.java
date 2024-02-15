@@ -200,13 +200,12 @@ public class BattleService {
         }
 
         System.out.println();
-        PrintUtil.printIndexAndText("X", "Show/Hide action description");
+        PrintUtil.printIndexAndText("X", "Hide action description ");
+        PrintUtil.printGameSettings(GameSettings.isShowInformationAboutActionName());
 
         System.out.print("\t");
-        PrintUtil.printIndexAndText("Y", "Show/Hide spells on CoolDown");
+        PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown ");
         PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
-        System.out.print(" spells on CoolDown");
-
 
         int spellIndex = 0;
         System.out.println();

@@ -12,8 +12,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -30,8 +30,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -48,8 +48,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -66,8 +66,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -84,8 +84,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -101,24 +101,14 @@
       "MANA": 0,
       "HASTE": 0,
       "RESIST_DAMAGE": 0,
-      "ATTACK": 0,
       "ABSORB_DAMAGE": 0,
+      "ATTACK": 0,
       "CRITICAL_HIT_CHANCE": 0,
       "HEALTH": 0,
       "INTELLECT": 0
     },
     "heroInventory": {
       "heroInventory": [
-        [
-          {
-            "type": "QuestItem",
-            "itemId": 100,
-            "name": "Wolf meat",
-            "price": 0.0,
-            "itemLevel": 2
-          },
-          0
-        ],
         [
           {
             "type": "QuestItem",
@@ -134,62 +124,9 @@
     "experiencePointsService": {
       "neededExperiencePointsForNewLevel": 0.0
     },
-    "enemyKilled": {
-      "enemyKilled": {},
-      "questEnemyKilled": {}
-    },
-    "listOfAcceptedQuests": [
-      {
-        "questId": 4,
-        "questName": "Clear Enchanted Mine",
-        "questDescription": "Please clear our mine.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestClearLocationObjective",
-            "locationId": 0,
-            "completed": false,
-            "questObjectiveName": "Clear Enchanted Mine"
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            200
-          ],
-          "goldsReward": 50.0,
-          "experiencePointsReward": 100.0
-        },
-        "isTurnedIn": false
-      },
-      {
-        "questId": 2,
-        "questName": "Bring me 10 Wolf meat",
-        "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestBringItemObjective",
-            "objectiveItemId": 100,
-            "itemDropFromEnemy": [
-              100,
-              102
-            ],
-            "itemDropCountNeeded": 10,
-            "completed": false
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            204
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0
-        },
-        "isTurnedIn": false
-      },
-      {
+    "heroAcceptedQuestIdQuest": {
+      "3": {
+        "type": "Quest",
         "questId": 3,
         "questName": "Kill Defias Boss",
         "questDescription": "There are bandits in Our mine called Enchanted Mine. Please clear our mine, kill it\u0027s boss and bring us his head!.",
@@ -216,72 +153,89 @@
         },
         "isTurnedIn": false
       },
-      {
-        "questId": 1,
-        "questName": "Wolfs in the forest",
-        "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us and revenge them.",
+      "5": {
+        "type": "Quest",
+        "questId": 5,
+        "questName": "Finding the Lost Book",
+        "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
         "questLevel": 2,
         "questCompleted": false,
         "questObjectives": [
           {
-            "type": "QuestKillObjective",
-            "questEnemyId": 100,
-            "countEnemyToKill": 5,
-            "currentCountEnemyProgress": 0,
-            "completed": false
-          },
-          {
-            "type": "QuestKillObjective",
-            "questEnemyId": 102,
-            "countEnemyToKill": 1,
-            "currentCountEnemyProgress": 0,
-            "completed": false
+            "type": "QuestFindObjective",
+            "objectiveItemId": 104,
+            "completed": false,
+            "questObjectiveName": "Find the Book of Elders"
           }
         ],
         "questReward": {
           "itemsReward": [
-            204
+            200
           ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0
+          "goldsReward": 50.0,
+          "experiencePointsReward": 100.0
+        },
+        "isTurnedIn": false
+      },
+      "4": {
+        "type": "Quest",
+        "questId": 4,
+        "questName": "Clear Enchanted Mine",
+        "questDescription": "Please clear our mine.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestClearLocationObjective",
+            "locationId": 0,
+            "completed": false,
+            "questObjectiveName": "Clear Enchanted Mine"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            200
+          ],
+          "goldsReward": 50.0,
+          "experiencePointsReward": 100.0
         },
         "isTurnedIn": false
       }
-    ],
+    },
     "learnedSpells": {},
     "discoveredLocationList": {},
     "name": "1",
     "level": 1,
     "abilities": {
-      "STRENGTH": 5,
-      "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "STRENGTH": 1,
+      "MANA": 150,
+      "HASTE": 120,
+      "RESIST_DAMAGE": 50,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
+      "ATTACK": 80,
+      "CRITICAL_HIT_CHANCE": 50,
       "HEALTH": 250,
       "INTELLECT": 20
     },
     "maxAbilities": {
-      "STRENGTH": 5,
-      "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "STRENGTH": 1,
+      "MANA": 150,
+      "HASTE": 120,
+      "RESIST_DAMAGE": 50,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
+      "ATTACK": 80,
+      "CRITICAL_HIT_CHANCE": 50,
       "HEALTH": 250,
       "INTELLECT": 20
     },
     "currentAbilities": {
-      "STRENGTH": 5,
-      "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "STRENGTH": 1,
+      "MANA": 150,
+      "HASTE": 120,
+      "RESIST_DAMAGE": 50,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
+      "ATTACK": 80,
+      "CRITICAL_HIT_CHANCE": 50,
       "HEALTH": 250,
       "INTELLECT": 20
     },
@@ -428,21 +382,11 @@
   "hintUtil": {
     "BLACKSMITH_HINT": {
       "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
-      "showed": true
+      "showed": false
     }
   },
   "regionActionsWithDuration": [],
   "itemList": [
-    [
-      {
-        "type": "QuestItem",
-        "itemId": 100,
-        "name": "Wolf meat",
-        "price": 0.0,
-        "itemLevel": 2
-      },
-      0
-    ],
     [
       {
         "type": "QuestItem",

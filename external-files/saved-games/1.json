@@ -12,8 +12,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -30,8 +30,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -48,8 +48,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -66,8 +66,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -84,8 +84,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -101,8 +101,8 @@
       "MANA": 0,
       "HASTE": 0,
       "RESIST_DAMAGE": 0,
-      "ATTACK": 0,
       "ABSORB_DAMAGE": 0,
+      "ATTACK": 0,
       "CRITICAL_HIT_CHANCE": 0,
       "HEALTH": 0,
       "INTELLECT": 0
@@ -113,47 +113,43 @@
     "experiencePointsService": {
       "neededExperiencePointsForNewLevel": 0.0
     },
-    "enemyKilled": {
-      "enemyKilled": {},
-      "questEnemyKilled": {}
-    },
-    "listOfAcceptedQuests": [],
+    "heroAcceptedQuestIdQuest": {},
     "learnedSpells": {},
     "discoveredLocationList": {},
     "name": "1",
     "level": 1,
     "abilities": {
-      "STRENGTH": 5,
+      "STRENGTH": 1,
       "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 1,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
-      "HEALTH": 250,
-      "INTELLECT": 20
+      "ATTACK": 8,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 50,
+      "INTELLECT": 1
     },
     "maxAbilities": {
-      "STRENGTH": 5,
+      "STRENGTH": 1,
       "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 1,
+      "ATTACK": 8,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
-      "HEALTH": 250,
-      "INTELLECT": 20
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 50,
+      "INTELLECT": 1
     },
     "currentAbilities": {
-      "STRENGTH": 5,
+      "STRENGTH": 1,
       "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 1,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
-      "HEALTH": 250,
-      "INTELLECT": 20
+      "ATTACK": 8,
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 50,
+      "INTELLECT": 1
     },
     "regionActionsWithDuration": [],
     "battleActionsWithDuration": [],

@@ -34,6 +34,7 @@ public class ConsumableVendorCharacter extends VendorCharacter {
     protected void printVendorItemsForSale(Hero hero) {
         int index = 1;
         PrintUtil.printIndexAndText("0", "Go Back");
+        System.out.println();
         for (Item consumableItem : this.itemsForSale) {
             if (consumableItem instanceof ConsumableItem) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");

@@ -3,6 +3,7 @@ package kuchtastefan.regions.events;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
+import kuchtastefan.utility.ConsoleColor;
 
 public class FindItemEvent extends Event {
 
@@ -17,7 +18,7 @@ public class FindItemEvent extends Event {
     public boolean eventOccurs(Hero hero) {
         Item item = ItemsLists.getItemMapIdItem().get(this.itemId);
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-        System.out.println("\tYou found " + item.getName());
+        System.out.println("\tYou found " + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET);
         hero.checkIfQuestObjectivesAndQuestIsCompleted();
         return true;
     }

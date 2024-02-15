@@ -1,6 +1,7 @@
 package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.LocationType;
@@ -52,7 +53,9 @@ public class QuestBringItemObjective extends QuestObjective {
         if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
                 new HashMap<>(Map.of(questItem, this.itemDropCountNeeded)), false)) {
 
-            System.out.println("\t--> You completed " + getQuestObjectiveName() + " quest objective <--");
+            System.out.println("\t" + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL + " You completed "
+                    + ConsoleColor.YELLOW + getQuestObjectiveName() + ConsoleColor.RESET
+                    + " quest objective " + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL);
             setCompleted(true);
         } else {
             setCompleted(false);

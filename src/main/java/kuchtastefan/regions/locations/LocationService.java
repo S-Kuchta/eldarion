@@ -107,8 +107,6 @@ public class LocationService {
         if (isStageCompleted) {
             location.stageCompleted++;
             locationStage.afterSuccessfullyCompletedStage();
-//            locationStage.setStageCompleted(true);
-//            locationStage.completeStage();
             if (location.getLocationStages().get(locationStageOrder + 1) != null) {
                 location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
             }

@@ -47,7 +47,7 @@ public class HeroCharacterInfoService {
             }
             case 2 -> this.inventoryService.inventoryMenu(hero);
             case 3 -> this.upgradeAbilityMenu(hero);
-            case 4 -> this.questService.heroAcceptedQuestMenu(hero, hero.getListOfAcceptedQuests());
+            case 4 -> this.questService.heroAcceptedQuestMenu(hero, hero.getHeroAcceptedQuestIdQuest());
             case 5 -> this.heroSpellManager.spellMenu(hero);
             case 6 -> this.gameSettingsMenu();
             default -> PrintUtil.printEnterValidInput();
@@ -77,7 +77,7 @@ public class HeroCharacterInfoService {
 
     private void gameSettingsMenu() {
         while (true) {
-            PrintUtil.printIndexAndText("0", "Go back - ");
+            PrintUtil.printIndexAndText("0", "Go back");
             System.out.println();
             PrintUtil.printIndexAndText("1", "Print String slowly - ");
             PrintUtil.printGameSettings(GameSettings.isPrintStringSlowly());

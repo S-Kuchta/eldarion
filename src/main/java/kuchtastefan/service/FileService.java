@@ -25,9 +25,9 @@ import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.items.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.QuestList;
+import kuchtastefan.quest.QuestMap;
 import kuchtastefan.regions.locations.Location;
-import kuchtastefan.regions.locations.LocationsList;
+import kuchtastefan.regions.locations.LocationMap;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
@@ -66,8 +66,10 @@ public class FileService {
             if (new File(path).exists()) {
                 System.out.println("\tGame with this name is already saved");
                 System.out.println("\tDo you want to overwrite it?");
-                System.out.println("\t0. no");
-                System.out.println("\t1. yes");
+                PrintUtil.printIndexAndText("0", "No");
+                System.out.println();
+                PrintUtil.printIndexAndText("1", "Yes");
+                System.out.println();
                 int choice = InputUtil.intScanner();
                 switch (choice) {
                     case 0 -> {
@@ -128,7 +130,8 @@ public class FileService {
         }
 
         for (String savedGame : listOfSavedGames) {
-            System.out.println(index + ". " + savedGame.replace(".json", ""));
+            PrintUtil.printIndexAndText(String.valueOf(index), savedGame.replace(".json", ""));
+            System.out.println();
             index++;
         }
     }
@@ -359,7 +362,7 @@ public class FileService {
                 }.getType());
 
                 for (Quest quest : quests) {
-                    QuestList.mapIdQuest.put(quest.getQuestId(), quest);
+                    QuestMap.mapIdQuest.put(quest.getQuestId(), quest);
                 }
 
                 reader.close();
@@ -410,7 +413,7 @@ public class FileService {
 
                 for (Location location : locations) {
                     location.setStageTotal(location.getLocationStages().size());
-                    LocationsList.getLocationList().put(location.getLocationId(), location);
+                    LocationMap.getMapIdLocation().put(location.getLocationId(), location);
                 }
 
                 reader.close();

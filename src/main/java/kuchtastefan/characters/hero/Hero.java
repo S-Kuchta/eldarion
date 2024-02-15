@@ -20,9 +20,7 @@ import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -37,7 +35,7 @@ public class Hero extends GameCharacter {
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
-    private final Map<Integer, Quest> listOfAcceptedQuests;
+    private final Map<Integer, Quest> heroAcceptedQuestIdQuest;
     private final Map<Integer, Spell> learnedSpells;
     private final Map<Integer, Location> discoveredLocationList;
 
@@ -53,7 +51,7 @@ public class Hero extends GameCharacter {
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
         this.experiencePointsService = new ExperiencePointsService();
-        this.listOfAcceptedQuests = new HashMap<>();
+        this.heroAcceptedQuestIdQuest = new HashMap<>();
         this.learnedSpells = new HashMap<>();
         this.discoveredLocationList = new HashMap<>();
     }
@@ -217,8 +215,7 @@ public class Hero extends GameCharacter {
      */
     public void checkQuestProgress(Integer questEnemyId) {
 
-//        for (Quest quest : this.listOfAcceptedQuests) {
-        for (Map.Entry<Integer, Quest> questMap : this.listOfAcceptedQuests.entrySet()) {
+        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuestIdQuest.entrySet()) {
             for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
                 if (!questObjective.isCompleted()) {
                     if (questObjective instanceof QuestKillObjective
@@ -249,10 +246,13 @@ public class Hero extends GameCharacter {
      */
     public void checkIfQuestObjectivesAndQuestIsCompleted() {
 //        for (Quest quest : this.listOfAcceptedQuests) {
-        for (Map.Entry<Integer, Quest> questMap : this.listOfAcceptedQuests.entrySet()) {
+        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuestIdQuest.entrySet()) {
             if (!questMap.getValue().isTurnedIn()) {
                 for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
-                    questObjective.checkIfQuestObjectiveIsCompleted(this);
+                    if (!questObjective.isCompleted()) {
+                        questObjective.checkIfQuestObjectiveIsCompleted(this);
+                    }
+
                 }
                 questMap.getValue().checkIfQuestIsCompleted();
             }

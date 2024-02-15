@@ -1,7 +1,8 @@
 package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.regions.locations.LocationsList;
+import kuchtastefan.constant.ConstantSymbol;
+import kuchtastefan.regions.locations.LocationMap;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 
@@ -20,7 +21,9 @@ public class QuestClearLocationObjective extends QuestObjective {
                 && hero.getDiscoveredLocationList().get(this.locationId) != null) {
 
             if (hero.getDiscoveredLocationList().get(this.locationId).isCleared()) {
-                System.out.println("\t--> You completed " + getQuestObjectiveName() + " quest objective <--");
+                System.out.println("\t" + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL + " You completed "
+                        + ConsoleColor.YELLOW + getQuestObjectiveName() + ConsoleColor.RESET
+                        + " quest objective " + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL);
                 this.setCompleted(true);
             }
         }
@@ -36,7 +39,7 @@ public class QuestClearLocationObjective extends QuestObjective {
         String cleared = this.isCompleted() ? "Cleared" : "Not Cleared Yet";
         System.out.println("\tClear "
                 + ConsoleColor.YELLOW
-                + LocationsList.getLocationList().get(this.locationId).getLocationName()
+                + LocationMap.getMapIdLocation().get(this.locationId).getLocationName()
                 + ConsoleColor.RESET
                 + " -> " + cleared);
     }

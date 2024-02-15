@@ -1,7 +1,9 @@
 package kuchtastefan.quest;
 
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,7 +49,9 @@ public class Quest {
             }
         }
         if (completed && !this.questCompleted) {
-            System.out.println("\t--> You have completed Quest " + this.questName + " <--");
+            System.out.println("\t" + ConstantSymbol.QUEST_SYMBOL
+                    + " You have completed Quest " + ConsoleColor.YELLOW + this.questName + ConsoleColor.RESET + " "
+                    + ConstantSymbol.QUEST_SYMBOL);
             this.questCompleted = true;
         }
     }
@@ -55,7 +59,7 @@ public class Quest {
     public void turnInTheQuestAndGiveReward(Hero hero) {
         if (this.questCompleted) {
             PrintUtil.printLongDivider();
-            System.out.println("\t\t-- You have completed Quest " + this.questName);
+            System.out.println("\t-- You have completed Quest " + ConsoleColor.YELLOW + this.questName + ConsoleColor.RESET + " --");
             PrintUtil.printLongDivider();
             this.questReward.giveQuestReward(hero);
         }

@@ -13,7 +13,7 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
-import kuchtastefan.quest.QuestList;
+import kuchtastefan.quest.QuestMap;
 import kuchtastefan.regions.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -125,7 +125,7 @@ public class GameManager {
 //        questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
         QuestGiverCharacter questGiverCharacter1 = new QuestGiverCharacter("Devom Of Cremora", 8);
-        questGiverCharacter1.addQuest(QuestList.mapIdQuest.get(2));
+        questGiverCharacter1.addQuest(QuestMap.mapIdQuest.get(2));
         questGiverCharacter1.setNameBasedOnQuestsAvailable(this.hero);
 
         PrintUtil.printDivider();
@@ -158,9 +158,9 @@ public class GameManager {
                 ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
 
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("High Priestess Elara", 8);
-        questGiverCharacter.addQuest(QuestList.mapIdQuest.get(3));
-        questGiverCharacter.addQuest(QuestList.mapIdQuest.get(5));
-        questGiverCharacter.addQuest(QuestList.mapIdQuest.get(6));
+        questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(3));
+        questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(5));
+        questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(6));
 
         questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 

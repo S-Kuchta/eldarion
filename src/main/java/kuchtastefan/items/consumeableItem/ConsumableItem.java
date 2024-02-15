@@ -32,6 +32,6 @@ public class ConsumableItem extends Item {
             }
         }
 
-        hero.getHeroInventory().removeItemFromItemList(this);
+        hero.getHeroInventory().removeItemFromHeroInventory(this);
     }
 }

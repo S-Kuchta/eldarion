@@ -12,7 +12,7 @@ import kuchtastefan.items.craftingItem.CraftingReagentItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
-import kuchtastefan.quest.QuestList;
+import kuchtastefan.quest.QuestMap;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -33,7 +33,7 @@ public class BlacksmithService {
         HintUtil.printHint(HintName.BLACKSMITH_HINT);
 
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli", 8);
-        questGiverCharacter.addQuest(QuestList.mapIdQuest.get(1));
+        questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(1));
         questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
 
         PrintUtil.printDivider();
@@ -132,12 +132,12 @@ public class BlacksmithService {
                 WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
 
                 if (wearableItemQuality == WearableItemQuality.BASIC) {
-                    hero.getHeroInventory().removeItemFromItemList(wearableItem);
+                    hero.getHeroInventory().removeItemFromHeroInventory(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
                     afterSuccessFullRefinementItem(itemCopy, hero);
 
                 } else if (wearableItemQuality == WearableItemQuality.IMPROVED) {
-                    hero.getHeroInventory().removeItemFromItemList(wearableItem);
+                    hero.getHeroInventory().removeItemFromHeroInventory(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.SUPERIOR);
                     afterSuccessFullRefinementItem(itemCopy, hero);
 
@@ -173,7 +173,7 @@ public class BlacksmithService {
     private void afterSuccessFullRefinementItem(WearableItem wearableItem, Hero hero) {
         wearableItem.increaseWearableItemAbilityValue(wearableItem);
         wearableItem.setPrice(wearableItem.getPrice() * 2);
-        hero.getHeroInventory().addItemToItemList(wearableItem);
+        hero.getHeroInventory().addItemToHeroInventory(wearableItem);
 
         PrintUtil.printLongDivider();
         System.out.println("\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getWearableItemQuality() + " quality");
@@ -201,7 +201,7 @@ public class BlacksmithService {
         int numbersOfIteration = 0;
         for (int i = 0; i < RandomNumberGenerator.getRandomNumber(2, 4) + wearableItem.getItemLevel(); i++) {
             item = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
-            hero.getHeroInventory().addItemToItemList(item);
+            hero.getHeroInventory().addItemToHeroInventory(item);
             numbersOfIteration++;
         }
 
@@ -212,7 +212,7 @@ public class BlacksmithService {
         PrintUtil.printLongDivider();
 
         hero.unEquipItem(wearableItem);
-        hero.getHeroInventory().removeItemFromItemList(wearableItem);
+        hero.getHeroInventory().removeItemFromHeroInventory(wearableItem);
     }
 
     private WearableItem selectItem(List<WearableItem> tempItemList) {

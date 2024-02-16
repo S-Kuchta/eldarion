@@ -1,6 +1,7 @@
 package kuchtastefan.items.wearableItem;
 
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 @Getter
 public enum WearableItemType {
@@ -17,5 +18,9 @@ public enum WearableItemType {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
+    }
 
 }

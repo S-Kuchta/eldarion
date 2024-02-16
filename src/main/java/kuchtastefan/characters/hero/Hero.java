@@ -190,7 +190,7 @@ public class Hero extends GameCharacter {
 
         if (this.experiencePointsService.gainedNewLevel(this.experiencePoints)) {
             this.level++;
-            this.updateAbilityPoints(2);
+            this.updateAbilityPoints(Constant.INCREASE_ABILITY_POINTS_AFTER_LEVEL_UP);
 
             PrintUtil.printDivider();
             System.out.println("\tYou reached a new level! Your level is " + this.level + "!");
@@ -245,7 +245,6 @@ public class Hero extends GameCharacter {
      * Add this method at the end of each event which can complete quest or quest objective
      */
     public void checkIfQuestObjectivesAndQuestIsCompleted() {
-//        for (Quest quest : this.listOfAcceptedQuests) {
         for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuestIdQuest.entrySet()) {
             if (!questMap.getValue().isTurnedIn()) {
                 for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
@@ -259,17 +258,12 @@ public class Hero extends GameCharacter {
         }
     }
 
-    public void checkHeroGoldsAndSubtractIfTrue(double goldNeeded) {
+    public void checkHeroGoldsAndSubtractIfIsEnough(double goldNeeded) {
         if (this.heroGold >= goldNeeded) {
             this.heroGold -= goldNeeded;
-//            return true;
         } else {
             this.heroGold = 0;
-//            return false;
         }
-
-//        System.out.println("\tYou don't have enough golds");
-//        return false;
     }
 
     public void addGolds(double golds) {

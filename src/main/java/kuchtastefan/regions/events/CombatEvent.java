@@ -3,6 +3,7 @@ package kuchtastefan.regions.events;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.items.Item;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.service.BattleService;
@@ -33,7 +34,10 @@ public class CombatEvent extends Event {
 
         System.out.println("\tIn the distance, you've caught sight of:");
         for (Enemy enemy : this.enemies) {
-            System.out.println("\t" + enemy.getName() + " - " + enemy.getEnemyRarity().name() + " - (Level " + enemy.getLevel() + "), ");
+            System.out.println("\t"
+                    + ConstantSymbol.SWORD_SYMBOL + ConsoleColor.YELLOW + " " + enemy.getName() + ConsoleColor.RESET
+                    + " - " + enemy.getEnemyRarity().name() + " - (Level " + enemy.getLevel() + ") "
+                    + ConstantSymbol.SWORD_SYMBOL);
         }
 
         System.out.println("\n\tWill you attempt a silent evasion or initiate an attack?");
@@ -44,6 +48,7 @@ public class CombatEvent extends Event {
                 enemyHaste = enemy.getCurrentAbilityValue(Ability.HASTE);
             }
         }
+
         int heroHaste = hero.getCurrentAbilityValue(Ability.HASTE);
         int chanceToEvasion = 50 + (heroHaste - enemyHaste);
         if (chanceToEvasion > 100) {

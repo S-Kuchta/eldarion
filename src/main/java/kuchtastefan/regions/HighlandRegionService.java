@@ -11,8 +11,6 @@ public class HighlandRegionService extends Region {
         super(regionName, regionDescription, hero, minimumRegionLevel, maximumRegionLevel);
     }
 
-
-
     @Override
     protected List<Location> initializeLocationForRegion() {
         return null;

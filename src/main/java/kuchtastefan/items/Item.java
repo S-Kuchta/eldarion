@@ -1,5 +1,6 @@
 package kuchtastefan.items;
 
+import kuchtastefan.constant.Constant;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +24,7 @@ public class Item {
     }
 
     public double returnSellItemPrice() {
-        return Math.floor(this.price * 0.7);
+        return Math.floor(this.price * Constant.SELL_ITEM_PRICE_MULTIPLIER);
     }
 
     @Override

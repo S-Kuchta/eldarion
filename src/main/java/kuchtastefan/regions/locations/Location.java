@@ -43,46 +43,29 @@ public class Location {
 
     public void rewardAfterCompletedAllStages(Hero hero) {
         for (int i = 0; i < 2; i++) {
-            List<WearableItem> suitableItem =
-                    ItemsLists.returnWearableItemListByItemLevel(this.locationLevel, null, true);
+            List<WearableItem> suitableItem = ItemsLists.returnWearableItemListByItemLevel(
+                    this.locationLevel, null, true);
 
             int randomItem = RandomNumberGenerator.getRandomNumber(0, suitableItem.size() - 1);
             hero.getHeroInventory().addItemWithNewCopyToItemList(suitableItem.get(randomItem));
         }
 
         for (int i = 0; i < 4; i++) {
-            List<CraftingReagentItem> craftingReagentItems =
-                    ItemsLists.returnCraftingReagentItemListByItemLevel(this.locationLevel, null);
+            List<CraftingReagentItem> craftingReagentItems = ItemsLists.returnCraftingReagentItemListByItemLevel(
+                    this.locationLevel, null);
 
             int randomItem = RandomNumberGenerator.getRandomNumber(0, craftingReagentItems.size() - 1);
             hero.getHeroInventory().addItemWithNewCopyToItemList(craftingReagentItems.get(randomItem));
         }
 
         for (int i = 0; i < 3; i++) {
-            List<ConsumableItem> consumableItems =
-                    ItemsLists.returnConsumableItemListByItemLevel(this.locationLevel, null);
+            List<ConsumableItem> consumableItems = ItemsLists.returnConsumableItemListByItemLevel(
+                    this.locationLevel, null);
 
             int randomItem = RandomNumberGenerator.getRandomNumber(0, consumableItems.size() - 1);
             hero.getHeroInventory().addItemWithNewCopyToItemList(consumableItems.get(randomItem));
         }
     }
-
-//    public List<Enemy> enemyList() {
-//        double stageMultiplier = 1 + (0.1 * this.stageCompleted);
-//        EnemyRarity enemyRarity = EnemyRarity.ELITE;
-//
-//        List<Enemy> enemies = EnemyList.returnEnemyListByLocationTypeAndLevel(
-//                this.locationType, this.locationLevel, null, enemyRarity);
-//
-//        if (this.stageCompleted == this.stageTotal - 1) {
-//            enemies.clear();
-//            enemies.add(EnemyList.returnNewEnemyCopy(203));
-//        }
-//        for (Enemy enemy : enemies) {
-//            enemy.increaseAbilityPointsByMultiplier(stageMultiplier);
-//        }
-//        return enemies;
-//    }
 
     @Override
     public boolean equals(Object o) {

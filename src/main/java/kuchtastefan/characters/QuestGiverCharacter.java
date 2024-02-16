@@ -23,6 +23,13 @@ public class QuestGiverCharacter extends GameCharacter {
         this.baseName = name;
     }
 
+    /**
+     * Connects the hero's accepted quest list with the character's quest list.
+     * Iterates through each quest in the quest list and checks if it exists in the hero's accepted quest list.
+     * If found, updates the quest in the character's quest list with the one from the hero's accepted quest list.
+     *
+     * @param hero The hero whose accepted quest list is being connected.
+     */
     private void connectHeroQuestListWithCharacterQuestList(Hero hero) {
         for (Quest quest : this.quests) {
             for (Map.Entry<Integer, Quest> questMap : hero.getHeroAcceptedQuestIdQuest().entrySet()) {

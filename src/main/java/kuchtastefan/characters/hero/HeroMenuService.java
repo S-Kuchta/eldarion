@@ -1,6 +1,6 @@
 package kuchtastefan.characters.hero;
 
-import kuchtastefan.characters.hero.inventory.InventoryService;
+import kuchtastefan.characters.hero.inventory.InventoryMenuService;
 import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.quest.QuestService;
 import kuchtastefan.characters.spell.HeroSpellManager;
@@ -9,14 +9,14 @@ import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 
 @Getter
-public class HeroCharacterInfoService {
-    private final InventoryService inventoryService;
+public class HeroMenuService {
+    private final InventoryMenuService inventoryMenuService;
     private final HeroAbilityManager heroAbilityManager;
     private final QuestService questService;
     private final HeroSpellManager heroSpellManager;
 
-    public HeroCharacterInfoService(HeroAbilityManager heroAbilityManager) {
-        this.inventoryService = new InventoryService();
+    public HeroMenuService(HeroAbilityManager heroAbilityManager) {
+        this.inventoryMenuService = new InventoryMenuService();
         this.heroAbilityManager = heroAbilityManager;
         this.questService = new QuestService();
         this.heroSpellManager = new HeroSpellManager();
@@ -45,7 +45,7 @@ public class HeroCharacterInfoService {
                 showHeroInfo(hero);
                 heroCharacterMenu(hero);
             }
-            case 2 -> this.inventoryService.inventoryMenu(hero);
+            case 2 -> this.inventoryMenuService.inventoryMenu(hero);
             case 3 -> this.upgradeAbilityMenu(hero);
             case 4 -> this.questService.heroAcceptedQuestMenu(hero, hero.getHeroAcceptedQuestIdQuest());
             case 5 -> this.heroSpellManager.spellMenu(hero);

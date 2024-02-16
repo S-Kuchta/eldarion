@@ -20,16 +20,12 @@ public class LocationStageUseItem extends LocationStage {
     public boolean exploreStage(Hero hero, Location location) {
         if (new UseItemEvent(location.getLocationLevel(), this.itemId).eventOccurs(hero)) {
             if (this.locationStage.exploreStage(hero, location)) {
-                this.locationStage.afterSuccessfullyCompletedStage();
+                this.locationStage.setStageCompleted(true);
+                ((RemoveLocationStageProgress) locationStage).removeProgressAfterCompletedStage();
                 return true;
             }
         }
 
         return false;
-    }
-
-    @Override
-    public void completeStage() {
-
     }
 }

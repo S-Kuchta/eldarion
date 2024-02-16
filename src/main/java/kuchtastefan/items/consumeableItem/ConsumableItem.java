@@ -23,7 +23,7 @@ public class ConsumableItem extends Item {
         this.actionList = actionList;
     }
 
-    public void performActions(Hero hero) {
+    public void useItem(Hero hero) {
         for (Action action : this.actionList) {
             if (action instanceof ActionWithDuration) {
                 hero.addActionWithDuration((ActionWithDuration) action);

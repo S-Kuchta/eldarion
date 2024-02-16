@@ -1,7 +1,7 @@
 package kuchtastefan.regions;
 
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.HeroCharacterInfoService;
+import kuchtastefan.characters.hero.HeroMenuService;
 import kuchtastefan.regions.events.EventService;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationService;
@@ -41,8 +41,10 @@ public abstract class Region {
         this.eventService = new EventService(this.allLocations);
     }
 
-    public void adventuringAcrossTheRegion(HeroCharacterInfoService heroCharacterInfoService) {
+    public void adventuringAcrossTheRegion(HeroMenuService heroMenuService) {
         while (true) {
+
+            // Printing region information and options
             System.out.println();
             PrintUtil.printHeaderWithStatsBar(getHero());
             PrintUtil.printRegionBuffs(getHero());
@@ -62,7 +64,7 @@ public abstract class Region {
             PrintUtil.printIndexAndText("2", "Hero menu");
             System.out.println();
 
-
+            // Printing discovered locations
             int index = 3;
             List<Location> locations = new ArrayList<>();
             for (Map.Entry<Integer, Location> location : this.hero.getDiscoveredLocationList().entrySet()) {
@@ -76,17 +78,20 @@ public abstract class Region {
                 index++;
             }
 
+            // Getting user choice
             int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
-                    return;
+                    return; // Go back to the city
                 }
+                // Generate a random event while traveling across the region
                 case 1 -> this.eventService.randomRegionEventGenerate(this.hero, LocationType.FOREST,
                         this.minimumRegionLevel, this.maximumRegionLevel);
-                case 2 -> heroCharacterInfoService.heroCharacterMenu(this.hero);
+                case 2 -> heroMenuService.heroCharacterMenu(this.hero); // Open hero menu
                 default -> {
                     try {
-                        new LocationService().locationMenu(this.hero, locations.get(choice - 3), heroCharacterInfoService);
+                        // Open the menu for the selected location
+                        new LocationService().locationMenu(this.hero, locations.get(choice - 3), heroMenuService);
                     } catch (IndexOutOfBoundsException e) {
                         PrintUtil.printEnterValidInput();
                     }

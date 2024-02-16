@@ -1,5 +1,6 @@
 package kuchtastefan.hint;
 
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 
@@ -20,7 +21,7 @@ public class HintUtil {
         for (Map.Entry<HintName, Hint> hint : hintList.entrySet()) {
             if (hint.getKey().equals(hintName) && !hint.getValue().isShowed()) {
                 PrintUtil.printLongDivider();
-                PrintUtil.printStringSlowly(HintName.BLACKSMITH_HINT.name() + " HINT\n" + hint.getValue().getText());
+                PrintUtil.printStringSlowly(ConsoleColor.YELLOW + "" + hintName + ConsoleColor.RESET + "\n" + hint.getValue().getText());
                 PrintUtil.printLongDivider();
                 hint.getValue().setShowed(true);
             }

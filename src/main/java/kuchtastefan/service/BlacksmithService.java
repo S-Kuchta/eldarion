@@ -13,6 +13,7 @@ import kuchtastefan.items.craftingItem.CraftingReagentItemType;
 import kuchtastefan.items.wearableItem.WearableItem;
 import kuchtastefan.items.wearableItem.WearableItemQuality;
 import kuchtastefan.quest.QuestMap;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -77,10 +78,12 @@ public class BlacksmithService {
      */
     public void refinementItemQuality(Hero hero) {
         while (true) {
+            // Print refinement menu header
             PrintUtil.printDivider();
             System.out.println("\t\tRefinement item");
             PrintUtil.printDivider();
 
+            // Initialize a map to store items eligible for refinement along with required crafting reagents
             Map<WearableItem, Map<CraftingReagentItem, Integer>> refinementItemMap = new HashMap<>();
             List<WearableItem> tempItemList = new ArrayList<>();
 
@@ -91,10 +94,14 @@ public class BlacksmithService {
                 System.out.println("\tItem list is empty");
             } else {
                 for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
-                    if (!item.getKey().getWearableItemQuality().equals(WearableItemQuality.SUPERIOR)) {
+
+                    // Check if the item's quality is eligible for refinement
+                    if (item.getKey().getWearableItemQuality().equals(WearableItemQuality.BASIC) || item.getKey().getWearableItemQuality().equals(WearableItemQuality.IMPROVED)) {
+
+                        // Print item description and add it to the refinement map and temporary item list
                         PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-//                        System.out.print("\t" + index + ". (" + item.getValue() + "x) ");
                         PrintUtil.printItemDescription(item.getKey(), false, hero);
+
                         refinementItemMap.put(item.getKey(), itemsNeededToRefinement(item.getKey()));
                         tempItemList.add(item.getKey());
                         index++;
@@ -110,13 +117,13 @@ public class BlacksmithService {
                     return;
                 }
                 try {
+                    // Check if the hero has enough crafting reagents to refine the selected item
                     if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(refinementItemMap.get(tempItemList.get(choice - 1)), true)) {
                         wearableItem = tempItemList.get(choice - 1);
                         break;
                     } else {
-                        PrintUtil.printLongDivider();
-                        System.out.println("\tYou don't have enough crafting reagents to refinement " + tempItemList.get(choice - 1).getName());
-                        PrintUtil.printLongDivider();
+                        System.out.println();
+                        System.out.println(ConsoleColor.RED + "\tYou don't have enough crafting reagents to refinement " + tempItemList.get(choice - 1).getName() + ConsoleColor.RESET);
                     }
                     break;
                 } catch (IndexOutOfBoundsException e) {
@@ -127,10 +134,12 @@ public class BlacksmithService {
             if (wearableItem == null) {
                 break;
             } else {
+                // Copy the selected item and upgrade its quality if eligible
                 WearableItemQuality wearableItemQuality = wearableItem.getWearableItemQuality();
                 Gson gson = new Gson();
                 WearableItem itemCopy = gson.fromJson(gson.toJson(wearableItem), WearableItem.class);
 
+                // Check the current quality of the item and upgrade it if possible
                 if (wearableItemQuality == WearableItemQuality.BASIC) {
                     hero.getHeroInventory().removeItemFromHeroInventory(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
@@ -150,6 +159,12 @@ public class BlacksmithService {
         }
     }
 
+    /**
+     * Determines the items needed for refining a wearable item.
+     *
+     * @param wearableItem The wearable item to be refined.
+     * @return A map containing the crafting reagent item needed for refinement and the quantity required.
+     */
     private Map<CraftingReagentItem, Integer> itemsNeededToRefinement(WearableItem wearableItem) {
         List<CraftingReagentItem> tempList = ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
         Map<CraftingReagentItem, Integer> itemsNeededForRefinement = new HashMap<>();
@@ -170,10 +185,18 @@ public class BlacksmithService {
         return itemsNeededForRefinement;
     }
 
+
+    /**
+     * Updates the wearable item after successful refinement, including increasing its ability value,
+     * adjusting its price, and adding it to the hero's inventory.
+     *
+     * @param wearableItem The wearable item to be updated after refinement.
+     * @param hero The hero whose inventory the refined item will be added to.
+     */
     private void afterSuccessFullRefinementItem(WearableItem wearableItem, Hero hero) {
         wearableItem.increaseWearableItemAbilityValue(wearableItem);
         wearableItem.setPrice(wearableItem.getPrice() * 2);
-        hero.getHeroInventory().addItemToHeroInventory(wearableItem);
+        hero.getHeroInventory().addItemToInventory(wearableItem);
 
         PrintUtil.printLongDivider();
         System.out.println("\tYou refinement your item " + wearableItem.getName() + " to " + wearableItem.getWearableItemQuality() + " quality");
@@ -181,6 +204,11 @@ public class BlacksmithService {
         hero.equipItem(wearableItem);
     }
 
+    /**
+     * Dismantles a wearable item, adding crafting reagent items to the hero's inventory based on the item's level.
+     *
+     * @param hero The hero who is dismantling the item.
+     */
     public void dismantleItem(Hero hero) {
 
         PrintUtil.printDivider();
@@ -201,7 +229,7 @@ public class BlacksmithService {
         int numbersOfIteration = 0;
         for (int i = 0; i < RandomNumberGenerator.getRandomNumber(2, 4) + wearableItem.getItemLevel(); i++) {
             item = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
-            hero.getHeroInventory().addItemToHeroInventory(item);
+            hero.getHeroInventory().addItemToInventory(item);
             numbersOfIteration++;
         }
 

@@ -30,11 +30,6 @@ public class QuestClearLocationObjective extends QuestObjective {
     }
 
     @Override
-    public void removeCompletedItemsOrEnemies(Hero hero) {
-
-    }
-
-    @Override
     public void printQuestObjectiveAssignment(Hero hero) {
         String cleared = this.isCompleted() ? "Cleared" : "Not Cleared Yet";
         System.out.println("\tClear "

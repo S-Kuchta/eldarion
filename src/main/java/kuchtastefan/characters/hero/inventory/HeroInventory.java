@@ -29,8 +29,7 @@ public class HeroInventory {
     }
 
     public void addItemWithNewCopyToItemList(Item item) {
-        Gson gson = new GsonBuilder().
-                registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
         Class<? extends Item> itemClass = item.getClass();
 
         if (Item.class.isAssignableFrom(itemClass)) {
@@ -39,7 +38,7 @@ public class HeroInventory {
         }
     }
 
-    private void addItemToInventory(Item item) {
+    public void addItemToInventory(Item item) {
         if (this.getHeroInventory().isEmpty()) {
             this.getHeroInventory().put(item, 1);
         } else {
@@ -58,10 +57,19 @@ public class HeroInventory {
         }
     }
 
+    /**
+     * This method is used for check hero inventory for needed items and item count in inventory.
+     * If hero inventory has enough items, method return true, otherwise return false.
+     *
+     * @param neededItems Map of needed items - as a key use needed Item and as Integer count of items needed
+     * @param removeItem if true item will be removed from hero inventory
+     * @return return true or false
+     */
     public boolean checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(Map<? extends Item, Integer> neededItems, boolean removeItem) {
         for (Map.Entry<? extends Item, Integer> neededItem : neededItems.entrySet()) {
             if (this.heroInventory.containsKey(neededItem.getKey())
                     && neededItem.getValue() <= this.heroInventory.get(neededItem.getKey())) {
+
                 if (removeItem) {
                     this.heroInventory.put(neededItem.getKey(), this.heroInventory.get(neededItem.getKey()) - neededItem.getValue());
                 }
@@ -72,10 +80,11 @@ public class HeroInventory {
         return false;
     }
 
-    public void addItemToHeroInventory(Item item) {
-        addItemToInventory(item);
-    }
-
+    /**
+     * Remove one item from hero inventory, if in inventory are more than one item, change count value.
+     *
+     * @param item to remove
+     */
     public void removeItemFromHeroInventory(Item item) {
         Map<Item, Integer> heroInventory = this.getHeroInventory();
 

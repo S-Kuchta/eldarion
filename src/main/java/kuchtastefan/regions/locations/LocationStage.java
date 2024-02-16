@@ -21,8 +21,6 @@ public abstract class LocationStage {
 
     public abstract boolean exploreStage(Hero hero, Location location);
 
-    public abstract void completeStage();
-
     public boolean canHeroEnterStage(Hero hero) {
         for (Integer i : this.itemsIdNeededToEnterStage) {
             Item item = ItemsLists.getItemMapIdItem().get(i);
@@ -30,11 +28,7 @@ public abstract class LocationStage {
                 return false;
             }
         }
-        return true;
-    }
 
-    public void afterSuccessfullyCompletedStage() {
-        this.completeStage();
-        this.stageCompleted = true;
+        return true;
     }
 }

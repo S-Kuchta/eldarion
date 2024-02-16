@@ -9,7 +9,6 @@ public class CreateNewQuestGiverCharacter {
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter(name, 8);
         questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(questId));
         questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
-//        questGiverCharacter.questGiverMenu(hero);
 
         return questGiverCharacter;
     }

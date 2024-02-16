@@ -45,11 +45,6 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
     }
 
     @Override
-    public void printGreeting() {
-
-    }
-
-    @Override
     public void printHeroItemsForSale(Hero hero) {
         List<CraftingReagentItem> craftingReagentItems = new ArrayList<>();
 

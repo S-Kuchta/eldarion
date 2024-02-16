@@ -5,6 +5,7 @@ import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -29,12 +30,9 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public abstract void printHeroItemsForSale(Hero hero);
 
-    public abstract void printGreeting();
-
     protected abstract void printVendorItemsForSale(Hero hero);
 
     public void vendorMenu(Hero hero) {
-        printGreeting();
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
         PrintUtil.printIndexAndText("1", "Buy items");
@@ -59,7 +57,6 @@ public abstract class VendorCharacter extends GameCharacter {
         if (itemList instanceof WearableItem) {
             System.out.println(itemList.getClass().getSimpleName());
         }
-
 
         for (int i = 0; i < Constant.MAX_VENDOR_ITEMS_FOR_SELL && !availableItems.isEmpty(); i++) {
             int randomNum = RandomNumberGenerator.getRandomNumber(0, availableItems.size() - 1);
@@ -114,8 +111,8 @@ public abstract class VendorCharacter extends GameCharacter {
 
     public void successfullyItemBought(Hero hero, Item item) {
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-        hero.checkHeroGoldsAndSubtractIfTrue(item.getPrice());
-        System.out.println("\t" + item.getName() + " bought. You can find it in your inventory");
+        hero.checkHeroGoldsAndSubtractIfIsEnough(item.getPrice());
+        System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory");
     }
 
     protected void sellItem(Hero hero, List<? extends Item> itemList) {

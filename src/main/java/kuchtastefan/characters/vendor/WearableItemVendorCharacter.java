@@ -19,7 +19,6 @@ public class WearableItemVendorCharacter extends VendorCharacter {
     @Override
     protected void vendorOffer(Hero hero) {
 
-        // Item sort in array by WearableItemType
         this.itemsForSale.sort((item1, item2) -> {
             WearableItemType wearableItemType1 = ((WearableItem) item1).getWearableItemType();
             WearableItemType wearableItemType2 = ((WearableItem) item2).getWearableItemType();
@@ -29,6 +28,19 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         PrintUtil.printShopHeader(hero, "Blacksmith");
         this.printVendorItemsForSale(hero);
         super.buyItem(hero);
+    }
+
+    @Override
+    protected void printVendorItemsForSale(Hero hero) {
+        int index = 1;
+        System.out.println("\t0. Go back");
+        for (Item wearableItem : this.itemsForSale) {
+            if (wearableItem instanceof WearableItem) {
+                PrintUtil.printIndexAndText(String.valueOf(index), "");
+                PrintUtil.printItemDescription((WearableItem) wearableItem, false, hero);
+                index++;
+            }
+        }
     }
 
     @Override
@@ -50,27 +62,5 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         }
 
         super.sellItem(hero, wearableItemList);
-    }
-
-    @Override
-    protected void printVendorItemsForSale(Hero hero) {
-        int index = 1;
-        System.out.println("\t0. Go back");
-        for (Item wearableItem : this.itemsForSale) {
-            if (wearableItem instanceof WearableItem) {
-//                System.out.print("\t" + index + ". ");
-                PrintUtil.printIndexAndText(String.valueOf(index), "");
-                PrintUtil.printItemDescription((WearableItem) wearableItem, false, hero);
-                index++;
-            }
-        }
-    }
-
-    @Override
-    public void printGreeting() {
-        PrintUtil.printLongDivider();
-        System.out.println("\tHello warrior, my name is " + this.name + " this is my blacksmith shop. \n\t" +
-                "Let's look what I have here for you.");
-        PrintUtil.printLongDivider();
     }
 }

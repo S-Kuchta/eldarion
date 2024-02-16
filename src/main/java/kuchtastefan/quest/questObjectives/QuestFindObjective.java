@@ -6,7 +6,7 @@ import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.utility.ConsoleColor;
 
-public class QuestFindObjective extends QuestObjective {
+public class QuestFindObjective extends QuestObjective implements RemoveObjectiveProgress {
 
     private final int objectiveItemId;
 

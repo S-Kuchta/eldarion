@@ -11,7 +11,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class ActionWithDuration extends Action {
+public abstract class ActionWithDuration extends Action {
 
     private final int maxActionTurns;
     private int currentActionTurn;
@@ -32,8 +32,7 @@ public class ActionWithDuration extends Action {
     }
 
     @Override
-    public void performAction(GameCharacter gameCharacter) {
-    }
+    public abstract void performAction(GameCharacter gameCharacter);
 
     public void addActionStack() {
         this.actionCurrentStacks++;

@@ -69,15 +69,6 @@ public class Spell {
                 action.setNewCurrentActionValue(action.getMaxActionValue());
 
                 if (action.willPerformAction()) {
-//                    int totalActionValue = action.getMaxActionValue();
-
-//                    if (this.bonusValueFromAbility != null) {
-//                        for (Map.Entry<Ability, Integer> abilityBonus : this.bonusValueFromAbility.entrySet()) {
-//                            totalActionValue += spellCaster.getCurrentAbilityValue(abilityBonus.getKey())
-//                                    * abilityBonus.getValue();
-//                        }
-//                    }
-
                     int totalActionValue = action.totalActionValue(this.bonusValueFromAbility, spellCaster);
 
                     if (criticalHit && action.isCanBeActionCriticalHit()) {

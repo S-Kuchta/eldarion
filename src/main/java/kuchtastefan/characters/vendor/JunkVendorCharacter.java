@@ -23,6 +23,20 @@ public class JunkVendorCharacter extends VendorCharacter {
     }
 
     @Override
+    protected void printVendorItemsForSale(Hero hero) {
+        int index = 1;
+        PrintUtil.printIndexAndText("0", "Go back");
+        for (Item junkItem : this.itemsForSale) {
+            if (junkItem instanceof JunkItem) {
+                PrintUtil.printIndexAndText(String.valueOf(index), "");
+                PrintUtil.printJunkItemInfo((JunkItem) junkItem, false);
+                index++;
+                System.out.println();
+            }
+        }
+    }
+
+    @Override
     public void printHeroItemsForSale(Hero hero) {
         List<JunkItem> junkItems = new ArrayList<>();
         PrintUtil.printShopHeader(hero, "Junk");
@@ -42,24 +56,5 @@ public class JunkVendorCharacter extends VendorCharacter {
             }
         }
         super.sellItem(hero, junkItems);
-    }
-
-    @Override
-    public void printGreeting() {
-
-    }
-
-    @Override
-    protected void printVendorItemsForSale(Hero hero) {
-        int index = 1;
-        PrintUtil.printIndexAndText("0", "Go back");
-        for (Item junkItem : this.itemsForSale) {
-            if (junkItem instanceof JunkItem) {
-                PrintUtil.printIndexAndText(String.valueOf(index), "");
-                PrintUtil.printJunkItemInfo((JunkItem) junkItem, false);
-                index++;
-                System.out.println();
-            }
-        }
     }
 }

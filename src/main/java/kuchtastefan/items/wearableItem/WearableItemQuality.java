@@ -1,6 +1,7 @@
 package kuchtastefan.items.wearableItem;
 
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 @Getter
 public enum WearableItemQuality {
@@ -14,6 +15,11 @@ public enum WearableItemQuality {
 
     WearableItemQuality(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
     }
 
 }

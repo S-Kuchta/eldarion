@@ -18,9 +18,4 @@ public class LocationStageFindTreasure extends LocationStage {
 
         return true;
     }
-
-    @Override
-    public void completeStage() {
-
-    }
 }

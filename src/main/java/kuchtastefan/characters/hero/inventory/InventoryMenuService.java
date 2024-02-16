@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class InventoryService {
+public class InventoryMenuService {
 
     public void inventoryMenu(Hero hero) {
         PrintUtil.printDivider();
@@ -170,7 +170,7 @@ public class InventoryService {
                 return false;
             } else {
                 try {
-                    consumableItems.get(choice - 1).performActions(hero);
+                    consumableItems.get(choice - 1).useItem(hero);
                     if (!isHeroInCombat) {
                         consumableItemsMenu(hero, false);
                     } else {

@@ -1,7 +1,7 @@
 package kuchtastefan.regions.locations;
 
 import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.HeroCharacterInfoService;
+import kuchtastefan.characters.hero.HeroMenuService;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -10,8 +10,17 @@ import java.util.Map;
 
 public class LocationService {
 
-    public void locationMenu(Hero hero, Location location, HeroCharacterInfoService heroCharacterInfoService) {
 
+    /**
+     * Displays the menu for interacting with a specific location.
+     * Allows the hero to explore the location, view hero menu options, or go back on the path.
+     * Also displays discovered stages within the location and their completion status.
+     *
+     * @param hero            The hero exploring the location.
+     * @param location        The location being explored.
+     * @param heroMenuService The service handling hero menu actions.
+     */
+    public void locationMenu(Hero hero, Location location, HeroMenuService heroMenuService) {
 
         while (true) {
             PrintUtil.printLongDivider();
@@ -54,7 +63,7 @@ public class LocationService {
                         exploreLocation(hero, location, location.stageCompleted);
                     }
                 } else if (choice == 2) {
-                    heroCharacterInfoService.heroCharacterMenu(hero);
+                    heroMenuService.heroCharacterMenu(hero);
                 } else {
                     if (!location.getLocationStages().get(choice - index).isStageDiscovered()) {
                         PrintUtil.printEnterValidInput();
@@ -68,6 +77,7 @@ public class LocationService {
             }
         }
     }
+
 
     public void exploreLocation(Hero hero, Location location, int locationStageOrder) {
         LocationStage locationStage = location.locationStages.get(locationStageOrder);
@@ -106,7 +116,9 @@ public class LocationService {
 
         if (isStageCompleted) {
             location.stageCompleted++;
-            locationStage.afterSuccessfullyCompletedStage();
+            locationStage.setStageCompleted(true);
+            ((RemoveLocationStageProgress) locationStage).removeProgressAfterCompletedStage();
+
             if (location.getLocationStages().get(locationStageOrder + 1) != null) {
                 location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
             }

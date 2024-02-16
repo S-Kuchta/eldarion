@@ -158,6 +158,7 @@ public abstract class GameCharacter {
         int absorbDamage = 0;
         Iterator<ActionWithDuration> iterator = this.battleActionsWithDuration.iterator();
         while (iterator.hasNext()) {
+
             ActionWithDuration actionAbsorbDamage = iterator.next();
             if (actionAbsorbDamage instanceof ActionAbsorbDamage) {
                 if (actionAbsorbDamage.getCurrentActionValue() > damage) {
@@ -208,6 +209,10 @@ public abstract class GameCharacter {
         return this.currentAbilities.get(ability);
     }
 
+    public void increaseAbilityValue(Ability ability, int valueToIncrease) {
+        this.abilities.put(ability, this.getCurrentAbilityValue(ability) + valueToIncrease);
+    }
+
     public Map<Ability, Integer> initializeAbilityForNonEnemyCharacters() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 15,
@@ -220,6 +225,4 @@ public abstract class GameCharacter {
                 Ability.ABSORB_DAMAGE, 0
         ));
     }
-
-
 }

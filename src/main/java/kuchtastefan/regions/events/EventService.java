@@ -33,12 +33,6 @@ public class EventService {
         switch (randomNumber) {
             case 0 -> new MerchantEvent(eventLevel).eventOccurs(hero);
             case 1, 2 -> {
-//                int randomNumToGenerateEnemyRarity = RandomNumberGenerator.getRandomNumber(0, 20);
-//                EnemyRarity enemyRarity = EnemyRarity.COMMON;
-//                if (randomNumToGenerateEnemyRarity == 0) {
-//                    enemyRarity = EnemyRarity.RARE;
-//                }
-
                 List<Enemy> suitableEnemies = EnemyList.returnEnemyListByLocationTypeAndLevel(locationType, maxRegionLevel, minRegionLevel, EnemyRarity.COMMON);
 
                 int randomNumberForEnemyOrder = 0;
@@ -58,16 +52,13 @@ public class EventService {
 
                 new CombatEvent(eventLevel, enemyList, locationType).eventOccurs(hero);
             }
-            case 3 -> new DiscoverLocationEvent(eventLevel, this.allLocations)
-                    .eventOccurs(hero);
-            case 4 -> new GatherCraftingReagentItemEvent(eventLevel)
-                    .eventOccurs(hero);
+            case 3 -> new DiscoverLocationEvent(eventLevel, this.allLocations).eventOccurs(hero);
+            case 4 -> new GatherCraftingReagentItemEvent(eventLevel).eventOccurs(hero);
 
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
 
         hero.checkAndRemoveActionTurns();
         hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.REGION_ACTION);
-
     }
 }

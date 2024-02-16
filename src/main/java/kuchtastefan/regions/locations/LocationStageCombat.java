@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LocationStageCombat extends LocationStage {
+public class LocationStageCombat extends LocationStage implements RemoveLocationStageProgress {
 
     private final Integer[] locationEnemyIdList;
 
@@ -35,7 +35,7 @@ public class LocationStageCombat extends LocationStage {
     }
 
     @Override
-    public void completeStage() {
+    public void removeProgressAfterCompletedStage() {
         Arrays.fill(this.locationEnemyIdList, null);
     }
 }

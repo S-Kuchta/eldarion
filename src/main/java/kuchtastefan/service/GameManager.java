@@ -29,7 +29,7 @@ public class GameManager {
     private final FileService fileService;
     private final BlacksmithService blacksmithService;
     private ForestRegionService forestRegionService;
-    private final HeroCharacterInfoService heroCharacterInfoService;
+    private final HeroMenuService heroMenuService;
 
 
     public GameManager() {
@@ -38,7 +38,7 @@ public class GameManager {
         this.fileService = new FileService();
         this.heroAbilityManager = new HeroAbilityManager(this.hero);
         this.blacksmithService = new BlacksmithService();
-        this.heroCharacterInfoService = new HeroCharacterInfoService(this.heroAbilityManager);
+        this.heroMenuService = new HeroMenuService(this.heroAbilityManager);
     }
 
     public void startGame() {
@@ -68,7 +68,7 @@ public class GameManager {
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> exploreSurroundingRegions();
-                case 1 -> this.heroCharacterInfoService.heroCharacterMenu(this.hero);
+                case 1 -> this.heroMenuService.heroCharacterMenu(this.hero);
                 case 2 -> {
                     JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8,
                             ItemsLists.returnJunkItemListByItemLevel(this.hero.getLevel(), 0));
@@ -110,7 +110,7 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> this.forestRegionService.adventuringAcrossTheRegion(this.heroCharacterInfoService);
+            case 1 -> this.forestRegionService.adventuringAcrossTheRegion(this.heroMenuService);
             default -> PrintUtil.printEnterValidInput();
         }
     }

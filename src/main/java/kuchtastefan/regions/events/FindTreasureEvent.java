@@ -16,13 +16,13 @@ public class FindTreasureEvent extends Event {
 
     @Override
     public boolean eventOccurs(Hero hero) {
-        List<WearableItem> tempWearableItemList = ItemsLists.returnWearableItemListByItemLevel
-                (this.eventLevel, null, true);
+        List<WearableItem> tempWearableItemList = ItemsLists.returnWearableItemListByItemLevel(this.eventLevel, null, true);
         List<ConsumableItem> tempConsumableItemList = ItemsLists.returnConsumableItemListByItemLevel(this.eventLevel, null);
 
         System.out.println("\tYou find a treasure! You got: ");
         WearableItem wearableItem = tempWearableItemList.get(RandomNumberGenerator.getRandomNumber(0, tempWearableItemList.size() - 1));
         System.out.print("\t");
+
         hero.getHeroInventory().addItemWithNewCopyToItemList(wearableItem);
 
         PrintUtil.printItemDescription(wearableItem, true, hero);

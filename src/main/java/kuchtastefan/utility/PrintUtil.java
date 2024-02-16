@@ -8,6 +8,7 @@ import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
@@ -122,7 +123,8 @@ public class PrintUtil {
 
     public static void printHeaderWithStatsBar(GameCharacter gameCharacter) {
         printExtraLongDivider();
-        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t" + gameCharacter.getName());
+        System.out.printf("%58s %n", gameCharacter.getName());
+
         printBar(gameCharacter, Ability.HEALTH);
         printBar(gameCharacter, Ability.MANA);
         printBar(gameCharacter, Ability.ABSORB_DAMAGE);
@@ -162,8 +164,7 @@ public class PrintUtil {
 
     public static void printAbilityPoints(GameCharacter gameCharacter) {
         printExtraLongDivider();
-        System.out.print("\t\t\t\t\t\t\t\t");
-        System.out.println(gameCharacter instanceof Hero ? "Your abilities:" : "Enemy abilities:");
+        System.out.printf("%58s %n", gameCharacter instanceof Hero ? "Your abilities:" : "Enemy abilities:");
         System.out.print("\t");
         for (Map.Entry<Ability, Integer> entry : gameCharacter.getAbilities().entrySet()) {
             System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
@@ -174,7 +175,7 @@ public class PrintUtil {
 
     public static void printCurrentAbilityPointsWithItems(Hero hero) {
         printHeaderWithStatsBar(hero);
-        System.out.println("\t\t\t\t\t\t\t\t------ Current Ability points with items ------");
+        System.out.printf("%80s %n", ConsoleColor.YELLOW + "Current Ability points with items" + ConsoleColor.RESET);
         System.out.print("\t\t\t");
         for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {
 
@@ -263,17 +264,6 @@ public class PrintUtil {
     }
 
     public static void printTextWrap(String text) {
-//        char[] charArray = text.toCharArray();
-//        int numberOfTextWrap = 1;
-//        for (int i = 0; i <charArray.length; i++) {
-//            System.out.print(charArray[i]);
-//            if (i == (55 * numberOfTextWrap)) {
-//                System.out.print(" -");
-//                System.out.println("");
-//                numberOfTextWrap++;
-//            }
-//        }
-
         StringBuilder line = new StringBuilder();
 
         for (String word : text.split("\\s")) {
@@ -397,6 +387,12 @@ public class PrintUtil {
         } else {
             System.out.print("True / " + ConsoleColor.WHITE + "False" + ConsoleColor.RESET);
         }
+    }
+
+    public static void printCompleteQuestText(String questName) {
+        System.out.println("\t" + ConstantSymbol.QUEST_SYMBOL
+                + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET + " "
+                + ConstantSymbol.QUEST_SYMBOL);
     }
 }
 

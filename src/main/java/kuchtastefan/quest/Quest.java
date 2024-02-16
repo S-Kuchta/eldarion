@@ -49,9 +49,7 @@ public class Quest {
             }
         }
         if (completed && !this.questCompleted) {
-            System.out.println("\t" + ConstantSymbol.QUEST_SYMBOL
-                    + " You have completed Quest " + ConsoleColor.YELLOW + this.questName + ConsoleColor.RESET + " "
-                    + ConstantSymbol.QUEST_SYMBOL);
+            PrintUtil.printCompleteQuestText(this.questName);
             this.questCompleted = true;
         }
     }
@@ -59,7 +57,7 @@ public class Quest {
     public void turnInTheQuestAndGiveReward(Hero hero) {
         if (this.questCompleted) {
             PrintUtil.printLongDivider();
-            System.out.println("\t-- You have completed Quest " + ConsoleColor.YELLOW + this.questName + ConsoleColor.RESET + " --");
+            PrintUtil.printCompleteQuestText(this.questName);
             PrintUtil.printLongDivider();
             this.questReward.giveQuestReward(hero);
         }
@@ -78,19 +76,4 @@ public class Quest {
     public int hashCode() {
         return Objects.hash(questName, questDescription, questLevel);
     }
-
-    @Override
-    public String toString() {
-        return "Quest{" +
-                "questName='" + questName + '\'' +
-                ", questDescription='" + questDescription + '\'' +
-                ", questLevel=" + questLevel +
-                ", questCompleted=" + questCompleted +
-                ", questObjectives=" + questObjectives +
-                ", questReward=" + questReward +
-                ", isTurnedIn=" + isTurnedIn +
-                '}';
-    }
-
-
 }

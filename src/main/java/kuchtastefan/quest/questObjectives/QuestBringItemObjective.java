@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Getter
-public class QuestBringItemObjective extends QuestObjective {
+public class QuestBringItemObjective extends QuestObjective implements RemoveObjectiveProgress {
 
     private final Integer objectiveItemId;
     private final Integer[] itemDropFromEnemy;
@@ -35,6 +35,7 @@ public class QuestBringItemObjective extends QuestObjective {
 
         Item questItem = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
         hero.getHeroInventory().getHeroInventory().putIfAbsent(questItem, 0);
+
         if (hero.getHeroInventory().getHeroInventory().get(questItem) < this.itemDropCountNeeded) {
             System.out.println("\tBring " + this.itemDropCountNeeded + "x "
                     + ConsoleColor.YELLOW + questItem.getName() + ConsoleColor.RESET
@@ -68,10 +69,6 @@ public class QuestBringItemObjective extends QuestObjective {
 
         hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
                 new HashMap<>(Map.of(questItem, this.itemDropCountNeeded)), true);
-    }
-
-    public boolean checkLocation(LocationType locationTypeParam) {
-        return Arrays.asList(this.locationType).contains(locationTypeParam);
     }
 
     public boolean checkEnemy(Integer questEnemyId) {

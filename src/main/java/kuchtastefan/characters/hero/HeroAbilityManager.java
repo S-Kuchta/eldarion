@@ -1,6 +1,7 @@
 package kuchtastefan.characters.hero;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.ability.AbilityPointsSpendOrRemove;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -39,8 +40,8 @@ public class HeroAbilityManager {
                 PrintUtil.printAbilityPoints(this.hero);
                 System.out.println("Choose ability to upgrade:");
                 System.out.println("You have " + this.hero.getUnspentAbilityPoints() + " to spend.");
-                printPossibleAbilitiesToUpgrade("spend");
-                setAbilityToUpgrade(InputUtil.intScanner(), 1, -1, "spend");
+                printPossibleAbilitiesToUpgrade(AbilityPointsSpendOrRemove.SPEND);
+                setAbilityToUpgrade(InputUtil.intScanner(), 1, -1, AbilityPointsSpendOrRemove.SPEND);
             }
 
             System.out.println("You have spent all your available points. Your abilities are: ");
@@ -52,22 +53,23 @@ public class HeroAbilityManager {
         while (true) {
             PrintUtil.printAbilityPoints(this.hero);
             System.out.println("Choose ability to remove:");
-            printPossibleAbilitiesToUpgrade("remove");
+            printPossibleAbilitiesToUpgrade(AbilityPointsSpendOrRemove.REMOVE);
             int removeAbilityInput = InputUtil.intScanner();
             if (removeAbilityInput == 0) {
                 PrintUtil.printAbilityPoints(this.hero);
                 break;
             }
 
-            setAbilityToUpgrade(removeAbilityInput, -1, 1, "remove");
+            setAbilityToUpgrade(removeAbilityInput, -1, 1, AbilityPointsSpendOrRemove.REMOVE);
         }
     }
 
-    private void printPossibleAbilitiesToUpgrade(String spendOrRemovePoint) {
-        spendOrRemovePoint = spendOrRemovePoint.equals("spend") ?
+    private void printPossibleAbilitiesToUpgrade(AbilityPointsSpendOrRemove spendOrRemovePoint) {
+        String string = spendOrRemovePoint.equals(AbilityPointsSpendOrRemove.SPEND) ?
                 ConsoleColor.CYAN + "\t0. " + ConsoleColor.RESET + "Explain abilities":
                 ConsoleColor.CYAN + "\t0. " + ConsoleColor.RESET + "I am done";
-        System.out.println(spendOrRemovePoint);
+        System.out.println(string);
+
         int index = 1;
         for (Ability ability : this.abilityList()) {
             System.out.println("\t" + ConsoleColor.CYAN + index + ". " + ConsoleColor.RESET + ability.toString());
@@ -75,9 +77,9 @@ public class HeroAbilityManager {
         }
     }
 
-    private void setAbilityToUpgrade(int numberOfAbility, int numberOfPoints, int heroAvailablePointsChange, String spendOrRemovePoint) {
+    private void setAbilityToUpgrade(int numberOfAbility, int numberOfPoints, int heroAvailablePointsChange, AbilityPointsSpendOrRemove spendOrRemovePoint) {
         if (numberOfAbility == 0) {
-            if (spendOrRemovePoint.equals("spend")) {
+            if (spendOrRemovePoint.equals(AbilityPointsSpendOrRemove.SPEND)) {
                 explainAbilities();
             }
         } else {

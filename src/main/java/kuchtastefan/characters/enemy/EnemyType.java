@@ -1,6 +1,7 @@
 package kuchtastefan.characters.enemy;
 
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 @Getter
 public enum EnemyType {
@@ -13,6 +14,11 @@ public enum EnemyType {
 
     EnemyType(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
     }
 
 }

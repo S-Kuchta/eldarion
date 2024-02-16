@@ -72,7 +72,7 @@ public class Enemy extends GameCharacter {
         }
     }
 
-    public void itemsDrop() {
+    public void addItemsDropFromEnemy() {
         List<Item> tempList = new ArrayList<>();
         List<Item> itemList = ItemsLists.returnItemListByLevel(getLevel(), null);
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);

@@ -16,9 +16,4 @@ public class LocationStageFindItem extends LocationStage {
         new FindItemEvent(location.getLocationId(), this.itemId).eventOccurs(hero);
         return true;
     }
-
-    @Override
-    public void completeStage() {
-
-    }
 }

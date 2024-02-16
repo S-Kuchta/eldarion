@@ -43,8 +43,7 @@ public abstract class Action {
         int totalActionValue = this.maxActionValue;
         if (bonusValueFromAbility != null) {
             for (Map.Entry<Ability, Integer> abilityBonus : bonusValueFromAbility.entrySet()) {
-                totalActionValue += spellCaster.getCurrentAbilityValue(abilityBonus.getKey())
-                        * abilityBonus.getValue();
+                totalActionValue += spellCaster.getCurrentAbilityValue(abilityBonus.getKey()) * abilityBonus.getValue();
             }
         }
 

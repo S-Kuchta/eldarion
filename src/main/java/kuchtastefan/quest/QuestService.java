@@ -2,6 +2,7 @@ package kuchtastefan.quest;
 
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -164,7 +165,7 @@ public class QuestService {
         quest.turnInTheQuestAndGiveReward(hero);
         quest.setTurnedIn(true);
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
-            questObjective.removeCompletedItemsOrEnemies(hero);
+            ((RemoveObjectiveProgress) questObjective).removeCompletedItemsOrEnemies(hero);
         }
     }
 
@@ -174,6 +175,7 @@ public class QuestService {
         System.out.print("\t");
         PrintUtil.printTextWrap(quest.getQuestDescription());
         System.out.println();
+
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             questObjective.printQuestObjectiveAssignment(hero);
         }

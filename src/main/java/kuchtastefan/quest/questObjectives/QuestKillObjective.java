@@ -40,11 +40,6 @@ public class QuestKillObjective extends QuestObjective {
         }
     }
 
-    @Override
-    public void removeCompletedItemsOrEnemies(Hero hero) {
-
-    }
-
     public void increaseCurrentCountEnemyProgress() {
         this.currentCountEnemyProgress++;
     }

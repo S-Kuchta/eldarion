@@ -11,6 +11,7 @@ public class ActionRestoreManaOverTime extends ActionWithDuration {
                                      int maxActionValue, int maxActionTurns, int actionMaxStacks,
                                      ActionDurationType actionDurationType, int chanceToPerformAction,
                                      boolean canBeActionCriticalHit) {
+
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
                 actionDurationType, chanceToPerformAction, canBeActionCriticalHit);
     }

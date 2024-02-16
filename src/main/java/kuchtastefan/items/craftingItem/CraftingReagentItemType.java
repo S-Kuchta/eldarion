@@ -1,6 +1,7 @@
 package kuchtastefan.items.craftingItem;
 
 import lombok.Getter;
+import org.apache.commons.lang3.StringUtils;
 
 @Getter
 public enum CraftingReagentItemType {
@@ -11,6 +12,11 @@ public enum CraftingReagentItemType {
 
     CraftingReagentItemType(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
     }
 
 }

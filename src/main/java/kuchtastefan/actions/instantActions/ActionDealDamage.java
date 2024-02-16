@@ -7,8 +7,9 @@ import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
 public class ActionDealDamage extends Action {
-    public ActionDealDamage(ActionName actionName, ActionEffectOn actionEffectOn,
-                            int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
+    public ActionDealDamage(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+                            int chanceToPerformAction, boolean canBeActionCriticalHit) {
+
         super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 

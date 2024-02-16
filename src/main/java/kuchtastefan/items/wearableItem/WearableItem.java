@@ -32,6 +32,8 @@ public class WearableItem extends Item {
             if (wearableItem.getAbilities().get(ability) != 0) {
                 if (ability.equals(Ability.HEALTH)) {
                     wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) + Constant.HEALTH_OF_ONE_POINT));
+                } else if (ability.equals(Ability.MANA)) {
+                    wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) + Constant.MANA_OF_ONE_POINT));
                 } else {
                     wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) + 1));
                 }

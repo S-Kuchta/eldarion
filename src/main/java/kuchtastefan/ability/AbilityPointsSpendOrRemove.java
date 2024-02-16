@@ -1,12 +1,10 @@
-package kuchtastefan.characters.hero;
+package kuchtastefan.ability;
 
-import kuchtastefan.items.Item;
 import org.apache.commons.lang3.StringUtils;
 
-public enum CharacterClass {
-    NPC,
-    WARRIOR,
-    MAGE;
+public enum AbilityPointsSpendOrRemove {
+    SPEND,
+    REMOVE;
 
     public String toString() {
         return StringUtils.capitalize(name().toLowerCase().replace("_", " "));

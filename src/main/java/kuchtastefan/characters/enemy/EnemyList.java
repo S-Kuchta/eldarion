@@ -19,7 +19,7 @@ public class EnemyList {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
         Enemy newEnemy = gson.fromJson(gson.toJson(enemy), Enemy.class);
-        newEnemy.itemsDrop();
+        newEnemy.addItemsDropFromEnemy();
         newEnemy.goldDrop();
         newEnemy.setCanPerformAction(true);
 
@@ -56,7 +56,7 @@ public class EnemyList {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
         Enemy newEnemy = gson.fromJson(gson.toJson(enemyMap.get(id)), Enemy.class);
-        newEnemy.itemsDrop();
+        newEnemy.addItemsDropFromEnemy();
         newEnemy.goldDrop();
         newEnemy.setCanPerformAction(true);
         newEnemy.setMaxAbilitiesAndCurrentAbilities();

@@ -36,16 +36,6 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionInstantStun.class)
             .registerSubtype(ActionInvulnerability.class);
 
-    public static final RuntimeTypeAdapterFactory<ActionWithDuration> actionsWithDurationTypeAdapterFactory = RuntimeTypeAdapterFactory
-            .of(ActionWithDuration.class)
-            .registerSubtype(ActionDealDamageOverTime.class, "ActionDealDamageOverTimeWithDuration")
-            .registerSubtype(ActionRestoreHealthOverTime.class, "ActionRestoreHealthWithDuration")
-            .registerSubtype(ActionAbsorbDamage.class, "ActionAbsorbDamageWithDuration")
-            .registerSubtype(ActionIncreaseAbilityPoint.class, "ActionIncreaseAbilityPointWithDuration")
-            .registerSubtype(ActionRestoreManaOverTime.class, "ActionRestoreManaWithDuration")
-            .registerSubtype(ActionStun.class, "ActionStunWithDuration")
-            .registerSubtype(ActionInvulnerability.class, "ActionInvulnerabilityWithDuration");
-
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(QuestObjective.class)
             .registerSubtype(QuestKillObjective.class)
@@ -72,11 +62,4 @@ public class RuntimeTypeAdapterFactoryUtil {
             .of(Quest.class)
             .registerSubtype(Quest.class)
             .registerSubtype(QuestChain.class);
-
-
-//    public static final RuntimeTypeAdapterFactory<Spell> spellObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
-//            .of(Spell.class)
-//            .registerSubtype(Spell.class);
-//            .registerSubtype(MageSpell.class)
-//            .registerSubtype(WarriorSpell.class);
 }

@@ -2,6 +2,7 @@ package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.actionsWIthDuration.ActionDecreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionIncreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
@@ -47,9 +48,14 @@ public class PrintUtil {
             System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on "
                     + action.getActionEffectOn());
             if (action.getMaxActionValue() != 0) {
-                System.out.print(" [Action value: "
-                        + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
-                        + " - " + totalActionValue + "]");
+                if (action instanceof ActionIncreaseAbilityPoint || action instanceof ActionDecreaseAbilityPoint) {
+                    System.out.print("[" + ((ActionIncreaseAbilityPoint) action).getAbility() + "]");
+                    System.out.print(" [Action value: " + totalActionValue + "]");
+                } else {
+                    System.out.print(" [Action value: "
+                            + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
+                            + " - " + totalActionValue + "]");
+                }
             }
             System.out.print(" [Chance to Perform: " + action.getChanceToPerformAction() + "%]");
 
@@ -383,9 +389,9 @@ public class PrintUtil {
 
     public static void printGameSettings(boolean gameSetting) {
         if (!gameSetting) {
-            System.out.print(ConsoleColor.WHITE + "True" + ConsoleColor.RESET + " / False");
+            System.out.print(ConsoleColor.WHITE + "Yes" + ConsoleColor.RESET + " / No");
         } else {
-            System.out.print("True / " + ConsoleColor.WHITE + "False" + ConsoleColor.RESET);
+            System.out.print("Yes / " + ConsoleColor.WHITE + "No" + ConsoleColor.RESET);
         }
     }
 
@@ -395,26 +401,6 @@ public class PrintUtil {
                 + ConstantSymbol.QUEST_SYMBOL);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

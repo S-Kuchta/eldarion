@@ -80,7 +80,7 @@ public class BattleService {
                                 }
                             } else {
                                 // If choice is for a spell, use the spell on the enemy
-                                if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, enemyChosen)) {
+                                if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, enemyChosen, enemyList)) {
                                     checkSpellsCoolDowns(hero);
                                     break;
                                 }
@@ -140,7 +140,7 @@ public class BattleService {
                             continue;
                         }
 
-                        this.enemyUseSpell(enemyInCombat, hero);
+                        this.enemyUseSpell(enemyInCombat, hero, enemyList);
                         this.printAndPerformActionOverTime(enemyInCombat);
                     }
 
@@ -277,7 +277,7 @@ public class BattleService {
      * @param spellCaster The enemy character casting the spell.
      * @param spellTarget The target of the spell (usually the player's character).
      */
-    private void enemyUseSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
+    private void enemyUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<Enemy> enemyList) {
         // Map to store spells and their priority points
         Map<Spell, Integer> spells = new HashMap<>();
 
@@ -332,7 +332,7 @@ public class BattleService {
         }
 
         // Cast the selected spell on the target character
-        spellToCast.useSpell(spellCaster, spellTarget);
+        spellToCast.useSpell(spellCaster, spellTarget, enemyList);
     }
 
     /**

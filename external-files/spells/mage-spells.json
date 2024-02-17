@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 3,
+        "maxActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -24,14 +24,58 @@
   },
   {
     "spellId": 201,
-    "spellName": "Fireball",
+    "spellName": "Scorch",
     "spellClass": "MAGE",
-    "spellDescription": "Cast a fireball",
+    "spellDescription": "Scorch the enemy with Fire damage",
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
         "maxActionValue": 5,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 12,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 202,
+    "spellName": "Heal",
+    "spellClass": "MAGE",
+    "spellDescription": "Heals the target",
+    "spellActions": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "maxActionValue": 10,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 17,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 203,
+    "spellName": "FireBall",
+    "spellClass": "MAGE",
+    "spellDescription": "Hurls a fiery ball that causes Fire damage and an additional Fire damage over 3 turns.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 10,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -49,15 +93,101 @@
       }
     ],
     "bonusValueFromAbility": {
-      "INTELLECT": 1,
-      "ATTACK": 1
+      "INTELLECT": 2,
+      "ATTACK": 2
     },
-    "spellLevel": 0,
-    "spellManaCost": 10,
-    "turnCoolDown": 2
+    "spellLevel": 1,
+    "spellManaCost": 25,
+    "turnCoolDown": 3
   },
   {
-    "spellId": 202,
+    "spellId": 204,
+    "spellName": "FrostBolt",
+    "spellClass": "MAGE",
+    "spellDescription": "Launches a bolt of frost at the enemy, causing Frost damage and lower target Attack Ability",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 7,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionDecreaseAbilityPoint",
+        "actionName": "DECREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 1,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "ATTACK"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2,
+      "ATTACK": 2
+    },
+    "spellLevel": 1,
+    "spellManaCost": 25,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 205,
+    "spellName": "Fire Ward",
+    "spellClass": "MAGE",
+    "spellDescription": "Absorbs damage. Lasts 3 turns or until is destroyed.",
+    "spellActions": [
+      {
+        "type": "ActionAbsorbDamage",
+        "actionName": "ABSORB_DAMAGE",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 5,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 3
+    },
+    "spellLevel": 3,
+    "spellManaCost": 25,
+    "turnCoolDown": 5
+  },
+  {
+    "spellId": 204,
+    "spellName": "Ice Armor",
+    "spellClass": "MAGE",
+    "spellDescription": "Increases Resist damage",
+    "spellActions": [
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "RESIST_DAMAGE"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2
+    },
+    "spellLevel": 3,
+    "spellManaCost": 25,
+    "turnCoolDown": 7
+  },
+  {
+    "spellId": 204,
     "spellName": "Freeze Enemy",
     "spellClass": "MAGE",
     "spellDescription": "Cast ice cube.",
@@ -86,12 +216,12 @@
       "INTELLECT": 1,
       "ATTACK": 1
     },
-    "spellLevel": 0,
+    "spellLevel": 5,
     "spellManaCost": 20,
     "turnCoolDown": 5
   },
   {
-    "spellId": 203,
+    "spellId": 205,
     "spellName": "Ice block",
     "spellClass": "MAGE",
     "spellDescription": "Cast ice block.",
@@ -108,7 +238,7 @@
         "canBeActionCriticalHit": false
       }
     ],
-    "spellLevel": 0,
+    "spellLevel": 3,
     "spellManaCost": 30,
     "turnCoolDown": 7
   }

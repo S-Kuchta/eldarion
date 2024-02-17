@@ -153,8 +153,6 @@ public abstract class GameCharacter {
             damage -= getCurrentAbilityValue(Ability.RESIST_DAMAGE);
         }
 
-        System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage to " + this.name);
-
         int absorbDamage = 0;
         Iterator<ActionWithDuration> iterator = this.battleActionsWithDuration.iterator();
         while (iterator.hasNext()) {
@@ -173,6 +171,7 @@ public abstract class GameCharacter {
             }
         }
 
+        System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage to " + this.name);
         this.currentAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
         this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
     }
@@ -200,7 +199,7 @@ public abstract class GameCharacter {
         }
     }
 
-    public void lowerAbility(int valueOfLower, Ability ability) {
+    public void decreaseCurrentAbility(int valueOfLower, Ability ability) {
         int currentAbility = getCurrentAbilityValue(ability);
         this.currentAbilities.put(ability, Math.max(currentAbility - valueOfLower, 0));
     }
@@ -209,8 +208,8 @@ public abstract class GameCharacter {
         return this.currentAbilities.get(ability);
     }
 
-    public void increaseAbilityValue(Ability ability, int valueToIncrease) {
-        this.abilities.put(ability, this.getCurrentAbilityValue(ability) + valueToIncrease);
+    public void increaseCurrentAbilityValue(Ability ability, int valueToIncrease) {
+        this.currentAbilities.put(ability, this.getCurrentAbilityValue(ability) + valueToIncrease);
     }
 
     public Map<Ability, Integer> initializeAbilityForNonEnemyCharacters() {

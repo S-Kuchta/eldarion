@@ -34,7 +34,8 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionRestoreManaOverTime.class)
             .registerSubtype(ActionStun.class)
             .registerSubtype(ActionInstantStun.class)
-            .registerSubtype(ActionInvulnerability.class);
+            .registerSubtype(ActionInvulnerability.class)
+            .registerSubtype(ActionDecreaseAbilityPoint.class);
 
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(QuestObjective.class)

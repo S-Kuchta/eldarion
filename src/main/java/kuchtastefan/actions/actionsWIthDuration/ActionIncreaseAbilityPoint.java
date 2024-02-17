@@ -27,10 +27,8 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration {
     public void performAction(GameCharacter gameCharacter) {
 
         int increaseAbilityWithStacks = this.getCurrentActionValue() * this.getActionCurrentStacks();
-//        gameCharacter.getCurrentAbilities().put(this.ability, gameCharacter.getCurrentAbilityValue(this.ability) + (increaseAbilityWithStacks));
-        gameCharacter.increaseAbilityValue(this.ability, increaseAbilityWithStacks);
+        gameCharacter.increaseCurrentAbilityValue(this.ability, increaseAbilityWithStacks);
 
         System.out.println("\t" + ConsoleColor.YELLOW + this.ability + ConsoleColor.RESET + " is increased by " + increaseAbilityWithStacks);
     }
-
 }

@@ -1,10 +1,12 @@
 package kuchtastefan.regions.events;
 
+import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.enemy.EnemyList;
 import kuchtastefan.characters.enemy.EnemyRarity;
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -57,6 +59,9 @@ public class EventService {
 
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
+
+        hero.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
+                * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
 
         hero.checkAndRemoveActionTurns();
         hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.REGION_ACTION);

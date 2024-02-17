@@ -165,7 +165,9 @@ public class QuestService {
         quest.turnInTheQuestAndGiveReward(hero);
         quest.setTurnedIn(true);
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
-            ((RemoveObjectiveProgress) questObjective).removeCompletedItemsOrEnemies(hero);
+            if (questObjective instanceof RemoveObjectiveProgress) {
+                ((RemoveObjectiveProgress) questObjective).removeCompletedItemsOrEnemies(hero);
+            }
         }
     }
 

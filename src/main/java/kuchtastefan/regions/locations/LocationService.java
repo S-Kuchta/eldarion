@@ -91,8 +91,8 @@ public class LocationService {
      * If stage is successfully completed, increase counter of stageCompleted located in Location
      * If stageCompleted meet value of stageTotal, location is completed and rewards are granted
      *
-     * @param hero Exploring LocationStage
-     * @param location which stage belong
+     * @param hero               Exploring LocationStage
+     * @param location           which stage belong
      * @param locationStageOrder order in location
      */
     public void exploreLocationStage(Hero hero, Location location, int locationStageOrder) {
@@ -138,7 +138,10 @@ public class LocationService {
         if (isStageCompleted) {
             location.stageCompleted++;
             locationStage.setStageCompleted(true);
-            ((RemoveLocationStageProgress) locationStage).removeProgressAfterCompletedStage();
+
+            if (locationStage instanceof RemoveLocationStageProgress) {
+                ((RemoveLocationStageProgress) locationStage).removeProgressAfterCompletedStage();
+            }
 
             if (location.getLocationStages().get(locationStageOrder + 1) != null) {
                 location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);

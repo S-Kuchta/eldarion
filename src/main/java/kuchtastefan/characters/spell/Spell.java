@@ -3,8 +3,11 @@ package kuchtastefan.characters.spell;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
+import kuchtastefan.actions.actionsWIthDuration.ActionDecreaseAbilityPoint;
+import kuchtastefan.actions.actionsWIthDuration.ActionIncreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.characters.enemy.Enemy;
 import kuchtastefan.characters.hero.CharacterClass;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
@@ -29,10 +32,11 @@ public class Spell {
     private int currentTurnCoolDown;
     private boolean canSpellBeCasted;
     private final CharacterClass spellClass;
+    private final boolean hitAllEnemy;
 
 
     public Spell(int spellId, String spellName, String spellDescription, List<Action> spellActions, int turnCoolDown,
-                 Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost, CharacterClass spellClass) {
+                 Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost, CharacterClass spellClass, boolean hitAllEnemy) {
 
         this.spellId = spellId;
         this.spellName = spellName;
@@ -43,6 +47,7 @@ public class Spell {
         this.spellManaCost = spellManaCost;
         this.turnCoolDown = turnCoolDown;
         this.currentTurnCoolDown = turnCoolDown;
+        this.hitAllEnemy = hitAllEnemy;
         this.canSpellBeCasted = true;
         this.spellClass = spellClass;
     }
@@ -57,38 +62,24 @@ public class Spell {
      * @param spellTarget The character targeted by the spell.
      * @return True if the spell was successfully cast, false otherwise.
      */
-    public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
+    public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<Enemy> allCharacters) {
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
             System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.spellName + ConsoleColor.RESET);
 
             boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100)
                     <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
 
-
             for (Action action : this.spellActions) {
-                action.setNewCurrentActionValue(action.getMaxActionValue());
-
-                if (action.willPerformAction()) {
-                    int totalActionValue = action.totalActionValue(this.bonusValueFromAbility, spellCaster);
-
-                    if (criticalHit && action.isCanBeActionCriticalHit()) {
-                        System.out.println("\t" + action.getActionName() + " Critical hit!");
-                        totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
+                if (this.hitAllEnemy) {
+                    for (Enemy enemy : allCharacters) {
+                        performAction(action, spellCaster, enemy, criticalHit);
                     }
-                    action.setNewCurrentActionValue(RandomNumberGenerator.getRandomNumber(
-                            (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER), totalActionValue));
-
-                    if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-                        actionOrActionWithDuration(action, spellTarget);
-                    }
-
-                    if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
-                        actionOrActionWithDuration(action, spellCaster);
-                    }
+                } else {
+                    performAction(action, spellCaster, spellTarget, criticalHit);
                 }
             }
 
-            spellCaster.lowerAbility(this.spellManaCost, Ability.MANA);
+            spellCaster.decreaseCurrentAbility(this.spellManaCost, Ability.MANA);
             this.currentTurnCoolDown = 0;
             checkTurnCoolDown();
 
@@ -101,6 +92,35 @@ public class Spell {
                         + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)" + ConsoleColor.RESET);
             }
             return false;
+        }
+    }
+
+    private void performAction(Action action, GameCharacter spellCaster, GameCharacter spellTarget, boolean criticalHit) {
+
+        action.setNewCurrentActionValue(action.getMaxActionValue());
+
+        if (action.willPerformAction()) {
+            int totalActionValue = action.totalActionValue(this.bonusValueFromAbility, spellCaster);
+
+            if (criticalHit && action.isCanBeActionCriticalHit()) {
+                System.out.println("\t" + action.getActionName() + " Critical hit!");
+                totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
+            }
+
+            if (action instanceof ActionIncreaseAbilityPoint || action instanceof ActionDecreaseAbilityPoint) {
+                action.setNewCurrentActionValue(totalActionValue);
+            } else {
+                action.setNewCurrentActionValue(RandomNumberGenerator.getRandomNumber(
+                        (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER), totalActionValue));
+            }
+
+            if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
+                actionOrActionWithDuration(action, spellTarget);
+            }
+
+            if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
+                actionOrActionWithDuration(action, spellCaster);
+            }
         }
     }
 

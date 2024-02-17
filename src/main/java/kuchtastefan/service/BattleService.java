@@ -13,6 +13,8 @@ import kuchtastefan.characters.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSettings;
+import kuchtastefan.hint.HintName;
+import kuchtastefan.hint.HintUtil;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumber;
@@ -23,6 +25,7 @@ import java.util.*;
 public class BattleService {
 
     public boolean battle(Hero hero, List<Enemy> enemies) {
+        HintUtil.printHint(HintName.BATTLE_HINT);
         InventoryMenuService inventoryMenuService = new InventoryMenuService();
 
         // Create a copy of the enemy list

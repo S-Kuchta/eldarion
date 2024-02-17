@@ -2,8 +2,11 @@ package kuchtastefan.characters.hero;
 
 import kuchtastefan.characters.hero.inventory.InventoryMenuService;
 import kuchtastefan.gameSettings.GameSettings;
+import kuchtastefan.hint.HintName;
+import kuchtastefan.hint.HintUtil;
 import kuchtastefan.quest.QuestService;
 import kuchtastefan.characters.spell.HeroSpellManager;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
@@ -23,6 +26,12 @@ public class HeroMenuService {
     }
 
     public void heroCharacterMenu(Hero hero) {
+        HintUtil.printHint(HintName.HERO_MENU);
+
+        PrintUtil.printLongDivider();
+        System.out.printf("%30s %n", ConsoleColor.YELLOW + "Hero menu" + ConsoleColor.RESET);
+        PrintUtil.printLongDivider();
+
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
         PrintUtil.printIndexAndText("1", "Hero Info");
@@ -88,6 +97,8 @@ public class HeroMenuService {
             PrintUtil.printIndexAndText("3", "Hide spells on CoolDown - ");
             PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
             System.out.println();
+            PrintUtil.printIndexAndText("4", "Reset all Hints");
+            System.out.println();
 
             int choice = InputUtil.intScanner();
             switch (choice) {
@@ -97,6 +108,7 @@ public class HeroMenuService {
                 case 1 -> GameSettings.setPrintStringSlowly();
                 case 2 -> GameSettings.setShowInformationAboutActionName();
                 case 3 -> GameSettings.setHideSpellsOnCoolDown();
+                case 4 -> HintUtil.resetAllHints();
             }
         }
     }

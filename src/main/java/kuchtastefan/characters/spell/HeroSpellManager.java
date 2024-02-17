@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.gameSettings.GameSettings;
+import kuchtastefan.hint.HintName;
+import kuchtastefan.hint.HintUtil;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumberSpellLevel;
 import kuchtastefan.utility.PrintUtil;
@@ -44,6 +46,7 @@ public class HeroSpellManager {
      * @param hero The hero who is learning new spells.
      */
     private void learnNewSpell(Hero hero) {
+        HintUtil.printHint(HintName.NEW_SPELL_HINT);
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(
                 RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 

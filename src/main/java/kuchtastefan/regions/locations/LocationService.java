@@ -2,6 +2,8 @@ package kuchtastefan.regions.locations;
 
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroMenuService;
+import kuchtastefan.hint.HintName;
+import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -21,6 +23,7 @@ public class LocationService {
      * @param heroMenuService The service handling hero menu actions.
      */
     public void locationMenu(Hero hero, Location location, HeroMenuService heroMenuService) {
+        HintUtil.printHint(HintName.LOCATION_HINT);
 
         while (true) {
             PrintUtil.printLongDivider();
@@ -29,6 +32,7 @@ public class LocationService {
                     + "\tStages completed " + location.stageCompleted + " / " + location.stageTotal);
             PrintUtil.printLongDivider();
 
+            // Print stage menu
             System.out.println("\tWhat do you want to do?");
             PrintUtil.printIndexAndText("0", "Go back on the path");
             System.out.println();
@@ -37,6 +41,7 @@ public class LocationService {
             PrintUtil.printIndexAndText("2", "Hero Menu");
             System.out.println();
 
+            // Print discovered location Stages
             int index = 3;
             for (Map.Entry<Integer, LocationStage> locationStage : location.locationStages.entrySet()) {
                 if (locationStage.getValue().isStageDiscovered()) {
@@ -49,6 +54,7 @@ public class LocationService {
             }
 
             try {
+                // Location selection
                 int choice = InputUtil.intScanner();
                 if (choice == 0) {
                     System.out.println("\tGoing back on path");
@@ -58,9 +64,9 @@ public class LocationService {
                             && location.locationStages.get(location.stageCompleted + 1) != null
                             && location.locationStages.get(location.stageCompleted + 1).isStageDiscovered()) {
 
-                        exploreLocation(hero, location, location.stageCompleted + 1);
+                        exploreLocationStage(hero, location, location.stageCompleted + 1);
                     } else {
-                        exploreLocation(hero, location, location.stageCompleted);
+                        exploreLocationStage(hero, location, location.stageCompleted);
                     }
                 } else if (choice == 2) {
                     heroMenuService.heroCharacterMenu(hero);
@@ -70,7 +76,7 @@ public class LocationService {
                         continue;
                     }
 
-                    exploreLocation(hero, location, choice - index);
+                    exploreLocationStage(hero, location, choice - index);
                 }
             } catch (IndexOutOfBoundsException e) {
                 PrintUtil.printEnterValidInput();
@@ -79,9 +85,20 @@ public class LocationService {
     }
 
 
-    public void exploreLocation(Hero hero, Location location, int locationStageOrder) {
+    /**
+     * Method is responsible for exploring LocationStage.
+     * You can explore LocationStage only if certain conditions are fulfilled
+     * If stage is successfully completed, increase counter of stageCompleted located in Location
+     * If stageCompleted meet value of stageTotal, location is completed and rewards are granted
+     *
+     * @param hero Exploring LocationStage
+     * @param location which stage belong
+     * @param locationStageOrder order in location
+     */
+    public void exploreLocationStage(Hero hero, Location location, int locationStageOrder) {
         LocationStage locationStage = location.locationStages.get(locationStageOrder);
 
+        // Conditions for check if Hero can explore current Stage
         if (locationStage instanceof LocationStageQuestGiver) {
             location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
         }
@@ -107,13 +124,17 @@ public class LocationService {
             System.out.println("\t" + locationStage.getStageName() + " is cleared!");
             return;
         }
+        // End of conditions for explore current Stage
 
+        // LocationStage header
         PrintUtil.printLongDivider();
         System.out.println("\t\t\t" + locationStage.getStageName());
         PrintUtil.printLongDivider();
 
+        // Explore location stage
         boolean isStageCompleted = locationStage.exploreStage(hero, location);
 
+        // check if stage is successfully cleared
         if (isStageCompleted) {
             location.stageCompleted++;
             locationStage.setStageCompleted(true);
@@ -126,6 +147,8 @@ public class LocationService {
             return;
         }
 
+
+        // Reward for completing all location stages
         if (location.stageCompleted == location.stageTotal) {
             location.setCleared(true);
             location.rewardAfterCompletedAllStages(hero);

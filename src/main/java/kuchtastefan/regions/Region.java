@@ -2,6 +2,8 @@ package kuchtastefan.regions;
 
 import kuchtastefan.characters.hero.Hero;
 import kuchtastefan.characters.hero.HeroMenuService;
+import kuchtastefan.hint.HintName;
+import kuchtastefan.hint.HintUtil;
 import kuchtastefan.regions.events.EventService;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationService;
@@ -42,8 +44,9 @@ public abstract class Region {
     }
 
     public void adventuringAcrossTheRegion(HeroMenuService heroMenuService) {
-        while (true) {
+        HintUtil.printHint(HintName.REGION_HINT);
 
+        while (true) {
             // Printing region information and options
             System.out.println();
             PrintUtil.printHeaderWithStatsBar(getHero());

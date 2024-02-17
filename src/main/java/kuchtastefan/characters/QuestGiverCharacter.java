@@ -1,6 +1,8 @@
 package kuchtastefan.characters;
 
 import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.hint.HintName;
+import kuchtastefan.hint.HintUtil;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestService;
 import kuchtastefan.utility.ConsoleColor;
@@ -42,6 +44,8 @@ public class QuestGiverCharacter extends GameCharacter {
     }
 
     public void questGiverMenu(Hero hero) {
+        HintUtil.printHint(HintName.QUEST_HINT);
+
         connectHeroQuestListWithCharacterQuestList(hero);
         setNameBasedOnQuestsAvailable(hero);
         this.questService.questGiverMenu(hero, this.quests, this.name);

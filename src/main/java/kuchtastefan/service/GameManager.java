@@ -9,6 +9,7 @@ import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
 import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.characters.vendor.JunkVendorCharacter;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
@@ -77,7 +78,7 @@ public class GameManager {
                 case 3 -> this.tavernMenu();
                 case 4 -> this.alchemistMenu();
                 case 5 -> this.blacksmithService.blacksmithMenu(this.hero);
-                case 6 -> this.fileService.saveGame(this.hero, this.currentLevel/*, this.forestRegionService*/);
+                case 6 -> this.fileService.saveGame(this.hero, this.currentLevel);
                 case 7 -> {
                     System.out.println("Are you sure?");
                     PrintUtil.printIndexAndText("0", "No");
@@ -274,5 +275,6 @@ public class GameManager {
         PrintUtil.printLongDivider();
 
         this.heroAbilityManager.spendAbilityPoints();
+        HintUtil.printHint(HintName.WELCOME);
     }
 }

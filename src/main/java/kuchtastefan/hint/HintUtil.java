@@ -42,7 +42,7 @@ public class HintUtil {
                 \tWhen you want to change a learned spell, simply learn a new one, and the old one will be unlearned."""));
 
         hintList.put(HintName.REGION_HINT, new Hint("""
-                \tWelcome to the region. Here you can travel across the region, discover new locations, and complete quests. 
+                \tWelcome to the region. Here you can travel across the region, discover new locations, and complete quests.
                 \tHowever, be cautious of traps while traveling through locations."""));
 
         hintList.put(HintName.LOCATION_HINT, new Hint("""
@@ -56,7 +56,8 @@ public class HintUtil {
                 \tCombat is conducted using spells, each spell has actions that are performed after using the spell.
                 \tActions with durations are always performed at the end of the character's turn.
                 \tHowever, be careful, some actions do not have a 100% chance of execution.
-                \tSpells with CoolDowns cannot be used.
+                \tIf action has lower chance to perform, you will see percentage chance in action description.
+                \tSpells on CoolDowns can't be used.
                 \tTo receive rewards or fulfill Quest Objectives, you must defeat all units and win the battle."""));
     }
 

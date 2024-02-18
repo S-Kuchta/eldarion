@@ -26,6 +26,7 @@ public abstract class GameCharacter {
     protected Set<ActionWithDuration> battleActionsWithDuration;
     protected List<Spell> characterSpellList;
     protected boolean canPerformAction;
+    protected boolean reflectSpell;
 
 
     public GameCharacter(String name, Map<Ability, Integer> abilities) {
@@ -121,6 +122,8 @@ public abstract class GameCharacter {
 
     protected void resetCurrentAbilitiesToMaxAbilities(boolean setHealthOrManaToMaxValue) {
         this.canPerformAction = true;
+        this.reflectSpell = false;
+
         for (Ability ability : Ability.values()) {
             if (ability.equals(Ability.HEALTH)
                     || ability.equals(Ability.MANA)) {

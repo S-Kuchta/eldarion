@@ -146,7 +146,7 @@
         "actionName": "ABSORB_DAMAGE",
         "actionEffectOn": "SPELL_CASTER",
         "maxActionValue": 5,
-        "maxActionTurns": 2,
+        "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
@@ -161,7 +161,7 @@
     "turnCoolDown": 5
   },
   {
-    "spellId": 204,
+    "spellId": 206,
     "spellName": "Ice Armor",
     "spellClass": "MAGE",
     "spellDescription": "Increases Resist damage",
@@ -183,6 +183,29 @@
       "INTELLECT": 2
     },
     "spellLevel": 3,
+    "spellManaCost": 25,
+    "turnCoolDown": 7
+  },
+  {
+    "spellId": 207,
+    "spellName": "Reflect Spell",
+    "spellClass": "MAGE",
+    "spellDescription": "Reflect spell",
+    "spellActions": [
+      {
+        "type": "ActionReflectSpell",
+        "actionName": "REFLECT_SPELL",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 0,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "bonusValueFromAbility": {},
+    "spellLevel": 1,
     "spellManaCost": 25,
     "turnCoolDown": 7
   },

@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 
 @Getter
@@ -21,6 +22,10 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration {
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.decreaseCurrentAbility(this.currentActionValue, this.ability);
+
+        int decreaseAbilityWithStacksValue = this.getCurrentActionValue() * this.getActionCurrentStacks();
+        gameCharacter.decreaseCurrentAbility(decreaseAbilityWithStacksValue, this.ability);
+
+        System.out.println("\t" + ConsoleColor.RED + this.ability + ConsoleColor.RESET + " is decreased by " + decreaseAbilityWithStacksValue);
     }
 }

@@ -3,8 +3,10 @@ package kuchtastefan.characters.spell;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
+import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.actionsWIthDuration.ActionDecreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionIncreaseAbilityPoint;
+import kuchtastefan.actions.actionsWIthDuration.ActionReflectSpell;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.characters.GameCharacter;
 import kuchtastefan.characters.enemy.Enemy;
@@ -67,7 +69,17 @@ public class Spell {
             System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.spellName + ConsoleColor.RESET);
 
             boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100)
-                    <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+                                  <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+
+            if (spellTarget.isReflectSpell()) {
+                for (Action action : spellTarget.getBattleActionsWithDuration()) {
+                    if (action instanceof ActionReflectSpell) {
+                        spellTarget.getBattleActionsWithDuration().remove(action);
+                        spellTarget = spellCaster;
+                        break;
+                    }
+                }
+            }
 
             for (Action action : this.spellActions) {
                 if (this.hitAllEnemy) {
@@ -89,7 +101,7 @@ public class Spell {
                 System.out.println("\tYou do not have enough Mana to perform this ability!");
             } else {
                 System.out.println(ConsoleColor.RED + "\tYou can not cast " + this.spellName + ". Spell is on coolDown! (You have to wait "
-                        + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)" + ConsoleColor.RESET);
+                                   + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)" + ConsoleColor.RESET);
             }
             return false;
         }

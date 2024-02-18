@@ -27,10 +27,10 @@ public class PrintUtil {
     public static void printSpellDescription(Hero hero, Spell spell) {
 
         System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
-                + " [Mana Cost: " + spell.getSpellManaCost() + "]");
+                         + " [Mana Cost: " + spell.getSpellManaCost() + "]");
         if (spell.getTurnCoolDown() > 0) {
             System.out.print("[CoolDown: "
-                    + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
+                             + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
         }
 
         System.out.println("\n\t" + spell.getSpellDescription());
@@ -40,35 +40,108 @@ public class PrintUtil {
 
             if (spell.getBonusValueFromAbility() != null) {
                 for (Map.Entry<Ability, Integer> abilityBonus : spell.getBonusValueFromAbility().entrySet()) {
-                    totalActionValue += hero.getCurrentAbilityValue(abilityBonus.getKey())
-                            * abilityBonus.getValue();
+                    totalActionValue += hero.getCurrentAbilityValue(abilityBonus.getKey()) * abilityBonus.getValue();
                 }
             }
 
-            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on "
-                    + action.getActionEffectOn());
-            if (action.getMaxActionValue() != 0) {
-                if (action instanceof ActionIncreaseAbilityPoint || action instanceof ActionDecreaseAbilityPoint) {
-                    System.out.print("[" + ((ActionIncreaseAbilityPoint) action).getAbility() + "]");
-                    System.out.print(" [Action value: " + totalActionValue + "]");
-                } else {
-                    System.out.print(" [Action value: "
-                            + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER)
-                            + " - " + totalActionValue + "]");
-                }
+            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on ");
+            if (spell.isHitAllEnemy()) {
+                System.out.print("All enemies ");
+            } else {
+                System.out.print(action.getActionEffectOn() + " ");
             }
-            System.out.print(" [Chance to Perform: " + action.getChanceToPerformAction() + "%]");
 
-            if (action instanceof ActionWithDuration) {
-                System.out.print(" [Turns Duration: " + ((ActionWithDuration) action).getMaxActionTurns() + "]"
-                        + " [Max Stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + "]");
-            }
-            if (GameSettings.isShowInformationAboutActionName()) {
-                System.out.print("\n\t\t" + action.getActionName().getDescription());
-            }
-            System.out.println();
+            printActionDetails(action, totalActionValue);
+
+//            if (action.getMaxActionValue() != 0) {
+//                if (action instanceof ActionIncreaseAbilityPoint) {
+//                    System.out.print("[" + ((ActionIncreaseAbilityPoint) action).getAbility() + "]");
+//                    System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+//                } else if (action instanceof ActionDecreaseAbilityPoint) {
+//                    System.out.print("[" + ((ActionDecreaseAbilityPoint) action).getAbility() + "]");
+//                    System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+//                } else {
+//                    System.out.print("[Value: "
+//                                     + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET
+//                                     + " - "
+//                                     + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+//                }
+//            }
+//
+//            if (action.getChanceToPerformAction() < 100) {
+//                System.out.print("[Chance: " + ConsoleColor.YELLOW + action.getChanceToPerformAction() + ConsoleColor.RESET + "%]");
+//            }
+//
+//            if (action instanceof ActionWithDuration) {
+//                System.out.print("[Turns Duration: "
+//                                 + ConsoleColor.YELLOW + ((ActionWithDuration) action).getMaxActionTurns() + ConsoleColor.RESET + "]");
+//
+//                if (((ActionWithDuration) action).getActionMaxStacks() > 1) {
+//                    System.out.println("[Max Stacks: "
+//                                       + ConsoleColor.YELLOW + ((ActionWithDuration) action).getActionMaxStacks() + ConsoleColor.RESET + "]");
+//                }
+//            }
+//
+//            if (GameSettings.isShowInformationAboutActionName()) {
+//                System.out.print("\n\t\t" + action.getActionName().getDescription());
+//            }
+//            System.out.println();
         }
     }
+
+    public static void printActionDetails(Action action, int totalActionValue) {
+        if (action.getMaxActionValue() != 0) {
+            if (action instanceof ActionIncreaseAbilityPoint) {
+                System.out.print("[" + ((ActionIncreaseAbilityPoint) action).getAbility() + "]");
+                System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+            } else if (action instanceof ActionDecreaseAbilityPoint) {
+                System.out.print("[" + ((ActionDecreaseAbilityPoint) action).getAbility() + "]");
+                System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+            } else {
+                System.out.print("[Value: "
+                                 + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET
+                                 + " - "
+                                 + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+            }
+        }
+
+        if (action.getChanceToPerformAction() < 100) {
+            System.out.print("[Chance: " + ConsoleColor.YELLOW + action.getChanceToPerformAction() + ConsoleColor.RESET + "%]");
+        }
+
+        if (action instanceof ActionWithDuration) {
+            System.out.print("[Turns Duration: "
+                             + ConsoleColor.YELLOW + ((ActionWithDuration) action).getMaxActionTurns() + ConsoleColor.RESET + "]");
+
+            if (((ActionWithDuration) action).getActionMaxStacks() > 1) {
+                System.out.println("[Max Stacks: "
+                                   + ConsoleColor.YELLOW + ((ActionWithDuration) action).getActionMaxStacks() + ConsoleColor.RESET + "]");
+            }
+        }
+
+        if (GameSettings.isShowInformationAboutActionName()) {
+            System.out.print("\n\t\t" + action.getActionName().getDescription());
+        }
+        System.out.println();
+    }
+
+//    public static void printActionDetails(Action action) {
+//        System.out.print("\t\t");
+//        System.out.print(ConsoleColor.YELLOW + "" + action.getActionName() + ConsoleColor.RESET + ": " + action.getCurrentActionValue());
+//        if (action instanceof ActionIncreaseAbilityPoint) {
+//            System.out.print(" " + ((ActionIncreaseAbilityPoint) action).getAbility());
+//        }
+//        if (action instanceof ActionWithDuration) {
+//            System.out.print(" (duration: " + ((ActionWithDuration) action).getMaxActionTurns()
+//                             + " " + ((ActionWithDuration) action)
+//                                     .getActionDurationType()
+//                                     .toString()
+//                                     .toLowerCase()
+//                                     .replace("_", " ")
+//                             + " turns, max stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + ")");
+//        }
+//        System.out.println();
+//    }
 
     public static void printBattleBuffs(GameCharacter gameCharacter) {
         if (gameCharacter.getBattleActionsWithDuration() == null) {
@@ -186,8 +259,8 @@ public class PrintUtil {
         for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {
 
             if (abilityPoints.getKey().equals(Ability.HEALTH)
-                    || abilityPoints.getKey().equals(Ability.MANA)
-                    || abilityPoints.getKey().equals(Ability.ABSORB_DAMAGE)) {
+                || abilityPoints.getKey().equals(Ability.MANA)
+                || abilityPoints.getKey().equals(Ability.ABSORB_DAMAGE)) {
 
             } else {
                 System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
@@ -212,8 +285,8 @@ public class PrintUtil {
             System.out.print("-- EQUIPPED -- ");
         }
         System.out.print(wearableItem.getWearableItemType() + ": "
-                + wearableItem.getName()
-                + " (" + wearableItem.getWearableItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
+                         + wearableItem.getName()
+                         + " (" + wearableItem.getWearableItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
         if (!sellItem) {
             System.out.print(", Item Price: " + wearableItem.getPrice());
         } else {
@@ -317,8 +390,8 @@ public class PrintUtil {
     public static void printShopHeader(Hero hero, String shop) {
         printLongDivider();
         System.out.println("\t\t" + "Welcome to the "
-                + shop + " Shop\t\t\tYou have "
-                + hero.getHeroGold() + " golds");
+                           + shop + " Shop\t\t\tYou have "
+                           + hero.getHeroGold() + " golds");
         printLongDivider();
     }
 
@@ -335,9 +408,10 @@ public class PrintUtil {
     }
 
     public static void printConsumableItemInfo(ConsumableItem consumableItem, boolean sellItem) {
+
         System.out.print(consumableItem.getName()
-                + ", " + consumableItem.getConsumableItemType()
-                + ", iLevel: " + consumableItem.getItemLevel());
+                         + ", " + consumableItem.getConsumableItemType()
+                         + ", iLevel: " + consumableItem.getItemLevel());
         if (!sellItem) {
             System.out.print(", Item Price: " + consumableItem.getPrice());
         } else {
@@ -345,7 +419,8 @@ public class PrintUtil {
         }
         System.out.println();
         for (Action action : consumableItem.getActionList()) {
-            printActionDetails(action);
+            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on " + action.getActionEffectOn() + " ");
+            printActionDetails(action, action.getCurrentActionValue());
         }
     }
 
@@ -358,25 +433,7 @@ public class PrintUtil {
         double sellPrice = sellItem ? craftingReagentItem.returnSellItemPrice() : craftingReagentItem.getPrice();
 
         System.out.println(craftingReagentItem.getName() + ", Item Type: " + craftingReagentItem.getCraftingReagentItemType()
-                + ", iLevel: " + craftingReagentItem.getItemLevel() + ", Item price: " + sellPrice + " golds");
-    }
-
-    public static void printActionDetails(Action action) {
-        System.out.print("\t\t");
-        System.out.print(ConsoleColor.YELLOW + "" + action.getActionName() + ConsoleColor.RESET + ": " + action.getCurrentActionValue());
-        if (action instanceof ActionIncreaseAbilityPoint) {
-            System.out.print(" " + ((ActionIncreaseAbilityPoint) action).getAbility());
-        }
-        if (action instanceof ActionWithDuration) {
-            System.out.print(" (duration: " + ((ActionWithDuration) action).getMaxActionTurns()
-                    + " " + ((ActionWithDuration) action)
-                    .getActionDurationType()
-                    .toString()
-                    .toLowerCase()
-                    .replace("_", " ")
-                    + " turns, max stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + ")");
-        }
-        System.out.println();
+                           + ", iLevel: " + craftingReagentItem.getItemLevel() + ", Item price: " + sellPrice + " golds");
     }
 
     public static void printEnterValidInput() {
@@ -397,8 +454,8 @@ public class PrintUtil {
 
     public static void printCompleteQuestText(String questName) {
         System.out.println("\t" + ConstantSymbol.QUEST_SYMBOL
-                + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET + " "
-                + ConstantSymbol.QUEST_SYMBOL);
+                           + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET + " "
+                           + ConstantSymbol.QUEST_SYMBOL);
     }
 }
 

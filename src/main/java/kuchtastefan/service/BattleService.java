@@ -38,7 +38,7 @@ public class BattleService {
         // Determine if the hero plays first based on HASTE ability
         boolean heroPlay = true;
         for (Enemy enemy : enemyList) {
-            if (enemy.getCurrentAbilityValue(Ability.HASTE) > hero.getCurrentAbilityValue(Ability.HASTE)) {
+            if (enemy.getCurrentAbilityValue(Ability.HASTE) >= hero.getCurrentAbilityValue(Ability.HASTE)) {
                 heroPlay = false;
                 break;
             }
@@ -237,7 +237,7 @@ public class BattleService {
         PrintUtil.printIndexAndText("X", "Hide action description - ");
         PrintUtil.printGameSettings(GameSettings.isShowInformationAboutActionName());
 
-        // Print settings for hiding spells on cooldown
+        // Print settings for hiding spells on CoolDown
         System.out.print("\t");
         PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
         PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
@@ -246,7 +246,7 @@ public class BattleService {
         int spellIndex = 0;
         System.out.println();
         for (Spell spell : hero.getCharacterSpellList()) {
-            // Check if spells should be hidden when on cooldown
+            // Check if spells should be hidden when on CoolDown
             if (GameSettings.isHideSpellsOnCoolDown()) {
                 if (spell.isCanSpellBeCasted()) {
                     System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
@@ -278,10 +278,8 @@ public class BattleService {
      * @param spellTarget The target of the spell (usually the player's character).
      */
     private void enemyUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<Enemy> enemyList) {
-        // Map to store spells and their priority points
         Map<Spell, Integer> spells = new HashMap<>();
 
-        // The selected spell to cast, initialized to the first spell in the character's spell list
         Spell spellToCast = spellCaster.getCharacterSpellList().getFirst();
 
         int priorityPoints;
@@ -331,7 +329,6 @@ public class BattleService {
             }
         }
 
-        // Cast the selected spell on the target character
         spellToCast.useSpell(spellCaster, spellTarget, enemyList);
     }
 

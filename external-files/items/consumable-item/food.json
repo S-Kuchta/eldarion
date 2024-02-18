@@ -10,6 +10,7 @@
         "actionName": "HEAL",
         "maxActionValue": 25,
         "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
       },
       {
@@ -21,6 +22,7 @@
         "actionMaxStacks": 1,
         "ability": "ATTACK",
         "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
       }
     ]
@@ -36,6 +38,7 @@
         "actionName": "HEAL",
         "maxActionValue": 20,
         "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
       }
     ]

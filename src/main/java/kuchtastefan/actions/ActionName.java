@@ -13,7 +13,8 @@ public enum ActionName {
     DECREASE_ABILITY_POINTS("Decrease Ability Points. It decrease the ability points for the duration of the action."),
     ABSORB_DAMAGE("Absorb Damage Taken. It absorbs damage up to the specified value. The action lasts for a certain number of rounds."),
     INVULNERABILITY("Invulnerability. It makes the player character invulnerable for a certain number of rounds. It is not dependent on the damage received."),
-    STUN("Stun. Target of action will not be able to perform any action. Battle turn of stunned character will be skipped.");
+    STUN("Stun. Target of action will not be able to perform any action. Battle turn of stunned character will be skipped."),
+    REFLECT_SPELL("Reflect spell. Reflect next casted spell back to caste.");
 
     private final String description;
 

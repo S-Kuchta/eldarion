@@ -24,9 +24,9 @@
   },
   {
     "spellId": 201,
-    "spellName": "Scorch",
+    "spellName": "Arcane Missiles\t",
     "spellClass": "MAGE",
-    "spellDescription": "Scorch the enemy with Fire damage",
+    "spellDescription": "Launches Arcane Missiles at the enemy, causing Arcane damage",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -41,7 +41,7 @@
       "ATTACK": 2
     },
     "spellLevel": 0,
-    "spellManaCost": 12,
+    "spellManaCost": 14,
     "turnCoolDown": 0
   },
   {
@@ -63,7 +63,7 @@
       "INTELLECT": 2
     },
     "spellLevel": 0,
-    "spellManaCost": 17,
+    "spellManaCost": 21,
     "turnCoolDown": 3
   },
   {
@@ -97,7 +97,7 @@
       "ATTACK": 2
     },
     "spellLevel": 1,
-    "spellManaCost": 25,
+    "spellManaCost": 27,
     "turnCoolDown": 3
   },
   {
@@ -132,14 +132,14 @@
       "ATTACK": 2
     },
     "spellLevel": 1,
-    "spellManaCost": 25,
+    "spellManaCost": 27,
     "turnCoolDown": 3
   },
   {
     "spellId": 205,
-    "spellName": "Fire Ward",
+    "spellName": "Molten Armor",
     "spellClass": "MAGE",
-    "spellDescription": "Absorbs damage. Lasts 3 turns or until is destroyed.",
+    "spellDescription": "Absorbs damage and increase critical hit chance. Lasts 3 turns or until is destroyed.",
     "spellActions": [
       {
         "type": "ActionAbsorbDamage",
@@ -151,6 +151,18 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "CRITICAL_HIT_CHANCE"
       }
     ],
     "bonusValueFromAbility": {
@@ -205,23 +217,24 @@
       }
     ],
     "bonusValueFromAbility": {},
-    "spellLevel": 1,
+    "spellLevel": 5,
     "spellManaCost": 25,
     "turnCoolDown": 7
   },
   {
     "spellId": 204,
-    "spellName": "Freeze Enemy",
+    "spellName": "Frost Nova",
     "spellClass": "MAGE",
-    "spellDescription": "Cast ice cube.",
+    "spellDescription": "Blasts enemies near the caster for Frost damage, freeze them and prevent before action.",
+    "hitAllEnemy": true,
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 1,
+        "maxActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": true
       },
       {
         "type": "ActionStun",
@@ -236,12 +249,47 @@
       }
     ],
     "bonusValueFromAbility": {
-      "INTELLECT": 1,
-      "ATTACK": 1
+      "INTELLECT": 2,
+      "ATTACK": 2
     },
     "spellLevel": 5,
     "spellManaCost": 20,
-    "turnCoolDown": 5
+    "turnCoolDown": 6
+  },
+  {
+    "spellId": 205,
+    "spellName": "FlameStrike",
+    "spellClass": "MAGE",
+    "spellDescription": "Calls down a pillar of fire, burning all enemies with Fire damage and an additional deal Fire damage over 3 turns.",
+    "hitAllEnemy": true,
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 15,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 5,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2,
+      "ATTACK": 2
+    },
+    "spellLevel": 5,
+    "spellManaCost": 50,
+    "turnCoolDown": 6
   },
   {
     "spellId": 205,

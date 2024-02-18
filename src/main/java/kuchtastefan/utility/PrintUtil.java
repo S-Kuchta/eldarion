@@ -92,11 +92,11 @@ public class PrintUtil {
     public static void printActionDetails(Action action, int totalActionValue) {
         if (action.getMaxActionValue() != 0) {
             if (action instanceof ActionIncreaseAbilityPoint) {
-                System.out.print("[" + ((ActionIncreaseAbilityPoint) action).getAbility() + "]");
-                System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+                System.out.print("[▲ " + ((ActionIncreaseAbilityPoint) action).getAbility() + " - " + totalActionValue + " ▲]");
+//                System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
             } else if (action instanceof ActionDecreaseAbilityPoint) {
-                System.out.print("[" + ((ActionDecreaseAbilityPoint) action).getAbility() + "]");
-                System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+                System.out.print("[▼ " + ((ActionDecreaseAbilityPoint) action).getAbility() + " - " + totalActionValue + " ▼]");
+//                System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
             } else {
                 System.out.print("[Value: "
                                  + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET

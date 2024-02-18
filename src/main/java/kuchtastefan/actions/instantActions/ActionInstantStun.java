@@ -4,6 +4,7 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.utility.ConsoleColor;
 
 public class ActionInstantStun extends Action {
 
@@ -15,5 +16,6 @@ public class ActionInstantStun extends Action {
     @Override
     public void performAction(GameCharacter gameCharacter) {
         gameCharacter.setCanPerformAction(false);
+        System.out.println("\t" + ConsoleColor.YELLOW + gameCharacter.getName() + ConsoleColor.RESET + " is stunned!");
     }
 }

@@ -6,10 +6,11 @@ import lombok.Getter;
 public enum LetterToNumberSpellLevel {
 
     A(1),
-    B(3),
-    C(5),
-    D(7),
-    E(9);
+    B(2),
+    C(3),
+    D(5),
+    E(7),
+    F(9);
 
     private final int value;
 

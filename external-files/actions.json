@@ -1,0 +1,109 @@
+[
+  {
+    "type": "ActionDealDamage",
+    "actionName": "DAMAGE",
+    "maxActionValue": 5,
+    "actionEffectOn": "SPELL_TARGET",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": true
+  },
+  {
+    "type": "ActionDealDamageOverTime",
+    "actionName": "DAMAGE_OVER_TIME",
+    "actionEffectOn": "SPELL_TARGET",
+    "maxActionValue": 1,
+    "maxActionTurns": 3,
+    "actionMaxStacks": 1,
+    "actionDurationType": "BATTLE_ACTION",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": false
+  },
+  {
+    "type": "ActionRestoreHealth",
+    "actionName": "HEAL",
+    "maxActionValue": 10,
+    "actionEffectOn": "SPELL_CASTER",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": true
+  },
+  {
+    "type": "ActionRestoreHealthOverTime",
+    "actionName": "HEAL_OVER_TIME",
+    "maxActionValue": 5,
+    "maxActionTurns": 3,
+    "actionDurationType": "BATTLE_ACTION",
+    "actionMaxStacks": 1,
+    "actionEffectOn": "SPELL_CASTER",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": false
+  },
+  {
+    "type": "ActionDecreaseAbilityPoint",
+    "actionName": "DECREASE_ABILITY_POINTS",
+    "actionEffectOn": "SPELL_TARGET",
+    "maxActionValue": 1,
+    "maxActionTurns": 1,
+    "actionMaxStacks": 1,
+    "actionDurationType": "BATTLE_ACTION",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": false,
+    "ability": "ATTACK"
+  },
+  {
+    "type": "ActionIncreaseAbilityPoint",
+    "actionName": "INCREASE_ABILITY_POINTS",
+    "actionEffectOn": "SPELL_CASTER",
+    "maxActionValue": 1,
+    "maxActionTurns": 3,
+    "actionMaxStacks": 1,
+    "actionDurationType": "BATTLE_ACTION",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": false,
+    "ability": "CRITICAL_HIT_CHANCE"
+  },
+  {
+    "type": "ActionAbsorbDamage",
+    "actionName": "ABSORB_DAMAGE",
+    "actionEffectOn": "SPELL_CASTER",
+    "maxActionValue": 5,
+    "maxActionTurns": 3,
+    "actionMaxStacks": 1,
+    "actionDurationType": "BATTLE_ACTION",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": false
+  },
+  {
+    "type": "ActionReflectSpell",
+    "actionName": "REFLECT_SPELL",
+    "actionEffectOn": "SPELL_CASTER",
+    "maxActionValue": 0,
+    "maxActionTurns": 4,
+    "actionMaxStacks": 1,
+    "actionDurationType": "BATTLE_ACTION",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": false
+  },
+  {
+    "type": "ActionStun",
+    "actionName": "STUN",
+    "actionEffectOn": "SPELL_TARGET",
+    "maxActionValue": 0,
+    "maxActionTurns": 2,
+    "actionMaxStacks": 1,
+    "actionDurationType": "BATTLE_ACTION",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": false
+  },
+  {
+    "type": "ActionInvulnerability",
+    "actionName": "INVULNERABILITY",
+    "actionEffectOn": "SPELL_CASTER",
+    "maxActionValue": 0,
+    "maxActionTurns": 2,
+    "actionMaxStacks": 1,
+    "actionDurationType": "BATTLE_ACTION",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": false
+  }
+]
+

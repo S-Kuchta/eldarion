@@ -168,8 +168,8 @@
     "bonusValueFromAbility": {
       "INTELLECT": 3
     },
-    "spellLevel": 3,
-    "spellManaCost": 25,
+    "spellLevel": 2,
+    "spellManaCost": 32,
     "turnCoolDown": 5
   },
   {
@@ -194,35 +194,12 @@
     "bonusValueFromAbility": {
       "INTELLECT": 2
     },
-    "spellLevel": 3,
-    "spellManaCost": 25,
+    "spellLevel": 2,
+    "spellManaCost": 32,
     "turnCoolDown": 7
   },
   {
     "spellId": 207,
-    "spellName": "Reflect Spell",
-    "spellClass": "MAGE",
-    "spellDescription": "Reflect spell",
-    "spellActions": [
-      {
-        "type": "ActionReflectSpell",
-        "actionName": "REFLECT_SPELL",
-        "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 0,
-        "maxActionTurns": 4,
-        "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
-      }
-    ],
-    "bonusValueFromAbility": {},
-    "spellLevel": 5,
-    "spellManaCost": 25,
-    "turnCoolDown": 7
-  },
-  {
-    "spellId": 204,
     "spellName": "Frost Nova",
     "spellClass": "MAGE",
     "spellDescription": "Blasts enemies near the caster for Frost damage, freeze them and prevent before action.",
@@ -252,12 +229,12 @@
       "INTELLECT": 2,
       "ATTACK": 2
     },
-    "spellLevel": 5,
+    "spellLevel": 3,
     "spellManaCost": 20,
     "turnCoolDown": 6
   },
   {
-    "spellId": 205,
+    "spellId": 208,
     "spellName": "FlameStrike",
     "spellClass": "MAGE",
     "spellDescription": "Calls down a pillar of fire, burning all enemies with Fire damage and an additional deal Fire damage over 3 turns.",
@@ -287,12 +264,12 @@
       "INTELLECT": 2,
       "ATTACK": 2
     },
-    "spellLevel": 5,
+    "spellLevel": 3,
     "spellManaCost": 50,
     "turnCoolDown": 6
   },
   {
-    "spellId": 205,
+    "spellId": 209,
     "spellName": "Ice block",
     "spellClass": "MAGE",
     "spellDescription": "Cast ice block.",
@@ -309,8 +286,68 @@
         "canBeActionCriticalHit": false
       }
     ],
-    "spellLevel": 3,
+    "spellLevel": 5,
     "spellManaCost": 30,
     "turnCoolDown": 7
+  },
+  {
+    "spellId": 210,
+    "spellName": "Reflect Spell",
+    "spellClass": "MAGE",
+    "spellDescription": "Reflect spell",
+    "spellActions": [
+      {
+        "type": "ActionReflectSpell",
+        "actionName": "REFLECT_SPELL",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 0,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "bonusValueFromAbility": {},
+    "spellLevel": 5,
+    "spellManaCost": 25,
+    "turnCoolDown": 7
+  },
+  {
+    "spellId": 211,
+    "spellName": "Evocation",
+    "spellClass": "MAGE",
+    "spellDescription": "Restore mana over 3 turns. Also you will get intellect.",
+    "spellActions": [
+      {
+        "type": "ActionRestoreManaOverTime",
+        "actionName": "RESTORE_MANA_OVER_TIME",
+        "maxActionValue": 13,
+        "maxActionTurns": 3,
+        "actionDurationType": "BATTLE_ACTION",
+        "actionMaxStacks": 1,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "INTELLECT"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2
+    },
+    "spellLevel": 7,
+    "spellManaCost": 0,
+    "turnCoolDown": 8
   }
 ]

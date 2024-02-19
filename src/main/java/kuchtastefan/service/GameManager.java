@@ -271,6 +271,7 @@ public class GameManager {
 
 
         this.hero.setName(name);
+        this.hero.gainExperiencePoints(0);
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();
 

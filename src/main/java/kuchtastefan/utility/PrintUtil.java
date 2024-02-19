@@ -26,23 +26,28 @@ public class PrintUtil {
 
     public static void printSpellDescription(Hero hero, Spell spell) {
 
+        int bonusToAbilityFromValue = 0;
+
         System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
-                         + " [Mana Cost: " + spell.getSpellManaCost() + "]");
+                + " [Mana Cost: " + ConsoleColor.BLUE + spell.getSpellManaCost() + ConsoleColor.RESET + "]");
         if (spell.getTurnCoolDown() > 0) {
             System.out.print("[CoolDown: "
-                             + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
+                    + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
+        }
+
+        if (spell.getBonusValueFromAbility() != null) {
+            System.out.print("[Bonus From Ability: ");
+            for (Map.Entry<Ability, Integer> abilityBonus : spell.getBonusValueFromAbility().entrySet()) {
+                System.out.print(abilityBonus.getKey() + "(" + abilityBonus.getValue() + "x), ");
+                bonusToAbilityFromValue += hero.getCurrentAbilityValue(abilityBonus.getKey()) * abilityBonus.getValue();
+            }
+            System.out.print("]");
         }
 
         System.out.println("\n\t" + spell.getSpellDescription());
 
         for (Action action : spell.getSpellActions()) {
-            int totalActionValue = action.getMaxActionValue();
-
-            if (spell.getBonusValueFromAbility() != null) {
-                for (Map.Entry<Ability, Integer> abilityBonus : spell.getBonusValueFromAbility().entrySet()) {
-                    totalActionValue += hero.getCurrentAbilityValue(abilityBonus.getKey()) * abilityBonus.getValue();
-                }
-            }
+            int totalActionValue = action.getMaxActionValue() + bonusToAbilityFromValue;
 
             System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on ");
             if (spell.isHitAllEnemy()) {
@@ -52,56 +57,20 @@ public class PrintUtil {
             }
 
             printActionDetails(action, totalActionValue);
-
-//            if (action.getMaxActionValue() != 0) {
-//                if (action instanceof ActionIncreaseAbilityPoint) {
-//                    System.out.print("[" + ((ActionIncreaseAbilityPoint) action).getAbility() + "]");
-//                    System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
-//                } else if (action instanceof ActionDecreaseAbilityPoint) {
-//                    System.out.print("[" + ((ActionDecreaseAbilityPoint) action).getAbility() + "]");
-//                    System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
-//                } else {
-//                    System.out.print("[Value: "
-//                                     + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET
-//                                     + " - "
-//                                     + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
-//                }
-//            }
-//
-//            if (action.getChanceToPerformAction() < 100) {
-//                System.out.print("[Chance: " + ConsoleColor.YELLOW + action.getChanceToPerformAction() + ConsoleColor.RESET + "%]");
-//            }
-//
-//            if (action instanceof ActionWithDuration) {
-//                System.out.print("[Turns Duration: "
-//                                 + ConsoleColor.YELLOW + ((ActionWithDuration) action).getMaxActionTurns() + ConsoleColor.RESET + "]");
-//
-//                if (((ActionWithDuration) action).getActionMaxStacks() > 1) {
-//                    System.out.println("[Max Stacks: "
-//                                       + ConsoleColor.YELLOW + ((ActionWithDuration) action).getActionMaxStacks() + ConsoleColor.RESET + "]");
-//                }
-//            }
-//
-//            if (GameSettings.isShowInformationAboutActionName()) {
-//                System.out.print("\n\t\t" + action.getActionName().getDescription());
-//            }
-//            System.out.println();
         }
     }
 
     public static void printActionDetails(Action action, int totalActionValue) {
         if (action.getMaxActionValue() != 0) {
             if (action instanceof ActionIncreaseAbilityPoint) {
-                System.out.print("[▲ " + ((ActionIncreaseAbilityPoint) action).getAbility() + " - " + totalActionValue + " ▲]");
-//                System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+                System.out.print("[▲ " + ((ActionIncreaseAbilityPoint) action).getAbility() + " +" + totalActionValue + " ▲]");
             } else if (action instanceof ActionDecreaseAbilityPoint) {
-                System.out.print("[▼ " + ((ActionDecreaseAbilityPoint) action).getAbility() + " - " + totalActionValue + " ▼]");
-//                System.out.print("[Value: " + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+                System.out.print("[▼ " + ((ActionDecreaseAbilityPoint) action).getAbility() + " -" + totalActionValue + " ▼]");
             } else {
                 System.out.print("[Value: "
-                                 + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET
-                                 + " - "
-                                 + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+                        + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET
+                        + " - "
+                        + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
             }
         }
 
@@ -111,11 +80,11 @@ public class PrintUtil {
 
         if (action instanceof ActionWithDuration) {
             System.out.print("[Turns Duration: "
-                             + ConsoleColor.YELLOW + ((ActionWithDuration) action).getMaxActionTurns() + ConsoleColor.RESET + "]");
+                    + ConsoleColor.YELLOW + ((ActionWithDuration) action).getMaxActionTurns() + ConsoleColor.RESET + "]");
 
             if (((ActionWithDuration) action).getActionMaxStacks() > 1) {
                 System.out.println("[Max Stacks: "
-                                   + ConsoleColor.YELLOW + ((ActionWithDuration) action).getActionMaxStacks() + ConsoleColor.RESET + "]");
+                        + ConsoleColor.YELLOW + ((ActionWithDuration) action).getActionMaxStacks() + ConsoleColor.RESET + "]");
             }
         }
 
@@ -124,24 +93,6 @@ public class PrintUtil {
         }
         System.out.println();
     }
-
-//    public static void printActionDetails(Action action) {
-//        System.out.print("\t\t");
-//        System.out.print(ConsoleColor.YELLOW + "" + action.getActionName() + ConsoleColor.RESET + ": " + action.getCurrentActionValue());
-//        if (action instanceof ActionIncreaseAbilityPoint) {
-//            System.out.print(" " + ((ActionIncreaseAbilityPoint) action).getAbility());
-//        }
-//        if (action instanceof ActionWithDuration) {
-//            System.out.print(" (duration: " + ((ActionWithDuration) action).getMaxActionTurns()
-//                             + " " + ((ActionWithDuration) action)
-//                                     .getActionDurationType()
-//                                     .toString()
-//                                     .toLowerCase()
-//                                     .replace("_", " ")
-//                             + " turns, max stacks: " + ((ActionWithDuration) action).getActionMaxStacks() + ")");
-//        }
-//        System.out.println();
-//    }
 
     public static void printBattleBuffs(GameCharacter gameCharacter) {
         if (gameCharacter.getBattleActionsWithDuration() == null) {
@@ -207,8 +158,12 @@ public class PrintUtil {
         printBar(gameCharacter, Ability.HEALTH);
         printBar(gameCharacter, Ability.MANA);
         printBar(gameCharacter, Ability.ABSORB_DAMAGE);
+        if (gameCharacter instanceof Hero) {
+            System.out.println();
+            System.out.println();
+            printExperienceBar((Hero) gameCharacter);
+        }
         System.out.println();
-        printExtraLongDivider();
     }
 
     private static void printBar(GameCharacter gameCharacter, Ability ability) {
@@ -241,6 +196,25 @@ public class PrintUtil {
         }
     }
 
+    private static void printExperienceBar(Hero hero) {
+        double currentValue = hero.getExperiencePoints();
+        double maxValue = hero.getExperiencePointsService().getNeededExperiencePointsForNewLevel();
+        double oneBarValue = maxValue / 75;
+
+        String charToPrint;
+        System.out.print("\t" + "Experience Points" + " »");
+        for (int i = 0; i < 75; i++) {
+            if (i * oneBarValue >= currentValue) {
+                charToPrint = "_";
+            } else {
+                charToPrint = ConsoleColor.YELLOW_BRIGHT + "■" + ConsoleColor.RESET;
+            }
+            System.out.print(charToPrint);
+        }
+
+        System.out.print("« [" + (int) currentValue + "/" + (int) maxValue + "]");
+    }
+
     public static void printAbilityPoints(GameCharacter gameCharacter) {
         printExtraLongDivider();
         System.out.printf("%58s %n", gameCharacter instanceof Hero ? "Your abilities:" : "Enemy abilities:");
@@ -259,13 +233,12 @@ public class PrintUtil {
         for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {
 
             if (abilityPoints.getKey().equals(Ability.HEALTH)
-                || abilityPoints.getKey().equals(Ability.MANA)
-                || abilityPoints.getKey().equals(Ability.ABSORB_DAMAGE)) {
+                    || abilityPoints.getKey().equals(Ability.MANA)
+                    || abilityPoints.getKey().equals(Ability.ABSORB_DAMAGE)) {
 
             } else {
                 System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
             }
-
         }
         System.out.println();
         printExtraLongDivider();
@@ -285,8 +258,8 @@ public class PrintUtil {
             System.out.print("-- EQUIPPED -- ");
         }
         System.out.print(wearableItem.getWearableItemType() + ": "
-                         + wearableItem.getName()
-                         + " (" + wearableItem.getWearableItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
+                + wearableItem.getName()
+                + " (" + wearableItem.getWearableItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
         if (!sellItem) {
             System.out.print(", Item Price: " + wearableItem.getPrice());
         } else {
@@ -390,8 +363,8 @@ public class PrintUtil {
     public static void printShopHeader(Hero hero, String shop) {
         printLongDivider();
         System.out.println("\t\t" + "Welcome to the "
-                           + shop + " Shop\t\t\tYou have "
-                           + hero.getHeroGold() + " golds");
+                + shop + " Shop\t\t\tYou have "
+                + hero.getHeroGold() + " golds");
         printLongDivider();
     }
 
@@ -410,8 +383,8 @@ public class PrintUtil {
     public static void printConsumableItemInfo(ConsumableItem consumableItem, boolean sellItem) {
 
         System.out.print(consumableItem.getName()
-                         + ", " + consumableItem.getConsumableItemType()
-                         + ", iLevel: " + consumableItem.getItemLevel());
+                + ", " + consumableItem.getConsumableItemType()
+                + ", iLevel: " + consumableItem.getItemLevel());
         if (!sellItem) {
             System.out.print(", Item Price: " + consumableItem.getPrice());
         } else {
@@ -433,7 +406,7 @@ public class PrintUtil {
         double sellPrice = sellItem ? craftingReagentItem.returnSellItemPrice() : craftingReagentItem.getPrice();
 
         System.out.println(craftingReagentItem.getName() + ", Item Type: " + craftingReagentItem.getCraftingReagentItemType()
-                           + ", iLevel: " + craftingReagentItem.getItemLevel() + ", Item price: " + sellPrice + " golds");
+                + ", iLevel: " + craftingReagentItem.getItemLevel() + ", Item price: " + sellPrice + " golds");
     }
 
     public static void printEnterValidInput() {
@@ -454,8 +427,8 @@ public class PrintUtil {
 
     public static void printCompleteQuestText(String questName) {
         System.out.println("\t" + ConstantSymbol.QUEST_SYMBOL
-                           + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET + " "
-                           + ConstantSymbol.QUEST_SYMBOL);
+                + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET + " "
+                + ConstantSymbol.QUEST_SYMBOL);
     }
 }
 

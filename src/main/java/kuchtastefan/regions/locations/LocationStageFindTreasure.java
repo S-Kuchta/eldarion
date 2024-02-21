@@ -1,7 +1,7 @@
 package kuchtastefan.regions.locations;
 
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.regions.events.FindTreasureEvent;
 
 public class LocationStageFindTreasure extends LocationStage {

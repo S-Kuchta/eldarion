@@ -1,6 +1,6 @@
-package kuchtastefan.characters.hero.inventory;
+package kuchtastefan.character.hero.inventory;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;

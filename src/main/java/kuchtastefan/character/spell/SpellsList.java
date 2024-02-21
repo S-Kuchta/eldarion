@@ -1,4 +1,4 @@
-package kuchtastefan.characters.spell;
+package kuchtastefan.character.spell;
 
 import lombok.Getter;
 

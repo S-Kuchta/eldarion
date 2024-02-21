@@ -1,6 +1,6 @@
 package kuchtastefan.regions.locations;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.regions.events.UseItemEvent;
 import lombok.Getter;
 

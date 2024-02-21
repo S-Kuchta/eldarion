@@ -1,6 +1,6 @@
-package kuchtastefan.characters;
+package kuchtastefan.character;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.quest.Quest;

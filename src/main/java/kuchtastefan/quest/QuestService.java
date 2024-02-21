@@ -1,6 +1,6 @@
 package kuchtastefan.quest;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;

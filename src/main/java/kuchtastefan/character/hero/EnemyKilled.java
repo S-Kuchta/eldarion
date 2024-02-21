@@ -1,4 +1,4 @@
-package kuchtastefan.characters.hero;
+package kuchtastefan.character.hero;
 
 import lombok.Getter;
 

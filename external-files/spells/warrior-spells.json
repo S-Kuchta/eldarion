@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 3,
+        "maxActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -24,9 +24,9 @@
   },
   {
     "spellId": 301,
-    "spellName": "Strong Weapon Attack",
+    "spellName": "Heroic Strike",
     "spellClass": "WARRIOR",
-    "spellDescription": "Attack with weapon",
+    "spellDescription": "A strong attack. Causes high amount of damage.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -35,7 +35,104 @@
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "STRENGTH": 2,
+      "ATTACK": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 10,
+    "turnCoolDown": 1
+  },
+  {
+    "spellId": 302,
+    "spellName": "Charge",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Charge an enemy, deal damage and stun the target for next turn.",
+    "spellActions": [
+      {
+        "type": "ActionInstantStun",
+        "actionName": "STUN",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
       },
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 3,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 15,
+    "turnCoolDown": 6
+  },
+  {
+    "spellId": 303,
+    "spellName": "Berserker Stance",
+    "spellClass": "WARRIOR",
+    "spellDescription": "An aggressive stance. Critical hit chance is increased.",
+    "spellActions": [
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "CRITICAL_HIT_CHANCE"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "STRENGTH": 1
+    },
+    "spellLevel": 1,
+    "spellManaCost": 8,
+    "turnCoolDown": 4
+  },
+  {
+    "spellId": 304,
+    "spellName": "Devotion Aura",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Gives you an additional resist damage over 4 turns.",
+    "spellActions": [
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "RESIST_DAMAGE"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 1
+    },
+    "spellLevel": 1,
+    "spellManaCost": 15,
+    "turnCoolDown": 4
+  },
+  {
+    "spellId": 305,
+    "spellName": "Rend",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Wounds the target causing them to bleed for damage",
+    "spellActions": [
       {
         "type": "ActionDealDamageOverTime",
         "actionName": "DAMAGE_OVER_TIME",
@@ -44,30 +141,88 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
-        "chanceToPerformAction": 20,
-        "canBeActionCriticalHit": false
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
       }
     ],
     "bonusValueFromAbility": {
-      "STRENGTH": 1,
-      "ATTACK": 1
+      "ATTACK": 2,
+      "STRENGTH": 2
     },
-    "spellLevel": 0,
+    "spellLevel": 2,
     "spellManaCost": 10,
-    "turnCoolDown": 2
+    "turnCoolDown": 5
   },
   {
-    "spellId": 302,
-    "spellName": "Barrier",
+    "spellId": 306,
+    "spellName": "Holy Light",
     "spellClass": "WARRIOR",
-    "spellDescription": "Cast a powerful barrier",
+    "spellDescription": "Heals the caster",
     "spellActions": [
       {
-        "type": "ActionAbsorbDamage",
-        "actionName": "ABSORB_DAMAGE",
-        "actionEffectOn": "SPELL_CASTER",
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
         "maxActionValue": 10,
-        "maxActionTurns": 5,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 3
+    },
+    "spellLevel": 2,
+    "spellManaCost": 15,
+    "turnCoolDown": 5
+  },
+  {
+    "spellId": 307,
+    "spellName": "Thunder Clap",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Blasts all enemies, deal damage to them and decrease their haste over 2 turns.",
+    "hitAllEnemy": true,
+    "spellActions": [
+      {
+        "type": "ActionDecreaseAbilityPoint",
+        "actionName": "DECREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "HASTE"
+      },
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 5,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "STRENGTH": 1
+    },
+    "spellLevel": 3,
+    "spellManaCost": 10,
+    "turnCoolDown": 6
+  },
+  {
+    "spellId": 308,
+    "spellName": "Consecration",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Consecrates the land , doing Holy damage over 3 turns.",
+    "hitAllEnemy": true,
+    "spellActions": [
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
@@ -75,32 +230,71 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 1
+      "ATTACK": 1,
+      "INTELLECT": 1
     },
-    "spellLevel": 1,
-    "spellManaCost": 15,
-    "turnCoolDown": 0
+    "spellLevel": 3,
+    "spellManaCost": 10,
+    "turnCoolDown": 6
   },
   {
-    "spellId": 303,
-    "spellName": "Heal",
+    "spellId": 309,
+    "spellName": "Demoralizing Shout",
     "spellClass": "WARRIOR",
-    "spellDescription": "Heal",
+    "spellDescription": "Reduces the Attack of all enemies over 2 turns.",
+    "hitAllEnemy": true,
     "spellActions": [
       {
-        "type": "ActionRestoreHealth",
-        "actionName": "HEAL",
-        "maxActionValue": 20,
-        "actionEffectOn": "SPELL_CASTER",
+        "type": "ActionDecreaseAbilityPoint",
+        "actionName": "DECREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "ATTACK"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "STRENGTH": 1
+    },
+    "spellLevel": 5,
+    "spellManaCost": 15,
+    "turnCoolDown": 5
+  },
+  {
+    "spellId": 310,
+    "spellName": "Hammer of Justice",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Instant Stuns the target and for additional 3 turns.",
+    "hitAllEnemy": true,
+    "spellActions": [
+      {
+        "type": "ActionStun",
+        "actionName": "STUN",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 0,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      },
+      {
+        "type": "ActionInstantStun",
+        "actionName": "STUN",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
       }
     ],
     "bonusValueFromAbility": {
-      "INTELLECT": 1
     },
-    "spellLevel": 1,
-    "spellManaCost": 10,
-    "turnCoolDown": 2
+    "spellLevel": 5,
+    "spellManaCost": 25,
+    "turnCoolDown": 7
   }
 ]

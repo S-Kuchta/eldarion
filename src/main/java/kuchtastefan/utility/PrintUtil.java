@@ -5,9 +5,10 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.ActionDecreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionIncreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.characters.GameCharacter;
-import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.actions.instantActions.ActionRemoveBuffOrDebuff;
+import kuchtastefan.character.GameCharacter;
+import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSettings;
@@ -62,12 +63,24 @@ public class PrintUtil {
 
     public static void printActionDetails(Action action, int totalActionValue) {
         if (action.getMaxActionValue() != 0) {
-            if (action instanceof ActionIncreaseAbilityPoint) {
-                System.out.print("[▲ " + ((ActionIncreaseAbilityPoint) action).getAbility() + " +" + totalActionValue + " ▲]");
-            } else if (action instanceof ActionDecreaseAbilityPoint) {
-                System.out.print("[▼ " + ((ActionDecreaseAbilityPoint) action).getAbility() + " -" + totalActionValue + " ▼]");
-            } else {
-                System.out.print("[Value: "
+            switch (action) {
+                case ActionIncreaseAbilityPoint actionIncreaseAbilityPoint ->
+                        System.out.print("[▲ " + actionIncreaseAbilityPoint.getAbility() + " +" + totalActionValue + " ▲]");
+
+                case ActionDecreaseAbilityPoint actionDecreaseAbilityPoint ->
+                        System.out.print("[▼ " + actionDecreaseAbilityPoint.getAbility() + " -" + totalActionValue + " ▼]");
+
+                case ActionRemoveBuffOrDebuff actionRemoveBuffOrDebuff -> {
+                    if (((ActionRemoveBuffOrDebuff) action).isRemoveAllStatusEffects()) {
+                        System.out.println("[Remove all "
+                                + ConsoleColor.YELLOW + ((ActionRemoveBuffOrDebuff) action).getActionStatusEffectToRemove() + "s " + ConsoleColor.RESET);
+                    } else {
+                        System.out.println("[" + actionRemoveBuffOrDebuff.getActionStatusEffectToRemove()
+                                + " to remove: " + ConsoleColor.YELLOW + action.getMaxActionValue() + ConsoleColor.RESET + "]");
+                    }
+                }
+
+                default -> System.out.print("[Value: "
                         + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET
                         + " - "
                         + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");

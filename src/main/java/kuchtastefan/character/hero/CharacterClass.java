@@ -1,6 +1,5 @@
-package kuchtastefan.characters.hero;
+package kuchtastefan.character.hero;
 
-import kuchtastefan.items.Item;
 import org.apache.commons.lang3.StringUtils;
 
 public enum CharacterClass {

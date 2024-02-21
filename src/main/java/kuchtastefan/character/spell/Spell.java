@@ -1,16 +1,15 @@
-package kuchtastefan.characters.spell;
+package kuchtastefan.character.spell;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
-import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.actionsWIthDuration.ActionDecreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionIncreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionReflectSpell;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.characters.GameCharacter;
-import kuchtastefan.characters.enemy.Enemy;
-import kuchtastefan.characters.hero.CharacterClass;
+import kuchtastefan.character.GameCharacter;
+import kuchtastefan.character.enemy.Enemy;
+import kuchtastefan.character.hero.CharacterClass;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;

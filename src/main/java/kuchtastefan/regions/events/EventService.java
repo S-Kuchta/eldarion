@@ -2,10 +2,10 @@ package kuchtastefan.regions.events;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
-import kuchtastefan.characters.enemy.Enemy;
-import kuchtastefan.characters.enemy.EnemyList;
-import kuchtastefan.characters.enemy.EnemyRarity;
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.enemy.Enemy;
+import kuchtastefan.character.enemy.EnemyList;
+import kuchtastefan.character.enemy.EnemyRarity;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.regions.locations.LocationType;

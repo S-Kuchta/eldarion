@@ -1,6 +1,6 @@
 package kuchtastefan.regions;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.regions.locations.Location;
 
 import java.util.List;

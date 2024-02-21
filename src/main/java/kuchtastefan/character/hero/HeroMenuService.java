@@ -1,11 +1,11 @@
-package kuchtastefan.characters.hero;
+package kuchtastefan.character.hero;
 
-import kuchtastefan.characters.hero.inventory.InventoryMenuService;
+import kuchtastefan.character.hero.inventory.InventoryMenuService;
 import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.quest.QuestService;
-import kuchtastefan.characters.spell.HeroSpellManager;
+import kuchtastefan.character.spell.HeroSpellManager;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;

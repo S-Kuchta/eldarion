@@ -3,7 +3,7 @@ package kuchtastefan.actions.instantActions;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
 public class ActionInstantStun extends Action {

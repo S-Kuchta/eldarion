@@ -1,14 +1,12 @@
-package kuchtastefan.characters.hero;
+package kuchtastefan.character.hero;
 
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.items.Item;
-import kuchtastefan.regions.locations.Location;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 

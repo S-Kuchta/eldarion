@@ -1,6 +1,6 @@
 package kuchtastefan.regions.events;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 
 public class NoOutcomeEvent extends Event {
     public NoOutcomeEvent(int eventLevel) {

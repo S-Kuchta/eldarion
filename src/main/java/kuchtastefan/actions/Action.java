@@ -1,7 +1,7 @@
 package kuchtastefan.actions;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;

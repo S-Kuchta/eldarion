@@ -4,7 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.character.GameCharacter;
 
 
 public class ActionRestoreMana extends Action {

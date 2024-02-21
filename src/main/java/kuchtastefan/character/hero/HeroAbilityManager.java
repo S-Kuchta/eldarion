@@ -1,4 +1,4 @@
-package kuchtastefan.characters.hero;
+package kuchtastefan.character.hero;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.ability.AbilityPointsSpendOrRemove;

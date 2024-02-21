@@ -1,9 +1,7 @@
 package kuchtastefan.quest;
 
-import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.constant.ConstantSymbol;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;

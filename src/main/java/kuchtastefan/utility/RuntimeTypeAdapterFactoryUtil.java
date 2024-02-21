@@ -2,10 +2,7 @@ package kuchtastefan.utility;
 
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
-import kuchtastefan.actions.instantActions.ActionDealDamage;
-import kuchtastefan.actions.instantActions.ActionInstantStun;
-import kuchtastefan.actions.instantActions.ActionRestoreHealth;
-import kuchtastefan.actions.instantActions.ActionRestoreMana;
+import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
@@ -36,6 +33,7 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionInstantStun.class)
             .registerSubtype(ActionInvulnerability.class)
             .registerSubtype(ActionReflectSpell.class)
+            .registerSubtype(ActionRemoveBuffOrDebuff.class)
             .registerSubtype(ActionDecreaseAbilityPoint.class);
 
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory

@@ -1,9 +1,9 @@
-package kuchtastefan.characters.hero;
+package kuchtastefan.character.hero;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.characters.GameCharacter;
-import kuchtastefan.characters.hero.inventory.HeroInventory;
-import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.character.GameCharacter;
+import kuchtastefan.character.hero.inventory.HeroInventory;
+import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;

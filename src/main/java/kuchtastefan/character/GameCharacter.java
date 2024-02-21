@@ -1,4 +1,4 @@
-package kuchtastefan.characters;
+package kuchtastefan.character;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -6,7 +6,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionAbsorbDamage;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.characters.spell.Spell;
+import kuchtastefan.character.spell.Spell;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;

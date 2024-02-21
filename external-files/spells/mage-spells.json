@@ -24,7 +24,7 @@
   },
   {
     "spellId": 201,
-    "spellName": "Arcane Missiles\t",
+    "spellName": "Arcane Missiles",
     "spellClass": "MAGE",
     "spellDescription": "Launches Arcane Missiles at the enemy, causing Arcane damage",
     "spellActions": [
@@ -89,7 +89,8 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -124,7 +125,8 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "ability": "ATTACK"
+        "ability": "ATTACK",
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -150,7 +152,8 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "BUFF"
       },
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -162,7 +165,8 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "ability": "CRITICAL_HIT_CHANCE"
+        "ability": "CRITICAL_HIT_CHANCE",
+        "actionStatusEffect": "BUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -188,7 +192,8 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "ability": "RESIST_DAMAGE"
+        "ability": "RESIST_DAMAGE",
+        "actionStatusEffect": "BUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -214,6 +219,14 @@
         "canBeActionCriticalHit": true
       },
       {
+        "type": "ActionInstantStun",
+        "actionName": "STUN",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      },
+      {
         "type": "ActionStun",
         "actionName": "STUN",
         "actionEffectOn": "SPELL_TARGET",
@@ -222,7 +235,8 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -257,7 +271,8 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -272,7 +287,7 @@
     "spellId": 209,
     "spellName": "Ice block",
     "spellClass": "MAGE",
-    "spellDescription": "Cast ice block.",
+    "spellDescription": "You become encased in a block of ice, protecting you from all incoming damage for 2 turns.",
     "spellActions": [
       {
         "type": "ActionInvulnerability",
@@ -283,18 +298,19 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "BUFF"
       }
     ],
     "spellLevel": 5,
-    "spellManaCost": 30,
+    "spellManaCost": 40,
     "turnCoolDown": 7
   },
   {
     "spellId": 210,
     "spellName": "Reflect Spell",
     "spellClass": "MAGE",
-    "spellDescription": "Reflect spell",
+    "spellDescription": "Reflecting the next spell cast on you.",
     "spellActions": [
       {
         "type": "ActionReflectSpell",
@@ -305,19 +321,20 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "BUFF"
       }
     ],
     "bonusValueFromAbility": {},
     "spellLevel": 5,
-    "spellManaCost": 25,
+    "spellManaCost": 40,
     "turnCoolDown": 7
   },
   {
     "spellId": 211,
     "spellName": "Evocation",
     "spellClass": "MAGE",
-    "spellDescription": "Restore mana over 3 turns. Also you will get intellect.",
+    "spellDescription": "Restore mana over 3 turns. Also, you will get intellect during duration of Evocation.",
     "spellActions": [
       {
         "type": "ActionRestoreManaOverTime",
@@ -328,7 +345,8 @@
         "actionMaxStacks": 1,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "BUFF"
       },
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -340,11 +358,48 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "ability": "INTELLECT"
+        "ability": "INTELLECT",
+        "actionStatusEffect": "BUFF"
       }
     ],
     "bonusValueFromAbility": {
       "INTELLECT": 2
+    },
+    "spellLevel": 7,
+    "spellManaCost": 0,
+    "turnCoolDown": 8
+  },
+  {
+    "spellId": 212,
+    "spellName": "Renew",
+    "spellClass": "MAGE",
+    "spellDescription": "Heals the spell caster over 3 turns. Also, remove all debuffs from spell caster.",
+    "spellActions": [
+      {
+        "type": "ActionRestoreHealthOverTime",
+        "actionName": "HEAL_OVER_TIME",
+        "maxActionValue": 10,
+        "maxActionTurns": 3,
+        "actionDurationType": "BATTLE_ACTION",
+        "actionMaxStacks": 1,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "BUFF"
+      },
+      {
+        "type": "ActionRemoveBuffOrDebuff",
+        "actionName": "REMOVE_BUFF_OR_DEBUFF",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "removeAllStatusEffects": true,
+        "actionStatusEffectToRemove": "DEBUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 3
     },
     "spellLevel": 7,
     "spellManaCost": 0,

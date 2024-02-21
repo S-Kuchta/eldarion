@@ -1,6 +1,6 @@
-package kuchtastefan.characters.vendor;
+package kuchtastefan.character.vendor;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.junkItem.JunkItem;
 import kuchtastefan.utility.PrintUtil;

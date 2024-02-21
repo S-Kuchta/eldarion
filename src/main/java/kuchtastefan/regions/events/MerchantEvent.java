@@ -1,10 +1,10 @@
 package kuchtastefan.regions.events;
 
-import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.vendor.ConsumableVendorCharacter;
-import kuchtastefan.characters.vendor.CraftingReagentItemVendorCharacter;
-import kuchtastefan.characters.vendor.JunkVendorCharacter;
-import kuchtastefan.characters.vendor.WearableItemVendorCharacter;
+import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.vendor.ConsumableVendorCharacter;
+import kuchtastefan.character.vendor.CraftingReagentItemVendorCharacter;
+import kuchtastefan.character.vendor.JunkVendorCharacter;
+import kuchtastefan.character.vendor.WearableItemVendorCharacter;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;

@@ -3,7 +3,7 @@ package kuchtastefan.actions.actionsWIthDuration;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.character.GameCharacter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,13 +18,15 @@ public abstract class ActionWithDuration extends Action {
     private final int actionMaxStacks;
     private int actionCurrentStacks;
     private final ActionDurationType actionDurationType;
+    private final ActionStatusEffect actionStatusEffect;
 
 
     public ActionWithDuration(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int maxActionTurns,
                               int actionMaxStacks, ActionDurationType actionDurationType, int chanceToPerformAction,
-                              boolean canBeActionCriticalHit) {
+                              boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
         super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
         this.maxActionTurns = maxActionTurns;
+        this.actionStatusEffect = actionStatusEffect;
         this.currentActionTurn = 0;
         this.actionMaxStacks = actionMaxStacks;
         this.actionCurrentStacks = 0;

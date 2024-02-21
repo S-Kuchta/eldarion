@@ -1,8 +1,7 @@
 package kuchtastefan.regions.events;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.regions.locations.Location;
-import kuchtastefan.regions.locations.LocationService;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 

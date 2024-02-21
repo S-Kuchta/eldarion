@@ -2,7 +2,7 @@ package kuchtastefan.items.consumeableItem;
 
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.items.Item;
 import lombok.Getter;
 import lombok.Setter;

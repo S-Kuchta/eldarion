@@ -1,4 +1,4 @@
-package kuchtastefan.characters.enemy;
+package kuchtastefan.character.enemy;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

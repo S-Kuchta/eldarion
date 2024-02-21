@@ -1,8 +1,8 @@
-package kuchtastefan.characters.enemy;
+package kuchtastefan.character.enemy;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.characters.GameCharacter;
-import kuchtastefan.characters.spell.SpellsList;
+import kuchtastefan.character.GameCharacter;
+import kuchtastefan.character.spell.SpellsList;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.LocationType;

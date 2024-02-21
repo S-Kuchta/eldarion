@@ -12,6 +12,18 @@
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 30,
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -69,7 +81,7 @@
     "spellId": 103,
     "spellName": "Test heal",
     "spellClass": "NPC",
-    "spellDescription": "Gash target with claw",
+    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionRestoreHealth",

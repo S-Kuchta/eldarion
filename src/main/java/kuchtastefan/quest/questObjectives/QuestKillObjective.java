@@ -1,8 +1,8 @@
 package kuchtastefan.quest.questObjectives;
 
-import kuchtastefan.characters.enemy.Enemy;
-import kuchtastefan.characters.enemy.EnemyList;
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.enemy.Enemy;
+import kuchtastefan.character.enemy.EnemyList;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package kuchtastefan.quest;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
 import lombok.Getter;

@@ -1,11 +1,10 @@
-package kuchtastefan.characters.vendor;
+package kuchtastefan.character.vendor;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.consumeableItem.ConsumableItemType;
 import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.utility.RandomNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

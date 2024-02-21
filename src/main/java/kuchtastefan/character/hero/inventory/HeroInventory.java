@@ -1,4 +1,4 @@
-package kuchtastefan.characters.hero.inventory;
+package kuchtastefan.character.hero.inventory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -1,9 +1,7 @@
 package kuchtastefan.regions.events;
 
-import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.quest.Quest;
+import kuchtastefan.character.hero.Hero;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public abstract class Event {

@@ -1,7 +1,7 @@
 package kuchtastefan.regions.locations;
 
-import kuchtastefan.characters.hero.Hero;
-import kuchtastefan.characters.hero.HeroMenuService;
+import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.HeroMenuService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;

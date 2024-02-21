@@ -3,7 +3,7 @@ package kuchtastefan.actions.actionsWIthDuration;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.characters.GameCharacter;
+import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,9 +17,10 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration {
 
     public ActionIncreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
                                       int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType,
-                                      Ability ability, int chanceToPerformAction, boolean canBeActionCriticalHit) {
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns,
-                actionMaxStacks, actionDurationType, chanceToPerformAction, canBeActionCriticalHit);
+                                      Ability ability, int chanceToPerformAction, boolean canBeActionCriticalHit,
+                                      ActionStatusEffect actionStatusEffect) {
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
         this.ability = ability;
     }
 

@@ -104,6 +104,36 @@
     "actionDurationType": "BATTLE_ACTION",
     "chanceToPerformAction": 100,
     "canBeActionCriticalHit": false
+  },
+  {
+    "type": "ActionRemoveBuffOrDebuff",
+    "actionName": "REMOVE_BUFF_OR_DEBUFF",
+    "maxActionValue": 0,
+    "actionEffectOn": "SPELL_CASTER, SPELL_TARGET",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": true,
+    "removeAllStatusEffects": true,
+    "actionStatusEffectToRemove": "BUFF or DEBUFF"
+  },
+  {
+    "type": "ActionInstantStun",
+    "actionName": "STUN",
+    "maxActionValue": 0,
+    "actionEffectOn": "SPELL_TARGET",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": true
+  },
+  {
+    "type": "ActionRestoreManaOverTime",
+    "actionName": "RESTORE_MANA_OVER_TIME",
+    "maxActionValue": 13,
+    "maxActionTurns": 3,
+    "actionDurationType": "BATTLE_ACTION",
+    "actionMaxStacks": 1,
+    "actionEffectOn": "SPELL_CASTER",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": false,
+    "actionStatusEffect": "BUFF"
   }
 ]
 

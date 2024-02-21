@@ -1,7 +1,7 @@
 package kuchtastefan.regions.locations;
 
-import kuchtastefan.characters.QuestGiverCharacter;
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.QuestGiverCharacter;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.QuestMap;
 
 public class LocationStageQuestGiver extends LocationStage {

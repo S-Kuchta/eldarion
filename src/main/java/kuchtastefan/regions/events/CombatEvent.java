@@ -1,8 +1,8 @@
 package kuchtastefan.regions.events;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.characters.enemy.Enemy;
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.enemy.Enemy;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.items.Item;
 import kuchtastefan.regions.locations.LocationType;

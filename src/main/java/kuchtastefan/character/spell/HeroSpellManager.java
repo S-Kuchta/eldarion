@@ -1,8 +1,8 @@
-package kuchtastefan.characters.spell;
+package kuchtastefan.character.spell;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;

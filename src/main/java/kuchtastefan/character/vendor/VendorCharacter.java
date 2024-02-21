@@ -1,7 +1,7 @@
-package kuchtastefan.characters.vendor;
+package kuchtastefan.character.vendor;
 
-import kuchtastefan.characters.GameCharacter;
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.GameCharacter;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.wearableItem.WearableItem;

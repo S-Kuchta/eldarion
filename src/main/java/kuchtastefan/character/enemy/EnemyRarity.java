@@ -1,4 +1,4 @@
-package kuchtastefan.characters.enemy;
+package kuchtastefan.character.enemy;
 
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;

@@ -1,6 +1,6 @@
 package kuchtastefan.quest.questObjectives;
 
-import kuchtastefan.characters.hero.Hero;
+import kuchtastefan.character.hero.Hero;
 
 public interface RemoveObjectiveProgress {
 

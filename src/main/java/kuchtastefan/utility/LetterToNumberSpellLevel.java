@@ -9,8 +9,7 @@ public enum LetterToNumberSpellLevel {
     B(2),
     C(3),
     D(5),
-    E(7),
-    F(9);
+    E(7);
 
     private final int value;
 

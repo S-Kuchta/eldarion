@@ -10,6 +10,7 @@ public class ActionDealDamageOverTime extends ActionWithDuration {
                                     int maxActionValue, int maxActionTurns, int actionMaxStacks,
                                     ActionDurationType actionDurationType, int chanceToPerformAction,
                                     boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
+
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
                 actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }

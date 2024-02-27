@@ -79,7 +79,7 @@
     "spellId": 303,
     "spellName": "Berserker Stance",
     "spellClass": "WARRIOR",
-    "spellDescription": "An aggressive stance. Critical hit chance is increased.",
+    "spellDescription": "An aggressive stance. Critical hit chance is increased for 4 turns.",
     "spellActions": [
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -131,7 +131,7 @@
     "spellId": 305,
     "spellName": "Rend",
     "spellClass": "WARRIOR",
-    "spellDescription": "Wounds the target causing them to bleed for damage",
+    "spellDescription": "Wounds the target causing them to bleed.",
     "spellActions": [
       {
         "type": "ActionDealDamageOverTime",
@@ -204,7 +204,7 @@
       }
     ],
     "bonusValueFromAbility": {
-      "STRENGTH": 1
+      "STRENGTH": 2
     },
     "spellLevel": 3,
     "spellManaCost": 10,
@@ -296,5 +296,55 @@
     "spellLevel": 5,
     "spellManaCost": 25,
     "turnCoolDown": 7
+  },
+  {
+    "spellId": 311,
+    "spellName": "Sunder Armor",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Reduce target resist damage for 4 turns.",
+    "spellActions": [
+      {
+        "type": "ActionDecreaseAbilityPoint",
+        "actionName": "DECREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "RESIST_DAMAGE"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "STRENGTH": 2
+    },
+    "spellLevel": 7,
+    "spellManaCost": 15,
+    "turnCoolDown": 7
+  },
+  {
+    "spellId": 311,
+    "spellName": "Divine Shield",
+    "spellClass": "WARRIOR",
+    "spellDescription": "Protects the caster from all damage and spells for 3 turns.",
+    "spellActions": [
+      {
+        "type": "ActionInvulnerability",
+        "actionName": "INVULNERABILITY",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 0,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 7,
+    "spellManaCost": 20,
+    "turnCoolDown": 9
   }
 ]

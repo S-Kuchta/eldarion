@@ -38,7 +38,7 @@ public class HintUtil {
                 \tcheck accepted and completed quests, learn new spells, and adjust game settings."""));
 
         hintList.put(HintName.NEW_SPELL_HINT, new Hint("""
-                \tHere you can learn a new spell. You can learn one new spell on every odd-numbered level.
+                \tHere you can learn a new spell. You can learn one new spell on levels 1, 2, 3, 5 and 7.
                 \tWhen you want to change a learned spell, simply learn a new one, and the old one will be unlearned."""));
 
         hintList.put(HintName.REGION_HINT, new Hint("""

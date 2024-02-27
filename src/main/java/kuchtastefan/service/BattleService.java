@@ -53,14 +53,10 @@ public class BattleService {
         // Main battle loop
         while (true) {
 
-
             // Hero's turn
             if (heroPlay) {
                 for (GameCharacter gameCharacter : alliesList) {
 
-//                while (alliesIterator.hasNext()) {
-
-//                    GameCharacter gameCharacter = alliesIterator.next();
                     gameCharacter.checkAndRemoveActionTurns();
 
                     // If hero can't perform action, skip to next turn
@@ -118,12 +114,8 @@ public class BattleService {
                             }
                         }
                     } else {
-                        PrintUtil.printLongDivider();
-                        System.out.println("\t\t" + ConstantSymbol.SWORD_SYMBOL
-                                + " " + gameCharacter.getName() + " Turn!"
-                                + ConstantSymbol.SWORD_SYMBOL);
-                        System.out.println();
-
+                        npcCharacterTurn(gameCharacter);
+                        checkSpellsCoolDowns(gameCharacter);
                         characterUseSpell(gameCharacter, enemyList.get(RandomNumberGenerator.getRandomNumber(0, enemyList.size() - 1)), enemyList, alliesList, tempCharacterList);
                     }
 
@@ -147,18 +139,7 @@ public class BattleService {
                         enemyInCombat.checkAndRemoveActionTurns();
                         checkSpellsCoolDowns(enemyInCombat);
 
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            System.out.println(e.getMessage());
-                        }
-
-                        // Print enemy's turn
-                        PrintUtil.printLongDivider();
-                        System.out.println("\t\t" + ConstantSymbol.SWORD_SYMBOL
-                                + " " + enemyInCombat.getName() + " Turn!"
-                                + ConstantSymbol.SWORD_SYMBOL);
-                        System.out.println();
+                        npcCharacterTurn(enemyInCombat);
 
                         // If enemy can't perform action, skip to next enemy
                         if (!enemyInCombat.isCanPerformAction()) {
@@ -226,6 +207,20 @@ public class BattleService {
                 return false; // Battle lost
             }
         }
+    }
+
+    private void npcCharacterTurn(GameCharacter gameCharacter) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+
+        PrintUtil.printLongDivider();
+        System.out.println("\t\t" + ConstantSymbol.SWORD_SYMBOL
+                + " " + gameCharacter.getName() + " Turn!"
+                + ConstantSymbol.SWORD_SYMBOL);
+        System.out.println();
     }
 
     private void checkIfCharacterDied(List<GameCharacter> characters) {

@@ -3,12 +3,8 @@ package kuchtastefan.character.spell;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
-import kuchtastefan.actions.actionsWIthDuration.ActionDecreaseAbilityPoint;
-import kuchtastefan.actions.actionsWIthDuration.ActionIncreaseAbilityPoint;
-import kuchtastefan.actions.actionsWIthDuration.ActionReflectSpell;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.CharacterClass;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
@@ -63,12 +59,12 @@ public class Spell {
      * @param spellTarget The character targeted by the spell.
      * @return True if the spell was successfully cast, false otherwise.
      */
-    public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<Enemy> allCharacters) {
+    public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyCharacters, List<GameCharacter> alliesCharacters, List<GameCharacter> tempCharacterList) {
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
             System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.spellName + ConsoleColor.RESET);
 
             boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100)
-                                  <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+                    <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
 
             if (spellTarget.isReflectSpell()) {
                 for (Action action : spellTarget.getBattleActionsWithDuration()) {
@@ -81,9 +77,13 @@ public class Spell {
             }
 
             for (Action action : this.spellActions) {
+                if (action instanceof ActionSummonCreature) {
+                    tempCharacterList.add(((ActionSummonCreature) action).getNpcCharacter());
+                }
+
                 if (this.hitAllEnemy) {
-                    for (Enemy enemy : allCharacters) {
-                        performAction(action, spellCaster, enemy, criticalHit);
+                    for (GameCharacter character : enemyCharacters) {
+                        performAction(action, spellCaster, character, criticalHit);
                     }
                 } else {
                     performAction(action, spellCaster, spellTarget, criticalHit);
@@ -93,14 +93,13 @@ public class Spell {
             spellCaster.decreaseCurrentAbility(this.spellManaCost, Ability.MANA);
             this.currentTurnCoolDown = 0;
             checkTurnCoolDown();
-
             return true;
         } else {
             if (spellCaster.getCurrentAbilityValue(Ability.MANA) < this.spellManaCost) {
                 System.out.println("\tYou do not have enough Mana to perform this ability!");
             } else {
                 System.out.println(ConsoleColor.RED + "\tYou can not cast " + this.spellName + ". Spell is on coolDown! (You have to wait "
-                                   + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)" + ConsoleColor.RESET);
+                        + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)" + ConsoleColor.RESET);
             }
             return false;
         }

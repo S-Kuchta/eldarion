@@ -23,6 +23,51 @@
     "turnCoolDown": 0
   },
   {
+    "spellId": 225,
+    "spellName": "Summon Water Elemental",
+    "spellClass": "MAGE",
+    "spellDescription": "Summon Water Elemental",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true,
+        "npcCharacter": {
+          "enemyId": 100,
+          "name": "Water Elemental",
+          "characterRarity": "SUMMONED",
+          "abilities": {
+            "ATTACK": 3,
+            "RESIST_DAMAGE": 3,
+            "STRENGTH": 2,
+            "INTELLECT": 5,
+            "HASTE": 3,
+            "CRITICAL_HIT_CHANCE": 4,
+            "HEALTH": 40,
+            "MANA": 50,
+            "ABSORB_DAMAGE": 0
+          },
+          "npcCharacterSpellsId": [
+            200,
+            204
+          ],
+          "level": 1,
+          "locationType": [
+          ],
+          "maxStack": 5
+        }
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
     "spellId": 201,
     "spellName": "Arcane Missiles",
     "spellClass": "MAGE",

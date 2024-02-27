@@ -2,7 +2,7 @@
   {
     "enemyId": 200,
     "name": "Defias Bandit",
-    "enemyRarity": "COMMON",
+    "characterRarity": "COMMON",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 2,
@@ -14,7 +14,7 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
-    "enemySpells": [
+    "npcCharacterSpellsId": [
       101,
       103,
       104
@@ -32,7 +32,7 @@
   {
     "enemyId": 201,
     "name": "Defias Looter",
-    "enemyRarity": "COMMON",
+    "characterRarity": "COMMON",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,
@@ -44,7 +44,7 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
-    "enemySpells": [
+    "npcCharacterSpellsId": [
       101
     ],
     "level": 2,
@@ -54,7 +54,7 @@
   {
     "enemyId": 202,
     "name": "Defias Raider",
-    "enemyRarity": "RARE",
+    "characterRarity": "RARE",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 4,
@@ -66,7 +66,7 @@
       "MANA": 40,
       "ABSORB_DAMAGE": 0
     },
-    "enemySpells": [
+    "npcCharacterSpellsId": [
       101
     ],
     "level": 3,
@@ -76,7 +76,7 @@
   {
     "enemyId": 203,
     "name": "Defias Boss",
-    "enemyRarity": "BOSS",
+    "characterRarity": "BOSS",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,
@@ -88,7 +88,7 @@
       "MANA": 50,
       "ABSORB_DAMAGE": 0
     },
-    "enemySpells": [
+    "npcCharacterSpellsId": [
       101
     ],
     "level": 2,
@@ -100,7 +100,7 @@
   {
     "enemyId": 204,
     "name": "Necromancer",
-    "enemyRarity": "BOSS",
+    "characterRarity": "BOSS",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 2,
@@ -112,7 +112,7 @@
       "MANA": 200,
       "ABSORB_DAMAGE": 0
     },
-    "enemySpells": [
+    "npcCharacterSpellsId": [
       101,
       103,
       104

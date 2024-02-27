@@ -1,8 +1,7 @@
 package kuchtastefan.character.enemy;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.spell.SpellsList;
+import kuchtastefan.character.NpcCharacter;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.LocationType;
@@ -14,7 +13,7 @@ import java.util.*;
 
 @Getter
 @Setter
-public class Enemy extends GameCharacter {
+public class Enemy extends NpcCharacter {
 
     private int enemyId;
     private List<Item> itemsDrop;
@@ -22,42 +21,22 @@ public class Enemy extends GameCharacter {
     private EnemyType enemyType;
     private final LocationType[] locationType;
     private final int maxStack;
-    private EnemyRarity enemyRarity;
-    protected boolean defeated;
-    private int[] enemySpells;
 
 
     public Enemy(String name, Map<Ability, Integer> abilities,
                  EnemyType enemyType, LocationType[] locationType, int maxStack, int[] enemySpells) {
-        super(name, abilities);
-        this.enemySpells = enemySpells;
+
+        super(name, abilities, enemySpells);
         this.goldDrop = 0;
         this.enemyType = enemyType;
         this.locationType = locationType;
         this.maxStack = maxStack;
         this.itemsDrop = new ArrayList<>();
-        this.defeated = false;
-    }
-
-    public void addSpells() {
-        for (int enemySpell : this.enemySpells) {
-            this.characterSpellList.add(SpellsList.getSpellMap().get(enemySpell));
-        }
-    }
-
-    public void setMaxAbilitiesAndCurrentAbilities() {
-        this.currentAbilities = new HashMap<>();
-        this.maxAbilities = new HashMap<>();
-
-        for (Ability ability : Ability.values()) {
-            this.currentAbilities.putIfAbsent(ability, this.abilities.get(ability));
-            this.maxAbilities.putIfAbsent(ability, this.abilities.get(ability));
-        }
     }
 
     public void goldDrop() {
         if (this.enemyType.equals(EnemyType.HUMANOID)) {
-            double goldDrop = 15 + this.level + ((double) this.enemyRarity.getExperienceGainedValue() / 2);
+            double goldDrop = 15 + this.level + ((double) this.characterRarity.getExperienceGainedValue() / 2);
 
             setGoldDrop(RandomNumberGenerator.getRandomNumber(
                     (int) (goldDrop * 0.75), (int) goldDrop));
@@ -96,12 +75,12 @@ public class Enemy extends GameCharacter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Enemy enemy = (Enemy) o;
-        return this.name.equals(enemy.name) && enemyType == enemy.enemyType && Arrays.equals(locationType, enemy.locationType) && enemy.enemyRarity.equals(((Enemy) o).enemyRarity);
+        return this.name.equals(enemy.name) && enemyType == enemy.enemyType && Arrays.equals(locationType, enemy.locationType) && enemy.characterRarity.equals(((Enemy) o).characterRarity);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(name, goldDrop, enemyType, enemyRarity);
+        int result = Objects.hash(name, goldDrop, enemyType, characterRarity);
         result = 31 * result + Arrays.hashCode(locationType);
         return result;
     }

@@ -1,10 +1,11 @@
-package kuchtastefan.character.enemy;
+package kuchtastefan.character;
 
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 @Getter
-public enum EnemyRarity {
+public enum CharacterRarity {
+    SUMMONED(0),
     COMMON(5),
     RARE(20),
     ELITE(40),
@@ -12,7 +13,7 @@ public enum EnemyRarity {
 
     private final int experienceGainedValue;
 
-    EnemyRarity(int experienceGainedValue) {
+    CharacterRarity(int experienceGainedValue) {
         this.experienceGainedValue = experienceGainedValue;
     }
 

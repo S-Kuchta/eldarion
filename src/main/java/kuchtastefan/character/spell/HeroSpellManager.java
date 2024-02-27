@@ -51,7 +51,7 @@ public class HeroSpellManager {
                 RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
         List<Spell> spellsByClass = new ArrayList<>();
-        for (Spell spellForAdd : SpellsList.getSpellList()) {
+        for (Spell spellForAdd : SpellsList.spellList) {
             if (spellForAdd.getSpellClass().equals(hero.getCharacterClass())) {
                 spellsByClass.add(spellForAdd);
             }

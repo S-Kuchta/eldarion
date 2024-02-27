@@ -36,7 +36,7 @@ public class CombatEvent extends Event {
         for (Enemy enemy : this.enemies) {
             System.out.println("\t"
                     + ConstantSymbol.SWORD_SYMBOL + ConsoleColor.YELLOW + " " + enemy.getName() + ConsoleColor.RESET
-                    + " - " + enemy.getEnemyRarity().name() + " - (Level " + enemy.getLevel() + ") "
+                    + " - " + enemy.getCharacterRarity().name() + " - (Level " + enemy.getLevel() + ") "
                     + ConstantSymbol.SWORD_SYMBOL);
         }
 
@@ -87,7 +87,7 @@ public class CombatEvent extends Event {
 
                 for (Enemy randomEnemy : this.enemies) {
                     double goldEarn = randomEnemy.getGoldDrop();
-                    double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getEnemyRarity().getExperienceGainedValue();
+                    double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getCharacterRarity().getExperienceGainedValue();
 
                     PrintUtil.printLongDivider();
                     for (Item item : randomEnemy.getItemsDrop()) {

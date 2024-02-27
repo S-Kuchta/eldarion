@@ -34,6 +34,7 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionInvulnerability.class)
             .registerSubtype(ActionReflectSpell.class)
             .registerSubtype(ActionRemoveBuffOrDebuff.class)
+            .registerSubtype(ActionSummonCreature.class)
             .registerSubtype(ActionDecreaseAbilityPoint.class);
 
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory

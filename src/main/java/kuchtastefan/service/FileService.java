@@ -8,7 +8,6 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.enemy.EnemyList;
 import kuchtastefan.character.enemy.EnemyType;
-import kuchtastefan.character.hero.CharacterClass;
 import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
@@ -329,7 +328,7 @@ public class FileService {
                     }
 
                     System.out.println(enemy.getEnemyId());
-                    enemy.addSpells();
+                    enemy.convertSpellIdToSpellList();
 
                     if (enemy.getRegionActionsWithDuration() == null) {
                         enemy.setRegionActionsWithDuration(new HashSet<>());
@@ -383,14 +382,13 @@ public class FileService {
                 }.getType());
 
                 for (Spell spell : spells) {
-                    if (spell.getSpellClass().equals(CharacterClass.NPC)) {
-                        SpellsList.getSpellMap().put(spell.getSpellId(), spell);
-                    }
+//                    if (spell.getSpellClass().equals(CharacterClass.NPC)) {
+                    SpellsList.spellMap.put(spell.getSpellId(), spell);
+//                    }
 
                     spell.setCanSpellBeCasted(true);
                     spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
                 }
-
 
                 spellList.addAll(spells);
                 reader.close();

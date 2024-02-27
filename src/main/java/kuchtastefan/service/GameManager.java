@@ -202,7 +202,7 @@ public class GameManager {
 
 //        QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
 
-        SpellsList.getSpellList().addAll(this.fileService.importSpellsFromFile());
+        SpellsList.spellList.addAll(this.fileService.importSpellsFromFile());
         EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
         this.fileService.importQuestsListFromFile();
@@ -263,7 +263,7 @@ public class GameManager {
             }
         }
 
-        for (Spell spell : SpellsList.getSpellList()) {
+        for (Spell spell : SpellsList.spellList) {
             if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.hero.getCharacterClass())) {
                 this.hero.getCharacterSpellList().add(spell);
             }

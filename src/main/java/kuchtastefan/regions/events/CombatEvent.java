@@ -103,6 +103,7 @@ public class CombatEvent extends Event {
                     hero.gainExperiencePoints(experiencePointGained);
                     hero.checkQuestProgress(randomEnemy.getEnemyId());
                     hero.checkIfQuestObjectivesAndQuestIsCompleted();
+                    PrintUtil.printLongDivider();
                 }
                 return true;
             }

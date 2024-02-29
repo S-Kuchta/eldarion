@@ -32,7 +32,6 @@ public class BattleService {
         List<GameCharacter> alliesList = new ArrayList<>();
         List<GameCharacter> tempCharacterList = new ArrayList<>();
         alliesList.add(hero);
-//        Iterator<GameCharacter> alliesIterator = alliesList.iterator();
 
         // Initialize variables for selected hero and enemy
         String selectedHeroForShowSelected = "A";
@@ -96,7 +95,7 @@ public class BattleService {
                                     PrintUtil.printEnterValidInput();
                                 }
                             } else {
-                                // Handle special commands like showing action names or hiding CoolDowns
+                                // Handle special commands
                                 if (choice.equals("X")) {
                                     GameSettings.setShowInformationAboutActionName();
                                 } else if (choice.equals("Y")) {
@@ -119,11 +118,11 @@ public class BattleService {
                         characterUseSpell(gameCharacter, enemyList.get(RandomNumberGenerator.getRandomNumber(0, enemyList.size() - 1)), enemyList, alliesList, tempCharacterList);
                     }
 
+                    checkIfCharacterDied(alliesList);
                     this.printAndPerformActionOverTime(gameCharacter);
-                    heroPlay = false;
                 }
 
-                checkIfCharacterDied(alliesList);
+                heroPlay = false;
 
                 alliesList.addAll(tempCharacterList);
                 tempCharacterList.clear();
@@ -236,7 +235,7 @@ public class BattleService {
     }
 
     private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
-        System.out.println("\n\t" + gameCharacter.getName() + " actions over time");
+        System.out.println("\n\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
         gameCharacter.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
         gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.INTELLECT)
                 * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);

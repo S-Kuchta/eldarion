@@ -16,6 +16,7 @@ import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.regions.locations.Location;
 import kuchtastefan.service.ExperiencePointsService;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -200,11 +201,14 @@ public class Hero extends GameCharacter {
             this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
         }
 
-        PrintUtil.printLongDivider();
-        System.out.println("\t\tYou gained " + (int) experiencePointsGained
-                + "xp\t\t\t\tExperience points: " + (int) this.experiencePoints + "xp / "
-                + (int) this.experiencePointsService.getNeededExperiencePointsForNewLevel() + "xp");
-        PrintUtil.printLongDivider();
+        System.out.println("\tYou gained " + ConsoleColor.YELLOW_BRIGHT + (int) experiencePointsGained
+                + " experience points" + ConsoleColor.RESET);
+
+//        PrintUtil.printLongDivider();
+//        System.out.println("\t\tYou gained " + (int) experiencePointsGained
+//                + "xp\t\t\t\tExperience points: " + (int) this.experiencePoints + "xp / "
+//                + (int) this.experiencePointsService.getNeededExperiencePointsForNewLevel() + "xp");
+//        PrintUtil.printLongDivider();
     }
 
     /**

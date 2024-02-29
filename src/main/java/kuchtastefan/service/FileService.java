@@ -6,8 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.enemy.Enemy;
-import kuchtastefan.character.enemy.EnemyList;
-import kuchtastefan.character.enemy.EnemyType;
+import kuchtastefan.character.enemy.CharacterList;
+import kuchtastefan.character.enemy.CharacterType;
 import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
@@ -320,8 +320,8 @@ public class FileService {
                 }.getType());
 
                 for (Enemy enemy : enemyList) {
-                    enemy.setEnemyType(
-                            EnemyType.valueOf(file.toUpperCase().replace(".JSON", "")));
+                    enemy.setCharacterType(
+                            CharacterType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
                     if (enemy.getCharacterSpellList() == null) {
                         enemy.setCharacterSpellList(new ArrayList<>());
@@ -338,7 +338,7 @@ public class FileService {
                         enemy.setBattleActionsWithDuration(new HashSet<>());
                     }
 
-                    EnemyList.getEnemyMap().put(enemy.getEnemyId(), enemy);
+                    CharacterList.getEnemyMap().put(enemy.getEnemyId(), enemy);
                 }
 
                 enemies.addAll(enemyList);

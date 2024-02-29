@@ -1,7 +1,7 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.QuestGiverCharacter;
-import kuchtastefan.character.enemy.EnemyList;
+import kuchtastefan.character.enemy.CharacterList;
 import kuchtastefan.character.hero.*;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellsList;
@@ -203,7 +203,7 @@ public class GameManager {
 //        QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
 
         SpellsList.spellList.addAll(this.fileService.importSpellsFromFile());
-        EnemyList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
+        CharacterList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
         this.fileService.importQuestsListFromFile();
         this.fileService.importLocationsFromFile();

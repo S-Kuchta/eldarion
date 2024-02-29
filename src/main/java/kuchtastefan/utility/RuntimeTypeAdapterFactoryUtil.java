@@ -3,6 +3,10 @@ package kuchtastefan.utility;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.actions.instantActions.*;
+import kuchtastefan.character.GameCharacter;
+import kuchtastefan.character.NpcCharacter;
+import kuchtastefan.character.enemy.Enemy;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.consumeableItem.ConsumableItem;
 import kuchtastefan.items.craftingItem.CraftingReagentItem;
@@ -36,6 +40,13 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionRemoveBuffOrDebuff.class)
             .registerSubtype(ActionSummonCreature.class)
             .registerSubtype(ActionDecreaseAbilityPoint.class);
+
+    public static final RuntimeTypeAdapterFactory<GameCharacter> gameCharactersRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
+            .of(GameCharacter.class)
+            .registerSubtype(GameCharacter.class)
+            .registerSubtype(NpcCharacter.class)
+            .registerSubtype(Enemy.class)
+            .registerSubtype(Hero.class);
 
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(QuestObjective.class)

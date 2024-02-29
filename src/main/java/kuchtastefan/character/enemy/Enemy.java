@@ -18,24 +18,24 @@ public class Enemy extends NpcCharacter {
     private int enemyId;
     private List<Item> itemsDrop;
     private double goldDrop;
-    private EnemyType enemyType;
+    private CharacterType characterType;
     private final LocationType[] locationType;
     private final int maxStack;
 
 
     public Enemy(String name, Map<Ability, Integer> abilities,
-                 EnemyType enemyType, LocationType[] locationType, int maxStack, int[] enemySpells) {
+                 CharacterType characterType, LocationType[] locationType, int maxStack, int[] enemySpells) {
 
         super(name, abilities, enemySpells);
         this.goldDrop = 0;
-        this.enemyType = enemyType;
+        this.characterType = characterType;
         this.locationType = locationType;
         this.maxStack = maxStack;
         this.itemsDrop = new ArrayList<>();
     }
 
     public void goldDrop() {
-        if (this.enemyType.equals(EnemyType.HUMANOID)) {
+        if (this.characterType.equals(CharacterType.HUMANOID)) {
             double goldDrop = 15 + this.level + ((double) this.characterRarity.getExperienceGainedValue() / 2);
 
             setGoldDrop(RandomNumberGenerator.getRandomNumber(
@@ -75,12 +75,12 @@ public class Enemy extends NpcCharacter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Enemy enemy = (Enemy) o;
-        return this.name.equals(enemy.name) && enemyType == enemy.enemyType && Arrays.equals(locationType, enemy.locationType) && enemy.characterRarity.equals(((Enemy) o).characterRarity);
+        return this.name.equals(enemy.name) && characterType == enemy.characterType && Arrays.equals(locationType, enemy.locationType) && enemy.characterRarity.equals(((Enemy) o).characterRarity);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(name, goldDrop, enemyType, characterRarity);
+        int result = Objects.hash(name, goldDrop, characterType, characterRarity);
         result = 31 * result + Arrays.hashCode(locationType);
         return result;
     }

@@ -1,14 +1,20 @@
 package kuchtastefan.character.spell;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.TypeAdapterFactory;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.character.GameCharacter;
+import kuchtastefan.character.NpcCharacter;
+import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.CharacterClass;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;
+import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -60,6 +66,11 @@ public class Spell {
      * @return True if the spell was successfully cast, false otherwise.
      */
     public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyCharacters, List<GameCharacter> alliesCharacters, List<GameCharacter> tempCharacterList) {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.gameCharactersRuntimeTypeAdapterFactory)
+                .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
+                .create();
+
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
             System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.spellName + ConsoleColor.RESET);
 
@@ -77,16 +88,12 @@ public class Spell {
             }
 
             for (Action action : this.spellActions) {
-                if (action instanceof ActionSummonCreature) {
-                    tempCharacterList.add(((ActionSummonCreature) action).getNpcCharacter());
-                }
-
                 if (this.hitAllEnemy) {
                     for (GameCharacter character : enemyCharacters) {
-                        performAction(action, spellCaster, character, criticalHit);
+                        performAction(action, spellCaster, character, criticalHit, tempCharacterList);
                     }
                 } else {
-                    performAction(action, spellCaster, spellTarget, criticalHit);
+                    performAction(action, spellCaster, spellTarget, criticalHit, tempCharacterList);
                 }
             }
 
@@ -105,7 +112,7 @@ public class Spell {
         }
     }
 
-    private void performAction(Action action, GameCharacter spellCaster, GameCharacter spellTarget, boolean criticalHit) {
+    private void performAction(Action action, GameCharacter spellCaster, GameCharacter spellTarget, boolean criticalHit, List<GameCharacter> tempCharacterList) {
 
         action.setNewCurrentActionValue(action.getMaxActionValue());
 
@@ -122,6 +129,10 @@ public class Spell {
             } else {
                 action.setNewCurrentActionValue(RandomNumberGenerator.getRandomNumber(
                         (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER), totalActionValue));
+            }
+
+            if (action instanceof ActionSummonCreature) {
+                tempCharacterList.add(((ActionSummonCreature) action).returnSummonedCharacter());
             }
 
             if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {

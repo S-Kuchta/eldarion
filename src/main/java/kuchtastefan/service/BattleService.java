@@ -23,160 +23,44 @@ import java.util.*;
 
 public class BattleService {
 
+    private GameCharacter enemyChosen;
+    private String selectedHeroForShowSelected;
+    private final List<GameCharacter> enemyList;
+    private final List<GameCharacter> alliesList;
+    private final List<GameCharacter> tempCharacterList;
+    private boolean heroPlay;
+
+    public BattleService() {
+        this.selectedHeroForShowSelected = "A";
+        this.enemyList = new ArrayList<>();
+        this.alliesList = new ArrayList<>();
+        this.tempCharacterList = new ArrayList<>();
+        this.heroPlay = true;
+    }
+
+
     public boolean battle(Hero hero, List<Enemy> enemies) {
         HintUtil.printHint(HintName.BATTLE_HINT);
-        InventoryMenuService inventoryMenuService = new InventoryMenuService();
 
         // Initialize lists for battle
-        List<GameCharacter> enemyList = new ArrayList<>(enemies);
-        List<GameCharacter> alliesList = new ArrayList<>();
-        List<GameCharacter> tempCharacterList = new ArrayList<>();
-        alliesList.add(hero);
+        this.enemyList.addAll(enemies);
+        this.alliesList.add(hero);
 
         // Initialize variables for selected hero and enemy
-        String selectedHeroForShowSelected = "A";
-        GameCharacter enemyChosen = enemyList.getFirst();
-
-        // Determine if the hero plays first based on HASTE ability
-        boolean heroPlay = true;
-        for (GameCharacter enemy : enemyList) {
-            if (enemy.getCurrentAbilityValue(Ability.HASTE) >= hero.getCurrentAbilityValue(Ability.HASTE)) {
-                heroPlay = false;
-                break;
-            }
-        }
+        this.enemyChosen = enemyList.getFirst();
 
         hero.getBattleActionsWithDuration().clear();
         hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
 
         // Main battle loop
         while (true) {
+            charactersTurns(alliesList, enemyList, hero);
+            charactersTurns(enemyList, alliesList, hero);
 
-            // Hero's turn
-            if (heroPlay) {
-                for (GameCharacter gameCharacter : alliesList) {
-
-                    gameCharacter.checkAndRemoveActionTurns();
-
-                    // If hero can't perform action, skip to next turn
-                    if (!gameCharacter.isCanPerformAction()) {
-                        heroPlay = false;
-                        this.printAndPerformActionOverTime(gameCharacter);
-                        checkSpellsCoolDowns(gameCharacter);
-                        continue;
-                    }
-
-                    if (gameCharacter instanceof Hero) {
-                        // Loop for hero's actions
-                        while (true) {
-                            printBattleMenu((Hero) gameCharacter, enemyChosen, selectedHeroForShowSelected, enemyList, alliesList);
-
-                            // Get user's choice
-                            String choice = InputUtil.stringScanner().toUpperCase();
-                            if (choice.matches("\\d+")) {
-                                try {
-                                    PrintUtil.printExtraLongDivider();
-                                    int parsedChoice = Integer.parseInt(choice);
-                                    if (parsedChoice == hero.getCharacterSpellList().size()) {
-
-                                        // If choice is for consumable items, open inventory menu
-                                        if (inventoryMenuService.consumableItemsMenu(hero, true)) {
-                                            checkSpellsCoolDowns(hero);
-                                            break;
-                                        }
-                                    } else {
-                                        // If choice is for a spell, use the spell on the enemy
-                                        if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, enemyChosen, enemyList, alliesList, tempCharacterList)) {
-                                            checkSpellsCoolDowns(hero);
-                                            break;
-                                        }
-                                    }
-                                } catch (IndexOutOfBoundsException e) {
-                                    PrintUtil.printEnterValidInput();
-                                }
-                            } else {
-                                // Handle special commands
-                                if (choice.equals("X")) {
-                                    GameSettings.setShowInformationAboutActionName();
-                                } else if (choice.equals("Y")) {
-                                    GameSettings.setHideSpellsOnCoolDown();
-                                } else {
-                                    try {
-                                        selectedHeroForShowSelected = choice;
-                                        enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue() - 1);
-                                    } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-                                        selectedHeroForShowSelected = "A";
-                                        enemyChosen = enemyList.getFirst();
-                                        PrintUtil.printEnterValidInput();
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        npcCharacterTurn(gameCharacter);
-                        checkSpellsCoolDowns(gameCharacter);
-                        characterUseSpell(gameCharacter, enemyList.get(RandomNumberGenerator.getRandomNumber(0, enemyList.size() - 1)), enemyList, alliesList, tempCharacterList);
-                    }
-
-                    checkIfCharacterDied(alliesList);
-                    this.printAndPerformActionOverTime(gameCharacter);
-                }
-
-                heroPlay = false;
-
-                alliesList.addAll(tempCharacterList);
-                tempCharacterList.clear();
-            } else {
-                Iterator<GameCharacter> iterator = enemyList.iterator();
-                GameCharacter enemyAttack = hero;
-                while (iterator.hasNext()) {
-                    GameCharacter enemyInCombat = iterator.next();
-
-                    // If enemy is alive
-                    if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) > 0) {
-
-                        enemyInCombat.checkAndRemoveActionTurns();
-                        checkSpellsCoolDowns(enemyInCombat);
-
-                        npcCharacterTurn(enemyInCombat);
-
-                        // If enemy can't perform action, skip to next enemy
-                        if (!enemyInCombat.isCanPerformAction()) {
-                            this.printAndPerformActionOverTime(enemyInCombat);
-                            continue;
-                        }
-
-                        // Select random character for enemy attack from alliesList
-                        if (alliesList.size() > 1) {
-                            enemyAttack = alliesList.get(RandomNumberGenerator.getRandomNumber(0, alliesList.size() - 1));
-                        }
-                        this.characterUseSpell(enemyInCombat, enemyAttack, alliesList, enemyList, tempCharacterList);
-                        this.printAndPerformActionOverTime(enemyInCombat);
-                    }
-
-                    // If enemy is killed
-                    if (enemyInCombat.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
-
-                        System.out.println();
-                        System.out.println("\t" + ConsoleColor.RED + enemyInCombat.getName() + " died!" + ConsoleColor.RESET);
-
-                        // Remove enemy from the list
-                        iterator.remove();
-                        if (!enemyList.isEmpty()) {
-                            enemyChosen = enemyList.getFirst();
-                            selectedHeroForShowSelected = "A";
-                        }
-                    }
-
-                    checkIfCharacterDied(alliesList);
-                }
-
-                try {
-                    Thread.sleep(2500);
-                } catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
-                }
-                heroPlay = true;
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
             }
 
             // Check if all enemies are defeated
@@ -208,7 +92,120 @@ public class BattleService {
         }
     }
 
-    private void npcCharacterTurn(GameCharacter gameCharacter) {
+    private void charactersTurns(List<GameCharacter> attackingCharacters, List<GameCharacter> defendingCharacters, Hero hero) {
+        Iterator<GameCharacter> iterator = attackingCharacters.iterator();
+        GameCharacter target = defendingCharacters.getFirst();
+
+        while (iterator.hasNext()) {
+            GameCharacter attackingCharacter = iterator.next();
+
+            // If character is alive
+            if (attackingCharacter.getCurrentAbilityValue(Ability.HEALTH) > 0) {
+
+                attackingCharacter.checkAndRemoveActionTurns();
+                checkSpellsCoolDowns(attackingCharacter);
+                if (attackingCharacter instanceof Hero) {
+                    heroPlay = true;
+                } else {
+                    npcCharacterPrintHeader(attackingCharacter);
+                }
+
+                // If character can't perform action, skip to next character
+                if (!attackingCharacter.isCanPerformAction()) {
+                    this.printAndPerformActionOverTime(attackingCharacter);
+                    if (attackingCharacter instanceof Hero) {
+                        heroPlay = false;
+                    }
+                    continue;
+                }
+
+                if (heroPlay) {
+                    heroTurn(hero);
+                } else {
+                    // Select random character for enemy attack from alliesList
+                    if (defendingCharacters.size() > 1) {
+                        target = defendingCharacters.get(RandomNumberGenerator.getRandomNumber(0, defendingCharacters.size() - 1));
+                    }
+
+                    this.characterUseSpell(attackingCharacter, target, alliesList, enemyList, tempCharacterList);
+                }
+
+                this.printAndPerformActionOverTime(attackingCharacter);
+            }
+
+            // If character is killed
+            if (attackingCharacter.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+
+                System.out.println();
+                System.out.println("\t" + ConsoleColor.RED + attackingCharacter.getName() + " died!" + ConsoleColor.RESET);
+
+                // Remove character from the list
+                iterator.remove();
+
+                if (attackingCharacters.equals(enemyList) && !enemyList.isEmpty()) {
+                    enemyChosen = enemyList.getFirst();
+                    selectedHeroForShowSelected = "A";
+                }
+            }
+
+            heroPlay = false;
+        }
+
+        attackingCharacters.addAll(tempCharacterList);
+        tempCharacterList.clear();
+    }
+
+    private void heroTurn(Hero hero) {
+        InventoryMenuService inventoryMenuService = new InventoryMenuService();
+
+        // Loop for hero's actions
+        while (true) {
+            printBattleMenu(hero, enemyChosen, selectedHeroForShowSelected, enemyList, alliesList);
+
+            // Get user's choice
+            String choice = InputUtil.stringScanner().toUpperCase();
+            if (choice.matches("\\d+")) {
+                try {
+                    PrintUtil.printExtraLongDivider();
+                    int parsedChoice = Integer.parseInt(choice);
+                    if (parsedChoice == hero.getCharacterSpellList().size()) {
+
+                        // If choice is for consumable items, open inventory menu
+                        if (inventoryMenuService.consumableItemsMenu(hero, true)) {
+                            checkSpellsCoolDowns(hero);
+                            break;
+                        }
+                    } else {
+                        // If choice is for a spell, use the spell on the enemy
+                        if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, enemyChosen, enemyList, alliesList, tempCharacterList)) {
+                            checkSpellsCoolDowns(hero);
+                            break;
+                        }
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    PrintUtil.printEnterValidInput();
+                }
+            } else {
+                // Handle special commands
+                if (choice.equals("X")) {
+                    GameSettings.setShowInformationAboutActionName();
+                } else if (choice.equals("Y")) {
+                    GameSettings.setHideSpellsOnCoolDown();
+                } else {
+                    try {
+                        selectedHeroForShowSelected = choice;
+                        enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue() - 1);
+                    } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
+                        selectedHeroForShowSelected = "A";
+                        enemyChosen = enemyList.getFirst();
+                        PrintUtil.printEnterValidInput();
+                    }
+                }
+            }
+        }
+    }
+
+    private void npcCharacterPrintHeader(GameCharacter gameCharacter) {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -220,18 +217,6 @@ public class BattleService {
                 + " " + gameCharacter.getName() + " Turn!"
                 + ConstantSymbol.SWORD_SYMBOL);
         System.out.println();
-    }
-
-    private void checkIfCharacterDied(List<GameCharacter> characters) {
-        Iterator<GameCharacter> iterator = characters.iterator();
-        while (iterator.hasNext()) {
-            GameCharacter gameCharacter = iterator.next();
-            if (gameCharacter.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
-                iterator.remove();
-                System.out.println();
-                System.out.println("\t" + ConsoleColor.RED + gameCharacter.getName() + " died!" + ConsoleColor.RESET);
-            }
-        }
     }
 
     private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
@@ -251,10 +236,10 @@ public class BattleService {
             if (!(gameCharacter instanceof Hero)) {
                 PrintUtil.printHeaderWithStatsBar(gameCharacter);
                 PrintUtil.printBattleBuffs(gameCharacter);
-                PrintUtil.printExtraLongDivider();
             }
         }
-
+        PrintUtil.printExtraLongDivider();
+        System.out.printf("%58s %n","Enemy");
         // Print enemy's header with stats and buffs
         PrintUtil.printHeaderWithStatsBar(enemyChosen);
         PrintUtil.printBattleBuffs(enemyChosen);

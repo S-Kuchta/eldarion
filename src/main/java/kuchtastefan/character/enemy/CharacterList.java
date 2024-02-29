@@ -9,7 +9,7 @@ import lombok.Getter;
 
 import java.util.*;
 
-public class EnemyList {
+public class CharacterList {
     @Getter
     private static final List<Enemy> enemyList = new ArrayList<>();
     @Getter

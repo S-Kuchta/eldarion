@@ -101,7 +101,7 @@ public class CombatEvent extends Event {
 
                     hero.addGolds(goldEarn);
                     hero.gainExperiencePoints(experiencePointGained);
-                    hero.checkQuestProgress(randomEnemy.getEnemyId());
+                    hero.checkQuestProgress(randomEnemy.getNpcId());
                     hero.checkIfQuestObjectivesAndQuestIsCompleted();
                     PrintUtil.printLongDivider();
                 }

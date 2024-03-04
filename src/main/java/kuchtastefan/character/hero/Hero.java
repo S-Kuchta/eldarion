@@ -201,14 +201,10 @@ public class Hero extends GameCharacter {
             this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
         }
 
-        System.out.println("\tYou gained " + ConsoleColor.YELLOW_BRIGHT + (int) experiencePointsGained
-                + " experience points" + ConsoleColor.RESET);
-
-//        PrintUtil.printLongDivider();
-//        System.out.println("\t\tYou gained " + (int) experiencePointsGained
-//                + "xp\t\t\t\tExperience points: " + (int) this.experiencePoints + "xp / "
-//                + (int) this.experiencePointsService.getNeededExperiencePointsForNewLevel() + "xp");
-//        PrintUtil.printLongDivider();
+        if (experiencePointsGained > 0) {
+            System.out.println("\tYou gained " + ConsoleColor.YELLOW_BRIGHT + (int) experiencePointsGained
+                    + " experience points" + ConsoleColor.RESET);
+        }
     }
 
     /**

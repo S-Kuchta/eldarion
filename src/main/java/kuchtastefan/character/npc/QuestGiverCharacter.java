@@ -1,5 +1,6 @@
-package kuchtastefan.character;
+package kuchtastefan.character.npc;
 
+import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;

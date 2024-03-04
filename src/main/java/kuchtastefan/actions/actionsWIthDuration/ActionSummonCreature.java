@@ -6,7 +6,7 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.NpcCharacter;
+import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.enemy.CharacterList;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
@@ -27,20 +27,20 @@ public class ActionSummonCreature extends Action {
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        System.out.println("\t" + gameCharacter.getName() + " summoned " + CharacterList.getEnemyMap().get(this.npcCharacterId).getName());
+        System.out.println("\t" + gameCharacter.getName() + " summoned " + CharacterList.getAllCharactersMapWithId().get(this.npcCharacterId).getName());
     }
 
     public GameCharacter returnSummonedCharacter() {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
-        NpcCharacter npcCharacter = gson.fromJson(gson.toJson(CharacterList.getEnemyMap().get(this.npcCharacterId)), NpcCharacter.class);
-        npcCharacter.setMaxAbilitiesAndCurrentAbilities();
-        npcCharacter.setCanPerformAction(true);
-        npcCharacter.setBattleActionsWithDuration(new HashSet<>());
-        npcCharacter.setRegionActionsWithDuration(new HashSet<>());
-        npcCharacter.setCharacterSpellList(new ArrayList<>());
-        npcCharacter.convertSpellIdToSpellList();
+        NonPlayerCharacter nonPlayerCharacter = gson.fromJson(gson.toJson(CharacterList.getAllCharactersMapWithId().get(this.npcCharacterId)), NonPlayerCharacter.class);
+        nonPlayerCharacter.setMaxAbilitiesAndCurrentAbilities();
+        nonPlayerCharacter.setCanPerformAction(true);
+        nonPlayerCharacter.setBattleActionsWithDuration(new HashSet<>());
+        nonPlayerCharacter.setRegionActionsWithDuration(new HashSet<>());
+        nonPlayerCharacter.setCharacterSpellList(new ArrayList<>());
+        nonPlayerCharacter.convertSpellIdToSpellList();
 
-        return npcCharacter;
+        return nonPlayerCharacter;
     }
 }

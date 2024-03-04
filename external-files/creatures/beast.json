@@ -1,6 +1,6 @@
 [
   {
-    "enemyId": 100,
+    "npcId": 100,
     "name": "Wolf",
     "characterRarity": "COMMON",
     "abilities": {
@@ -21,11 +21,10 @@
     "locationType": [
       "FOREST",
       "HIGHLAND"
-    ],
-    "maxStack": 5
+    ]
   },
   {
-    "enemyId": 101,
+    "npcId": 101,
     "name": "Bear",
     "characterRarity": "COMMON",
     "abilities": {
@@ -43,11 +42,10 @@
       100
     ],
     "level": 2,
-    "locationType": [],
-    "maxStack": 5
+    "locationType": []
   },
   {
-    "enemyId": 102,
+    "npcId": 102,
     "name": "Alpha Wolf",
     "characterRarity": "COMMON",
     "abilities": {
@@ -68,11 +66,10 @@
     "locationType": [
       "FOREST",
       "HIGHLAND"
-    ],
-    "maxStack": 5
+    ]
   },
   {
-    "enemyId": 103,
+    "npcId": 103,
     "name": "Coyote",
     "characterRarity": "COMMON",
     "abilities": {
@@ -90,7 +87,6 @@
       100
     ],
     "level": 3,
-    "locationType": [],
-    "maxStack": 5
+    "locationType": []
   }
 ]

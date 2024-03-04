@@ -4,7 +4,7 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.NpcCharacter;
+import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.items.Item;
@@ -44,7 +44,7 @@ public class RuntimeTypeAdapterFactoryUtil {
     public static final RuntimeTypeAdapterFactory<GameCharacter> gameCharactersRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(GameCharacter.class)
             .registerSubtype(GameCharacter.class)
-            .registerSubtype(NpcCharacter.class)
+            .registerSubtype(NonPlayerCharacter.class)
             .registerSubtype(Enemy.class)
             .registerSubtype(Hero.class);
 

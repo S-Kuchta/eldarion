@@ -1,4 +1,4 @@
-package kuchtastefan.character;
+package kuchtastefan.character.npc;
 
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;

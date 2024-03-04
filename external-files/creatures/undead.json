@@ -1,6 +1,6 @@
 [
   {
-    "enemyId": 300,
+    "npcId": 300,
     "name": "Weak Zombie",
     "characterRarity": "COMMON",
     "abilities": {
@@ -22,11 +22,10 @@
       "TOWER",
       "CASTLE",
       "CEMETERY"
-    ],
-    "maxStack": 5
+    ]
   },
   {
-    "enemyId": 301,
+    "npcId": 301,
     "name": "NightBane Dark Runner",
     "characterRarity": "COMMON",
     "abilities": {
@@ -44,11 +43,10 @@
       102
     ],
     "level": 2,
-    "locationType": [],
-    "maxStack": 5
+    "locationType": []
   },
   {
-    "enemyId": 302,
+    "npcId": 302,
     "name": "Insane Ghoul",
     "characterRarity": "RARE",
     "abilities": {
@@ -69,7 +67,6 @@
     "locationType": [
       "TOWER",
       "CASTLE"
-    ],
-    "maxStack": 5
+    ]
   }
 ]

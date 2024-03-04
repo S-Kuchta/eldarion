@@ -7,7 +7,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.enemy.CharacterList;
-import kuchtastefan.character.enemy.CharacterType;
+import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
@@ -327,7 +327,7 @@ public class FileService {
                         enemy.setCharacterSpellList(new ArrayList<>());
                     }
 
-                    System.out.println(enemy.getEnemyId());
+                    System.out.println(enemy.getNpcId());
                     enemy.convertSpellIdToSpellList();
 
                     if (enemy.getRegionActionsWithDuration() == null) {
@@ -338,7 +338,7 @@ public class FileService {
                         enemy.setBattleActionsWithDuration(new HashSet<>());
                     }
 
-                    CharacterList.getEnemyMap().put(enemy.getEnemyId(), enemy);
+                    CharacterList.getAllCharactersMapWithId().put(enemy.getNpcId(), enemy);
                 }
 
                 enemies.addAll(enemyList);

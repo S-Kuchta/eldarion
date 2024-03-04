@@ -2,7 +2,7 @@ package kuchtastefan.character.enemy;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import kuchtastefan.character.CharacterRarity;
+import kuchtastefan.character.npc.CharacterRarity;
 import kuchtastefan.regions.locations.LocationType;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
@@ -13,7 +13,7 @@ public class CharacterList {
     @Getter
     private static final List<Enemy> enemyList = new ArrayList<>();
     @Getter
-    private static final Map<Integer, Enemy> enemyMap = new HashMap<>();
+    private static final Map<Integer, Enemy> allCharactersMapWithId = new HashMap<>();
 
 
     public static Enemy returnEnemyWithNewCopy(Enemy enemy, CharacterRarity characterRarity) {
@@ -56,7 +56,7 @@ public class CharacterList {
     public static Enemy returnNewEnemyCopy(int id) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
-        Enemy newEnemy = gson.fromJson(gson.toJson(enemyMap.get(id)), Enemy.class);
+        Enemy newEnemy = gson.fromJson(gson.toJson(allCharactersMapWithId.get(id)), Enemy.class);
         newEnemy.addItemsDropFromEnemy();
         newEnemy.goldDrop();
         newEnemy.setCanPerformAction(true);

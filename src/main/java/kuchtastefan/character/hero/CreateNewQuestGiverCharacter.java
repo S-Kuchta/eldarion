@@ -1,6 +1,6 @@
 package kuchtastefan.character.hero;
 
-import kuchtastefan.character.QuestGiverCharacter;
+import kuchtastefan.character.npc.QuestGiverCharacter;
 import kuchtastefan.quest.QuestMap;
 
 public class CreateNewQuestGiverCharacter {

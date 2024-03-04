@@ -1,10 +1,10 @@
 package kuchtastefan.service;
 
 import com.google.gson.Gson;
-import kuchtastefan.character.QuestGiverCharacter;
+import kuchtastefan.character.npc.QuestGiverCharacter;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.vendor.CraftingReagentItemVendorCharacter;
-import kuchtastefan.character.vendor.WearableItemVendorCharacter;
+import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
+import kuchtastefan.character.npc.vendor.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.items.ItemsLists;

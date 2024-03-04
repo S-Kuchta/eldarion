@@ -1,7 +1,8 @@
 package kuchtastefan.character.enemy;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.character.NpcCharacter;
+import kuchtastefan.character.npc.NonPlayerCharacter;
+import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.items.Item;
 import kuchtastefan.items.ItemsLists;
 import kuchtastefan.regions.locations.LocationType;
@@ -13,9 +14,8 @@ import java.util.*;
 
 @Getter
 @Setter
-public class Enemy extends NpcCharacter {
+public class Enemy extends NonPlayerCharacter {
 
-    private int enemyId;
     private List<Item> itemsDrop;
     private double goldDrop;
     private CharacterType characterType;

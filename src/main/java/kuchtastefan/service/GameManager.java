@@ -1,13 +1,13 @@
 package kuchtastefan.service;
 
-import kuchtastefan.character.QuestGiverCharacter;
+import kuchtastefan.character.npc.QuestGiverCharacter;
 import kuchtastefan.character.enemy.CharacterList;
 import kuchtastefan.character.hero.*;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellsList;
-import kuchtastefan.character.vendor.ConsumableVendorCharacter;
-import kuchtastefan.character.vendor.CraftingReagentItemVendorCharacter;
-import kuchtastefan.character.vendor.JunkVendorCharacter;
+import kuchtastefan.character.npc.vendor.ConsumableVendorCharacter;
+import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
+import kuchtastefan.character.npc.vendor.JunkVendorCharacter;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;

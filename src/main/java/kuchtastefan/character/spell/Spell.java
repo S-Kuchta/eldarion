@@ -2,14 +2,11 @@ package kuchtastefan.character.spell;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.TypeAdapterFactory;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.NpcCharacter;
-import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.CharacterClass;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;

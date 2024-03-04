@@ -1,4 +1,4 @@
-package kuchtastefan.character.vendor;
+package kuchtastefan.character.npc.vendor;
 
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;

@@ -1,6 +1,7 @@
-package kuchtastefan.character;
+package kuchtastefan.character.npc;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.SpellsList;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,13 +11,14 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class NpcCharacter extends GameCharacter {
+public class NonPlayerCharacter extends GameCharacter {
 
+    protected int npcId;
     protected int[] npcCharacterSpellsId;
     protected boolean defeated;
     protected CharacterRarity characterRarity;
 
-    public NpcCharacter(String name, Map<Ability, Integer> abilities, int[] npcCharacterSpellsId) {
+    public NonPlayerCharacter(String name, Map<Ability, Integer> abilities, int[] npcCharacterSpellsId) {
         super(name, abilities);
         this.npcCharacterSpellsId = npcCharacterSpellsId;
         this.defeated = false;

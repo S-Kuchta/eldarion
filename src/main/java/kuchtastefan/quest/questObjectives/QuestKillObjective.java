@@ -24,7 +24,7 @@ public class QuestKillObjective extends QuestObjective {
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
-        Enemy enemy = CharacterList.getEnemyMap().get(this.questEnemyId);
+        Enemy enemy = CharacterList.getAllCharactersMapWithId().get(this.questEnemyId);
         if (currentCountEnemyProgress <= this.countEnemyToKill) {
             System.out.println("\t" + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL + " Kill " + this.countEnemyToKill + "x " + enemy.getCharacterRarity() + " "
                     + ConsoleColor.YELLOW + enemy.getName() + ConsoleColor.RESET + " - " +

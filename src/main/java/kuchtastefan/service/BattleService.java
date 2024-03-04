@@ -7,7 +7,7 @@ import kuchtastefan.actions.instantActions.ActionDealDamage;
 import kuchtastefan.actions.instantActions.ActionRestoreHealth;
 import kuchtastefan.actions.instantActions.ActionRestoreMana;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.NpcCharacter;
+import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.InventoryMenuService;
@@ -43,19 +43,19 @@ public class BattleService {
         HintUtil.printHint(HintName.BATTLE_HINT);
 
         // Initialize lists for battle
-        this.enemyList.addAll(enemies);
-        this.alliesList.add(hero);
+        enemyList.addAll(enemies);
+        alliesList.add(hero);
 
         // Initialize variables for selected hero and enemy
-        this.enemyChosen = enemyList.getFirst();
+        enemyChosen = enemyList.getFirst();
 
         hero.getBattleActionsWithDuration().clear();
         hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
 
         // Main battle loop
         while (true) {
-            charactersTurns(alliesList, enemyList, hero);
-            charactersTurns(enemyList, alliesList, hero);
+            battleTurnMechanic(alliesList, enemyList, hero);
+            battleTurnMechanic(enemyList, alliesList, hero);
 
             try {
                 Thread.sleep(2500);
@@ -92,7 +92,7 @@ public class BattleService {
         }
     }
 
-    private void charactersTurns(List<GameCharacter> attackingCharacters, List<GameCharacter> defendingCharacters, Hero hero) {
+    private void battleTurnMechanic(List<GameCharacter> attackingCharacters, List<GameCharacter> defendingCharacters, Hero hero) {
         Iterator<GameCharacter> iterator = attackingCharacters.iterator();
         GameCharacter target = defendingCharacters.getFirst();
 
@@ -238,9 +238,10 @@ public class BattleService {
                 PrintUtil.printBattleBuffs(gameCharacter);
             }
         }
-        PrintUtil.printExtraLongDivider();
-        System.out.printf("%58s %n","Enemy");
+
         // Print enemy's header with stats and buffs
+        PrintUtil.printExtraLongDivider();
+        System.out.printf("%58s %n", "Enemy");
         PrintUtil.printHeaderWithStatsBar(enemyChosen);
         PrintUtil.printBattleBuffs(enemyChosen);
         PrintUtil.printExtraLongDivider();
@@ -249,9 +250,9 @@ public class BattleService {
         System.out.print("\t");
         // Print available enemies for selection
         for (GameCharacter enemyFromList : enemyList) {
-            if (!((NpcCharacter) enemyFromList).isDefeated()) {
+            if (!((NonPlayerCharacter) enemyFromList).isDefeated()) {
                 System.out.print(ConsoleColor.CYAN + LetterToNumber.getStringFromValue(index) + ConsoleColor.RESET
-                        + ". " + enemyFromList.getName() + " - " + ((NpcCharacter) enemyFromList).getCharacterRarity() + " - "
+                        + ". " + enemyFromList.getName() + " - " + ((NonPlayerCharacter) enemyFromList).getCharacterRarity() + " - "
                         + " Healths: "
                         + enemyFromList.getCurrentAbilityValue(Ability.HEALTH) + " ");
 

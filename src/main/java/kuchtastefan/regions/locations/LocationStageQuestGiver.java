@@ -1,6 +1,6 @@
 package kuchtastefan.regions.locations;
 
-import kuchtastefan.character.QuestGiverCharacter;
+import kuchtastefan.character.npc.QuestGiverCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.QuestMap;
 

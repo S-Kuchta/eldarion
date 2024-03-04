@@ -4,7 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.enemy.CharacterList;
-import kuchtastefan.character.CharacterRarity;
+import kuchtastefan.character.npc.CharacterRarity;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.regions.locations.Location;

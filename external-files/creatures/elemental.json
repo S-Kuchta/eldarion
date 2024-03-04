@@ -1,6 +1,6 @@
 [
   {
-    "enemyId": 400,
+    "npcId": 400,
     "name": "Water Elemental",
     "characterRarity": "SUMMONED",
     "abilities": {
@@ -20,7 +20,6 @@
     ],
     "level": 1,
     "locationType": [
-    ],
-    "maxStack": 5
+    ]
   }
 ]

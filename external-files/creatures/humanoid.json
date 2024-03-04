@@ -1,6 +1,6 @@
 [
   {
-    "enemyId": 200,
+    "npcId": 200,
     "name": "Defias Bandit",
     "characterRarity": "COMMON",
     "abilities": {
@@ -26,11 +26,10 @@
       "MINE",
       "CAVE",
       "TOWER"
-    ],
-    "maxStack": 5
+    ]
   },
   {
-    "enemyId": 201,
+    "npcId": 201,
     "name": "Defias Looter",
     "characterRarity": "COMMON",
     "abilities": {
@@ -48,11 +47,10 @@
       101
     ],
     "level": 2,
-    "locationType": [],
-    "maxStack": 5
+    "locationType": []
   },
   {
-    "enemyId": 202,
+    "npcId": 202,
     "name": "Defias Raider",
     "characterRarity": "RARE",
     "abilities": {
@@ -70,11 +68,10 @@
       101
     ],
     "level": 3,
-    "locationType": [],
-    "maxStack": 5
+    "locationType": []
   },
   {
-    "enemyId": 203,
+    "npcId": 203,
     "name": "Defias Boss",
     "characterRarity": "BOSS",
     "abilities": {
@@ -94,11 +91,10 @@
     "level": 2,
     "locationType": [
       "MINE"
-    ],
-    "maxStack": 5
+    ]
   },
   {
-    "enemyId": 204,
+    "npcId": 204,
     "name": "Necromancer",
     "characterRarity": "BOSS",
     "abilities": {
@@ -120,7 +116,6 @@
     "level": 2,
     "locationType": [
       "MINE"
-    ],
-    "maxStack": 5
+    ]
   }
 ]

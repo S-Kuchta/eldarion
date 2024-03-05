@@ -2,12 +2,12 @@ package kuchtastefan.character.hero.inventory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.consumeableItem.ConsumableItem;
-import kuchtastefan.items.craftingItem.CraftingReagentItem;
-import kuchtastefan.items.junkItem.JunkItem;
-import kuchtastefan.items.questItem.QuestItem;
-import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.junkItem.JunkItem;
+import kuchtastefan.item.questItem.QuestItem;
+import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;

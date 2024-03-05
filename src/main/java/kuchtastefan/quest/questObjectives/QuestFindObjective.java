@@ -2,8 +2,8 @@ package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.ConstantSymbol;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.ItemsLists;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemsLists;
 import kuchtastefan.utility.ConsoleColor;
 
 public class QuestFindObjective extends QuestObjective implements RemoveObjectiveProgress {

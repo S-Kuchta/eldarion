@@ -1,7 +1,9 @@
 package kuchtastefan.character.hero;
 
 import kuchtastefan.character.hero.inventory.InventoryMenuService;
+import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettings;
+import kuchtastefan.gameSettings.GameSettingsService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.quest.QuestService;
@@ -89,13 +91,13 @@ public class HeroMenuService {
             PrintUtil.printIndexAndText("0", "Go back");
             System.out.println();
             PrintUtil.printIndexAndText("1", "Print String slowly - ");
-            PrintUtil.printGameSettings(GameSettings.isPrintStringSlowly());
+            PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.PRINT_STRING_SLOWLY));
             System.out.println();
             PrintUtil.printIndexAndText("2", "Show information about Action - ");
-            PrintUtil.printGameSettings(GameSettings.isShowInformationAboutActionName());
+            PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
             System.out.println();
             PrintUtil.printIndexAndText("3", "Hide spells on CoolDown - ");
-            PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
+            PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
             System.out.println();
             PrintUtil.printIndexAndText("4", "Reset all Hints");
             System.out.println();
@@ -105,9 +107,9 @@ public class HeroMenuService {
                 case 0 -> {
                     return;
                 }
-                case 1 -> GameSettings.setPrintStringSlowly();
-                case 2 -> GameSettings.setShowInformationAboutActionName();
-                case 3 -> GameSettings.setHideSpellsOnCoolDown();
+                case 1 -> GameSettingsService.setTrueOrFalse(GameSetting.PRINT_STRING_SLOWLY);
+                case 2 -> GameSettingsService.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
+                case 3 -> GameSettingsService.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
                 case 4 -> HintUtil.resetAllHints();
             }
         }

@@ -1,9 +1,9 @@
 package kuchtastefan.character.npc.vendor;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.craftingItem.CraftingReagentItem;
-import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;

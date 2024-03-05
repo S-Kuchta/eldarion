@@ -2,9 +2,9 @@ package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.ConstantSymbol;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.ItemsLists;
-import kuchtastefan.regions.locations.LocationType;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemsLists;
+import kuchtastefan.region.location.LocationType;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 

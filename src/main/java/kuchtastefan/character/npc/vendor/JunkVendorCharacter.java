@@ -1,8 +1,8 @@
 package kuchtastefan.character.npc.vendor;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.junkItem.JunkItem;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.junkItem.JunkItem;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;

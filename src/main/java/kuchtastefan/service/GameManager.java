@@ -9,13 +9,14 @@ import kuchtastefan.character.npc.vendor.ConsumableVendorCharacter;
 import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.character.npc.vendor.JunkVendorCharacter;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.gameSettings.GameSettingsService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
-import kuchtastefan.items.ItemsLists;
-import kuchtastefan.items.consumeableItem.ConsumableItemType;
-import kuchtastefan.items.craftingItem.CraftingReagentItemType;
+import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.consumeableItem.ConsumableItemType;
+import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.quest.QuestMap;
-import kuchtastefan.regions.ForestRegionService;
+import kuchtastefan.region.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -199,6 +200,8 @@ public class GameManager {
         ItemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
         ItemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
         ItemsLists.initializeAllItemsMapToStringItemMap();
+
+        GameSettingsService.initializeGameSettings();
 
 //        QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
 

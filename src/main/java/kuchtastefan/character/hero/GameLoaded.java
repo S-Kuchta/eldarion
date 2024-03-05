@@ -3,7 +3,7 @@ package kuchtastefan.character.hero;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.items.Item;
+import kuchtastefan.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 

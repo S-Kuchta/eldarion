@@ -3,7 +3,9 @@ package kuchtastefan.character.spell;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettings;
+import kuchtastefan.gameSettings.GameSettingsService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.utility.InputUtil;
@@ -68,10 +70,12 @@ public class HeroSpellManager {
 
             System.out.println();
             PrintUtil.printIndexAndText("X", "Hide action description - ");
-            PrintUtil.printGameSettings(GameSettings.isShowInformationAboutActionName());
+            PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
+//            PrintUtil.printGameSettings(GameSettings.isShowInformationAboutActionName());
             System.out.print("\t");
             PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
-            PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
+//            PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
+            PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
 
             System.out.print("\n\n");
             PrintUtil.printIndexAndText("0", "Go back");

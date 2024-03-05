@@ -1,12 +1,12 @@
 package kuchtastefan.character.hero.inventory;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.items.consumeableItem.ConsumableItem;
-import kuchtastefan.items.consumeableItem.ConsumableItemType;
-import kuchtastefan.items.craftingItem.CraftingReagentItem;
-import kuchtastefan.items.questItem.QuestItem;
-import kuchtastefan.items.wearableItem.WearableItem;
-import kuchtastefan.items.wearableItem.WearableItemType;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.consumeableItem.ConsumableItemType;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.questItem.QuestItem;
+import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 

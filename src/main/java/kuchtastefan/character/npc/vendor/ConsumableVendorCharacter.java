@@ -1,9 +1,9 @@
 package kuchtastefan.character.npc.vendor;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.consumeableItem.ConsumableItem;
-import kuchtastefan.items.consumeableItem.ConsumableItemType;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;

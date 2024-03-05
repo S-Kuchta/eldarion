@@ -2,7 +2,7 @@ package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.ConstantSymbol;
-import kuchtastefan.regions.locations.LocationMap;
+import kuchtastefan.region.location.LocationMap;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 

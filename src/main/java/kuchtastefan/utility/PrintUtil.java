@@ -11,13 +11,15 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
+import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettings;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.consumeableItem.ConsumableItem;
-import kuchtastefan.items.craftingItem.CraftingReagentItem;
-import kuchtastefan.items.junkItem.JunkItem;
-import kuchtastefan.items.wearableItem.WearableItem;
-import kuchtastefan.items.wearableItem.WearableItemType;
+import kuchtastefan.gameSettings.GameSettingsService;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.junkItem.JunkItem;
+import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemType;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -30,10 +32,10 @@ public class PrintUtil {
         int bonusToAbilityFromValue = 0;
 
         System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
-                + " [Mana Cost: " + ConsoleColor.BLUE + spell.getSpellManaCost() + ConsoleColor.RESET + "]");
+                         + " [Mana Cost: " + ConsoleColor.BLUE + spell.getSpellManaCost() + ConsoleColor.RESET + "]");
         if (spell.getTurnCoolDown() > 0) {
             System.out.print("[CoolDown: "
-                    + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
+                             + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
         }
 
         if (spell.getBonusValueFromAbility() != null) {
@@ -73,17 +75,17 @@ public class PrintUtil {
                 case ActionRemoveBuffOrDebuff actionRemoveBuffOrDebuff -> {
                     if (((ActionRemoveBuffOrDebuff) action).isRemoveAllStatusEffects()) {
                         System.out.println("[Remove all "
-                                + ConsoleColor.YELLOW + ((ActionRemoveBuffOrDebuff) action).getActionStatusEffectToRemove() + "s " + ConsoleColor.RESET);
+                                           + ConsoleColor.YELLOW + ((ActionRemoveBuffOrDebuff) action).getActionStatusEffectToRemove() + "s " + ConsoleColor.RESET);
                     } else {
                         System.out.println("[" + actionRemoveBuffOrDebuff.getActionStatusEffectToRemove()
-                                + " to remove: " + ConsoleColor.YELLOW + action.getMaxActionValue() + ConsoleColor.RESET + "]");
+                                           + " to remove: " + ConsoleColor.YELLOW + action.getMaxActionValue() + ConsoleColor.RESET + "]");
                     }
                 }
 
                 default -> System.out.print("[Value: "
-                        + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET
-                        + " - "
-                        + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
+                                            + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET
+                                            + " - "
+                                            + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
             }
         }
 
@@ -93,15 +95,16 @@ public class PrintUtil {
 
         if (action instanceof ActionWithDuration) {
             System.out.print("[Turns Duration: "
-                    + ConsoleColor.YELLOW + ((ActionWithDuration) action).getMaxActionTurns() + ConsoleColor.RESET + "]");
+                             + ConsoleColor.YELLOW + ((ActionWithDuration) action).getMaxActionTurns() + ConsoleColor.RESET + "]");
 
             if (((ActionWithDuration) action).getActionMaxStacks() > 1) {
                 System.out.println("[Max Stacks: "
-                        + ConsoleColor.YELLOW + ((ActionWithDuration) action).getActionMaxStacks() + ConsoleColor.RESET + "]");
+                                   + ConsoleColor.YELLOW + ((ActionWithDuration) action).getActionMaxStacks() + ConsoleColor.RESET + "]");
             }
         }
 
-        if (GameSettings.isShowInformationAboutActionName()) {
+//        if (GameSettings.isShowInformationAboutActionName()) {
+        if (GameSettingsService.gameSettings.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
             System.out.print("\n\t\t" + action.getActionName().getDescription());
         }
         System.out.println();
@@ -246,8 +249,8 @@ public class PrintUtil {
         for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {
 
             if (abilityPoints.getKey().equals(Ability.HEALTH)
-                    || abilityPoints.getKey().equals(Ability.MANA)
-                    || abilityPoints.getKey().equals(Ability.ABSORB_DAMAGE)) {
+                || abilityPoints.getKey().equals(Ability.MANA)
+                || abilityPoints.getKey().equals(Ability.ABSORB_DAMAGE)) {
 
             } else {
                 System.out.print(abilityPoints.getKey() + ": " + abilityPoints.getValue() + ", ");
@@ -271,8 +274,8 @@ public class PrintUtil {
             System.out.print("-- EQUIPPED -- ");
         }
         System.out.print(wearableItem.getWearableItemType() + ": "
-                + wearableItem.getName()
-                + " (" + wearableItem.getWearableItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
+                         + wearableItem.getName()
+                         + " (" + wearableItem.getWearableItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
         if (!sellItem) {
             System.out.print(", Item Price: " + wearableItem.getPrice());
         } else {
@@ -311,7 +314,8 @@ public class PrintUtil {
     public static void printStringSlowly(String s) {
         char[] stringToCharArr = s.toCharArray();
 
-        if (!GameSettings.isPrintStringSlowly()) {
+//        if (!GameSettings.isPrintStringSlowly()) {
+        if (!GameSettingsService.gameSettings.get(GameSetting.PRINT_STRING_SLOWLY)) {
             for (char c : stringToCharArr) {
                 System.out.print(c);
             }
@@ -376,8 +380,8 @@ public class PrintUtil {
     public static void printShopHeader(Hero hero, String shop) {
         printLongDivider();
         System.out.println("\t\t" + "Welcome to the "
-                + shop + " Shop\t\t\tYou have "
-                + hero.getHeroGold() + " golds");
+                           + shop + " Shop\t\t\tYou have "
+                           + hero.getHeroGold() + " golds");
         printLongDivider();
     }
 
@@ -396,8 +400,8 @@ public class PrintUtil {
     public static void printConsumableItemInfo(ConsumableItem consumableItem, boolean sellItem) {
 
         System.out.print(consumableItem.getName()
-                + ", " + consumableItem.getConsumableItemType()
-                + ", iLevel: " + consumableItem.getItemLevel());
+                         + ", " + consumableItem.getConsumableItemType()
+                         + ", iLevel: " + consumableItem.getItemLevel());
         if (!sellItem) {
             System.out.print(", Item Price: " + consumableItem.getPrice());
         } else {
@@ -419,7 +423,7 @@ public class PrintUtil {
         double sellPrice = sellItem ? craftingReagentItem.returnSellItemPrice() : craftingReagentItem.getPrice();
 
         System.out.println(craftingReagentItem.getName() + ", Item Type: " + craftingReagentItem.getCraftingReagentItemType()
-                + ", iLevel: " + craftingReagentItem.getItemLevel() + ", Item price: " + sellPrice + " golds");
+                           + ", iLevel: " + craftingReagentItem.getItemLevel() + ", Item price: " + sellPrice + " golds");
     }
 
     public static void printEnterValidInput() {
@@ -440,8 +444,8 @@ public class PrintUtil {
 
     public static void printCompleteQuestText(String questName) {
         System.out.println("\t" + ConstantSymbol.QUEST_SYMBOL
-                + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET + " "
-                + ConstantSymbol.QUEST_SYMBOL);
+                           + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET + " "
+                           + ConstantSymbol.QUEST_SYMBOL);
     }
 }
 

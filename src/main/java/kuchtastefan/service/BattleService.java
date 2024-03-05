@@ -15,7 +15,9 @@ import kuchtastefan.character.hero.inventory.InventoryMenuService;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
+import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettings;
+import kuchtastefan.gameSettings.GameSettingsService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.utility.*;
@@ -215,8 +217,8 @@ public class BattleService {
 
         PrintUtil.printLongDivider();
         System.out.println("\t\t" + ConstantSymbol.SWORD_SYMBOL
-                + " " + gameCharacter.getName() + " Turn!"
-                + ConstantSymbol.SWORD_SYMBOL);
+                           + " " + gameCharacter.getName() + " Turn!"
+                           + ConstantSymbol.SWORD_SYMBOL);
         System.out.println();
     }
 
@@ -224,7 +226,7 @@ public class BattleService {
         System.out.println("\n\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
         gameCharacter.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
         gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.INTELLECT)
-                * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
+                                     * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
     }
 
     private void printBattleMenu(Hero hero, GameCharacter enemyChosen, String selectedHeroForShowSelected, List<GameCharacter> enemyList, List<GameCharacter> alliestList) {
@@ -253,9 +255,9 @@ public class BattleService {
         for (GameCharacter enemyFromList : enemyList) {
             if (!((NonPlayerCharacter) enemyFromList).isDefeated()) {
                 System.out.print(ConsoleColor.CYAN + LetterToNumber.getStringFromValue(index) + ConsoleColor.RESET
-                        + ". " + enemyFromList.getName() + " - " + ((NonPlayerCharacter) enemyFromList).getCharacterRarity() + " - "
-                        + " Healths: "
-                        + enemyFromList.getCurrentAbilityValue(Ability.HEALTH) + " ");
+                                 + ". " + enemyFromList.getName() + " - " + ((NonPlayerCharacter) enemyFromList).getCharacterRarity() + " - "
+                                 + " Healths: "
+                                 + enemyFromList.getCurrentAbilityValue(Ability.HEALTH) + " ");
 
                 // Highlight selected enemy
                 if (Objects.equals(LetterToNumber.getStringFromValue(index), selectedHeroForShowSelected)) {
@@ -268,19 +270,22 @@ public class BattleService {
         // Print settings for hiding action description
         System.out.println();
         PrintUtil.printIndexAndText("X", "Hide action description - ");
-        PrintUtil.printGameSettings(GameSettings.isShowInformationAboutActionName());
+        PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
+//        PrintUtil.printGameSettings(GameSettings.isShowInformationAboutActionName());
 
         // Print settings for hiding spells on CoolDown
         System.out.print("\t");
         PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
-        PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
+        PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+//        PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
 
         // Print hero's spells with descriptions
         int spellIndex = 0;
         System.out.println();
         for (Spell spell : hero.getCharacterSpellList()) {
             // Check if spells should be hidden when on CoolDown
-            if (GameSettings.isHideSpellsOnCoolDown()) {
+//            if (GameSettings.isHideSpellsOnCoolDown()) {
+            if (GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN)) {
                 if (spell.isCanSpellBeCasted()) {
                     System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
                     PrintUtil.printSpellDescription(hero, spell);
@@ -344,7 +349,7 @@ public class BattleService {
                         }
 
                         if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getMaxAbilities().get(Ability.MANA) * 0.3)
-                                && action instanceof ActionRestoreMana) {
+                            && action instanceof ActionRestoreMana) {
                             priorityPoints += 3;
                         }
 
@@ -405,7 +410,7 @@ public class BattleService {
 
                     if (action instanceof ActionDealDamageOverTime) {
                         int damageWithStacks = action.totalActionValue(spell.getBonusValueFromAbility(), gameCharacter)
-                                * ((ActionDealDamageOverTime) action).getActionMaxStacks();
+                                               * ((ActionDealDamageOverTime) action).getActionMaxStacks();
                         totalDamage += damageWithStacks;
                     }
                 }

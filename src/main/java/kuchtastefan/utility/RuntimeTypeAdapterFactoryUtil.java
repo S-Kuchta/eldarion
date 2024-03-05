@@ -7,16 +7,16 @@ import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.consumeableItem.ConsumableItem;
-import kuchtastefan.items.craftingItem.CraftingReagentItem;
-import kuchtastefan.items.junkItem.JunkItem;
-import kuchtastefan.items.questItem.QuestItem;
-import kuchtastefan.items.wearableItem.WearableItem;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.junkItem.JunkItem;
+import kuchtastefan.item.questItem.QuestItem;
+import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestChain;
 import kuchtastefan.quest.questObjectives.*;
-import kuchtastefan.regions.locations.*;
+import kuchtastefan.region.location.*;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
 
 

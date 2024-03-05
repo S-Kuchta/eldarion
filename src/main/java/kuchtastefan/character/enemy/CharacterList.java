@@ -3,7 +3,7 @@ package kuchtastefan.character.enemy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.character.npc.CharacterRarity;
-import kuchtastefan.regions.locations.LocationType;
+import kuchtastefan.region.location.LocationType;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 

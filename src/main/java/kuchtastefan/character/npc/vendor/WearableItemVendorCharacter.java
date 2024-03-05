@@ -1,9 +1,9 @@
 package kuchtastefan.character.npc.vendor;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.items.Item;
-import kuchtastefan.items.wearableItem.WearableItem;
-import kuchtastefan.items.wearableItem.WearableItemType;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.PrintUtil;
 
 import java.util.ArrayList;

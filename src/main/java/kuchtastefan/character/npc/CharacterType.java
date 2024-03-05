@@ -10,6 +10,7 @@ public enum CharacterType {
     BEAST("Beasts, creatures of primal instinct, roam untamed lands. From majestic dragons ruling the skies to feral wolves prowling the forests, these creatures embody raw power and untamed ferocity"),
     UNDEAD("Undead beings, once mortal, now wander in eternal unrest. Embraced by death's grasp, these spectral figures shroud themselves in darkness, driven by an unending hunger for souls"),
     DEMON("A sinister demon, adorned in abyssal armor, commands the forces of darkness with fiery wrath, unleashing hellish spells to devour souls and spread corruption."),
+    TOTEM(""),
     ELEMENTAL("Elemental character harnesses the power of natural elements like fire, water, earth, and air to cast devastating spells and manipulate the environment");
 
     private final String description;

@@ -12,7 +12,6 @@ import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
-import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.gameSettings.GameSettingsService;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.consumeableItem.ConsumableItem;

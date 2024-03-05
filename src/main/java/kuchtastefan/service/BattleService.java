@@ -16,7 +16,6 @@ import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
-import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.gameSettings.GameSettingsService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
@@ -191,9 +190,11 @@ public class BattleService {
             } else {
                 // Handle special commands
                 if (choice.equals("X")) {
-                    GameSettings.setShowInformationAboutActionName();
+                    GameSettingsService.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
+//                    GameSettings.setShowInformationAboutActionName();
                 } else if (choice.equals("Y")) {
-                    GameSettings.setHideSpellsOnCoolDown();
+                    GameSettingsService.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
+//                    GameSettings.setHideSpellsOnCoolDown();
                 } else {
                     try {
                         selectedHeroForShowSelected = choice;

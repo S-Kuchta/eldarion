@@ -1,0 +1,26 @@
+[
+  {
+    "npcId": 100,
+    "name": "Wolf",
+    "characterRarity": "COMMON",
+    "abilities": {
+      "ATTACK": 3,
+      "RESIST_DAMAGE": 3,
+      "STRENGTH": 2,
+      "INTELLECT": 1,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 7,
+      "HEALTH": 40,
+      "MANA": 0,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100
+    ],
+    "level": 1,
+    "locationType": [
+      "FOREST",
+      "HIGHLAND"
+    ]
+  }
+]

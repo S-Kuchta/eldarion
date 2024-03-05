@@ -2,7 +2,6 @@ package kuchtastefan.character.hero;
 
 import kuchtastefan.character.hero.inventory.InventoryMenuService;
 import kuchtastefan.gameSettings.GameSetting;
-import kuchtastefan.gameSettings.GameSettings;
 import kuchtastefan.gameSettings.GameSettingsService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;

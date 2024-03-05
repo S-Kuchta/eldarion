@@ -16,7 +16,8 @@
     "actionMaxStacks": 1,
     "actionDurationType": "BATTLE_ACTION",
     "chanceToPerformAction": 100,
-    "canBeActionCriticalHit": false
+    "canBeActionCriticalHit": false,
+    "actionStatusEffect": "DEBUFF"
   },
   {
     "type": "ActionRestoreHealth",
@@ -35,7 +36,8 @@
     "actionMaxStacks": 1,
     "actionEffectOn": "SPELL_CASTER",
     "chanceToPerformAction": 100,
-    "canBeActionCriticalHit": false
+    "canBeActionCriticalHit": false,
+    "actionStatusEffect": "BUFF"
   },
   {
     "type": "ActionDecreaseAbilityPoint",
@@ -47,7 +49,8 @@
     "actionDurationType": "BATTLE_ACTION",
     "chanceToPerformAction": 100,
     "canBeActionCriticalHit": false,
-    "ability": "ATTACK"
+    "ability": "ATTACK",
+    "actionStatusEffect": "DEBUFF"
   },
   {
     "type": "ActionIncreaseAbilityPoint",
@@ -59,7 +62,8 @@
     "actionDurationType": "BATTLE_ACTION",
     "chanceToPerformAction": 100,
     "canBeActionCriticalHit": false,
-    "ability": "CRITICAL_HIT_CHANCE"
+    "ability": "CRITICAL_HIT_CHANCE",
+    "actionStatusEffect": "BUFF"
   },
   {
     "type": "ActionAbsorbDamage",
@@ -70,7 +74,8 @@
     "actionMaxStacks": 1,
     "actionDurationType": "BATTLE_ACTION",
     "chanceToPerformAction": 100,
-    "canBeActionCriticalHit": false
+    "canBeActionCriticalHit": false,
+    "actionStatusEffect": "BUFF"
   },
   {
     "type": "ActionReflectSpell",
@@ -81,7 +86,16 @@
     "actionMaxStacks": 1,
     "actionDurationType": "BATTLE_ACTION",
     "chanceToPerformAction": 100,
-    "canBeActionCriticalHit": false
+    "canBeActionCriticalHit": false,
+    "actionStatusEffect": "BUFF"
+  },
+  {
+    "type": "ActionInstantStun",
+    "actionName": "STUN",
+    "maxActionValue": 0,
+    "actionEffectOn": "SPELL_TARGET",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": true
   },
   {
     "type": "ActionStun",
@@ -92,7 +106,8 @@
     "actionMaxStacks": 1,
     "actionDurationType": "BATTLE_ACTION",
     "chanceToPerformAction": 100,
-    "canBeActionCriticalHit": false
+    "canBeActionCriticalHit": false,
+    "actionStatusEffect": "DEBUFF"
   },
   {
     "type": "ActionInvulnerability",
@@ -103,7 +118,8 @@
     "actionMaxStacks": 1,
     "actionDurationType": "BATTLE_ACTION",
     "chanceToPerformAction": 100,
-    "canBeActionCriticalHit": false
+    "canBeActionCriticalHit": false,
+    "actionStatusEffect": "BUFF"
   },
   {
     "type": "ActionRemoveBuffOrDebuff",
@@ -116,14 +132,6 @@
     "actionStatusEffectToRemove": "BUFF or DEBUFF"
   },
   {
-    "type": "ActionInstantStun",
-    "actionName": "STUN",
-    "maxActionValue": 0,
-    "actionEffectOn": "SPELL_TARGET",
-    "chanceToPerformAction": 100,
-    "canBeActionCriticalHit": true
-  },
-  {
     "type": "ActionRestoreManaOverTime",
     "actionName": "RESTORE_MANA_OVER_TIME",
     "maxActionValue": 13,
@@ -134,6 +142,15 @@
     "chanceToPerformAction": 100,
     "canBeActionCriticalHit": false,
     "actionStatusEffect": "BUFF"
+  },
+  {
+    "type": "ActionSummonCreature",
+    "actionName": "SUMMON_CREATURE",
+    "maxActionValue": 0,
+    "actionEffectOn": "SPELL_CASTER",
+    "chanceToPerformAction": 100,
+    "canBeActionCriticalHit": true,
+    "summonedNpcId": 400
   }
 ]
 

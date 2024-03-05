@@ -1,0 +1,393 @@
+[
+  {
+    "spellId": 400,
+    "spellName": "Weapon Attack",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Attack with weapon",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 3,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1,
+      "STRENGTH": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 401,
+    "spellName": "Shadow Bolt",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Sends a shadowy bolt at the enemy, causing Shadow damage.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 2,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2,
+      "ATTACK": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 27,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 402,
+    "spellName": "Corruption",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Corrupts the target, causing Shadow damage over 4 turns.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true,
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2,
+      "ATTACK": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 32,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 403,
+    "spellName": "Summon Succubus",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Summons a Succubus under the command of the Warlock.",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true,
+        "summonedNpcId": 500
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2,
+      "ATTACK": 2
+    },
+    "spellLevel": 1,
+    "spellManaCost": 40,
+    "turnCoolDown": 8
+  },
+  {
+    "spellId": 404,
+    "spellName": "Demon Armor",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Protects the caster, increasing caster resist and intellect over 3 turns.",
+    "spellActions": [
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "RESIST_DAMAGE",
+        "actionStatusEffect": "BUFF"
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "INTELLECT",
+        "actionStatusEffect": "BUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 1
+    },
+    "spellLevel": 1,
+    "spellManaCost": 32,
+    "turnCoolDown": 6
+  },
+  {
+    "spellId": 405,
+    "spellName": "Curse of Agony",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Curses the target with agony, causing Shadow damage over 4 turns. Can be stacked.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 3,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2
+    },
+    "spellLevel": 2,
+    "spellManaCost": 37,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 406,
+    "spellName": "Chaos Bolt",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Unleashes a devastating blast of chaos, dealing Chaos damage and restore Warlock health.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 10,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "maxActionValue": 1,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 2,
+      "INTELLECT": 3
+    },
+    "spellLevel": 2,
+    "spellManaCost": 40,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 407,
+    "spellName": "Howl of Terror",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Strikes fear in the enemies, causing them to stun in fear for up to 2 turns.",
+    "hitAllEnemy": true,
+    "spellActions": [
+      {
+        "type": "ActionInstantStun",
+        "actionName": "STUN",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionStun",
+        "actionName": "STUN",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 0,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 3,
+    "spellManaCost": 40,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 408,
+    "spellName": "Rain of Fire",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Calls down a rain of hellfire, dealing Fire damage to all enemies over 2 turns.",
+    "hitAllEnemy": true,
+    "spellActions": [
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 5,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2,
+      "ATTACK": 2
+    },
+    "spellLevel": 3,
+    "spellManaCost": 43,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 409,
+    "spellName": "Drain Life",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Transfers health every turn from the target to the caster. Lasts 4 turns.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 1,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "maxActionValue": 1,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 1
+    },
+    "spellLevel": 5,
+    "spellManaCost": 45,
+    "turnCoolDown": 5
+  },
+  {
+    "spellId": 410,
+    "spellName": "Life Tap",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Converts health into mana.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 1,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionRestoreMana",
+        "actionName": "RESTORE_MANA",
+        "maxActionValue": 15,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 3
+    },
+    "spellLevel": 5,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 411,
+    "spellName": "Metamorphosis",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Transform into a Demon, increasing resist, intellect and attack. Lasts 4 turns.",
+    "spellActions": [
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "ATTACK",
+        "actionStatusEffect": "BUFF"
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "INTELLECT",
+        "actionStatusEffect": "BUFF"
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "RESIST_DAMAGE",
+        "actionStatusEffect": "BUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 3
+    },
+    "spellLevel": 7,
+    "spellManaCost": 80,
+    "turnCoolDown": 10
+  },
+  {
+    "spellId": 412,
+    "spellName": "Summon FelGuard",
+    "spellClass": "WARLOCK",
+    "spellDescription": "Summons a FelGuard under your command as a powerful melee combatant.",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true,
+        "summonedNpcId": 501
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 7,
+    "spellManaCost": 80,
+    "turnCoolDown": 10
+  }
+]

@@ -39,4 +39,20 @@ public class NonPlayerCharacter extends GameCharacter {
             this.maxAbilities.putIfAbsent(ability, this.abilities.get(ability));
         }
     }
+
+    public void increaseAbilityPointsByMultiplier(double multiplier) {
+        for (Ability ability : Ability.values()) {
+            if (this.getAbilities().containsKey(ability)) {
+                this.getAbilities().put(ability, (int) (this.getAbilities().get(ability) * multiplier));
+            }
+        }
+    }
+
+    public void increaseAbilityPointsByAddition(double addition) {
+        for (Ability ability : Ability.values()) {
+            if (this.getAbilities().containsKey(ability)) {
+                this.getAbilities().put(ability, (int) (this.getAbilities().get(ability) * addition));
+            }
+        }
+    }
 }

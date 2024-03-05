@@ -1,0 +1,49 @@
+[
+  {
+    "npcId": 500,
+    "name": "Succubus",
+    "characterRarity": "SUMMONED",
+    "abilities": {
+      "ATTACK": 3,
+      "RESIST_DAMAGE": 3,
+      "STRENGTH": 2,
+      "INTELLECT": 4,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 4,
+      "HEALTH": 50,
+      "MANA": 80,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      101,
+      102
+    ],
+    "level": 1,
+    "locationType": [
+    ]
+  },
+  {
+    "npcId": 501,
+    "name": "FelGuard",
+    "characterRarity": "SUMMONED",
+    "abilities": {
+      "ATTACK": 15,
+      "RESIST_DAMAGE": 10,
+      "STRENGTH": 10,
+      "INTELLECT": 7,
+      "HASTE": 10,
+      "CRITICAL_HIT_CHANCE": 4,
+      "HEALTH": 220,
+      "MANA": 120,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      103
+    ],
+    "level": 7,
+    "locationType": [
+    ]
+  }
+]

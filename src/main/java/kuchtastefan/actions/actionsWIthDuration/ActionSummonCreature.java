@@ -17,29 +17,32 @@ import java.util.HashSet;
 @Getter
 public class ActionSummonCreature extends Action {
 
-    private final int npcCharacterId;
+    private final int summonedNpcId;
+    private int gameCharacterLevel;
 
     public ActionSummonCreature(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                                int chanceToPerformAction, boolean canBeActionCriticalHit, int npcCharacterId) {
+                                int chanceToPerformAction, boolean canBeActionCriticalHit, int summonedNpcId) {
         super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
-        this.npcCharacterId = npcCharacterId;
+        this.summonedNpcId = summonedNpcId;
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        System.out.println("\t" + gameCharacter.getName() + " summoned " + CharacterList.getAllCharactersMapWithId().get(this.npcCharacterId).getName());
+        this.gameCharacterLevel = gameCharacter.getLevel();
+        System.out.println("\t" + gameCharacter.getName() + " summoned " + CharacterList.getAllCharactersMapWithId().get(this.summonedNpcId).getName());
     }
 
     public GameCharacter returnSummonedCharacter() {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
-        NonPlayerCharacter nonPlayerCharacter = gson.fromJson(gson.toJson(CharacterList.getAllCharactersMapWithId().get(this.npcCharacterId)), NonPlayerCharacter.class);
+        NonPlayerCharacter nonPlayerCharacter = gson.fromJson(gson.toJson(CharacterList.getAllCharactersMapWithId().get(this.summonedNpcId)), NonPlayerCharacter.class);
         nonPlayerCharacter.setMaxAbilitiesAndCurrentAbilities();
         nonPlayerCharacter.setCanPerformAction(true);
         nonPlayerCharacter.setBattleActionsWithDuration(new HashSet<>());
         nonPlayerCharacter.setRegionActionsWithDuration(new HashSet<>());
         nonPlayerCharacter.setCharacterSpellList(new ArrayList<>());
         nonPlayerCharacter.convertSpellIdToSpellList();
+        nonPlayerCharacter.increaseAbilityPointsByAddition(this.gameCharacterLevel);
 
         return nonPlayerCharacter;
     }

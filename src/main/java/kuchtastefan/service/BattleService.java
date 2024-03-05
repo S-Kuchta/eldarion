@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.actions.instantActions.ActionDealDamage;
+import kuchtastefan.actions.instantActions.ActionInstantStun;
 import kuchtastefan.actions.instantActions.ActionRestoreHealth;
 import kuchtastefan.actions.instantActions.ActionRestoreMana;
 import kuchtastefan.character.GameCharacter;
@@ -127,7 +128,7 @@ public class BattleService {
                         target = defendingCharacters.get(RandomNumberGenerator.getRandomNumber(0, defendingCharacters.size() - 1));
                     }
 
-                    this.characterUseSpell(attackingCharacter, target, alliesList, enemyList, tempCharacterList);
+                    this.npcUseSpell(attackingCharacter, target, alliesList, enemyList, tempCharacterList);
                 }
 
                 this.printAndPerformActionOverTime(attackingCharacter);
@@ -308,7 +309,7 @@ public class BattleService {
      * @param spellCaster The enemy character casting the spell.
      * @param spellTarget The target of the spell (usually the player's character).
      */
-    private void characterUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyList, List<GameCharacter> alliesList, List<GameCharacter> tempCharacterList) {
+    private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyList, List<GameCharacter> alliesList, List<GameCharacter> tempCharacterList) {
         Map<Spell, Integer> spells = new HashMap<>();
 
         Spell spellToCast = spellCaster.getCharacterSpellList().getFirst();
@@ -363,7 +364,7 @@ public class BattleService {
                             }
                         }
 
-                        if (action instanceof ActionStun) {
+                        if (action instanceof ActionStun || action instanceof ActionInstantStun) {
                             priorityPoints += 3;
                         }
                     }

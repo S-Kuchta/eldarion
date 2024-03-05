@@ -43,14 +43,6 @@ public class Enemy extends NonPlayerCharacter {
         }
     }
 
-    public void increaseAbilityPointsByMultiplier(double multiplier) {
-        for (Ability ability : Ability.values()) {
-            if (this.getAbilities().containsKey(ability)) {
-                this.getAbilities().put(ability, (int) (this.getAbilities().get(ability) * multiplier));
-            }
-        }
-    }
-
     public void addItemsDropFromEnemy() {
         List<Item> tempList = new ArrayList<>();
         List<Item> itemList = ItemsLists.returnItemListByLevel(getLevel(), null);

@@ -102,10 +102,8 @@ public class Hero extends GameCharacter {
 
         for (Map.Entry<WearableItemType, WearableItem> wearingItem : this.equippedItem.entrySet()) {
             for (Ability ability : Ability.values()) {
-                this.wearingItemAbilityPoints.put(
-                        ability,
-                        wearingItem.getValue().getAbilities().get(ability)
-                                + this.wearingItemAbilityPoints.get(ability));
+                this.wearingItemAbilityPoints.put(ability,
+                        wearingItem.getValue().getAbilities().get(ability) + this.wearingItemAbilityPoints.get(ability));
             }
         }
 
@@ -120,8 +118,7 @@ public class Hero extends GameCharacter {
      */
     private void setHeroMaxAbilities() {
         for (Ability ability : Ability.values()) {
-            this.maxAbilities.put(ability, this.abilities.get(ability)
-                    + this.wearingItemAbilityPoints.get(ability));
+            this.maxAbilities.put(ability, this.abilities.get(ability) + this.wearingItemAbilityPoints.get(ability));
         }
     }
 
@@ -241,7 +238,7 @@ public class Hero extends GameCharacter {
     }
 
     /**
-     * Check if quest or quest objective is completed.
+     * Check if quest and quest objective is completed.
      * Add this method at the end of each event which can complete quest or quest objective
      */
     public void checkIfQuestObjectivesAndQuestIsCompleted() {
@@ -251,7 +248,6 @@ public class Hero extends GameCharacter {
                     if (!questObjective.isCompleted()) {
                         questObjective.checkIfQuestObjectiveIsCompleted(this);
                     }
-
                 }
                 questMap.getValue().checkIfQuestIsCompleted();
             }

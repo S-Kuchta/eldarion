@@ -15,9 +15,7 @@
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
-      101,
-      103,
-      104
+      100
     ],
     "level": 1,
     "locationType": [
@@ -44,7 +42,7 @@
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
-      101
+      100
     ],
     "level": 2,
     "locationType": []
@@ -65,7 +63,7 @@
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
-      101
+      100
     ],
     "level": 3,
     "locationType": []
@@ -86,7 +84,7 @@
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
-      101
+      100
     ],
     "level": 2,
     "locationType": [
@@ -109,9 +107,7 @@
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
-      101,
-      103,
-      104
+      100
     ],
     "level": 2,
     "locationType": [

@@ -1,0 +1,25 @@
+[
+  {
+    "spellId": 500,
+    "spellName": "Weapon Attack",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Attack with weapon",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 3,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1,
+      "STRENGTH": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  }
+]

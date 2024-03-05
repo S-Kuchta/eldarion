@@ -26,7 +26,7 @@
     "spellId": 301,
     "spellName": "Heroic Strike",
     "spellClass": "WARRIOR",
-    "spellDescription": "A strong attack. Causes high amount of damage.",
+    "spellDescription": "A strong attack. Causes high amount of damage. Have 10% chance to cause bleed over 3 turns.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -35,6 +35,18 @@
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 10,
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -43,37 +55,32 @@
     },
     "spellLevel": 0,
     "spellManaCost": 10,
-    "turnCoolDown": 1
+    "turnCoolDown": 2
   },
   {
     "spellId": 302,
-    "spellName": "Charge",
+    "spellName": "Parry",
     "spellClass": "WARRIOR",
-    "spellDescription": "Charge an enemy, deal damage and stun the target for next turn.",
+    "spellDescription": "Parry next attack. Next spell casted on you will be reflected.",
     "spellActions": [
       {
-        "type": "ActionInstantStun",
-        "actionName": "STUN",
+        "type": "ActionReflectSpell",
+        "actionName": "REFLECT_SPELL",
+        "actionEffectOn": "SPELL_CASTER",
         "maxActionValue": 0,
-        "actionEffectOn": "SPELL_TARGET",
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
-      },
-      {
-        "type": "ActionDealDamage",
-        "actionName": "DAMAGE",
-        "maxActionValue": 3,
-        "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "BUFF"
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 1
     },
     "spellLevel": 0,
     "spellManaCost": 15,
-    "turnCoolDown": 6
+    "turnCoolDown": 7
   },
   {
     "spellId": 303,
@@ -91,7 +98,8 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "ability": "CRITICAL_HIT_CHANCE"
+        "ability": "CRITICAL_HIT_CHANCE",
+        "actionStatusEffect": "BUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -117,7 +125,8 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "ability": "RESIST_DAMAGE"
+        "ability": "RESIST_DAMAGE",
+        "actionStatusEffect": "BUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -142,7 +151,8 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "canBeActionCriticalHit": true,
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -172,7 +182,7 @@
       "INTELLECT": 3
     },
     "spellLevel": 2,
-    "spellManaCost": 15,
+    "spellManaCost": 35,
     "turnCoolDown": 5
   },
   {
@@ -192,7 +202,8 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "ability": "HASTE"
+        "ability": "HASTE",
+        "actionStatusEffect": "DEBUFF"
       },
       {
         "type": "ActionDealDamage",
@@ -226,15 +237,16 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
       "ATTACK": 1,
-      "INTELLECT": 1
+      "INTELLECT": 2
     },
     "spellLevel": 3,
-    "spellManaCost": 10,
+    "spellManaCost": 35,
     "turnCoolDown": 6
   },
   {
@@ -254,7 +266,8 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "ability": "ATTACK"
+        "ability": "ATTACK",
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -268,8 +281,7 @@
     "spellId": 310,
     "spellName": "Hammer of Justice",
     "spellClass": "WARRIOR",
-    "spellDescription": "Instant Stuns the target and for additional 3 turns.",
-    "hitAllEnemy": true,
+    "spellDescription": "Instant Stuns the target and for an additional 3 turns.",
     "spellActions": [
       {
         "type": "ActionStun",
@@ -280,7 +292,8 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
       },
       {
         "type": "ActionInstantStun",
@@ -294,8 +307,8 @@
     "bonusValueFromAbility": {
     },
     "spellLevel": 5,
-    "spellManaCost": 25,
-    "turnCoolDown": 7
+    "spellManaCost": 45,
+    "turnCoolDown": 6
   },
   {
     "spellId": 311,
@@ -313,7 +326,8 @@
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "ability": "RESIST_DAMAGE"
+        "ability": "RESIST_DAMAGE",
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
@@ -338,13 +352,14 @@
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "BUFF"
       }
     ],
     "bonusValueFromAbility": {
     },
     "spellLevel": 7,
-    "spellManaCost": 20,
+    "spellManaCost": 70,
     "turnCoolDown": 9
   }
 ]

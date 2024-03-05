@@ -1,9 +1,9 @@
 [
   {
     "spellId": 100,
-    "spellName": "Bite",
+    "spellName": "Attack",
     "spellClass": "NPC",
-    "spellDescription": "Bite with teeth",
+    "spellDescription": "Base enemy attack",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -12,22 +12,11 @@
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
-      },
-      {
-        "type": "ActionDealDamageOverTime",
-        "actionName": "DAMAGE_OVER_TIME",
-        "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 1,
-        "maxActionTurns": 3,
-        "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION",
-        "chanceToPerformAction": 30,
-        "canBeActionCriticalHit": false,
-        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 1
+      "ATTACK": 1,
+      "STRENGTH": 1
     },
     "spellLevel": 0,
     "spellManaCost": 0,
@@ -35,75 +24,54 @@
   },
   {
     "spellId": 101,
-    "spellName": "Weapon attack",
-    "spellClass": "NPC",
-    "spellDescription": "Attack with weapon",
-    "spellActions": [
-      {
-        "type": "ActionDealDamage",
-        "actionName": "DAMAGE",
-        "maxActionValue": 3,
-        "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
-      }
-    ],
-    "bonusValueFromAbility": {
-      "ATTACK": 1
-    },
-    "spellLevel": 0,
-    "spellManaCost": 0,
-    "turnCoolDown": 0
-  },
-  {
-    "spellId": 102,
-    "spellName": "Claw Attack",
-    "spellClass": "NPC",
-    "spellDescription": "Gash target with claw",
-    "spellActions": [
-      {
-        "type": "ActionDealDamage",
-        "actionName": "DAMAGE",
-        "maxActionValue": 3,
-        "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
-      }
-    ],
-    "bonusValueFromAbility": {
-      "ATTACK": 1
-    },
-    "spellLevel": 0,
-    "spellManaCost": 0,
-    "turnCoolDown": 0
-  },
-  {
-    "spellId": 103,
-    "spellName": "Test heal",
+    "spellName": "Lash of Pain",
     "spellClass": "NPC",
     "spellDescription": "",
     "spellActions": [
       {
-        "type": "ActionRestoreHealth",
-        "actionName": "HEAL",
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
         "maxActionValue": 5,
-        "actionEffectOn": "SPELL_CASTER",
+        "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 2
+      "ATTACK": 2,
+      "INTELLECT": 2
     },
     "spellLevel": 0,
-    "spellManaCost": 10,
+    "spellManaCost": 25,
     "turnCoolDown": 4
   },
   {
-    "spellId": 104,
-    "spellName": "Test strong attack",
+    "spellId": 102,
+    "spellName": "Soothing Kiss",
     "spellClass": "NPC",
-    "spellDescription": "Strong attack",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionInstantStun",
+        "actionName": "STUN",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 0,
+    "spellManaCost": 30,
+    "turnCoolDown": 6
+  },
+  {
+    "spellId": 103,
+    "spellName": "Cleave",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "hitAllEnemy": true,
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -115,35 +83,11 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 2
+      "ATTACK": 3,
+      "STRENGTH": 3
     },
     "spellLevel": 0,
-    "spellManaCost": 10,
-    "turnCoolDown": 4
-  },
-  {
-    "spellId": 105,
-    "spellName": "Test invulnerable",
-    "spellClass": "NPC",
-    "spellDescription": "Invulnerability",
-    "spellActions": [
-      {
-        "type": "ActionInvulnerability",
-        "actionName": "INVULNERABILITY",
-        "maxActionValue": 0,
-        "maxActionTurns": 2,
-        "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION",
-        "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
-      }
-    ],
-    "bonusValueFromAbility": {
-      "ATTACK": 0
-    },
-    "spellLevel": 0,
-    "spellManaCost": 15,
+    "spellManaCost": 25,
     "turnCoolDown": 5
   }
 ]

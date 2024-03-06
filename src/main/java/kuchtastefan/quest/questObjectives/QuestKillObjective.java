@@ -1,7 +1,7 @@
 package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.character.enemy.Enemy;
-import kuchtastefan.character.enemy.CharacterList;
+import kuchtastefan.character.npc.CharacterList;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.utility.ConsoleColor;

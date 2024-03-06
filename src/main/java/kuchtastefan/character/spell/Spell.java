@@ -36,7 +36,8 @@ public class Spell {
 
 
     public Spell(int spellId, String spellName, String spellDescription, List<Action> spellActions, int turnCoolDown,
-                 Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost, CharacterClass spellClass, boolean hitAllEnemy) {
+                 Map<Ability, Integer> bonusValueFromAbility, int spellLevel, int spellManaCost,
+                 CharacterClass spellClass, boolean hitAllEnemy) {
 
         this.spellId = spellId;
         this.spellName = spellName;
@@ -138,6 +139,11 @@ public class Spell {
 
             if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
                 actionOrActionWithDuration(action, spellCaster);
+            }
+
+            if (action instanceof ActionStun) {
+                spellTarget.setCanPerformAction(false);
+                ((ActionStun) action).setCurrentActionTurn(1);
             }
         }
     }

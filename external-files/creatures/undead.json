@@ -17,12 +17,7 @@
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 1,
-    "locationType": [
-      "TOWER",
-      "CASTLE",
-      "CEMETERY"
-    ]
+    "level": 1
   },
   {
     "npcId": 301,
@@ -42,8 +37,7 @@
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 2,
-    "locationType": []
+    "level": 2
   },
   {
     "npcId": 302,
@@ -63,10 +57,6 @@
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 3,
-    "locationType": [
-      "TOWER",
-      "CASTLE"
-    ]
+    "level": 3
   }
 ]

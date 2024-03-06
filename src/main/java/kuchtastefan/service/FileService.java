@@ -6,7 +6,9 @@ import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.enemy.Enemy;
-import kuchtastefan.character.enemy.CharacterList;
+import kuchtastefan.character.enemy.EnemyGroup;
+import kuchtastefan.character.enemy.EnemyGroupList;
+import kuchtastefan.character.npc.CharacterList;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
@@ -413,6 +415,30 @@ public class FileService {
                     location.setStageTotal(location.getLocationStages().size());
                     LocationMap.getMapIdLocation().put(location.getLocationId(), location);
                 }
+
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importEnemyGroupFromFile() {
+        String path = "external-files/enemy-group";
+        try {
+//            List<Location> locations;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+//                List<EnemyGroup> enemyGroups = this.gson.fromJson(reader, new TypeToken<List<EnemyGroup>>() {
+//                }.getType());
+
+                EnemyGroupList.allEnemyGroupList.addAll(this.gson.fromJson(reader, new TypeToken<List<EnemyGroup>>() {
+                }.getType()));
+
+//                for (Location location : locations) {
+//                    location.setStageTotal(location.getLocationStages().size());
+//                    LocationMap.getMapIdLocation().put(location.getLocationId(), location);
+//                }
 
                 reader.close();
             }

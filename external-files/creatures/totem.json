@@ -1,26 +1,42 @@
 [
   {
-    "npcId": 100,
-    "name": "Wolf",
+    "npcId": 600,
+    "name": "Searing Totem",
     "characterRarity": "COMMON",
     "abilities": {
-      "ATTACK": 3,
-      "RESIST_DAMAGE": 3,
-      "STRENGTH": 2,
-      "INTELLECT": 1,
-      "HASTE": 3,
-      "CRITICAL_HIT_CHANCE": 7,
-      "HEALTH": 40,
+      "ATTACK": 2,
+      "RESIST_DAMAGE": 0,
+      "STRENGTH": 0,
+      "INTELLECT": 0,
+      "HASTE": 0,
+      "CRITICAL_HIT_CHANCE": 5,
+      "HEALTH": 10,
       "MANA": 0,
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 1,
-    "locationType": [
-      "FOREST",
-      "HIGHLAND"
-    ]
+    "level": 2
+  },
+  {
+    "npcId": 601,
+    "name": "Healing Stream Totem",
+    "characterRarity": "COMMON",
+    "abilities": {
+      "ATTACK": 0,
+      "RESIST_DAMAGE": 0,
+      "STRENGTH": 0,
+      "INTELLECT": 2,
+      "HASTE": 0,
+      "CRITICAL_HIT_CHANCE": 5,
+      "HEALTH": 10,
+      "MANA": 0,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100
+    ],
+    "level": 2
   }
 ]

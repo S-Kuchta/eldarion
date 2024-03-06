@@ -21,5 +21,212 @@
     "spellLevel": 0,
     "spellManaCost": 0,
     "turnCoolDown": 0
+  },
+  {
+    "spellId": 501,
+    "spellName": "Earth Shock",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Instantly shocks the target with concussive force, causing Nature damage and reducing Haste for 3 turns.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 7,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionDecreaseAbilityPoint",
+        "actionName": "DECREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "HASTE",
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 2,
+      "INTELLECT": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 25,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 502,
+    "spellName": "Lesser Healing Wave",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Heals the caster.",
+    "spellActions": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "maxActionValue": 7,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 23,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 503,
+    "spellName": "Lava Burst",
+    "spellClass": "SHAMAN",
+    "spellDescription": "You hurl molten lava at the target, dealing high amount of Fire damage. ",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 10,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 3,
+      "INTELLECT": 3
+    },
+    "spellLevel": 1,
+    "spellManaCost": 38,
+    "turnCoolDown": 2
+  },
+  {
+    "spellId": 504,
+    "spellName": "StormStrike",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Instantly attack with weapon. Deal high amount of damage. Increase critical hit chance for next 2 turns.",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 7,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "DECREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "CRITICAL_HIT_CHANCE",
+        "actionStatusEffect": "BUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 3,
+      "HASTE": 3
+    },
+    "spellLevel": 1,
+    "spellManaCost": 23,
+    "turnCoolDown": 4
+  },
+  {
+    "spellId": 505,
+    "spellName": "Searing Totem",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Summons a Searing Totem that repeatedly attacks an enemy.",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "summonedNpcId": 600
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 3,
+      "HASTE": 3
+    },
+    "spellLevel": 2,
+    "spellManaCost": 27,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 506,
+    "spellName": "Healing Stream Totem",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Summons a Healing Stream Totem that heal a caster.",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 601,
+        "canBeActionCriticalHit": false,
+        "summonedNpcId": 400
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 2,
+    "spellManaCost": 27,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 507,
+    "spellName": "Shamanistic Focus",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Next casted spell will be critical hit.",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 601,
+        "canBeActionCriticalHit": false,
+        "summonedNpcId": 400
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 2,
+    "spellManaCost": 27,
+    "turnCoolDown": 3
+  },
+  {
+    "spellId": 508,
+    "spellName": "Healing Stream Totem",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Summons a Healing Stream Totem that heal a caster.",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 601,
+        "canBeActionCriticalHit": false,
+        "summonedNpcId": 400
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 2,
+    "spellManaCost": 27,
+    "turnCoolDown": 3
   }
 ]

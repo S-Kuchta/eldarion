@@ -1,7 +1,7 @@
 package kuchtastefan.region.location;
 
 import kuchtastefan.character.enemy.Enemy;
-import kuchtastefan.character.enemy.CharacterList;
+import kuchtastefan.character.npc.CharacterList;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.region.event.CombatEvent;
 

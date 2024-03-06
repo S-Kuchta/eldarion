@@ -19,6 +19,7 @@ public enum ActionName {
     REFLECT_SPELL("Reflect spell. Reflect next casted spell back to caster."),
     REMOVE_BUFF("Remove buff. Remove buff from target of the spell."),
     REMOVE_DEBUFF("Remove debuff. Remove buff from target of the spell."),
+    DRAIN_MANA("Drain mana. Burn Mana from target."),
     SUMMON_CREATURE("Summon Creature. Summon a creature that will fight on your side.");
 
     private final String description;

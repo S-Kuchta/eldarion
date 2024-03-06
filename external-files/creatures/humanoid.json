@@ -17,14 +17,7 @@
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 1,
-    "locationType": [
-      "FOREST",
-      "CASTLE",
-      "MINE",
-      "CAVE",
-      "TOWER"
-    ]
+    "level": 1
   },
   {
     "npcId": 201,
@@ -44,8 +37,7 @@
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 2,
-    "locationType": []
+    "level": 2
   },
   {
     "npcId": 202,
@@ -65,8 +57,7 @@
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 3,
-    "locationType": []
+    "level": 3
   },
   {
     "npcId": 203,
@@ -86,10 +77,7 @@
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 2,
-    "locationType": [
-      "MINE"
-    ]
+    "level": 2
   },
   {
     "npcId": 204,
@@ -109,9 +97,6 @@
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 2,
-    "locationType": [
-      "MINE"
-    ]
+    "level": 2
   }
 ]

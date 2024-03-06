@@ -89,5 +89,51 @@
     "spellLevel": 0,
     "spellManaCost": 25,
     "turnCoolDown": 5
+  },
+  {
+    "spellId": 104,
+    "spellName": "Searing Totem Damage",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "hitAllEnemy": true,
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 5,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 104,
+    "spellName": "Stream Totem Heal",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "hitAllEnemy": true,
+    "spellActions": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "maxActionValue": 5,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
   }
 ]

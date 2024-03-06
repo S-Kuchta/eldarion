@@ -1,0 +1,43 @@
+[
+  {
+    "locationType": "FOREST",
+    "groupLevel": 1,
+    "enemiesId": [
+      100,
+      102
+    ]
+  },
+  {
+    "locationType": "FOREST",
+    "groupLevel": 1,
+    "enemiesId": [
+      200
+    ]
+  },
+  {
+    "locationType": "FOREST",
+    "groupLevel": 1,
+    "enemiesId": [
+      200,
+      200
+    ]
+  },
+  {
+    "locationType": "FOREST",
+    "groupLevel": 1,
+    "enemiesId": [
+      200,
+      201
+    ]
+  },
+  {
+    "locationType": "FOREST",
+    "groupLevel": 2,
+    "enemiesId": [
+      100,
+      100,
+      100,
+      102
+    ]
+  }
+]

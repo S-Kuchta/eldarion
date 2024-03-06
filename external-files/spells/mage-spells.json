@@ -38,7 +38,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 2
+      "ATTACK": 2,
+      "INTELLECT": 1
     },
     "spellLevel": 0,
     "spellManaCost": 14,
@@ -46,17 +47,33 @@
   },
   {
     "spellId": 202,
-    "spellName": "Heal",
+    "spellName": "Mage Barrier",
     "spellClass": "MAGE",
-    "spellDescription": "Heals the target",
+    "spellDescription": "Absorbs damage, but drain Mana while barrier is active.",
     "spellActions": [
       {
-        "type": "ActionRestoreHealth",
-        "actionName": "HEAL",
-        "maxActionValue": 10,
+        "type": "ActionAbsorbDamage",
+        "actionName": "ABSORB_DAMAGE",
         "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 10,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "BUFF"
+      },
+      {
+        "type": "ActionDrainMana",
+        "actionName": "DRAIN_MANA",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {

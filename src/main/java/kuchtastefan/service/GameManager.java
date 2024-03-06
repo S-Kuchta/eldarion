@@ -1,7 +1,7 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.npc.QuestGiverCharacter;
-import kuchtastefan.character.enemy.CharacterList;
+import kuchtastefan.character.npc.CharacterList;
 import kuchtastefan.character.hero.*;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellsList;
@@ -210,6 +210,7 @@ public class GameManager {
 
         this.fileService.importQuestsListFromFile();
         this.fileService.importLocationsFromFile();
+        this.fileService.importEnemyGroupFromFile();
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 5);
 

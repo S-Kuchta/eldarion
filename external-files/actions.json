@@ -149,7 +149,7 @@
     "maxActionValue": 0,
     "actionEffectOn": "SPELL_CASTER",
     "chanceToPerformAction": 100,
-    "canBeActionCriticalHit": true,
+    "canBeActionCriticalHit": false,
     "summonedNpcId": 400
   }
 ]

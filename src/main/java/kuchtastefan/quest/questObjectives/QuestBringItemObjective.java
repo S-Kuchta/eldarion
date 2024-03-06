@@ -18,13 +18,11 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
     private final Integer objectiveItemId;
     private final Integer[] itemDropFromEnemy;
     private final int itemDropCountNeeded;
-    private final LocationType[] locationType;
 
 
     public QuestBringItemObjective(String questObjectiveName, Integer[] itemDropFromEnemy,
-                                   LocationType[] locationType, Integer objectiveItemId, int itemDropCountNeeded) {
+                                   Integer objectiveItemId, int itemDropCountNeeded) {
         super(questObjectiveName);
-        this.locationType = locationType;
         this.objectiveItemId = objectiveItemId;
         this.itemDropCountNeeded = itemDropCountNeeded;
         this.itemDropFromEnemy = itemDropFromEnemy;
@@ -57,6 +55,7 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
             System.out.println("\t" + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL + " You completed "
                     + ConsoleColor.YELLOW + getQuestObjectiveName() + ConsoleColor.RESET
                     + " quest objective " + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL);
+
             setCompleted(true);
         } else {
             setCompleted(false);

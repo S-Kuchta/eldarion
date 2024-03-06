@@ -19,9 +19,7 @@
       101,
       102
     ],
-    "level": 1,
-    "locationType": [
-    ]
+    "level": 1
   },
   {
     "npcId": 501,
@@ -42,8 +40,6 @@
       100,
       103
     ],
-    "level": 7,
-    "locationType": [
-    ]
+    "level": 7
   }
 ]

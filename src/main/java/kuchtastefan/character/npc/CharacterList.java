@@ -1,7 +1,8 @@
-package kuchtastefan.character.enemy;
+package kuchtastefan.character.npc;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.npc.CharacterRarity;
 import kuchtastefan.region.location.LocationType;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;

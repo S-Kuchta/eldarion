@@ -125,8 +125,7 @@ public abstract class GameCharacter {
         this.reflectSpell = false;
 
         for (Ability ability : Ability.values()) {
-            if (ability.equals(Ability.HEALTH)
-                    || ability.equals(Ability.MANA)) {
+            if (ability.equals(Ability.HEALTH) || ability.equals(Ability.MANA)) {
 
                 if (setHealthOrManaToMaxValue) {
                     this.currentAbilities.put(ability, this.maxAbilities.get(ability));

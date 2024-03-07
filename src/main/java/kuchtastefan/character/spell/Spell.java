@@ -97,7 +97,7 @@ public class Spell {
 
             spellCaster.decreaseCurrentAbility(this.spellManaCost, Ability.MANA);
             this.currentTurnCoolDown = 0;
-            checkTurnCoolDown();
+            checkSpellCoolDown();
             return true;
         } else {
             if (spellCaster.getCurrentAbilityValue(Ability.MANA) < this.spellManaCost) {
@@ -133,17 +133,17 @@ public class Spell {
                 tempCharacterList.add(((ActionSummonCreature) action).returnSummonedCharacter());
             }
 
+            if (action instanceof ActionStun) {
+                spellTarget.setCanPerformAction(false);
+                ((ActionStun) action).setCurrentActionTurn(1);
+            }
+
             if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
                 actionOrActionWithDuration(action, spellTarget);
             }
 
             if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
                 actionOrActionWithDuration(action, spellCaster);
-            }
-
-            if (action instanceof ActionStun) {
-                spellTarget.setCanPerformAction(false);
-                ((ActionStun) action).setCurrentActionTurn(1);
             }
         }
     }
@@ -156,12 +156,12 @@ public class Spell {
         }
     }
 
-    public void increaseTurnCoolDown() {
-        checkTurnCoolDown();
+    public void increaseSpellCoolDown() {
+        checkSpellCoolDown();
         this.currentTurnCoolDown++;
     }
 
-    public void checkTurnCoolDown() {
+    public void checkSpellCoolDown() {
         if (this.currentTurnCoolDown < this.turnCoolDown) {
             this.canSpellBeCasted = false;
         }

@@ -67,14 +67,7 @@ public class HeroSpellManager {
                 PrintUtil.printIndexAndText(letterToNumberSpellLevel.name(), "Spell level: " + letterToNumberSpellLevel.getValue() + ", ");
             }
 
-            System.out.println();
-            PrintUtil.printIndexAndText("X", "Hide action description - ");
-            PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
-//            PrintUtil.printGameSettings(GameSettings.isShowInformationAboutActionName());
-            System.out.print("\t");
-            PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
-//            PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
-            PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+            PrintUtil.printSpellGameSettings();
 
             System.out.print("\n\n");
             PrintUtil.printIndexAndText("0", "Go back");

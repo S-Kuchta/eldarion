@@ -446,6 +446,16 @@ public class PrintUtil {
                            + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET + " "
                            + ConstantSymbol.QUEST_SYMBOL);
     }
+
+    public static void printSpellGameSettings() {
+        System.out.println();
+        PrintUtil.printIndexAndText("X", "Hide action description - ");
+        PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
+
+        System.out.print("\t");
+        PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
+        PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+    }
 }
 
 

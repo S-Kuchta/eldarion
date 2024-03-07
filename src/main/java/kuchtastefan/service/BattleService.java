@@ -8,10 +8,10 @@ import kuchtastefan.actions.instantActions.ActionInstantStun;
 import kuchtastefan.actions.instantActions.ActionRestoreHealth;
 import kuchtastefan.actions.instantActions.ActionRestoreMana;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.InventoryMenuService;
+import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
@@ -25,15 +25,15 @@ import java.util.*;
 
 public class BattleService {
 
-    private GameCharacter enemyChosen;
-    private String selectedHeroForShowSelected;
+    private GameCharacter playerTarget;
+    private String selectedEnemyForShowSelection;
     private final List<GameCharacter> enemyList;
     private final List<GameCharacter> alliesList;
     private final List<GameCharacter> tempCharacterList;
     private boolean heroPlay;
 
     public BattleService() {
-        this.selectedHeroForShowSelected = "A";
+        this.selectedEnemyForShowSelection = "A";
         this.enemyList = new ArrayList<>();
         this.alliesList = new ArrayList<>();
         this.tempCharacterList = new ArrayList<>();
@@ -49,7 +49,7 @@ public class BattleService {
         alliesList.add(hero);
 
         // Initialize variables for selected hero and enemy
-        enemyChosen = enemyList.getFirst();
+        playerTarget = enemyList.getFirst();
 
         hero.getBattleActionsWithDuration().clear();
         hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
@@ -109,45 +109,42 @@ public class BattleService {
                 if (attackingCharacter instanceof Hero) {
                     heroPlay = true;
                 } else {
-                    npcCharacterPrintHeader(attackingCharacter);
+                    npcPrintHeader(attackingCharacter);
                 }
 
                 // If character can't perform action, skip to next character
                 if (!attackingCharacter.isCanPerformAction()) {
                     this.printAndPerformActionOverTime(attackingCharacter);
-                    if (attackingCharacter instanceof Hero) {
+                    if (heroPlay) {
                         heroPlay = false;
                     }
                     continue;
                 }
 
+                // If character can perform action
                 if (heroPlay) {
-                    heroTurn(hero);
+                    playerTurn(hero);
+                    target = playerTarget;
                 } else {
-                    // Select random character for enemy attack from alliesList
+                    // Select random character for npc attack
                     if (defendingCharacters.size() > 1) {
                         target = defendingCharacters.get(RandomNumberGenerator.getRandomNumber(0, defendingCharacters.size() - 1));
                     }
 
-                    this.npcUseSpell(attackingCharacter, target, alliesList, enemyList, tempCharacterList);
+                    this.npcUseSpell(attackingCharacter, target);
                 }
 
                 this.printAndPerformActionOverTime(attackingCharacter);
             }
 
-            // If character is killed
-            if (attackingCharacter.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+            if (checkIfCharacterDied(target)) {
+                defendingCharacters.remove(target);
+                setPlayerTarget();
+            }
 
-                System.out.println();
-                System.out.println("\t" + ConsoleColor.RED + attackingCharacter.getName() + " died!" + ConsoleColor.RESET);
-
-                // Remove character from the list
+            if (checkIfCharacterDied(attackingCharacter)) {
                 iterator.remove();
-
-                if (attackingCharacters.equals(enemyList) && !enemyList.isEmpty()) {
-                    enemyChosen = enemyList.getFirst();
-                    selectedHeroForShowSelected = "A";
-                }
+                setPlayerTarget();
             }
 
             heroPlay = false;
@@ -157,12 +154,29 @@ public class BattleService {
         tempCharacterList.clear();
     }
 
-    private void heroTurn(Hero hero) {
+    private boolean checkIfCharacterDied(GameCharacter characterToCheck) {
+        if (characterToCheck.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+            System.out.println();
+            System.out.println("\t" + ConsoleColor.RED + characterToCheck.getName() + " died!" + ConsoleColor.RESET);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void setPlayerTarget() {
+        if (!enemyList.isEmpty()) {
+            playerTarget = enemyList.getFirst();
+            selectedEnemyForShowSelection = "A";
+        }
+    }
+
+    private void playerTurn(Hero hero) {
         InventoryMenuService inventoryMenuService = new InventoryMenuService();
 
         // Loop for hero's actions
         while (true) {
-            printBattleMenu(hero, enemyChosen, selectedHeroForShowSelected, enemyList, alliesList);
+            printBattleMenu(hero);
 
             // Get user's choice
             String choice = InputUtil.stringScanner().toUpperCase();
@@ -179,7 +193,7 @@ public class BattleService {
                         }
                     } else {
                         // If choice is for a spell, use the spell on the enemy
-                        if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, enemyChosen, enemyList, alliesList, tempCharacterList)) {
+                        if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, playerTarget, enemyList, alliesList, tempCharacterList)) {
                             checkSpellsCoolDowns(hero);
                             break;
                         }
@@ -191,17 +205,15 @@ public class BattleService {
                 // Handle special commands
                 if (choice.equals("X")) {
                     GameSettingsService.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
-//                    GameSettings.setShowInformationAboutActionName();
                 } else if (choice.equals("Y")) {
                     GameSettingsService.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
-//                    GameSettings.setHideSpellsOnCoolDown();
                 } else {
                     try {
-                        selectedHeroForShowSelected = choice;
-                        enemyChosen = enemyList.get(LetterToNumber.valueOf(choice).getValue() - 1);
+                        selectedEnemyForShowSelection = choice;
+                        playerTarget = enemyList.get(LetterToNumber.valueOf(choice).getValue() - 1);
                     } catch (IndexOutOfBoundsException | IllegalArgumentException e) {
-                        selectedHeroForShowSelected = "A";
-                        enemyChosen = enemyList.getFirst();
+                        selectedEnemyForShowSelection = "A";
+                        playerTarget = enemyList.getFirst();
                         PrintUtil.printEnterValidInput();
                     }
                 }
@@ -209,7 +221,7 @@ public class BattleService {
         }
     }
 
-    private void npcCharacterPrintHeader(GameCharacter gameCharacter) {
+    private void npcPrintHeader(GameCharacter gameCharacter) {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -218,8 +230,8 @@ public class BattleService {
 
         PrintUtil.printLongDivider();
         System.out.println("\t\t" + ConstantSymbol.SWORD_SYMBOL
-                           + " " + gameCharacter.getName() + " Turn!"
-                           + ConstantSymbol.SWORD_SYMBOL);
+                + " " + gameCharacter.getName() + " Turn!"
+                + ConstantSymbol.SWORD_SYMBOL);
         System.out.println();
     }
 
@@ -227,16 +239,16 @@ public class BattleService {
         System.out.println("\n\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
         gameCharacter.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
         gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.INTELLECT)
-                                     * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
+                * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
     }
 
-    private void printBattleMenu(Hero hero, GameCharacter enemyChosen, String selectedHeroForShowSelected, List<GameCharacter> enemyList, List<GameCharacter> alliestList) {
+    private void printBattleMenu(Hero hero) {
         // Print hero's header with stats and buffs
         PrintUtil.printHeaderWithStatsBar(hero);
         PrintUtil.printBattleBuffs(hero);
 
         // Print alies header with stats and buffs
-        for (GameCharacter gameCharacter : alliestList) {
+        for (GameCharacter gameCharacter : alliesList) {
             if (!(gameCharacter instanceof Hero)) {
                 PrintUtil.printHeaderWithStatsBar(gameCharacter);
                 PrintUtil.printBattleBuffs(gameCharacter);
@@ -246,8 +258,8 @@ public class BattleService {
         // Print enemy's header with stats and buffs
         PrintUtil.printExtraLongDivider();
         System.out.printf("%58s %n", "Enemy");
-        PrintUtil.printHeaderWithStatsBar(enemyChosen);
-        PrintUtil.printBattleBuffs(enemyChosen);
+        PrintUtil.printHeaderWithStatsBar(playerTarget);
+        PrintUtil.printBattleBuffs(playerTarget);
         PrintUtil.printExtraLongDivider();
 
         int index = 1;
@@ -256,29 +268,19 @@ public class BattleService {
         for (GameCharacter enemyFromList : enemyList) {
             if (!((NonPlayerCharacter) enemyFromList).isDefeated()) {
                 System.out.print(ConsoleColor.CYAN + LetterToNumber.getStringFromValue(index) + ConsoleColor.RESET
-                                 + ". " + enemyFromList.getName() + " - " + ((NonPlayerCharacter) enemyFromList).getCharacterRarity() + " - "
-                                 + " Healths: "
-                                 + enemyFromList.getCurrentAbilityValue(Ability.HEALTH) + " ");
+                        + ". " + enemyFromList.getName() + " - " + ((NonPlayerCharacter) enemyFromList).getCharacterRarity() + " - "
+                        + " Healths: "
+                        + enemyFromList.getCurrentAbilityValue(Ability.HEALTH) + " ");
 
                 // Highlight selected enemy
-                if (Objects.equals(LetterToNumber.getStringFromValue(index), selectedHeroForShowSelected)) {
+                if (Objects.equals(LetterToNumber.getStringFromValue(index), selectedEnemyForShowSelection)) {
                     System.out.print(ConstantSymbol.SWORD_SYMBOL + " ");
                 }
                 index++;
             }
         }
 
-        // Print settings for hiding action description
-        System.out.println();
-        PrintUtil.printIndexAndText("X", "Hide action description - ");
-        PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
-//        PrintUtil.printGameSettings(GameSettings.isShowInformationAboutActionName());
-
-        // Print settings for hiding spells on CoolDown
-        System.out.print("\t");
-        PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
-        PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
-//        PrintUtil.printGameSettings(GameSettings.isHideSpellsOnCoolDown());
+        PrintUtil.printSpellGameSettings();
 
         // Print hero's spells with descriptions
         int spellIndex = 0;
@@ -315,7 +317,7 @@ public class BattleService {
      * @param spellCaster The enemy character casting the spell.
      * @param spellTarget The target of the spell (usually the player's character).
      */
-    private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyList, List<GameCharacter> alliesList, List<GameCharacter> tempCharacterList) {
+    private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
         Map<Spell, Integer> spells = new HashMap<>();
 
         Spell spellToCast = spellCaster.getCharacterSpellList().getFirst();
@@ -350,7 +352,7 @@ public class BattleService {
                         }
 
                         if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getMaxAbilities().get(Ability.MANA) * 0.3)
-                            && action instanceof ActionRestoreMana) {
+                                && action instanceof ActionRestoreMana) {
                             priorityPoints += 3;
                         }
 
@@ -394,7 +396,7 @@ public class BattleService {
      * @return The spell with the highest potential total damage.
      */
     private Spell returnSpellWithTheHighestTotalDamage(GameCharacter gameCharacter) {
-        // The spell with the maximum total damage, initialized to the first spell in the character's spell list
+
         Spell spellWithMaxDamage = gameCharacter.getCharacterSpellList().getFirst();
 
         int totalDamage = 0;
@@ -411,7 +413,7 @@ public class BattleService {
 
                     if (action instanceof ActionDealDamageOverTime) {
                         int damageWithStacks = action.totalActionValue(spell.getBonusValueFromAbility(), gameCharacter)
-                                               * ((ActionDealDamageOverTime) action).getActionMaxStacks();
+                                * ((ActionDealDamageOverTime) action).getActionMaxStacks();
                         totalDamage += damageWithStacks;
                     }
                 }
@@ -429,14 +431,14 @@ public class BattleService {
 
     private void checkSpellsCoolDowns(GameCharacter gameCharacter) {
         for (Spell spell : gameCharacter.getCharacterSpellList()) {
-            spell.increaseTurnCoolDown();
+            spell.increaseSpellCoolDown();
         }
     }
 
     private void resetSpellsCoolDowns(Hero hero) {
         for (Spell spell : hero.getCharacterSpellList()) {
             spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
-            spell.checkTurnCoolDown();
+            spell.checkSpellCoolDown();
         }
     }
 }

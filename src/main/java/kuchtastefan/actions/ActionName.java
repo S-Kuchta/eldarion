@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 @Getter
 public enum ActionName {
+    SKIP(""),
     DAMAGE("Deal instant damage."),
     DAMAGE_OVER_TIME("Damage Over Time. The damage is dealt in every turn the action lasts."),
     HEAL("Instant heal. Instant heal the target."),

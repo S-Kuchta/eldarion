@@ -95,10 +95,14 @@ public class BattleService {
     }
 
     private void battleTurnMechanic(List<GameCharacter> attackingCharacters, List<GameCharacter> defendingCharacters, Hero hero) {
-        Iterator<GameCharacter> iterator = attackingCharacters.iterator();
         GameCharacter target = defendingCharacters.getFirst();
 
+        Iterator<GameCharacter> iterator = attackingCharacters.iterator();
         while (iterator.hasNext()) {
+            if (!defendingCharacters.isEmpty()) {
+                target = defendingCharacters.getFirst();
+            }
+
             GameCharacter attackingCharacter = iterator.next();
 
             // If character is alive
@@ -131,7 +135,7 @@ public class BattleService {
                         target = defendingCharacters.get(RandomNumberGenerator.getRandomNumber(0, defendingCharacters.size() - 1));
                     }
 
-                    this.npcUseSpell(attackingCharacter, target);
+                    this.npcUseSpell(attackingCharacter, target, hero);
                 }
 
                 this.printAndPerformActionOverTime(attackingCharacter);
@@ -139,12 +143,12 @@ public class BattleService {
 
             if (checkIfCharacterDied(target)) {
                 defendingCharacters.remove(target);
-                setPlayerTarget();
+                setTarget();
             }
 
             if (checkIfCharacterDied(attackingCharacter)) {
                 iterator.remove();
-                setPlayerTarget();
+                setTarget();
             }
 
             heroPlay = false;
@@ -164,7 +168,7 @@ public class BattleService {
         }
     }
 
-    private void setPlayerTarget() {
+    private void setTarget() {
         if (!enemyList.isEmpty()) {
             playerTarget = enemyList.getFirst();
             selectedEnemyForShowSelection = "A";
@@ -193,7 +197,7 @@ public class BattleService {
                         }
                     } else {
                         // If choice is for a spell, use the spell on the enemy
-                        if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, playerTarget, enemyList, alliesList, tempCharacterList)) {
+                        if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, playerTarget, enemyList, hero, tempCharacterList)) {
                             checkSpellsCoolDowns(hero);
                             break;
                         }
@@ -286,8 +290,8 @@ public class BattleService {
         int spellIndex = 0;
         System.out.println();
         for (Spell spell : hero.getCharacterSpellList()) {
+
             // Check if spells should be hidden when on CoolDown
-//            if (GameSettings.isHideSpellsOnCoolDown()) {
             if (GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN)) {
                 if (spell.isCanSpellBeCasted()) {
                     System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
@@ -317,7 +321,7 @@ public class BattleService {
      * @param spellCaster The enemy character casting the spell.
      * @param spellTarget The target of the spell (usually the player's character).
      */
-    private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
+    private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, Hero hero) {
         Map<Spell, Integer> spells = new HashMap<>();
 
         Spell spellToCast = spellCaster.getCharacterSpellList().getFirst();
@@ -372,6 +376,10 @@ public class BattleService {
                             }
                         }
 
+                        if (action instanceof ActionSummonCreature) {
+                            priorityPoints += 4;
+                        }
+
                         if (action instanceof ActionStun || action instanceof ActionInstantStun) {
                             priorityPoints += 3;
                         }
@@ -386,7 +394,7 @@ public class BattleService {
             }
         }
 
-        spellToCast.useSpell(spellCaster, spellTarget, enemyList, alliesList, tempCharacterList);
+        spellToCast.useSpell(spellCaster, spellTarget, enemyList, hero, tempCharacterList);
     }
 
     /**

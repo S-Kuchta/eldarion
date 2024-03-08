@@ -1,17 +1,15 @@
 package kuchtastefan.character.spell;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.CharacterClass;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;
-import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -63,12 +61,7 @@ public class Spell {
      * @param spellTarget The character targeted by the spell.
      * @return True if the spell was successfully cast, false otherwise.
      */
-    public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyCharacters, List<GameCharacter> alliesCharacters, List<GameCharacter> tempCharacterList) {
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.gameCharactersRuntimeTypeAdapterFactory)
-                .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
-                .create();
-
+    public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyCharacters, Hero hero, List<GameCharacter> tempCharacterList) {
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
             System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.spellName + ConsoleColor.RESET);
 
@@ -90,6 +83,8 @@ public class Spell {
                     for (GameCharacter character : enemyCharacters) {
                         performAction(action, spellCaster, character, criticalHit, tempCharacterList);
                     }
+                } else if (action.getActionEffectOn().equals(ActionEffectOn.PLAYER)) {
+                    performAction(action, spellCaster, hero, criticalHit, tempCharacterList);
                 } else {
                     performAction(action, spellCaster, spellTarget, criticalHit, tempCharacterList);
                 }
@@ -101,7 +96,7 @@ public class Spell {
             return true;
         } else {
             if (spellCaster.getCurrentAbilityValue(Ability.MANA) < this.spellManaCost) {
-                System.out.println("\tYou do not have enough Mana to perform this ability!");
+                System.out.println(ConsoleColor.RED + "\tYou do not have enough Mana to perform this ability!" + ConsoleColor.RESET);
             } else {
                 System.out.println(ConsoleColor.RED + "\tYou can not cast " + this.spellName + ". Spell is on coolDown! (You have to wait "
                         + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)" + ConsoleColor.RESET);
@@ -134,16 +129,19 @@ public class Spell {
             }
 
             if (action instanceof ActionStun) {
-                spellTarget.setCanPerformAction(false);
-                ((ActionStun) action).setCurrentActionTurn(1);
+                action.performAction(spellTarget);
+//                spellTarget.setCanPerformAction(false);
+//                ((ActionStun) action).setCurrentActionTurn(1);
             }
 
-            if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-                actionOrActionWithDuration(action, spellTarget);
-            }
+//            if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
+//                actionOrActionWithDuration(action, spellTarget);
+//            }
 
             if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
                 actionOrActionWithDuration(action, spellCaster);
+            } else {
+                actionOrActionWithDuration(action, spellTarget);
             }
         }
     }

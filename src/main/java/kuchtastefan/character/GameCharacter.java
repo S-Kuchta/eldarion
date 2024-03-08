@@ -32,7 +32,7 @@ public abstract class GameCharacter {
     public GameCharacter(String name, Map<Ability, Integer> abilities) {
         this.name = name;
         this.abilities = abilities;
-        this.level = 1;
+//        this.level = level;
         this.maxAbilities = new HashMap<>(abilities);
         this.currentAbilities = new HashMap<>(abilities);
         this.regionActionsWithDuration = new HashSet<>();

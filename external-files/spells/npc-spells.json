@@ -92,10 +92,9 @@
   },
   {
     "spellId": 104,
-    "spellName": "Searing Totem Damage",
+    "spellName": "Fire Totem Damage",
     "spellClass": "NPC",
     "spellDescription": "",
-    "hitAllEnemy": true,
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -114,23 +113,93 @@
     "turnCoolDown": 0
   },
   {
-    "spellId": 104,
-    "spellName": "Stream Totem Heal",
+    "spellId": 105,
+    "spellName": "Water Totem Heal",
     "spellClass": "NPC",
     "spellDescription": "",
-    "hitAllEnemy": true,
     "spellActions": [
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
         "maxActionValue": 5,
-        "actionEffectOn": "SPELL_CASTER",
+        "actionEffectOn": "PLAYER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
       }
     ],
     "bonusValueFromAbility": {
       "INTELLECT": 2
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 106,
+    "spellName": "",
+    "spellClass": "NPC",
+    "spellDescription": "Do nothing, just skip round",
+    "spellActions": [
+      {
+        "type": "ActionSkipTurn",
+        "actionName": "SKIP",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 0
+  },
+  {
+    "spellId": 107,
+    "spellName": "Earth Totem stun",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionStun",
+        "actionName": "STUN",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 0,
+        "maxActionTurns": 1,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 0,
+    "spellManaCost": 0,
+    "turnCoolDown": 4
+  },
+  {
+    "spellId": 108,
+    "spellName": "Air totem spell reflect",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionReflectSpell",
+        "actionName": "REFLECT_SPELL",
+        "actionEffectOn": "PLAYER",
+        "maxActionValue": 0,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "BUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
     },
     "spellLevel": 0,
     "spellManaCost": 0,

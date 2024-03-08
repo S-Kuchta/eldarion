@@ -1,7 +1,7 @@
 [
   {
     "npcId": 600,
-    "name": "Searing Totem",
+    "name": "Fire Totem",
     "characterRarity": "COMMON",
     "abilities": {
       "ATTACK": 2,
@@ -15,13 +15,13 @@
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
-      100
+      104
     ],
     "level": 2
   },
   {
     "npcId": 601,
-    "name": "Healing Stream Totem",
+    "name": "Water Totem",
     "characterRarity": "COMMON",
     "abilities": {
       "ATTACK": 0,
@@ -35,7 +35,49 @@
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
-      100
+      105
+    ],
+    "level": 2
+  },
+  {
+    "npcId": 602,
+    "name": "Air Totem",
+    "characterRarity": "COMMON",
+    "abilities": {
+      "ATTACK": 0,
+      "RESIST_DAMAGE": 0,
+      "STRENGTH": 0,
+      "INTELLECT": 2,
+      "HASTE": 0,
+      "CRITICAL_HIT_CHANCE": 5,
+      "HEALTH": 10,
+      "MANA": 0,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      106,
+      108
+    ],
+    "level": 2
+  },
+  {
+    "npcId": 603,
+    "name": "Earth Totem",
+    "characterRarity": "COMMON",
+    "abilities": {
+      "ATTACK": 0,
+      "RESIST_DAMAGE": 0,
+      "STRENGTH": 0,
+      "INTELLECT": 0,
+      "HASTE": 0,
+      "CRITICAL_HIT_CHANCE": 5,
+      "HEALTH": 10,
+      "MANA": 0,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      106,
+      107
     ],
     "level": 2
   }

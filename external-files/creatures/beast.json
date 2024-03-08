@@ -78,5 +78,25 @@
       100
     ],
     "level": 3
+  },
+  {
+    "npcId": 104,
+    "name": "Spirit Wolf",
+    "characterRarity": "SUMMONED",
+    "abilities": {
+      "ATTACK": 3,
+      "RESIST_DAMAGE": 3,
+      "STRENGTH": 3,
+      "INTELLECT": 0,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 7,
+      "HEALTH": 30,
+      "MANA": 0,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100
+    ],
+    "level": 5
   }
 ]

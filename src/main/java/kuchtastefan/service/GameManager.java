@@ -1,13 +1,13 @@
 package kuchtastefan.service;
 
-import kuchtastefan.character.npc.QuestGiverCharacter;
-import kuchtastefan.character.npc.CharacterList;
 import kuchtastefan.character.hero.*;
-import kuchtastefan.character.spell.Spell;
-import kuchtastefan.character.spell.SpellsList;
+import kuchtastefan.character.npc.CharacterList;
+import kuchtastefan.character.npc.QuestGiverCharacter;
 import kuchtastefan.character.npc.vendor.ConsumableVendorCharacter;
 import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.character.npc.vendor.JunkVendorCharacter;
+import kuchtastefan.character.spell.Spell;
+import kuchtastefan.character.spell.SpellsList;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettingsService;
 import kuchtastefan.hint.HintName;
@@ -23,11 +23,9 @@ import kuchtastefan.utility.PrintUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GameManager {
     private Hero hero;
     private final HeroAbilityManager heroAbilityManager;
-    private int currentLevel;
     private final FileService fileService;
     private final BlacksmithService blacksmithService;
     private ForestRegionService forestRegionService;
@@ -36,7 +34,6 @@ public class GameManager {
 
     public GameManager() {
         this.hero = new Hero("");
-        this.currentLevel = Constant.INITIAL_LEVEL;
         this.fileService = new FileService();
         this.heroAbilityManager = new HeroAbilityManager(this.hero);
         this.blacksmithService = new BlacksmithService();
@@ -79,7 +76,7 @@ public class GameManager {
                 case 3 -> this.tavernMenu();
                 case 4 -> this.alchemistMenu();
                 case 5 -> this.blacksmithService.blacksmithMenu(this.hero);
-                case 6 -> this.fileService.saveGame(this.hero, this.currentLevel);
+                case 6 -> this.fileService.saveGame(this.hero);
                 case 7 -> {
                     System.out.println("Are you sure?");
                     PrintUtil.printIndexAndText("0", "No");
@@ -230,7 +227,7 @@ public class GameManager {
                 final GameLoaded gameLoaded = fileService.loadGame();
                 if (gameLoaded != null) {
                     this.hero = gameLoaded.getHero();
-                    this.currentLevel = gameLoaded.getLevel();
+                    this.hero.setLevel(gameLoaded.getHero().getLevel());
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
                     this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
@@ -240,7 +237,6 @@ public class GameManager {
             }
             default -> PrintUtil.printEnterValidInput();
         }
-
 
         System.out.println("\tEnter your name: ");
         final String name = InputUtil.stringScanner();
@@ -273,8 +269,8 @@ public class GameManager {
             }
         }
 
-
         this.hero.setName(name);
+        this.hero.setLevel(1);
         this.hero.gainExperiencePoints(0);
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();

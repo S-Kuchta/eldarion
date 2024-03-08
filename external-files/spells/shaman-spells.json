@@ -15,8 +15,7 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 1,
-      "STRENGTH": 1
+      "ATTACK": 2
     },
     "spellLevel": 0,
     "spellManaCost": 0,
@@ -52,7 +51,7 @@
     ],
     "bonusValueFromAbility": {
       "ATTACK": 2,
-      "INTELLECT": 1
+      "INTELLECT": 2
     },
     "spellLevel": 0,
     "spellManaCost": 25,
@@ -141,9 +140,9 @@
   },
   {
     "spellId": 505,
-    "spellName": "Searing Totem",
+    "spellName": "Call Fire Totem",
     "spellClass": "SHAMAN",
-    "spellDescription": "Summons a Searing Totem that repeatedly attacks an enemy.",
+    "spellDescription": "Summons a Fire Totem that repeatedly attacks an enemy.",
     "spellActions": [
       {
         "type": "ActionSummonCreature",
@@ -156,8 +155,6 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 3,
-      "HASTE": 3
     },
     "spellLevel": 2,
     "spellManaCost": 27,
@@ -165,9 +162,9 @@
   },
   {
     "spellId": 506,
-    "spellName": "Healing Stream Totem",
+    "spellName": "Call Water Totem",
     "spellClass": "SHAMAN",
-    "spellDescription": "Summons a Healing Stream Totem that heal a caster.",
+    "spellDescription": "Summons a Water Totem that heal a caster.",
     "spellActions": [
       {
         "type": "ActionSummonCreature",
@@ -192,41 +189,204 @@
     "spellDescription": "Next casted spell will be critical hit.",
     "spellActions": [
       {
-        "type": "ActionSummonCreature",
-        "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 601,
+        "maxActionValue": 100,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "summonedNpcId": 400
+        "ability": "CRITICAL_HIT_CHANCE",
+        "actionStatusEffect": "BUFF"
       }
     ],
     "bonusValueFromAbility": {
     },
-    "spellLevel": 2,
-    "spellManaCost": 27,
-    "turnCoolDown": 3
+    "spellLevel": 3,
+    "spellManaCost": 20,
+    "turnCoolDown": 4
   },
   {
     "spellId": 508,
-    "spellName": "Healing Stream Totem",
+    "spellName": "Purge",
     "spellClass": "SHAMAN",
-    "spellDescription": "Summons a Healing Stream Totem that heal a caster.",
+    "spellDescription": "Purges the enemy target, removing all buffs from target.",
+    "spellActions": [
+      {
+        "type": "ActionRemoveBuffOrDebuff",
+        "actionName": "REMOVE_BUFF",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true,
+        "removeAllStatusEffects": true,
+        "actionStatusEffectToRemove": "BUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 3,
+    "spellManaCost": 22,
+    "turnCoolDown": 4
+  },
+  {
+    "spellId": 509,
+    "spellName": "Chain Lightning",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Hurls a lightning bolt at the enemy, dealing Nature damage and then jumping to next enemy.",
+    "hitAllEnemy": true,
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 7,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 3,
+      "INTELLECT": 3
+    },
+    "spellLevel": 5,
+    "spellManaCost": 32,
+    "turnCoolDown": 4
+  },
+  {
+    "spellId": 510,
+    "spellName": "Feral Spirit",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Summons two Spirit Wolves.",
     "spellActions": [
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
         "maxActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 601,
+        "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
-        "summonedNpcId": 400
+        "summonedNpcId": 104
+      },
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "summonedNpcId": 104
       }
     ],
     "bonusValueFromAbility": {
     },
-    "spellLevel": 2,
-    "spellManaCost": 27,
-    "turnCoolDown": 3
+    "spellLevel": 5,
+    "spellManaCost": 32,
+    "turnCoolDown": 8
+  },
+  {
+    "spellId": 511,
+    "spellName": "BloodLust",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Increase abilities Haste, Attack and Intellect over 4 turns.",
+    "spellActions": [
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "ATTACK",
+        "actionStatusEffect": "BUFF"
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "INTELLECT",
+        "actionStatusEffect": "BUFF"
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "maxActionValue": 1,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "ability": "HASTE",
+        "actionStatusEffect": "BUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "HASTE": 3,
+      "INTELLECT": 3
+    },
+    "spellLevel": 7,
+    "spellManaCost": 38,
+    "turnCoolDown": 9
+  },
+  {
+    "spellId": 512,
+    "spellName": "Elements totem call",
+    "spellClass": "SHAMAN",
+    "spellDescription": "Call 4 totems from power of elements. Fire, Water, Air and Earth. Fire deal damage, Water heal the hero, Air make hero reflect damage and earth stun the target.",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "summonedNpcId": 600
+      },
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "summonedNpcId": 601
+      },
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "summonedNpcId": 602
+      },
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false,
+        "summonedNpcId": 603
+      }
+    ],
+    "bonusValueFromAbility": {
+    },
+    "spellLevel": 7,
+    "spellManaCost": 38,
+    "turnCoolDown": 11
   }
 ]

@@ -54,8 +54,8 @@ public class FileService {
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
-    public void saveGame(Hero hero, int currentLevel) {
-        GameLoaded gameLoaded = new GameLoaded(currentLevel, hero, HintUtil.getHintList(),
+    public void saveGame(Hero hero) {
+        GameLoaded gameLoaded = new GameLoaded(hero, HintUtil.getHintList(),
                 hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
 
         while (true) {

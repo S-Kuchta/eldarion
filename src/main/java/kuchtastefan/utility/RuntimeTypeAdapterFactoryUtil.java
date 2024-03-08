@@ -40,6 +40,7 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionRemoveBuffOrDebuff.class)
             .registerSubtype(ActionSummonCreature.class)
             .registerSubtype(ActionDrainMana.class)
+            .registerSubtype(ActionSkipTurn.class)
             .registerSubtype(ActionDecreaseAbilityPoint.class);
 
     public static final RuntimeTypeAdapterFactory<GameCharacter> gameCharactersRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory

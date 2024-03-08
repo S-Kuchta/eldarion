@@ -1,9 +1,9 @@
 {
   "hero": {
-    "characterClass": "MAGE",
+    "characterClass": "SHAMAN",
     "unspentAbilityPoints": 0,
-    "heroGold": 130.0,
-    "experiencePoints": 50.0,
+    "heroGold": 150.0,
+    "experiencePoints": 0.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
@@ -108,149 +108,54 @@
       "INTELLECT": 0
     },
     "heroInventory": {
-      "heroInventory": [
-        [
-          {
-            "type": "CraftingReagentItem",
-            "craftingReagentItemType": "BLACKSMITH_REAGENT",
-            "itemId": 700,
-            "name": "Iron ore",
-            "price": 10.0,
-            "itemLevel": 2
-          },
-          2
-        ]
-      ]
+      "heroInventory": {}
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 480.0
+      "neededExperiencePointsForNewLevel": 660.0
     },
-    "enemyKilled": {
-      "enemyKilled": {},
-      "questEnemyKilled": {}
-    },
-    "listOfAcceptedQuests": [
-      {
-        "questId": 4,
-        "questName": "Clear Enchanted Mine",
-        "questDescription": "Please clear our mine.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestClearLocationObjective",
-            "locationId": 0,
-            "completed": false,
-            "questObjectiveName": "Clear Enchanted Mine"
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            200
-          ],
-          "goldsReward": 50.0,
-          "experiencePointsReward": 100.0
-        },
-        "isTurnedIn": false
-      }
-    ],
+    "heroAcceptedQuestIdQuest": {},
     "learnedSpells": {},
-    "discoveredLocationList": {
-      "0": {
-        "locationId": 0,
-        "locationName": "Enchanted Mine",
-        "locationLevel": 2,
-        "stageTotal": 4,
-        "stageCompleted": 0,
-        "cleared": false,
-        "locationType": "MINE",
-        "canLocationBeExplored": true,
-        "locationStages": {
-          "0": {
-            "type": "LocationStageCombat",
-            "locationEnemyIdList": [
-              200,
-              201
-            ],
-            "stageName": "Mine main door",
-            "stageCompleted": false,
-            "stageDiscovered": true,
-            "itemsIdNeededToEnterStage": [
-              700
-            ]
-          },
-          "1": {
-            "type": "LocationStageQuestGiver",
-            "questId": 0,
-            "questGiverName": "Saber",
-            "stageName": "Mine cell block",
-            "stageCompleted": false,
-            "stageDiscovered": false,
-            "itemsIdNeededToEnterStage": []
-          },
-          "2": {
-            "type": "LocationStageCombat",
-            "locationEnemyIdList": [
-              200,
-              201
-            ],
-            "stageName": "Mine Upper Floor",
-            "stageCompleted": false,
-            "stageDiscovered": false,
-            "itemsIdNeededToEnterStage": []
-          },
-          "3": {
-            "type": "LocationStageFindTreasure",
-            "stageName": "Treasure Room",
-            "stageCompleted": false,
-            "stageDiscovered": true,
-            "itemsIdNeededToEnterStage": [
-              103
-            ]
-          }
-        }
-      }
-    },
+    "discoveredLocationList": {},
     "name": "1",
     "level": 1,
     "abilities": {
-      "STRENGTH": 5,
-      "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "STRENGTH": 1,
+      "MANA": 74,
+      "HASTE": 3,
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 3,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
-      "HEALTH": 250,
-      "INTELLECT": 20
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 50,
+      "INTELLECT": 3
     },
     "maxAbilities": {
-      "STRENGTH": 5,
-      "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "STRENGTH": 1,
+      "MANA": 74,
+      "HASTE": 3,
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 3,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
-      "HEALTH": 250,
-      "INTELLECT": 20
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 50,
+      "INTELLECT": 3
     },
     "currentAbilities": {
-      "STRENGTH": 5,
-      "MANA": 60,
-      "HASTE": 40,
-      "RESIST_DAMAGE": 40,
-      "ATTACK": 50,
+      "STRENGTH": 1,
+      "MANA": 74,
+      "HASTE": 3,
+      "RESIST_DAMAGE": 3,
+      "ATTACK": 3,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 10,
-      "HEALTH": 250,
-      "INTELLECT": 20
+      "CRITICAL_HIT_CHANCE": 1,
+      "HEALTH": 50,
+      "INTELLECT": 3
     },
     "regionActionsWithDuration": [],
     "battleActionsWithDuration": [],
     "characterSpellList": [
       {
-        "spellId": 200,
+        "spellId": 500,
         "spellName": "Weapon Attack",
         "spellDescription": "Attack with weapon",
         "spellActions": [
@@ -265,38 +170,40 @@
           }
         ],
         "bonusValueFromAbility": {
-          "ATTACK": 1,
-          "STRENGTH": 1
+          "ATTACK": 2
         },
         "spellLevel": 0,
         "spellManaCost": 0,
         "turnCoolDown": 0,
         "currentTurnCoolDown": 1,
         "canSpellBeCasted": true,
-        "spellClass": "MAGE"
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
       },
       {
-        "spellId": 201,
-        "spellName": "Fireball",
-        "spellDescription": "Cast a fireball",
+        "spellId": 501,
+        "spellName": "Earth Shock",
+        "spellDescription": "Instantly shocks the target with concussive force, causing Nature damage and reducing Haste for 3 turns.",
         "spellActions": [
           {
             "type": "ActionDealDamage",
             "actionName": "DAMAGE",
-            "maxActionValue": 5,
+            "maxActionValue": 7,
             "currentActionValue": 0,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
           },
           {
-            "type": "ActionDealDamageOverTime",
+            "type": "ActionDecreaseAbilityPoint",
+            "ability": "HASTE",
             "maxActionTurns": 3,
             "currentActionTurn": 0,
             "actionMaxStacks": 1,
             "actionCurrentStacks": 0,
             "actionDurationType": "BATTLE_ACTION",
-            "actionName": "DAMAGE_OVER_TIME",
+            "actionStatusEffect": "DEBUFF",
+            "actionName": "DECREASE_ABILITY_POINTS",
             "maxActionValue": 1,
             "currentActionValue": 0,
             "actionEffectOn": "SPELL_TARGET",
@@ -305,105 +212,82 @@
           }
         ],
         "bonusValueFromAbility": {
-          "INTELLECT": 1,
-          "ATTACK": 1
+          "ATTACK": 2,
+          "INTELLECT": 2
         },
         "spellLevel": 0,
-        "spellManaCost": 10,
-        "turnCoolDown": 2,
-        "currentTurnCoolDown": 3,
+        "spellManaCost": 25,
+        "turnCoolDown": 3,
+        "currentTurnCoolDown": 4,
         "canSpellBeCasted": true,
-        "spellClass": "MAGE"
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
       },
       {
-        "spellId": 202,
-        "spellName": "Freeze Enemy",
-        "spellDescription": "Cast ice cube.",
+        "spellId": 502,
+        "spellName": "Lesser Healing Wave",
+        "spellDescription": "Heals the caster.",
         "spellActions": [
           {
-            "type": "ActionDealDamage",
-            "actionName": "DAMAGE",
-            "maxActionValue": 1,
-            "currentActionValue": 0,
-            "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": false
-          },
-          {
-            "type": "ActionStun",
-            "maxActionTurns": 2,
-            "currentActionTurn": 0,
-            "actionMaxStacks": 1,
-            "actionCurrentStacks": 0,
-            "actionDurationType": "BATTLE_ACTION",
-            "actionName": "STUN",
-            "maxActionValue": 0,
-            "currentActionValue": 0,
-            "actionEffectOn": "SPELL_TARGET",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": false
-          }
-        ],
-        "bonusValueFromAbility": {
-          "INTELLECT": 1,
-          "ATTACK": 1
-        },
-        "spellLevel": 0,
-        "spellManaCost": 20,
-        "turnCoolDown": 5,
-        "currentTurnCoolDown": 6,
-        "canSpellBeCasted": true,
-        "spellClass": "MAGE"
-      },
-      {
-        "spellId": 203,
-        "spellName": "Ice block",
-        "spellDescription": "Cast ice block.",
-        "spellActions": [
-          {
-            "type": "ActionInvulnerability",
-            "maxActionTurns": 2,
-            "currentActionTurn": 0,
-            "actionMaxStacks": 1,
-            "actionCurrentStacks": 0,
-            "actionDurationType": "BATTLE_ACTION",
-            "actionName": "INVULNERABILITY",
-            "maxActionValue": 0,
+            "type": "ActionRestoreHealth",
+            "actionName": "HEAL",
+            "maxActionValue": 7,
             "currentActionValue": 0,
             "actionEffectOn": "SPELL_CASTER",
             "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": false
+            "canBeActionCriticalHit": true
           }
         ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 2
+        },
         "spellLevel": 0,
-        "spellManaCost": 30,
-        "turnCoolDown": 7,
-        "currentTurnCoolDown": 8,
+        "spellManaCost": 23,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
         "canSpellBeCasted": true,
-        "spellClass": "MAGE"
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
       }
     ],
-    "canPerformAction": true
+    "canPerformAction": true,
+    "reflectSpell": false
   },
-  "level": 1,
+  "level": 7,
   "hintUtil": {
+    "NEW_SPELL_HINT": {
+      "text": "\tHere you can learn a new spell. You can learn one new spell on levels 1, 2, 3, 5 and 7.\n\tWhen you want to change a learned spell, simply learn a new one, and the old one will be unlearned.",
+      "showed": false
+    },
+    "QUEST_HINT": {
+      "text": "\tThroughout the game, you will be completing quests. For each completed quest, you will receive a reward.\n\tEach quest can have multiple Quest Objectives that you need to fulfill to complete the quest.\n\tAvailable quests will be marked with a yellow exclamation point ( - ! - ),\n\twhile completed but not yet turned in quests will be marked with a yellow question mark ( - ? - ).\n\tYou may also encounter a gray exclamation point, indicating that you have not yet met the requirements\n\tto accept that quest (insufficient level, need to complete a prerequisite quest).",
+      "showed": false
+    },
+    "REGION_HINT": {
+      "text": "\tWelcome to the region. Here you can travel across the region, discover new locations, and complete quests.\n\tHowever, be cautious of traps while traveling through locations.",
+      "showed": false
+    },
     "BLACKSMITH_HINT": {
-      "text": "\t- You can dismantle wearable item. This will destroy item,\nbut you get crafting reagents (items),\n\t- You can refinement wearable item. This will increase item\nprice and ability bonus, but you need crafting reagents (items)",
+      "text": "\t\t- You can dismantle wearable item. This will destroy item,\n\tbut you get crafting reagents (items),\n\t\t- You can refinement wearable item. This will increase item\n\tprice and ability bonus, For refinement item you need crafting reagents (items)",
+      "showed": false
+    },
+    "WELCOME": {
+      "text": "\tHello, my name is Stefan, and I am creator of this game.\n\tI will guide you through the game for a short time.\n\tIf you find the slow text print bothersome, you can disable it in the game settings.\n\tI hope you will enjoy the game! Good luck with exploring the world of Eldarion!",
       "showed": true
+    },
+    "BATTLE_HINT": {
+      "text": "\tOne of the most important parts of the game are the battles. Battles occur in turns.\n\tCombat is conducted using spells, each spell has actions that are performed after using the spell.\n\tActions with durations are always performed at the end of the character\u0027s turn.\n\tHowever, be careful, some actions do not have a 100% chance of execution.\n\tIf action has lower chance to perform, you will see percentage chance in action description.\n\tSpells on CoolDowns can\u0027t be used.\n\tTo receive rewards or fulfill Quest Objectives, you must defeat all units and win the battle.",
+      "showed": false
+    },
+    "HERO_MENU": {
+      "text": "\tIn the hero menu, you can view your statistics, inventory, add or subtract ability points\n\tcheck accepted and completed quests, learn new spells, and adjust game settings.",
+      "showed": false
+    },
+    "LOCATION_HINT": {
+      "text": "\tWelcome to the location. The Location consists of multiple stages.\n\tIf a stage is not open from the beginning, you can only access it after completing the previous stage.\n\tTo enter some stages, you need an item to unlock the stage.\n\tAfter completing all stages, you will receive a reward.",
+      "showed": false
     }
   },
   "regionActionsWithDuration": [],
-  "itemList": [
-    [
-      {
-        "type": "CraftingReagentItem",
-        "craftingReagentItemType": "BLACKSMITH_REAGENT",
-        "itemId": 700,
-        "name": "Iron ore",
-        "price": 10.0,
-        "itemLevel": 2
-      },
-      2
-    ]
-  ]
+  "itemList": {}
 }

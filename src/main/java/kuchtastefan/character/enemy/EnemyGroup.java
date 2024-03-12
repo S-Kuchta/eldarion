@@ -20,7 +20,7 @@ public class EnemyGroup {
         this.enemiesId = enemiesId;
     }
 
-    public List<Enemy> returnEnemies() {
+    public List<Enemy> convertEnemyIdToEnemyList() {
         List<Enemy> enemies = new ArrayList<>();
 
         for (int enemyId : this.enemiesId) {

@@ -83,8 +83,8 @@ public class CombatEvent extends Event {
 
         if (battle) {
             final boolean haveHeroWon = this.battleService.battle(hero, this.enemies);
-            if (haveHeroWon) {
 
+            if (haveHeroWon) {
                 for (Enemy randomEnemy : this.enemies) {
                     double goldEarn = randomEnemy.getGoldDrop();
                     double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getCharacterRarity().getExperienceGainedValue();

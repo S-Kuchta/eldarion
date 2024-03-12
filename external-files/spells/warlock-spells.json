@@ -201,14 +201,6 @@
     "hitAllEnemy": true,
     "spellActions": [
       {
-        "type": "ActionInstantStun",
-        "actionName": "STUN",
-        "maxActionValue": 0,
-        "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
-      },
-      {
         "type": "ActionStun",
         "actionName": "STUN",
         "actionEffectOn": "SPELL_TARGET",

@@ -52,12 +52,16 @@
     "spellDescription": "",
     "spellActions": [
       {
-        "type": "ActionInstantStun",
+        "type": "ActionStun",
         "actionName": "STUN",
-        "maxActionValue": 0,
         "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 0,
+        "maxActionTurns": 1,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "canBeActionCriticalHit": false,
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "bonusValueFromAbility": {

@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 3,
+        "maxActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -30,7 +30,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 7,
+        "maxActionValue": 8,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -54,7 +54,7 @@
       "INTELLECT": 1
     },
     "spellLevel": 0,
-    "spellManaCost": 25,
+    "spellManaCost": 13,
     "turnCoolDown": 3
   },
   {
@@ -88,7 +88,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 10,
+        "maxActionValue": 17,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -99,7 +99,7 @@
       "INTELLECT": 1
     },
     "spellLevel": 1,
-    "spellManaCost": 38,
+    "spellManaCost": 27,
     "turnCoolDown": 2
   },
   {
@@ -111,13 +111,13 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 7,
+        "maxActionValue": 12,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
       },
       {
-        "type": "ActionIncreaseAbilityPoint",
+        "type": "ActionDecreaseAbilityPoint",
         "actionName": "DECREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_TARGET",
         "maxActionValue": 1,
@@ -135,7 +135,7 @@
       "HASTE": 1
     },
     "spellLevel": 1,
-    "spellManaCost": 23,
+    "spellManaCost": 16,
     "turnCoolDown": 4
   },
   {

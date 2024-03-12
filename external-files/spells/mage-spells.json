@@ -31,7 +31,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 5,
+        "maxActionValue": 8,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -42,7 +42,7 @@
       "INTELLECT": 1
     },
     "spellLevel": 0,
-    "spellManaCost": 14,
+    "spellManaCost": 18,
     "turnCoolDown": 0
   },
   {
@@ -92,7 +92,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 10,
+        "maxActionValue": 15,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -234,14 +234,6 @@
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
-      },
-      {
-        "type": "ActionInstantStun",
-        "actionName": "STUN",
-        "maxActionValue": 0,
-        "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
       },
       {
         "type": "ActionStun",

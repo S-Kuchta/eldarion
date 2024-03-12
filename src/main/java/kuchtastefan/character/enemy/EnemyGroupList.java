@@ -22,7 +22,7 @@ public class EnemyGroupList {
         }
 
         try {
-            return enemyGroups.get(RandomNumberGenerator.getRandomNumber(0, enemyGroups.size() - 1)).returnEnemies();
+            return enemyGroups.get(RandomNumberGenerator.getRandomNumber(0, enemyGroups.size() - 1)).convertEnemyIdToEnemyList();
         } catch (IllegalArgumentException e) {
             return Collections.singletonList(CharacterList.returnNewEnemyCopy(200));
         }

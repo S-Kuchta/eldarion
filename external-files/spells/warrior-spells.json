@@ -294,14 +294,6 @@
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
         "actionStatusEffect": "DEBUFF"
-      },
-      {
-        "type": "ActionInstantStun",
-        "actionName": "STUN",
-        "maxActionValue": 0,
-        "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
       }
     ],
     "bonusValueFromAbility": {

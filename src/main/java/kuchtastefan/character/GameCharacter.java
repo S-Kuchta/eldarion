@@ -32,7 +32,6 @@ public abstract class GameCharacter {
     public GameCharacter(String name, Map<Ability, Integer> abilities) {
         this.name = name;
         this.abilities = abilities;
-//        this.level = level;
         this.maxAbilities = new HashMap<>(abilities);
         this.currentAbilities = new HashMap<>(abilities);
         this.regionActionsWithDuration = new HashSet<>();
@@ -100,7 +99,7 @@ public abstract class GameCharacter {
      *
      * @param actionDurationType from where you call method (BATTLE or REGION(EVENT))
      */
-    public void updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType actionDurationType) {
+    public void performActionsWithDuration(ActionDurationType actionDurationType) {
         resetCurrentAbilitiesToMaxAbilities(false);
 
         Set<ActionWithDuration> actions = new HashSet<>();
@@ -126,7 +125,6 @@ public abstract class GameCharacter {
 
         for (Ability ability : Ability.values()) {
             if (ability.equals(Ability.HEALTH) || ability.equals(Ability.MANA)) {
-
                 if (setHealthOrManaToMaxValue) {
                     this.currentAbilities.put(ability, this.maxAbilities.get(ability));
                 } else {

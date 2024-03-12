@@ -3,7 +3,7 @@
     "itemId": 600,
     "name": "Leather armor of Attack",
     "abilities": {
-      "RESIST_DAMAGE": 3,
+      "RESIST_DAMAGE": 1,
       "ATTACK": 1
     },
     "itemLevel": 1
@@ -13,7 +13,7 @@
     "name": "Robe of intellect",
     "abilities": {
       "RESIST_DAMAGE": 1,
-      "INTELLECT": 2
+      "INTELLECT": 1
     },
     "itemLevel": 1
   }

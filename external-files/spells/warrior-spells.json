@@ -31,7 +31,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 3,
+        "maxActionValue": 15,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -50,8 +50,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "STRENGTH": 2,
-      "ATTACK": 2
+      "STRENGTH": 1,
+      "ATTACK": 1
     },
     "spellLevel": 0,
     "spellManaCost": 10,
@@ -156,8 +156,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 2,
-      "STRENGTH": 2
+      "ATTACK": 1,
+      "STRENGTH": 1
     },
     "spellLevel": 2,
     "spellManaCost": 10,
@@ -179,7 +179,7 @@
       }
     ],
     "bonusValueFromAbility": {
-      "INTELLECT": 3
+      "INTELLECT": 1
     },
     "spellLevel": 2,
     "spellManaCost": 35,
@@ -215,7 +215,7 @@
       }
     ],
     "bonusValueFromAbility": {
-      "STRENGTH": 2
+      "STRENGTH": 1
     },
     "spellLevel": 3,
     "spellManaCost": 10,
@@ -243,7 +243,7 @@
     ],
     "bonusValueFromAbility": {
       "ATTACK": 1,
-      "INTELLECT": 2
+      "INTELLECT": 1
     },
     "spellLevel": 3,
     "spellManaCost": 35,
@@ -331,7 +331,7 @@
       }
     ],
     "bonusValueFromAbility": {
-      "STRENGTH": 2
+      "STRENGTH": 1
     },
     "spellLevel": 7,
     "spellManaCost": 15,

@@ -108,7 +108,7 @@ public class Hero extends GameCharacter {
         }
 
         this.setHeroMaxAbilities();
-        this.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(null);
+        this.performActionsWithDuration(null);
     }
 
     /**
@@ -153,6 +153,7 @@ public class Hero extends GameCharacter {
             if ((this.abilities.get(ability) + pointsToChange) < this.abilities.get(ability)) {
                 System.out.println("You have removed 1 point from " + ability.name());
             }
+
             if (ability.equals(Ability.HEALTH)) {
                 this.abilities.put(ability, this.abilities.get(ability) + pointsToChange * Constant.HEALTH_OF_ONE_POINT);
             } else if (ability.equals(Ability.MANA)) {
@@ -163,8 +164,8 @@ public class Hero extends GameCharacter {
 
             this.setHeroMaxAbilities();
             this.resetCurrentAbilitiesToMaxAbilities(true);
-            this.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(null);
-            updateAbilityPoints(heroAvailablePointsChange);
+            this.performActionsWithDuration(null);
+            this.updateAbilityPoints(heroAvailablePointsChange);
         }
     }
 

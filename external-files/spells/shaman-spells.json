@@ -15,7 +15,7 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 2
+      "ATTACK": 1
     },
     "spellLevel": 0,
     "spellManaCost": 0,
@@ -50,8 +50,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 2,
-      "INTELLECT": 2
+      "ATTACK": 1,
+      "INTELLECT": 1
     },
     "spellLevel": 0,
     "spellManaCost": 25,
@@ -73,7 +73,7 @@
       }
     ],
     "bonusValueFromAbility": {
-      "INTELLECT": 2
+      "INTELLECT": 1
     },
     "spellLevel": 0,
     "spellManaCost": 23,
@@ -95,8 +95,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 3,
-      "INTELLECT": 3
+      "ATTACK": 1,
+      "INTELLECT": 1
     },
     "spellLevel": 1,
     "spellManaCost": 38,
@@ -131,8 +131,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 3,
-      "HASTE": 3
+      "ATTACK": 1,
+      "HASTE": 1
     },
     "spellLevel": 1,
     "spellManaCost": 23,
@@ -248,8 +248,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 3,
-      "INTELLECT": 3
+      "ATTACK": 1,
+      "INTELLECT": 1
     },
     "spellLevel": 5,
     "spellManaCost": 32,
@@ -333,8 +333,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "HASTE": 3,
-      "INTELLECT": 3
+      "HASTE": 1,
+      "INTELLECT": 1
     },
     "spellLevel": 7,
     "spellManaCost": 38,

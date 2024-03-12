@@ -38,8 +38,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 2,
-      "INTELLECT": 2
+      "ATTACK": 1,
+      "INTELLECT": 1
     },
     "spellLevel": 0,
     "spellManaCost": 25,
@@ -83,8 +83,8 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 3,
-      "STRENGTH": 3
+      "ATTACK": 1,
+      "STRENGTH": 1
     },
     "spellLevel": 0,
     "spellManaCost": 25,
@@ -106,7 +106,7 @@
       }
     ],
     "bonusValueFromAbility": {
-      "ATTACK": 2
+      "ATTACK": 1
     },
     "spellLevel": 0,
     "spellManaCost": 0,
@@ -128,7 +128,7 @@
       }
     ],
     "bonusValueFromAbility": {
-      "INTELLECT": 2
+      "INTELLECT": 1
     },
     "spellLevel": 0,
     "spellManaCost": 0,

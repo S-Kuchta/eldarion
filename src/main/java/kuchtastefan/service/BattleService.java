@@ -241,7 +241,7 @@ public class BattleService {
 
     private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
         System.out.println("\n\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
-        gameCharacter.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.BATTLE_ACTION);
+        gameCharacter.performActionsWithDuration(ActionDurationType.BATTLE_ACTION);
         gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.INTELLECT)
                 * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
     }

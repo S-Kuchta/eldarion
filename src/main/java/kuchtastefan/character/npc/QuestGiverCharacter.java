@@ -15,14 +15,12 @@ import java.util.Map;
 public class QuestGiverCharacter extends GameCharacter {
 
     private final List<Quest> quests;
-    private final QuestService questService;
     private final String baseName;
 
 
     public QuestGiverCharacter(String name, int level) {
         super(name, level);
         this.quests = new ArrayList<>();
-        this.questService = new QuestService();
         this.baseName = name;
     }
 
@@ -45,11 +43,12 @@ public class QuestGiverCharacter extends GameCharacter {
     }
 
     public void questGiverMenu(Hero hero) {
+        QuestService questService = new QuestService();
         HintUtil.printHint(HintName.QUEST_HINT);
 
         connectHeroQuestListWithCharacterQuestList(hero);
         setNameBasedOnQuestsAvailable(hero);
-        this.questService.questGiverMenu(hero, this.quests, this.name);
+        questService.questGiverMenu(hero, this.quests, this.name);
     }
 
     /**

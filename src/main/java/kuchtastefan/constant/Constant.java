@@ -2,10 +2,10 @@ package kuchtastefan.constant;
 
 public class Constant {
     public static final int INITIAL_ABILITY_POINTS = 10;
-    public static final int INCREASE_ABILITY_POINTS_AFTER_LEVEL_UP = 5;
+    public static final int INCREASE_ABILITY_POINTS_AFTER_LEVEL_UP = 4;
     public static final int BASE_EXPERIENCE_POINTS_NEEDED_FOR_NEW_LEVEL = 550;
     public static final int HEALTH_OF_ONE_POINT = 5;
-    public static final int MANA_OF_ONE_POINT = 7;
+    public static final int MANA_OF_ONE_POINT = 10;
     public static final int INITIAL_LEVEL = 1;
     public static final int INITIAL_HERO_GOLD = 150;
     public static final int MAX_VENDOR_ITEMS_FOR_SELL = 6;

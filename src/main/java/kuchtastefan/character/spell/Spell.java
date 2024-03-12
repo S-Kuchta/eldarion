@@ -25,7 +25,7 @@ public class Spell {
     private final List<Action> spellActions;
     private final Map<Ability, Integer> bonusValueFromAbility;
     private final int spellLevel;
-    private final int spellManaCost;
+    private int spellManaCost;
     private final int turnCoolDown;
     private int currentTurnCoolDown;
     private boolean canSpellBeCasted;
@@ -101,6 +101,7 @@ public class Spell {
                 System.out.println(ConsoleColor.RED + "\tYou can not cast " + this.spellName + ". Spell is on coolDown! (You have to wait "
                         + ((this.turnCoolDown - this.currentTurnCoolDown) + 1) + " turns)" + ConsoleColor.RESET);
             }
+
             return false;
         }
     }
@@ -130,13 +131,7 @@ public class Spell {
 
             if (action instanceof ActionStun) {
                 action.performAction(spellTarget);
-//                spellTarget.setCanPerformAction(false);
-//                ((ActionStun) action).setCurrentActionTurn(1);
             }
-
-//            if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-//                actionOrActionWithDuration(action, spellTarget);
-//            }
 
             if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
                 actionOrActionWithDuration(action, spellCaster);

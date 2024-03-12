@@ -214,7 +214,7 @@ public class GameManager {
         HintUtil.initializeHintList();
 
 
-        System.out.println("Welcome to the Gladiatus game!");
+        System.out.println("Welcome to the Eldarion!");
         PrintUtil.printIndexAndText("0", "Start new game");
         System.out.println();
         PrintUtil.printIndexAndText("1", "Load game");
@@ -270,8 +270,9 @@ public class GameManager {
         }
 
         this.hero.setName(name);
-        this.hero.setLevel(1);
+        this.hero.setLevel(Constant.INITIAL_LEVEL);
         this.hero.gainExperiencePoints(0);
+
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();
 

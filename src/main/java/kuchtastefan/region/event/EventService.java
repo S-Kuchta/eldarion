@@ -63,6 +63,6 @@ public class EventService {
                 * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
 
         hero.checkAndRemoveActionTurns();
-        hero.updateCurrentCharacterStateDependsOnActiveActionsAndIncreaseTurn(ActionDurationType.REGION_ACTION);
+        hero.performActionsWithDuration(ActionDurationType.REGION_ACTION);
     }
 }

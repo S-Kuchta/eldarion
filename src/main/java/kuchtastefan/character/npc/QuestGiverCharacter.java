@@ -1,25 +1,32 @@
 package kuchtastefan.character.npc;
 
-import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestMap;
 import kuchtastefan.quest.QuestService;
 import kuchtastefan.utility.ConsoleColor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class QuestGiverCharacter extends GameCharacter {
+@Getter
+@Setter
+public class QuestGiverCharacter {
 
-    private final List<Quest> quests;
+    private int questGiverId;
+    private String name;
     private final String baseName;
+    private int[] questsId;
+    private List<Quest> quests;
 
 
-    public QuestGiverCharacter(String name, int level) {
-        super(name, level);
+    public QuestGiverCharacter(String name) {
+        this.name = name;
         this.quests = new ArrayList<>();
         this.baseName = name;
     }
@@ -114,6 +121,14 @@ public class QuestGiverCharacter extends GameCharacter {
         }
 
         return questCompleted;
+    }
+
+    public void convertQuestIdToQuest() {
+        this.quests =  new ArrayList<>();
+
+        for (int questId : this.questsId) {
+            this.quests.add(QuestMap.mapIdQuest.get(questId));
+        }
     }
 }
 

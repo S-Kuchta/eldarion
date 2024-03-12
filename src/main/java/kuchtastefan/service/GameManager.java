@@ -2,7 +2,6 @@ package kuchtastefan.service;
 
 import kuchtastefan.character.hero.*;
 import kuchtastefan.character.npc.CharacterList;
-import kuchtastefan.character.npc.QuestGiverCharacter;
 import kuchtastefan.character.npc.vendor.ConsumableVendorCharacter;
 import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.character.npc.vendor.JunkVendorCharacter;
@@ -15,7 +14,7 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.ItemsLists;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
-import kuchtastefan.quest.QuestMap;
+import kuchtastefan.quest.QuestGiverCharacterDB;
 import kuchtastefan.region.ForestRegionService;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -118,15 +117,6 @@ public class GameManager {
         final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
                 ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
 
-        QuestGiverCharacter questGiverCharacter = CreateNewQuestGiverCharacter.questGiver("Freya", 4, this.hero);
-//        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Freya", 8);
-//        questGiverCharacter.addQuest(QuestList.questList.get(4));
-//        questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
-
-        QuestGiverCharacter questGiverCharacter1 = new QuestGiverCharacter("Devom Of Cremora", 8);
-        questGiverCharacter1.addQuest(QuestMap.mapIdQuest.get(2));
-        questGiverCharacter1.setNameBasedOnQuestsAvailable(this.hero);
-
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
         PrintUtil.printDivider();
@@ -135,9 +125,9 @@ public class GameManager {
         System.out.println();
         PrintUtil.printIndexAndText("1", cityFoodVendor.getName() + " (Food Merchant)");
         System.out.println();
-        PrintUtil.printIndexAndText("2", questGiverCharacter.getName());
+        PrintUtil.printIndexAndText("2", QuestGiverCharacterDB.getQuestGiverName(1));
         System.out.println();
-        PrintUtil.printIndexAndText("3", questGiverCharacter1.getName());
+        PrintUtil.printIndexAndText("3", QuestGiverCharacterDB.getQuestGiverName(2));
         System.out.println();
 
         int choice = InputUtil.intScanner();
@@ -145,8 +135,8 @@ public class GameManager {
             case 0 -> {
             }
             case 1 -> cityFoodVendor.vendorMenu(this.hero);
-            case 2 -> questGiverCharacter.questGiverMenu(this.hero);
-            case 3 -> questGiverCharacter1.questGiverMenu(this.hero);
+            case 2 -> QuestGiverCharacterDB.getQuestGiverMenu(1, this.hero);
+            case 3 -> QuestGiverCharacterDB.getQuestGiverMenu(2, this.hero);
         }
     }
 
@@ -155,13 +145,6 @@ public class GameManager {
                 ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0));
         final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
                 ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
-
-        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("High Priestess Elara", 8);
-        questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(3));
-        questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(5));
-        questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(6));
-
-        questGiverCharacter.setNameBasedOnQuestsAvailable(this.hero);
 
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");
@@ -175,7 +158,7 @@ public class GameManager {
         System.out.println();
         PrintUtil.printIndexAndText("3", cityPotionsVendor.getName() + " (Potions Merchant)");
         System.out.println();
-        PrintUtil.printIndexAndText("4", questGiverCharacter.getName());
+        PrintUtil.printIndexAndText("4", QuestGiverCharacterDB.getQuestGiverName(0));
         System.out.println();
 
         int choice = InputUtil.intScanner();
@@ -185,7 +168,7 @@ public class GameManager {
             case 1 -> System.out.println("Work in progress");
             case 2 -> cityAlchemistReagentVendor.vendorMenu(this.hero);
             case 3 -> cityPotionsVendor.vendorMenu(this.hero);
-            case 4 -> questGiverCharacter.questGiverMenu(this.hero);
+            case 4 -> QuestGiverCharacterDB.getQuestGiverMenu(0, this.hero);
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -200,14 +183,13 @@ public class GameManager {
 
         GameSettingsService.initializeGameSettings();
 
-//        QuestList.questList.addAll(this.fileService.importQuestsListFromFile());
-
         SpellsList.spellList.addAll(this.fileService.importSpellsFromFile());
         CharacterList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
         this.fileService.importQuestsListFromFile();
         this.fileService.importLocationsFromFile();
         this.fileService.importEnemyGroupFromFile();
+        this.fileService.importQuestGiverFromFile(this.hero);
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 5);
 
@@ -272,6 +254,7 @@ public class GameManager {
         this.hero.setName(name);
         this.hero.setLevel(Constant.INITIAL_LEVEL);
         this.hero.gainExperiencePoints(0);
+        this.hero.setInitialEquip();
 
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();

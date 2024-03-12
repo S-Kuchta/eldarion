@@ -1,0 +1,32 @@
+[
+  {
+    "questGiverId": 0,
+    "baseName": "High Priestess Elara",
+    "questsId": [
+      3,
+      5,
+      6
+    ]
+  },
+  {
+    "questGiverId": 1,
+    "baseName": "Freya",
+    "questsId": [
+      4
+    ]
+  },
+  {
+    "questGiverId": 2,
+    "baseName": "Devom Of Cremora",
+    "questsId": [
+      2
+    ]
+  },
+  {
+    "questGiverId": 3,
+    "baseName": "Gandau Aulnernilt",
+    "questsId": [
+      0
+    ]
+  }
+]

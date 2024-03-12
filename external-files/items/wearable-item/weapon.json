@@ -1,9 +1,9 @@
 [
   {
     "itemId": 200,
-    "name": "Iron sword of Attack",
+    "name": "Training Sword",
     "abilities": {
-      "ATTACK": 2
+      "ATTACK": 1
     },
     "itemLevel": 1
   },

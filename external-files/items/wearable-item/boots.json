@@ -1,6 +1,14 @@
 [
   {
     "itemId": 500,
+    "name": "Recruit's Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 1
+    },
+    "itemLevel": 1
+  },
+  {
+    "itemId": 501,
     "name": "Basic boots",
     "abilities": {
       "RESIST_DAMAGE": 1

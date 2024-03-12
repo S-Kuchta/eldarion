@@ -1,6 +1,14 @@
 [
   {
     "itemId": 600,
+    "name": "Worn Tunic",
+    "abilities": {
+      "RESIST_DAMAGE": 1
+    },
+    "itemLevel": 1
+  },
+  {
+    "itemId": 601,
     "name": "Leather armor of Attack",
     "abilities": {
       "RESIST_DAMAGE": 1,
@@ -9,7 +17,7 @@
     "itemLevel": 1
   },
   {
-    "itemId": 601,
+    "itemId": 602,
     "name": "Robe of intellect",
     "abilities": {
       "RESIST_DAMAGE": 1,

@@ -267,6 +267,13 @@ public class Hero extends GameCharacter {
         this.heroGold += golds;
     }
 
+    public void setInitialEquip() {
+        this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(200));
+        this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(400));
+        this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(500));
+        this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(600));
+    }
+
     private Map<Ability, Integer> getInitialAbilityPoints() {
         return new HashMap<>(Map.of(
                 Ability.ATTACK, 1,

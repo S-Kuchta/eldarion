@@ -31,7 +31,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 2,
+        "maxActionValue": 8,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -42,7 +42,7 @@
       "ATTACK": 1
     },
     "spellLevel": 0,
-    "spellManaCost": 27,
+    "spellManaCost": 21,
     "turnCoolDown": 0
   },
   {
@@ -69,7 +69,7 @@
       "ATTACK": 1
     },
     "spellLevel": 0,
-    "spellManaCost": 32,
+    "spellManaCost": 25,
     "turnCoolDown": 3
   },
   {
@@ -93,7 +93,7 @@
       "ATTACK": 1
     },
     "spellLevel": 1,
-    "spellManaCost": 40,
+    "spellManaCost": 29,
     "turnCoolDown": 8
   },
   {
@@ -190,7 +190,7 @@
       "INTELLECT": 1
     },
     "spellLevel": 2,
-    "spellManaCost": 40,
+    "spellManaCost": 38,
     "turnCoolDown": 3
   },
   {

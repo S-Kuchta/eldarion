@@ -21,8 +21,7 @@
         "stageName": "Mine Cell Block",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
-        "questId": 0,
-        "questGiverName": "Gandau Aulnernilt"
+        "questGiverId": 3
       },
       "2": {
         "type": "LocationStageCombat",

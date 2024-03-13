@@ -112,6 +112,8 @@ public abstract class GameCharacter {
                 actionWithDuration.actionAddTurn();
             }
         }
+
+        checkAndRemoveActionTurns();
     }
 
     public void checkAndRemoveActionTurns() {

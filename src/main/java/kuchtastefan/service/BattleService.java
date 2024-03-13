@@ -108,7 +108,7 @@ public class BattleService {
             // If character is alive
             if (attackingCharacter.getCurrentAbilityValue(Ability.HEALTH) > 0) {
 
-                attackingCharacter.checkAndRemoveActionTurns();
+//                attackingCharacter.checkAndRemoveActionTurns();
                 checkSpellsCoolDowns(attackingCharacter);
                 if (attackingCharacter instanceof Hero) {
                     heroPlay = true;
@@ -242,6 +242,7 @@ public class BattleService {
     private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
         System.out.println("\n\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
         gameCharacter.performActionsWithDuration(ActionDurationType.BATTLE_ACTION);
+
         gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.INTELLECT)
                 * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
     }

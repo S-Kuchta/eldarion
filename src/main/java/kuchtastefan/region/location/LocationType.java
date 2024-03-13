@@ -10,6 +10,7 @@ public enum LocationType {
     CAVE("Location"),
     TOWER("Location"),
     CASTLE("Location"),
+    LAKE("Location"),
     CEMETERY("Location"),
     VILLAGE("Location");
 

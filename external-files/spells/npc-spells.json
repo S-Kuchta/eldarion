@@ -208,5 +208,41 @@
     "spellLevel": 0,
     "spellManaCost": 0,
     "turnCoolDown": 0
+  },
+  {
+    "spellId": 109,
+    "spellName": "Ice lance",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 3,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      },
+      {
+        "type": "ActionDecreaseAbilityPoint",
+        "actionName": "DECREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 1,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 20,
+        "canBeActionCriticalHit": false,
+        "ability": "ATTACK",
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 1,
+      "ATTACK": 1
+    },
+    "spellLevel": 1,
+    "spellManaCost": 27,
+    "turnCoolDown": 3
   }
 ]

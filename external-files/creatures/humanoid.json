@@ -1,7 +1,7 @@
 [
   {
     "npcId": 200,
-    "name": "Defias Bandit",
+    "name": "Weak Defias Bandit",
     "characterRarity": "COMMON",
     "abilities": {
       "ATTACK": 3,
@@ -9,7 +9,7 @@
       "STRENGTH": 3,
       "INTELLECT": 1,
       "HASTE": 3,
-      "CRITICAL_HIT_CHANCE": 2,
+      "CRITICAL_HIT_CHANCE": 4,
       "HEALTH": 50,
       "MANA": 50,
       "ABSORB_DAMAGE": 0
@@ -21,17 +21,17 @@
   },
   {
     "npcId": 201,
-    "name": "Defias Looter",
+    "name": "Weak Defias Looter",
     "characterRarity": "COMMON",
     "abilities": {
-      "ATTACK": 3,
+      "ATTACK": 4,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 3,
       "INTELLECT": 1,
       "HASTE": 3,
-      "CRITICAL_HIT_CHANCE": 2,
+      "CRITICAL_HIT_CHANCE": 3,
       "HEALTH": 60,
-      "MANA": 40,
+      "MANA": 50,
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
@@ -41,7 +41,7 @@
   },
   {
     "npcId": 202,
-    "name": "Defias Raider",
+    "name": "Weak Defias Raider",
     "characterRarity": "RARE",
     "abilities": {
       "ATTACK": 5,
@@ -57,7 +57,7 @@
     "npcCharacterSpellsId": [
       100
     ],
-    "level": 3
+    "level": 2
   },
   {
     "npcId": 203,

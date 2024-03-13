@@ -62,7 +62,7 @@ public class EventService {
         hero.restoreAbility(hero.getCurrentAbilityValue(Ability.INTELLECT)
                 * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
 
-        hero.checkAndRemoveActionTurns();
+//        hero.checkAndRemoveActionTurns();
         hero.performActionsWithDuration(ActionDurationType.REGION_ACTION);
     }
 }

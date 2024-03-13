@@ -41,8 +41,7 @@ public class JunkVendorCharacter extends VendorCharacter {
         List<JunkItem> junkItems = new ArrayList<>();
         PrintUtil.printShopHeader(hero, "Junk");
         int index = 1;
-//        System.out.println("\t0. Go back");
-        PrintUtil.printIndexAndText("0.", "Go back");
+        PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
         if (hero.getHeroInventory().returnInventoryJunkItemMap().isEmpty()) {
             System.out.println("\tItem list is empty");

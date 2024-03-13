@@ -1,81 +1,85 @@
 {
   "hero": {
-    "characterClass": "SHAMAN",
+    "characterClass": "WARLOCK",
     "unspentAbilityPoints": 0,
-    "heroGold": 150.0,
-    "experiencePoints": 0.0,
+    "heroGold": 185.0,
+    "experiencePoints": 150.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "STRENGTH": 0,
-          "MANA": 0,
-          "HASTE": 0,
+          "ATTACK": 1,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
-          "ABSORB_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "INTELLECT": 0
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "itemId": 200,
+        "name": "Training Sword",
+        "price": 70.0,
+        "itemLevel": 1
       },
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
-          "STRENGTH": 0,
-          "MANA": 0,
-          "HASTE": 0,
-          "RESIST_DAMAGE": 0,
+          "RESIST_DAMAGE": 1,
           "ATTACK": 0,
-          "ABSORB_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "INTELLECT": 0
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "itemId": 600,
+        "name": "Worn Tunic",
+        "price": 70.0,
+        "itemLevel": 1
       },
       "BOOTS": {
         "wearableItemType": "BOOTS",
         "abilities": {
-          "STRENGTH": 0,
-          "MANA": 0,
-          "HASTE": 0,
-          "RESIST_DAMAGE": 0,
+          "RESIST_DAMAGE": 1,
           "ATTACK": 0,
-          "ABSORB_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "INTELLECT": 0
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "itemId": 500,
+        "name": "Recruit\u0027s Boots",
+        "price": 70.0,
+        "itemLevel": 1
       },
       "HANDS": {
         "wearableItemType": "HANDS",
         "abilities": {
-          "STRENGTH": 0,
-          "MANA": 0,
-          "HASTE": 0,
-          "RESIST_DAMAGE": 0,
+          "RESIST_DAMAGE": 1,
           "ATTACK": 0,
-          "ABSORB_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "INTELLECT": 0
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
         },
         "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
+        "itemId": 400,
+        "name": "Recruit\u0027s Gloves",
+        "price": 70.0,
+        "itemLevel": 1
       },
       "HEAD": {
         "wearableItemType": "HEAD",
@@ -84,8 +88,8 @@
           "MANA": 0,
           "HASTE": 0,
           "RESIST_DAMAGE": 0,
-          "ATTACK": 0,
           "ABSORB_DAMAGE": 0,
+          "ATTACK": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "INTELLECT": 0
@@ -100,62 +104,424 @@
       "STRENGTH": 0,
       "MANA": 0,
       "HASTE": 0,
-      "RESIST_DAMAGE": 0,
-      "ATTACK": 0,
+      "RESIST_DAMAGE": 3,
       "ABSORB_DAMAGE": 0,
+      "ATTACK": 1,
       "CRITICAL_HIT_CHANCE": 0,
       "HEALTH": 0,
       "INTELLECT": 0
     },
     "heroInventory": {
-      "heroInventory": {}
+      "heroInventory": [
+        [
+          {
+            "type": "JunkItem",
+            "name": "Candlestick",
+            "price": 5.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Parchment",
+            "price": 25.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "QuestItem",
+            "itemId": 100,
+            "name": "Wolf meat",
+            "price": 0.0,
+            "itemLevel": 2
+          },
+          0
+        ],
+        [
+          {
+            "type": "QuestItem",
+            "itemId": 102,
+            "name": "Boss Head",
+            "price": 0.0,
+            "itemLevel": 2
+          },
+          0
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Tankard",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "name": "Silver ring",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ]
+      ]
     },
     "experiencePointsService": {
       "neededExperiencePointsForNewLevel": 660.0
     },
-    "heroAcceptedQuestIdQuest": {},
-    "learnedSpells": {},
-    "discoveredLocationList": {},
-    "name": "1",
+    "heroAcceptedQuestIdQuest": {
+      "1": {
+        "type": "Quest",
+        "questId": 1,
+        "questName": "Wolfs in the forest",
+        "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us and revenge them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestKillObjective",
+            "questEnemyId": 100,
+            "countEnemyToKill": 5,
+            "currentCountEnemyProgress": 0,
+            "completed": false,
+            "questObjectiveName": "Kill Wolf"
+          },
+          {
+            "type": "QuestKillObjective",
+            "questEnemyId": 102,
+            "countEnemyToKill": 1,
+            "currentCountEnemyProgress": 0,
+            "completed": false,
+            "questObjectiveName": "Kill Alpha Wolf"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            204
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0
+        },
+        "isTurnedIn": false
+      },
+      "2": {
+        "type": "Quest",
+        "questId": 2,
+        "questName": "Bring me 10 Wolf meat",
+        "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestBringItemObjective",
+            "objectiveItemId": 100,
+            "itemDropFromEnemy": [
+              100,
+              102
+            ],
+            "itemDropCountNeeded": 10,
+            "completed": false,
+            "questObjectiveName": "Wolf Meat"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            204
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0
+        },
+        "isTurnedIn": false
+      },
+      "3": {
+        "type": "Quest",
+        "questId": 3,
+        "questName": "Kill Defias Boss",
+        "questDescription": "There are bandits in Our mine called Enchanted Mine. Please clear our mine, kill it\u0027s boss and bring us his head!.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestBringItemObjective",
+            "objectiveItemId": 102,
+            "itemDropFromEnemy": [
+              203
+            ],
+            "itemDropCountNeeded": 1,
+            "completed": false,
+            "questObjectiveName": "Bring bandit boss head"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            204
+          ],
+          "goldsReward": 30.0,
+          "experiencePointsReward": 70.0
+        },
+        "isTurnedIn": false
+      },
+      "4": {
+        "type": "Quest",
+        "questId": 4,
+        "questName": "Clear Enchanted Mine",
+        "questDescription": "Please clear our mine.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestClearLocationObjective",
+            "locationId": 0,
+            "completed": false,
+            "questObjectiveName": "Clear Enchanted Mine"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            200
+          ],
+          "goldsReward": 50.0,
+          "experiencePointsReward": 100.0
+        },
+        "isTurnedIn": false
+      },
+      "5": {
+        "type": "Quest",
+        "questId": 5,
+        "questName": "Finding the Lost Book",
+        "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
+        "questLevel": 2,
+        "questCompleted": false,
+        "questObjectives": [
+          {
+            "type": "QuestFindObjective",
+            "objectiveItemId": 104,
+            "completed": false,
+            "questObjectiveName": "Find the Book of Elders"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            200
+          ],
+          "goldsReward": 50.0,
+          "experiencePointsReward": 100.0
+        },
+        "isTurnedIn": false
+      }
+    },
+    "learnedSpells": {
+      "1": {
+        "spellId": 403,
+        "spellName": "Summon Succubus",
+        "spellDescription": "Summons a Succubus under the command of the Warlock.",
+        "spellActions": [
+          {
+            "type": "ActionSummonCreature",
+            "summonedNpcId": 500,
+            "gameCharacterLevel": 0,
+            "actionName": "SUMMON_CREATURE",
+            "maxActionValue": 0,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1,
+          "ATTACK": 1
+        },
+        "spellLevel": 1,
+        "spellManaCost": 29,
+        "turnCoolDown": 8,
+        "currentTurnCoolDown": 9,
+        "canSpellBeCasted": true,
+        "spellClass": "WARLOCK",
+        "hitAllEnemy": false
+      }
+    },
+    "discoveredLocationList": {
+      "0": {
+        "locationId": 0,
+        "locationName": "Enchanted Mine",
+        "locationLevel": 2,
+        "stageTotal": 7,
+        "stageCompleted": 1,
+        "cleared": false,
+        "locationType": "MINE",
+        "canLocationBeExplored": true,
+        "locationStages": {
+          "0": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null
+            ],
+            "stageName": "Mine main door",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "1": {
+            "type": "LocationStageQuestGiver",
+            "questGiverId": 3,
+            "stageName": "Mine Cell Block",
+            "stageCompleted": false,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "2": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              200,
+              201
+            ],
+            "stageName": "Mine Upper Floor",
+            "stageCompleted": false,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "3": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              201,
+              201,
+              202
+            ],
+            "stageName": "Mine Lower Floor",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": []
+          },
+          "4": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              200,
+              200,
+              201,
+              203
+            ],
+            "stageName": "Mine Main Room",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": []
+          },
+          "5": {
+            "type": "LocationStageFindTreasure",
+            "stageName": "Treasure Room",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": [
+              103
+            ]
+          },
+          "6": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              204,
+              300,
+              300,
+              300,
+              300
+            ],
+            "stageName": "Necromancer chamber",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": []
+          }
+        }
+      },
+      "1": {
+        "locationId": 1,
+        "locationName": "Tower of Damned",
+        "locationLevel": 2,
+        "stageTotal": 3,
+        "stageCompleted": 0,
+        "cleared": false,
+        "locationType": "TOWER",
+        "canLocationBeExplored": true,
+        "locationStages": {
+          "0": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              200,
+              200
+            ],
+            "stageName": "Tower Enter",
+            "stageCompleted": false,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "1": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              200,
+              200,
+              201,
+              201
+            ],
+            "stageName": "Tower Ground Floor",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": []
+          },
+          "2": {
+            "type": "LocationStageFindItem",
+            "itemId": 104,
+            "stageName": "Tower Top Floor",
+            "stageCompleted": false,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          }
+        }
+      }
+    },
+    "name": "Gwyndeed",
     "level": 1,
     "abilities": {
       "STRENGTH": 1,
       "MANA": 74,
-      "HASTE": 3,
-      "RESIST_DAMAGE": 3,
-      "ATTACK": 3,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 2,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
+      "ATTACK": 3,
+      "CRITICAL_HIT_CHANCE": 2,
       "HEALTH": 50,
-      "INTELLECT": 3
+      "INTELLECT": 5
     },
     "maxAbilities": {
       "STRENGTH": 1,
       "MANA": 74,
-      "HASTE": 3,
-      "RESIST_DAMAGE": 3,
-      "ATTACK": 3,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 5,
+      "ATTACK": 4,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
+      "CRITICAL_HIT_CHANCE": 2,
       "HEALTH": 50,
-      "INTELLECT": 3
+      "INTELLECT": 5
     },
     "currentAbilities": {
       "STRENGTH": 1,
-      "MANA": 74,
-      "HASTE": 3,
-      "RESIST_DAMAGE": 3,
-      "ATTACK": 3,
+      "MANA": 22,
+      "HASTE": 1,
+      "RESIST_DAMAGE": 5,
       "ABSORB_DAMAGE": 0,
-      "CRITICAL_HIT_CHANCE": 1,
-      "HEALTH": 50,
-      "INTELLECT": 3
+      "ATTACK": 4,
+      "CRITICAL_HIT_CHANCE": 2,
+      "HEALTH": 34,
+      "INTELLECT": 5
     },
     "regionActionsWithDuration": [],
     "battleActionsWithDuration": [],
     "characterSpellList": [
       {
-        "spellId": 500,
+        "spellId": 400,
         "spellName": "Weapon Attack",
         "spellDescription": "Attack with weapon",
         "spellActions": [
@@ -170,83 +536,104 @@
           }
         ],
         "bonusValueFromAbility": {
-          "ATTACK": 2
+          "ATTACK": 1,
+          "STRENGTH": 1
         },
         "spellLevel": 0,
         "spellManaCost": 0,
         "turnCoolDown": 0,
         "currentTurnCoolDown": 1,
         "canSpellBeCasted": true,
-        "spellClass": "SHAMAN",
+        "spellClass": "WARLOCK",
         "hitAllEnemy": false
       },
       {
-        "spellId": 501,
-        "spellName": "Earth Shock",
-        "spellDescription": "Instantly shocks the target with concussive force, causing Nature damage and reducing Haste for 3 turns.",
+        "spellId": 401,
+        "spellName": "Shadow Bolt",
+        "spellDescription": "Sends a shadowy bolt at the enemy, causing Shadow damage.",
         "spellActions": [
           {
             "type": "ActionDealDamage",
             "actionName": "DAMAGE",
-            "maxActionValue": 7,
-            "currentActionValue": 0,
+            "maxActionValue": 8,
+            "currentActionValue": 17,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
-          },
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1,
+          "ATTACK": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 21,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 1,
+        "canSpellBeCasted": true,
+        "spellClass": "WARLOCK",
+        "hitAllEnemy": false
+      },
+      {
+        "spellId": 402,
+        "spellName": "Corruption",
+        "spellDescription": "Corrupts the target, causing Shadow damage over 4 turns.",
+        "spellActions": [
           {
-            "type": "ActionDecreaseAbilityPoint",
-            "ability": "HASTE",
+            "type": "ActionDealDamageOverTime",
             "maxActionTurns": 3,
             "currentActionTurn": 0,
             "actionMaxStacks": 1,
             "actionCurrentStacks": 0,
             "actionDurationType": "BATTLE_ACTION",
             "actionStatusEffect": "DEBUFF",
-            "actionName": "DECREASE_ABILITY_POINTS",
+            "actionName": "DAMAGE_OVER_TIME",
             "maxActionValue": 1,
-            "currentActionValue": 0,
+            "currentActionValue": 12,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": false
+            "canBeActionCriticalHit": true
           }
         ],
         "bonusValueFromAbility": {
-          "ATTACK": 2,
-          "INTELLECT": 2
+          "INTELLECT": 1,
+          "ATTACK": 1
         },
         "spellLevel": 0,
         "spellManaCost": 25,
         "turnCoolDown": 3,
         "currentTurnCoolDown": 4,
         "canSpellBeCasted": true,
-        "spellClass": "SHAMAN",
+        "spellClass": "WARLOCK",
         "hitAllEnemy": false
       },
       {
-        "spellId": 502,
-        "spellName": "Lesser Healing Wave",
-        "spellDescription": "Heals the caster.",
+        "spellId": 403,
+        "spellName": "Summon Succubus",
+        "spellDescription": "Summons a Succubus under the command of the Warlock.",
         "spellActions": [
           {
-            "type": "ActionRestoreHealth",
-            "actionName": "HEAL",
-            "maxActionValue": 7,
-            "currentActionValue": 0,
+            "type": "ActionSummonCreature",
+            "summonedNpcId": 500,
+            "gameCharacterLevel": 1,
+            "actionName": "SUMMON_CREATURE",
+            "maxActionValue": 0,
+            "currentActionValue": 10,
             "actionEffectOn": "SPELL_CASTER",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
           }
         ],
         "bonusValueFromAbility": {
-          "INTELLECT": 2
+          "INTELLECT": 1,
+          "ATTACK": 1
         },
-        "spellLevel": 0,
-        "spellManaCost": 23,
-        "turnCoolDown": 0,
-        "currentTurnCoolDown": 1,
+        "spellLevel": 1,
+        "spellManaCost": 29,
+        "turnCoolDown": 8,
+        "currentTurnCoolDown": 9,
         "canSpellBeCasted": true,
-        "spellClass": "SHAMAN",
+        "spellClass": "WARLOCK",
         "hitAllEnemy": false
       }
     ],
@@ -254,39 +641,96 @@
     "reflectSpell": false
   },
   "hintUtil": {
-    "NEW_SPELL_HINT": {
-      "text": "\tHere you can learn a new spell. You can learn one new spell on levels 1, 2, 3, 5 and 7.\n\tWhen you want to change a learned spell, simply learn a new one, and the old one will be unlearned.",
-      "showed": false
+    "LOCATION_HINT": {
+      "text": "\tWelcome to the location. The Location consists of multiple stages.\n\tIf a stage is not open from the beginning, you can only access it after completing the previous stage.\n\tTo enter some stages, you need an item to unlock the stage.\n\tAfter completing all stages, you will receive a reward.",
+      "showed": true
     },
-    "QUEST_HINT": {
-      "text": "\tThroughout the game, you will be completing quests. For each completed quest, you will receive a reward.\n\tEach quest can have multiple Quest Objectives that you need to fulfill to complete the quest.\n\tAvailable quests will be marked with a yellow exclamation point ( - ! - ),\n\twhile completed but not yet turned in quests will be marked with a yellow question mark ( - ? - ).\n\tYou may also encounter a gray exclamation point, indicating that you have not yet met the requirements\n\tto accept that quest (insufficient level, need to complete a prerequisite quest).",
-      "showed": false
-    },
-    "REGION_HINT": {
-      "text": "\tWelcome to the region. Here you can travel across the region, discover new locations, and complete quests.\n\tHowever, be cautious of traps while traveling through locations.",
+    "BATTLE_HINT": {
+      "text": "\tOne of the most important parts of the game are the battles. Battles occur in turns.\n\tCombat is conducted using spells, each spell has actions that are performed after using the spell.\n\tActions with durations are always performed at the end of the character\u0027s turn.\n\tHowever, be careful, some actions do not have a 100% chance of execution.\n\tIf action has lower chance to perform, you will see percentage chance in action description.\n\tSpells on CoolDowns can\u0027t be used.\n\tTo receive rewards or fulfill Quest Objectives, you must defeat all units and win the battle.",
       "showed": true
     },
     "BLACKSMITH_HINT": {
       "text": "\t\t- You can dismantle wearable item. This will destroy item,\n\tbut you get crafting reagents (items),\n\t\t- You can refinement wearable item. This will increase item\n\tprice and ability bonus, For refinement item you need crafting reagents (items)",
-      "showed": false
+      "showed": true
+    },
+    "NEW_SPELL_HINT": {
+      "text": "\tHere you can learn a new spell. You can learn one new spell on levels 1, 2, 3, 5 and 7.\n\tWhen you want to change a learned spell, simply learn a new one, and the old one will be unlearned.",
+      "showed": true
+    },
+    "HERO_MENU": {
+      "text": "\tIn the hero menu, you can view your statistics, inventory, add or subtract ability points\n\tcheck accepted and completed quests, learn new spells, and adjust game settings.",
+      "showed": true
+    },
+    "QUEST_HINT": {
+      "text": "\tThroughout the game, you will be completing quests. For each completed quest, you will receive a reward.\n\tEach quest can have multiple Quest Objectives that you need to fulfill to complete the quest.\n\tAvailable quests will be marked with a yellow exclamation point ( - ! - ),\n\twhile completed but not yet turned in quests will be marked with a yellow question mark ( - ? - ).\n\tYou may also encounter a gray exclamation point, indicating that you have not yet met the requirements\n\tto accept that quest (insufficient level, need to complete a prerequisite quest).",
+      "showed": true
     },
     "WELCOME": {
       "text": "\tHello, my name is Stefan, and I am creator of this game.\n\tI will guide you through the game for a short time.\n\tIf you find the slow text print bothersome, you can disable it in the game settings.\n\tI hope you will enjoy the game! Good luck with exploring the world of Eldarion!",
       "showed": true
     },
-    "BATTLE_HINT": {
-      "text": "\tOne of the most important parts of the game are the battles. Battles occur in turns.\n\tCombat is conducted using spells, each spell has actions that are performed after using the spell.\n\tActions with durations are always performed at the end of the character\u0027s turn.\n\tHowever, be careful, some actions do not have a 100% chance of execution.\n\tIf action has lower chance to perform, you will see percentage chance in action description.\n\tSpells on CoolDowns can\u0027t be used.\n\tTo receive rewards or fulfill Quest Objectives, you must defeat all units and win the battle.",
-      "showed": false
-    },
-    "HERO_MENU": {
-      "text": "\tIn the hero menu, you can view your statistics, inventory, add or subtract ability points\n\tcheck accepted and completed quests, learn new spells, and adjust game settings.",
-      "showed": false
-    },
-    "LOCATION_HINT": {
-      "text": "\tWelcome to the location. The Location consists of multiple stages.\n\tIf a stage is not open from the beginning, you can only access it after completing the previous stage.\n\tTo enter some stages, you need an item to unlock the stage.\n\tAfter completing all stages, you will receive a reward.",
-      "showed": false
+    "REGION_HINT": {
+      "text": "\tWelcome to the region. Here you can travel across the region, discover new locations, and complete quests.\n\tHowever, be cautious of traps while traveling through locations.",
+      "showed": true
     }
   },
   "regionActionsWithDuration": [],
-  "itemList": {}
+  "itemList": [
+    [
+      {
+        "type": "JunkItem",
+        "name": "Candlestick",
+        "price": 5.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Parchment",
+        "price": 25.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "QuestItem",
+        "itemId": 100,
+        "name": "Wolf meat",
+        "price": 0.0,
+        "itemLevel": 2
+      },
+      0
+    ],
+    [
+      {
+        "type": "QuestItem",
+        "itemId": 102,
+        "name": "Boss Head",
+        "price": 0.0,
+        "itemLevel": 2
+      },
+      0
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Tankard",
+        "price": 18.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "name": "Silver ring",
+        "price": 21.0,
+        "itemLevel": 0
+      },
+      1
+    ]
+  ]
 }

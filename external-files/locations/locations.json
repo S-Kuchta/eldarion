@@ -116,5 +116,61 @@
         "itemId": 104
       }
     }
+  },
+  {
+    "locationId": 2,
+    "locationName": "Crystal Lake",
+    "locationLevel": 1,
+    "locationType": "LAKE",
+    "canLocationBeExplored": true,
+    "locationStages": {
+      "0": {
+        "type": "LocationStageCombat",
+        "stageName": "Lake shore",
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          401
+        ]
+      },
+      "1": {
+        "type": "LocationStageCombat",
+        "stageName": "Lake shore",
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          401
+        ]
+      },
+      "2": {
+        "type": "LocationStageCombat",
+        "stageName": "Old fishing pier",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          401,
+          401
+        ]
+      },
+      "3": {
+        "type": "LocationStageFindItem",
+        "stageName": "The End of Old fishing pier",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemId":
+
+      },
+      "4": {
+        "type": "LocationStageCombat",
+        "stageName": "Lake Isle",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          401,
+          401,
+          402
+        ]
+      }
+    }
   }
 ]

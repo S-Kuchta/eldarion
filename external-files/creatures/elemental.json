@@ -19,5 +19,47 @@
       204
     ],
     "level": 7
+  },
+  {
+    "npcId": 401,
+    "name": "Weak Water Elemental",
+    "characterRarity": "COMMON",
+    "abilities": {
+      "ATTACK": 2,
+      "RESIST_DAMAGE": 1,
+      "STRENGTH": 2,
+      "INTELLECT": 4,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 3,
+      "HEALTH": 50,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      109
+    ],
+    "level": 1
+  },
+  {
+    "npcId": 402,
+    "name": "Lake Isle Water Elemental",
+    "characterRarity": "RARE",
+    "abilities": {
+      "ATTACK": 3,
+      "RESIST_DAMAGE": 2,
+      "STRENGTH": 3,
+      "INTELLECT": 5,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 3,
+      "HEALTH": 60,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      109
+    ],
+    "level": 1
   }
 ]

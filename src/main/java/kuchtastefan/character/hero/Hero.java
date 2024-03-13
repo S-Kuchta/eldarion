@@ -36,7 +36,7 @@ public class Hero extends GameCharacter {
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
-    private final Map<Integer, Quest> heroAcceptedQuestIdQuest;
+    private final Map<Integer, Quest> heroAcceptedQuest;
     private final Map<Integer, Spell> learnedSpells;
     private final Map<Integer, Location> discoveredLocationList;
 
@@ -49,10 +49,10 @@ public class Hero extends GameCharacter {
         this.wearingItemAbilityPoints = getItemsInitialAbilityPoints();
         this.equippedItem = initialEquip();
         this.heroInventory = new HeroInventory();
+        this.experiencePointsService = new ExperiencePointsService();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
-        this.experiencePointsService = new ExperiencePointsService();
-        this.heroAcceptedQuestIdQuest = new HashMap<>();
+        this.heroAcceptedQuest = new HashMap<>();
         this.learnedSpells = new HashMap<>();
         this.discoveredLocationList = new HashMap<>();
     }
@@ -63,9 +63,7 @@ public class Hero extends GameCharacter {
             System.out.println("\tYou don't meet minimal level requirement to wear this item!");
             PrintUtil.printLongDivider();
         } else {
-            PrintUtil.printDivider();
-            System.out.println("\tYou equipped " + wearableItem.getName());
-            PrintUtil.printDivider();
+            System.out.println("\tYou equip " + ConsoleColor.YELLOW +  wearableItem.getName() + ConsoleColor.RESET);
             this.equippedItem.put(wearableItem.getWearableItemType(), wearableItem);
         }
         updateWearingItemAbilityPoints();
@@ -187,7 +185,7 @@ public class Hero extends GameCharacter {
         this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
         this.experiencePoints += experiencePointsGained;
 
-        if (this.experiencePointsService.gainedNewLevel(this.experiencePoints)) {
+        if (experiencePointsService.gainedNewLevel(this.experiencePoints)) {
             this.level++;
             this.updateAbilityPoints(Constant.INCREASE_ABILITY_POINTS_AFTER_LEVEL_UP);
 
@@ -195,7 +193,7 @@ public class Hero extends GameCharacter {
             System.out.println("\tYou reached a new level! Your level is " + this.level + "!");
             PrintUtil.printDivider();
 
-            this.experiencePoints -= experiencePointsService.getNeededExperiencePointsForNewLevel();
+            this.experiencePoints -= this.experiencePointsService.getNeededExperiencePointsForNewLevel();
             this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
         }
 
@@ -213,7 +211,7 @@ public class Hero extends GameCharacter {
      */
     public void checkQuestProgress(Integer questEnemyId) {
 
-        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuestIdQuest.entrySet()) {
+        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuest.entrySet()) {
             for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
                 if (!questObjective.isCompleted()) {
                     if (questObjective instanceof QuestKillObjective
@@ -243,7 +241,7 @@ public class Hero extends GameCharacter {
      * Add this method at the end of each event which can complete quest or quest objective
      */
     public void checkIfQuestObjectivesAndQuestIsCompleted() {
-        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuestIdQuest.entrySet()) {
+        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuest.entrySet()) {
             if (!questMap.getValue().isTurnedIn()) {
                 for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
                     if (!questObjective.isCompleted()) {
@@ -268,6 +266,11 @@ public class Hero extends GameCharacter {
     }
 
     public void setInitialEquip() {
+        this.heroInventory.addItemWithNewCopyToItemList(ItemsLists.getItemMapIdItem().get(200));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemsLists.getItemMapIdItem().get(400));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemsLists.getItemMapIdItem().get(500));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemsLists.getItemMapIdItem().get(600));
+
         this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(200));
         this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(400));
         this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(500));

@@ -3,6 +3,7 @@ package kuchtastefan.region.event;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
 import kuchtastefan.region.location.LocationType;
@@ -87,12 +88,12 @@ public class CombatEvent extends Event {
             if (haveHeroWon) {
                 for (Enemy randomEnemy : this.enemies) {
                     double goldEarn = randomEnemy.getGoldDrop();
-                    double experiencePointGained = randomEnemy.getLevel() * 20 + randomEnemy.getCharacterRarity().getExperienceGainedValue();
+                    double experiencePointGained = randomEnemy.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + randomEnemy.getCharacterRarity().getExperienceGainedValue();
 
                     PrintUtil.printLongDivider();
                     for (Item item : randomEnemy.getItemsDrop()) {
                         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-                        System.out.println("\tYou loot " + ConsoleColor.GREEN + item.getName() + ConsoleColor.RESET);
+                        System.out.println("\tYou loot " + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET);
                     }
 
                     if (goldEarn > 0) {

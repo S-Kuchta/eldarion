@@ -63,7 +63,7 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
     }
 
     @Override
-    public void removeCompletedItemsOrEnemies(Hero hero) {
+    public void removeCompletedQuestObjectiveAssignment(Hero hero) {
         Item questItem = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
 
         hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(

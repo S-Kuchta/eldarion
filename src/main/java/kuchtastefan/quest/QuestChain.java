@@ -23,7 +23,7 @@ public class QuestChain extends Quest {
 
     public boolean canBeQuestAccepted(Hero hero) {
         try {
-            return hero.getHeroAcceptedQuestIdQuest().get(this.previousQuestId).isTurnedIn();
+            return hero.getHeroAcceptedQuest().get(this.previousQuestId).isTurnedIn();
         } catch (NullPointerException e) {
             return false;
         }

@@ -1,7 +1,6 @@
 package kuchtastefan.item.wearableItem;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,13 +29,7 @@ public class WearableItem extends Item {
     public void increaseWearableItemAbilityValue(WearableItem wearableItem) {
         for (Ability ability : Ability.values()) {
             if (wearableItem.getAbilities().get(ability) != 0) {
-                if (ability.equals(Ability.HEALTH)) {
-                    wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) + Constant.HEALTH_OF_ONE_POINT));
-                } else if (ability.equals(Ability.MANA)) {
-                    wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) + Constant.MANA_OF_ONE_POINT));
-                } else {
-                    wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) + 1));
-                }
+                wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) * 2));
             }
         }
     }

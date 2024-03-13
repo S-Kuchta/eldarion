@@ -6,8 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 @Getter
 public enum WearableItemQuality {
     BASIC("Basic item quality"),
-    IMPROVED("Improved item quality - item ability stats are increased by 1"),
-    SUPERIOR("Superior item quality - item ability stats are increased by 2"),
+    IMPROVED("Improved item quality - item ability stats are doubled"),
     SPECIAL("Special item quality - items can be obtained in special treasure or as boss drop"),
     QUEST_REWARD("Item from completing the quest");
 
@@ -21,5 +20,4 @@ public enum WearableItemQuality {
     public String toString() {
         return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
     }
-
 }

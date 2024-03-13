@@ -40,7 +40,7 @@ public class QuestGiverCharacter {
      */
     private void connectHeroQuestListWithCharacterQuestList(Hero hero) {
         for (Quest quest : this.quests) {
-            for (Map.Entry<Integer, Quest> questMap : hero.getHeroAcceptedQuestIdQuest().entrySet()) {
+            for (Map.Entry<Integer, Quest> questMap : hero.getHeroAcceptedQuest().entrySet()) {
                 if (quest.equals(questMap.getValue())) {
                     int position = this.quests.indexOf(questMap.getValue());
                     this.quests.set(position, questMap.getValue());
@@ -72,9 +72,9 @@ public class QuestGiverCharacter {
         int numberOfCompletedQuests = 0;
         for (Quest quest : this.quests) {
 
-            haveQuestAvailable = hero.getHeroAcceptedQuestIdQuest().containsValue(quest);
+            haveQuestAvailable = hero.getHeroAcceptedQuest().containsValue(quest);
 
-            if (hero.getHeroAcceptedQuestIdQuest().containsValue(quest) && quest.isQuestCompleted() && !quest.isTurnedIn()) {
+            if (hero.getHeroAcceptedQuest().containsValue(quest) && quest.isQuestCompleted() && !quest.isTurnedIn()) {
                 haveQuestComplete = true;
                 break;
             }
@@ -106,7 +106,7 @@ public class QuestGiverCharacter {
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
         boolean questCompleted = true;
 
-        for (Map.Entry<Integer, Quest> questMap : hero.getHeroAcceptedQuestIdQuest().entrySet()) {
+        for (Map.Entry<Integer, Quest> questMap : hero.getHeroAcceptedQuest().entrySet()) {
             if (this.quests.contains(questMap.getValue()) && !questMap.getValue().isTurnedIn()) {
                 questCompleted = false;
                 break;
@@ -114,7 +114,7 @@ public class QuestGiverCharacter {
         }
 
         for (Quest quest : this.quests) {
-            if (!hero.getHeroAcceptedQuestIdQuest().containsValue(quest)) {
+            if (!hero.getHeroAcceptedQuest().containsValue(quest)) {
                 questCompleted = false;
                 break;
             }

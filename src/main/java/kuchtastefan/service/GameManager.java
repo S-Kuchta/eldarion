@@ -254,12 +254,13 @@ public class GameManager {
         this.hero.setName(name);
         this.hero.setLevel(Constant.INITIAL_LEVEL);
         this.hero.gainExperiencePoints(0);
-        this.hero.setInitialEquip();
 
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();
 
+        this.hero.setInitialEquip();
         this.heroAbilityManager.spendAbilityPoints();
+
         HintUtil.printHint(HintName.WELCOME);
     }
 }

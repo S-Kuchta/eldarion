@@ -33,7 +33,7 @@ public class QuestFindObjective extends QuestObjective implements RemoveObjectiv
     }
 
     @Override
-    public void removeCompletedItemsOrEnemies(Hero hero) {
+    public void removeCompletedQuestObjectiveAssignment(Hero hero) {
         Item item = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
         hero.getHeroInventory().removeItemFromHeroInventory(item);
     }

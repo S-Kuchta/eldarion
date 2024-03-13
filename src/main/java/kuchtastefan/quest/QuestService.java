@@ -27,8 +27,8 @@ public class QuestService {
                 }
 
                 if (canBeQuestAccepted(quests.get(choice - 1), hero)) {
-                    if (hero.getHeroAcceptedQuestIdQuest().containsValue(quests.get(choice - 1))) {
-                        this.selectedQuestForQuestGiverMenu(hero.getHeroAcceptedQuestIdQuest()
+                    if (hero.getHeroAcceptedQuest().containsValue(quests.get(choice - 1))) {
+                        this.selectedQuestForQuestGiverMenu(hero.getHeroAcceptedQuest()
                                 .get(quests.get(choice - 1).getQuestId()), hero, quests, name);
                     } else {
                         this.selectedQuestForQuestGiverMenu(quests.get(choice - 1), hero, quests, name);
@@ -88,9 +88,9 @@ public class QuestService {
                         quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
                 if (quest.isTurnedIn()) {
                     System.out.print(" -- Completed --");
-                } else if (!hero.getHeroAcceptedQuestIdQuest().containsValue(quest)) {
+                } else if (!hero.getHeroAcceptedQuest().containsValue(quest)) {
                     System.out.print(" - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ");
-                } else if (hero.getHeroAcceptedQuestIdQuest().containsValue(quest) && quest.isQuestCompleted()) {
+                } else if (hero.getHeroAcceptedQuest().containsValue(quest) && quest.isQuestCompleted()) {
                     System.out.print(" - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + " - ");
                 }
             } else {
@@ -119,7 +119,7 @@ public class QuestService {
             this.printQuestDetails(quest, hero);
             PrintUtil.printIndexAndText("0", "Go back");
             System.out.println();
-            if (!quest.isQuestCompleted() && !hero.getHeroAcceptedQuestIdQuest().containsValue(quest)) {
+            if (!quest.isQuestCompleted() && !hero.getHeroAcceptedQuest().containsValue(quest)) {
                 PrintUtil.printIndexAndText("1", "Accept quest");
                 System.out.println();
             } else if (!quest.isTurnedIn() && quest.isQuestCompleted()) {
@@ -136,7 +136,7 @@ public class QuestService {
         switch (choice) {
             case 0 -> this.questGiverMenu(hero, quests, name);
             case 1 -> {
-                if (!quest.isQuestCompleted() && !hero.getHeroAcceptedQuestIdQuest().containsValue(quest)) {
+                if (!quest.isQuestCompleted() && !hero.getHeroAcceptedQuest().containsValue(quest)) {
                     System.out.println("\t\t --> Quest accepted <--");
                     this.startTheQuest(quest, hero);
                     this.questGiverMenu(hero, quests, name);
@@ -150,8 +150,8 @@ public class QuestService {
     }
 
     private void startTheQuest(Quest quest, Hero hero) {
-        if (!hero.getHeroAcceptedQuestIdQuest().containsValue(quest)) {
-            hero.getHeroAcceptedQuestIdQuest().put(quest.getQuestId(), quest);
+        if (!hero.getHeroAcceptedQuest().containsValue(quest)) {
+            hero.getHeroAcceptedQuest().put(quest.getQuestId(), quest);
             hero.checkIfQuestObjectivesAndQuestIsCompleted();
         }
     }
@@ -166,7 +166,7 @@ public class QuestService {
         quest.setTurnedIn(true);
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             if (questObjective instanceof RemoveObjectiveProgress) {
-                ((RemoveObjectiveProgress) questObjective).removeCompletedItemsOrEnemies(hero);
+                ((RemoveObjectiveProgress) questObjective).removeCompletedQuestObjectiveAssignment(hero);
             }
         }
     }

@@ -96,7 +96,7 @@ public class BlacksmithService {
                 for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
 
                     // Check if the item's quality is eligible for refinement
-                    if (item.getKey().getWearableItemQuality().equals(WearableItemQuality.BASIC) || item.getKey().getWearableItemQuality().equals(WearableItemQuality.IMPROVED)) {
+                    if (item.getKey().getWearableItemQuality().equals(WearableItemQuality.BASIC)) {
 
                         // Print item description and add it to the refinement map and temporary item list
                         PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
@@ -144,12 +144,6 @@ public class BlacksmithService {
                     hero.getHeroInventory().removeItemFromHeroInventory(wearableItem);
                     itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
                     afterSuccessFullRefinementItem(itemCopy, hero);
-
-                } else if (wearableItemQuality == WearableItemQuality.IMPROVED) {
-                    hero.getHeroInventory().removeItemFromHeroInventory(wearableItem);
-                    itemCopy.setItemQuality(WearableItemQuality.SUPERIOR);
-                    afterSuccessFullRefinementItem(itemCopy, hero);
-
                 } else {
                     PrintUtil.printLongDivider();
                     System.out.println("\t--- You can not refinement your item. Your item has the highest quality ---");
@@ -173,10 +167,6 @@ public class BlacksmithService {
         CraftingReagentItem craftingReagentItem = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
         if (wearableItem.getWearableItemQuality().equals(WearableItemQuality.BASIC)) {
             itemsNeededToRefinement = wearableItem.getItemLevel() * 3;
-        }
-
-        if (wearableItem.getWearableItemQuality().equals(WearableItemQuality.IMPROVED)) {
-            itemsNeededToRefinement = wearableItem.getItemLevel() * 4;
         }
 
         itemsNeededForRefinement.put(craftingReagentItem, itemsNeededToRefinement);
@@ -221,7 +211,7 @@ public class BlacksmithService {
             return;
         }
 
-        PrintUtil.printLongDivider();
+
         List<CraftingReagentItem> tempList = ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(
                 CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
 
@@ -234,6 +224,7 @@ public class BlacksmithService {
         }
 
         assert item != null;
+        PrintUtil.printLongDivider();
         System.out.println("\tYou dismantled " + wearableItem.getName()
                 + ", you got " + item.getName()
                 + "(" + numbersOfIteration + "x)");

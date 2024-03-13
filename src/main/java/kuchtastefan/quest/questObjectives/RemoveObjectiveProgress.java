@@ -4,5 +4,5 @@ import kuchtastefan.character.hero.Hero;
 
 public interface RemoveObjectiveProgress {
 
-    void removeCompletedItemsOrEnemies(Hero hero);
+    void removeCompletedQuestObjectiveAssignment(Hero hero);
 }

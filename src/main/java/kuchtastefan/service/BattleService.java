@@ -249,7 +249,8 @@ public class BattleService {
 
     private void printBattleMenu(Hero hero) {
         // Print hero's header with stats and buffs
-        PrintUtil.printHeaderWithStatsBar(hero);
+//        PrintUtil.printHeaderWithStatsBar(hero);
+        PrintUtil.printCurrentAbilityPointsWithItems(hero);
         PrintUtil.printBattleBuffs(hero);
 
         // Print alies header with stats and buffs
@@ -296,13 +297,13 @@ public class BattleService {
             if (GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN)) {
                 if (spell.isCanSpellBeCasted()) {
                     System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
-                    PrintUtil.printSpellDescription(hero, spell);
+                    PrintUtil.printSpellDescription(hero, this.playerTarget, spell);
                     System.out.println();
                 }
             } else {
                 // Print all spells
                 System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
-                PrintUtil.printSpellDescription(hero, spell);
+                PrintUtil.printSpellDescription(hero, this.playerTarget, spell);
                 System.out.println();
             }
 
@@ -417,11 +418,11 @@ public class BattleService {
                 // Calculate the total damage of the spell, including any damage over time effects
                 for (Action action : spell.getSpellActions()) {
                     if (action instanceof ActionDealDamage) {
-                        totalDamage += action.totalActionValue(spell.getBonusValueFromAbility(), gameCharacter);
+                        totalDamage += action.returnTotalActionValue(spell.getBonusValueFromAbility(), gameCharacter);
                     }
 
                     if (action instanceof ActionDealDamageOverTime) {
-                        int damageWithStacks = action.totalActionValue(spell.getBonusValueFromAbility(), gameCharacter)
+                        int damageWithStacks = action.returnTotalActionValue(spell.getBonusValueFromAbility(), gameCharacter)
                                 * ((ActionDealDamageOverTime) action).getActionMaxStacks();
                         totalDamage += damageWithStacks;
                     }

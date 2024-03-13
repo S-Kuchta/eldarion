@@ -31,6 +31,8 @@ public abstract class Action {
 
     public abstract void performAction(GameCharacter gameCharacter);
 
+    public abstract void printActionDescription(GameCharacter actionCaster, GameCharacter actionTarget);
+
     public boolean willPerformAction() {
         return RandomNumberGenerator.getRandomNumber(0, 100) <= this.chanceToPerformAction;
     }
@@ -39,7 +41,7 @@ public abstract class Action {
         this.currentActionValue = value;
     }
 
-    public int totalActionValue(Map<Ability, Integer> bonusValueFromAbility, GameCharacter spellCaster) {
+    public int returnTotalActionValue(Map<Ability, Integer> bonusValueFromAbility, GameCharacter spellCaster) {
         int totalActionValue = this.maxActionValue + (spellCaster.getLevel() * 2);
         if (bonusValueFromAbility != null) {
             for (Map.Entry<Ability, Integer> abilityBonus : bonusValueFromAbility.entrySet()) {

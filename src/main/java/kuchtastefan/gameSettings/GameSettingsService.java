@@ -18,7 +18,7 @@ public class GameSettingsService {
 
     public static void initializeGameSettings() {
         gameSettings.put(GameSetting.PRINT_STRING_SLOWLY, false);
-        gameSettings.put(GameSetting.HIDE_SPELLS_ON_COOL_DOWN, false);
+        gameSettings.put(GameSetting.HIDE_SPELLS_ON_COOL_DOWN, true);
         gameSettings.put(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME, false);
     }
 }

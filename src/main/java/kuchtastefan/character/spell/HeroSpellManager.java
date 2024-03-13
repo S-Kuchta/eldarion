@@ -76,7 +76,7 @@ public class HeroSpellManager {
             int index = 1;
             for (Spell spell : spellsByClassAndLevel) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
-                PrintUtil.printSpellDescription(hero, spell);
+                PrintUtil.printSpellDescription(hero, null, spell);
                 index++;
                 System.out.println();
             }
@@ -145,7 +145,7 @@ public class HeroSpellManager {
     private void checkLearnedSpells(Hero hero) {
         for (Spell spell : hero.getCharacterSpellList()) {
             System.out.print("\t");
-            PrintUtil.printSpellDescription(hero, spell);
+            PrintUtil.printSpellDescription(hero, null, spell);
             System.out.println();
         }
     }

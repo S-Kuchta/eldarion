@@ -134,7 +134,7 @@
     },
     "spellLevel": 1,
     "spellManaCost": 32,
-    "turnCoolDown": 6
+    "turnCoolDown": 7
   },
   {
     "spellId": 405,

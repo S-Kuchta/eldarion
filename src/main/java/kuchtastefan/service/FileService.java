@@ -386,9 +386,7 @@ public class FileService {
                 }.getType());
 
                 for (Spell spell : spells) {
-//                    if (spell.getSpellClass().equals(CharacterClass.NPC)) {
                     SpellsList.spellMap.put(spell.getSpellId(), spell);
-//                    }
 
                     spell.setCanSpellBeCasted(true);
                     spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);

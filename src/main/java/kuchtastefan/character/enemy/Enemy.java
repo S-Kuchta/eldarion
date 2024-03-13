@@ -1,8 +1,8 @@
 package kuchtastefan.character.enemy;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.CharacterType;
+import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemsLists;
 import kuchtastefan.region.location.LocationType;
@@ -17,6 +17,7 @@ import java.util.*;
 public class Enemy extends NonPlayerCharacter {
 
     private List<Item> itemsDrop;
+    private Integer[] specialItemsDrop;
     private double goldDrop;
     private CharacterType characterType;
     private final LocationType[] locationType;
@@ -43,17 +44,31 @@ public class Enemy extends NonPlayerCharacter {
         }
     }
 
-    public void addItemsDropFromEnemy() {
-        List<Item> tempList = new ArrayList<>();
+    public void addItemsDropToEnemy() {
+//        List<Item> tempList = new ArrayList<>();
+        if (this.itemsDrop == null) {
+            this.itemsDrop = new ArrayList<>();
+        }
+
         List<Item> itemList = ItemsLists.returnItemListByLevel(getLevel(), null);
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
 
+//        for (int i = 0; i < itemsForDrop; i++) {
+//            int randomItemGenerate = RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1);
+//            tempList.add(itemList.get(randomItemGenerate));
+//        }
+
         for (int i = 0; i < itemsForDrop; i++) {
-            int randomItemGenerate = RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1);
-            tempList.add(itemList.get(randomItemGenerate));
+            addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)));
         }
 
-        this.setItemsDrop(tempList);
+        if (this.specialItemsDrop != null) {
+            for (int itemId : this.specialItemsDrop) {
+                addItemToItemDrop(ItemsLists.getItemMapIdItem().get(itemId));
+            }
+        }
+
+//        this.setItemsDrop(tempList);
     }
 
     public void addItemToItemDrop(Item item) {

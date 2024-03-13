@@ -62,11 +62,11 @@ public class Spell {
      * @return True if the spell was successfully cast, false otherwise.
      */
     public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyCharacters, Hero hero, List<GameCharacter> tempCharacterList) {
+
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
             System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.spellName + ConsoleColor.RESET);
 
-            boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100)
-                    <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+            boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
 
             if (spellTarget.isReflectSpell()) {
                 for (Action action : spellTarget.getBattleActionsWithDuration()) {
@@ -111,7 +111,7 @@ public class Spell {
         action.setNewCurrentActionValue(action.getMaxActionValue());
 
         if (action.willPerformAction()) {
-            int totalActionValue = action.totalActionValue(this.bonusValueFromAbility, spellCaster);
+            int totalActionValue = action.returnTotalActionValue(this.bonusValueFromAbility, spellCaster);
 
             if (criticalHit && action.isCanBeActionCriticalHit()) {
                 System.out.println("\t" + action.getActionName() + " Critical hit!");

@@ -2,6 +2,7 @@ package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionDecreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionIncreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
@@ -26,9 +27,7 @@ import java.util.Set;
 
 public class PrintUtil {
 
-    public static void printSpellDescription(Hero hero, Spell spell) {
-
-        int bonusToAbilityFromValue = 0;
+    public static void printSpellDescription(Hero hero, GameCharacter spellTarget, Spell spell) {
 
         System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
                 + " [Mana Cost: " + ConsoleColor.BLUE + spell.getSpellManaCost() + ConsoleColor.RESET + "]");
@@ -41,7 +40,6 @@ public class PrintUtil {
             System.out.print("[Bonus From Ability: ");
             for (Map.Entry<Ability, Integer> abilityBonus : spell.getBonusValueFromAbility().entrySet()) {
                 System.out.print(abilityBonus.getKey() + "(" + abilityBonus.getValue() + "x), ");
-                bonusToAbilityFromValue += hero.getCurrentAbilityValue(abilityBonus.getKey()) * abilityBonus.getValue();
             }
             System.out.print("]");
         }
@@ -49,7 +47,11 @@ public class PrintUtil {
         System.out.println("\n\t" + spell.getSpellDescription());
 
         for (Action action : spell.getSpellActions()) {
-            int totalActionValue = action.getMaxActionValue() + bonusToAbilityFromValue;
+
+            int totalActionValue = action.returnTotalActionValue(spell.getBonusValueFromAbility(), hero);
+            if (spellTarget != null && action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
+                totalActionValue -= spellTarget.getCurrentAbilityValue(Ability.RESIST_DAMAGE);
+            }
 
             System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on ");
             if (spell.isHitAllEnemy()) {

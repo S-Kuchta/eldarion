@@ -26,7 +26,7 @@
     "type": "Quest",
     "questId": 1,
     "questName": "Wolfs in the forest",
-    "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us and revenge them.",
+    "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us!",
     "questLevel": 2,
     "questObjectives": [
       {

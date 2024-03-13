@@ -7,6 +7,8 @@ import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 
+import java.util.Objects;
+
 @Getter
 public class ActionDecreaseAbilityPoint extends ActionWithDuration {
 
@@ -28,5 +30,19 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration {
         gameCharacter.decreaseCurrentAbility(decreaseAbilityWithStacksValue, this.ability);
 
         System.out.println("\t" + ConsoleColor.RED + this.ability + ConsoleColor.RESET + " is decreased by " + decreaseAbilityWithStacksValue);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ActionDecreaseAbilityPoint that = (ActionDecreaseAbilityPoint) o;
+        return ability == that.ability;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), ability);
     }
 }

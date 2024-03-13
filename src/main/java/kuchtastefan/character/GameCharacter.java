@@ -149,19 +149,20 @@ public abstract class GameCharacter {
      * @param damage dealt
      */
     public void receiveDamage(int damage) {
-        if (getCurrentAbilityValue(Ability.RESIST_DAMAGE) > damage) {
+        if (getCurrentAbilityValue(Ability.RESIST_DAMAGE) >= damage) {
             damage = 0;
         } else {
             damage -= getCurrentAbilityValue(Ability.RESIST_DAMAGE);
         }
 
+        // Handle absorb damage
         int absorbDamage = 0;
         Iterator<ActionWithDuration> iterator = this.battleActionsWithDuration.iterator();
         while (iterator.hasNext()) {
 
             ActionWithDuration actionAbsorbDamage = iterator.next();
             if (actionAbsorbDamage instanceof ActionAbsorbDamage) {
-                if (actionAbsorbDamage.getCurrentActionValue() > damage) {
+                if (actionAbsorbDamage.getCurrentActionValue() >= damage) {
                     actionAbsorbDamage.setNewCurrentActionValue(actionAbsorbDamage.getCurrentActionValue() - damage);
                     damage = 0;
                 } else {
@@ -169,6 +170,7 @@ public abstract class GameCharacter {
                     actionAbsorbDamage.setNewCurrentActionValue(0);
                     iterator.remove();
                 }
+
                 absorbDamage += actionAbsorbDamage.getCurrentActionValue();
             }
         }

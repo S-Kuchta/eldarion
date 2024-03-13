@@ -1,5 +1,7 @@
 package kuchtastefan.utility;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.actions.instantActions.*;
@@ -21,6 +23,14 @@ import kuchtastefan.service.RuntimeTypeAdapterFactory;
 
 
 public class RuntimeTypeAdapterFactoryUtil {
+
+//    public static final Gson gson = new GsonBuilder()
+//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
+//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
+//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationStageRuntimeTypeAdapterFactory)
+//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questRuntimeTypeAdapterFactory)
+//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
+//            .enableComplexMapKeySerialization().setPrettyPrinting().create();
 
     public static final RuntimeTypeAdapterFactory<Action> actionsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Action.class)

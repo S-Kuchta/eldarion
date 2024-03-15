@@ -24,7 +24,7 @@ public class EnemyGroup {
         List<Enemy> enemies = new ArrayList<>();
 
         for (int enemyId : this.enemiesId) {
-            enemies.add(CharacterDB.returnNewEnemyCopy(enemyId));
+            enemies.add(CharacterDB.returnNewEnemy(enemyId));
         }
 
         return enemies;

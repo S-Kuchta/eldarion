@@ -13,7 +13,7 @@ import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
-import kuchtastefan.gameSettings.GameSettingsService;
+import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
@@ -105,7 +105,7 @@ public class PrintUtil {
         }
 
 //        if (GameSettings.isShowInformationAboutActionName()) {
-        if (GameSettingsService.gameSettings.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
+        if (GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
             System.out.print("\n\t\t" + action.getActionName().getDescription());
         }
         System.out.println();
@@ -331,7 +331,7 @@ public class PrintUtil {
     public static void printStringSlowly(String s) {
         char[] stringToCharArr = s.toCharArray();
 
-        if (!GameSettingsService.gameSettings.get(GameSetting.PRINT_STRING_SLOWLY)) {
+        if (!GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.PRINT_STRING_SLOWLY)) {
             for (char c : stringToCharArr) {
                 System.out.print(c);
             }
@@ -467,11 +467,11 @@ public class PrintUtil {
     public static void printSpellGameSettings() {
         System.out.println();
         PrintUtil.printIndexAndText("X", "Hide action description - ");
-        PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
+        PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
 
         System.out.print("\t");
         PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
-        PrintUtil.printGameSettings(GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+        PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
     }
 }
 

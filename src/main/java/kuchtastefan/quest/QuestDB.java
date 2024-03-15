@@ -6,7 +6,7 @@ import java.util.Map;
 public class QuestDB {
     private static final Map<Integer, Quest> QUEST_DB = new HashMap<>();
 
-    public static Quest returnQuest(int questID) {
+    public static Quest returnQuestFromDB(int questID) {
         return QUEST_DB.get(questID);
     }
 

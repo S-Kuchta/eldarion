@@ -1,14 +1,13 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.*;
-import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.vendor.ConsumableVendorCharacter;
 import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.character.npc.vendor.JunkVendorCharacter;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
-import kuchtastefan.gameSettings.GameSettingsService;
+import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.ItemDB;
@@ -174,22 +173,26 @@ public class GameManager {
     }
 
     private void initGame() {
-        ItemDB.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
-        ItemDB.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
-        ItemDB.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
-        ItemDB.getQuestItems().addAll(fileService.importQuestItemsFromFile());
-        ItemDB.getJunkItems().addAll(fileService.importJunkItemsFromFile());
-//        ItemDB.initializeAllItemsMapToStringItemMap();
+//        ItemDB.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
+//        ItemDB.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
+//        ItemDB.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
+//        ItemDB.getQuestItems().addAll(fileService.importQuestItemsFromFile());
+//        ItemDB.getJunkItems().addAll(fileService.importJunkItemsFromFile());
+        this.fileService.importWearableItemsFromFile();
+        this.fileService.importCraftingReagentItemsFromFile();
+        this.fileService.importConsumableItemsFromFile();
+        this.fileService.importQuestItemsFromFile();
+        this.fileService.importJunkItemsFromFile();
 
-        GameSettingsService.initializeGameSettings();
+        GameSettingsDB.initializeGameSettings();
 
         SpellDB.spellList.addAll(this.fileService.importSpellsFromFile());
-        CharacterDB.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
         this.fileService.importQuestsListFromFile();
         this.fileService.importLocationsFromFile();
         this.fileService.importEnemyGroupFromFile();
         this.fileService.importQuestGiverFromFile(this.hero);
+        this.fileService.importCreaturesFromFile();
 
         this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 5);
 

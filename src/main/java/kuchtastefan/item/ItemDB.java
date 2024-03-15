@@ -17,8 +17,6 @@ import java.util.Map;
 
 public class ItemDB {
 
-//    private static final Map<String, Item> allItemsMap = new HashMap<>();
-
     @Getter
     private static final Map<Integer, Item> ITEM_DB = new HashMap<>();
     @Getter
@@ -39,14 +37,6 @@ public class ItemDB {
     public static void addItemToDB(Item item) {
         ITEM_DB.put(item.getItemId(), item);
     }
-
-//    public static void initializeAllItemsMapToStringItemMap() {
-//        List<Item> itemList = returnAllItemsList();
-//        itemList.addAll(questItems);
-//        for (Item item : itemList) {
-//            allItemsMap.put(item.getName(), item);
-//        }
-//    }
 
     private static List<Item> returnAllItemsList() {
         List<Item> itemList = new ArrayList<>();
@@ -151,6 +141,7 @@ public class ItemDB {
                 }
             }
         }
+
         return tempList;
     }
 

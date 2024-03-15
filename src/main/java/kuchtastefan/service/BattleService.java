@@ -16,7 +16,7 @@ import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
-import kuchtastefan.gameSettings.GameSettingsService;
+import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.utility.*;
@@ -151,6 +151,10 @@ public class BattleService {
                 setTarget();
             }
 
+            if (defendingCharacters.isEmpty()) {
+                break;
+            }
+
             heroPlay = false;
         }
 
@@ -208,9 +212,9 @@ public class BattleService {
             } else {
                 // Handle special commands
                 if (choice.equals("X")) {
-                    GameSettingsService.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
+                    GameSettingsDB.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
                 } else if (choice.equals("Y")) {
-                    GameSettingsService.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
+                    GameSettingsDB.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
                 } else {
                     try {
                         selectedEnemyForShowSelection = choice;
@@ -249,7 +253,6 @@ public class BattleService {
 
     private void printBattleMenu(Hero hero) {
         // Print hero's header with stats and buffs
-//        PrintUtil.printHeaderWithStatsBar(hero);
         PrintUtil.printCurrentAbilityPointsWithItems(hero);
         PrintUtil.printBattleBuffs(hero);
 
@@ -294,7 +297,7 @@ public class BattleService {
         for (Spell spell : hero.getCharacterSpellList()) {
 
             // Check if spells should be hidden when on CoolDown
-            if (GameSettingsService.gameSettings.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN)) {
+            if (GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN)) {
                 if (spell.isCanSpellBeCasted()) {
                     System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
                     PrintUtil.printSpellDescription(hero, this.playerTarget, spell);

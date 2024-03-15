@@ -127,7 +127,7 @@ public class QuestGiverCharacter {
         this.quests =  new ArrayList<>();
 
         for (int questId : this.questsId) {
-            this.quests.add(QuestDB.returnQuest(questId));
+            this.quests.add(QuestDB.returnQuestFromDB(questId));
         }
     }
 }

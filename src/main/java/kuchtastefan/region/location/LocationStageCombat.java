@@ -22,7 +22,7 @@ public class LocationStageCombat extends LocationStage implements RemoveLocation
     public List<Enemy> returnLocationEnemies() {
         List<Enemy> enemies = new ArrayList<>();
         for (Integer enemyId : this.locationEnemyIdList) {
-            enemies.add(CharacterDB.returnNewEnemyCopy(enemyId));
+            enemies.add(CharacterDB.returnNewEnemy(enemyId));
         }
 
         return enemies;

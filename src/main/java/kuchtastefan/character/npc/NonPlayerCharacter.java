@@ -17,9 +17,11 @@ public class NonPlayerCharacter extends GameCharacter {
     protected int[] npcCharacterSpellsId;
     protected boolean defeated;
     protected CharacterRarity characterRarity;
+    protected CharacterType characterType;
 
-    public NonPlayerCharacter(String name, Map<Ability, Integer> abilities, int[] npcCharacterSpellsId) {
+    public NonPlayerCharacter(String name, Map<Ability, Integer> abilities, int[] npcCharacterSpellsId, CharacterType characterType) {
         super(name, abilities);
+        this.characterType = characterType;
         this.npcCharacterSpellsId = npcCharacterSpellsId;
         this.defeated = false;
     }

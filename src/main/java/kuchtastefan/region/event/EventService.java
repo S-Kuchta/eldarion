@@ -3,7 +3,7 @@ package kuchtastefan.region.event;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.character.enemy.Enemy;
-import kuchtastefan.character.enemy.EnemyGroupList;
+import kuchtastefan.character.enemy.EnemyGroupDB;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.region.location.Location;
@@ -33,7 +33,7 @@ public class EventService {
         switch (randomNumber) {
             case 0 -> new MerchantEvent(eventLevel).eventOccurs(hero);
             case 1, 2 -> {
-                List<Enemy> enemyList = EnemyGroupList.returnEnemyGroupByLocationTypeAndHeroLevel(locationType, hero.getLevel());
+                List<Enemy> enemyList = EnemyGroupDB.returnEnemyGroupByLocationTypeAndHeroLevel(locationType, hero.getLevel());
 //                List<Enemy> suitableEnemies = CharacterList.returnEnemyListByLocationTypeAndLevel(locationType, maxRegionLevel, minRegionLevel, CharacterRarity.COMMON);
 //
 //                int randomNumberForEnemyOrder = 0;

@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EnemyGroupList {
+public class EnemyGroupDB {
 
-    public static List<EnemyGroup> allEnemyGroupList = new ArrayList<>();
+    public static final List<EnemyGroup> ENEMY_GROUP_DB = new ArrayList<>();
 
     public static List<Enemy> returnEnemyGroupByLocationTypeAndHeroLevel(LocationType locationType, int heroLevel) {
         List<EnemyGroup> enemyGroups = new ArrayList<>();
 
-        for (EnemyGroup enemyGroup : allEnemyGroupList) {
+        for (EnemyGroup enemyGroup : ENEMY_GROUP_DB) {
             if (enemyGroup.getLocationType().equals(locationType) && enemyGroup.getGroupLevel() <= heroLevel) {
                 enemyGroups.add(enemyGroup);
             }
@@ -24,7 +24,7 @@ public class EnemyGroupList {
         try {
             return enemyGroups.get(RandomNumberGenerator.getRandomNumber(0, enemyGroups.size() - 1)).convertEnemyIdToEnemyList();
         } catch (IllegalArgumentException e) {
-            return Collections.singletonList(CharacterDB.returnNewEnemyCopy(200));
+            return Collections.singletonList(CharacterDB.returnNewEnemy(200));
         }
     }
 }

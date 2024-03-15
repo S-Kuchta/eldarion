@@ -34,7 +34,7 @@ public class BlacksmithService {
         HintUtil.printHint(HintName.BLACKSMITH_HINT);
 
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli");
-        questGiverCharacter.addQuest(QuestDB.returnQuest(1));
+        questGiverCharacter.addQuest(QuestDB.returnQuestFromDB(1));
         questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
 
         PrintUtil.printDivider();

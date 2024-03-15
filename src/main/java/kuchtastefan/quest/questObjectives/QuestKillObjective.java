@@ -3,6 +3,7 @@ package kuchtastefan.quest.questObjectives;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
@@ -24,7 +25,7 @@ public class QuestKillObjective extends QuestObjective {
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
-        Enemy enemy = CharacterDB.CHARACTER_DB.get(this.questEnemyId);
+        NonPlayerCharacter enemy = CharacterDB.CHARACTER_DB.get(this.questEnemyId);
         if (currentCountEnemyProgress <= this.countEnemyToKill) {
             System.out.println("\t" + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL + " Kill " + this.countEnemyToKill + "x " + enemy.getCharacterRarity() + " "
                     + ConsoleColor.YELLOW + enemy.getName() + ConsoleColor.RESET + " - " +

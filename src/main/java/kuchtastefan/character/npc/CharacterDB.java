@@ -3,96 +3,49 @@ package kuchtastefan.character.npc;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.character.enemy.Enemy;
-import kuchtastefan.region.location.LocationType;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class CharacterDB {
+
     @Getter
-    public static final List<Enemy> enemyList = new ArrayList<>();
-    @Getter
-    public static final Map<Integer, Enemy> CHARACTER_DB = new HashMap<>();
+    public static final Map<Integer, NonPlayerCharacter> CHARACTER_DB = new HashMap<>();
+    private static final Gson GSON = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
-
-    public static Enemy returnEnemyWithNewCopy(Enemy enemy, CharacterRarity characterRarity) {
-        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-
-        Enemy newEnemy = gson.fromJson(gson.toJson(enemy), Enemy.class);
-        newEnemy.addItemsDropToEnemy();
-        newEnemy.goldDrop();
-        newEnemy.setCanPerformAction(true);
-
-        if (newEnemy.getRegionActionsWithDuration() == null) {
-            newEnemy.setRegionActionsWithDuration(new HashSet<>());
-        }
-
-        if (newEnemy.getBattleActionsWithDuration() == null) {
-            newEnemy.setBattleActionsWithDuration(new HashSet<>());
-        }
-
-        if (!characterRarity.equals(CharacterRarity.COMMON)) {
-            double multiplier = 0;
-            if (characterRarity.equals(CharacterRarity.RARE)) {
-                newEnemy.setCharacterRarity(CharacterRarity.RARE);
-                multiplier = 1.4;
-            } else if (characterRarity.equals(CharacterRarity.ELITE)) {
-                newEnemy.setCharacterRarity(CharacterRarity.ELITE);
-                multiplier = 1.7;
-            }
-
-            newEnemy.increaseAbilityPointsByMultiplier(multiplier);
-            newEnemy.setGoldDrop(newEnemy.getGoldDrop() * multiplier);
-        } else {
-            newEnemy.setCharacterRarity(CharacterRarity.COMMON);
-        }
-
-        newEnemy.setMaxAbilitiesAndCurrentAbilities();
+    public static Enemy returnNewEnemy(int characterId) {
+        Enemy newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), Enemy.class);
+        newEnemy.setItemDrop();
+        newEnemy.setGoldDrop();
 
         return newEnemy;
     }
 
-    public static Enemy returnNewEnemyCopy(int id) {
-        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-
-        Enemy newEnemy = gson.fromJson(gson.toJson(CHARACTER_DB.get(id)), Enemy.class);
-        newEnemy.addItemsDropToEnemy();
-        newEnemy.goldDrop();
-        newEnemy.setCanPerformAction(true);
-        newEnemy.setMaxAbilitiesAndCurrentAbilities();
-
-        return newEnemy;
+    public static NonPlayerCharacter returnNewCharacter(int characterId) {
+        return GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), NonPlayerCharacter.class);
     }
 
-    public static List<Enemy> returnEnemyListByLocationType(LocationType locationType, CharacterRarity characterRarity) {
-        List<Enemy> enemies = new ArrayList<>();
-        for (Enemy enemy : enemyList) {
-            for (LocationType locationTypeFromEnemy : enemy.getLocationType()) {
-                if (locationTypeFromEnemy.equals(locationType)) {
-                    enemies.add(returnEnemyWithNewCopy(enemy, characterRarity));
-                }
-            }
+    public static void addCharacterToDB(NonPlayerCharacter character) {
+        if (character.getCharacterSpellList() == null) {
+            character.setCharacterSpellList(new ArrayList<>());
         }
 
-        return enemies;
-    }
+        character.convertSpellIdToSpellList();
+        character.setCanPerformAction(true);
+        character.setMaxAbilitiesAndCurrentAbilities();
 
-    public static List<Enemy> returnEnemyListByLocationTypeAndLevel(LocationType locationType, int maxEnemyLevel, Integer minEnemyLevel, CharacterRarity characterRarity) {
-        List<Enemy> enemies = new ArrayList<>();
-        for (Enemy enemy : returnEnemyListByLocationType(locationType, characterRarity)) {
-            if (checkEnemyLevelCondition(enemy, maxEnemyLevel, minEnemyLevel)) {
-                enemies.add(enemy);
-            }
-        }
-        return enemies;
-    }
-
-    private static boolean checkEnemyLevelCondition(Enemy enemy, int maxEnemyLevel, Integer minEnemyLevel) {
-        if (minEnemyLevel == null) {
-            minEnemyLevel = maxEnemyLevel;
+        if (character.getRegionActionsWithDuration() == null) {
+            character.setRegionActionsWithDuration(new HashSet<>());
         }
 
-        return maxEnemyLevel + 1 >= enemy.getLevel() && minEnemyLevel - 1 <= enemy.getLevel();
+        if (character.getBattleActionsWithDuration() == null) {
+            character.setBattleActionsWithDuration(new HashSet<>());
+        }
+
+        CHARACTER_DB.put(character.getNpcId(), character);
     }
 }

@@ -19,7 +19,6 @@ public class Enemy extends NonPlayerCharacter {
     private List<Item> itemsDrop;
     private Integer[] specialItemsDrop;
     private double goldDrop;
-    private CharacterType characterType;
     private final LocationType[] locationType;
     private final int maxStack;
 
@@ -27,15 +26,14 @@ public class Enemy extends NonPlayerCharacter {
     public Enemy(String name, Map<Ability, Integer> abilities,
                  CharacterType characterType, LocationType[] locationType, int maxStack, int[] enemySpells) {
 
-        super(name, abilities, enemySpells);
+        super(name, abilities, enemySpells, characterType);
         this.goldDrop = 0;
-        this.characterType = characterType;
         this.locationType = locationType;
         this.maxStack = maxStack;
         this.itemsDrop = new ArrayList<>();
     }
 
-    public void goldDrop() {
+    public void setGoldDrop() {
         if (this.characterType.equals(CharacterType.HUMANOID)) {
             double goldDrop = 15 + this.level + ((double) this.characterRarity.getExperienceGainedValue() / 2);
 
@@ -44,7 +42,7 @@ public class Enemy extends NonPlayerCharacter {
         }
     }
 
-    public void addItemsDropToEnemy() {
+    public void setItemDrop() {
         if (this.itemsDrop == null) {
             this.itemsDrop = new ArrayList<>();
         }

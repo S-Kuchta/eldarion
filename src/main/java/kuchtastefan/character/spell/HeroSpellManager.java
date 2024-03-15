@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.gameSettings.GameSetting;
-import kuchtastefan.gameSettings.GameSettingsService;
+import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.utility.InputUtil;
@@ -111,10 +111,10 @@ public class HeroSpellManager {
             } else {
                 try {
                     if (choice.equals("X")) {
-                        GameSettingsService.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
+                        GameSettingsDB.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
 //                        GameSettings.setShowInformationAboutActionName();
                     } else if (choice.equals("Y")) {
-                        GameSettingsService.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
+                        GameSettingsDB.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
 //                        GameSettings.setHideSpellsOnCoolDown();
                     } else {
                         levelChosen = LetterToNumberSpellLevel.valueOf(choice).getValue();

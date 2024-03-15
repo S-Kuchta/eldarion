@@ -15,11 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ItemsLists {
+public class ItemDB {
+
+//    private static final Map<String, Item> allItemsMap = new HashMap<>();
+
     @Getter
-    private static final Map<String, Item> allItemsMap = new HashMap<>();
-    @Getter
-    private static final Map<Integer, Item> itemMapIdItem = new HashMap<>();
+    private static final Map<Integer, Item> ITEM_DB = new HashMap<>();
     @Getter
     private static final List<WearableItem> wearableItemList = new ArrayList<>();
     @Getter
@@ -31,14 +32,21 @@ public class ItemsLists {
     @Getter
     private static final List<JunkItem> junkItems = new ArrayList<>();
 
-
-    public static void initializeAllItemsMapToStringItemMap() {
-        List<Item> itemList = returnAllItemsList();
-        itemList.addAll(questItems);
-        for (Item item : itemList) {
-            allItemsMap.put(item.getName(), item);
-        }
+    public static Item returnItemFromDB(int itemId) {
+        return ITEM_DB.get(itemId);
     }
+
+    public static void addItemToDB(Item item) {
+        ITEM_DB.put(item.getItemId(), item);
+    }
+
+//    public static void initializeAllItemsMapToStringItemMap() {
+//        List<Item> itemList = returnAllItemsList();
+//        itemList.addAll(questItems);
+//        for (Item item : itemList) {
+//            allItemsMap.put(item.getName(), item);
+//        }
+//    }
 
     private static List<Item> returnAllItemsList() {
         List<Item> itemList = new ArrayList<>();

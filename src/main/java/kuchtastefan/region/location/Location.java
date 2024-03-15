@@ -1,7 +1,7 @@
 package kuchtastefan.region.location;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.wearableItem.WearableItem;
@@ -43,7 +43,7 @@ public class Location {
 
     public void rewardAfterCompletedAllStages(Hero hero) {
         for (int i = 0; i < 2; i++) {
-            List<WearableItem> suitableItem = ItemsLists.returnWearableItemListByItemLevel(
+            List<WearableItem> suitableItem = ItemDB.returnWearableItemListByItemLevel(
                     this.locationLevel, null, true);
 
             int randomItem = RandomNumberGenerator.getRandomNumber(0, suitableItem.size() - 1);
@@ -51,7 +51,7 @@ public class Location {
         }
 
         for (int i = 0; i < 4; i++) {
-            List<CraftingReagentItem> craftingReagentItems = ItemsLists.returnCraftingReagentItemListByItemLevel(
+            List<CraftingReagentItem> craftingReagentItems = ItemDB.returnCraftingReagentItemListByItemLevel(
                     this.locationLevel, null);
 
             int randomItem = RandomNumberGenerator.getRandomNumber(0, craftingReagentItems.size() - 1);
@@ -59,7 +59,7 @@ public class Location {
         }
 
         for (int i = 0; i < 3; i++) {
-            List<ConsumableItem> consumableItems = ItemsLists.returnConsumableItemListByItemLevel(
+            List<ConsumableItem> consumableItems = ItemDB.returnConsumableItemListByItemLevel(
                     this.locationLevel, null);
 
             int randomItem = RandomNumberGenerator.getRandomNumber(0, consumableItems.size() - 1);

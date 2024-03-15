@@ -4,7 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.region.location.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -45,18 +45,12 @@ public class Enemy extends NonPlayerCharacter {
     }
 
     public void addItemsDropToEnemy() {
-//        List<Item> tempList = new ArrayList<>();
         if (this.itemsDrop == null) {
             this.itemsDrop = new ArrayList<>();
         }
 
-        List<Item> itemList = ItemsLists.returnItemListByLevel(getLevel(), null);
+        List<Item> itemList = ItemDB.returnItemListByLevel(getLevel(), null);
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
-
-//        for (int i = 0; i < itemsForDrop; i++) {
-//            int randomItemGenerate = RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1);
-//            tempList.add(itemList.get(randomItemGenerate));
-//        }
 
         for (int i = 0; i < itemsForDrop; i++) {
             addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)));
@@ -64,11 +58,9 @@ public class Enemy extends NonPlayerCharacter {
 
         if (this.specialItemsDrop != null) {
             for (int itemId : this.specialItemsDrop) {
-                addItemToItemDrop(ItemsLists.getItemMapIdItem().get(itemId));
+                addItemToItemDrop(ItemDB.returnItemFromDB(itemId));
             }
         }
-
-//        this.setItemsDrop(tempList);
     }
 
     public void addItemToItemDrop(Item item) {

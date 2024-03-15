@@ -4,7 +4,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.QuestMap;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.QuestService;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
@@ -127,7 +127,7 @@ public class QuestGiverCharacter {
         this.quests =  new ArrayList<>();
 
         for (int questId : this.questsId) {
-            this.quests.add(QuestMap.mapIdQuest.get(questId));
+            this.quests.add(QuestDB.returnQuest(questId));
         }
     }
 }

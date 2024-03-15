@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SpellsList {
+public class SpellDB {
 
 
     public static final List<Spell> spellList = new ArrayList<>();
 
-    public static final Map<Integer, Spell> spellMap = new HashMap<>();
+    public static final Map<Integer, Spell> SPELL_DB = new HashMap<>();
 }

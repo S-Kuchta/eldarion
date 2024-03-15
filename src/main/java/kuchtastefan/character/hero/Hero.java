@@ -6,7 +6,7 @@ import kuchtastefan.character.hero.inventory.HeroInventory;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
@@ -224,7 +224,7 @@ public class Hero extends GameCharacter {
                     if (questObjective instanceof QuestBringItemObjective
                             && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemyId)) {
 
-                        Item questItem = ItemsLists.getItemMapIdItem().get(
+                        Item questItem = ItemDB.returnItemFromDB(
                                 ((QuestBringItemObjective) questObjective).getObjectiveItemId());
                         System.out.println("\t-- You loot " + (questItem.getName() + " --"));
 
@@ -266,15 +266,15 @@ public class Hero extends GameCharacter {
     }
 
     public void setInitialEquip() {
-        this.heroInventory.addItemWithNewCopyToItemList(ItemsLists.getItemMapIdItem().get(200));
-        this.heroInventory.addItemWithNewCopyToItemList(ItemsLists.getItemMapIdItem().get(400));
-        this.heroInventory.addItemWithNewCopyToItemList(ItemsLists.getItemMapIdItem().get(500));
-        this.heroInventory.addItemWithNewCopyToItemList(ItemsLists.getItemMapIdItem().get(600));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(200));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(400));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(500));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(600));
 
-        this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(200));
-        this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(400));
-        this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(500));
-        this.equipItem((WearableItem) ItemsLists.getItemMapIdItem().get(600));
+        this.equipItem((WearableItem) ItemDB.returnItemFromDB(200));
+        this.equipItem((WearableItem) ItemDB.returnItemFromDB(400));
+        this.equipItem((WearableItem) ItemDB.returnItemFromDB(500));
+        this.equipItem((WearableItem) ItemDB.returnItemFromDB(600));
     }
 
     private Map<Ability, Integer> getInitialAbilityPoints() {

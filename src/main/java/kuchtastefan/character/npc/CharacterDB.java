@@ -9,11 +9,11 @@ import lombok.Getter;
 
 import java.util.*;
 
-public class CharacterList {
+public class CharacterDB {
     @Getter
-    private static final List<Enemy> enemyList = new ArrayList<>();
+    public static final List<Enemy> enemyList = new ArrayList<>();
     @Getter
-    private static final Map<Integer, Enemy> allCharactersMapWithId = new HashMap<>();
+    public static final Map<Integer, Enemy> CHARACTER_DB = new HashMap<>();
 
 
     public static Enemy returnEnemyWithNewCopy(Enemy enemy, CharacterRarity characterRarity) {
@@ -56,7 +56,7 @@ public class CharacterList {
     public static Enemy returnNewEnemyCopy(int id) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
-        Enemy newEnemy = gson.fromJson(gson.toJson(allCharactersMapWithId.get(id)), Enemy.class);
+        Enemy newEnemy = gson.fromJson(gson.toJson(CHARACTER_DB.get(id)), Enemy.class);
         newEnemy.addItemsDropToEnemy();
         newEnemy.goldDrop();
         newEnemy.setCanPerformAction(true);

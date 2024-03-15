@@ -7,7 +7,7 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
-import kuchtastefan.character.npc.CharacterList;
+import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 
@@ -29,13 +29,13 @@ public class ActionSummonCreature extends Action {
     @Override
     public void performAction(GameCharacter gameCharacter) {
         this.gameCharacterLevel = gameCharacter.getLevel();
-        System.out.println("\t" + gameCharacter.getName() + " summoned " + CharacterList.getAllCharactersMapWithId().get(this.summonedNpcId).getName());
+        System.out.println("\t" + gameCharacter.getName() + " summoned " + CharacterDB.CHARACTER_DB.get(this.summonedNpcId).getName());
     }
 
     public GameCharacter returnSummonedCharacter() {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
-        NonPlayerCharacter nonPlayerCharacter = gson.fromJson(gson.toJson(CharacterList.getAllCharactersMapWithId().get(this.summonedNpcId)), NonPlayerCharacter.class);
+        NonPlayerCharacter nonPlayerCharacter = gson.fromJson(gson.toJson(CharacterDB.CHARACTER_DB.get(this.summonedNpcId)), NonPlayerCharacter.class);
         nonPlayerCharacter.setMaxAbilitiesAndCurrentAbilities();
         nonPlayerCharacter.setCanPerformAction(true);
         nonPlayerCharacter.setBattleActionsWithDuration(new HashSet<>());

@@ -10,13 +10,13 @@ import kuchtastefan.character.enemy.EnemyGroup;
 import kuchtastefan.character.enemy.EnemyGroupList;
 import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.npc.CharacterList;
+import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.QuestGiverCharacter;
 import kuchtastefan.character.spell.Spell;
-import kuchtastefan.character.spell.SpellsList;
+import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.hint.HintUtil;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
@@ -28,9 +28,9 @@ import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestGiverCharacterDB;
-import kuchtastefan.quest.QuestMap;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.region.location.Location;
-import kuchtastefan.region.location.LocationMap;
+import kuchtastefan.region.location.LocationDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
@@ -180,7 +180,7 @@ public class FileService {
                 for (WearableItem wearableItem : WearableItems) {
                     wearableItem.setWearableItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
                     wearableItemMissingValuesSet(wearableItem);
-                    ItemsLists.getItemMapIdItem().put(wearableItem.getItemId(), wearableItem);
+                    ItemDB.addItemToDB(wearableItem);
                 }
                 wearableItemList.addAll(WearableItems);
                 reader.close();
@@ -218,7 +218,8 @@ public class FileService {
                     craftingReagentItem.setCraftingReagentItemType(
                             CraftingReagentItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
-                    ItemsLists.getItemMapIdItem().put(craftingReagentItem.getItemId(), craftingReagentItem);
+                    ItemDB.addItemToDB(craftingReagentItem);
+
                 }
                 craftingReagents.addAll(craftingReagentItemsList);
                 reader.close();
@@ -249,7 +250,7 @@ public class FileService {
                         action.setNewCurrentActionValue(action.getMaxActionValue());
                     }
 
-                    ItemsLists.getItemMapIdItem().put(consumableItem.getItemId(), consumableItem);
+                    ItemDB.addItemToDB(consumableItem);
                 }
 
                 consumableItems.addAll(consumableItemList);
@@ -273,9 +274,8 @@ public class FileService {
                 }.getType());
 
                 for (QuestItem questItem : questItemList) {
-                    ItemsLists.getItemMapIdItem().put(questItem.getItemId(), questItem);
+                    ItemDB.addItemToDB(questItem);
                 }
-
 
                 questItems.addAll(questItemList);
                 reader.close();
@@ -342,7 +342,7 @@ public class FileService {
                         enemy.setBattleActionsWithDuration(new HashSet<>());
                     }
 
-                    CharacterList.getAllCharactersMapWithId().put(enemy.getNpcId(), enemy);
+                    CharacterDB.CHARACTER_DB.put(enemy.getNpcId(), enemy);
                 }
 
                 enemies.addAll(enemyList);
@@ -365,7 +365,7 @@ public class FileService {
                 }.getType());
 
                 for (Quest quest : quests) {
-                    QuestMap.mapIdQuest.put(quest.getQuestId(), quest);
+                    QuestDB.addQuestToDB(quest);
                 }
 
                 reader.close();
@@ -386,7 +386,7 @@ public class FileService {
                 }.getType());
 
                 for (Spell spell : spells) {
-                    SpellsList.spellMap.put(spell.getSpellId(), spell);
+                    SpellDB.SPELL_DB.put(spell.getSpellId(), spell);
 
                     spell.setCanSpellBeCasted(true);
                     spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
@@ -413,7 +413,7 @@ public class FileService {
 
                 for (Location location : locations) {
                     location.setStageTotal(location.getLocationStages().size());
-                    LocationMap.getMapIdLocation().put(location.getLocationId(), location);
+                    LocationDB.addLocationToDB(location);
                 }
 
                 reader.close();

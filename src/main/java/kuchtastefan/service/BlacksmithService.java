@@ -7,12 +7,12 @@ import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.character.npc.vendor.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
-import kuchtastefan.quest.QuestMap;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -27,14 +27,14 @@ public class BlacksmithService {
 
     public void blacksmithMenu(Hero hero) {
         final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
-                ItemsLists.returnWearableItemListByItemLevel(hero.getLevel(), null, false));
+                ItemDB.returnWearableItemListByItemLevel(hero.getLevel(), null, false));
         final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
-                ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
+                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
 
         HintUtil.printHint(HintName.BLACKSMITH_HINT);
 
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli");
-        questGiverCharacter.addQuest(QuestMap.mapIdQuest.get(1));
+        questGiverCharacter.addQuest(QuestDB.returnQuest(1));
         questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
 
         PrintUtil.printDivider();
@@ -160,7 +160,7 @@ public class BlacksmithService {
      * @return A map containing the crafting reagent item needed for refinement and the quantity required.
      */
     private Map<CraftingReagentItem, Integer> itemsNeededToRefinement(WearableItem wearableItem) {
-        List<CraftingReagentItem> tempList = ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
+        List<CraftingReagentItem> tempList = ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
         Map<CraftingReagentItem, Integer> itemsNeededForRefinement = new HashMap<>();
         int itemsNeededToRefinement = 0;
 
@@ -212,7 +212,7 @@ public class BlacksmithService {
         }
 
 
-        List<CraftingReagentItem> tempList = ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(
+        List<CraftingReagentItem> tempList = ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(
                 CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
 
         CraftingReagentItem item = null;

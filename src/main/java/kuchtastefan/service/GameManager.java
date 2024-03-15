@@ -1,17 +1,17 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.*;
-import kuchtastefan.character.npc.CharacterList;
+import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.vendor.ConsumableVendorCharacter;
 import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.character.npc.vendor.JunkVendorCharacter;
 import kuchtastefan.character.spell.Spell;
-import kuchtastefan.character.spell.SpellsList;
+import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettingsService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.quest.QuestGiverCharacterDB;
@@ -69,7 +69,7 @@ public class GameManager {
                 case 1 -> this.heroMenuService.heroCharacterMenu(this.hero);
                 case 2 -> {
                     JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8,
-                            ItemsLists.returnJunkItemListByItemLevel(this.hero.getLevel(), 0));
+                            ItemDB.returnJunkItemListByItemLevel(this.hero.getLevel(), 0));
                     junkVendorCharacter.vendorMenu(this.hero);
                 }
                 case 3 -> this.tavernMenu();
@@ -115,7 +115,7 @@ public class GameManager {
 
     private void tavernMenu() {
         final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
-                ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
+                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
 
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
@@ -142,9 +142,9 @@ public class GameManager {
 
     private void alchemistMenu() {
         final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8,
-                ItemsLists.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0));
+                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0));
         final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
-                ItemsLists.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
+                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
 
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");
@@ -174,17 +174,17 @@ public class GameManager {
     }
 
     private void initGame() {
-        ItemsLists.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
-        ItemsLists.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
-        ItemsLists.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
-        ItemsLists.getQuestItems().addAll(fileService.importQuestItemsFromFile());
-        ItemsLists.getJunkItems().addAll(fileService.importJunkItemsFromFile());
-        ItemsLists.initializeAllItemsMapToStringItemMap();
+        ItemDB.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
+        ItemDB.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
+        ItemDB.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
+        ItemDB.getQuestItems().addAll(fileService.importQuestItemsFromFile());
+        ItemDB.getJunkItems().addAll(fileService.importJunkItemsFromFile());
+//        ItemDB.initializeAllItemsMapToStringItemMap();
 
         GameSettingsService.initializeGameSettings();
 
-        SpellsList.spellList.addAll(this.fileService.importSpellsFromFile());
-        CharacterList.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
+        SpellDB.spellList.addAll(this.fileService.importSpellsFromFile());
+        CharacterDB.getEnemyList().addAll(this.fileService.importCreaturesFromFile());
 
         this.fileService.importQuestsListFromFile();
         this.fileService.importLocationsFromFile();
@@ -245,7 +245,7 @@ public class GameManager {
             }
         }
 
-        for (Spell spell : SpellsList.spellList) {
+        for (Spell spell : SpellDB.spellList) {
             if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.hero.getCharacterClass())) {
                 this.hero.getCharacterSpellList().add(spell);
             }

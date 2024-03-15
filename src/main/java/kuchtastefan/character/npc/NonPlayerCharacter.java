@@ -2,7 +2,7 @@ package kuchtastefan.character.npc;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.spell.SpellsList;
+import kuchtastefan.character.spell.SpellDB;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,7 +26,7 @@ public class NonPlayerCharacter extends GameCharacter {
 
     public void convertSpellIdToSpellList() {
         for (int enemySpell : this.npcCharacterSpellsId) {
-            this.characterSpellList.add(SpellsList.spellMap.get(enemySpell));
+            this.characterSpellList.add(SpellDB.SPELL_DB.get(enemySpell));
         }
     }
 

@@ -1,6 +1,6 @@
 package kuchtastefan.character.enemy;
 
-import kuchtastefan.character.npc.CharacterList;
+import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.region.location.LocationType;
 import lombok.Getter;
 
@@ -24,7 +24,7 @@ public class EnemyGroup {
         List<Enemy> enemies = new ArrayList<>();
 
         for (int enemyId : this.enemiesId) {
-            enemies.add(CharacterList.returnNewEnemyCopy(enemyId));
+            enemies.add(CharacterDB.returnNewEnemyCopy(enemyId));
         }
 
         return enemies;

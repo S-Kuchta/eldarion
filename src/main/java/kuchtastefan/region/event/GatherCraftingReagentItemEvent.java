@@ -1,7 +1,7 @@
 package kuchtastefan.region.event;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -44,7 +44,7 @@ public class GatherCraftingReagentItemEvent extends Event {
     }
 
     private CraftingReagentItem findRandomCraftingReagentItem() {
-        List<CraftingReagentItem> craftingReagentItemList = ItemsLists.returnCraftingReagentItemListByItemLevel(this.eventLevel, 0);
+        List<CraftingReagentItem> craftingReagentItemList = ItemDB.returnCraftingReagentItemListByItemLevel(this.eventLevel, 0);
         return craftingReagentItemList.get(RandomNumberGenerator.getRandomNumber(0, craftingReagentItemList.size() - 1));
     }
 }

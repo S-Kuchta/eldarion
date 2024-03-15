@@ -2,7 +2,7 @@ package kuchtastefan.quest;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,7 +25,7 @@ public class QuestReward {
         hero.addGolds(this.goldsReward);
 
         for (Integer itemId : this.itemsReward) {
-            Item itemReward = ItemsLists.getItemMapIdItem().get(itemId);
+            Item itemReward = ItemDB.returnItemFromDB(itemId);
             hero.getHeroInventory().addItemWithNewCopyToItemList(itemReward);
             System.out.println("\tReward for completing the quest: " + itemReward.getName());
         }

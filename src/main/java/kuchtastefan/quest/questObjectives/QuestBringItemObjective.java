@@ -3,8 +3,7 @@ package kuchtastefan.quest.questObjectives;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemsLists;
-import kuchtastefan.region.location.LocationType;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 
@@ -31,7 +30,7 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
 
-        Item questItem = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
+        Item questItem = ItemDB.returnItemFromDB(this.objectiveItemId);
         hero.getHeroInventory().getHeroInventory().putIfAbsent(questItem, 0);
 
         if (hero.getHeroInventory().getHeroInventory().get(questItem) < this.itemDropCountNeeded) {
@@ -47,7 +46,7 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
 
     @Override
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
-        Item questItem = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
+        Item questItem = ItemDB.returnItemFromDB(this.objectiveItemId);
 
         if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
                 new HashMap<>(Map.of(questItem, this.itemDropCountNeeded)), false)) {
@@ -64,7 +63,7 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
 
     @Override
     public void removeCompletedQuestObjectiveAssignment(Hero hero) {
-        Item questItem = ItemsLists.getItemMapIdItem().get(this.objectiveItemId);
+        Item questItem = ItemDB.returnItemFromDB(this.objectiveItemId);
 
         hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
                 new HashMap<>(Map.of(questItem, this.itemDropCountNeeded)), true);

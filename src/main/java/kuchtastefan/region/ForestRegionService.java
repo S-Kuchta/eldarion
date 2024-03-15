@@ -2,7 +2,7 @@ package kuchtastefan.region;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.region.location.Location;
-import kuchtastefan.region.location.LocationMap;
+import kuchtastefan.region.location.LocationDB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +16,9 @@ public class ForestRegionService extends Region {
     @Override
     protected List<Location> initializeLocationForRegion() {
         List<Location> locationList = new ArrayList<>();
-        locationList.add(LocationMap.getMapIdLocation().get(0));
-        locationList.add(LocationMap.getMapIdLocation().get(1));
+        locationList.add(LocationDB.returnLocation(0));
+        locationList.add(LocationDB.returnLocation(1));
+        locationList.add(LocationDB.returnLocation(2));
 //        locationList.add(new Location(0, "Enchanted Mine", 2, 5, LocationType.MINE, true));
 //        locationList.add(new Location(0, "Abyssal Hollows", 2, 10, LocationType.CAVE, true));
 //        locationList.add(new Location(0, "Ruins of Eldoria", 3, 10, LocationType.CASTLE, true));

@@ -2,7 +2,7 @@ package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.ConstantSymbol;
-import kuchtastefan.region.location.LocationMap;
+import kuchtastefan.region.location.LocationDB;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 
@@ -34,7 +34,7 @@ public class QuestClearLocationObjective extends QuestObjective {
         String cleared = this.isCompleted() ? "Cleared" : "Not Cleared Yet";
         System.out.println("\tClear "
                 + ConsoleColor.YELLOW
-                + LocationMap.getMapIdLocation().get(this.locationId).getLocationName()
+                + LocationDB.returnLocation(this.locationId).getLocationName()
                 + ConsoleColor.RESET
                 + " -> " + cleared);
     }

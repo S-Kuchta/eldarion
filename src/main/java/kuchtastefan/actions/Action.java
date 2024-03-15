@@ -31,8 +31,6 @@ public abstract class Action {
 
     public abstract void performAction(GameCharacter gameCharacter);
 
-    public abstract void printActionDescription(GameCharacter actionCaster, GameCharacter actionTarget);
-
     public boolean willPerformAction() {
         return RandomNumberGenerator.getRandomNumber(0, 100) <= this.chanceToPerformAction;
     }

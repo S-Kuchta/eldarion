@@ -2,7 +2,7 @@ package kuchtastefan.region.event;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 
 public class UseItemEvent extends Event {
 
@@ -15,7 +15,7 @@ public class UseItemEvent extends Event {
 
     @Override
     public boolean eventOccurs(Hero hero) {
-        Item item = ItemsLists.getItemMapIdItem().get(this.itemId);
+        Item item = ItemDB.returnItemFromDB(this.itemId);
         if (hero.getHeroInventory().getHeroInventory().containsKey(item)) {
             System.out.println("\tYou are using " + item.getName());
             return true;

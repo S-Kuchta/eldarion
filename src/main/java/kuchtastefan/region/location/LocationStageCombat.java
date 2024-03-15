@@ -1,7 +1,7 @@
 package kuchtastefan.region.location;
 
 import kuchtastefan.character.enemy.Enemy;
-import kuchtastefan.character.npc.CharacterList;
+import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.region.event.CombatEvent;
 
@@ -22,7 +22,7 @@ public class LocationStageCombat extends LocationStage implements RemoveLocation
     public List<Enemy> returnLocationEnemies() {
         List<Enemy> enemies = new ArrayList<>();
         for (Integer enemyId : this.locationEnemyIdList) {
-            enemies.add(CharacterList.returnNewEnemyCopy(enemyId));
+            enemies.add(CharacterDB.returnNewEnemyCopy(enemyId));
         }
 
         return enemies;

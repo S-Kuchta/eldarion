@@ -2,7 +2,7 @@ package kuchtastefan.region.location;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +23,7 @@ public abstract class LocationStage {
 
     public boolean canHeroEnterStage(Hero hero) {
         for (Integer i : this.itemsIdNeededToEnterStage) {
-            Item item = ItemsLists.getItemMapIdItem().get(i);
+            Item item = ItemDB.returnItemFromDB(i);
             if (!hero.getHeroInventory().getHeroInventory().containsKey(item)) {
                 return false;
             }

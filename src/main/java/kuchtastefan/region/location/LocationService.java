@@ -4,7 +4,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.HeroMenuService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
-import kuchtastefan.item.ItemsLists;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -115,7 +115,7 @@ public class LocationService {
         if (!locationStage.canHeroEnterStage(hero)) {
             System.out.println("\tYou don't have needed keys to enter location! You need: ");
             for (Integer i : locationStage.getItemsIdNeededToEnterStage()) {
-                System.out.println("\t" + ItemsLists.getItemMapIdItem().get(i).getName());
+                System.out.println("\t" + ItemDB.returnItemFromDB(i).getName());
             }
             return;
         }

@@ -1,6 +1,6 @@
 package kuchtastefan.character.enemy;
 
-import kuchtastefan.character.npc.CharacterList;
+import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.region.location.LocationType;
 import kuchtastefan.utility.RandomNumberGenerator;
 
@@ -24,7 +24,7 @@ public class EnemyGroupList {
         try {
             return enemyGroups.get(RandomNumberGenerator.getRandomNumber(0, enemyGroups.size() - 1)).convertEnemyIdToEnemyList();
         } catch (IllegalArgumentException e) {
-            return Collections.singletonList(CharacterList.returnNewEnemyCopy(200));
+            return Collections.singletonList(CharacterDB.returnNewEnemyCopy(200));
         }
     }
 }

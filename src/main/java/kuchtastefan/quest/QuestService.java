@@ -1,6 +1,10 @@
 package kuchtastefan.quest;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemDB;
+import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
+import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;
@@ -190,5 +194,38 @@ public class QuestService {
         }
 
         return (quest.getQuestLevel() - 1) <= hero.getLevel();
+    }
+
+    /**
+     * check if enemy killed in CombatEvent belongs to some of accepted Quest.
+     * If yes increase current count progress in questObjective
+     * and print QuestObjectiveAssignment with QuestObjective progress.
+     * If you need to use this method, Use it always before checkIfQuestObjectivesAndQuestIsCompleted() method.
+     */
+    public void checkQuestProgress(Integer questEnemyId, Map<Integer, Quest> heroAcceptedQuests, Hero hero) {
+
+        for (Map.Entry<Integer, Quest> questMap : heroAcceptedQuests.entrySet()) {
+            for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
+                if (!questObjective.isCompleted()) {
+                    if (questObjective instanceof QuestKillObjective
+                            && ((QuestKillObjective) questObjective).getQuestEnemyId().equals(questEnemyId)) {
+
+                        ((QuestKillObjective) questObjective).increaseCurrentCountEnemyProgress();
+                        questObjective.printQuestObjectiveAssignment(hero);
+                    }
+
+                    if (questObjective instanceof QuestBringItemObjective
+                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemyId)) {
+
+                        Item questItem = ItemDB.returnItemFromDB(
+                                ((QuestBringItemObjective) questObjective).getObjectiveItemId());
+                        System.out.println("\t-- You loot " + (questItem.getName() + " --"));
+
+                        hero.getHeroInventory().addItemWithNewCopyToItemList((questItem));
+                        questObjective.printQuestObjectiveAssignment(hero);
+                    }
+                }
+            }
+        }
     }
 }

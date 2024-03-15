@@ -11,6 +11,7 @@ import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestService;
 import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
@@ -203,38 +204,43 @@ public class Hero extends GameCharacter {
         }
     }
 
-    /**
-     * check if enemy killed in CombatEvent belongs to some of accepted Quest.
-     * If yes increase current count progress in questObjective
-     * and print QuestObjectiveAssignment with QuestObjective progress.
-     * If you need to use this method, Use it always before checkIfQuestObjectivesAndQuestIsCompleted() method.
-     */
     public void checkQuestProgress(Integer questEnemyId) {
-
-        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuest.entrySet()) {
-            for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
-                if (!questObjective.isCompleted()) {
-                    if (questObjective instanceof QuestKillObjective
-                            && ((QuestKillObjective) questObjective).getQuestEnemyId().equals(questEnemyId)) {
-
-                        ((QuestKillObjective) questObjective).increaseCurrentCountEnemyProgress();
-                        questObjective.printQuestObjectiveAssignment(this);
-                    }
-
-                    if (questObjective instanceof QuestBringItemObjective
-                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemyId)) {
-
-                        Item questItem = ItemDB.returnItemFromDB(
-                                ((QuestBringItemObjective) questObjective).getObjectiveItemId());
-                        System.out.println("\t-- You loot " + (questItem.getName() + " --"));
-
-                        this.heroInventory.addItemWithNewCopyToItemList((questItem));
-                        questObjective.printQuestObjectiveAssignment(this);
-                    }
-                }
-            }
-        }
+        QuestService questService = new QuestService();
+        questService.checkQuestProgress(questEnemyId, this.heroAcceptedQuest, this);
     }
+
+//    /**
+//     * check if enemy killed in CombatEvent belongs to some of accepted Quest.
+//     * If yes increase current count progress in questObjective
+//     * and print QuestObjectiveAssignment with QuestObjective progress.
+//     * If you need to use this method, Use it always before checkIfQuestObjectivesAndQuestIsCompleted() method.
+//     */
+//    public void checkQuestProgress(Integer questEnemyId) {
+//
+//        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuest.entrySet()) {
+//            for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
+//                if (!questObjective.isCompleted()) {
+//                    if (questObjective instanceof QuestKillObjective
+//                            && ((QuestKillObjective) questObjective).getQuestEnemyId().equals(questEnemyId)) {
+//
+//                        ((QuestKillObjective) questObjective).increaseCurrentCountEnemyProgress();
+//                        questObjective.printQuestObjectiveAssignment(this);
+//                    }
+//
+//                    if (questObjective instanceof QuestBringItemObjective
+//                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemyId)) {
+//
+//                        Item questItem = ItemDB.returnItemFromDB(
+//                                ((QuestBringItemObjective) questObjective).getObjectiveItemId());
+//                        System.out.println("\t-- You loot " + (questItem.getName() + " --"));
+//
+//                        this.heroInventory.addItemWithNewCopyToItemList((questItem));
+//                        questObjective.printQuestObjectiveAssignment(this);
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     /**
      * Check if quest and quest objective is completed.

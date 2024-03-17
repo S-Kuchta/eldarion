@@ -203,7 +203,6 @@ public class QuestService {
      * If you need to use this method, Use it always before checkIfQuestObjectivesAndQuestIsCompleted() method.
      */
     public void checkQuestProgress(Integer questEnemyId, Map<Integer, Quest> heroAcceptedQuests, Hero hero) {
-
         for (Map.Entry<Integer, Quest> questMap : heroAcceptedQuests.entrySet()) {
             for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
                 if (!questObjective.isCompleted()) {

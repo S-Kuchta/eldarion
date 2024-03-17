@@ -41,6 +41,7 @@ public class GameManager {
     public void startGame() {
         this.initGame();
 
+        this.fileService.autoSave(this.hero);
         while (true) {
             PrintUtil.printLongDivider();
             System.out.println("\t\t\t\t\t\t\t------ Mystic Hollow ------");
@@ -173,11 +174,6 @@ public class GameManager {
     }
 
     private void initGame() {
-//        ItemDB.getWearableItemList().addAll(fileService.importWearableItemsFromFile());
-//        ItemDB.getCraftingReagentItems().addAll(fileService.importCraftingReagentItemsFromFile());
-//        ItemDB.getConsumableItems().addAll(fileService.importConsumableItemsFromFile());
-//        ItemDB.getQuestItems().addAll(fileService.importQuestItemsFromFile());
-//        ItemDB.getJunkItems().addAll(fileService.importJunkItemsFromFile());
         this.fileService.importWearableItemsFromFile();
         this.fileService.importCraftingReagentItemsFromFile();
         this.fileService.importConsumableItemsFromFile();

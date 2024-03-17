@@ -450,7 +450,7 @@ public class PrintUtil {
         System.out.print(ConsoleColor.CYAN + "\t" + index + ". " + ConsoleColor.RESET + text);
     }
 
-    public static void printGameSettings(boolean gameSetting) {
+    public static void printGameSettingsYesOrNo(boolean gameSetting) {
         if (!gameSetting) {
             System.out.print(ConsoleColor.WHITE + "Yes" + ConsoleColor.RESET + " / No");
         } else {
@@ -467,11 +467,11 @@ public class PrintUtil {
     public static void printSpellGameSettings() {
         System.out.println();
         PrintUtil.printIndexAndText("X", "Hide action description - ");
-        PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
+        PrintUtil.printGameSettingsYesOrNo(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
 
         System.out.print("\t");
         PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
-        PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+        PrintUtil.printGameSettingsYesOrNo(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
     }
 }
 

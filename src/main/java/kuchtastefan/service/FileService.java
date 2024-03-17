@@ -15,6 +15,8 @@ import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.QuestGiverCharacter;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
+import kuchtastefan.gameSettings.GameSetting;
+import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
@@ -46,6 +48,17 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class FileService {
+
+    static class SaveGame {
+        boolean gameSaved;
+        String message;
+
+        public SaveGame(boolean gameSaved, String message) {
+            this.gameSaved = gameSaved;
+            this.message = message;
+        }
+    }
+
     private final Gson gson = new GsonBuilder()
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
@@ -86,24 +99,38 @@ public class FileService {
                 }
             }
 
-            try {
-                Writer writer = Files.newBufferedWriter(Paths.get(path));
-                this.gson.toJson(gameLoaded, writer);
-
-                PrintUtil.printDivider();
-                System.out.println("\tGame Saved");
-                PrintUtil.printDivider();
-
-                writer.close();
-            } catch (IOException e) {
-                System.out.println("\tError while saving game");
-                continue;
-            } catch (InvalidPathException e) {
-                System.out.println("\tInvalid characters in file name");
-                continue;
+            SaveGame saveGame = saveGame(gameLoaded, path, name);
+            System.out.println(saveGame.message);
+            if (saveGame.gameSaved) {
+                break;
             }
+        }
+    }
 
-            break;
+    public void autoSave(Hero hero) {
+        if (GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.AUTO_SAVE)) {
+            GameLoaded gameLoaded = new GameLoaded(hero, HintUtil.getHintList(),
+                    hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
+
+            final String path = this.savedGamesPath + hero.getName() + "_AutoSave" + ".json";
+            saveGame(gameLoaded, path, hero.getName());
+        }
+    }
+
+    private SaveGame saveGame(GameLoaded gameLoaded, String path, String saveGameName) {
+        if (saveGameName.isEmpty()) {
+            return new SaveGame(false, "\tSave game title can not be empty!");
+        }
+
+        try {
+            Writer writer = Files.newBufferedWriter(Paths.get(path));
+            this.gson.toJson(gameLoaded, writer);
+            writer.close();
+            return new SaveGame(true, "\tGame saved");
+        } catch (IOException e) {
+            return new SaveGame(true, "\tError while saving game");
+        } catch (InvalidPathException e) {
+            return new SaveGame(true, "\tInvalid characters in file name");
         }
     }
 

@@ -164,23 +164,23 @@ public class InventoryMenuService {
             }
         }
 
-        while (true) {
-            int choice = InputUtil.intScanner();
-            if (choice == 0) {
-                return false;
-            } else {
-                try {
-                    consumableItems.get(choice - 1).useItem(hero);
-                    if (!isHeroInCombat) {
-                        consumableItemsMenu(hero, false);
-                    } else {
-                        return true;
-                    }
-                } catch (IndexOutOfBoundsException e) {
-                    PrintUtil.printEnterValidInput();
-                    this.consumableItemsMenu(hero, isHeroInCombat);
+        int choice = InputUtil.intScanner();
+        if (choice == 0) {
+            return false;
+        } else {
+            try {
+                consumableItems.get(choice - 1).useItem(hero);
+                if (!isHeroInCombat) {
+                    consumableItemsMenu(hero, false);
+                } else {
+                    return true;
                 }
+            } catch (IndexOutOfBoundsException e) {
+                PrintUtil.printEnterValidInput();
+                this.consumableItemsMenu(hero, isHeroInCombat);
             }
+
+            return false;
         }
     }
 

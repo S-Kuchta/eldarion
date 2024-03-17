@@ -20,5 +20,6 @@ public class GameSettingsDB {
         GAME_SETTINGS_DB.put(GameSetting.PRINT_STRING_SLOWLY, false);
         GAME_SETTINGS_DB.put(GameSetting.HIDE_SPELLS_ON_COOL_DOWN, true);
         GAME_SETTINGS_DB.put(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME, false);
+        GAME_SETTINGS_DB.put(GameSetting.AUTO_SAVE, true);
     }
 }

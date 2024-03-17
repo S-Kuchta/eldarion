@@ -12,6 +12,10 @@ import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 @Getter
 public class HeroMenuService {
     private final InventoryMenuService inventoryMenuService;
@@ -87,30 +91,55 @@ public class HeroMenuService {
 
     private void gameSettingsMenu() {
         while (true) {
+//            PrintUtil.printIndexAndText("0", "Go back");
+//            System.out.println();
+//            PrintUtil.printIndexAndText("1", "Print String slowly - ");
+//            PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.PRINT_STRING_SLOWLY));
+//            System.out.println();
+//            PrintUtil.printIndexAndText("2", "Show information about Action - ");
+//            PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
+//            System.out.println();
+//            PrintUtil.printIndexAndText("3", "Hide spells on CoolDown - ");
+//            PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+//            System.out.println();
+//            PrintUtil.printIndexAndText("4", "Hide spells on CoolDown - ");
+//            PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+//            System.out.println();
+//            PrintUtil.printIndexAndText("5", "Reset all Hints");
+//            System.out.println();
+
+            List<GameSetting> gameSettingList = new ArrayList<>();
             PrintUtil.printIndexAndText("0", "Go back");
             System.out.println();
-            PrintUtil.printIndexAndText("1", "Print String slowly - ");
-            PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.PRINT_STRING_SLOWLY));
-            System.out.println();
-            PrintUtil.printIndexAndText("2", "Show information about Action - ");
-            PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
-            System.out.println();
-            PrintUtil.printIndexAndText("3", "Hide spells on CoolDown - ");
-            PrintUtil.printGameSettings(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
-            System.out.println();
-            PrintUtil.printIndexAndText("4", "Reset all Hints");
+            int index = 1;
+            for (Map.Entry<GameSetting, Boolean> gameSettings : GameSettingsDB.GAME_SETTINGS_DB.entrySet()) {
+                gameSettingList.add(gameSettings.getKey());
+                PrintUtil.printIndexAndText(String.valueOf(index), gameSettings.getKey().toString() + " - ");
+                PrintUtil.printGameSettingsYesOrNo(gameSettings.getValue());
+                System.out.println();
+                index++;
+            }
+            PrintUtil.printIndexAndText("5", "Reset all Hints");
             System.out.println();
 
             int choice = InputUtil.intScanner();
-            switch (choice) {
-                case 0 -> {
-                    return;
-                }
-                case 1 -> GameSettingsDB.setTrueOrFalse(GameSetting.PRINT_STRING_SLOWLY);
-                case 2 -> GameSettingsDB.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
-                case 3 -> GameSettingsDB.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
-                case 4 -> HintUtil.resetAllHints();
+            if (choice == 0) {
+                break;
+            } else {
+                GameSettingsDB.setTrueOrFalse(gameSettingList.get(choice - 1));
             }
+
+
+
+//            switch (choice) {
+//                case 0 -> {
+//                    return;
+//                }
+//                case 1 -> GameSettingsDB.setTrueOrFalse(GameSetting.PRINT_STRING_SLOWLY);
+//                case 2 -> GameSettingsDB.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
+//                case 3 -> GameSettingsDB.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
+//                case 4 -> HintUtil.resetAllHints();
+//            }
         }
     }
 }

@@ -1,7 +1,5 @@
 package kuchtastefan.utility;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.actions.instantActions.*;
@@ -63,7 +61,7 @@ public class RuntimeTypeAdapterFactoryUtil {
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(QuestObjective.class)
             .registerSubtype(QuestKillObjective.class)
-            .registerSubtype(QuestBringItemObjective.class)
+            .registerSubtype(QuestBringItemFromEnemyObjective.class)
             .registerSubtype(QuestClearLocationObjective.class)
             .registerSubtype(QuestFindObjective.class);
 

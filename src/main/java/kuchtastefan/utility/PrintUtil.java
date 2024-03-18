@@ -105,7 +105,7 @@ public class PrintUtil {
         }
 
 //        if (GameSettings.isShowInformationAboutActionName()) {
-        if (GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
+        if (GameSettingsDB.returnGameSettingValue(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
             System.out.print("\n\t\t" + action.getActionName().getDescription());
         }
         System.out.println();
@@ -331,7 +331,7 @@ public class PrintUtil {
     public static void printStringSlowly(String s) {
         char[] stringToCharArr = s.toCharArray();
 
-        if (!GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.PRINT_STRING_SLOWLY)) {
+        if (!GameSettingsDB.returnGameSettingValue(GameSetting.PRINT_STRING_SLOWLY)) {
             for (char c : stringToCharArr) {
                 System.out.print(c);
             }
@@ -467,11 +467,11 @@ public class PrintUtil {
     public static void printSpellGameSettings() {
         System.out.println();
         PrintUtil.printIndexAndText("X", "Hide action description - ");
-        PrintUtil.printGameSettingsYesOrNo(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
+        PrintUtil.printGameSettingsYesOrNo(GameSettingsDB.returnGameSettingValue(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
 
         System.out.print("\t");
         PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
-        PrintUtil.printGameSettingsYesOrNo(GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+        PrintUtil.printGameSettingsYesOrNo(GameSettingsDB.returnGameSettingValue(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
     }
 }
 

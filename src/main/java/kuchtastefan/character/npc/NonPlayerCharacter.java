@@ -27,8 +27,8 @@ public class NonPlayerCharacter extends GameCharacter {
     }
 
     public void convertSpellIdToSpellList() {
-        for (int enemySpell : this.npcCharacterSpellsId) {
-            this.characterSpellList.add(SpellDB.SPELL_DB.get(enemySpell));
+        for (int spellId : this.npcCharacterSpellsId) {
+            this.characterSpellList.add(SpellDB.returnSpell(spellId));
         }
     }
 

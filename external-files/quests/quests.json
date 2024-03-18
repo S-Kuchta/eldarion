@@ -59,7 +59,7 @@
     "questLevel": 2,
     "questObjectives": [
       {
-        "type": "QuestBringItemObjective",
+        "type": "QuestBringItemFromEnemyObjective",
         "questObjectiveName": "Wolf Meat",
         "itemDropFromEnemy": [
           100,
@@ -89,7 +89,7 @@
     "questLevel": 2,
     "questObjectives": [
       {
-        "type": "QuestBringItemObjective",
+        "type": "QuestBringItemFromEnemyObjective",
         "questObjectiveName": "Bring bandit boss head",
         "itemDropFromEnemy": [
           203
@@ -168,7 +168,7 @@
         "locationId": 0
       },
       {
-        "type": "QuestBringItemObjective",
+        "type": "QuestBringItemFromEnemyObjective",
         "questObjectiveName": "Retrieve Necromancer Staff",
         "itemDropFromEnemy": [
           204
@@ -210,6 +210,40 @@
       "goldsReward": 50.0,
       "experiencePointsReward": 100.0,
       "questLevel": 2
+    }
+  },
+  {
+    "type": "Quest",
+    "questId": 8,
+    "questName": "Cleansing Crystal Lake",
+    "questDescription": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Your task is to clear the area of Crystal lake.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestClearLocationObjective",
+        "questObjectiveName": "Clear Crystal Lake",
+        "locationId": 2
+      },
+      {
+        "type": "QuestKillObjective",
+        "questObjectiveName": "Kill Weak Water Elemental",
+        "questEnemyId": 401,
+        "countEnemyToKill": 5
+      },
+      {
+        "type": "QuestKillObjective",
+        "questObjectiveName": "Lake Isle Water Elemental",
+        "questEnemyId": 402,
+        "countEnemyToKill": 1
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        200
+      ],
+      "goldsReward": 50.0,
+      "experiencePointsReward": 120.0,
+      "questLevel": 1
     }
   }
 ]

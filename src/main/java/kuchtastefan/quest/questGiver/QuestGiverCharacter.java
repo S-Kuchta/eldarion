@@ -1,4 +1,4 @@
-package kuchtastefan.character.npc;
+package kuchtastefan.quest.questGiver;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintName;
@@ -51,6 +51,7 @@ public class QuestGiverCharacter {
 
     public void questGiverMenu(Hero hero) {
         QuestService questService = new QuestService();
+        questService.setQuestGiverCharacter(this);
         HintUtil.printHint(HintName.QUEST_HINT);
 
         connectHeroQuestListWithCharacterQuestList(hero);

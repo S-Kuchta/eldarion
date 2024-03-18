@@ -112,10 +112,8 @@ public class HeroSpellManager {
                 try {
                     if (choice.equals("X")) {
                         GameSettingsDB.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
-//                        GameSettings.setShowInformationAboutActionName();
                     } else if (choice.equals("Y")) {
                         GameSettingsDB.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
-//                        GameSettings.setHideSpellsOnCoolDown();
                     } else {
                         levelChosen = LetterToNumberSpellLevel.valueOf(choice).getValue();
                         spellsByClassAndLevel = returnListWithSpellsFulfillingRequirements(levelChosen, spellsByClass);

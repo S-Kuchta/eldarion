@@ -13,8 +13,9 @@ import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
-import kuchtastefan.quest.QuestGiverCharacterDB;
+import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.region.ForestRegionService;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -41,8 +42,9 @@ public class GameManager {
     public void startGame() {
         this.initGame();
 
-        this.fileService.autoSave(this.hero);
         while (true) {
+            this.fileService.autoSave(this.hero);
+
             PrintUtil.printLongDivider();
             System.out.println("\t\t\t\t\t\t\t------ Mystic Hollow ------");
             PrintUtil.printLongDivider();
@@ -125,9 +127,9 @@ public class GameManager {
         System.out.println();
         PrintUtil.printIndexAndText("1", cityFoodVendor.getName() + " (Food Merchant)");
         System.out.println();
-        PrintUtil.printIndexAndText("2", QuestGiverCharacterDB.getQuestGiverName(1));
+        PrintUtil.printIndexAndText("2", QuestGiverCharacterDB.returnQuestGiverName(1));
         System.out.println();
-        PrintUtil.printIndexAndText("3", QuestGiverCharacterDB.getQuestGiverName(2));
+        PrintUtil.printIndexAndText("3", QuestGiverCharacterDB.returnQuestGiverName(2));
         System.out.println();
 
         int choice = InputUtil.intScanner();
@@ -135,8 +137,8 @@ public class GameManager {
             case 0 -> {
             }
             case 1 -> cityFoodVendor.vendorMenu(this.hero);
-            case 2 -> QuestGiverCharacterDB.getQuestGiverMenu(1, this.hero);
-            case 3 -> QuestGiverCharacterDB.getQuestGiverMenu(2, this.hero);
+            case 2 -> QuestGiverCharacterDB.returnQuestGiverMenu(1, this.hero);
+            case 3 -> QuestGiverCharacterDB.returnQuestGiverMenu(2, this.hero);
         }
     }
 
@@ -158,7 +160,7 @@ public class GameManager {
         System.out.println();
         PrintUtil.printIndexAndText("3", cityPotionsVendor.getName() + " (Potions Merchant)");
         System.out.println();
-        PrintUtil.printIndexAndText("4", QuestGiverCharacterDB.getQuestGiverName(0));
+        PrintUtil.printIndexAndText("4", QuestGiverCharacterDB.returnQuestGiverName(0));
         System.out.println();
 
         int choice = InputUtil.intScanner();
@@ -168,7 +170,7 @@ public class GameManager {
             case 1 -> System.out.println("Work in progress");
             case 2 -> cityAlchemistReagentVendor.vendorMenu(this.hero);
             case 3 -> cityPotionsVendor.vendorMenu(this.hero);
-            case 4 -> QuestGiverCharacterDB.getQuestGiverMenu(0, this.hero);
+            case 4 -> QuestGiverCharacterDB.returnQuestGiverMenu(0, this.hero);
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -190,12 +192,12 @@ public class GameManager {
         this.fileService.importQuestGiverFromFile(this.hero);
         this.fileService.importCreaturesFromFile();
 
-        this.forestRegionService = new ForestRegionService("Silverwood Glade", "Magic forest", this.hero, 1, 5);
+        this.forestRegionService = new ForestRegionService("SilverWood Glade", "Magic forest", this.hero, 1, 5);
 
         HintUtil.initializeHintList();
 
 
-        System.out.println("Welcome to the Eldarion!");
+        System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\tWelcome to the Eldarion!\t\n" + ConsoleColor.RESET);
         PrintUtil.printIndexAndText("0", "Start new game");
         System.out.println();
         PrintUtil.printIndexAndText("1", "Load game");

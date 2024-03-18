@@ -1,7 +1,7 @@
 package kuchtastefan.region.location;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.quest.QuestGiverCharacterDB;
+import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 
 public class LocationStageQuestGiver extends LocationStage {
 
@@ -15,8 +15,8 @@ public class LocationStageQuestGiver extends LocationStage {
 
     @Override
     public boolean exploreStage(Hero hero, Location location) {
-        QuestGiverCharacterDB.getQuestGiverMenu(this.questGiverId, hero);
+        QuestGiverCharacterDB.returnQuestGiverMenu(this.questGiverId, hero);
 
-        return QuestGiverCharacterDB.QUEST_GIVER_CHARACTER_MAP.get(this.questGiverId).checkIfAllAcceptedQuestsAreCompleted(hero);
+        return QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId).checkIfAllAcceptedQuestsAreCompleted(hero);
     }
 }

@@ -12,7 +12,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.NonPlayerCharacter;
-import kuchtastefan.character.npc.QuestGiverCharacter;
+import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.gameSettings.GameSetting;
@@ -30,7 +30,7 @@ import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
-import kuchtastefan.quest.QuestGiverCharacterDB;
+import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.region.location.Location;
 import kuchtastefan.region.location.LocationDB;
 import kuchtastefan.utility.InputUtil;
@@ -75,7 +75,6 @@ public class FileService {
         while (true) {
             System.out.println("How do you want to name your save?");
             final String name = InputUtil.stringScanner();
-
             final String path = this.savedGamesPath + name + ".json";
 
             if (new File(path).exists()) {
@@ -108,7 +107,7 @@ public class FileService {
     }
 
     public void autoSave(Hero hero) {
-        if (GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.AUTO_SAVE)) {
+        if (GameSettingsDB.returnGameSettingValue(GameSetting.AUTO_SAVE)) {
             GameLoaded gameLoaded = new GameLoaded(hero, HintUtil.getHintList(),
                     hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
 
@@ -380,10 +379,7 @@ public class FileService {
                 }.getType());
 
                 for (Spell spell : spells) {
-                    SpellDB.SPELL_DB.put(spell.getSpellId(), spell);
-
-                    spell.setCanSpellBeCasted(true);
-                    spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
+                    SpellDB.addSpellToDB(spell);
                 }
 
                 spellList.addAll(spells);
@@ -446,7 +442,7 @@ public class FileService {
                     questGiverCharacter.convertQuestIdToQuest();
                     questGiverCharacter.setName(questGiverCharacter.getBaseName());
                     questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
-                    QuestGiverCharacterDB.QUEST_GIVER_CHARACTER_MAP.put(questGiverCharacter.getQuestGiverId(), questGiverCharacter);
+                    QuestGiverCharacterDB.addQuestGiverToDB(questGiverCharacter);
                 }
 
                 reader.close();

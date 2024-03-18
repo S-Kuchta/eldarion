@@ -125,24 +125,31 @@
     "canLocationBeExplored": true,
     "locationStages": {
       "0": {
-        "type": "LocationStageCombat",
-        "stageName": "Lake shore",
+        "type": "LocationStageQuestGiver",
+        "stageName": "Fisherman Cabin",
         "stageDiscovered": true,
         "itemsIdNeededToEnterStage": [],
-        "locationEnemyIdList": [
-          401
-        ]
+        "questGiverId": 4
       },
       "1": {
         "type": "LocationStageCombat",
         "stageName": "Lake shore",
-        "stageDiscovered": true,
+        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           401
         ]
       },
       "2": {
+        "type": "LocationStageCombat",
+        "stageName": "Lake shore",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          401
+        ]
+      },
+      "3": {
         "type": "LocationStageCombat",
         "stageName": "Old fishing pier",
         "stageDiscovered": false,
@@ -152,21 +159,19 @@
           401
         ]
       },
-      "3": {
+      "4": {
         "type": "LocationStageFindItem",
         "stageName": "The End of Old fishing pier",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemId": 100
-
       },
-      "4": {
+      "5": {
         "type": "LocationStageCombat",
         "stageName": "Lake Isle",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
-          401,
           401,
           402
         ]

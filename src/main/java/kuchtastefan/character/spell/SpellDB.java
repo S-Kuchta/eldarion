@@ -11,5 +11,16 @@ public class SpellDB {
 
     public static final List<Spell> spellList = new ArrayList<>();
 
-    public static final Map<Integer, Spell> SPELL_DB = new HashMap<>();
+    private static final Map<Integer, Spell> SPELL_DB = new HashMap<>();
+
+    public static void addSpellToDB(Spell spell) {
+        spell.setCanSpellBeCasted(true);
+        spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
+
+        SPELL_DB.put(spell.getSpellId(), spell);
+    }
+
+    public static Spell returnSpell(int spellId) {
+        return SPELL_DB.get(spellId);
+    }
 }

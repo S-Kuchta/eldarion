@@ -28,5 +28,12 @@
     "questsId": [
       0
     ]
+  },
+  {
+    "questGiverId": 4,
+    "baseName": "Ilyana Shalee",
+    "questsId": [
+      8
+    ]
   }
 ]

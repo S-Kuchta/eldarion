@@ -12,15 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Getter
-public class QuestBringItemObjective extends QuestObjective implements RemoveObjectiveProgress {
+public class QuestBringItemFromEnemyObjective extends QuestObjective implements RemoveObjectiveProgress {
 
     private final Integer objectiveItemId;
     private final Integer[] itemDropFromEnemy;
     private final int itemDropCountNeeded;
 
 
-    public QuestBringItemObjective(String questObjectiveName, Integer[] itemDropFromEnemy,
-                                   Integer objectiveItemId, int itemDropCountNeeded) {
+    public QuestBringItemFromEnemyObjective(String questObjectiveName, Integer[] itemDropFromEnemy,
+                                            Integer objectiveItemId, int itemDropCountNeeded) {
         super(questObjectiveName);
         this.objectiveItemId = objectiveItemId;
         this.itemDropCountNeeded = itemDropCountNeeded;

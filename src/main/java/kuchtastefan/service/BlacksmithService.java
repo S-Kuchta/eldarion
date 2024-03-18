@@ -1,7 +1,7 @@
 package kuchtastefan.service;
 
 import com.google.gson.Gson;
-import kuchtastefan.character.npc.QuestGiverCharacter;
+import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.character.npc.vendor.WearableItemVendorCharacter;

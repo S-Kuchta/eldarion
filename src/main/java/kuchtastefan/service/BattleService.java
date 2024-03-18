@@ -297,7 +297,7 @@ public class BattleService {
         for (Spell spell : hero.getCharacterSpellList()) {
 
             // Check if spells should be hidden when on CoolDown
-            if (GameSettingsDB.GAME_SETTINGS_DB.get(GameSetting.HIDE_SPELLS_ON_COOL_DOWN)) {
+            if (GameSettingsDB.returnGameSettingValue(GameSetting.HIDE_SPELLS_ON_COOL_DOWN)) {
                 if (spell.isCanSpellBeCasted()) {
                     System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
                     PrintUtil.printSpellDescription(hero, this.playerTarget, spell);

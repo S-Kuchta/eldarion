@@ -3,19 +3,26 @@ package kuchtastefan.quest;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
-import kuchtastefan.quest.questObjectives.QuestBringItemObjective;
+import kuchtastefan.quest.questGiver.QuestGiverCharacter;
+import kuchtastefan.quest.questObjectives.QuestBringItemFromEnemyObjective;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@Setter
+@Getter
 public class QuestService {
+
+    private QuestGiverCharacter questGiverCharacter;
 
     public void questGiverMenu(Hero hero, List<Quest> quests, String name) {
         PrintUtil.printDivider();
@@ -42,6 +49,7 @@ public class QuestService {
                     this.questGiverMenu(hero, quests, name);
                 }
 
+                this.questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
                 break;
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("\tEnter valid input");
@@ -213,11 +221,11 @@ public class QuestService {
                         questObjective.printQuestObjectiveAssignment(hero);
                     }
 
-                    if (questObjective instanceof QuestBringItemObjective
-                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemyId)) {
+                    if (questObjective instanceof QuestBringItemFromEnemyObjective
+                            && ((QuestBringItemFromEnemyObjective) questObjective).checkEnemy(questEnemyId)) {
 
                         Item questItem = ItemDB.returnItemFromDB(
-                                ((QuestBringItemObjective) questObjective).getObjectiveItemId());
+                                ((QuestBringItemFromEnemyObjective) questObjective).getObjectiveItemId());
                         System.out.println("\t-- You loot " + (questItem.getName() + " --"));
 
                         hero.getHeroInventory().addItemWithNewCopyToItemList((questItem));

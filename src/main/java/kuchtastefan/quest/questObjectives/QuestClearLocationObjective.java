@@ -21,9 +21,9 @@ public class QuestClearLocationObjective extends QuestObjective {
                 && hero.getDiscoveredLocationList().get(this.locationId) != null) {
 
             if (hero.getDiscoveredLocationList().get(this.locationId).isCleared()) {
-                System.out.println("\t" + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL + " You completed "
+                System.out.println("\t" + " You completed "
                         + ConsoleColor.YELLOW + getQuestObjectiveName() + ConsoleColor.RESET
-                        + " quest objective " + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL);
+                        + " quest objective ");
                 this.setCompleted(true);
             }
         }

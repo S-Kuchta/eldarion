@@ -220,11 +220,6 @@
     "questLevel": 2,
     "questObjectives": [
       {
-        "type": "QuestClearLocationObjective",
-        "questObjectiveName": "Clear Crystal Lake",
-        "locationId": 2
-      },
-      {
         "type": "QuestKillObjective",
         "questObjectiveName": "Kill Weak Water Elemental",
         "questEnemyId": 401,

@@ -1,7 +1,7 @@
 [
   {
     "itemId": 900,
-    "name": "Minor health potion",
+    "name": "Lesser Health Potion",
     "price": 20,
     "itemLevel": 1,
     "actionList": [
@@ -17,8 +17,8 @@
   },
   {
     "itemId": 901,
-    "name": "Big health potion",
-    "price": 50,
+    "name": "Health Potion",
+    "price": 38,
     "itemLevel": 2,
     "actionList": [
       {
@@ -36,6 +36,38 @@
         "maxActionTurns": 3,
         "actionDurationType": "BATTLE_ACTION",
         "actionMaxStacks": 1,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ]
+  },
+  {
+    "itemId": 902,
+    "name": "Lesser Mana Potion",
+    "price": 20,
+    "itemLevel": 1,
+    "actionList": [
+      {
+        "type": "ActionRestoreMana",
+        "actionName": "HEAL",
+        "maxActionValue": 20,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ]
+  },
+  {
+    "itemId": 903,
+    "name": "Mana Potion",
+    "price": 38,
+    "itemLevel": 2,
+    "actionList": [
+      {
+        "type": "ActionRestoreMana",
+        "actionName": "HEAL",
+        "maxActionValue": 40,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false

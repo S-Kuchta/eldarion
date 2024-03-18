@@ -7,9 +7,9 @@ import kuchtastefan.region.location.LocationDB;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ForestRegionService extends Region {
+public class ForestRegion extends Region {
 
-    public ForestRegionService(String regionName, String regionDescription, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
+    public ForestRegion(String regionName, String regionDescription, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
         super(regionName, regionDescription, hero, minimumRegionLevel, maximumRegionLevel);
     }
 

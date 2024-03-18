@@ -42,5 +42,21 @@
         "canBeActionCriticalHit": false
       }
     ]
+  },
+  {
+    "itemId": 1002,
+    "name": "Milk",
+    "price": 12,
+    "itemLevel": 1,
+    "actionList": [
+      {
+        "type": "ActionRestoreMana",
+        "actionName": "HEAL",
+        "maxActionValue": 20,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ]
   }
 ]

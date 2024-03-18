@@ -108,7 +108,7 @@ public class BattleService {
             // If character is alive
             if (attackingCharacter.getCurrentAbilityValue(Ability.HEALTH) > 0) {
 
-//                attackingCharacter.checkAndRemoveActionTurns();
+
                 checkSpellsCoolDowns(attackingCharacter);
                 if (attackingCharacter instanceof Hero) {
                     heroPlay = true;
@@ -122,6 +122,7 @@ public class BattleService {
                     if (heroPlay) {
                         heroPlay = false;
                     }
+
                     continue;
                 }
 
@@ -130,7 +131,7 @@ public class BattleService {
                     playerTurn(hero);
                     target = playerTarget;
                 } else {
-                    // Select random character for npc attack
+                    // Select random target
                     if (defendingCharacters.size() > 1) {
                         target = defendingCharacters.get(RandomNumberGenerator.getRandomNumber(0, defendingCharacters.size() - 1));
                     }
@@ -154,6 +155,7 @@ public class BattleService {
             if (defendingCharacters.isEmpty()) {
                 break;
             }
+
 
             heroPlay = false;
         }

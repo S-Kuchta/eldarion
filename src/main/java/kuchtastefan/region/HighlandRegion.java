@@ -5,9 +5,9 @@ import kuchtastefan.region.location.Location;
 
 import java.util.List;
 
-public class HighlandRegionService extends Region {
+public class HighlandRegion extends Region {
 
-    public HighlandRegionService(String regionName, String regionDescription, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
+    public HighlandRegion(String regionName, String regionDescription, Hero hero, int minimumRegionLevel, int maximumRegionLevel) {
         super(regionName, regionDescription, hero, minimumRegionLevel, maximumRegionLevel);
     }
 

@@ -51,9 +51,9 @@ public class QuestBringItemFromEnemyObjective extends QuestObjective implements 
         if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
                 new HashMap<>(Map.of(questItem, this.itemDropCountNeeded)), false)) {
 
-            System.out.println("\t" + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL + " You completed "
+            System.out.println("\t" + " You completed "
                     + ConsoleColor.YELLOW + getQuestObjectiveName() + ConsoleColor.RESET
-                    + " quest objective " + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL);
+                    + " quest objective ");
 
             setCompleted(true);
         } else {

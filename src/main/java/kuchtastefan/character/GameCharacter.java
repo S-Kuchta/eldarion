@@ -80,6 +80,7 @@ public abstract class GameCharacter {
         } else {
             for (ActionWithDuration action : actions) {
                 if (action.equals(actionWithDuration) && action.getActionCurrentStacks() < action.getActionMaxStacks()) {
+                    action.setNewCurrentActionValue(actionWithDuration.getCurrentActionValue());
                     action.addActionStack();
                     action.actionCurrentTurnReset();
                 }
@@ -110,6 +111,8 @@ public abstract class GameCharacter {
             actionWithDuration.performAction(this);
             if (actionWithDuration.getActionDurationType().equals(actionDurationType)) {
                 actionWithDuration.actionAddTurn();
+                System.out.println("current turn: " + actionWithDuration.getCurrentActionTurn());
+                System.out.println("max turn:" + actionWithDuration.getMaxActionTurns());
             }
         }
 
@@ -121,7 +124,7 @@ public abstract class GameCharacter {
         this.regionActionsWithDuration.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
     }
 
-    protected void resetCurrentAbilitiesToMaxAbilities(boolean setHealthOrManaToMaxValue) {
+    public void resetCurrentAbilitiesToMaxAbilities(boolean setHealthOrManaToMaxValue) {
         this.canPerformAction = true;
         this.reflectSpell = false;
 

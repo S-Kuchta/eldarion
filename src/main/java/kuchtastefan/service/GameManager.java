@@ -14,7 +14,7 @@ import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
-import kuchtastefan.region.ForestRegionService;
+import kuchtastefan.region.ForestRegion;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -27,7 +27,7 @@ public class GameManager {
     private final HeroAbilityManager heroAbilityManager;
     private final FileService fileService;
     private final BlacksmithService blacksmithService;
-    private ForestRegionService forestRegionService;
+    private ForestRegion forestRegion;
     private final HeroMenuService heroMenuService;
 
 
@@ -101,7 +101,7 @@ public class GameManager {
     private void exploreSurroundingRegions() {
         PrintUtil.printIndexAndText("0", "Go back to the city");
         System.out.println();
-        PrintUtil.printIndexAndText("1", "Go to " + this.forestRegionService.getRegionName());
+        PrintUtil.printIndexAndText("1", "Go to " + this.forestRegion.getRegionName());
         System.out.println();
         PrintUtil.printIndexAndText("2", "Go to highlands");
         System.out.println();
@@ -110,7 +110,7 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> this.forestRegionService.adventuringAcrossTheRegion(this.heroMenuService);
+            case 1 -> this.forestRegion.adventuringAcrossTheRegion(this.heroMenuService);
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -192,7 +192,7 @@ public class GameManager {
         this.fileService.importQuestGiverFromFile(this.hero);
         this.fileService.importCreaturesFromFile();
 
-        this.forestRegionService = new ForestRegionService("SilverWood Glade", "Magic forest", this.hero, 1, 5);
+        this.forestRegion = new ForestRegion("SilverWood Glade", "Magic forest", this.hero, 1, 5);
 
         HintUtil.initializeHintList();
 
@@ -214,7 +214,7 @@ public class GameManager {
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
                     this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
-                    this.forestRegionService.setHero(this.hero);
+                    this.forestRegion.setHero(this.hero);
                     return;
                 }
             }

@@ -88,8 +88,7 @@ public abstract class Region {
                     return; // Go back to the city
                 }
                 // Generate a random event while traveling across the region
-                case 1 -> this.eventService.randomRegionEventGenerate(this.hero, LocationType.FOREST,
-                        this.minimumRegionLevel, this.maximumRegionLevel);
+                case 1 -> this.eventService.randomRegionEventGenerate(this.hero, LocationType.FOREST);
                 case 2 -> heroMenuService.heroCharacterMenu(this.hero); // Open hero menu
                 default -> {
                     try {

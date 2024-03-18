@@ -26,9 +26,9 @@ public class QuestFindObjective extends QuestObjective implements RemoveObjectiv
         Item item = ItemDB.returnItemFromDB(this.objectiveItemId);
         if (hero.getHeroInventory().getHeroInventory().containsKey(item)) {
             setCompleted(true);
-            System.out.println("\t" + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL + " You completed "
+            System.out.println("\t" + " You completed "
                     + ConsoleColor.YELLOW + this.getQuestObjectiveName() + ConsoleColor.RESET
-                    + " quest objective " + ConstantSymbol.QUEST_OBJECTIVE_SYMBOL);
+                    + " quest objective ");
         }
     }
 

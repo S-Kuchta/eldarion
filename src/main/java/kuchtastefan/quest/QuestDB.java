@@ -11,6 +11,7 @@ public class QuestDB {
     }
 
     public static void addQuestToDB(Quest quest) {
+        quest.getQuestReward().calculateExperiencePointsReward(quest.getQuestLevel());
         QUEST_DB.put(quest.getQuestId(), quest);
     }
 }

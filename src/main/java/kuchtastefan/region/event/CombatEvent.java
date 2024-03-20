@@ -88,7 +88,8 @@ public class CombatEvent extends Event {
             if (haveHeroWon) {
                 for (Enemy randomEnemy : this.enemies) {
                     double goldEarn = randomEnemy.getGoldDrop();
-                    double experiencePointGained = randomEnemy.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + randomEnemy.getCharacterRarity().getExperienceGainedValue();
+//                    double experiencePointGained = randomEnemy.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + randomEnemy.getCharacterRarity().getExperienceGainedValue();
+                    double experiencePointGained = randomEnemy.experiencePointsForDefeat();
 
                     PrintUtil.printLongDivider();
                     for (Item item : randomEnemy.getItemsDrop()) {

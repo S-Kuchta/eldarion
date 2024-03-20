@@ -12,7 +12,7 @@ import lombok.Setter;
 public class QuestReward {
     private Integer[] itemsReward;
     private final double goldsReward;
-    private final double experiencePointsReward;
+    private double experiencePointsReward;
 
     public QuestReward(Integer[] itemsReward, double goldsReward, double experiencePointsReward) {
         this.itemsReward = itemsReward;
@@ -30,5 +30,10 @@ public class QuestReward {
             hero.getHeroInventory().addItemWithNewCopyToItemList(itemReward);
             System.out.println("\tReward for completing the quest: " + ConsoleColor.YELLOW + itemReward.getName() + ConsoleColor.RESET);
         }
+    }
+
+    public void calculateExperiencePointsReward(int questLevel) {
+        this.experiencePointsReward = 80 * questLevel + 100;
+//        return 80 * level + 100;
     }
 }

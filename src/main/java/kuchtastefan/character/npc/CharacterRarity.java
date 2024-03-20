@@ -6,10 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 @Getter
 public enum CharacterRarity {
     SUMMONED(0),
-    COMMON(5),
-    RARE(20),
-    ELITE(40),
-    BOSS(60);
+    COMMON(10),
+    RARE(25),
+    ELITE(50),
+    BOSS(100);
 
     private final int experienceGainedValue;
 

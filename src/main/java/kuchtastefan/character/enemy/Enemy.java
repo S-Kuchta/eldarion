@@ -3,6 +3,7 @@ package kuchtastefan.character.enemy;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.NonPlayerCharacter;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.region.location.LocationType;
@@ -65,6 +66,10 @@ public class Enemy extends NonPlayerCharacter {
         if (!this.itemsDrop.contains(item)) {
             this.itemsDrop.add(item);
         }
+    }
+
+    public double experiencePointsForDefeat() {
+        return this.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + this.getCharacterRarity().getExperienceGainedValue();
     }
 
     @Override

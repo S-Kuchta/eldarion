@@ -15,5 +15,5 @@ public class Constant {
     public static final double LOWER_DAMAGE_MULTIPLIER = 0.75;
     public static final int GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD = 30;
     public static final double SELL_ITEM_PRICE_MULTIPLIER = 0.7;
-    public static final int GAIN_EXPERIENCE_LEVEL_MULTIPLIER = 10;
+    public static final int GAIN_EXPERIENCE_LEVEL_MULTIPLIER = 13;
 }

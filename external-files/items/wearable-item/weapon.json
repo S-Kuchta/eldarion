@@ -54,5 +54,27 @@
       "STRENGTH": 2
     },
     "itemLevel": 1
+  },
+  {
+    "itemId": 206,
+    "type": "WearableItem",
+    "name": "Staff of Water",
+    "wearableItemQuality": "QUEST_REWARD",
+    "abilities": {
+      "ATTACK": 1,
+      "INTELLECT": 2
+    },
+    "itemLevel": 1
+  },
+  {
+    "itemId": 207,
+    "type": "WearableItem",
+    "name": "Sword of Water",
+    "wearableItemQuality": "QUEST_REWARD",
+    "abilities": {
+      "ATTACK": 1,
+      "STRENGTH": 2
+    },
+    "itemLevel": 1
   }
 ]

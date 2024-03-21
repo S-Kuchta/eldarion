@@ -34,6 +34,5 @@ public class QuestReward {
 
     public void calculateExperiencePointsReward(int questLevel) {
         this.experiencePointsReward = 80 * questLevel + 100;
-//        return 80 * level + 100;
     }
 }

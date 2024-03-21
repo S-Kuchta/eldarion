@@ -68,7 +68,7 @@ public class Enemy extends NonPlayerCharacter {
         }
     }
 
-    public double experiencePointsForDefeat() {
+    public double enemyExperiencePointsValue() {
         return this.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + this.getCharacterRarity().getExperienceGainedValue();
     }
 

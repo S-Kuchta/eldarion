@@ -17,9 +17,7 @@
       "itemsReward": [
         103
       ],
-      "goldsReward": 30.0,
-      "experiencePointsReward": 70.0,
-      "questLevel": 2
+      "goldsReward": 30.0
     }
   },
   {
@@ -46,9 +44,7 @@
       "itemsReward": [
         204
       ],
-      "goldsReward": 30.0,
-      "experiencePointsReward": 70.0,
-      "questLevel": 2
+      "goldsReward": 30.0
     }
   },
   {
@@ -76,9 +72,7 @@
       "itemsReward": [
         204
       ],
-      "goldsReward": 30.0,
-      "experiencePointsReward": 70.0,
-      "questLevel": 2
+      "goldsReward": 30.0
     }
   },
   {
@@ -105,9 +99,7 @@
       "itemsReward": [
         204
       ],
-      "goldsReward": 30.0,
-      "experiencePointsReward": 70.0,
-      "questLevel": 2
+      "goldsReward": 30.0
     }
   },
   {
@@ -127,9 +119,7 @@
       "itemsReward": [
         200
       ],
-      "goldsReward": 50.0,
-      "experiencePointsReward": 100.0,
-      "questLevel": 2
+      "goldsReward": 50.0
     }
   },
   {
@@ -149,9 +139,7 @@
       "itemsReward": [
         200
       ],
-      "goldsReward": 50.0,
-      "experiencePointsReward": 100.0,
-      "questLevel": 2
+      "goldsReward": 50.0
     }
   },
   {
@@ -184,9 +172,7 @@
       "itemsReward": [
         105
       ],
-      "goldsReward": 80.0,
-      "experiencePointsReward": 100.0,
-      "questLevel": 2
+      "goldsReward": 80.0
     }
   },
   {
@@ -207,17 +193,15 @@
       "itemsReward": [
         200
       ],
-      "goldsReward": 50.0,
-      "experiencePointsReward": 100.0,
-      "questLevel": 2
+      "goldsReward": 50.0
     }
   },
   {
     "type": "Quest",
     "questId": 8,
     "questName": "Cleansing Crystal Lake",
-    "questDescription": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Your task is to clear the area of Crystal lake.",
-    "questLevel": 2,
+    "questDescription": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Kill all water Elementals all over the Crystal Lake.",
+    "questLevel": 1,
     "questObjectives": [
       {
         "type": "QuestKillObjective",
@@ -234,11 +218,29 @@
     ],
     "questReward": {
       "itemsReward": [
-        200
+        207
       ],
-      "goldsReward": 50.0,
-      "experiencePointsReward": 120.0,
-      "questLevel": 1
+      "goldsReward": 50.0
+    }
+  },
+  {
+    "type": "Quest",
+    "questId": 9,
+    "questName": "Clear Crystal Lake",
+    "questDescription": "Please clear the area of Crystal lake.",
+    "questLevel": 1,
+    "questObjectives": [
+      {
+        "type": "QuestClearLocationObjective",
+        "questObjectiveName": "Clear Crystal Lake",
+        "locationId": 2
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        206
+      ],
+      "goldsReward": 50.0
     }
   }
 ]

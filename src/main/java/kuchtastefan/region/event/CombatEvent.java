@@ -3,7 +3,6 @@ package kuchtastefan.region.event;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
 import kuchtastefan.region.location.LocationType;
@@ -89,7 +88,7 @@ public class CombatEvent extends Event {
                 for (Enemy randomEnemy : this.enemies) {
                     double goldEarn = randomEnemy.getGoldDrop();
 //                    double experiencePointGained = randomEnemy.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + randomEnemy.getCharacterRarity().getExperienceGainedValue();
-                    double experiencePointGained = randomEnemy.experiencePointsForDefeat();
+                    double experiencePointGained = randomEnemy.enemyExperiencePointsValue();
 
                     PrintUtil.printLongDivider();
                     for (Item item : randomEnemy.getItemsDrop()) {

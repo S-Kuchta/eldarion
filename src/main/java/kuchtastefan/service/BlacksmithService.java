@@ -27,9 +27,9 @@ public class BlacksmithService {
 
     public void blacksmithMenu(Hero hero) {
         final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
-                ItemDB.returnWearableItemListByItemLevel(hero.getLevel(), null, false));
+                ItemDB.returnWearableItemListByItemLevel(hero.getLevel(), null, false), WearableItem.class);
         final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
-                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0));
+                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0), CraftingReagentItem.class);
 
         HintUtil.printHint(HintName.BLACKSMITH_HINT);
 

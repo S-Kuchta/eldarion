@@ -6,6 +6,10 @@ import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.character.npc.vendor.JunkVendorCharacter;
 import kuchtastefan.character.npc.vendor.WearableItemVendorCharacter;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.junkItem.JunkItem;
+import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -39,25 +43,25 @@ public class MerchantEvent extends Event {
                         case 0 -> {
                             WearableItemVendorCharacter wearableItemVendorCharacter =
                                     new WearableItemVendorCharacter(
-                                            "Random name", 8, ItemDB.returnWearableItemListByItemLevel(this.getEventLevel(), null, false));
+                                            "Random name", 8, ItemDB.returnWearableItemListByItemLevel(this.getEventLevel(), null, false), WearableItem.class);
                             wearableItemVendorCharacter.vendorMenu(hero);
                         }
                         case 1 -> {
                             CraftingReagentItemVendorCharacter craftingReagentItemVendorCharacter =
                                     new CraftingReagentItemVendorCharacter(
-                                            "Random name", 8, ItemDB.returnCraftingReagentItemListByItemLevel(this.getEventLevel(), 0));
+                                            "Random name", 8, ItemDB.returnCraftingReagentItemListByItemLevel(this.getEventLevel(), 0), CraftingReagentItem.class);
                             craftingReagentItemVendorCharacter.vendorMenu(hero);
                         }
                         case 2 -> {
                             ConsumableVendorCharacter consumableVendorCharacter =
                                     new ConsumableVendorCharacter(
-                                            "Random name", 8, ItemDB.returnConsumableItemListByItemLevel(this.getEventLevel(), 0));
+                                            "Random name", 8, ItemDB.returnConsumableItemListByItemLevel(this.getEventLevel(), 0), ConsumableItem.class);
                             consumableVendorCharacter.vendorMenu(hero);
                         }
                         case 3 -> {
                             JunkVendorCharacter junkVendorCharacter =
                                     new JunkVendorCharacter(
-                                            "Random Name", 8, ItemDB.getJunkItems());
+                                            "Random Name", 8, ItemDB.getJunkItems(), JunkItem.class);
                             junkVendorCharacter.vendorMenu(hero);
                         }
                     }

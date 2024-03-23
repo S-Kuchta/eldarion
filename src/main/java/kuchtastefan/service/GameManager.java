@@ -11,8 +11,11 @@ import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
+import kuchtastefan.item.junkItem.JunkItem;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.region.ForestRegion;
 import kuchtastefan.utility.ConsoleColor;
@@ -71,7 +74,7 @@ public class GameManager {
                 case 1 -> this.heroMenuService.heroCharacterMenu(this.hero);
                 case 2 -> {
                     JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8,
-                            ItemDB.returnJunkItemListByItemLevel(this.hero.getLevel(), 0));
+                            ItemDB.returnJunkItemListByItemLevel(this.hero.getLevel(), 0), JunkItem.class);
                     junkVendorCharacter.vendorMenu(this.hero);
                 }
                 case 3 -> this.tavernMenu();
@@ -117,7 +120,7 @@ public class GameManager {
 
     private void tavernMenu() {
         final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
-                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null));
+                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null), ConsumableItem.class);
 
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
@@ -144,9 +147,9 @@ public class GameManager {
 
     private void alchemistMenu() {
         final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8,
-                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0));
+                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0), CraftingReagentItem.class);
         final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
-                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null));
+                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null), ConsumableItem.class);
 
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");

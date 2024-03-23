@@ -4,6 +4,8 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
+import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,5 +35,21 @@ public class ConsumableItem extends Item {
         }
 
         hero.getHeroInventory().removeItemFromHeroInventory(this);
+    }
+
+    @Override
+    public void printItemDescription(Hero hero) {
+
+        System.out.print(this.getName()
+                + ", " + this.getConsumableItemType()
+                + ", iLevel: " + this.getItemLevel());
+        System.out.print(", Item Price: " + this.getPrice()
+                + "(Sell Value: " + this.returnSellItemPrice() + ")");
+
+        System.out.println();
+        for (Action action : this.getActionList()) {
+            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on " + action.getActionEffectOn() + " ");
+            PrintUtil.printActionDetails(action, action.getCurrentActionValue());
+        }
     }
 }

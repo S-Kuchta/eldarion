@@ -1,5 +1,6 @@
 package kuchtastefan.item;
 
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class Item {
+public abstract class Item {
 
     private final Integer itemId;
     protected String name;
@@ -22,6 +23,8 @@ public class Item {
         this.price = price;
         this.itemLevel = itemLevel;
     }
+
+    public abstract void printItemDescription(Hero hero);
 
     public double returnSellItemPrice() {
         return Math.floor(this.price * Constant.SELL_ITEM_PRICE_MULTIPLIER);

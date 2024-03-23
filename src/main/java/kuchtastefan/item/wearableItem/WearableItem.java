@@ -1,6 +1,7 @@
 package kuchtastefan.item.wearableItem;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +37,32 @@ public class WearableItem extends Item {
 
     public void setItemQuality(WearableItemQuality wearableItemQuality) {
         this.wearableItemQuality = wearableItemQuality;
+    }
+
+    @Override
+    public void printItemDescription(Hero hero) {
+
+        if (hero.getEquippedItem().containsValue(this)) {
+            System.out.print("-- EQUIPPED -- ");
+        }
+
+        System.out.print(this.getWearableItemType() + ": "
+                + this.getName()
+                + " (" + this.getWearableItemQuality() + "), iLevel: " + this.getItemLevel());
+
+        System.out.print(", Item Price: " + this.getPrice()
+                + "(Sell Value: " + this.returnSellItemPrice() + ")");
+
+        if (!this.getName().equals("No item")) {
+            System.out.print("\n\t\tItem stats: ");
+        }
+
+        for (Map.Entry<Ability, Integer> ability : this.getAbilities().entrySet()) {
+            if (ability.getValue() != 0) {
+                System.out.print(ability.getKey() + ": " + ability.getValue() + ", ");
+            }
+        }
+        System.out.println();
     }
 
     @Override

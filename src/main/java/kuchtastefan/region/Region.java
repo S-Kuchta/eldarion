@@ -23,7 +23,7 @@ public abstract class Region {
     protected String regionName;
     protected String regionDescription;
     protected List<Location> allLocations;
-    protected List<Location> discoveredLocations;
+//    protected List<Location> discoveredLocations;
     protected List<Location> clearedLocations;
     protected int minimumRegionLevel;
     protected int maximumRegionLevel;
@@ -35,7 +35,7 @@ public abstract class Region {
         this.regionName = regionName;
         this.regionDescription = regionDescription;
         this.allLocations = initializeLocationForRegion();
-        this.discoveredLocations = new ArrayList<>();
+//        this.discoveredLocations = new ArrayList<>();
         this.clearedLocations = new ArrayList<>();
         this.minimumRegionLevel = minimumRegionLevel;
         this.maximumRegionLevel = maximumRegionLevel;

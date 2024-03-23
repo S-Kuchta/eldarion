@@ -88,9 +88,8 @@ public abstract class VendorCharacter extends GameCharacter {
                     PrintUtil.printIndexAndText("0", "No");
                     System.out.println();
                     PrintUtil.printIndexAndText("1", "Yes");
-                    System.out.println(
+                    System.out.println();
 
-                    );
                     int confirmInput = InputUtil.intScanner();
                     switch (confirmInput) {
                         case 0 -> {
@@ -120,7 +119,9 @@ public abstract class VendorCharacter extends GameCharacter {
     public void printHeroItemsForSale(Hero hero) {
         List<Item> itemList = new ArrayList<>();
 
-        PrintUtil.printShopHeader(hero, StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(this.className.getSimpleName().replaceAll("\\d+", "")), " "));
+        PrintUtil.printShopHeader(hero, StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(
+                this.className.getSimpleName().replaceAll("\\d+", "")), " "));
+
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
 
@@ -135,7 +136,7 @@ public abstract class VendorCharacter extends GameCharacter {
         }
 
         if (itemList.isEmpty()) {
-            System.out.println("\tItem list is empty");
+            System.out.println("\tItem list is empty\n");
         }
 
         sellItem(hero, itemList);

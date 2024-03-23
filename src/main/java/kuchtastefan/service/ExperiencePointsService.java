@@ -13,6 +13,7 @@ public class ExperiencePointsService {
     }
 
     public void setNeededExperiencePointsForNewLevel(int heroLevel) {
-        this.neededExperiencePointsForNewLevel = Constant.BASE_EXPERIENCE_POINTS_NEEDED_FOR_NEW_LEVEL * 1.2 * heroLevel;
+        double multiplier = 1 + 0.1 * heroLevel - 0.1;
+        this.neededExperiencePointsForNewLevel = Math.ceil(Constant.BASE_EXPERIENCE_POINTS_NEEDED_FOR_NEW_LEVEL * multiplier * heroLevel);
     }
 }

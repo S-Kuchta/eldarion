@@ -150,7 +150,6 @@ public class LocationService {
             return;
         }
 
-
         // Reward for completing all location stages
         if (location.stageCompleted == location.stageTotal) {
             location.setCleared(true);

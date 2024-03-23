@@ -24,7 +24,7 @@ public class DiscoverLocationEvent extends Event {
             while (true) {
                 int randomNumber = RandomNumberGenerator.getRandomNumber(0, this.allLocations.size() - 1);
                 Location location = this.allLocations.get(randomNumber);
-                if (!hero.getDiscoveredLocationList().containsKey(location.getLocationId())) {
+                if (!hero.getDiscoveredLocationList().containsKey(location.getLocationId()) && location.getLocationLevel() <= hero.getLevel()) {
                     hero.getDiscoveredLocationList().put(location.getLocationId(), location);
                     System.out.println("\t--> You discovered " + location.getLocationName() + ", recommended level: " + location.getLocationLevel() + " level <--");
                     hero.gainExperiencePoints(50);

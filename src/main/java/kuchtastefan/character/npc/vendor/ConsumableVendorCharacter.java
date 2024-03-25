@@ -35,10 +35,11 @@ public class ConsumableVendorCharacter extends VendorCharacter {
         for (Item consumableItem : this.vendorOffer) {
             if (consumableItem instanceof ConsumableItem) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
-                PrintUtil.printConsumableItemInfo((ConsumableItem) consumableItem, false);
+                consumableItem.printItemDescription(hero);
+//                PrintUtil.printConsumableItemInfo((ConsumableItem) consumableItem, false);
 
                 index++;
-                System.out.println();
+//                System.out.println();
             }
         }
     }

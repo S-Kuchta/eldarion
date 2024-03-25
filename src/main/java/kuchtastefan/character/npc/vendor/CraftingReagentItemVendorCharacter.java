@@ -35,7 +35,8 @@ public class CraftingReagentItemVendorCharacter extends VendorCharacter {
         for (Item craftingReagentItem : this.vendorOffer) {
             if (craftingReagentItem instanceof CraftingReagentItem) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
-                PrintUtil.printCraftingReagentItemInfo((CraftingReagentItem) craftingReagentItem, false);
+                craftingReagentItem.printItemDescription(hero);
+//                PrintUtil.printCraftingReagentItemInfo((CraftingReagentItem) craftingReagentItem, false);
                 System.out.println();
                 index++;
             }

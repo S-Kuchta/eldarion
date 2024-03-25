@@ -12,6 +12,7 @@ public class LocationDB {
     }
 
     public static void addLocationToDB(Location location) {
+        location.setStageTotal(location.getLocationStages().size());
         LOCATION_DB.put(location.getLocationId(), location);
     }
 }

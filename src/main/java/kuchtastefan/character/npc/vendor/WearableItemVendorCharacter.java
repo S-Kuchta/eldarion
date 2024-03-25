@@ -35,7 +35,7 @@ public class WearableItemVendorCharacter extends VendorCharacter {
         for (Item wearableItem : this.vendorOffer) {
             if (wearableItem instanceof WearableItem) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
-                PrintUtil.printItemDescription((WearableItem) wearableItem, false, hero);
+                wearableItem.printItemDescription(hero);
                 index++;
             }
         }

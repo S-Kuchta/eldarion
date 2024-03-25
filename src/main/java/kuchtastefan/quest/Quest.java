@@ -50,16 +50,6 @@ public class Quest {
         }
     }
 
-    public void turnInTheQuestAndGiveReward(Hero hero) {
-        if (this.questStatus.equals(QuestStatus.COMPLETED)) {
-            PrintUtil.printLongDivider();
-            PrintUtil.printCompleteQuestText(this.questName);
-            PrintUtil.printLongDivider();
-            this.questReward.giveQuestReward(hero);
-            this.questStatus = QuestStatus.TURNED_IN;
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

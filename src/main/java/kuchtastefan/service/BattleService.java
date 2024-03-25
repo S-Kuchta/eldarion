@@ -108,8 +108,6 @@ public class BattleService {
             // If character is alive
             if (attackingCharacter.getCurrentAbilityValue(Ability.HEALTH) > 0) {
 
-
-                checkSpellsCoolDowns(attackingCharacter);
                 if (attackingCharacter instanceof Hero) {
                     heroPlay = true;
                 } else {
@@ -139,6 +137,7 @@ public class BattleService {
                     this.npcUseSpell(attackingCharacter, target, hero);
                 }
 
+                checkSpellsCoolDowns(attackingCharacter);
                 this.printAndPerformActionOverTime(attackingCharacter);
             }
 
@@ -198,13 +197,13 @@ public class BattleService {
 
                         // If choice is for consumable items, open inventory menu
                         if (inventoryMenuService.consumableItemsMenu(hero, true)) {
-                            checkSpellsCoolDowns(hero);
+//                            checkSpellsCoolDowns(hero);
                             break;
                         }
                     } else {
                         // If choice is for a spell, use the spell on the enemy
                         if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, playerTarget, enemyList, hero, tempCharacterList)) {
-                            checkSpellsCoolDowns(hero);
+//                            checkSpellsCoolDowns(hero);
                             break;
                         }
                     }

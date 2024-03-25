@@ -58,5 +58,21 @@
         "canBeActionCriticalHit": false
       }
     ]
+  },
+  {
+    "itemId": 1003,
+    "name": "Trout",
+    "price": 15,
+    "itemLevel": 1,
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "maxActionValue": 18,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ]
   }
 ]

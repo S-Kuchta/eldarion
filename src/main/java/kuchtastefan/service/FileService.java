@@ -12,7 +12,6 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.NonPlayerCharacter;
-import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.gameSettings.GameSetting;
@@ -30,6 +29,7 @@ import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
+import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.region.location.Location;
 import kuchtastefan.region.location.LocationDB;
@@ -337,7 +337,6 @@ public class FileService {
 
                 for (NonPlayerCharacter character : characterList) {
                     character.setCharacterType(CharacterType.valueOf(file.toUpperCase().replace(".JSON", "")));
-
                     CharacterDB.addCharacterToDB(character);
                 }
                 reader.close();
@@ -359,7 +358,6 @@ public class FileService {
                 for (Quest quest : quests) {
                     QuestDB.addQuestToDB(quest);
                 }
-
 
                 reader.close();
             }
@@ -402,7 +400,6 @@ public class FileService {
                 }.getType());
 
                 for (Location location : locations) {
-                    location.setStageTotal(location.getLocationStages().size());
                     LocationDB.addLocationToDB(location);
                 }
 
@@ -429,7 +426,7 @@ public class FileService {
         }
     }
 
-    public void importQuestGiverFromFile(Hero hero) {
+    public void importQuestGiverFromFile() {
         String path = "external-files/quests/quest-giver";
         try {
             for (String file : returnFileList(path)) {

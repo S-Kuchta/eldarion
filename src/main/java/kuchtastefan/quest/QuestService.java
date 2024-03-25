@@ -37,18 +37,12 @@ public class QuestService {
                     break;
                 }
 
-//                if (canBeQuestAccepted(quests.get(choice - 1), hero)) {
                 if (hero.getHeroAcceptedQuest().containsValue(quests.get(choice - 1))) {
                     this.selectedQuestMenu(hero.getHeroAcceptedQuest()
                             .get(quests.get(choice - 1).getQuestId()), hero, quests, name);
                 } else {
                     this.selectedQuestMenu(quests.get(choice - 1), hero, quests, name);
                 }
-
-//                } else {
-//                    System.out.println(ConsoleColor.RED + "\tQuest can not be accepted yet!" + ConsoleColor.RESET);
-//                    this.questGiverMenu(hero, quests, name);
-//                }
 
                 this.questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
                 break;
@@ -95,26 +89,18 @@ public class QuestService {
 
         int index = 1;
         for (Quest quest : quests) {
-            if (canBeQuestAccepted(quest, hero)) {
+            PrintUtil.printIndexAndText(String.valueOf(index),
+                    quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
 
-                PrintUtil.printIndexAndText(String.valueOf(index),
-                        quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
-
-                switch (quest.getQuestStatus()) {
-                    case QuestStatus.UNAVAILABLE ->
-                            System.out.print(" - " + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + " - ");
-                    case QuestStatus.AVAILABLE ->
-                            System.out.print(" - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ");
-                    case QuestStatus.COMPLETED ->
-                            System.out.print(" - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + " - ");
-                    case QuestStatus.TURNED_IN -> System.out.print(" -- Completed --");
-                    default -> System.out.print("");
-                }
-            } else {
-                PrintUtil.printIndexAndText(String.valueOf(index),
-                        quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
-
-                System.out.print(ConsoleColor.WHITE + " - ! - " + ConsoleColor.RESET);
+            switch (quest.getQuestStatus()) {
+                case QuestStatus.UNAVAILABLE ->
+                        System.out.print(" - " + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + " - ");
+                case QuestStatus.AVAILABLE ->
+                        System.out.print(" - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ");
+                case QuestStatus.COMPLETED ->
+                        System.out.print(" - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + " - ");
+                case QuestStatus.TURNED_IN -> System.out.print(" -- Completed --");
+                default -> System.out.print("");
             }
 
             index++;
@@ -145,7 +131,10 @@ public class QuestService {
                 System.out.println(ConsoleColor.RED + "\tQuest can not be accepted yet." + ConsoleColor.RESET);
                 PrintUtil.printIndexAndText("0", "Go back\n");
             }
-            case QuestStatus.ACCEPTED -> this.printQuestDetails(quest, hero);
+            case QuestStatus.ACCEPTED ->  {
+                this.printQuestDetails(quest, hero);
+                this.questGiverMenu(hero, quests, name);
+            }
             case QuestStatus.COMPLETED -> {
                 PrintUtil.printIndexAndText("0", "Go back\n");
                 PrintUtil.printIndexAndText("1", "Complete quest\n");
@@ -192,7 +181,14 @@ public class QuestService {
      * @param quest quest to turn in
      */
     private void turnInTheQuest(Quest quest, Hero hero) {
-        quest.turnInTheQuestAndGiveReward(hero);
+        if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+            PrintUtil.printLongDivider();
+            PrintUtil.printCompleteQuestText(quest.getQuestName());
+            PrintUtil.printLongDivider();
+            quest.getQuestReward().giveQuestReward(hero);
+            quest.setQuestStatus(QuestStatus.TURNED_IN);
+        }
+
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             if (questObjective instanceof RemoveObjectiveProgress) {
                 ((RemoveObjectiveProgress) questObjective).removeCompletedQuestObjectiveAssignment(hero);
@@ -210,15 +206,6 @@ public class QuestService {
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             questObjective.printQuestObjectiveAssignment(hero);
         }
-    }
-
-    private boolean canBeQuestAccepted(Quest quest, Hero hero) {
-
-        if (quest instanceof QuestChain) {
-            return ((QuestChain) quest).canBeQuestAccepted(hero);
-        }
-
-        return (quest.getQuestLevel() - 1) <= hero.getLevel();
     }
 
     /**

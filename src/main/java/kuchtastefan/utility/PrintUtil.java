@@ -104,7 +104,6 @@ public class PrintUtil {
             }
         }
 
-//        if (GameSettings.isShowInformationAboutActionName()) {
         if (GameSettingsDB.returnGameSettingValue(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
             System.out.print("\n\t\t" + action.getActionName().getDescription());
         }
@@ -216,7 +215,7 @@ public class PrintUtil {
     private static void printExperienceBar(Hero hero) {
         double currentValue = hero.getExperiencePoints();
         double maxValue = hero.getExperiencePointsService().getNeededExperiencePointsForNewLevel();
-        double oneBarValue = maxValue / 75;
+        double oneBarValue = maxValue / 60;
 
         String charToPrint;
         System.out.print("\t" + "Experience Points" + " »");

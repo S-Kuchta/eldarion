@@ -113,7 +113,9 @@
         "stageName": "Tower Top Floor",
         "stageDiscovered": true,
         "itemsIdNeededToEnterStage": [],
-        "itemId": 104
+        "itemId": [
+          104
+        ]
       }
     }
   },
@@ -164,7 +166,14 @@
         "stageName": "The End of Old fishing pier",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
-        "itemId": 301
+        "itemsId": [
+          301,
+          900,
+          902,
+          1003,
+          1003,
+          1002
+        ]
       },
       "5": {
         "type": "LocationStageCombat",

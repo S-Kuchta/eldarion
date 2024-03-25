@@ -1,5 +1,6 @@
 package kuchtastefan.item;
 
+import kuchtastefan.actions.Action;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;

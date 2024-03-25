@@ -11,7 +11,7 @@ public class JunkItem extends Item {
     @Override
     public void printItemDescription(Hero hero) {
 
-        System.out.print(this.getName() + ", Item price: " + this.getPrice() + " golds"
+        System.out.println(this.getName() + ", Item price: " + this.getPrice() + " golds"
                 + "(Sell Value: " + this.returnSellItemPrice() + ")");
     }
 }

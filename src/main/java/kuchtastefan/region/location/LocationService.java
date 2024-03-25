@@ -5,6 +5,7 @@ import kuchtastefan.character.hero.HeroMenuService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintUtil;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
@@ -27,8 +28,8 @@ public class LocationService {
 
         while (true) {
             PrintUtil.printLongDivider();
-            System.out.println("\t" + location.getLocationName() + "\tLocation level: "
-                    + location.getLocationLevel() + " "
+            System.out.println(ConsoleColor.YELLOW + "\t" + location.getLocationName() + ConsoleColor.RESET
+                    + "\tLocation level: " + location.getLocationLevel() + " "
                     + "\tStages completed " + location.stageCompleted + " / " + location.stageTotal);
             PrintUtil.printLongDivider();
 
@@ -43,6 +44,7 @@ public class LocationService {
 
             // Print discovered location Stages
             int index = 3;
+            System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t\tLocation Stages\t\t\t\t\t\t" + ConsoleColor.RESET);
             for (Map.Entry<Integer, LocationStage> locationStage : location.locationStages.entrySet()) {
                 if (locationStage.getValue().isStageDiscovered()) {
                     String completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
@@ -54,7 +56,7 @@ public class LocationService {
             }
 
             try {
-                // Location selection
+                // Select location
                 int choice = InputUtil.intScanner();
                 if (choice == 0) {
                     System.out.println("\tGoing back on path");

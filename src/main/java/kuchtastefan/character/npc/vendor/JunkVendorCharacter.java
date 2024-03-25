@@ -27,7 +27,8 @@ public class JunkVendorCharacter extends VendorCharacter {
         for (Item junkItem : this.vendorOffer) {
             if (junkItem instanceof JunkItem) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
-                PrintUtil.printJunkItemInfo((JunkItem) junkItem, false);
+                junkItem.printItemDescription(hero);
+//                PrintUtil.printJunkItemInfo((JunkItem) junkItem, false);
                 index++;
                 System.out.println();
             }

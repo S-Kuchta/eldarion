@@ -194,7 +194,7 @@ public class GameManager {
         this.fileService.importQuestsListFromFile();
         this.fileService.importLocationsFromFile();
         this.fileService.importEnemyGroupFromFile();
-        this.fileService.importQuestGiverFromFile(this.hero);
+        this.fileService.importQuestGiverFromFile();
         this.fileService.importCreaturesFromFile();
 
         this.forestRegion = new ForestRegion("SilverWood Glade", "Magic forest", this.hero, 1, 5);
@@ -220,7 +220,6 @@ public class GameManager {
                     HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
                     QuestDB.setInitialQuestsStatus(this.hero);
                     QuestDB.loadQuests(this.hero);
-//                    QuestDB.connectHeroQuestListWithCharacterQuestList(this.hero, QuestDB.returnQuestList());
                     this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
                     this.forestRegion.setHero(this.hero);
 

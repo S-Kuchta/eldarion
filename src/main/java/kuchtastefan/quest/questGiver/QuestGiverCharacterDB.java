@@ -22,6 +22,14 @@ public class QuestGiverCharacterDB {
     }
 
     public static void addQuestGiverToDB(QuestGiverCharacter questGiverCharacter) {
+        questGiverCharacter.convertQuestIdToQuest();
+        questGiverCharacter.setName(questGiverCharacter.getBaseName());
         QUEST_GIVER_CHARACTER_DB.put(questGiverCharacter.getQuestGiverId(), questGiverCharacter);
+    }
+
+    public static void setAllQuestGiversName(Hero hero) {
+        for (QuestGiverCharacter questGiverCharacter : QUEST_GIVER_CHARACTER_DB.values()) {
+            questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
+        }
     }
 }

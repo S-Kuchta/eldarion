@@ -439,9 +439,6 @@ public class FileService {
                 }.getType());
 
                 for (QuestGiverCharacter questGiverCharacter : questGivers) {
-                    questGiverCharacter.convertQuestIdToQuest();
-                    questGiverCharacter.setName(questGiverCharacter.getBaseName());
-                    questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
                     QuestGiverCharacterDB.addQuestGiverToDB(questGiverCharacter);
                 }
 

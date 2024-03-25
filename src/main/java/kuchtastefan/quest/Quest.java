@@ -16,10 +16,9 @@ public class Quest {
     private final String questName;
     private final String questDescription;
     private final int questLevel;
-    private boolean questCompleted;
     private List<? extends QuestObjective> questObjectives;
     private final QuestReward questReward;
-    private boolean isTurnedIn;
+    private QuestStatus questStatus;
 
 
     public Quest(int questId, String questName, String questDescription, int questLevel,
@@ -30,15 +29,13 @@ public class Quest {
         this.questLevel = questLevel;
         this.questObjectives = questObjectives;
         this.questReward = questReward;
-        this.questCompleted = false;
-        this.isTurnedIn = false;
     }
 
     /**
      * Check if is Quest completed, Quest is completed if all
      * questObjectives belonging to quest are completed.
      */
-    public void checkIfQuestIsCompleted() {
+    public void checkIfAllQuestObjectivesAreCompleted() {
         boolean completed = true;
         for (QuestObjective questObjective : this.questObjectives) {
             if (!questObjective.isCompleted()) {
@@ -46,18 +43,20 @@ public class Quest {
                 break;
             }
         }
-        if (completed && !this.questCompleted) {
+
+        if (completed && !this.questStatus.equals(QuestStatus.COMPLETED)) {
             PrintUtil.printCompleteQuestText(this.questName);
-            this.questCompleted = true;
+            this.questStatus = QuestStatus.COMPLETED;
         }
     }
 
     public void turnInTheQuestAndGiveReward(Hero hero) {
-        if (this.questCompleted) {
+        if (this.questStatus.equals(QuestStatus.COMPLETED)) {
             PrintUtil.printLongDivider();
             PrintUtil.printCompleteQuestText(this.questName);
             PrintUtil.printLongDivider();
             this.questReward.giveQuestReward(hero);
+            this.questStatus = QuestStatus.TURNED_IN;
         }
     }
 

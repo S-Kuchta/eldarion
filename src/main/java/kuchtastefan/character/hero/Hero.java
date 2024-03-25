@@ -11,6 +11,7 @@ import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestService;
+import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.region.location.Location;
 import kuchtastefan.service.ExperiencePointsService;
@@ -61,7 +62,7 @@ public class Hero extends GameCharacter {
             System.out.println("\tYou don't meet minimal level requirement to wear this item!");
             PrintUtil.printLongDivider();
         } else {
-            System.out.println("\tYou equip " + ConsoleColor.YELLOW +  wearableItem.getName() + ConsoleColor.RESET);
+            System.out.println("\tYou equip " + ConsoleColor.YELLOW + wearableItem.getName() + ConsoleColor.RESET);
             this.equippedItem.put(wearableItem.getWearableItemType(), wearableItem);
         }
         updateWearingItemAbilityPoints();
@@ -244,14 +245,15 @@ public class Hero extends GameCharacter {
      * Add this method at the end of each event which can complete quest or quest objective
      */
     public void checkIfQuestObjectivesAndQuestIsCompleted() {
-        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuest.entrySet()) {
-            if (!questMap.getValue().isTurnedIn()) {
-                for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
+        for (Quest quest : this.heroAcceptedQuest.values()) {
+            if (!quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
+                for (QuestObjective questObjective : quest.getQuestObjectives()) {
                     if (!questObjective.isCompleted()) {
                         questObjective.checkIfQuestObjectiveIsCompleted(this);
                     }
                 }
-                questMap.getValue().checkIfQuestIsCompleted();
+
+                quest.checkIfAllQuestObjectivesAreCompleted();
             }
         }
     }

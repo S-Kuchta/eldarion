@@ -16,6 +16,7 @@ import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.junkItem.JunkItem;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.region.ForestRegion;
 import kuchtastefan.utility.ConsoleColor;
@@ -47,6 +48,7 @@ public class GameManager {
 
         while (true) {
             this.fileService.autoSave(this.hero);
+            QuestGiverCharacterDB.setAllQuestGiversName(this.hero);
 
             PrintUtil.printLongDivider();
             System.out.println("\t\t\t\t\t\t\t------ Mystic Hollow ------");
@@ -216,8 +218,12 @@ public class GameManager {
                     this.hero.setLevel(gameLoaded.getHero().getLevel());
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
                     HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
+                    QuestDB.setInitialQuestsStatus(this.hero);
+                    QuestDB.loadQuests(this.hero);
+//                    QuestDB.connectHeroQuestListWithCharacterQuestList(this.hero, QuestDB.returnQuestList());
                     this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
                     this.forestRegion.setHero(this.hero);
+
                     return;
                 }
             }
@@ -258,6 +264,7 @@ public class GameManager {
         this.hero.setName(name);
         this.hero.setLevel(Constant.INITIAL_LEVEL);
         this.hero.gainExperiencePoints(0);
+        QuestDB.setInitialQuestsStatus(this.hero);
 
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();

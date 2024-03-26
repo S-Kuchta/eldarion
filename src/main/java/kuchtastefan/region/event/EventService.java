@@ -25,10 +25,12 @@ public class EventService {
 
     public void randomRegionEventGenerate(Hero hero, LocationType locationType) {
         int randomNumber = RandomNumberGenerator.getRandomNumber(0, 4);
-        int eventLevel = hero.getLevel() + RandomNumberGenerator.getRandomNumber(-1, 1);
-        if (eventLevel == 0) {
-            eventLevel = 1;
-        }
+//        int eventLevel = hero.getLevel() + RandomNumberGenerator.getRandomNumber(-1, 1);
+//        if (eventLevel == 0) {
+//            eventLevel = 1;
+//        }
+
+        int eventLevel = hero.getLevel();
 
         switch (randomNumber) {
             case 0 -> new MerchantEvent(eventLevel).eventOccurs(hero);

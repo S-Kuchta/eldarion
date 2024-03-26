@@ -90,7 +90,7 @@ public class Spell {
                 }
             }
 
-            spellCaster.decreaseCurrentAbility(this.spellManaCost, Ability.MANA);
+            spellCaster.decreaseCurrentAbilityValue(this.spellManaCost, Ability.MANA);
             this.currentTurnCoolDown = 0;
             checkSpellCoolDown();
             return true;

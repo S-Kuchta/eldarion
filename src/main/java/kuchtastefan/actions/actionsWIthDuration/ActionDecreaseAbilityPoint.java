@@ -27,7 +27,7 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration {
     public void performAction(GameCharacter gameCharacter) {
 
         int decreaseAbilityWithStacksValue = this.getCurrentActionValue() * this.getActionCurrentStacks();
-        gameCharacter.decreaseCurrentAbility(decreaseAbilityWithStacksValue, this.ability);
+        gameCharacter.decreaseCurrentAbilityValue(decreaseAbilityWithStacksValue, this.ability);
 
         System.out.println("\t" + ConsoleColor.RED + this.ability + ConsoleColor.RESET + " is decreased by " + decreaseAbilityWithStacksValue);
     }

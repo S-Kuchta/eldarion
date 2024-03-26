@@ -2,6 +2,7 @@ package kuchtastefan.actions.actionsWIthDuration;
 
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
+import kuchtastefan.actions.instantActions.ActionInstantStun;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 

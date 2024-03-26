@@ -3,9 +3,7 @@ package kuchtastefan.character;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.actionsWIthDuration.ActionAbsorbDamage;
-import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
@@ -52,7 +50,6 @@ public abstract class GameCharacter {
     public void addActionWithDuration(ActionWithDuration actionWithDuration) {
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.REGION_ACTION)) {
             setNewActionOrAddStackToExistingAction(actionWithDuration, this.regionActionsWithDuration);
-            setNewActionOrAddStackToExistingAction(actionWithDuration, this.battleActionsWithDuration);
         }
 
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.BATTLE_ACTION)) {
@@ -111,12 +108,13 @@ public abstract class GameCharacter {
             actionWithDuration.performAction(this);
             if (actionWithDuration.getActionDurationType().equals(actionDurationType)) {
                 actionWithDuration.actionAddTurn();
-                System.out.println("current turn: " + actionWithDuration.getCurrentActionTurn());
-                System.out.println("max turn:" + actionWithDuration.getMaxActionTurns());
             }
         }
 
         checkAndRemoveActionTurns();
+        checkReflectSpellAndIfCanPerformAction(this.battleActionsWithDuration);
+        checkReflectSpellAndIfCanPerformAction(this.regionActionsWithDuration);
+        actions.clear();
     }
 
     public void checkAndRemoveActionTurns() {
@@ -139,6 +137,18 @@ public abstract class GameCharacter {
             } else {
                 this.currentAbilities.put(ability, this.maxAbilities.get(ability));
             }
+        }
+    }
+
+    private void checkReflectSpellAndIfCanPerformAction(Set<ActionWithDuration> actions) {
+        if (actions.isEmpty()) {
+            this.canPerformAction = true;
+            this.reflectSpell = false;
+        }
+
+        for (ActionWithDuration action : actions) {
+            this.canPerformAction = !(action instanceof ActionStun);
+            this.reflectSpell = action instanceof ActionReflectSpell;
         }
     }
 
@@ -206,7 +216,7 @@ public abstract class GameCharacter {
         }
     }
 
-    public void decreaseCurrentAbility(int valueOfLower, Ability ability) {
+    public void decreaseCurrentAbilityValue(int valueOfLower, Ability ability) {
         int currentAbility = getCurrentAbilityValue(ability);
         this.currentAbilities.put(ability, Math.max(currentAbility - valueOfLower, 0));
     }

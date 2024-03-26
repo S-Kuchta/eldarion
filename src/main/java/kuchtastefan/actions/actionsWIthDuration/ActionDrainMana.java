@@ -23,6 +23,6 @@ public class ActionDrainMana extends ActionWithDuration {
         }
 
         System.out.println("\t" + gameCharacter.getName() + " lost " + value + " Mana");
-        gameCharacter.decreaseCurrentAbility(this.currentActionValue, Ability.MANA);
+        gameCharacter.decreaseCurrentAbilityValue(this.currentActionValue, Ability.MANA);
     }
 }

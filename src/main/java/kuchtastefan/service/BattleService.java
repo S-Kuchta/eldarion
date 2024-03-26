@@ -197,13 +197,11 @@ public class BattleService {
 
                         // If choice is for consumable items, open inventory menu
                         if (inventoryMenuService.consumableItemsMenu(hero, true)) {
-//                            checkSpellsCoolDowns(hero);
                             break;
                         }
                     } else {
                         // If choice is for a spell, use the spell on the enemy
                         if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, playerTarget, enemyList, hero, tempCharacterList)) {
-//                            checkSpellsCoolDowns(hero);
                             break;
                         }
                     }

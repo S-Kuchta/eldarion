@@ -181,24 +181,27 @@ public class Hero extends GameCharacter {
      * @param experiencePointsGained from kill, quest, discover location,
      */
     public void gainExperiencePoints(double experiencePointsGained) {
-        this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
-        this.experiencePoints += experiencePointsGained;
 
-        if (experiencePointsService.gainedNewLevel(this.experiencePoints)) {
-            this.level++;
-            this.updateAbilityPoints(Constant.INCREASE_ABILITY_POINTS_AFTER_LEVEL_UP);
-
-            PrintUtil.printDivider();
-            System.out.println("\tYou reached a new level! Your level is " + this.level + "!");
-            PrintUtil.printDivider();
-
-            this.experiencePoints -= this.experiencePointsService.getNeededExperiencePointsForNewLevel();
+        if (this.level < Constant.MAX_LEVEL) {
             this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
-        }
+            this.experiencePoints += experiencePointsGained;
 
-        if (experiencePointsGained > 0) {
-            System.out.println("\tYou gained " + ConsoleColor.YELLOW_BRIGHT + (int) experiencePointsGained
-                    + " experience points" + ConsoleColor.RESET);
+            if (experiencePointsService.gainedNewLevel(this.experiencePoints)) {
+                this.level++;
+                this.updateAbilityPoints(Constant.INCREASE_ABILITY_POINTS_AFTER_LEVEL_UP);
+
+                PrintUtil.printDivider();
+                System.out.println("\tYou reached a new level! Your level is " + this.level + "!");
+                PrintUtil.printDivider();
+
+                this.experiencePoints -= this.experiencePointsService.getNeededExperiencePointsForNewLevel();
+                this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
+            }
+
+            if (experiencePointsGained > 0) {
+                System.out.println("\tYou gained " + ConsoleColor.YELLOW_BRIGHT + (int) experiencePointsGained
+                        + " experience points" + ConsoleColor.RESET);
+            }
         }
     }
 
@@ -206,39 +209,6 @@ public class Hero extends GameCharacter {
         QuestService questService = new QuestService();
         questService.checkQuestProgress(questEnemyId, this.heroAcceptedQuest, this);
     }
-
-//    /**
-//     * check if enemy killed in CombatEvent belongs to some of accepted Quest.
-//     * If yes increase current count progress in questObjective
-//     * and print QuestObjectiveAssignment with QuestObjective progress.
-//     * If you need to use this method, Use it always before checkIfQuestObjectivesAndQuestIsCompleted() method.
-//     */
-//    public void checkQuestProgress(Integer questEnemyId) {
-//
-//        for (Map.Entry<Integer, Quest> questMap : this.heroAcceptedQuest.entrySet()) {
-//            for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
-//                if (!questObjective.isCompleted()) {
-//                    if (questObjective instanceof QuestKillObjective
-//                            && ((QuestKillObjective) questObjective).getQuestEnemyId().equals(questEnemyId)) {
-//
-//                        ((QuestKillObjective) questObjective).increaseCurrentCountEnemyProgress();
-//                        questObjective.printQuestObjectiveAssignment(this);
-//                    }
-//
-//                    if (questObjective instanceof QuestBringItemObjective
-//                            && ((QuestBringItemObjective) questObjective).checkEnemy(questEnemyId)) {
-//
-//                        Item questItem = ItemDB.returnItemFromDB(
-//                                ((QuestBringItemObjective) questObjective).getObjectiveItemId());
-//                        System.out.println("\t-- You loot " + (questItem.getName() + " --"));
-//
-//                        this.heroInventory.addItemWithNewCopyToItemList((questItem));
-//                        questObjective.printQuestObjectiveAssignment(this);
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     /**
      * Check if quest and quest objective is completed.

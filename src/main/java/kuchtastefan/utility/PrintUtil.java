@@ -213,23 +213,33 @@ public class PrintUtil {
     }
 
     private static void printExperienceBar(Hero hero) {
-        double currentValue = hero.getExperiencePoints();
-        double maxValue = hero.getExperiencePointsService().getNeededExperiencePointsForNewLevel();
-        double oneBarValue = maxValue / 60;
 
-        String charToPrint;
-        System.out.print("\t" + "Experience Points" + " »");
-        // 75
-        for (int i = 0; i < 60; i++) {
-            if (i * oneBarValue >= currentValue) {
-                charToPrint = "_";
-            } else {
-                charToPrint = ConsoleColor.YELLOW_BRIGHT + "■" + ConsoleColor.RESET;
+        if (hero.getLevel() < Constant.MAX_LEVEL) {
+            double currentValue = hero.getExperiencePoints();
+            double maxValue = hero.getExperiencePointsService().getNeededExperiencePointsForNewLevel();
+            double oneBarValue = maxValue / 60;
+
+            String charToPrint;
+            System.out.print("\t" + "Experience Points" + " »");
+            // 75
+            for (int i = 0; i < 60; i++) {
+                if (i * oneBarValue >= currentValue) {
+                    charToPrint = "_";
+                } else {
+                    charToPrint = ConsoleColor.YELLOW_BRIGHT + "■" + ConsoleColor.RESET;
+                }
+                System.out.print(charToPrint);
             }
-            System.out.print(charToPrint);
+
+            System.out.print("« [" + (int) currentValue + "/" + (int) maxValue + "][Level: " + hero.getLevel() + "]");
+        } else {
+            System.out.print("\t» [");
+            System.out.printf(ConsoleColor.YELLOW_UNDERLINED + "%47s", "");
+            System.out.print("MAX LEVEL");
+            System.out.printf("%47s", "" + ConsoleColor.RESET);
+            System.out.print("] «");
         }
 
-        System.out.print("« [" + (int) currentValue + "/" + (int) maxValue + "][Level: " + hero.getLevel() + "]");
     }
 
     public static void printAbilityPoints(GameCharacter gameCharacter) {

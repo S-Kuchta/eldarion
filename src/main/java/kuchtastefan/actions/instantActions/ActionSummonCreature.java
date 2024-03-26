@@ -1,4 +1,4 @@
-package kuchtastefan.actions.actionsWIthDuration;
+package kuchtastefan.actions.instantActions;
 
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;

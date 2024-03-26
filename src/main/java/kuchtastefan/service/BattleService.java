@@ -3,10 +3,7 @@ package kuchtastefan.service;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
-import kuchtastefan.actions.instantActions.ActionDealDamage;
-import kuchtastefan.actions.instantActions.ActionInstantStun;
-import kuchtastefan.actions.instantActions.ActionRestoreHealth;
-import kuchtastefan.actions.instantActions.ActionRestoreMana;
+import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
@@ -246,8 +243,8 @@ public class BattleService {
         System.out.println("\n\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
         gameCharacter.performActionsWithDuration(ActionDurationType.BATTLE_ACTION);
 
-        gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.INTELLECT)
-                * Constant.RESTORE_MANA_PER_ONE_INTELLECT, Ability.MANA);
+        gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.HASTE)
+                * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
     }
 
     private void printBattleMenu(Hero hero) {

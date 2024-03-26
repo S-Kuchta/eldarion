@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.*;
+import kuchtastefan.actions.instantActions.ActionSummonCreature;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.CharacterClass;
 import kuchtastefan.character.hero.Hero;
@@ -64,30 +65,35 @@ public class Spell {
     public boolean useSpell(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyCharacters, Hero hero, List<GameCharacter> tempCharacterList) {
 
         if (this.canSpellBeCasted && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.spellManaCost) {
+
             System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.spellName + ConsoleColor.RESET);
 
-            boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+            if (hitEnemy(spellCaster, spellTarget)) {
+                boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
 
-            if (spellTarget.isReflectSpell()) {
-                for (Action action : spellTarget.getBattleActionsWithDuration()) {
-                    if (action instanceof ActionReflectSpell) {
-                        spellTarget.getBattleActionsWithDuration().remove(action);
-                        spellTarget = spellCaster;
-                        break;
+                if (spellTarget.isReflectSpell()) {
+                    for (Action action : spellTarget.getBattleActionsWithDuration()) {
+                        if (action instanceof ActionReflectSpell) {
+                            spellTarget.getBattleActionsWithDuration().remove(action);
+                            spellTarget = spellCaster;
+                            break;
+                        }
                     }
                 }
-            }
 
-            for (Action action : this.spellActions) {
-                if (this.hitAllEnemy) {
-                    for (GameCharacter character : enemyCharacters) {
-                        performAction(action, spellCaster, character, criticalHit, tempCharacterList);
+                for (Action action : this.spellActions) {
+                    if (this.hitAllEnemy) {
+                        for (GameCharacter actionTarget : enemyCharacters) {
+                            performAction(action, spellCaster, actionTarget, criticalHit, tempCharacterList);
+                        }
+                    } else if (action.getActionEffectOn().equals(ActionEffectOn.PLAYER)) {
+                        performAction(action, spellCaster, hero, criticalHit, tempCharacterList);
+                    } else {
+                        performAction(action, spellCaster, spellTarget, criticalHit, tempCharacterList);
                     }
-                } else if (action.getActionEffectOn().equals(ActionEffectOn.PLAYER)) {
-                    performAction(action, spellCaster, hero, criticalHit, tempCharacterList);
-                } else {
-                    performAction(action, spellCaster, spellTarget, criticalHit, tempCharacterList);
                 }
+            } else {
+                System.out.println("\t" + ConsoleColor.RED + spellCaster.getName() + " Missed Enemy!");
             }
 
             spellCaster.decreaseCurrentAbilityValue(this.spellManaCost, Ability.MANA);
@@ -103,6 +109,18 @@ public class Spell {
             }
 
             return false;
+        }
+    }
+
+    private boolean hitEnemy(GameCharacter attacker, GameCharacter defender) {
+        int attackerHaste = attacker.getCurrentAbilityValue(Ability.HASTE);
+        int defenderHaste = defender.getCurrentAbilityValue(Ability.HASTE);
+
+        if (attackerHaste >= defenderHaste) {
+            return true;
+        } else {
+            int chanceToMiss = defenderHaste - attackerHaste;
+            return chanceToMiss <= RandomNumberGenerator.getRandomNumber(0, 100);
         }
     }
 

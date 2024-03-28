@@ -6,9 +6,9 @@
   },
   {
     "itemId": 1101,
-  "name": "Cutlery",
-  "price": 2
-},
+    "name": "Cutlery",
+    "price": 2
+  },
   {
     "itemId": 1102,
     "name": "Bucket",

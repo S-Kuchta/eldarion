@@ -9,7 +9,6 @@ import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.event.EventService;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.LocationService;
-import kuchtastefan.world.Biome;
 
 import java.util.ArrayList;
 import java.util.List;

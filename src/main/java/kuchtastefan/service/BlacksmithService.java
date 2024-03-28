@@ -1,10 +1,12 @@
 package kuchtastefan.service;
 
 import com.google.gson.Gson;
+import kuchtastefan.character.npc.vendor.ShopService;
+import kuchtastefan.character.npc.vendor.VendorDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
-import kuchtastefan.character.npc.vendor.WearableItemVendorCharacter;
+import kuchtastefan.character.npc.vendor.specificVendorCharacter.CraftingReagentItemVendorCharacter;
+import kuchtastefan.character.npc.vendor.specificVendorCharacter.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.item.ItemDB;
@@ -26,10 +28,11 @@ import java.util.Map;
 public class BlacksmithService {
 
     public void blacksmithMenu(Hero hero) {
-        final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
-                ItemDB.returnWearableItemListByItemLevel(hero.getLevel(), null, false), WearableItem.class);
-        final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
-                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0), CraftingReagentItem.class);
+        ShopService shopService = new ShopService();
+//        final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
+//                ItemDB.returnWearableItemListByItemLevel(hero.getLevel(), null, false), WearableItem.class);
+//        final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
+//                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0), CraftingReagentItem.class);
 
         HintDB.printHint(HintName.BLACKSMITH_HINT);
 
@@ -47,9 +50,11 @@ public class BlacksmithService {
         System.out.println();
         PrintUtil.printIndexAndText("2", "Dismantle item");
         System.out.println();
-        PrintUtil.printIndexAndText("3", citySmithVendor.getName() + " (Wearable Items Merchant)");
+        PrintUtil.printIndexAndText("3", VendorDB.returnVendorCharacterFromDb(0).getName());
         System.out.println();
-        PrintUtil.printIndexAndText("4", cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
+//        PrintUtil.printIndexAndText("3", citySmithVendor.getName() + " (Wearable Items Merchant)");
+//        System.out.println();
+//        PrintUtil.printIndexAndText("4", cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
         System.out.println();
         PrintUtil.printIndexAndText("5", questGiverCharacter.getName());
         System.out.println();
@@ -60,8 +65,9 @@ public class BlacksmithService {
             }
             case 1 -> this.refinementItemQuality(hero);
             case 2 -> this.dismantleItem(hero);
-            case 3 -> citySmithVendor.vendorMenu(hero);
-            case 4 -> cityReagentVendor.vendorMenu(hero);
+            case 3 -> shopService.vendorMenu(hero, VendorDB.returnVendorCharacterFromDb(0));
+//            case 3 -> citySmithVendor.vendorMenu(hero);
+//            case 4 -> cityReagentVendor.vendorMenu(hero);
             case 5 -> questGiverCharacter.questGiverMenu(hero);
             default -> PrintUtil.printEnterValidInput();
         }

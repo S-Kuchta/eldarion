@@ -7,6 +7,11 @@ import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.npc.vendor.VendorCharacter;
+import kuchtastefan.character.npc.vendor.specificVendorCharacter.ConsumableVendorCharacter;
+import kuchtastefan.character.npc.vendor.specificVendorCharacter.CraftingReagentItemVendorCharacter;
+import kuchtastefan.character.npc.vendor.specificVendorCharacter.JunkVendorCharacter;
+import kuchtastefan.character.npc.vendor.specificVendorCharacter.WearableItemVendorCharacter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
@@ -84,4 +89,11 @@ public class RuntimeTypeAdapterFactoryUtil {
             .of(Quest.class)
             .registerSubtype(Quest.class)
             .registerSubtype(QuestChain.class);
+
+    public static final RuntimeTypeAdapterFactory<? extends VendorCharacter> vendorRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
+            .of(VendorCharacter.class)
+            .registerSubtype(ConsumableVendorCharacter.class)
+            .registerSubtype(WearableItemVendorCharacter.class)
+            .registerSubtype(CraftingReagentItemVendorCharacter.class)
+            .registerSubtype(JunkVendorCharacter.class);
 }

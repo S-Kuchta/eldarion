@@ -1,6 +1,5 @@
 package kuchtastefan.world.location;
 
-import kuchtastefan.world.Biome;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import lombok.Getter;
 import lombok.Setter;

@@ -5,13 +5,17 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.character.npc.enemy.EnemyGroup;
-import kuchtastefan.character.npc.enemy.EnemyGroupDB;
 import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.NonPlayerCharacter;
+import kuchtastefan.character.npc.enemy.EnemyGroup;
+import kuchtastefan.character.npc.enemy.EnemyGroupDB;
+import kuchtastefan.character.npc.vendor.VendorCharacter;
+import kuchtastefan.character.npc.vendor.VendorDB;
+import kuchtastefan.character.npc.vendor.VendorItemDB;
+import kuchtastefan.character.npc.vendor.VendorItemList;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.gameSettings.GameSetting;
@@ -31,11 +35,12 @@ import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
-import kuchtastefan.world.location.Location;
-import kuchtastefan.world.location.LocationDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.RandomNameGenerator;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
+import kuchtastefan.world.location.Location;
+import kuchtastefan.world.location.LocationDB;
 import kuchtastefan.world.region.Region;
 import kuchtastefan.world.region.RegionDB;
 
@@ -67,6 +72,7 @@ public class FileService {
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationStageRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.vendorRuntimeTypeAdapterFactory)
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
     private final String savedGamesPath = "external-files/saved-games/";
 
@@ -462,6 +468,50 @@ public class FileService {
 
                 reader.close();
             }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importNamesFromFile() {
+        String path = "external-files/names/names.json";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            RandomNameGenerator.addNamesToDb(this.gson.fromJson(reader, new TypeToken<List<String>>() {
+            }.getType()));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importVendorsFromFile() {
+        String path = "external-files/shop-files/vendor.json";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
+            List<VendorCharacter> vendorCharacters = this.gson.fromJson(reader, new TypeToken<List<VendorCharacter>>() {
+            }.getType());
+
+            for (VendorCharacter vendorCharacter : vendorCharacters) {
+                VendorDB.addVendorToDb(vendorCharacter);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importVendorItemListsFromFile() {
+        String path = "external-files/shop-files/vendor-item-lists.json";
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
+            List<VendorItemList> vendorItemLists = this.gson.fromJson(reader, new TypeToken<List<VendorItemList>>() {
+            }.getType());
+
+            for (VendorItemList vendorItemList :vendorItemLists) {
+                VendorItemDB.addVendorItemToDb(vendorItemList);
+            }
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

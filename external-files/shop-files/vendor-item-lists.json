@@ -1,0 +1,22 @@
+[
+  {
+    "itemListId": 0,
+    "listLevel": 0,
+    "itemsId": [1100]
+  },
+  {
+    "itemListId": 1,
+    "listLevel": 1,
+    "itemsId": [600,500,400,300,200]
+  },
+  {
+    "itemListId": 2,
+    "listLevel": 2,
+    "itemsId": [501,502]
+  },
+  {
+    "itemListId": 3,
+    "listLevel": 2,
+    "itemsId": [400]
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "type": "WearableItemVendorCharacter",
+    "vendorId": 0,
+    "name": "Ved Of Kaedwen",
+    "itemListsId": [0,1,2],
+    "currentItemListId": 0
+  }
+]

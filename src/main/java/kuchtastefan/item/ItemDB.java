@@ -1,6 +1,5 @@
 package kuchtastefan.item;
 
-import kuchtastefan.actions.Action;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
@@ -61,12 +60,20 @@ public class ItemDB {
         return itemListAfterLevelCheck;
     }
 
+//    private static boolean checkItemLevelCondition(Item item, int maxItemLevel, Integer minItemLevel) {
+//        if (minItemLevel == null) {
+//            minItemLevel = maxItemLevel;
+//        }
+//
+//        return maxItemLevel + 1 >= item.getItemLevel() && minItemLevel - 1 <= item.getItemLevel();
+//    }
+
     private static boolean checkItemLevelCondition(Item item, int maxItemLevel, Integer minItemLevel) {
         if (minItemLevel == null) {
             minItemLevel = maxItemLevel;
         }
 
-        return maxItemLevel + 1 >= item.getItemLevel() && minItemLevel - 1 <= item.getItemLevel();
+        return maxItemLevel == item.getItemLevel() && minItemLevel - 1 <= item.getItemLevel();
     }
 
     public static List<CraftingReagentItem> returnCraftingReagentItemListByType(CraftingReagentItemType craftingReagentItemType) {

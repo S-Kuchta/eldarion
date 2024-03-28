@@ -1,9 +1,10 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.*;
-import kuchtastefan.character.npc.vendor.ConsumableVendorCharacter;
-import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
-import kuchtastefan.character.npc.vendor.JunkVendorCharacter;
+import kuchtastefan.character.npc.vendor.VendorDB;
+import kuchtastefan.character.npc.vendor.specificVendorCharacter.ConsumableVendorCharacter;
+import kuchtastefan.character.npc.vendor.specificVendorCharacter.CraftingReagentItemVendorCharacter;
+import kuchtastefan.character.npc.vendor.specificVendorCharacter.JunkVendorCharacter;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
@@ -75,9 +76,9 @@ public class GameManager {
                 case 0 -> exploreSurroundingRegions();
                 case 1 -> this.heroMenuService.heroCharacterMenu(this.hero);
                 case 2 -> {
-                    JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8,
-                            ItemDB.returnJunkItemListByItemLevel(this.hero.getLevel(), 0), JunkItem.class);
-                    junkVendorCharacter.vendorMenu(this.hero);
+//                    JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8,
+//                            ItemDB.returnJunkItemListByItemLevel(this.hero.getLevel(), 0), JunkItem.class);
+//                    junkVendorCharacter.vendorMenu(this.hero);
                 }
                 case 3 -> this.tavernMenu();
                 case 4 -> this.alchemistMenu();
@@ -121,8 +122,8 @@ public class GameManager {
     }
 
     private void tavernMenu() {
-        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
-                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null), ConsumableItem.class);
+//        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
+//                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null), ConsumableItem.class);
 
         PrintUtil.printDivider();
         System.out.println("\t\tTavern");
@@ -130,7 +131,7 @@ public class GameManager {
 
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
-        PrintUtil.printIndexAndText("1", cityFoodVendor.getName() + " (Food Merchant)");
+//        PrintUtil.printIndexAndText("1", cityFoodVendor.getName() + " (Food Merchant)");
         System.out.println();
         PrintUtil.printIndexAndText("2", QuestGiverCharacterDB.returnQuestGiverName(1));
         System.out.println();
@@ -141,17 +142,17 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> cityFoodVendor.vendorMenu(this.hero);
+//            case 1 -> cityFoodVendor.vendorMenu(this.hero);
             case 2 -> QuestGiverCharacterDB.returnQuestGiverMenu(1, this.hero);
             case 3 -> QuestGiverCharacterDB.returnQuestGiverMenu(2, this.hero);
         }
     }
 
     private void alchemistMenu() {
-        final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8,
-                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0), CraftingReagentItem.class);
-        final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
-                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null), ConsumableItem.class);
+//        final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8,
+//                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0), CraftingReagentItem.class);
+//        final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
+//                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null), ConsumableItem.class);
 
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");
@@ -161,9 +162,9 @@ public class GameManager {
         System.out.println();
         PrintUtil.printIndexAndText("1", "Create potion");
         System.out.println();
-        PrintUtil.printIndexAndText("2", cityAlchemistReagentVendor.getName() + " (Alchemy reagents Merchant)");
-        System.out.println();
-        PrintUtil.printIndexAndText("3", cityPotionsVendor.getName() + " (Potions Merchant)");
+//        PrintUtil.printIndexAndText("2", cityAlchemistReagentVendor.getName() + " (Alchemy reagents Merchant)");
+//        System.out.println();
+//        PrintUtil.printIndexAndText("3", cityPotionsVendor.getName() + " (Potions Merchant)");
         System.out.println();
         PrintUtil.printIndexAndText("4", QuestGiverCharacterDB.returnQuestGiverName(0));
         System.out.println();
@@ -173,8 +174,8 @@ public class GameManager {
             case 0 -> {
             }
             case 1 -> System.out.println("Work in progress");
-            case 2 -> cityAlchemistReagentVendor.vendorMenu(this.hero);
-            case 3 -> cityPotionsVendor.vendorMenu(this.hero);
+//            case 2 -> cityAlchemistReagentVendor.vendorMenu(this.hero);
+//            case 3 -> cityPotionsVendor.vendorMenu(this.hero);
             case 4 -> QuestGiverCharacterDB.returnQuestGiverMenu(0, this.hero);
             default -> PrintUtil.printEnterValidInput();
         }
@@ -197,6 +198,9 @@ public class GameManager {
         this.fileService.importQuestGiverFromFile();
         this.fileService.importCreaturesFromFile();
         this.fileService.importRegionsFromFile();
+        this.fileService.importNamesFromFile();
+        this.fileService.importVendorsFromFile();
+        this.fileService.importVendorItemListsFromFile();
 
         HintDB.initializeHintList();
 
@@ -261,6 +265,7 @@ public class GameManager {
         this.hero.setLevel(Constant.INITIAL_LEVEL);
         this.hero.gainExperiencePoints(0);
         QuestDB.setInitialQuestsStatus(this.hero);
+        VendorDB.setCurrentVendorCharacterItemListId(this.hero.getLevel());
 
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();

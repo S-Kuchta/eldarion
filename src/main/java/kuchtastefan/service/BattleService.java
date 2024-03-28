@@ -5,7 +5,7 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.enemy.Enemy;
+import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.InventoryMenuService;
 import kuchtastefan.character.npc.NonPlayerCharacter;
@@ -15,7 +15,7 @@ import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.hint.HintUtil;
+import kuchtastefan.hint.HintDB;
 import kuchtastefan.utility.*;
 
 import java.util.*;
@@ -39,7 +39,7 @@ public class BattleService {
 
 
     public boolean battle(Hero hero, List<Enemy> enemies) {
-        HintUtil.printHint(HintName.BATTLE_HINT);
+        HintDB.printHint(HintName.BATTLE_HINT);
 
         // Initialize lists for battle
         enemyList.addAll(enemies);

@@ -1,6 +1,6 @@
 [
   {
-    "locationType": "FOREST",
+    "biome": "FOREST",
     "groupLevel": 1,
     "enemiesId": [
       100,
@@ -8,14 +8,14 @@
     ]
   },
   {
-    "locationType": "FOREST",
+    "biome": "FOREST",
     "groupLevel": 1,
     "enemiesId": [
       200
     ]
   },
   {
-    "locationType": "FOREST",
+    "biome": "FOREST",
     "groupLevel": 1,
     "enemiesId": [
       200,
@@ -23,7 +23,7 @@
     ]
   },
   {
-    "locationType": "FOREST",
+    "biome": "FOREST",
     "groupLevel": 1,
     "enemiesId": [
       200,
@@ -31,7 +31,7 @@
     ]
   },
   {
-    "locationType": "FOREST",
+    "biome": "FOREST",
     "groupLevel": 2,
     "enemiesId": [
       100,

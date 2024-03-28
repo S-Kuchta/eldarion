@@ -2,7 +2,7 @@ package kuchtastefan.character.npc;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import kuchtastefan.character.enemy.Enemy;
+import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 

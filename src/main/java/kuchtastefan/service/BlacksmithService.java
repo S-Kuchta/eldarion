@@ -6,7 +6,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.vendor.CraftingReagentItemVendorCharacter;
 import kuchtastefan.character.npc.vendor.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.hint.HintUtil;
+import kuchtastefan.hint.HintDB;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
@@ -31,7 +31,7 @@ public class BlacksmithService {
         final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
                 ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0), CraftingReagentItem.class);
 
-        HintUtil.printHint(HintName.BLACKSMITH_HINT);
+        HintDB.printHint(HintName.BLACKSMITH_HINT);
 
         QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli");
         questGiverCharacter.addQuest(QuestDB.returnQuestFromDB(1));

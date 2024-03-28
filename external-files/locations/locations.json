@@ -3,7 +3,6 @@
     "locationId": 0,
     "locationName": "Enchanted Mine",
     "locationLevel": 2,
-    "locationType": "MINE",
     "canLocationBeExplored": true,
     "locationStages": {
       "0": {
@@ -83,7 +82,6 @@
     "locationId": 1,
     "locationName": "Tower of Damned",
     "locationLevel": 2,
-    "locationType": "TOWER",
     "canLocationBeExplored": true,
     "locationStages": {
       "0": {
@@ -123,7 +121,6 @@
     "locationId": 2,
     "locationName": "Crystal Lake",
     "locationLevel": 1,
-    "locationType": "LAKE",
     "canLocationBeExplored": true,
     "locationStages": {
       "0": {

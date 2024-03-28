@@ -517,7 +517,7 @@
         "stageTotal": 7,
         "stageCompleted": 3,
         "cleared": false,
-        "locationType": "MINE",
+        "biome": "MINE",
         "canLocationBeExplored": true,
         "locationStages": {
           "0": {
@@ -607,7 +607,7 @@
         "stageTotal": 3,
         "stageCompleted": 1,
         "cleared": false,
-        "locationType": "TOWER",
+        "biome": "TOWER",
         "canLocationBeExplored": true,
         "locationStages": {
           "0": {

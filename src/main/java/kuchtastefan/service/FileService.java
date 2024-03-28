@@ -5,8 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.character.enemy.EnemyGroup;
-import kuchtastefan.character.enemy.EnemyGroupDB;
+import kuchtastefan.character.npc.enemy.EnemyGroup;
+import kuchtastefan.character.npc.enemy.EnemyGroupDB;
 import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.CharacterDB;
@@ -16,7 +16,7 @@ import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
-import kuchtastefan.hint.HintUtil;
+import kuchtastefan.hint.HintDB;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
@@ -31,11 +31,13 @@ import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
-import kuchtastefan.region.location.Location;
-import kuchtastefan.region.location.LocationDB;
+import kuchtastefan.world.location.Location;
+import kuchtastefan.world.location.LocationDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
+import kuchtastefan.world.region.Region;
+import kuchtastefan.world.region.RegionDB;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -69,7 +71,7 @@ public class FileService {
     private final String savedGamesPath = "external-files/saved-games/";
 
     public void saveGame(Hero hero) {
-        GameLoaded gameLoaded = new GameLoaded(hero, HintUtil.getHintList(),
+        GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(),
                 hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
 
         while (true) {
@@ -108,7 +110,7 @@ public class FileService {
 
     public void autoSave(Hero hero) {
         if (GameSettingsDB.returnGameSettingValue(GameSetting.AUTO_SAVE)) {
-            GameLoaded gameLoaded = new GameLoaded(hero, HintUtil.getHintList(),
+            GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(),
                     hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
 
             final String path = this.savedGamesPath + hero.getName() + "_AutoSave" + ".json";
@@ -324,7 +326,6 @@ public class FileService {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     public void importCreaturesFromFile() {
@@ -401,6 +402,26 @@ public class FileService {
 
                 for (Location location : locations) {
                     LocationDB.addLocationToDB(location);
+                }
+
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importRegionsFromFile() {
+        String path = "external-files/regions";
+        try {
+            List<Region> regions;
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                regions = this.gson.fromJson(reader, new TypeToken<List<Region>>() {
+                }.getType());
+
+                for (Region region : regions) {
+                    RegionDB.addRegionToDB(region);
                 }
 
                 reader.close();

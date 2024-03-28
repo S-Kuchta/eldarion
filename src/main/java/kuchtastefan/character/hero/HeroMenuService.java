@@ -5,7 +5,7 @@ import kuchtastefan.character.spell.HeroSpellManager;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.hint.HintUtil;
+import kuchtastefan.hint.HintDB;
 import kuchtastefan.quest.QuestService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
@@ -31,7 +31,7 @@ public class HeroMenuService {
     }
 
     public void heroCharacterMenu(Hero hero) {
-        HintUtil.printHint(HintName.HERO_MENU);
+        HintDB.printHint(HintName.HERO_MENU);
 
         PrintUtil.printLongDivider();
         System.out.printf("%30s %n", ConsoleColor.YELLOW + "Hero menu" + ConsoleColor.RESET);
@@ -109,7 +109,7 @@ public class HeroMenuService {
             if (choice == 0) {
                 break;
             } else if (choice == index) {
-                HintUtil.resetAllHints();
+                HintDB.resetAllHints();
             } else {
                 GameSettingsDB.setTrueOrFalse(gameSettingList.get(choice - 1));
             }

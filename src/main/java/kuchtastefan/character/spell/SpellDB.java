@@ -9,7 +9,7 @@ import java.util.Map;
 public class SpellDB {
 
 
-    public static final List<Spell> spellList = new ArrayList<>();
+    public static final List<Spell> SPELL_LIST = new ArrayList<>();
 
     private static final Map<Integer, Spell> SPELL_DB = new HashMap<>();
 

@@ -13,7 +13,7 @@ import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestService;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.region.location.Location;
+import kuchtastefan.world.location.Location;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;

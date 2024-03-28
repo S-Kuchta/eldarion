@@ -1,0 +1,11 @@
+[
+  {
+    "regionId": 0,
+    "regionName": "SilverWood Glade",
+    "regionDescription": "Magic forest",
+    "minimumRegionLevel": 1,
+    "maximumRegionLevel": 3,
+    "biome": "FOREST",
+    "locationsId": [0,1,2]
+  }
+]

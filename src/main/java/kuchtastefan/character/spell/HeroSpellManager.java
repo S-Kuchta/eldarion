@@ -6,7 +6,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.hint.HintUtil;
+import kuchtastefan.hint.HintDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumberSpellLevel;
 import kuchtastefan.utility.PrintUtil;
@@ -47,12 +47,12 @@ public class HeroSpellManager {
      * @param hero The hero who is learning new spells.
      */
     private void learnNewSpell(Hero hero) {
-        HintUtil.printHint(HintName.NEW_SPELL_HINT);
+        HintDB.printHint(HintName.NEW_SPELL_HINT);
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(
                 RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
         List<Spell> spellsByClass = new ArrayList<>();
-        for (Spell spellForAdd : SpellDB.spellList) {
+        for (Spell spellForAdd : SpellDB.SPELL_LIST) {
             if (spellForAdd.getSpellClass().equals(hero.getCharacterClass())) {
                 spellsByClass.add(spellForAdd);
             }

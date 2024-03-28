@@ -2,7 +2,7 @@ package kuchtastefan.quest.questGiver;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.hint.HintUtil;
+import kuchtastefan.hint.HintDB;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.QuestService;
@@ -53,7 +53,7 @@ public class QuestGiverCharacter {
     public void questGiverMenu(Hero hero) {
         QuestService questService = new QuestService();
         questService.setQuestGiverCharacter(this);
-        HintUtil.printHint(HintName.QUEST_HINT);
+        HintDB.printHint(HintName.QUEST_HINT);
 
         connectHeroQuestListWithCharacterQuestList(hero);
         setNameBasedOnQuestsAvailable(hero);

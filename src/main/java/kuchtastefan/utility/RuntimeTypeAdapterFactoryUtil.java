@@ -5,7 +5,7 @@ import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
-import kuchtastefan.character.enemy.Enemy;
+import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
@@ -16,8 +16,8 @@ import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestChain;
 import kuchtastefan.quest.questObjectives.*;
-import kuchtastefan.region.location.*;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
+import kuchtastefan.world.location.locationStage.*;
 
 
 public class RuntimeTypeAdapterFactoryUtil {

@@ -9,7 +9,7 @@ import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.hint.HintUtil;
+import kuchtastefan.hint.HintDB;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
@@ -18,10 +18,11 @@ import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.junkItem.JunkItem;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
-import kuchtastefan.region.ForestRegion;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.world.region.RegionDB;
+import kuchtastefan.world.region.RegionService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,6 @@ public class GameManager {
     private final HeroAbilityManager heroAbilityManager;
     private final FileService fileService;
     private final BlacksmithService blacksmithService;
-    private ForestRegion forestRegion;
     private final HeroMenuService heroMenuService;
 
 
@@ -106,7 +106,7 @@ public class GameManager {
     private void exploreSurroundingRegions() {
         PrintUtil.printIndexAndText("0", "Go back to the city");
         System.out.println();
-        PrintUtil.printIndexAndText("1", "Go to " + this.forestRegion.getRegionName());
+        PrintUtil.printIndexAndText("1", "Go to " + RegionDB.returnRegionName(0));
         System.out.println();
         PrintUtil.printIndexAndText("2", "Go to highlands");
         System.out.println();
@@ -115,7 +115,7 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> this.forestRegion.adventuringAcrossTheRegion(this.heroMenuService);
+            case 1 -> new RegionService().adventuringAcrossTheRegion(heroMenuService, RegionDB.returnRegion(0), this.hero);
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -189,20 +189,18 @@ public class GameManager {
 
         GameSettingsDB.initializeGameSettings();
 
-        SpellDB.spellList.addAll(this.fileService.importSpellsFromFile());
+        SpellDB.SPELL_LIST.addAll(this.fileService.importSpellsFromFile());
 
         this.fileService.importQuestsListFromFile();
         this.fileService.importLocationsFromFile();
         this.fileService.importEnemyGroupFromFile();
         this.fileService.importQuestGiverFromFile();
         this.fileService.importCreaturesFromFile();
+        this.fileService.importRegionsFromFile();
 
-        this.forestRegion = new ForestRegion("SilverWood Glade", "Magic forest", this.hero, 1, 5);
+        HintDB.initializeHintList();
 
-        HintUtil.initializeHintList();
-
-
-        System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\tWelcome to the Eldarion!\t\n" + ConsoleColor.RESET);
+        System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\tWelcome to the Eldarion!\t\t\n" + ConsoleColor.RESET);
         PrintUtil.printIndexAndText("0", "Start new game");
         System.out.println();
         PrintUtil.printIndexAndText("1", "Load game");
@@ -217,11 +215,10 @@ public class GameManager {
                     this.hero = gameLoaded.getHero();
                     this.hero.setLevel(gameLoaded.getHero().getLevel());
                     this.heroAbilityManager.setHero(gameLoaded.getHero());
-                    HintUtil.getHintList().putAll(gameLoaded.getHintUtil());
+                    HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
                     QuestDB.setInitialQuestsStatus(this.hero);
                     QuestDB.loadQuests(this.hero);
                     this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
-                    this.forestRegion.setHero(this.hero);
 
                     return;
                 }
@@ -254,7 +251,7 @@ public class GameManager {
             }
         }
 
-        for (Spell spell : SpellDB.spellList) {
+        for (Spell spell : SpellDB.SPELL_LIST) {
             if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.hero.getCharacterClass())) {
                 this.hero.getCharacterSpellList().add(spell);
             }
@@ -271,6 +268,6 @@ public class GameManager {
         this.hero.setInitialEquip();
         this.heroAbilityManager.spendAbilityPoints();
 
-        HintUtil.printHint(HintName.WELCOME);
+        HintDB.printHint(HintName.WELCOME);
     }
 }

@@ -9,20 +9,55 @@
   },
   {
     "itemId": 601,
-    "name": "Leather armor of Attack",
+    "name": "Worn Leather armor",
     "abilities": {
       "RESIST_DAMAGE": 1,
       "ATTACK": 1
     },
-    "itemLevel": 1
+    "itemLevel": 2
   },
   {
     "itemId": 602,
-    "name": "Robe of intellect",
+    "name": "Disciple's Robe",
     "abilities": {
       "RESIST_DAMAGE": 1,
       "INTELLECT": 1
     },
-    "itemLevel": 1
+    "itemLevel": 2
+  },
+  {
+    "itemId": 603,
+    "name": "Cooper Chest",
+    "abilities": {
+      "RESIST_DAMAGE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 604,
+    "name": "Iron Chest",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "STRENGTH": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 605,
+    "name": "DreadMist Robe",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "INTELLECT": 2
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 605,
+    "name": "Robe of Haste",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "HASTE": 2
+    },
+    "itemLevel": 3
   }
 ]

@@ -117,6 +117,10 @@ public class Hero extends GameCharacter {
         for (Ability ability : Ability.values()) {
             this.maxAbilities.put(ability, this.abilities.get(ability) + this.wearingItemAbilityPoints.get(ability));
         }
+
+        this.maxAbilities.put(Ability.MANA, getMaxAbilities().get(Ability.MANA) + getMaxAbilities().get(Ability.INTELLECT) * Constant.MANA_PER_POINT_OF_INTELLECT);
+        this.maxAbilities.put(Ability.HEALTH, getMaxAbilities().get(Ability.HEALTH) + getMaxAbilities().get(Ability.STRENGTH) * Constant.HEALTH_PER_POINT_OF_STRENGTH);
+        this.maxAbilities.put(Ability.CRITICAL_HIT_CHANCE, (int) (getMaxAbilities().get(Ability.CRITICAL_HIT_CHANCE) + (getMaxAbilities().get(Ability.ATTACK) * Constant.CRITICAL_PER_ATTACK)));
     }
 
     /**

@@ -18,4 +18,7 @@ public class Constant {
     public static final double SELL_ITEM_PRICE_MULTIPLIER = 0.7;
     public static final int GAIN_EXPERIENCE_LEVEL_MULTIPLIER = 13;
     public static final int MAX_LEVEL = 10;
+    public static final int MANA_PER_POINT_OF_INTELLECT = 2;
+    public static final int HEALTH_PER_POINT_OF_STRENGTH = 2;
+    public static final double CRITICAL_PER_ATTACK = 0.2;
 }

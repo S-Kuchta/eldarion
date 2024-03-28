@@ -52,7 +52,7 @@
       {
         "type": "ActionRestoreMana",
         "actionName": "HEAL",
-        "maxActionValue": 20,
+        "maxActionValue": 22,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false

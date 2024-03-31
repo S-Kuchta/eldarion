@@ -14,7 +14,7 @@ import kuchtastefan.character.npc.enemy.EnemyGroup;
 import kuchtastefan.character.npc.enemy.EnemyGroupDB;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.character.npc.vendor.VendorDB;
-import kuchtastefan.character.npc.vendor.VendorItemDB;
+import kuchtastefan.character.npc.vendor.VendorOfferDB;
 import kuchtastefan.character.npc.vendor.VendorItemList;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
@@ -509,7 +509,7 @@ public class FileService {
             }.getType());
 
             for (VendorItemList vendorItemList :vendorItemLists) {
-                VendorItemDB.addVendorItemToDb(vendorItemList);
+                VendorOfferDB.addVendorItemToDb(vendorItemList);
             }
 
         } catch (IOException e) {

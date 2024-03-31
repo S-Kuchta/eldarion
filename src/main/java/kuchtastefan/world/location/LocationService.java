@@ -16,7 +16,6 @@ import java.util.Map;
 
 public class LocationService {
 
-
     /**
      * Displays the menu for interacting with a specific location.
      * Allows the hero to explore the location, view hero menu options, or go back on the path.
@@ -76,7 +75,12 @@ public class LocationService {
                 } else if (choice == 2) {
                     heroMenuService.heroCharacterMenu(hero);
                 } else {
-                    if (!location.getLocationStages().get(choice - index).isStageDiscovered()) {
+                    try {
+                        if (!location.getLocationStages().get(choice - index).isStageDiscovered()) {
+                            PrintUtil.printEnterValidInput();
+                            continue;
+                        }
+                    } catch (NullPointerException e) {
                         PrintUtil.printEnterValidInput();
                         continue;
                     }
@@ -88,7 +92,6 @@ public class LocationService {
             }
         }
     }
-
 
     /**
      * Method is responsible for exploring LocationStage.
@@ -143,8 +146,8 @@ public class LocationService {
             location.stageCompleted++;
             locationStage.setStageCompleted(true);
 
-            if (locationStage instanceof RemoveLocationStageProgress) {
-                ((RemoveLocationStageProgress) locationStage).removeProgressAfterCompletedStage();
+            if (locationStage instanceof RemoveLocationStageProgress removeStageProgress) {
+                removeStageProgress.removeProgressAfterCompletedStage();
             }
 
             if (location.getLocationStages().get(locationStageOrder + 1) != null) {

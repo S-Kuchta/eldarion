@@ -11,12 +11,12 @@
   },
   {
     "itemListId": 2,
-    "listLevel": 2,
-    "itemsId": [501,502]
+    "listLevel": 1,
+    "itemsId": [500,501]
   },
   {
     "itemListId": 3,
-    "listLevel": 2,
+    "listLevel": 1,
     "itemsId": [400]
   }
 ]

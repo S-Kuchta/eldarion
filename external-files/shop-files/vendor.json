@@ -5,5 +5,11 @@
     "name": "Ved Of Kaedwen",
     "itemListsId": [0,1,2],
     "currentItemListId": 0
+  },
+  {
+    "type": "WearableItemVendorCharacter",
+    "vendorId": 100,
+    "name": "",
+    "itemListsId": [0,1,2]
   }
 ]

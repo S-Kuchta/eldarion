@@ -232,7 +232,7 @@ public class Hero extends GameCharacter {
         }
     }
 
-    public void checkHeroGoldsAndSubtractIfIsEnough(double goldNeeded) {
+    public void checkHeroGoldsAndSubtractIfHaveEnough(double goldNeeded) {
         if (this.heroGold >= goldNeeded) {
             this.heroGold -= goldNeeded;
         } else {

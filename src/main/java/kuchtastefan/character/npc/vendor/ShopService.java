@@ -33,8 +33,8 @@ public class ShopService {
     }
 
     private void vendorOffer(Hero hero, VendorCharacter vendorCharacter) {
-        if (vendorCharacter instanceof SortVendorOffer) {
-            ((SortVendorOffer) vendorCharacter).sortVendorOffer();
+        if (vendorCharacter instanceof SortVendorOffer sortVendorOffer) {
+            sortVendorOffer.sortVendorOffer();
         }
 
         PrintUtil.printShopHeader(hero, vendorCharacter.returnItemClass().getSimpleName().replaceAll("\\d+", ""));
@@ -45,7 +45,6 @@ public class ShopService {
     protected void buyItem(Hero hero, VendorCharacter vendorCharacter) {
         while (true) {
             int choice = InputUtil.intScanner();
-
             if (choice == 0) {
                 vendorMenu(hero, vendorCharacter);
                 break;
@@ -67,9 +66,7 @@ public class ShopService {
                     switch (confirmInput) {
                         case 0 -> {
                         }
-                        case 1 -> {
-                            successfullyItemBought(hero, item);
-                        }
+                        case 1 -> successfullyItemBought(hero, item);
                         default -> PrintUtil.printEnterValidInput();
                     }
                     vendorMenu(hero, vendorCharacter);
@@ -83,7 +80,7 @@ public class ShopService {
 
     public void successfullyItemBought(Hero hero, Item item) {
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-        hero.checkHeroGoldsAndSubtractIfIsEnough(item.getPrice());
+        hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
         System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory");
     }
 
@@ -123,8 +120,8 @@ public class ShopService {
                 } else {
                     Item item = itemList.get(choice - 1);
                     hero.addGolds(item.returnSellItemPrice());
-                    if (item instanceof WearableItem) {
-                        hero.unEquipItem((WearableItem) item);
+                    if (item instanceof WearableItem wearableItem) {
+                        hero.unEquipItem(wearableItem);
                     }
 
                     hero.getHeroInventory().removeItemFromHeroInventory(item);

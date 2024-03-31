@@ -2,21 +2,12 @@ package kuchtastefan.service;
 
 import kuchtastefan.character.hero.*;
 import kuchtastefan.character.npc.vendor.VendorDB;
-import kuchtastefan.character.npc.vendor.specificVendorCharacter.ConsumableVendorCharacter;
-import kuchtastefan.character.npc.vendor.specificVendorCharacter.CraftingReagentItemVendorCharacter;
-import kuchtastefan.character.npc.vendor.specificVendorCharacter.JunkVendorCharacter;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
-import kuchtastefan.item.ItemDB;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.consumeableItem.ConsumableItemType;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItemType;
-import kuchtastefan.item.junkItem.JunkItem;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.ConsoleColor;
@@ -265,7 +256,7 @@ public class GameManager {
         this.hero.setLevel(Constant.INITIAL_LEVEL);
         this.hero.gainExperiencePoints(0);
         QuestDB.setInitialQuestsStatus(this.hero);
-        VendorDB.setCurrentVendorCharacterItemListId(this.hero.getLevel());
+        VendorDB.setRandomCurrentVendorCharacterItemListId(this.hero.getLevel());
 
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();

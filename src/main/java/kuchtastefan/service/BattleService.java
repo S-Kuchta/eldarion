@@ -77,7 +77,7 @@ public class BattleService {
                 hero.getBattleActionsWithDuration().clear();
                 int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
 
-                hero.checkHeroGoldsAndSubtractIfIsEnough(goldToRemove);
+                hero.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
                 hero.getCurrentAbilities().put(Ability.HEALTH, hero.getMaxAbilities().get(Ability.HEALTH));
                 this.resetSpellsCoolDowns(hero);
 

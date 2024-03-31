@@ -30,6 +30,7 @@ public abstract class VendorCharacter {
     public abstract Class<? extends Item> returnItemClass();
 
     protected void printVendorItemsOffer(Hero hero) {
+
         int index = 1;
         PrintUtil.printIndexAndText("0", "Go Back");
         System.out.println();
@@ -40,12 +41,12 @@ public abstract class VendorCharacter {
         }
     }
 
-    public void setCurrentItemListId(int level) {
-        this.currentItemListId = VendorItemDB.returnRandomVendorItemListFromDb(this, level).itemListId();
+    public void setRandomCurrentItemListId(int level) {
+        this.currentItemListId = VendorOfferDB.returnRandomVendorItemListFromDb(this, level).itemListId();
     }
 
     public List<? extends Item> returnVendorOffer() {
-        return VendorItemDB.convertIdArrayToItemList(this.currentItemListId);
+        return VendorOfferDB.convertIdArrayToItemList(this.currentItemListId);
     }
 
 }

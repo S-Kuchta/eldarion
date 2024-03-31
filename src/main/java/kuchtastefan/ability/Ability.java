@@ -10,7 +10,7 @@ public enum Ability {
     RESIST_DAMAGE("Resist damage is the ability to reduce incoming damage."),
     STRENGTH("Strength is ability mostly used by warriors. One point of Strength also increase you 2 points of Health. On strength depends damage of some your spells."),
     INTELLECT("Intellect is important mostly by mages. One point of Intellect also increase you 2 points of Mana Is responsible for value of some spells."),
-    HASTE("Haste is used for chance to hit target, restore mana and restore health when hero is out of combat."),
+    HASTE("Haste is used for chance to hit target, restore mana during combat and also out of the combat and restore health when hero is out of combat."),
     CRITICAL_HIT_CHANCE("Critical hit chance is responsible for chance of critical hit. One point of Critical hit chance is equals to 1% chance."),
     HEALTH("Health is the amount of damage you can take before you die."),
     MANA("Mana is used for casting spells. After every turn you will restore" + Constant.RESTORE_MANA_PER_ONE_HASTE + " points of mana per 1 point of Haste."),

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VendorItemDB {
+public class VendorOfferDB {
 
     private static final Map<Integer, VendorItemList> VENDOR_ITEM_DB = new HashMap<>();
 
@@ -19,6 +19,7 @@ public class VendorItemDB {
 
     public static List<VendorItemList> returnVendorItemListByLevel(int level) {
         List<VendorItemList> tempVendorItemList = new ArrayList<>();
+
         for (VendorItemList vendorItemList : VENDOR_ITEM_DB.values()) {
             if (vendorItemList.listLevel() == level) {
                 tempVendorItemList.add(vendorItemList);
@@ -35,6 +36,8 @@ public class VendorItemDB {
     public static VendorItemList returnVendorItemListFromDb(int vendorItemListId) {
         return VENDOR_ITEM_DB.get(vendorItemListId);
     }
+
+
 
     public static List<Item> convertIdArrayToItemList(int vendorItemListId) {
         List<Item> itemList = new ArrayList<>();
@@ -58,7 +61,6 @@ public class VendorItemDB {
         try {
             return tempVendorItemList.get(RandomNumberGenerator.getRandomNumber(0, tempVendorItemList.size() - 1));
         } catch (Exception e) {
-            System.out.println("som v exception");
             return VENDOR_ITEM_DB.get(0);
         }
     }

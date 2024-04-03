@@ -6,5 +6,31 @@
       "RESIST_DAMAGE": 1
     },
     "itemLevel": 1
+  },
+  {
+    "itemId": 401,
+    "name": "Cooper Gloves",
+    "abilities": {
+      "RESIST_DAMAGE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 402,
+    "name": "Worn Leather Gloves",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "ATTACK": 1
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 403,
+    "name": "Disciple's Gloves",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "INTELLECT": 1
+    },
+    "itemLevel": 2
   }
 ]

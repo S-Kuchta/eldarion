@@ -81,17 +81,57 @@
   },
   {
     "npcId": 204,
-    "name": "Necromancer",
-    "characterRarity": "BOSS",
+    "name": "Defias Miner",
+    "characterRarity": "COMMON",
     "abilities": {
-      "ATTACK": 4,
-      "RESIST_DAMAGE": 2,
-      "STRENGTH": 2,
-      "INTELLECT": 10,
+      "ATTACK": 5,
+      "RESIST_DAMAGE": 3,
+      "STRENGTH": 4,
+      "INTELLECT": 1,
       "HASTE": 4,
-      "CRITICAL_HIT_CHANCE": 3,
-      "HEALTH": 250,
-      "MANA": 200,
+      "CRITICAL_HIT_CHANCE": 4,
+      "HEALTH": 60,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100
+    ],
+    "level": 2
+  },
+  {
+    "npcId": 205,
+    "name": "Defias WatchMan",
+    "characterRarity": "RARE",
+    "abilities": {
+      "ATTACK": 7,
+      "RESIST_DAMAGE": 4,
+      "STRENGTH": 6,
+      "INTELLECT": 1,
+      "HASTE": 5,
+      "CRITICAL_HIT_CHANCE": 6,
+      "HEALTH": 70,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100
+    ],
+    "level": 2
+  },
+  {
+    "npcId": 206,
+    "name": "Defias Leader",
+    "characterRarity": "ELITE",
+    "abilities": {
+      "ATTACK": 8,
+      "RESIST_DAMAGE": 6,
+      "STRENGTH": 7,
+      "INTELLECT": 5,
+      "HASTE": 6,
+      "CRITICAL_HIT_CHANCE": 7,
+      "HEALTH": 70,
+      "MANA": 50,
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [

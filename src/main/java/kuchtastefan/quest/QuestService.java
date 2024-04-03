@@ -192,7 +192,6 @@ public class QuestService {
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             if (questObjective instanceof RemoveObjectiveProgress removeObjectiveProgress) {
                 removeObjectiveProgress.removeCompletedQuestObjectiveAssignment(hero);
-//                ((RemoveObjectiveProgress) questObjective).removeCompletedQuestObjectiveAssignment(hero);
             }
         }
     }

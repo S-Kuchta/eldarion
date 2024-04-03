@@ -2,14 +2,71 @@
   {
     "type": "WearableItemVendorCharacter",
     "vendorId": 0,
-    "name": "Ved Of Kaedwen",
-    "itemListsId": [0,1,2],
+    "name": "Reivut Duskmaster",
+    "itemListsId": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "currentItemListId": 0
+  },
+  {
+    "type": "CraftingReagentItemVendorCharacter",
+    "vendorId": 0,
+    "name": "Rumpir",
+    "itemListsId": [
+      7,
+      8
+    ],
+    "currentItemListId": 0
+  },
+  {
+    "type": "ConsumableVendorCharacter",
+    "vendorId": 0,
+    "name": "Faraine Daeyra",
+    "itemListsId": [
+      5,
+      6
+    ],
+    "currentItemListId": 0
+  },
+  {
+    "type": "JunkVendorCharacter",
+    "vendorId": 0,
+    "name": "Lucky Thorne",
+    "itemListsId": [
+      9
+    ],
     "currentItemListId": 0
   },
   {
     "type": "WearableItemVendorCharacter",
     "vendorId": 100,
     "name": "",
-    "itemListsId": [0,1,2]
+    "itemListsId": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  {
+    "type": "CraftingReagentItemVendorCharacter",
+    "vendorId": 101,
+    "name": "",
+    "itemListsId": [
+      7,
+      8
+    ]
+  },
+  {
+    "type": "ConsumableVendorCharacter",
+    "vendorId": 102,
+    "name": "",
+    "itemListsId": [
+      5,
+      6
+    ]
   }
 ]

@@ -17,28 +17,6 @@ public class VendorOfferDB {
         VENDOR_ITEM_DB.put(vendorItemList.itemListId(), vendorItemList);
     }
 
-    public static List<VendorItemList> returnVendorItemListByLevel(int level) {
-        List<VendorItemList> tempVendorItemList = new ArrayList<>();
-
-        for (VendorItemList vendorItemList : VENDOR_ITEM_DB.values()) {
-            if (vendorItemList.listLevel() == level) {
-                tempVendorItemList.add(vendorItemList);
-            }
-        }
-
-        return tempVendorItemList;
-    }
-
-    public static VendorItemList returnRandomVendorItemListByLevel(int level) {
-        return returnVendorItemListByLevel(level).get(RandomNumberGenerator.getRandomNumber(0, VENDOR_ITEM_DB.values().size() - 1));
-    }
-
-    public static VendorItemList returnVendorItemListFromDb(int vendorItemListId) {
-        return VENDOR_ITEM_DB.get(vendorItemListId);
-    }
-
-
-
     public static List<Item> convertIdArrayToItemList(int vendorItemListId) {
         List<Item> itemList = new ArrayList<>();
         for (int itemId : VENDOR_ITEM_DB.get(vendorItemListId).itemsId()) {

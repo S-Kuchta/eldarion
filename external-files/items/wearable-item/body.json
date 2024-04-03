@@ -59,5 +59,19 @@
       "HASTE": 2
     },
     "itemLevel": 3
+  },
+  {
+    "itemId": 607,
+    "name": "Insulated ChestGuard",
+    "abilities": {
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 608,
+    "name": "Blackened Defias Armor",
+    "abilities": {
+    },
+    "itemLevel": 2
   }
 ]

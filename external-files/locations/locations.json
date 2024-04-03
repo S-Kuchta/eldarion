@@ -1,61 +1,74 @@
 [
   {
     "locationId": 0,
-    "locationName": "Enchanted Mine",
+    "locationName": "DeadMines",
     "locationLevel": 2,
     "canLocationBeExplored": true,
     "locationStages": {
       "0": {
-        "type": "LocationStageCombat",
-        "stageName": "Mine main door",
-        "stageDiscovered": true,
-        "itemsIdNeededToEnterStage": [],
-        "locationEnemyIdList": [
-          200,
-          200
-        ]
-      },
-      "1": {
         "type": "LocationStageQuestGiver",
-        "stageName": "Mine Cell Block",
+        "stageName": "Mine Outside campsite",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "questGiverId": 3
       },
+      "1": {
+        "type": "LocationStageCombat",
+        "stageName": "Mine entry door",
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          205
+        ]
+      },
+      "3": {
+        "type": "LocationStageFindItem",
+        "stageName": "Entry room shelf",
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": [],
+        "itemId": [
+          104
+        ]
+      },
       "2": {
+        "type": "LocationStageCombat",
+        "stageName": "Mine entry hall",
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          204
+        ]
+      },
+      "3": {
         "type": "LocationStageCombat",
         "stageName": "Mine Upper Floor",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
-          200,
-          201
+          204,
+          204
         ]
       },
-      "3": {
+      "4": {
         "type": "LocationStageCombat",
         "stageName": "Mine Lower Floor",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
-          201,
-          201,
-          202
+          204,
+          204
         ]
       },
-      "4": {
+      "5": {
         "type": "LocationStageCombat",
         "stageName": "Mine Main Room",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
-          200,
-          200,
-          201,
-          203
+          205
         ]
       },
-      "5": {
+      "6": {
         "type": "LocationStageFindTreasure",
         "stageName": "Treasure Room",
         "stageDiscovered": false,
@@ -63,7 +76,7 @@
           103
         ]
       },
-      "6": {
+      "7": {
         "type": "LocationStageCombat",
         "stageName": "Necromancer chamber",
         "stageDiscovered": false,

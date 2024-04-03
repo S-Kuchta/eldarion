@@ -16,5 +16,31 @@
       "RESIST_DAMAGE": 1
     },
     "itemLevel": 1
+  },
+  {
+    "itemId": 302,
+    "name": "Cooper Helmet",
+    "abilities": {
+      "RESIST_DAMAGE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 303,
+    "name": "Worn Leather Helmet",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "ATTACK": 1
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 304,
+    "name": "Disciple's Circlet",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "INTELLECT": 1
+    },
+    "itemLevel": 2
   }
 ]

@@ -242,5 +242,38 @@
       ],
       "goldsReward": 50.0
     }
+  },
+  {
+    "type": "Quest",
+    "questId": 0,
+    "questName": "Bandits and Miners",
+    "questDescription": "Hey there, could you lend me a hand? They've locked me up in this cell for no reason! I used to serve them, lead the miners, and now I'm stuck here... I want to get back at them, can you help me out?",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestKillObjective",
+        "questObjectiveName": "Kill Miners",
+        "questEnemyId": 204,
+        "countEnemyToKill": 5
+      },
+      {
+        "type": "QuestKillObjective",
+        "questObjectiveName": "Kill WatchMans",
+        "questEnemyId": 205,
+        "countEnemyToKill": 2
+      },
+      {
+        "type": "QuestKillObjective",
+        "questObjectiveName": "Kill Leader",
+        "questEnemyId": 204,
+        "countEnemyToKill": 1
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        103
+      ],
+      "goldsReward": 30.0
+    }
   }
 ]

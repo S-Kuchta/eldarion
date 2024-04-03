@@ -2,21 +2,99 @@
   {
     "itemListId": 0,
     "listLevel": 0,
-    "itemsId": [1100]
+    "itemsId": [
+      1100
+    ]
   },
   {
     "itemListId": 1,
     "listLevel": 1,
-    "itemsId": [600,500,400,300,200]
+    "itemsId": [
+      600,
+      500,
+      400,
+      300,
+      200
+    ]
   },
   {
     "itemListId": 2,
-    "listLevel": 1,
-    "itemsId": [500,501]
+    "listLevel": 2,
+    "itemsId": [
+      208,
+      302,
+      401,
+      502,
+      603
+    ]
   },
   {
     "itemListId": 3,
+    "listLevel": 2,
+    "itemsId": [
+      601,
+      503,
+      402,
+      303,
+      209
+    ]
+  },
+  {
+    "itemListId": 4,
+    "listLevel": 2,
+    "itemsId": [
+      602,
+      504,
+      403,
+      304,
+      202
+    ]
+  },
+  {
+    "itemListId": 5,
+    "listLevel": 2,
+    "itemsId": [
+      1000,
+      1001,
+      1002
+    ]
+  },
+  {
+    "itemListId": 6,
+    "listLevel": 2,
+    "itemsId": [
+      900,
+      901,
+      902,
+      903
+    ]
+  },
+  {
+    "itemListId": 7,
+    "listLevel": 2,
+    "itemsId": [
+      703
+    ]
+  },
+  {
+    "itemListId": 8,
+    "listLevel": 2,
+    "itemsId": [
+      800
+    ]
+  },
+  {
+    "itemListId": 9,
     "listLevel": 1,
-    "itemsId": [400]
+    "itemsId": [
+      1100,
+      1105,
+      1110,
+      1109,
+      1115,
+      1112,
+      1117,
+      1120
+    ]
   }
 ]

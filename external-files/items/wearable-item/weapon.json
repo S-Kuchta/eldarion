@@ -14,7 +14,7 @@
       "ATTACK": 1,
       "STRENGTH": 1
     },
-    "itemLevel": 1
+    "itemLevel": 2
   },
   {
     "itemId": 202,
@@ -72,9 +72,34 @@
     "name": "Sword of Water",
     "wearableItemQuality": "QUEST_REWARD",
     "abilities": {
-      "ATTACK": 1,
-      "STRENGTH": 2
+      "ATTACK": 3
     },
     "itemLevel": 1
+  },
+  {
+    "itemId": 208,
+    "name": "Cooper Sword",
+    "abilities": {
+      "ATTACK": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 209,
+    "name": "Swift Dagger",
+    "abilities": {
+      "CRITICAL_HIT_CHANCE": 1,
+      "ATTACK": 1
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 210,
+    "name": "Disciple's Robe",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "INTELLECT": 1
+    },
+    "itemLevel": 2
   }
 ]

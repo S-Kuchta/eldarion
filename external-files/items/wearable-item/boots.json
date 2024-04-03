@@ -9,10 +9,36 @@
   },
   {
     "itemId": 501,
-    "name": "Basic boots",
+    "name": "Basic Boots",
     "abilities": {
       "RESIST_DAMAGE": 1
     },
     "itemLevel": 1
+  },
+  {
+    "itemId": 502,
+    "name": "Cooper Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 503,
+    "name": "Worn Leather Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "ATTACK": 1
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 504,
+    "name": "Disciple's Sandals",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "INTELLECT": 1
+    },
+    "itemLevel": 2
   }
 ]

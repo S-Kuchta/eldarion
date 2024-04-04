@@ -42,5 +42,27 @@
       "INTELLECT": 1
     },
     "itemLevel": 2
+  },
+  {
+    "itemId": 305,
+    "name": "Blackened Defias Head",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "ATTACK": 2,
+      "CRITICAL_HIT_CHANCE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 306,
+    "name": "DreadMist Mask",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "ATTACK": 2,
+      "INTELLECT": 3
+    },
+    "itemLevel": 2
   }
 ]

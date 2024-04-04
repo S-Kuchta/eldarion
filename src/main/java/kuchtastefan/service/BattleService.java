@@ -17,9 +17,12 @@ import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.utility.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.*;
 
+@Getter
 public class BattleService {
 
     private GameCharacter playerTarget;

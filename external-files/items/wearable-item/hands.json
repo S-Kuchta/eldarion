@@ -32,5 +32,27 @@
       "INTELLECT": 1
     },
     "itemLevel": 2
+  },
+  {
+    "itemId": 404,
+    "name": "Blackened Defias Gloves",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "ATTACK": 2,
+      "CRITICAL_HIT_CHANCE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 405,
+    "name": "DreadMist Gloves",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "MANA": 14,
+      "INTELLECT": 3
+    },
+    "itemLevel": 2
   }
 ]

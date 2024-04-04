@@ -123,27 +123,20 @@ public class GameManager {
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
 //        PrintUtil.printIndexAndText("1", cityFoodVendor.getName() + " (Food Merchant)");
-        System.out.println();
-        PrintUtil.printIndexAndText("2", QuestGiverCharacterDB.returnQuestGiverName(1));
-        System.out.println();
-        PrintUtil.printIndexAndText("3", QuestGiverCharacterDB.returnQuestGiverName(2));
-        System.out.println();
+//        System.out.println();
+//        PrintUtil.printIndexAndText("2", QuestGiverCharacterDB.returnQuestGiverName(0));
+//        System.out.println();
 
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
 //            case 1 -> cityFoodVendor.vendorMenu(this.hero);
-            case 2 -> QuestGiverCharacterDB.returnQuestGiverMenu(1, this.hero);
-            case 3 -> QuestGiverCharacterDB.returnQuestGiverMenu(2, this.hero);
+
         }
     }
 
     private void alchemistMenu() {
-//        final CraftingReagentItemVendorCharacter cityAlchemistReagentVendor = new CraftingReagentItemVendorCharacter("Meeden", 8,
-//                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.ALCHEMY_REAGENT, this.hero.getLevel(), 0), CraftingReagentItem.class);
-//        final ConsumableVendorCharacter cityPotionsVendor = new ConsumableVendorCharacter("Etaefush", 8,
-//                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.POTION, this.hero.getLevel(), null), ConsumableItem.class);
 
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");

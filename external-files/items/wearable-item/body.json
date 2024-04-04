@@ -44,10 +44,9 @@
   },
   {
     "itemId": 605,
-    "name": "DreadMist Robe",
+    "name": "Weeding dress",
     "abilities": {
-      "RESIST_DAMAGE": 1,
-      "INTELLECT": 2
+      "RESIST_DAMAGE": 1
     },
     "itemLevel": 3
   },
@@ -70,7 +69,22 @@
   {
     "itemId": 608,
     "name": "Blackened Defias Armor",
+    "wearableItemQuality": "SPECIAL",
     "abilities": {
+      "RESIST_DAMAGE": 2,
+      "ATTACK": 2,
+      "HASTE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 609,
+    "name": "DreadMist Robe",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "MANA": 7,
+      "INTELLECT": 3
     },
     "itemLevel": 2
   }

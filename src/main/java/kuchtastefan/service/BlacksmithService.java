@@ -29,16 +29,8 @@ public class BlacksmithService {
 
     public void blacksmithMenu(Hero hero) {
         ShopService shopService = new ShopService();
-//        final WearableItemVendorCharacter citySmithVendor = new WearableItemVendorCharacter("Reingron Bronzeback", 8,
-//                ItemDB.returnWearableItemListByItemLevel(hero.getLevel(), null, false), WearableItem.class);
-//        final CraftingReagentItemVendorCharacter cityReagentVendor = new CraftingReagentItemVendorCharacter("Krartunn Skulrarg", 8,
-//                ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, hero.getLevel(), 0), CraftingReagentItem.class);
-
         HintDB.printHint(HintName.BLACKSMITH_HINT);
 
-        QuestGiverCharacter questGiverCharacter = new QuestGiverCharacter("Gimli");
-        questGiverCharacter.addQuest(QuestDB.returnQuestFromDB(1));
-        questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
 
         PrintUtil.printDivider();
         System.out.println("\t\tBlacksmith");
@@ -56,8 +48,6 @@ public class BlacksmithService {
 //        System.out.println();
 //        PrintUtil.printIndexAndText("4", cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
         System.out.println();
-        PrintUtil.printIndexAndText("5", questGiverCharacter.getName());
-        System.out.println();
 
         final int choice = InputUtil.intScanner();
         switch (choice) {
@@ -68,7 +58,6 @@ public class BlacksmithService {
             case 3 -> shopService.vendorMenu(hero, VendorDB.returnVendorCharacterFromDb(0));
 //            case 3 -> citySmithVendor.vendorMenu(hero);
 //            case 4 -> cityReagentVendor.vendorMenu(hero);
-            case 5 -> questGiverCharacter.questGiverMenu(hero);
             default -> PrintUtil.printEnterValidInput();
         }
     }

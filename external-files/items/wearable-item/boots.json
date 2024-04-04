@@ -40,5 +40,27 @@
       "INTELLECT": 1
     },
     "itemLevel": 2
+  },
+  {
+    "itemId": 505,
+    "name": "Blackened Defias Boots",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "ATTACK": 2,
+      "HASTE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 506,
+    "name": "DreadMist Boots",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "MANA": 7,
+      "INTELLECT": 4
+    },
+    "itemLevel": 2
   }
 ]

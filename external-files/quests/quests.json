@@ -2,203 +2,6 @@
   {
     "type": "Quest",
     "questId": 0,
-    "questName": "Shadow Raiders",
-    "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
-    "questLevel": 2,
-    "questObjectives": [
-      {
-        "type": "QuestKillObjective",
-        "questObjectiveName": "Kill bandit",
-        "questEnemyId": 200,
-        "countEnemyToKill": 3
-      }
-    ],
-    "questReward": {
-      "itemsReward": [
-        103
-      ],
-      "goldsReward": 30.0
-    }
-  },
-  {
-    "type": "Quest",
-    "questId": 1,
-    "questName": "Wolfs in the forest",
-    "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us!",
-    "questLevel": 2,
-    "questObjectives": [
-      {
-        "type": "QuestKillObjective",
-        "questObjectiveName": "Kill Wolf",
-        "questEnemyId": 100,
-        "countEnemyToKill": 5
-      },
-      {
-        "type": "QuestKillObjective",
-        "questObjectiveName": "Kill Alpha Wolf",
-        "questEnemyId": 102,
-        "countEnemyToKill": 1
-      }
-    ],
-    "questReward": {
-      "itemsReward": [
-        204
-      ],
-      "goldsReward": 30.0
-    }
-  },
-  {
-    "type": "Quest",
-    "questId": 2,
-    "questName": "Bring me 10 Wolf meat",
-    "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
-    "questLevel": 2,
-    "questObjectives": [
-      {
-        "type": "QuestBringItemFromEnemyObjective",
-        "questObjectiveName": "Wolf Meat",
-        "itemDropFromEnemy": [
-          100,
-          102
-        ],
-        "itemDropCountNeeded": "10",
-        "objectiveItemId": 100,
-        "locationsType": [
-          "FOREST"
-        ]
-      }
-    ],
-    "questReward": {
-      "itemsReward": [
-        204
-      ],
-      "goldsReward": 30.0
-    }
-  },
-  {
-    "type": "Quest",
-    "questId": 3,
-    "questName": "Kill Defias Boss",
-    "questDescription": "There are bandits in Our mine called Enchanted Mine. Please clear our mine, kill it's boss and bring us his head!.",
-    "questLevel": 2,
-    "questObjectives": [
-      {
-        "type": "QuestBringItemFromEnemyObjective",
-        "questObjectiveName": "Bring bandit boss head",
-        "itemDropFromEnemy": [
-          203
-        ],
-        "objectiveItemId": 102,
-        "itemDropCountNeeded": "1",
-        "locationsType": [
-          "MINE"
-        ]
-      }
-    ],
-    "questReward": {
-      "itemsReward": [
-        204
-      ],
-      "goldsReward": 30.0
-    }
-  },
-  {
-    "type": "Quest",
-    "questId": 4,
-    "questName": "Clear Enchanted Mine",
-    "questDescription": "Please clear our mine.",
-    "questLevel": 2,
-    "questObjectives": [
-      {
-        "type": "QuestClearLocationObjective",
-        "questObjectiveName": "Clear Enchanted Mine",
-        "locationId": 0
-      }
-    ],
-    "questReward": {
-      "itemsReward": [
-        200
-      ],
-      "goldsReward": 50.0
-    }
-  },
-  {
-    "type": "Quest",
-    "questId": 5,
-    "questName": "Finding the Lost Book",
-    "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
-    "questLevel": 2,
-    "questObjectives": [
-      {
-        "type": "QuestFindObjective",
-        "questObjectiveName": "Find the Book of Elders",
-        "objectiveItemId": 104
-      }
-    ],
-    "questReward": {
-      "itemsReward": [
-        200
-      ],
-      "goldsReward": 50.0
-    }
-  },
-  {
-    "type": "QuestChain",
-    "questId": 6,
-    "previousQuestId": 5,
-    "questName": "Explore the Cave and Defeat the Necromancer",
-    "questDescription": "Venture into the depths of Whispering Caves and confront the Necromancer. Defeat him and retrieve his Necromancer Staff, a source of dark power that must not fall into the wrong hands.",
-    "questLevel": 2,
-    "questObjectives": [
-      {
-        "type": "QuestClearLocationObjective",
-        "questObjectiveName": "Whispering Caves",
-        "locationId": 0
-      },
-      {
-        "type": "QuestBringItemFromEnemyObjective",
-        "questObjectiveName": "Retrieve Necromancer Staff",
-        "itemDropFromEnemy": [
-          204
-        ],
-        "objectiveItemId": 105,
-        "itemDropCountNeeded": 1,
-        "locationsType": [
-          "MINE"
-        ]
-      }
-    ],
-    "questReward": {
-      "itemsReward": [
-        105
-      ],
-      "goldsReward": 80.0
-    }
-  },
-  {
-    "type": "QuestChain",
-    "questId": 7,
-    "previousQuestId": 6,
-    "questName": "Clear Enchanted Mine",
-    "questDescription": "Please clear our mine.",
-    "questLevel": 2,
-    "questObjectives": [
-      {
-        "type": "QuestClearLocationObjective",
-        "questObjectiveName": "Clear Enchanted Mine",
-        "locationId": 0
-      }
-    ],
-    "questReward": {
-      "itemsReward": [
-        200
-      ],
-      "goldsReward": 50.0
-    }
-  },
-  {
-    "type": "Quest",
-    "questId": 8,
     "questName": "Cleansing Crystal Lake",
     "questDescription": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Kill all water Elementals all over the Crystal Lake.",
     "questLevel": 1,
@@ -225,9 +28,9 @@
   },
   {
     "type": "Quest",
-    "questId": 9,
+    "questId": 1,
     "questName": "Clear Crystal Lake",
-    "questDescription": "Please clear the area of Crystal lake.",
+    "questDescription": "Clear the area of Crystal lake.",
     "questLevel": 1,
     "questObjectives": [
       {
@@ -245,7 +48,7 @@
   },
   {
     "type": "Quest",
-    "questId": 0,
+    "questId": 2,
     "questName": "Bandits and Miners",
     "questDescription": "Hey there, could you lend me a hand? They've locked me up in this cell for no reason! I used to serve them, lead the miners, and now I'm stuck here... I want to get back at them, can you help me out?",
     "questLevel": 2,
@@ -258,14 +61,14 @@
       },
       {
         "type": "QuestKillObjective",
-        "questObjectiveName": "Kill WatchMans",
+        "questObjectiveName": "Kill Weak WatchMans",
         "questEnemyId": 205,
         "countEnemyToKill": 2
       },
       {
         "type": "QuestKillObjective",
-        "questObjectiveName": "Kill Leader",
-        "questEnemyId": 204,
+        "questObjectiveName": "Kill Miner Leader",
+        "questEnemyId": 208,
         "countEnemyToKill": 1
       }
     ],
@@ -273,7 +76,27 @@
       "itemsReward": [
         103
       ],
-      "goldsReward": 30.0
+      "goldsReward": 40.0
+    }
+  },
+  {
+    "type": "Quest",
+    "questId": 3,
+    "questName": "Finding the Lost Book",
+    "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
+    "questLevel": 2,
+    "questObjectives": [
+      {
+        "type": "QuestBringItemFromEnemyObjective",
+        "questObjectiveName": "Find the Book of Elders",
+        "objectiveItemId": 104
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        903,901,903,901
+      ],
+      "goldsReward": 50.0
     }
   }
 ]

@@ -4,54 +4,94 @@
     "locationName": "DeadMines",
     "locationLevel": 2,
     "canLocationBeExplored": true,
+    "locationDifficulty": "EASY",
     "locationStages": {
       "0": {
         "type": "LocationStageQuestGiver",
         "stageName": "Mine Outside campsite",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
-        "questGiverId": 3
+        "questGiverId": 1
       },
       "1": {
         "type": "LocationStageCombat",
         "stageName": "Mine entry door",
-        "stageDiscovered": true,
+        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           205
-        ]
-      },
-      "3": {
-        "type": "LocationStageFindItem",
-        "stageName": "Entry room shelf",
-        "stageDiscovered": true,
-        "itemsIdNeededToEnterStage": [],
-        "itemId": [
-          104
         ]
       },
       "2": {
         "type": "LocationStageCombat",
-        "stageName": "Mine entry hall",
-        "stageDiscovered": true,
+        "stageName": "Miner's Quarters",
+        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           204
         ]
       },
       "3": {
-        "type": "LocationStageCombat",
-        "stageName": "Mine Upper Floor",
+        "type": "LocationStageFindItem",
+        "stageName": "Miner's Quarters shelves",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
-        "locationEnemyIdList": [
-          204,
-          204
+        "itemsId": [
+          900,
+          900,
+          902,
+          902
         ]
       },
       "4": {
         "type": "LocationStageCombat",
-        "stageName": "Mine Lower Floor",
+        "stageName": "Abandoned Tunnels",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          204
+        ]
+      },
+      "5": {
+        "type": "LocationStageFindItem",
+        "stageName": "Collapsed Chambers",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          608
+        ]
+      },
+      "6": {
+        "type": "LocationStageCombat",
+        "stageName": "Abandoned Tunnels",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          204
+        ]
+      },
+      "7": {
+        "type": "LocationStageFindItem",
+        "stageName": "Collapsed Chambers",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          505
+        ]
+      },
+      "8": {
+        "type": "LocationStageFindItem",
+        "stageName": "Ore Deposits",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          703,
+          703
+        ]
+      },
+      "9": {
+        "type": "LocationStageCombat",
+        "stageName": "Abandoned Tunnels",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
@@ -59,34 +99,47 @@
           204
         ]
       },
-      "5": {
+      "10": {
         "type": "LocationStageCombat",
-        "stageName": "Mine Main Room",
+        "stageName": "Refinery",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
-          205
-        ]
-      },
-      "6": {
-        "type": "LocationStageFindTreasure",
-        "stageName": "Treasure Room",
-        "stageDiscovered": false,
-        "itemsIdNeededToEnterStage": [
-          103
-        ]
-      },
-      "7": {
-        "type": "LocationStageCombat",
-        "stageName": "Necromancer chamber",
-        "stageDiscovered": false,
-        "itemsIdNeededToEnterStage": [],
-        "locationEnemyIdList": [
+          205,
           204,
-          300,
-          300,
-          300,
-          300
+          204
+        ]
+      },
+      "11": {
+        "type": "LocationStageFindItem",
+        "stageName": "Ore storage",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          703,
+          703,
+          703,
+          703
+        ]
+      },
+      "12": {
+        "type": "LocationStageCombat",
+        "stageName": "Miner Leader Chamber",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          208
+        ]
+      },
+      "13": {
+        "type": "LocationStageFindItem",
+        "stageName": "Miner leader chamber locked chest",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          404,
+          103,
+          609
         ]
       }
     }
@@ -96,36 +149,75 @@
     "locationName": "Tower of Damned",
     "locationLevel": 2,
     "canLocationBeExplored": true,
+    "locationDifficulty": "MEDIUM",
     "locationStages": {
       "0": {
         "type": "LocationStageCombat",
-        "stageName": "Tower Enter",
+        "stageName": "Tower Door",
         "stageDiscovered": true,
-        "itemsIdNeededToEnterStage": [],
+        "itemsIdNeededToEnterStage": [
+          103
+        ],
         "locationEnemyIdList": [
-          200,
-          200
+          303
         ]
       },
       "1": {
         "type": "LocationStageCombat",
-        "stageName": "Tower Ground Floor",
+        "stageName": "Forgotten Crypts",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
-          200,
-          200,
-          201,
-          201
+          303,
+          303
         ]
       },
       "2": {
         "type": "LocationStageFindItem",
-        "stageName": "Tower Top Floor",
-        "stageDiscovered": true,
+        "stageName": "Cursed Altar",
+        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
-        "itemId": [
-          104
+        "itemsId": [
+          506,
+          405
+        ]
+      },
+      "3": {
+        "type": "LocationStageCombat",
+        "stageName": "Sorrowful Chapel",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          304
+        ]
+      },
+      "4": {
+        "type": "LocationStageFindItem",
+        "stageName": "Spectral Library",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          104,
+          306
+        ]
+      },
+      "5": {
+        "type": "LocationStageCombat",
+        "stageName": "Malevolent Throne Room",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          209
+        ]
+      },
+      "6": {
+        "type": "LocationStageFindItem",
+        "stageName": "Necromancer Hidden Chest",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          212,
+          211
         ]
       }
     }
@@ -135,13 +227,14 @@
     "locationName": "Crystal Lake",
     "locationLevel": 1,
     "canLocationBeExplored": true,
+    "locationDifficulty": "EASY",
     "locationStages": {
       "0": {
         "type": "LocationStageQuestGiver",
         "stageName": "Fisherman Cabin",
         "stageDiscovered": true,
         "itemsIdNeededToEnterStage": [],
-        "questGiverId": 4
+        "questGiverId": 2
       },
       "1": {
         "type": "LocationStageCombat",

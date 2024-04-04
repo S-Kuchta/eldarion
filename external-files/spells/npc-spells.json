@@ -244,5 +244,78 @@
     "spellLevel": 1,
     "spellManaCost": 27,
     "turnCoolDown": 3
+  },
+  {
+    "spellId": 110,
+    "spellName": "Shadow Pain",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "maxActionValue": 1,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "actionDurationType": "BATTLE_ACTION",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true,
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 1,
+      "ATTACK": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 40,
+    "turnCoolDown": 4
+  },
+  {
+    "spellId": 111,
+    "spellName": "Summon Weak Zombie",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "maxActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true,
+        "summonedNpcId": 300
+      }
+    ],
+    "bonusValueFromAbility": {
+      "INTELLECT": 1,
+      "ATTACK": 1
+    },
+    "spellLevel": 1,
+    "spellManaCost": 29,
+    "turnCoolDown": 8
+  },
+  {
+    "spellId": 112,
+    "spellName": "Shadow Bolt",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "maxActionValue": 6,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": true
+      }
+    ],
+    "bonusValueFromAbility": {
+      "ATTACK": 1
+    },
+    "spellLevel": 0,
+    "spellManaCost": 25,
+    "turnCoolDown": 2
   }
 ]

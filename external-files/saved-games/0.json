@@ -1,52 +1,71 @@
 {
   "hero": {
-    "characterClass": "WARLOCK",
+    "characterClass": "MAGE",
     "unspentAbilityPoints": 0,
-    "heroGold": 244.0,
-    "experiencePoints": 395.0,
+    "heroGold": 438.0,
+    "experiencePoints": 977.0,
     "equippedItem": {
       "WEAPON": {
         "wearableItemType": "WEAPON",
         "abilities": {
-          "ATTACK": 1,
+          "ATTACK": 3,
+          "HASTE": 2,
+          "INTELLECT": 1,
           "RESIST_DAMAGE": 0,
           "STRENGTH": 0,
-          "INTELLECT": 0,
-          "HASTE": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "MANA": 0,
           "ABSORB_DAMAGE": 0
         },
-        "wearableItemQuality": "BASIC",
-        "itemId": 200,
-        "name": "Training Sword",
-        "price": 70.0,
-        "itemLevel": 1
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 211,
+        "name": "EmberStone Staff",
+        "price": 140.0,
+        "itemLevel": 2
       },
       "BODY": {
         "wearableItemType": "BODY",
         "abilities": {
-          "RESIST_DAMAGE": 1,
+          "RESIST_DAMAGE": 2,
+          "MANA": 7,
+          "INTELLECT": 3,
           "ATTACK": 0,
           "STRENGTH": 0,
-          "INTELLECT": 0,
           "HASTE": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
-          "MANA": 0,
           "ABSORB_DAMAGE": 0
         },
-        "wearableItemQuality": "BASIC",
-        "itemId": 600,
-        "name": "Worn Tunic",
-        "price": 70.0,
-        "itemLevel": 1
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 609,
+        "name": "DreadMist Robe",
+        "price": 140.0,
+        "itemLevel": 2
       },
       "BOOTS": {
         "wearableItemType": "BOOTS",
         "abilities": {
           "RESIST_DAMAGE": 1,
+          "MANA": 7,
+          "INTELLECT": 4,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 506,
+        "name": "DreadMist Boots",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      "HANDS": {
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
           "ATTACK": 0,
           "STRENGTH": 0,
           "INTELLECT": 0,
@@ -57,13 +76,13 @@
           "ABSORB_DAMAGE": 0
         },
         "wearableItemQuality": "BASIC",
-        "itemId": 500,
-        "name": "Recruit\u0027s Boots",
-        "price": 70.0,
-        "itemLevel": 1
+        "itemId": 401,
+        "name": "Cooper Gloves",
+        "price": 140.0,
+        "itemLevel": 2
       },
-      "HANDS": {
-        "wearableItemType": "HANDS",
+      "HEAD": {
+        "wearableItemType": "HEAD",
         "abilities": {
           "RESIST_DAMAGE": 1,
           "ATTACK": 0,
@@ -75,63 +94,428 @@
           "MANA": 0,
           "ABSORB_DAMAGE": 0
         },
-        "wearableItemQuality": "BASIC",
-        "itemId": 400,
-        "name": "Recruit\u0027s Gloves",
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 301,
+        "name": "Lucky Fishing Hat",
         "price": 70.0,
         "itemLevel": 1
-      },
-      "HEAD": {
-        "wearableItemType": "HEAD",
-        "abilities": {
-          "STRENGTH": 0,
-          "MANA": 0,
-          "HASTE": 0,
-          "RESIST_DAMAGE": 0,
-          "ABSORB_DAMAGE": 0,
-          "ATTACK": 0,
-          "CRITICAL_HIT_CHANCE": 0,
-          "HEALTH": 0,
-          "INTELLECT": 0
-        },
-        "wearableItemQuality": "BASIC",
-        "name": "No item",
-        "price": 0.0,
-        "itemLevel": 0
       }
     },
     "wearingItemAbilityPoints": {
       "STRENGTH": 0,
-      "MANA": 0,
-      "HASTE": 0,
-      "RESIST_DAMAGE": 3,
+      "MANA": 14,
+      "HASTE": 2,
+      "RESIST_DAMAGE": 6,
       "ABSORB_DAMAGE": 0,
-      "ATTACK": 1,
+      "ATTACK": 3,
       "CRITICAL_HIT_CHANCE": 0,
       "HEALTH": 0,
-      "INTELLECT": 0
+      "INTELLECT": 8
     },
     "heroInventory": {
       "heroInventory": [
         [
           {
-            "type": "QuestItem",
-            "itemId": 100,
-            "name": "Wolf meat",
-            "price": 0.0,
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 4,
+              "HASTE": 2,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 212,
+            "name": "Night Watch ShortSword",
+            "price": 140.0,
             "itemLevel": 2
           },
-          0
+          2
         ],
         [
           {
-            "type": "QuestItem",
-            "itemId": 102,
-            "name": "Boss Head",
-            "price": 0.0,
+            "type": "WearableItem",
+            "wearableItemType": "BOOTS",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 501,
+            "name": "Basic Boots",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 3,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "QUEST_REWARD",
+            "itemId": 207,
+            "name": "Sword of Water",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1132,
+            "name": "Linen wrap",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1103,
+            "name": "Broom",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "INTELLECT": 2,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "QUEST_REWARD",
+            "itemId": 206,
+            "name": "Staff of Water",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          3
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1118,
+            "name": "Embalming Tool",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1163,
+            "name": "Gold Ring",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1151,
+            "name": "Chain",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "ConsumableItem",
+            "consumableItemType": "FOOD",
+            "actionList": [
+              {
+                "type": "ActionRestoreMana",
+                "actionName": "HEAL",
+                "maxActionValue": 22,
+                "currentActionValue": 22,
+                "actionEffectOn": "SPELL_CASTER",
+                "chanceToPerformAction": 100,
+                "canBeActionCriticalHit": false
+              }
+            ],
+            "itemId": 1002,
+            "name": "Milk",
+            "price": 12.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1122,
+            "name": "Flower Basket",
+            "price": 9.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BODY",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 600,
+            "name": "Worn Tunic",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          3
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "HANDS",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 400,
+            "name": "Recruit\u0027s Gloves",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1140,
+            "name": "Lute with Silver decorating",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1155,
+            "name": "Glass",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 200,
+            "name": "Training Sword",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BOOTS",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 500,
+            "name": "Recruit\u0027s Boots",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 1,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "QUEST_REWARD",
+            "itemId": 204,
+            "name": "Death Bringer",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1142,
+            "name": "Silver candlestick",
+            "price": 18.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "HEAD",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 301,
+            "name": "Lucky Fishing Hat",
+            "price": 70.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1131,
+            "name": "Lantern",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1119,
+            "name": "Empty Skooma Bottle",
+            "price": 7.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1138,
+            "name": "Saw",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1153,
+            "name": "Fishing Rod",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1102,
+            "name": "Bucket",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "itemId": 800,
+            "name": "DeathBloom",
+            "price": 10.0,
             "itemLevel": 2
           },
-          0
+          2
         ],
         [
           {
@@ -149,11 +533,11 @@
               }
             ],
             "itemId": 900,
-            "name": "Minor health potion",
+            "name": "Lesser Health Potion",
             "price": 20.0,
             "itemLevel": 1
           },
-          1
+          2
         ],
         [
           {
@@ -161,32 +545,74 @@
             "consumableItemType": "POTION",
             "actionList": [
               {
-                "type": "ActionRestoreHealth",
+                "type": "ActionRestoreMana",
                 "actionName": "HEAL",
-                "maxActionValue": 15,
-                "currentActionValue": 15,
-                "actionEffectOn": "SPELL_CASTER",
-                "chanceToPerformAction": 100,
-                "canBeActionCriticalHit": false
-              },
-              {
-                "type": "ActionRestoreHealthOverTime",
-                "maxActionTurns": 3,
-                "currentActionTurn": 0,
-                "actionMaxStacks": 1,
-                "actionCurrentStacks": 0,
-                "actionDurationType": "BATTLE_ACTION",
-                "actionName": "HEAL_OVER_TIME",
-                "maxActionValue": 5,
-                "currentActionValue": 5,
+                "maxActionValue": 20,
+                "currentActionValue": 20,
                 "actionEffectOn": "SPELL_CASTER",
                 "chanceToPerformAction": 100,
                 "canBeActionCriticalHit": false
               }
             ],
-            "itemId": 901,
-            "name": "Big health potion",
-            "price": 50.0,
+            "itemId": 902,
+            "name": "Lesser Mana Potion",
+            "price": 20.0,
+            "itemLevel": 1
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1100,
+            "name": "Wooden Plate",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BODY",
+            "abilities": {
+              "RESIST_DAMAGE": 2,
+              "ATTACK": 2,
+              "HASTE": 2,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 608,
+            "name": "Blackened Defias Armor",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "HANDS",
+            "abilities": {
+              "RESIST_DAMAGE": 2,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 401,
+            "name": "Cooper Gloves",
+            "price": 140.0,
             "itemLevel": 2
           },
           1
@@ -196,9 +622,9 @@
             "type": "WearableItem",
             "wearableItemType": "WEAPON",
             "abilities": {
-              "ATTACK": 1,
-              "STRENGTH": 1,
+              "ATTACK": 2,
               "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
               "INTELLECT": 0,
               "HASTE": 0,
               "CRITICAL_HIT_CHANCE": 0,
@@ -207,10 +633,315 @@
               "ABSORB_DAMAGE": 0
             },
             "wearableItemQuality": "BASIC",
-            "itemId": 201,
-            "name": "Iron sword of Strength",
-            "price": 70.0,
-            "itemLevel": 1
+            "itemId": 208,
+            "name": "Cooper Sword",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          2
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1135,
+            "name": "Pot",
+            "price": 15.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BOOTS",
+            "abilities": {
+              "RESIST_DAMAGE": 2,
+              "ATTACK": 2,
+              "HASTE": 2,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 505,
+            "name": "Blackened Defias Boots",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "itemId": 703,
+            "name": "Cooper ore",
+            "price": 7.0,
+            "itemLevel": 2
+          },
+          6
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1162,
+            "name": "Gold Jug",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "HEAD",
+            "abilities": {
+              "RESIST_DAMAGE": 2,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 302,
+            "name": "Cooper Helmet",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1123,
+            "name": "Flute",
+            "price": 9.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "HEAD",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "ATTACK": 1,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 303,
+            "name": "Worn Leather Helmet",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1164,
+            "name": "Gold Weeding Ring",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BODY",
+            "abilities": {
+              "RESIST_DAMAGE": 2,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "BASIC",
+            "itemId": 603,
+            "name": "Cooper Chest",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BOOTS",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "MANA": 7,
+              "INTELLECT": 4,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 506,
+            "name": "DreadMist Boots",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "HANDS",
+            "abilities": {
+              "RESIST_DAMAGE": 2,
+              "ATTACK": 2,
+              "CRITICAL_HIT_CHANCE": 2,
+              "STRENGTH": 0,
+              "INTELLECT": 0,
+              "HASTE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 404,
+            "name": "Blackened Defias Gloves",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "QuestItem",
+            "itemId": 103,
+            "name": "Key to Tower of Damned",
+            "price": 0.0,
+            "itemLevel": 2
+          },
+          2
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "BODY",
+            "abilities": {
+              "RESIST_DAMAGE": 2,
+              "MANA": 7,
+              "INTELLECT": 3,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 609,
+            "name": "DreadMist Robe",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1128,
+            "name": "Silver Kitchen Knife",
+            "price": 12.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1150,
+            "name": "Casket",
+            "price": 21.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1158,
+            "name": "Haft",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1126,
+            "name": "Inkwell",
+            "price": 9.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1161,
+            "name": "Gold Cutlery",
+            "price": 23.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "HANDS",
+            "abilities": {
+              "RESIST_DAMAGE": 1,
+              "MANA": 14,
+              "INTELLECT": 3,
+              "ATTACK": 0,
+              "STRENGTH": 0,
+              "HASTE": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 405,
+            "name": "DreadMist Gloves",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1104,
+            "name": "Cup",
+            "price": 3.0,
+            "itemLevel": 0
           },
           1
         ],
@@ -249,35 +980,13 @@
             "price": 40.0,
             "itemLevel": 2
           },
-          1
-        ],
-        [
-          {
-            "type": "ConsumableItem",
-            "consumableItemType": "FOOD",
-            "actionList": [
-              {
-                "type": "ActionRestoreHealth",
-                "actionName": "HEAL",
-                "maxActionValue": 20,
-                "currentActionValue": 20,
-                "actionEffectOn": "SPELL_CASTER",
-                "chanceToPerformAction": 100,
-                "canBeActionCriticalHit": false
-              }
-            ],
-            "itemId": 1001,
-            "name": "Bread",
-            "price": 15.0,
-            "itemLevel": 1
-          },
-          1
+          2
         ],
         [
           {
             "type": "QuestItem",
-            "itemId": 103,
-            "name": "Key to Treasure room in Enchanted Mines",
+            "itemId": 104,
+            "name": "Book of Elders",
             "price": 0.0,
             "itemLevel": 2
           },
@@ -286,214 +995,218 @@
         [
           {
             "type": "WearableItem",
-            "wearableItemType": "BOOTS",
+            "wearableItemType": "HEAD",
             "abilities": {
               "RESIST_DAMAGE": 1,
-              "ATTACK": 0,
+              "ATTACK": 2,
+              "INTELLECT": 3,
               "STRENGTH": 0,
-              "INTELLECT": 0,
               "HASTE": 0,
               "CRITICAL_HIT_CHANCE": 0,
               "HEALTH": 0,
               "MANA": 0,
               "ABSORB_DAMAGE": 0
             },
-            "wearableItemQuality": "BASIC",
-            "itemId": 500,
-            "name": "Recruit\u0027s Boots",
-            "price": 70.0,
-            "itemLevel": 1
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 306,
+            "name": "DreadMist Mask",
+            "price": 140.0,
+            "itemLevel": 2
+          },
+          1
+        ],
+        [
+          {
+            "type": "JunkItem",
+            "itemId": 1106,
+            "name": "Damaged Scarf",
+            "price": 3.0,
+            "itemLevel": 0
+          },
+          1
+        ],
+        [
+          {
+            "type": "WearableItem",
+            "wearableItemType": "WEAPON",
+            "abilities": {
+              "ATTACK": 3,
+              "HASTE": 2,
+              "INTELLECT": 1,
+              "RESIST_DAMAGE": 0,
+              "STRENGTH": 0,
+              "CRITICAL_HIT_CHANCE": 0,
+              "HEALTH": 0,
+              "MANA": 0,
+              "ABSORB_DAMAGE": 0
+            },
+            "wearableItemQuality": "SPECIAL",
+            "itemId": 211,
+            "name": "EmberStone Staff",
+            "price": 140.0,
+            "itemLevel": 2
           },
           1
         ]
       ]
     },
     "experiencePointsService": {
-      "neededExperiencePointsForNewLevel": 660.0
+      "neededExperiencePointsForNewLevel": 1210.0
     },
-    "heroAcceptedQuestIdQuest": {
-      "1": {
+    "heroAcceptedQuest": {
+      "0": {
         "type": "Quest",
-        "questId": 1,
-        "questName": "Wolfs in the forest",
-        "questDescription": "In the forest, there are dangerous wolfs, who killed our miners. Please help us and revenge them.",
-        "questLevel": 2,
-        "questCompleted": false,
+        "questId": 0,
+        "questName": "Cleansing Crystal Lake",
+        "questDescription": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Kill all water Elementals all over the Crystal Lake.",
+        "questLevel": 1,
         "questObjectives": [
           {
             "type": "QuestKillObjective",
-            "questEnemyId": 100,
+            "questEnemyId": 401,
             "countEnemyToKill": 5,
-            "currentCountEnemyProgress": 0,
-            "completed": false,
-            "questObjectiveName": "Kill Wolf"
+            "currentCountEnemyProgress": 5,
+            "completed": true,
+            "questObjectiveName": "Kill Weak Water Elemental"
           },
           {
             "type": "QuestKillObjective",
-            "questEnemyId": 102,
+            "questEnemyId": 402,
             "countEnemyToKill": 1,
-            "currentCountEnemyProgress": 0,
-            "completed": false,
-            "questObjectiveName": "Kill Alpha Wolf"
+            "currentCountEnemyProgress": 1,
+            "completed": true,
+            "questObjectiveName": "Lake Isle Water Elemental"
           }
         ],
         "questReward": {
           "itemsReward": [
-            204
+            207
           ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0
+          "goldsReward": 50.0,
+          "experiencePointsReward": 180.0
         },
-        "isTurnedIn": false
+        "questStatus": "TURNED_IN"
+      },
+      "1": {
+        "type": "Quest",
+        "questId": 1,
+        "questName": "Clear Crystal Lake",
+        "questDescription": "Clear the area of Crystal lake.",
+        "questLevel": 1,
+        "questObjectives": [
+          {
+            "type": "QuestClearLocationObjective",
+            "locationId": 2,
+            "completed": true,
+            "questObjectiveName": "Clear Crystal Lake"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            206
+          ],
+          "goldsReward": 50.0,
+          "experiencePointsReward": 180.0
+        },
+        "questStatus": "TURNED_IN"
       },
       "2": {
         "type": "Quest",
         "questId": 2,
-        "questName": "Bring me 10 Wolf meat",
-        "questDescription": "Please kill the wolfs around the city in the forest. Please bring us meat from them.",
+        "questName": "Bandits and Miners",
+        "questDescription": "Hey there, could you lend me a hand? They\u0027ve locked me up in this cell for no reason! I used to serve them, lead the miners, and now I\u0027m stuck here... I want to get back at them, can you help me out?",
         "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestBringItemObjective",
-            "objectiveItemId": 100,
-            "itemDropFromEnemy": [
-              100,
-              102
-            ],
-            "itemDropCountNeeded": 10,
-            "completed": false,
-            "questObjectiveName": "Wolf Meat"
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            204
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0
-        },
-        "isTurnedIn": false
-      },
-      "3": {
-        "type": "Quest",
-        "questId": 3,
-        "questName": "Kill Defias Boss",
-        "questDescription": "There are bandits in Our mine called Enchanted Mine. Please clear our mine, kill it\u0027s boss and bring us his head!.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestBringItemObjective",
-            "objectiveItemId": 102,
-            "itemDropFromEnemy": [
-              203
-            ],
-            "itemDropCountNeeded": 1,
-            "completed": false,
-            "questObjectiveName": "Bring bandit boss head"
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            204
-          ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0
-        },
-        "isTurnedIn": false
-      },
-      "4": {
-        "type": "Quest",
-        "questId": 4,
-        "questName": "Clear Enchanted Mine",
-        "questDescription": "Please clear our mine.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestClearLocationObjective",
-            "locationId": 0,
-            "completed": false,
-            "questObjectiveName": "Clear Enchanted Mine"
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            200
-          ],
-          "goldsReward": 50.0,
-          "experiencePointsReward": 100.0
-        },
-        "isTurnedIn": false
-      },
-      "5": {
-        "type": "Quest",
-        "questId": 5,
-        "questName": "Finding the Lost Book",
-        "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
-        "questLevel": 2,
-        "questCompleted": false,
-        "questObjectives": [
-          {
-            "type": "QuestFindObjective",
-            "objectiveItemId": 104,
-            "completed": false,
-            "questObjectiveName": "Find the Book of Elders"
-          }
-        ],
-        "questReward": {
-          "itemsReward": [
-            200
-          ],
-          "goldsReward": 50.0,
-          "experiencePointsReward": 100.0
-        },
-        "isTurnedIn": false
-      },
-      "0": {
-        "type": "Quest",
-        "questId": 0,
-        "questName": "Shadow Raiders",
-        "questDescription": "A dark shadow looms over the kingdom as marauding bandits sow chaos and fear. Answer the call of duty to undertake a quest of paramount importance – eliminate ten notorious bandit. Your courage will be tested in the face of danger.",
-        "questLevel": 2,
-        "questCompleted": true,
         "questObjectives": [
           {
             "type": "QuestKillObjective",
-            "questEnemyId": 200,
-            "countEnemyToKill": 3,
-            "currentCountEnemyProgress": 3,
+            "questEnemyId": 204,
+            "countEnemyToKill": 5,
+            "currentCountEnemyProgress": 5,
             "completed": true,
-            "questObjectiveName": "Kill bandit"
+            "questObjectiveName": "Kill Miners"
+          },
+          {
+            "type": "QuestKillObjective",
+            "questEnemyId": 205,
+            "countEnemyToKill": 2,
+            "currentCountEnemyProgress": 2,
+            "completed": true,
+            "questObjectiveName": "Kill Weak WatchMans"
+          },
+          {
+            "type": "QuestKillObjective",
+            "questEnemyId": 208,
+            "countEnemyToKill": 1,
+            "currentCountEnemyProgress": 1,
+            "completed": true,
+            "questObjectiveName": "Kill Miner Leader"
           }
         ],
         "questReward": {
           "itemsReward": [
             103
           ],
-          "goldsReward": 30.0,
-          "experiencePointsReward": 70.0
+          "goldsReward": 40.0,
+          "experiencePointsReward": 260.0
         },
-        "isTurnedIn": true
+        "questStatus": "TURNED_IN"
+      },
+      "3": {
+        "type": "Quest",
+        "questId": 3,
+        "questName": "Finding the Lost Book",
+        "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
+        "questLevel": 2,
+        "questObjectives": [
+          {
+            "type": "QuestFindObjective",
+            "objectiveItemId": 104,
+            "completed": true,
+            "questObjectiveName": "Find the Book of Elders"
+          }
+        ],
+        "questReward": {
+          "itemsReward": [
+            903,
+            901,
+            903,
+            901
+          ],
+          "goldsReward": 50.0,
+          "experiencePointsReward": 260.0
+        },
+        "questStatus": "ACCEPTED"
       }
     },
     "learnedSpells": {
       "1": {
-        "spellId": 403,
-        "spellName": "Summon Succubus",
-        "spellDescription": "Summons a Succubus under the command of the Warlock.",
+        "spellId": 203,
+        "spellName": "FireBall",
+        "spellDescription": "Hurls a fiery ball that causes Fire damage and an additional Fire damage over 3 turns.",
         "spellActions": [
           {
-            "type": "ActionSummonCreature",
-            "summonedNpcId": 500,
-            "gameCharacterLevel": 0,
-            "actionName": "SUMMON_CREATURE",
-            "maxActionValue": 0,
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 15,
             "currentActionValue": 0,
-            "actionEffectOn": "SPELL_CASTER",
+            "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
+          },
+          {
+            "type": "ActionDealDamageOverTime",
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionStatusEffect": "DEBUFF",
+            "actionName": "DAMAGE_OVER_TIME",
+            "maxActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
           }
         ],
         "bonusValueFromAbility": {
@@ -501,40 +1214,72 @@
           "ATTACK": 1
         },
         "spellLevel": 1,
-        "spellManaCost": 29,
-        "turnCoolDown": 8,
-        "currentTurnCoolDown": 9,
+        "spellManaCost": 27,
+        "turnCoolDown": 3,
+        "currentTurnCoolDown": 4,
         "canSpellBeCasted": true,
-        "spellClass": "WARLOCK",
+        "spellClass": "MAGE",
+        "hitAllEnemy": false
+      },
+      "2": {
+        "spellId": 206,
+        "spellName": "Ice Armor",
+        "spellDescription": "Increases Resist damage",
+        "spellActions": [
+          {
+            "type": "ActionIncreaseAbilityPoint",
+            "ability": "RESIST_DAMAGE",
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionStatusEffect": "BUFF",
+            "actionName": "INCREASE_ABILITY_POINTS",
+            "maxActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1
+        },
+        "spellLevel": 2,
+        "spellManaCost": 32,
+        "turnCoolDown": 7,
+        "currentTurnCoolDown": 8,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE",
         "hitAllEnemy": false
       }
     },
     "discoveredLocationList": {
-      "0": {
-        "locationId": 0,
-        "locationName": "Enchanted Mine",
-        "locationLevel": 2,
-        "stageTotal": 7,
-        "stageCompleted": 3,
-        "cleared": false,
-        "biome": "MINE",
-        "canLocationBeExplored": true,
+      "2": {
+        "locationId": 2,
+        "locationName": "Crystal Lake",
+        "locationLevel": 1,
+        "stageTotal": 6,
+        "stageCompleted": 6,
+        "cleared": true,
+        "canLocationBeExplored": false,
+        "locationDifficulty": "EASY",
         "locationStages": {
           "0": {
-            "type": "LocationStageCombat",
-            "locationEnemyIdList": [
-              null,
-              null
-            ],
-            "stageName": "Mine main door",
+            "type": "LocationStageQuestGiver",
+            "questGiverId": 2,
+            "stageName": "Fisherman Cabin",
             "stageCompleted": true,
             "stageDiscovered": true,
             "itemsIdNeededToEnterStage": []
           },
           "1": {
-            "type": "LocationStageQuestGiver",
-            "questGiverId": 3,
-            "stageName": "Mine Cell Block",
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null
+            ],
+            "stageName": "Lake shore",
             "stageCompleted": true,
             "stageDiscovered": true,
             "itemsIdNeededToEnterStage": []
@@ -542,10 +1287,9 @@
           "2": {
             "type": "LocationStageCombat",
             "locationEnemyIdList": [
-              null,
               null
             ],
-            "stageName": "Mine Upper Floor",
+            "stageName": "Lake shore",
             "stageCompleted": true,
             "stageDiscovered": true,
             "itemsIdNeededToEnterStage": []
@@ -553,49 +1297,200 @@
           "3": {
             "type": "LocationStageCombat",
             "locationEnemyIdList": [
-              201,
-              201,
-              202
+              null,
+              null
             ],
-            "stageName": "Mine Lower Floor",
-            "stageCompleted": false,
+            "stageName": "Old fishing pier",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "4": {
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              301,
+              900,
+              902,
+              1003,
+              1003,
+              1002
+            ],
+            "stageName": "The End of Old fishing pier",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "5": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null
+            ],
+            "stageName": "Lake Isle",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          }
+        }
+      },
+      "0": {
+        "locationId": 0,
+        "locationName": "DeadMines",
+        "locationLevel": 2,
+        "stageTotal": 14,
+        "stageCompleted": 14,
+        "cleared": true,
+        "canLocationBeExplored": false,
+        "locationDifficulty": "EASY",
+        "locationStages": {
+          "0": {
+            "type": "LocationStageQuestGiver",
+            "questGiverId": 1,
+            "stageName": "Mine Outside campsite",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "1": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null
+            ],
+            "stageName": "Mine entry door",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "2": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null
+            ],
+            "stageName": "Miner\u0027s Quarters",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "3": {
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              900,
+              900,
+              902,
+              902
+            ],
+            "stageName": "Miner\u0027s Quarters shelves",
+            "stageCompleted": true,
             "stageDiscovered": true,
             "itemsIdNeededToEnterStage": []
           },
           "4": {
             "type": "LocationStageCombat",
             "locationEnemyIdList": [
-              200,
-              200,
-              201,
-              203
+              null
             ],
-            "stageName": "Mine Main Room",
-            "stageCompleted": false,
-            "stageDiscovered": false,
+            "stageName": "Abandoned Tunnels",
+            "stageCompleted": true,
+            "stageDiscovered": true,
             "itemsIdNeededToEnterStage": []
           },
           "5": {
-            "type": "LocationStageFindTreasure",
-            "stageName": "Treasure Room",
-            "stageCompleted": false,
-            "stageDiscovered": false,
-            "itemsIdNeededToEnterStage": [
-              103
-            ]
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              608
+            ],
+            "stageName": "Collapsed Chambers",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
           },
           "6": {
             "type": "LocationStageCombat",
             "locationEnemyIdList": [
-              204,
-              300,
-              300,
-              300,
-              300
+              null
             ],
-            "stageName": "Necromancer chamber",
-            "stageCompleted": false,
-            "stageDiscovered": false,
+            "stageName": "Abandoned Tunnels",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "7": {
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              505
+            ],
+            "stageName": "Collapsed Chambers",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "8": {
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              703,
+              703
+            ],
+            "stageName": "Ore Deposits",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "9": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null
+            ],
+            "stageName": "Abandoned Tunnels",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "10": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null,
+              null,
+              null
+            ],
+            "stageName": "Refinery",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "11": {
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              703,
+              703,
+              703,
+              703
+            ],
+            "stageName": "Ore storage",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "12": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null
+            ],
+            "stageName": "Miner Leader Chamber",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "13": {
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              404,
+              103,
+              609
+            ],
+            "stageName": "Miner leader chamber locked chest",
+            "stageCompleted": true,
+            "stageDiscovered": true,
             "itemsIdNeededToEnterStage": []
           }
         }
@@ -604,95 +1499,139 @@
         "locationId": 1,
         "locationName": "Tower of Damned",
         "locationLevel": 2,
-        "stageTotal": 3,
-        "stageCompleted": 1,
-        "cleared": false,
-        "biome": "TOWER",
-        "canLocationBeExplored": true,
+        "stageTotal": 7,
+        "stageCompleted": 7,
+        "cleared": true,
+        "canLocationBeExplored": false,
+        "locationDifficulty": "MEDIUM",
         "locationStages": {
           "0": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null
+            ],
+            "stageName": "Tower Door",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": [
+              103
+            ]
+          },
+          "1": {
             "type": "LocationStageCombat",
             "locationEnemyIdList": [
               null,
               null
             ],
-            "stageName": "Tower Enter",
+            "stageName": "Forgotten Crypts",
             "stageCompleted": true,
-            "stageDiscovered": true,
-            "itemsIdNeededToEnterStage": []
-          },
-          "1": {
-            "type": "LocationStageCombat",
-            "locationEnemyIdList": [
-              200,
-              200,
-              201,
-              201
-            ],
-            "stageName": "Tower Ground Floor",
-            "stageCompleted": false,
             "stageDiscovered": true,
             "itemsIdNeededToEnterStage": []
           },
           "2": {
             "type": "LocationStageFindItem",
-            "itemId": 104,
-            "stageName": "Tower Top Floor",
-            "stageCompleted": false,
+            "itemsId": [
+              506,
+              405
+            ],
+            "stageName": "Cursed Altar",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "3": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null
+            ],
+            "stageName": "Sorrowful Chapel",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "4": {
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              104,
+              306
+            ],
+            "stageName": "Spectral Library",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "5": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              null
+            ],
+            "stageName": "Malevolent Throne Room",
+            "stageCompleted": true,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "6": {
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              212,
+              211
+            ],
+            "stageName": "Necromancer Hidden Chest",
+            "stageCompleted": true,
             "stageDiscovered": true,
             "itemsIdNeededToEnterStage": []
           }
         }
       }
     },
-    "name": "Gwyndeed",
-    "level": 1,
+    "name": "1",
+    "level": 2,
     "abilities": {
       "STRENGTH": 1,
-      "MANA": 74,
-      "HASTE": 1,
-      "RESIST_DAMAGE": 2,
+      "MANA": 67,
+      "HASTE": 4,
+      "RESIST_DAMAGE": 4,
       "ABSORB_DAMAGE": 0,
       "ATTACK": 3,
-      "CRITICAL_HIT_CHANCE": 2,
+      "CRITICAL_HIT_CHANCE": 1,
       "HEALTH": 50,
-      "INTELLECT": 5
+      "INTELLECT": 6
     },
     "maxAbilities": {
       "STRENGTH": 1,
-      "MANA": 74,
-      "HASTE": 1,
-      "RESIST_DAMAGE": 5,
-      "ATTACK": 4,
+      "MANA": 109,
+      "HASTE": 6,
+      "RESIST_DAMAGE": 10,
+      "ATTACK": 6,
       "ABSORB_DAMAGE": 0,
       "CRITICAL_HIT_CHANCE": 2,
-      "HEALTH": 50,
-      "INTELLECT": 5
+      "HEALTH": 52,
+      "INTELLECT": 14
     },
     "currentAbilities": {
       "STRENGTH": 1,
-      "MANA": 39,
-      "HASTE": 1,
-      "RESIST_DAMAGE": 5,
+      "MANA": 22,
+      "HASTE": 6,
+      "RESIST_DAMAGE": 10,
       "ABSORB_DAMAGE": 0,
-      "ATTACK": 4,
+      "ATTACK": 6,
       "CRITICAL_HIT_CHANCE": 2,
-      "HEALTH": 20,
-      "INTELLECT": 5
+      "HEALTH": 31,
+      "INTELLECT": 14
     },
     "regionActionsWithDuration": [],
     "battleActionsWithDuration": [],
     "characterSpellList": [
       {
-        "spellId": 400,
+        "spellId": 200,
         "spellName": "Weapon Attack",
         "spellDescription": "Attack with weapon",
         "spellActions": [
           {
             "type": "ActionDealDamage",
             "actionName": "DAMAGE",
-            "maxActionValue": 3,
-            "currentActionValue": 8,
+            "maxActionValue": 5,
+            "currentActionValue": 14,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
@@ -707,41 +1646,97 @@
         "turnCoolDown": 0,
         "currentTurnCoolDown": 1,
         "canSpellBeCasted": true,
-        "spellClass": "WARLOCK",
+        "spellClass": "MAGE",
         "hitAllEnemy": false
       },
       {
-        "spellId": 401,
-        "spellName": "Shadow Bolt",
-        "spellDescription": "Sends a shadowy bolt at the enemy, causing Shadow damage.",
+        "spellId": 201,
+        "spellName": "Arcane Missiles",
+        "spellDescription": "Launches Arcane Missiles at the enemy, causing Arcane damage",
         "spellActions": [
           {
             "type": "ActionDealDamage",
             "actionName": "DAMAGE",
             "maxActionValue": 8,
-            "currentActionValue": 15,
+            "currentActionValue": 23,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": true
           }
         ],
         "bonusValueFromAbility": {
-          "INTELLECT": 1,
-          "ATTACK": 1
+          "ATTACK": 1,
+          "INTELLECT": 1
         },
         "spellLevel": 0,
-        "spellManaCost": 21,
+        "spellManaCost": 18,
         "turnCoolDown": 0,
         "currentTurnCoolDown": 1,
         "canSpellBeCasted": true,
-        "spellClass": "WARLOCK",
+        "spellClass": "MAGE",
         "hitAllEnemy": false
       },
       {
-        "spellId": 402,
-        "spellName": "Corruption",
-        "spellDescription": "Corrupts the target, causing Shadow damage over 4 turns.",
+        "spellId": 202,
+        "spellName": "Mage Barrier",
+        "spellDescription": "Absorbs damage, but drain Mana while barrier is active.",
         "spellActions": [
+          {
+            "type": "ActionAbsorbDamage",
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionStatusEffect": "BUFF",
+            "actionName": "ABSORB_DAMAGE",
+            "maxActionValue": 10,
+            "currentActionValue": 15,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          },
+          {
+            "type": "ActionDrainMana",
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionStatusEffect": "DEBUFF",
+            "actionName": "DRAIN_MANA",
+            "maxActionValue": 1,
+            "currentActionValue": 7,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1
+        },
+        "spellLevel": 0,
+        "spellManaCost": 21,
+        "turnCoolDown": 3,
+        "currentTurnCoolDown": 4,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE",
+        "hitAllEnemy": false
+      },
+      {
+        "spellId": 203,
+        "spellName": "FireBall",
+        "spellDescription": "Hurls a fiery ball that causes Fire damage and an additional Fire damage over 3 turns.",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "maxActionValue": 15,
+            "currentActionValue": 34,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": true
+          },
           {
             "type": "ActionDealDamageOverTime",
             "maxActionTurns": 3,
@@ -752,39 +1747,10 @@
             "actionStatusEffect": "DEBUFF",
             "actionName": "DAMAGE_OVER_TIME",
             "maxActionValue": 1,
-            "currentActionValue": 12,
+            "currentActionValue": 18,
             "actionEffectOn": "SPELL_TARGET",
             "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
-          }
-        ],
-        "bonusValueFromAbility": {
-          "INTELLECT": 1,
-          "ATTACK": 1
-        },
-        "spellLevel": 0,
-        "spellManaCost": 25,
-        "turnCoolDown": 3,
-        "currentTurnCoolDown": 4,
-        "canSpellBeCasted": true,
-        "spellClass": "WARLOCK",
-        "hitAllEnemy": false
-      },
-      {
-        "spellId": 403,
-        "spellName": "Summon Succubus",
-        "spellDescription": "Summons a Succubus under the command of the Warlock.",
-        "spellActions": [
-          {
-            "type": "ActionSummonCreature",
-            "summonedNpcId": 500,
-            "gameCharacterLevel": 1,
-            "actionName": "SUMMON_CREATURE",
-            "maxActionValue": 0,
-            "currentActionValue": 10,
-            "actionEffectOn": "SPELL_CASTER",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": true
+            "canBeActionCriticalHit": false
           }
         ],
         "bonusValueFromAbility": {
@@ -792,11 +1758,44 @@
           "ATTACK": 1
         },
         "spellLevel": 1,
-        "spellManaCost": 29,
-        "turnCoolDown": 8,
-        "currentTurnCoolDown": 9,
+        "spellManaCost": 27,
+        "turnCoolDown": 3,
+        "currentTurnCoolDown": 4,
         "canSpellBeCasted": true,
-        "spellClass": "WARLOCK",
+        "spellClass": "MAGE",
+        "hitAllEnemy": false
+      },
+      {
+        "spellId": 206,
+        "spellName": "Ice Armor",
+        "spellDescription": "Increases Resist damage",
+        "spellActions": [
+          {
+            "type": "ActionIncreaseAbilityPoint",
+            "ability": "RESIST_DAMAGE",
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionDurationType": "BATTLE_ACTION",
+            "actionStatusEffect": "BUFF",
+            "actionName": "INCREASE_ABILITY_POINTS",
+            "maxActionValue": 1,
+            "currentActionValue": 20,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "bonusValueFromAbility": {
+          "INTELLECT": 1
+        },
+        "spellLevel": 2,
+        "spellManaCost": 32,
+        "turnCoolDown": 7,
+        "currentTurnCoolDown": 8,
+        "canSpellBeCasted": true,
+        "spellClass": "MAGE",
         "hitAllEnemy": false
       }
     ],
@@ -804,28 +1803,8 @@
     "reflectSpell": false
   },
   "hintUtil": {
-    "LOCATION_HINT": {
-      "text": "\tWelcome to the location. The Location consists of multiple stages.\n\tIf a stage is not open from the beginning, you can only access it after completing the previous stage.\n\tTo enter some stages, you need an item to unlock the stage.\n\tAfter completing all stages, you will receive a reward.",
-      "showed": true
-    },
-    "BATTLE_HINT": {
-      "text": "\tOne of the most important parts of the game are the battles. Battles occur in turns.\n\tCombat is conducted using spells, each spell has actions that are performed after using the spell.\n\tActions with durations are always performed at the end of the character\u0027s turn.\n\tHowever, be careful, some actions do not have a 100% chance of execution.\n\tIf action has lower chance to perform, you will see percentage chance in action description.\n\tSpells on CoolDowns can\u0027t be used.\n\tTo receive rewards or fulfill Quest Objectives, you must defeat all units and win the battle.",
-      "showed": true
-    },
     "BLACKSMITH_HINT": {
       "text": "\t\t- You can dismantle wearable item. This will destroy item,\n\tbut you get crafting reagents (items),\n\t\t- You can refinement wearable item. This will increase item\n\tprice and ability bonus, For refinement item you need crafting reagents (items)",
-      "showed": true
-    },
-    "NEW_SPELL_HINT": {
-      "text": "\tHere you can learn a new spell. You can learn one new spell on levels 1, 2, 3, 5 and 7.\n\tWhen you want to change a learned spell, simply learn a new one, and the old one will be unlearned.",
-      "showed": true
-    },
-    "HERO_MENU": {
-      "text": "\tIn the hero menu, you can view your statistics, inventory, add or subtract ability points\n\tcheck accepted and completed quests, learn new spells, and adjust game settings.",
-      "showed": true
-    },
-    "QUEST_HINT": {
-      "text": "\tThroughout the game, you will be completing quests. For each completed quest, you will receive a reward.\n\tEach quest can have multiple Quest Objectives that you need to fulfill to complete the quest.\n\tAvailable quests will be marked with a yellow exclamation point ( - ! - ),\n\twhile completed but not yet turned in quests will be marked with a yellow question mark ( - ? - ).\n\tYou may also encounter a gray exclamation point, indicating that you have not yet met the requirements\n\tto accept that quest (insufficient level, need to complete a prerequisite quest).",
       "showed": true
     },
     "WELCOME": {
@@ -835,29 +1814,432 @@
     "REGION_HINT": {
       "text": "\tWelcome to the region. Here you can travel across the region, discover new locations, and complete quests.\n\tHowever, be cautious of traps while traveling through locations.",
       "showed": true
+    },
+    "LOCATION_HINT": {
+      "text": "\tWelcome to the location. The Location consists of multiple stages.\n\tIf a stage is not open from the beginning, you can only access it after completing the previous stage.\n\tTo enter some stages, you need an item to unlock the stage.\n\tAfter completing all stages, you will receive a reward.",
+      "showed": true
+    },
+    "BATTLE_HINT": {
+      "text": "\tOne of the most important parts of the game are the battles. Battles occur in turns.\n\tCombat is conducted using spells, each spell has actions that are performed after using the spell.\n\tActions with durations are always performed at the end of the character\u0027s turn.\n\tHowever, be careful, some actions do not have a 100% chance of execution.\n\tIf action has lower chance to perform, you will see percentage chance in action description.\n\tSpells on CoolDowns can\u0027t be used.\n\tTo receive rewards or fulfill Quest Objectives, you must defeat all units and win the battle.",
+      "showed": true
+    },
+    "HERO_MENU": {
+      "text": "\tIn the hero menu, you can view your statistics, inventory, add or subtract ability points\n\tcheck accepted and completed quests, learn new spells, and adjust game settings.",
+      "showed": true
+    },
+    "NEW_SPELL_HINT": {
+      "text": "\tHere you can learn a new spell. You can learn one new spell on levels 1, 2, 3, 5 and 7.\n\tWhen you want to change a learned spell, simply learn a new one, and the old one will be unlearned.",
+      "showed": true
+    },
+    "QUEST_HINT": {
+      "text": "\tThroughout the game, you will be completing quests. For each completed quest, you will receive a reward.\n\tEach quest can have multiple Quest Objectives that you need to fulfill to complete the quest.\n\tAvailable quests will be marked with a yellow exclamation point ( - ! - ),\n\twhile completed but not yet turned in quests will be marked with a yellow question mark ( - ? - ).\n\tYou may also encounter a gray exclamation point, indicating that you have not yet met the requirements\n\tto accept that quest (insufficient level, need to complete a prerequisite quest).",
+      "showed": true
     }
   },
   "regionActionsWithDuration": [],
   "itemList": [
     [
       {
-        "type": "QuestItem",
-        "itemId": 100,
-        "name": "Wolf meat",
-        "price": 0.0,
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 4,
+          "HASTE": 2,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 212,
+        "name": "Night Watch ShortSword",
+        "price": 140.0,
         "itemLevel": 2
       },
-      0
+      2
     ],
     [
       {
-        "type": "QuestItem",
-        "itemId": 102,
-        "name": "Boss Head",
-        "price": 0.0,
+        "type": "WearableItem",
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 501,
+        "name": "Basic Boots",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 3,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "QUEST_REWARD",
+        "itemId": 207,
+        "name": "Sword of Water",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1132,
+        "name": "Linen wrap",
+        "price": 12.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1103,
+        "name": "Broom",
+        "price": 3.0,
+        "itemLevel": 0
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 1,
+          "INTELLECT": 2,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "QUEST_REWARD",
+        "itemId": 206,
+        "name": "Staff of Water",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      3
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1118,
+        "name": "Embalming Tool",
+        "price": 7.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1163,
+        "name": "Gold Ring",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1151,
+        "name": "Chain",
+        "price": 21.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "ConsumableItem",
+        "consumableItemType": "FOOD",
+        "actionList": [
+          {
+            "type": "ActionRestoreMana",
+            "actionName": "HEAL",
+            "maxActionValue": 22,
+            "currentActionValue": 22,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100,
+            "canBeActionCriticalHit": false
+          }
+        ],
+        "itemId": 1002,
+        "name": "Milk",
+        "price": 12.0,
+        "itemLevel": 1
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1122,
+        "name": "Flower Basket",
+        "price": 9.0,
+        "itemLevel": 0
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BODY",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 600,
+        "name": "Worn Tunic",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      3
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 400,
+        "name": "Recruit\u0027s Gloves",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1140,
+        "name": "Lute with Silver decorating",
+        "price": 15.0,
+        "itemLevel": 0
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1155,
+        "name": "Glass",
+        "price": 21.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 1,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 200,
+        "name": "Training Sword",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 500,
+        "name": "Recruit\u0027s Boots",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 1,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "QUEST_REWARD",
+        "itemId": 204,
+        "name": "Death Bringer",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1142,
+        "name": "Silver candlestick",
+        "price": 18.0,
+        "itemLevel": 0
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 301,
+        "name": "Lucky Fishing Hat",
+        "price": 70.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1131,
+        "name": "Lantern",
+        "price": 12.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1119,
+        "name": "Empty Skooma Bottle",
+        "price": 7.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1138,
+        "name": "Saw",
+        "price": 15.0,
+        "itemLevel": 0
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1153,
+        "name": "Fishing Rod",
+        "price": 21.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1102,
+        "name": "Bucket",
+        "price": 3.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "ALCHEMY_REAGENT",
+        "itemId": 800,
+        "name": "DeathBloom",
+        "price": 10.0,
         "itemLevel": 2
       },
-      0
+      2
     ],
     [
       {
@@ -875,11 +2257,11 @@
           }
         ],
         "itemId": 900,
-        "name": "Minor health potion",
+        "name": "Lesser Health Potion",
         "price": 20.0,
         "itemLevel": 1
       },
-      1
+      2
     ],
     [
       {
@@ -887,32 +2269,74 @@
         "consumableItemType": "POTION",
         "actionList": [
           {
-            "type": "ActionRestoreHealth",
+            "type": "ActionRestoreMana",
             "actionName": "HEAL",
-            "maxActionValue": 15,
-            "currentActionValue": 15,
-            "actionEffectOn": "SPELL_CASTER",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": false
-          },
-          {
-            "type": "ActionRestoreHealthOverTime",
-            "maxActionTurns": 3,
-            "currentActionTurn": 0,
-            "actionMaxStacks": 1,
-            "actionCurrentStacks": 0,
-            "actionDurationType": "BATTLE_ACTION",
-            "actionName": "HEAL_OVER_TIME",
-            "maxActionValue": 5,
-            "currentActionValue": 5,
+            "maxActionValue": 20,
+            "currentActionValue": 20,
             "actionEffectOn": "SPELL_CASTER",
             "chanceToPerformAction": 100,
             "canBeActionCriticalHit": false
           }
         ],
-        "itemId": 901,
-        "name": "Big health potion",
-        "price": 50.0,
+        "itemId": 902,
+        "name": "Lesser Mana Potion",
+        "price": 20.0,
+        "itemLevel": 1
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1100,
+        "name": "Wooden Plate",
+        "price": 3.0,
+        "itemLevel": 0
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BODY",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
+          "ATTACK": 2,
+          "HASTE": 2,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 608,
+        "name": "Blackened Defias Armor",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 401,
+        "name": "Cooper Gloves",
+        "price": 140.0,
         "itemLevel": 2
       },
       1
@@ -922,9 +2346,9 @@
         "type": "WearableItem",
         "wearableItemType": "WEAPON",
         "abilities": {
-          "ATTACK": 1,
-          "STRENGTH": 1,
+          "ATTACK": 2,
           "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
           "INTELLECT": 0,
           "HASTE": 0,
           "CRITICAL_HIT_CHANCE": 0,
@@ -933,10 +2357,315 @@
           "ABSORB_DAMAGE": 0
         },
         "wearableItemQuality": "BASIC",
-        "itemId": 201,
-        "name": "Iron sword of Strength",
-        "price": 70.0,
-        "itemLevel": 1
+        "itemId": 208,
+        "name": "Cooper Sword",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      2
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1135,
+        "name": "Pot",
+        "price": 15.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
+          "ATTACK": 2,
+          "HASTE": 2,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 505,
+        "name": "Blackened Defias Boots",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "BLACKSMITH_REAGENT",
+        "itemId": 703,
+        "name": "Cooper ore",
+        "price": 7.0,
+        "itemLevel": 2
+      },
+      6
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1162,
+        "name": "Gold Jug",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 302,
+        "name": "Cooper Helmet",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1123,
+        "name": "Flute",
+        "price": 9.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "HEAD",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "ATTACK": 1,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 303,
+        "name": "Worn Leather Helmet",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1164,
+        "name": "Gold Weeding Ring",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BODY",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "BASIC",
+        "itemId": 603,
+        "name": "Cooper Chest",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BOOTS",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "MANA": 7,
+          "INTELLECT": 4,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 506,
+        "name": "DreadMist Boots",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
+          "ATTACK": 2,
+          "CRITICAL_HIT_CHANCE": 2,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 404,
+        "name": "Blackened Defias Gloves",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "QuestItem",
+        "itemId": 103,
+        "name": "Key to Tower of Damned",
+        "price": 0.0,
+        "itemLevel": 2
+      },
+      2
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "BODY",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
+          "MANA": 7,
+          "INTELLECT": 3,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 609,
+        "name": "DreadMist Robe",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1128,
+        "name": "Silver Kitchen Knife",
+        "price": 12.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1150,
+        "name": "Casket",
+        "price": 21.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1158,
+        "name": "Haft",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1126,
+        "name": "Inkwell",
+        "price": 9.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1161,
+        "name": "Gold Cutlery",
+        "price": 23.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "HANDS",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "MANA": 14,
+          "INTELLECT": 3,
+          "ATTACK": 0,
+          "STRENGTH": 0,
+          "HASTE": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 405,
+        "name": "DreadMist Gloves",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1104,
+        "name": "Cup",
+        "price": 3.0,
+        "itemLevel": 0
       },
       1
     ],
@@ -975,35 +2704,13 @@
         "price": 40.0,
         "itemLevel": 2
       },
-      1
-    ],
-    [
-      {
-        "type": "ConsumableItem",
-        "consumableItemType": "FOOD",
-        "actionList": [
-          {
-            "type": "ActionRestoreHealth",
-            "actionName": "HEAL",
-            "maxActionValue": 20,
-            "currentActionValue": 20,
-            "actionEffectOn": "SPELL_CASTER",
-            "chanceToPerformAction": 100,
-            "canBeActionCriticalHit": false
-          }
-        ],
-        "itemId": 1001,
-        "name": "Bread",
-        "price": 15.0,
-        "itemLevel": 1
-      },
-      1
+      2
     ],
     [
       {
         "type": "QuestItem",
-        "itemId": 103,
-        "name": "Key to Treasure room in Enchanted Mines",
+        "itemId": 104,
+        "name": "Book of Elders",
         "price": 0.0,
         "itemLevel": 2
       },
@@ -1012,23 +2719,56 @@
     [
       {
         "type": "WearableItem",
-        "wearableItemType": "BOOTS",
+        "wearableItemType": "HEAD",
         "abilities": {
           "RESIST_DAMAGE": 1,
-          "ATTACK": 0,
+          "ATTACK": 2,
+          "INTELLECT": 3,
           "STRENGTH": 0,
-          "INTELLECT": 0,
           "HASTE": 0,
           "CRITICAL_HIT_CHANCE": 0,
           "HEALTH": 0,
           "MANA": 0,
           "ABSORB_DAMAGE": 0
         },
-        "wearableItemQuality": "BASIC",
-        "itemId": 500,
-        "name": "Recruit\u0027s Boots",
-        "price": 70.0,
-        "itemLevel": 1
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 306,
+        "name": "DreadMist Mask",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "JunkItem",
+        "itemId": 1106,
+        "name": "Damaged Scarf",
+        "price": 3.0,
+        "itemLevel": 0
+      },
+      1
+    ],
+    [
+      {
+        "type": "WearableItem",
+        "wearableItemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 3,
+          "HASTE": 2,
+          "INTELLECT": 1,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 211,
+        "name": "EmberStone Staff",
+        "price": 140.0,
+        "itemLevel": 2
       },
       1
     ]

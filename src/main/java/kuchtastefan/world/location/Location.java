@@ -19,6 +19,7 @@ public class Location {
     protected int stageCompleted;
     protected boolean cleared;
     protected boolean canLocationBeExplored;
+    protected LocationDifficulty locationDifficulty;
     protected Map<Integer, LocationStage> locationStages;
 
 

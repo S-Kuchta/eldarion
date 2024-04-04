@@ -3,38 +3,21 @@
     "questGiverId": 0,
     "baseName": "High Priestess Elara",
     "questsId": [
-      3,
-      5,
-      6
+      1,3
     ]
   },
   {
     "questGiverId": 1,
-    "baseName": "Freya",
-    "questsId": [
-      4,
-      9
-    ]
-  },
-  {
-    "questGiverId": 2,
-    "baseName": "Devom Of Cremora",
+    "baseName": "Miner Johnson",
     "questsId": [
       2
     ]
   },
   {
-    "questGiverId": 3,
-    "baseName": "Miner Johnson",
-    "questsId": [
-      0
-    ]
-  },
-  {
-    "questGiverId": 4,
+    "questGiverId": 2,
     "baseName": "Ilyana Shalee",
     "questsId": [
-      8
+      0
     ]
   }
 ]

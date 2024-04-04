@@ -101,5 +101,26 @@
       "INTELLECT": 1
     },
     "itemLevel": 2
+  },
+  {
+    "itemId": 211,
+    "name": "EmberStone Staff",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "ATTACK": 3,
+      "HASTE": 2,
+      "INTELLECT": 1
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 212,
+    "name": "Night Watch ShortSword",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "ATTACK": 4,
+      "HASTE": 2
+    },
+    "itemLevel": 2
   }
 ]

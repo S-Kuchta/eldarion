@@ -2,6 +2,7 @@ package kuchtastefan.utility;
 
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
+import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.*;
 import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.NonPlayerCharacter;

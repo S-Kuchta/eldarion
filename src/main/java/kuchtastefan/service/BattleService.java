@@ -2,23 +2,25 @@ package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.actionsWIthDuration.*;
+import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
+import kuchtastefan.actions.actionsWIthDuration.ActionStatusEffect;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.*;
 import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.InventoryMenuService;
 import kuchtastefan.character.npc.NonPlayerCharacter;
+import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
-import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
+import kuchtastefan.hint.HintName;
 import kuchtastefan.utility.*;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.util.*;
 
@@ -347,7 +349,7 @@ public class BattleService {
                     priorityPoints = 0;
                     for (Action action : spellIntegerEntry.getKey().getSpellActions()) {
 
-                        if (action instanceof ActionIncreaseAbilityPoint) {
+                        if (action instanceof ActionIncreaseAbilityPoint || action instanceof ActionDecreaseAbilityPoint) {
                             priorityPoints += 2;
                         }
 
@@ -355,7 +357,7 @@ public class BattleService {
                             priorityPoints += 3;
                         }
 
-                        if (action instanceof ActionInvulnerability && spellTarget.isCanPerformAction()) {
+                        if (action instanceof ActionInvulnerability) {
                             priorityPoints += 5;
                         }
 
@@ -364,11 +366,12 @@ public class BattleService {
                             priorityPoints += 3;
                         }
 
-                        if (spellCaster.getBattleActionsWithDuration() != null) {
-                            for (ActionWithDuration actionWithDuration : spellCaster.getBattleActionsWithDuration()) {
-                                if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF)) {
-                                    priorityPoints += 2;
-                                }
+                        for (ActionWithDuration actionWithDuration : spellCaster.getBattleActionsWithDuration()) {
+                            if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF)
+                                    && action instanceof ActionRemoveBuffOrDebuff actionRemoveBuffOrDebuff
+                                    && actionRemoveBuffOrDebuff.getActionStatusEffectToRemove().equals(ActionStatusEffect.DEBUFF)) {
+
+                                priorityPoints += 2;
                             }
                         }
 

@@ -5,7 +5,7 @@ import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
-import kuchtastefan.quest.QuestService;
+import kuchtastefan.service.QuestService;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;

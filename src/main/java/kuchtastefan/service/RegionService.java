@@ -1,4 +1,4 @@
-package kuchtastefan.world.region;
+package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.HeroMenuService;
@@ -6,9 +6,8 @@ import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.world.event.EventService;
 import kuchtastefan.world.location.Location;
-import kuchtastefan.world.location.LocationService;
+import kuchtastefan.world.region.Region;
 
 import java.util.ArrayList;
 import java.util.List;

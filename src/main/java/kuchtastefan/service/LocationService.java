@@ -1,4 +1,4 @@
-package kuchtastefan.world.location;
+package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.HeroMenuService;
@@ -8,6 +8,7 @@ import kuchtastefan.item.ItemDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import kuchtastefan.world.location.locationStage.LocationStageQuestGiver;
 import kuchtastefan.world.location.locationStage.RemoveLocationStageProgress;
@@ -32,7 +33,7 @@ public class LocationService {
             PrintUtil.printLongDivider();
             System.out.println(ConsoleColor.YELLOW + "\t" + location.getLocationName() + ConsoleColor.RESET
                     + "\tLocation level: " + location.getLocationLevel() + " "
-                    + "\tStages completed " + location.stageCompleted + " / " + location.stageTotal);
+                    + "\tStages completed " + location.getStageCompleted() + " / " + location.getStageTotal());
             PrintUtil.printLongDivider();
 
             // Print stage menu
@@ -47,7 +48,7 @@ public class LocationService {
             // Print discovered location Stages
             int index = 3;
             System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t\tLocation Stages\t\t\t\t\t\t" + ConsoleColor.RESET);
-            for (Map.Entry<Integer, LocationStage> locationStage : location.locationStages.entrySet()) {
+            for (Map.Entry<Integer, LocationStage> locationStage : location.getLocationStages().entrySet()) {
                 if (locationStage.getValue().isStageDiscovered()) {
                     String completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
                     PrintUtil.printIndexAndText(String.valueOf(index + locationStage.getKey()),
@@ -64,13 +65,13 @@ public class LocationService {
                     System.out.println("\tGoing back on path");
                     break;
                 } else if (choice == 1) {
-                    if (location.locationStages.get(location.stageCompleted) instanceof LocationStageQuestGiver
-                            && location.locationStages.get(location.stageCompleted + 1) != null
-                            && location.locationStages.get(location.stageCompleted + 1).isStageDiscovered()) {
+                    if (location.getLocationStages().get(location.getStageCompleted()) instanceof LocationStageQuestGiver
+                            && location.getLocationStages().get(location.getStageCompleted() + 1) != null
+                            && location.getLocationStages().get(location.getStageCompleted() + 1).isStageDiscovered()) {
 
-                        exploreLocationStage(hero, location, location.stageCompleted + 1);
+                        exploreLocationStage(hero, location, location.getStageCompleted() + 1);
                     } else {
-                        exploreLocationStage(hero, location, location.stageCompleted);
+                        exploreLocationStage(hero, location, location.getStageCompleted());
                     }
                 } else if (choice == 2) {
                     heroMenuService.heroCharacterMenu(hero);
@@ -104,7 +105,7 @@ public class LocationService {
      * @param locationStageOrder order in location
      */
     public void exploreLocationStage(Hero hero, Location location, int locationStageOrder) {
-        LocationStage locationStage = location.locationStages.get(locationStageOrder);
+        LocationStage locationStage = location.getLocationStages().get(locationStageOrder);
 
         // Conditions for check if Hero can explore current Stage
         if (locationStage instanceof LocationStageQuestGiver) {
@@ -143,7 +144,7 @@ public class LocationService {
 
         // check if stage is successfully cleared
         if (isStageCompleted) {
-            location.stageCompleted++;
+            location.incrementStageCompleted();
             locationStage.setStageCompleted(true);
 
             if (locationStage instanceof RemoveLocationStageProgress removeStageProgress) {
@@ -158,7 +159,7 @@ public class LocationService {
         }
 
         // Completing all location stages
-        if (location.stageCompleted == location.stageTotal) {
+        if (location.getStageCompleted() == location.getStageTotal()) {
             location.setCleared(true);
             location.setCanLocationBeExplored(false);
             hero.checkIfQuestObjectivesAndQuestIsCompleted();

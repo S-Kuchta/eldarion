@@ -1,8 +1,10 @@
-package kuchtastefan.quest;
+package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.quest.questObjectives.QuestBringItemFromEnemyObjective;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;

@@ -14,7 +14,6 @@ import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.region.RegionDB;
-import kuchtastefan.world.region.RegionService;
 
 import java.util.ArrayList;
 import java.util.List;

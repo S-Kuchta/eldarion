@@ -20,7 +20,7 @@ public class QuestReward {
         this.experiencePointsReward = experiencePointsReward;
     }
 
-    protected void giveQuestReward(Hero hero) {
+    public void giveQuestReward(Hero hero) {
         hero.gainExperiencePoints(this.experiencePointsReward);
         System.out.println("\tYou gained " + this.goldsReward + " golds");
         hero.addGolds(this.goldsReward);

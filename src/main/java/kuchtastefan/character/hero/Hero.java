@@ -10,7 +10,7 @@ import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.QuestService;
+import kuchtastefan.service.QuestService;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.world.location.Location;

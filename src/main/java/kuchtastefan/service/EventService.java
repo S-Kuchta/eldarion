@@ -1,4 +1,4 @@
-package kuchtastefan.world.event;
+package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;

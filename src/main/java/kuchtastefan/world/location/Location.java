@@ -34,6 +34,10 @@ public class Location {
         this.locationStages = new HashMap<>();
     }
 
+    public void incrementStageCompleted() {
+        this.stageCompleted++;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

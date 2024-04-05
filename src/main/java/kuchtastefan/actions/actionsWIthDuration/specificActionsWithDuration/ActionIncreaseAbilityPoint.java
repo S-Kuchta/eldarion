@@ -1,22 +1,28 @@
-package kuchtastefan.actions.actionsWIthDuration;
+package kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
+import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
+import kuchtastefan.actions.actionsWIthDuration.ActionStatusEffect;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
 @Getter
-public class ActionDecreaseAbilityPoint extends ActionWithDuration {
+@Setter
+public class ActionIncreaseAbilityPoint extends ActionWithDuration {
 
     private final Ability ability;
 
-    public ActionDecreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+
+    public ActionIncreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
                                       int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType,
-                                      int chanceToPerformAction, boolean canBeActionCriticalHit, Ability ability,
+                                      Ability ability, int chanceToPerformAction, boolean canBeActionCriticalHit,
                                       ActionStatusEffect actionStatusEffect) {
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
                 actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
@@ -26,10 +32,10 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration {
     @Override
     public void performAction(GameCharacter gameCharacter) {
 
-        int decreaseAbilityWithStacksValue = this.getCurrentActionValue() * this.getActionCurrentStacks();
-        gameCharacter.decreaseCurrentAbilityValue(decreaseAbilityWithStacksValue, this.ability);
+        int increaseAbilityWithStacksValue = this.getCurrentActionValue() * this.getActionCurrentStacks();
+        gameCharacter.increaseCurrentAbilityValue(this.ability, increaseAbilityWithStacksValue);
 
-        System.out.println("\t" + ConsoleColor.RED + this.ability + ConsoleColor.RESET + " is decreased by " + decreaseAbilityWithStacksValue);
+        System.out.println("\t" + ConsoleColor.YELLOW + this.ability + ConsoleColor.RESET + " is increased by " + increaseAbilityWithStacksValue);
     }
 
     @Override
@@ -37,7 +43,7 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        ActionDecreaseAbilityPoint that = (ActionDecreaseAbilityPoint) o;
+        ActionIncreaseAbilityPoint that = (ActionIncreaseAbilityPoint) o;
         return ability == that.ability;
     }
 

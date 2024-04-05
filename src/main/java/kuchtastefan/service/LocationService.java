@@ -1,7 +1,6 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.hero.HeroMenuService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.item.ItemDB;

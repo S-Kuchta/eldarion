@@ -68,6 +68,10 @@ public class Enemy extends NonPlayerCharacter {
         }
     }
 
+    public void removeItemFromItemDrop(Item item) {
+        this.itemsDrop.remove(item);
+    }
+
     public double enemyExperiencePointsValue() {
         return this.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + this.getCharacterRarity().getExperienceGainedValue();
     }

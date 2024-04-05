@@ -1,12 +1,8 @@
 package kuchtastefan.service;
 
 import com.google.gson.Gson;
-import kuchtastefan.character.npc.vendor.ShopService;
 import kuchtastefan.character.npc.vendor.VendorDB;
-import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.npc.vendor.specificVendorCharacter.CraftingReagentItemVendorCharacter;
-import kuchtastefan.character.npc.vendor.specificVendorCharacter.WearableItemVendorCharacter;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.item.ItemDB;
@@ -14,7 +10,6 @@ import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
-import kuchtastefan.quest.QuestDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;

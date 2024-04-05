@@ -1,4 +1,4 @@
-package kuchtastefan.character.hero.inventory;
+package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.consumeableItem.ConsumableItem;

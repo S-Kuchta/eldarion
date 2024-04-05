@@ -1,7 +1,6 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.hero.HeroMenuService;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.utility.InputUtil;
@@ -16,7 +15,7 @@ import java.util.Map;
 public class RegionService {
 
     public void adventuringAcrossTheRegion(HeroMenuService heroMenuService, Region region, Hero hero) {
-        EventService eventService = new EventService(region.allLocations);
+        EventService eventService = new EventService(region.getAllLocations());
         HintDB.printHint(HintName.REGION_HINT);
 
         while (true) {
@@ -26,16 +25,16 @@ public class RegionService {
             PrintUtil.printRegionBuffs(hero);
             PrintUtil.printExtraLongDivider();
             PrintUtil.printLongDivider();
-            System.out.println("\t\t" + region.regionName
-                    + " \tRegion level: " + region.minimumRegionLevel + " - " + region.maximumRegionLevel
+            System.out.println("\t\t" + region.getRegionName()
+                    + " \tRegion level: " + region.getMinimumRegionLevel() + " - " + region.getMaximumRegionLevel()
                     + " \tDiscovered locations: "
                     + hero.getDiscoveredLocationList().size() + " / "
-                    + region.allLocations.size());
+                    + region.getAllLocations().size());
             PrintUtil.printLongDivider();
 
             PrintUtil.printIndexAndText("0", "Go back to the city");
             System.out.println();
-            PrintUtil.printIndexAndText("1", "Travel across region " + region.regionName);
+            PrintUtil.printIndexAndText("1", "Travel across region " + region.getRegionName());
             System.out.println();
             PrintUtil.printIndexAndText("2", "Hero menu");
             System.out.println();
@@ -61,7 +60,7 @@ public class RegionService {
                     return; // Go back to the city
                 }
                 // Generate a random event while traveling across the region
-                case 1 -> eventService.randomRegionEventGenerate(hero, region.biome);
+                case 1 -> eventService.randomRegionEventGenerate(hero, region.getBiome());
                 case 2 -> heroMenuService.heroCharacterMenu(hero); // Open hero menu
                 default -> {
                     try {

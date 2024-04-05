@@ -1,10 +1,9 @@
 package kuchtastefan.world.event.specificEvent;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.npc.vendor.ShopService;
+import kuchtastefan.service.ShopService;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.character.npc.vendor.VendorDB;
-import kuchtastefan.character.npc.vendor.VendorOfferDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNameGenerator;

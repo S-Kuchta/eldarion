@@ -1,6 +1,8 @@
-package kuchtastefan.character.npc.vendor;
+package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.npc.vendor.SortVendorOffer;
+import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.utility.ConsoleColor;

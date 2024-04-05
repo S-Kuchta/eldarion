@@ -9,7 +9,6 @@ import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.*;
 import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.hero.inventory.InventoryMenuService;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.spell.Spell;

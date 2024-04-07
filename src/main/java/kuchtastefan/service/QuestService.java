@@ -31,7 +31,7 @@ public class QuestService {
         System.out.println("\t\t\t" + name);
         PrintUtil.printDivider();
 
-        printQuestsMenu(hero, quests);
+        printQuestsMenu(quests);
         while (true) {
             try {
                 int choice = InputUtil.intScanner();
@@ -67,7 +67,7 @@ public class QuestService {
         while (true) {
             try {
                 PrintUtil.printLongDivider();
-                printQuestsMenu(hero, quests);
+                printQuestsMenu(quests);
                 int choice = InputUtil.intScanner();
                 if (choice == 0) {
                     break;
@@ -85,7 +85,7 @@ public class QuestService {
         }
     }
 
-    private void printQuestsMenu(Hero hero, List<Quest> quests) {
+    private void printQuestsMenu(List<Quest> quests) {
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
 

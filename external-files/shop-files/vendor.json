@@ -13,7 +13,7 @@
   },
   {
     "type": "CraftingReagentItemVendorCharacter",
-    "vendorId": 0,
+    "vendorId": 1,
     "name": "Rumpir",
     "itemListsId": [
       7,
@@ -23,7 +23,7 @@
   },
   {
     "type": "ConsumableVendorCharacter",
-    "vendorId": 0,
+    "vendorId": 2,
     "name": "Faraine Daeyra",
     "itemListsId": [
       5,
@@ -33,7 +33,7 @@
   },
   {
     "type": "JunkVendorCharacter",
-    "vendorId": 0,
+    "vendorId": 3,
     "name": "Lucky Thorne",
     "itemListsId": [
       9

@@ -16,7 +16,7 @@ public class ActionDealDamageOverTime extends ActionWithDuration implements Acti
                                     boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 1);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override
@@ -36,5 +36,10 @@ public class ActionDealDamageOverTime extends ActionWithDuration implements Acti
                 + ConsoleColor.RESET
                 + " damage over " + this.getMaxActionTurns() + " turns to "
                 + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET);
+    }
+
+    @Override
+    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
+        return 1;
     }
 }

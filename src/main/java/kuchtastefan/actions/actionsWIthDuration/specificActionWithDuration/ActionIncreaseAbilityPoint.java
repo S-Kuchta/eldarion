@@ -27,7 +27,7 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration implements Ac
                                       Ability ability, int chanceToPerformAction, boolean canBeActionCriticalHit,
                                       ActionStatusEffect actionStatusEffect) {
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 2);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
         this.ability = ability;
     }
 
@@ -45,6 +45,11 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration implements Ac
         System.out.print("Increase " + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET
                 + " " + this.ability.toString()
                 + " by " + ConsoleColor.GREEN + this.returnActionValueRange(spellCaster).onlyValue() + ConsoleColor.RESET);
+    }
+
+    @Override
+    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
+        return 2;
     }
 
     @Override

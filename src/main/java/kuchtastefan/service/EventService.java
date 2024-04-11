@@ -40,9 +40,9 @@ public class EventService {
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
 
-        hero.restoreAbility(hero.getCurrentAbilityValue(Ability.HASTE)
+        hero.restoreAbilityValue(hero.getCurrentAbilityValue(Ability.HASTE)
                 * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
-        hero.restoreAbility(hero.getCurrentAbilityValue(Ability.HASTE)
+        hero.restoreAbilityValue(hero.getCurrentAbilityValue(Ability.HASTE)
                 * Constant.RESTORE_HEALTH_PER_ONE_HASTE, Ability.HEALTH);
 
         hero.performActionsWithDuration(ActionDurationType.REGION_ACTION);

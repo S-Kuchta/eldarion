@@ -16,7 +16,7 @@ public class ActionStun extends ActionWithDuration implements ActionWithoutValue
                       int chanceToPerformAction, boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 3);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override
@@ -32,6 +32,6 @@ public class ActionStun extends ActionWithDuration implements ActionWithoutValue
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        return this.getPriorityPoints() + getMaxActionTurns();
+        return 2 + getMaxActionTurns();
     }
 }

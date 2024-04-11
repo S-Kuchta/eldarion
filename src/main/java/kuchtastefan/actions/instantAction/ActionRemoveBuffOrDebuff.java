@@ -19,7 +19,7 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
                                     int chanceToPerformAction, boolean canBeActionCriticalHit,
                                     boolean removeAllStatusEffects, ActionStatusEffect actionStatusEffectToRemove) {
 
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit, 0);
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
         this.removeAllStatusEffects = removeAllStatusEffects;
         this.actionStatusEffectToRemove = actionStatusEffectToRemove;
     }
@@ -51,7 +51,7 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
             if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF)
                     && this.getActionStatusEffectToRemove().equals(ActionStatusEffect.DEBUFF)) {
 
-                priorityPoints += 2;
+                return  2;
             }
         }
 
@@ -59,10 +59,10 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
             if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.BUFF)
                     && this.getActionStatusEffectToRemove().equals(ActionStatusEffect.BUFF)) {
 
-                priorityPoints += 2;
+                return  2;
             }
         }
 
-        return this.priorityPoints;
+        return 0;
     }
 }

@@ -3,6 +3,7 @@
     "npcId": 100,
     "name": "Wolf",
     "characterRarity": "COMMON",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 3,
@@ -23,6 +24,7 @@
     "npcId": 101,
     "name": "Bear",
     "characterRarity": "COMMON",
+    "npcType": "DEFENDER",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 4,
@@ -43,6 +45,7 @@
     "npcId": 102,
     "name": "Alpha Wolf",
     "characterRarity": "COMMON",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 3,
@@ -63,6 +66,7 @@
     "npcId": 103,
     "name": "Coyote",
     "characterRarity": "COMMON",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,
@@ -83,6 +87,7 @@
     "npcId": 104,
     "name": "Spirit Wolf",
     "characterRarity": "SUMMONED",
+    "npcType": "WARRIOR",
     "abilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 3,

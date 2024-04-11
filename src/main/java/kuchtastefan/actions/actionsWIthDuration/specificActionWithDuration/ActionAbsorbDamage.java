@@ -18,7 +18,7 @@ public class ActionAbsorbDamage extends ActionWithDuration implements ActionWith
                               boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 2);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override
@@ -30,17 +30,17 @@ public class ActionAbsorbDamage extends ActionWithDuration implements ActionWith
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Absorb "
-                + ConsoleColor.WHITE_BOLD + this.returnActionValueRange(spellCaster).minimumValue() + ConsoleColor.RESET
-                + " - " + ConsoleColor.WHITE_BOLD + this.returnActionValueRange(spellCaster).maximumValue() + ConsoleColor.RESET
-                + " incoming damage" );
+                + ConsoleColor.CYAN + this.returnActionValueRange(spellCaster).minimumValue() + ConsoleColor.RESET
+                + " - " + ConsoleColor.CYAN + this.returnActionValueRange(spellCaster).maximumValue() + ConsoleColor.RESET
+                + " incoming damage");
     }
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
         if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 3) {
             return 4;
+        } else {
+            return 2;
         }
-
-        return this.priorityPoints;
     }
 }

@@ -10,13 +10,13 @@ import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
-import kuchtastefan.service.QuestService;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.world.location.Location;
 import kuchtastefan.service.ExperiencePointsService;
+import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.world.location.Location;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -118,6 +118,10 @@ public class Hero extends GameCharacter {
             this.maxAbilities.put(ability, this.abilities.get(ability) + this.wearingItemAbilityPoints.get(ability));
         }
 
+        bonusFromAbility();
+    }
+
+    private void bonusFromAbility() {
         this.maxAbilities.put(Ability.MANA, getMaxAbilities().get(Ability.MANA) + getMaxAbilities().get(Ability.INTELLECT) * Constant.MANA_PER_POINT_OF_INTELLECT);
         this.maxAbilities.put(Ability.HEALTH, getMaxAbilities().get(Ability.HEALTH) + getMaxAbilities().get(Ability.STRENGTH) * Constant.HEALTH_PER_POINT_OF_STRENGTH);
         this.maxAbilities.put(Ability.CRITICAL_HIT_CHANCE, (int) (getMaxAbilities().get(Ability.CRITICAL_HIT_CHANCE) + (getMaxAbilities().get(Ability.ATTACK) * Constant.CRITICAL_PER_ATTACK)));

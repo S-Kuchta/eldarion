@@ -18,12 +18,12 @@ public class ActionRestoreManaOverTime extends ActionWithDuration implements Act
                                      boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 2);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.restoreAbility(this.currentActionValue, Ability.MANA);
+        gameCharacter.restoreAbilityValue(this.currentActionValue, Ability.MANA);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ActionRestoreManaOverTime extends ActionWithDuration implements Act
         if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getMaxAbilities().get(Ability.MANA) * 0.3)) {
             return 3;
         } else {
-            return this.priorityPoints;
+            return 2;
         }
     }
 }

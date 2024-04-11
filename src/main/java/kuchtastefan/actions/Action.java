@@ -8,6 +8,8 @@ import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.Actio
 import kuchtastefan.actions.instantAction.ActionDealDamage;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.npc.NonPlayerCharacter;
+import kuchtastefan.character.npc.NpcType;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -23,22 +25,22 @@ public abstract class Action {
     protected final ActionEffectOn actionEffectOn;
     protected final int chanceToPerformAction;
     protected final boolean canBeActionCriticalHit;
-    protected int priorityPoints;
 
 
-    public Action(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit, int priorityPoints) {
+    public Action(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
         this.actionName = actionName;
         this.baseActionValue = baseActionValue;
         this.currentActionValue = baseActionValue;
         this.actionEffectOn = actionEffectOn;
         this.chanceToPerformAction = chanceToPerformAction;
         this.canBeActionCriticalHit = canBeActionCriticalHit;
-        this.priorityPoints = priorityPoints;
     }
 
     public abstract void performAction(GameCharacter gameCharacter);
 
     public abstract void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget);
+
+    public abstract int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget);
 
     public boolean willPerformAction() {
         return RandomNumberGenerator.getRandomNumber(0, 100) < this.chanceToPerformAction;
@@ -66,11 +68,29 @@ public abstract class Action {
 
         if (this instanceof ActionWithBaseValue) {
             valueIncreasedByPrimaryAbility = valueIncreasedByLevel;
-        } else if (this instanceof ActionWithIncreasedValueByAbility) {
+        }
+
+        if (this instanceof ActionWithIncreasedValueByAbility) {
             if (spellCaster instanceof Hero hero) {
-                valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(hero.getCharacterClass().getPrimaryAbility()) / 2;
-            } else {
-                valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(Ability.ATTACK);
+                valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(hero.getCharacterClass().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
+            }
+
+            if (spellCaster instanceof NonPlayerCharacter nonPlayerCharacter) {
+                if (nonPlayerCharacter.getNpcType().equals(NpcType.MAGE)) {
+                    valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(Ability.INTELLECT) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
+                }
+
+                if (nonPlayerCharacter.getNpcType().equals(NpcType.WARRIOR)) {
+                    valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(Ability.STRENGTH) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
+                }
+
+                if (nonPlayerCharacter.getNpcType().equals(NpcType.ROGUE)) {
+                    valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(Ability.HASTE) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
+                }
+
+                if (nonPlayerCharacter.getNpcType().equals(NpcType.DEFENDER)) {
+                    valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(Ability.RESIST_DAMAGE) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
+                }
             }
         }
 
@@ -81,9 +101,6 @@ public abstract class Action {
         return new ActionValueRange(valueIncreasedByLevel, valueIncreasedByPrimaryAbility, valueIncreasedByLevel);
     }
 
-    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        return priorityPoints;
-    }
 
     protected String returnTargetName(GameCharacter spellCaster, GameCharacter spellTarget) {
         if (this.actionEffectOn.equals(ActionEffectOn.SPELL_CASTER)) {

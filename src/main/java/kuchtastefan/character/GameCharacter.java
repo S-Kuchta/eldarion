@@ -3,10 +3,9 @@ package kuchtastefan.character;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.actionsWIthDuration.*;
+import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionReflectSpell;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionStun;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
@@ -133,18 +132,6 @@ public abstract class GameCharacter {
         }
     }
 
-    private void checkReflectSpellAndIfCanPerformAction(Set<ActionWithDuration> actions) {
-        if (actions.isEmpty()) {
-            this.canPerformAction = true;
-            this.reflectSpell = false;
-        }
-
-        for (ActionWithDuration action : actions) {
-            this.canPerformAction = !(action instanceof ActionStun);
-            this.reflectSpell = action instanceof ActionReflectSpell;
-        }
-    }
-
     /**
      * Method is responsible for receiving character damage.
      * Damage is calculated damage - character resist damage
@@ -184,20 +171,20 @@ public abstract class GameCharacter {
 
     public int returnDamageAfterResistDamage(int damage) {
         if (this.getCurrentAbilityValue(Ability.RESIST_DAMAGE) >= damage) {
-            return  0;
+            return 0;
         } else {
             return damage - this.getCurrentAbilityValue(Ability.RESIST_DAMAGE);
         }
     }
 
-    public void restoreAbility(int valueOfRestore, Ability ability) {
+    public void restoreAbilityValue(int amountToRestore, Ability ability) {
         int maxCharacterAbility = this.getMaxAbilities().get(ability);
         int currentCharacterAbility = this.getCurrentAbilityValue(ability);
 
-        if (maxCharacterAbility - currentCharacterAbility <= valueOfRestore) {
+        if (maxCharacterAbility - currentCharacterAbility <= amountToRestore) {
             this.currentAbilities.put(ability, maxCharacterAbility);
         } else {
-            this.currentAbilities.put(ability, currentCharacterAbility + valueOfRestore);
+            this.currentAbilities.put(ability, currentCharacterAbility + amountToRestore);
         }
 
         ConsoleColor consoleColor = ConsoleColor.RED;
@@ -206,7 +193,7 @@ public abstract class GameCharacter {
         }
 
         if (ability.equals(Ability.HEALTH) || (ability.equals(Ability.MANA) && this.getCurrentAbilityValue(Ability.MANA) != 0)) {
-            System.out.println("\t" + this.name + " have restored " + consoleColor + valueOfRestore + ConsoleColor.RESET
+            System.out.println("\t" + this.name + " have restored " + consoleColor + amountToRestore + ConsoleColor.RESET
                     + " " + ability.name()
                     + ". " + this.name + " " + ability.name() + " is "
                     + consoleColor + this.getCurrentAbilityValue(ability) + ConsoleColor.RESET);
@@ -224,18 +211,5 @@ public abstract class GameCharacter {
 
     public void increaseCurrentAbilityValue(Ability ability, int valueToIncrease) {
         this.currentAbilities.put(ability, this.getCurrentAbilityValue(ability) + valueToIncrease);
-    }
-
-    public Map<Ability, Integer> initializeAbilityForNonEnemyCharacters() {
-        return new HashMap<>(Map.of(
-                Ability.ATTACK, 15,
-                Ability.RESIST_DAMAGE, 15,
-                Ability.STRENGTH, 15,
-                Ability.INTELLECT, 15,
-                Ability.HASTE, 10,
-                Ability.HEALTH, 250,
-                Ability.MANA, 150,
-                Ability.ABSORB_DAMAGE, 0
-        ));
     }
 }

@@ -12,12 +12,12 @@ import kuchtastefan.utility.ConsoleColor;
 public class ActionRestoreMana extends Action implements ActionWithIncreasedValueByAbility {
     public ActionRestoreMana(ActionName actionName, ActionEffectOn actionEffectOn,
                              int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit, 2);
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.restoreAbility(this.currentActionValue, Ability.MANA);
+        gameCharacter.restoreAbilityValue(this.currentActionValue, Ability.MANA);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class ActionRestoreMana extends Action implements ActionWithIncreasedValu
         if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getMaxAbilities().get(Ability.MANA) * 0.3)) {
             return 3;
         } else {
-            return this.priorityPoints;
+            return 2;
         }
     }
 }

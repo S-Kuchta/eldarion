@@ -10,7 +10,7 @@ public class ActionSkipTurn extends Action implements ActionWithoutValue {
     public ActionSkipTurn(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
                           int chanceToPerformAction, boolean canBeActionCriticalHit) {
 
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit, 0);
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override
@@ -21,5 +21,10 @@ public class ActionSkipTurn extends Action implements ActionWithoutValue {
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Skip turn");
+    }
+
+    @Override
+    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
+        return 0;
     }
 }

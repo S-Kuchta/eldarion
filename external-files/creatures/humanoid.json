@@ -3,6 +3,7 @@
     "npcId": 200,
     "name": "Weak Defias Bandit",
     "characterRarity": "COMMON",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 2,
@@ -23,6 +24,7 @@
     "npcId": 201,
     "name": "Weak Defias Looter",
     "characterRarity": "COMMON",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 3,
@@ -43,6 +45,7 @@
     "npcId": 202,
     "name": "Weak Defias Raider",
     "characterRarity": "RARE",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 4,
@@ -63,6 +66,7 @@
     "npcId": 203,
     "name": "Defias Boss",
     "characterRarity": "BOSS",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,
@@ -83,6 +87,7 @@
     "npcId": 204,
     "name": "Defias Miner",
     "characterRarity": "COMMON",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,
@@ -103,6 +108,7 @@
     "npcId": 205,
     "name": "Weak Defias WatchMan",
     "characterRarity": "COMMON",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 4,
@@ -123,6 +129,7 @@
     "npcId": 206,
     "name": "Defias WatchMan",
     "characterRarity": "RARE",
+    "npcType": "ROGUE",
     "abilities": {
       "ATTACK": 7,
       "RESIST_DAMAGE": 4,
@@ -143,6 +150,7 @@
     "npcId": 207,
     "name": "Defias Leader",
     "characterRarity": "ELITE",
+    "npcType": "WARRIOR",
     "abilities": {
       "ATTACK": 8,
       "RESIST_DAMAGE": 6,
@@ -163,6 +171,7 @@
     "npcId": 208,
     "name": "Defias Miner Leader",
     "characterRarity": "RARE",
+    "npcType": "WARRIOR",
     "abilities": {
       "ATTACK": 7,
       "RESIST_DAMAGE": 4,
@@ -183,6 +192,7 @@
     "npcId": 209,
     "name": "Damien Carnage",
     "characterRarity": "ELITE",
+    "npcType": "MAGE",
     "abilities": {
       "ATTACK": 8,
       "RESIST_DAMAGE": 6,

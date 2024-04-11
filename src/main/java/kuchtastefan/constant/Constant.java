@@ -22,4 +22,5 @@ public class Constant {
     public static final int HEALTH_PER_POINT_OF_STRENGTH = 2;
     public static final double CRITICAL_PER_ATTACK = 0.2;
     public static final int BONUS_VALUE_PER_LEVEL = 2;
+    public static final int MAX_DAMAGE_FROM_ABILITY_DIVIDER = 2;
 }

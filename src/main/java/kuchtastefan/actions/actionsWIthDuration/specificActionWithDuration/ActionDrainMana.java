@@ -18,7 +18,7 @@ public class ActionDrainMana extends ActionWithDuration implements ActionWithInc
                            ActionStatusEffect actionStatusEffect) {
 
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, actionDurationType,
-                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 3);
+                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override
@@ -39,7 +39,12 @@ public class ActionDrainMana extends ActionWithDuration implements ActionWithInc
                 + ConsoleColor.RESET + " - " + ConsoleColor.BLUE
                 + this.returnActionValueRange(spellCaster).maximumValue()
                 + ConsoleColor.RESET
-                + " Mana " + " over " + this.getMaxActionTurns() + " from "
+                + " Mana over " + this.getMaxActionTurns() + " from "
                 + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET);
+    }
+
+    @Override
+    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
+        return 3;
     }
 }

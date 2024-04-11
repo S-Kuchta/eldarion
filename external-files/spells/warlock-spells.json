@@ -14,10 +14,6 @@
         "canBeActionCriticalHit": true
       }
     ],
-    "bonusValueFromAbility": {
-      "ATTACK": 1,
-      "STRENGTH": 1
-    },
     "spellLevel": 0,
     "spellManaCost": 0,
     "turnCoolDown": 0
@@ -37,10 +33,6 @@
         "canBeActionCriticalHit": true
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1,
-      "ATTACK": 1
-    },
     "spellLevel": 0,
     "spellManaCost": 21,
     "turnCoolDown": 0
@@ -64,10 +56,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1,
-      "ATTACK": 1
-    },
     "spellLevel": 0,
     "spellManaCost": 25,
     "turnCoolDown": 3
@@ -88,10 +76,6 @@
         "summonedNpcId": 500
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1,
-      "ATTACK": 1
-    },
     "spellLevel": 1,
     "spellManaCost": 29,
     "turnCoolDown": 8
@@ -129,9 +113,6 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1
-    },
     "spellLevel": 1,
     "spellManaCost": 32,
     "turnCoolDown": 7
@@ -155,9 +136,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1
-    },
     "spellLevel": 2,
     "spellManaCost": 37,
     "turnCoolDown": 0
@@ -185,10 +163,6 @@
         "canBeActionCriticalHit": true
       }
     ],
-    "bonusValueFromAbility": {
-      "ATTACK": 1,
-      "INTELLECT": 1
-    },
     "spellLevel": 2,
     "spellManaCost": 38,
     "turnCoolDown": 3
@@ -213,8 +187,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-    },
     "spellLevel": 3,
     "spellManaCost": 40,
     "turnCoolDown": 3
@@ -239,10 +211,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1,
-      "ATTACK": 1
-    },
     "spellLevel": 3,
     "spellManaCost": 43,
     "turnCoolDown": 3
@@ -270,9 +238,6 @@
         "canBeActionCriticalHit": true
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1
-    },
     "spellLevel": 5,
     "spellManaCost": 45,
     "turnCoolDown": 5
@@ -300,9 +265,6 @@
         "canBeActionCriticalHit": true
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1
-    },
     "spellLevel": 5,
     "spellManaCost": 0,
     "turnCoolDown": 0
@@ -353,9 +315,6 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1
-    },
     "spellLevel": 7,
     "spellManaCost": 80,
     "turnCoolDown": 10
@@ -376,8 +335,6 @@
         "summonedNpcId": 501
       }
     ],
-    "bonusValueFromAbility": {
-    },
     "spellLevel": 7,
     "spellManaCost": 80,
     "turnCoolDown": 10

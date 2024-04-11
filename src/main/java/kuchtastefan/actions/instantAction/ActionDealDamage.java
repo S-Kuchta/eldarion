@@ -11,7 +11,7 @@ public class ActionDealDamage extends Action implements ActionWithIncreasedValue
     public ActionDealDamage(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
                             int chanceToPerformAction, boolean canBeActionCriticalHit) {
 
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit, 1);
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override
@@ -28,5 +28,10 @@ public class ActionDealDamage extends Action implements ActionWithIncreasedValue
                 + spellTarget.returnDamageAfterResistDamage(this.returnActionValueRange(spellCaster).maximumValue())
                 + ConsoleColor.RESET
                 + " damage to " + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET);
+    }
+
+    @Override
+    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
+        return 1;
     }
 }

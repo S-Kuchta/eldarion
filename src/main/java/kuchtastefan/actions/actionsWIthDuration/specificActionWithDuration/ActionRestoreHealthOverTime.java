@@ -18,12 +18,12 @@ public class ActionRestoreHealthOverTime extends ActionWithDuration implements A
                                        boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 2);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.restoreAbility(getCurrentActionValue(), Ability.HEALTH);
+        gameCharacter.restoreAbilityValue(getCurrentActionValue(), Ability.HEALTH);
     }
 
     @Override
@@ -43,9 +43,9 @@ public class ActionRestoreHealthOverTime extends ActionWithDuration implements A
             return 2;
         } else if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 3) {
             return 4;
+        } else {
+            return 1;
         }
-
-        return this.priorityPoints;
     }
 
 }

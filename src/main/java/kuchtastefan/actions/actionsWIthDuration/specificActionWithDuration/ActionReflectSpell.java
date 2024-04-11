@@ -13,7 +13,7 @@ public class ActionReflectSpell extends ActionWithDuration implements ActionWith
                               int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType,
                               int chanceToPerformAction, boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 3);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override
@@ -24,5 +24,10 @@ public class ActionReflectSpell extends ActionWithDuration implements ActionWith
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Reflect next Spell");
+    }
+
+    @Override
+    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
+        return 3;
     }
 }

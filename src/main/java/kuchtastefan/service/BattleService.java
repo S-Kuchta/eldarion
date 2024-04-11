@@ -105,17 +105,15 @@ public class BattleService {
 
             GameCharacter attackingCharacter = iterator.next();
 
+            if (attackingCharacter instanceof Hero) {
+                heroPlay = true;
+            } else {
+                npcPrintHeader(attackingCharacter);
+            }
 
+            this.printAndPerformActionOverTime(attackingCharacter);
             // If character is alive
             if (attackingCharacter.getCurrentAbilityValue(Ability.HEALTH) > 0) {
-
-                if (attackingCharacter instanceof Hero) {
-                    heroPlay = true;
-                } else {
-                    npcPrintHeader(attackingCharacter);
-                }
-
-                this.printAndPerformActionOverTime(attackingCharacter);
 
                 // If character can't perform action, skip to next character
                 if (!attackingCharacter.isCanPerformAction()) {
@@ -249,13 +247,15 @@ public class BattleService {
     }
 
     private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
-        System.out.println("\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
-        gameCharacter.performActionsWithDuration(ActionDurationType.BATTLE_ACTION);
-        System.out.println();
+        if (!gameCharacter.getBattleActionsWithDuration().isEmpty()) {
+            System.out.println("\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
+            gameCharacter.performActionsWithDuration(ActionDurationType.BATTLE_ACTION);
+            System.out.println();
+        }
     }
 
     private void restoreManaAfterTurn(GameCharacter gameCharacter) {
-        gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.HASTE)
+        gameCharacter.restoreAbilityValue(gameCharacter.getCurrentAbilityValue(Ability.HASTE)
                 * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
     }
 

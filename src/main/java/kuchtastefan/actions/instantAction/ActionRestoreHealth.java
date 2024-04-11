@@ -12,12 +12,12 @@ public class ActionRestoreHealth extends Action implements ActionWithIncreasedVa
 
     public ActionRestoreHealth(ActionName actionName, ActionEffectOn actionEffectOn,
                                int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit, 1);
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.restoreAbility(this.getCurrentActionValue(), Ability.HEALTH);
+        gameCharacter.restoreAbilityValue(this.getCurrentActionValue(), Ability.HEALTH);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class ActionRestoreHealth extends Action implements ActionWithIncreasedVa
             return 2;
         } else if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 3) {
             return 4;
+        } else {
+            return 1;
         }
-
-        return this.priorityPoints;
     }
 }

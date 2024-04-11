@@ -25,7 +25,7 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration implements Ac
                                       int chanceToPerformAction, boolean canBeActionCriticalHit, Ability ability,
                                       ActionStatusEffect actionStatusEffect) {
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 2);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
         this.ability = ability;
     }
 
@@ -41,6 +41,11 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration implements Ac
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Decrease " + this.returnTargetName(spellCaster, spellTarget) + " " + this.ability.toString() + " by " + this.returnActionValueRange(spellCaster).onlyValue());
+    }
+
+    @Override
+    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
+        return 2;
     }
 
     @Override

@@ -3,6 +3,7 @@
     "npcId": 500,
     "name": "Succubus",
     "characterRarity": "SUMMONED",
+    "npcType": "MAGE",
     "abilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 3,
@@ -25,6 +26,7 @@
     "npcId": 501,
     "name": "FelGuard",
     "characterRarity": "SUMMONED",
+    "npcType": "WARRIOR",
     "abilities": {
       "ATTACK": 15,
       "RESIST_DAMAGE": 10,

@@ -19,7 +19,7 @@ public class ActionSummonCreature extends Action implements ActionWithoutValue {
     public ActionSummonCreature(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
                                 int chanceToPerformAction, boolean canBeActionCriticalHit, int summonedNpcId) {
 
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit, 4);
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
         this.summonedNpcId = summonedNpcId;
     }
 
@@ -40,5 +40,10 @@ public class ActionSummonCreature extends Action implements ActionWithoutValue {
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         NonPlayerCharacter nonPlayerCharacter = returnSummonedCharacter();
         System.out.print("Summon " + ConsoleColor.YELLOW + nonPlayerCharacter.getName() + ConsoleColor.RESET + " to fight on your side");
+    }
+
+    @Override
+    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
+        return 4;
     }
 }

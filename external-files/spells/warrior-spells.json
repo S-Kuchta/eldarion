@@ -14,10 +14,6 @@
         "canBeActionCriticalHit": true
       }
     ],
-    "bonusValueFromAbility": {
-      "ATTACK": 1,
-      "STRENGTH": 1
-    },
     "spellLevel": 0,
     "spellManaCost": 0,
     "turnCoolDown": 0
@@ -49,10 +45,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "STRENGTH": 1,
-      "ATTACK": 1
-    },
     "spellLevel": 0,
     "spellManaCost": 10,
     "turnCoolDown": 2
@@ -76,8 +68,6 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "bonusValueFromAbility": {
-    },
     "spellLevel": 0,
     "spellManaCost": 15,
     "turnCoolDown": 7
@@ -102,9 +92,6 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "STRENGTH": 1
-    },
     "spellLevel": 1,
     "spellManaCost": 8,
     "turnCoolDown": 4
@@ -129,9 +116,6 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1
-    },
     "spellLevel": 1,
     "spellManaCost": 15,
     "turnCoolDown": 4
@@ -155,10 +139,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "ATTACK": 1,
-      "STRENGTH": 1
-    },
     "spellLevel": 2,
     "spellManaCost": 10,
     "turnCoolDown": 5
@@ -178,9 +158,6 @@
         "canBeActionCriticalHit": true
       }
     ],
-    "bonusValueFromAbility": {
-      "INTELLECT": 1
-    },
     "spellLevel": 2,
     "spellManaCost": 35,
     "turnCoolDown": 5
@@ -214,9 +191,6 @@
         "canBeActionCriticalHit": true
       }
     ],
-    "bonusValueFromAbility": {
-      "STRENGTH": 1
-    },
     "spellLevel": 3,
     "spellManaCost": 10,
     "turnCoolDown": 6
@@ -241,10 +215,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "ATTACK": 1,
-      "INTELLECT": 1
-    },
     "spellLevel": 3,
     "spellManaCost": 35,
     "turnCoolDown": 6
@@ -270,9 +240,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "STRENGTH": 1
-    },
     "spellLevel": 5,
     "spellManaCost": 15,
     "turnCoolDown": 5
@@ -296,8 +263,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-    },
     "spellLevel": 5,
     "spellManaCost": 45,
     "turnCoolDown": 6
@@ -322,9 +287,6 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "bonusValueFromAbility": {
-      "STRENGTH": 1
-    },
     "spellLevel": 7,
     "spellManaCost": 15,
     "turnCoolDown": 7
@@ -348,8 +310,6 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "bonusValueFromAbility": {
-    },
     "spellLevel": 7,
     "spellManaCost": 70,
     "turnCoolDown": 9

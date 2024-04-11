@@ -16,7 +16,7 @@ A Street of Code Java Tutorial Assignment.<br>
 # How to Play
 
 I recommend to maximize the console window for better playing experience.<br>
-When there is a MAGENTA - colored number or letter followed by a dot and text, you can enter this number or letter into the console, and the action will be performed.<br>
+When there is a CYAN - colored number or letter followed by a dot and text, you can enter this number or letter into the console, and the action will be performed.<br>
 To start, enter your name, select a hero class, and set your initial ability points.<br>
 You begin the game in the city with 10 free ability points, which you can spend on abilities of your choice.<br>
 After this, you embark on your journey in the city. In the city, you can accept quests, visit vendors, buy or sell items, etc.<br>

@@ -3,7 +3,7 @@ package kuchtastefan.utility;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.*;
-import kuchtastefan.actions.instantActions.*;
+import kuchtastefan.actions.instantAction.*;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;

@@ -5,7 +5,7 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDecreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionIncreaseAbilityPoint;
-import kuchtastefan.actions.instantActions.ActionRemoveBuffOrDebuff;
+import kuchtastefan.actions.instantAction.ActionRemoveBuffOrDebuff;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
@@ -80,7 +80,6 @@ public class PrintUtil {
             System.out.println();
             System.out.print("\t\t");
             action.printActionDescription(hero, spellTarget);
-            System.out.print(", ");
         }
     }
 
@@ -146,17 +145,8 @@ public class PrintUtil {
         String leftAlignment = "| %-30s | %-20s | %-28s | %-20s |%n";
         for (ActionWithDuration actionWithDuration : actionWithDurationList) {
 
-            String specialSymbol;
-            if (actionWithDuration.getCurrentActionValue() == 0) {
-                specialSymbol = "";
-            } else if (actionWithDuration.getCurrentActionValue() < 0) {
-                specialSymbol = " - ";
-            } else {
-                specialSymbol = " + ";
-            }
-
-            System.out.format(leftAlignment, specialSymbol + actionWithDuration.getActionName(),
-                    "Action Value: " + specialSymbol + actionWithDuration.getCurrentActionValue(),
+            System.out.format(leftAlignment, actionWithDuration.getActionName(),
+                    "Action Value: " + actionWithDuration.getCurrentActionValue(),
                     "Turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()),
                     "Stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
         }

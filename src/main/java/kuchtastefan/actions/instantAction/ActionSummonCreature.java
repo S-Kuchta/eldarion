@@ -1,4 +1,4 @@
-package kuchtastefan.actions.instantActions;
+package kuchtastefan.actions.instantAction;
 
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
@@ -7,6 +7,7 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWith
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.NonPlayerCharacter;
+import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 
 @Getter
@@ -38,6 +39,6 @@ public class ActionSummonCreature extends Action implements ActionWithoutValue {
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         NonPlayerCharacter nonPlayerCharacter = returnSummonedCharacter();
-        System.out.print("Summon " + nonPlayerCharacter.getName() + " to fight on your side.");
+        System.out.print("Summon " + ConsoleColor.YELLOW + nonPlayerCharacter.getName() + ConsoleColor.RESET + " to fight on your side");
     }
 }

@@ -5,7 +5,7 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWith
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByAbility;
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
-import kuchtastefan.actions.instantActions.ActionDealDamage;
+import kuchtastefan.actions.instantAction.ActionDealDamage;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;

@@ -29,4 +29,9 @@ public class ActionStun extends ActionWithDuration implements ActionWithoutValue
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.println("Stun " + this.returnTargetName(spellCaster, spellTarget) + " for next " + this.getMaxActionTurns() + " turns" );
     }
+
+    @Override
+    public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
+        return this.getPriorityPoints() + getMaxActionTurns();
+    }
 }

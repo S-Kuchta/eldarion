@@ -2,17 +2,13 @@ package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.*;
-import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
-import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
+import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
@@ -109,6 +105,7 @@ public class BattleService {
 
             GameCharacter attackingCharacter = iterator.next();
 
+
             // If character is alive
             if (attackingCharacter.getCurrentAbilityValue(Ability.HEALTH) > 0) {
 
@@ -118,9 +115,11 @@ public class BattleService {
                     npcPrintHeader(attackingCharacter);
                 }
 
+                this.printAndPerformActionOverTime(attackingCharacter);
+
                 // If character can't perform action, skip to next character
                 if (!attackingCharacter.isCanPerformAction()) {
-                    this.printAndPerformActionOverTime(attackingCharacter);
+//                    this.printAndPerformActionOverTime(attackingCharacter);
                     if (heroPlay) {
                         heroPlay = false;
                     }
@@ -142,7 +141,8 @@ public class BattleService {
                 }
 
                 checkSpellsCoolDowns(attackingCharacter);
-                this.printAndPerformActionOverTime(attackingCharacter);
+                restoreManaAfterTurn(attackingCharacter);
+//                this.printAndPerformActionOverTime(attackingCharacter);
             }
 
             if (checkIfCharacterDied(target)) {
@@ -249,9 +249,12 @@ public class BattleService {
     }
 
     private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
-        System.out.println("\n\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
+        System.out.println("\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
         gameCharacter.performActionsWithDuration(ActionDurationType.BATTLE_ACTION);
+        System.out.println();
+    }
 
+    private void restoreManaAfterTurn(GameCharacter gameCharacter) {
         gameCharacter.restoreAbility(gameCharacter.getCurrentAbilityValue(Ability.HASTE)
                 * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
     }
@@ -408,7 +411,6 @@ public class BattleService {
 //        spellService.useSpell(spellToCast, new CharactersInvolvedInBattle(hero, spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
 ////        spellToCast.useSpell(spellCaster, spellTarget, enemyList, hero, tempCharacterList);
 //    }
-
     private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, Hero hero) {
         Map<Spell, Integer> spells = new HashMap<>();
 
@@ -430,7 +432,7 @@ public class BattleService {
                 if (spellIntegerEntry.getKey().isCanSpellBeCasted()) {
                     priorityPoints = 0;
                     for (Action action : spellIntegerEntry.getKey().getSpellActions()) {
-
+                        System.out.println(action.returnPriorityPoints(spellCaster, spellTarget));
                         priorityPoints += action.returnPriorityPoints(spellCaster, spellTarget);
                     }
 

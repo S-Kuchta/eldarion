@@ -42,15 +42,6 @@ public abstract class GameCharacter {
         this.canPerformAction = true;
     }
 
-//    public GameCharacter(String name, int level) {
-//        this.name = name;
-//        this.level = level;
-//        this.abilities = initializeAbilityForNonEnemyCharacters();
-//        this.maxAbilities = new HashMap<>(initializeAbilityForNonEnemyCharacters());
-//        this.currentAbilities = new HashMap<>(initializeAbilityForNonEnemyCharacters());
-//        this.characterSpellList = new ArrayList<>();
-//    }
-
     public void addActionWithDuration(ActionWithDuration actionWithDuration) {
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.REGION_ACTION)) {
             setNewActionOrAddStackToExistingAction(actionWithDuration, this.regionActionsWithDuration);
@@ -116,8 +107,6 @@ public abstract class GameCharacter {
         }
 
         checkAndRemoveActionTurns();
-        checkReflectSpellAndIfCanPerformAction(this.battleActionsWithDuration);
-        checkReflectSpellAndIfCanPerformAction(this.regionActionsWithDuration);
         actions.clear();
     }
 

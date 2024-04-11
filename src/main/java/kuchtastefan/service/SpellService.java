@@ -40,7 +40,7 @@ public class SpellService {
                 boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
 
                 for (Action action : spell.getSpellActions()) {
-                    actionService.performAction(action, charactersInvolvedInBattle, criticalHit, spell.isHitAllEnemy());
+                    actionService.applyActionToTarget(action, charactersInvolvedInBattle, criticalHit, spell.isHitAllEnemy());
                 }
             } else {
                 System.out.println("\t" + ConsoleColor.RED + spellCaster.getName() + " Missed Enemy!");

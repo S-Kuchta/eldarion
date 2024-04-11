@@ -30,9 +30,9 @@ public class ActionDealDamageOverTime extends ActionWithDuration implements Acti
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Deal " + ConsoleColor.RED_BRIGHT
-                + spellTarget.returnDamageAfterResistDamage(this.returnActionValueRange(spellCaster).minimumValue())
+                + spellTarget.returnDamageAfterResistDamage(this.returnActionValueRange(spellCaster).minimumValue()) * this.getMaxActionTurns()
                 + ConsoleColor.RESET + " - " + ConsoleColor.RED_BRIGHT
-                + spellTarget.returnDamageAfterResistDamage(this.returnActionValueRange(spellCaster).maximumValue())
+                + spellTarget.returnDamageAfterResistDamage(this.returnActionValueRange(spellCaster).maximumValue()) * this.getMaxActionTurns()
                 + ConsoleColor.RESET
                 + " damage over " + this.getMaxActionTurns() + " turns to "
                 + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET);

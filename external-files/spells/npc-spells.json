@@ -56,7 +56,7 @@
         "actionName": "STUN",
         "actionEffectOn": "SPELL_TARGET",
         "baseActionValue": 0,
-        "maxActionTurns": 1,
+        "maxActionTurns": 2,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,

@@ -3,7 +3,7 @@ package kuchtastefan.service;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.instantActions.ActionSummonCreature;
+import kuchtastefan.actions.instantAction.ActionSummonCreature;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.Constant;
@@ -11,8 +11,7 @@ import kuchtastefan.utility.RandomNumberGenerator;
 
 public class ActionService {
 
-    public void performAction(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle, boolean criticalHit, boolean hitAllInvolvedCharacters) {
-//        action.setCurrentActionValue(action.getBaseActionValue());
+    public void applyActionToTarget(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle, boolean criticalHit, boolean hitAllInvolvedCharacters) {
         GameCharacter actionTarget;
 
         if (action.willPerformAction()) {
@@ -30,19 +29,19 @@ public class ActionService {
             if (hitAllInvolvedCharacters) {
                 if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
                     for (GameCharacter aliesCharacter : charactersInvolvedInBattle.alliesCharacters()) {
-                        applyActionToTarget(action, aliesCharacter);
+                        performAction(action, aliesCharacter);
                     }
                 }
 
                 if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
                     for (GameCharacter enemyCharacter : charactersInvolvedInBattle.alliesCharacters()) {
-                        applyActionToTarget(action, enemyCharacter);
+                        performAction(action, enemyCharacter);
                     }
                 }
 
             } else {
                 actionTarget = determineActionTarget(action, charactersInvolvedInBattle);
-                applyActionToTarget(action, actionTarget);
+                performAction(action, actionTarget);
             }
 
             if (action instanceof ActionSummonCreature actionSummonCreature) {
@@ -51,11 +50,11 @@ public class ActionService {
         }
     }
 
-    private void applyActionToTarget(Action action, GameCharacter actionTarget) {
+    private void performAction(Action action, GameCharacter actionTarget) {
         if (action instanceof ActionWithDuration actionWithDuration) {
             if (actionTarget != null) {
                 actionTarget.addActionWithDuration(actionWithDuration);
-                actionWithDuration.performAction(actionTarget);
+//                actionWithDuration.performAction(actionTarget);
             } else {
                 System.out.println("\tYou don't have a target!");
             }

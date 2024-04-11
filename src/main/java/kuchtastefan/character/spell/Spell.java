@@ -2,19 +2,7 @@ package kuchtastefan.character.spell;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.ActionEffectOn;
-import kuchtastefan.actions.actionsWIthDuration.*;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDecreaseAbilityPoint;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionIncreaseAbilityPoint;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionReflectSpell;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionStun;
-import kuchtastefan.actions.instantActions.ActionSummonCreature;
-import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.CharacterClass;
-import kuchtastefan.character.hero.Hero;
-import kuchtastefan.constant.Constant;
-import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
 

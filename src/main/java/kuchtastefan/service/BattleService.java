@@ -2,16 +2,17 @@ package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
-import kuchtastefan.actions.actionsWIthDuration.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.*;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.*;
 import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.spell.Spell;
+import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
@@ -26,6 +27,7 @@ import java.util.*;
 @Getter
 public class BattleService {
 
+    private final SpellService spellService;
     private GameCharacter playerTarget;
     private String selectedEnemyForShowSelection;
     private final List<GameCharacter> enemyList;
@@ -34,6 +36,7 @@ public class BattleService {
     private boolean heroPlay;
 
     public BattleService() {
+        this.spellService = new SpellService();
         this.selectedEnemyForShowSelection = "A";
         this.enemyList = new ArrayList<>();
         this.alliesList = new ArrayList<>();
@@ -202,7 +205,9 @@ public class BattleService {
                         }
                     } else {
                         // If choice is for a spell, use the spell on the enemy
-                        if (hero.getCharacterSpellList().get(parsedChoice).useSpell(hero, playerTarget, enemyList, hero, tempCharacterList)) {
+                        if (spellService.useSpell(hero.getCharacterSpellList().get(parsedChoice),
+                                new CharactersInvolvedInBattle(hero, hero, this.playerTarget, enemyList, alliesList, tempCharacterList))) {
+
                             break;
                         }
                     }
@@ -326,6 +331,84 @@ public class BattleService {
      * @param spellCaster The enemy character casting the spell.
      * @param spellTarget The target of the spell (usually the player's character).
      */
+//    private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, Hero hero) {
+//        Map<Spell, Integer> spells = new HashMap<>();
+//
+//        Spell spellToCast = spellCaster.getCharacterSpellList().getFirst();
+//
+//        int priorityPoints;
+//
+//        // Evaluate each spell based on various criteria and assign priority points
+//        if (spellCaster.getCharacterSpellList().size() == 1) {
+//            spellToCast = spellCaster.getCharacterSpellList().getFirst();
+//        } else {
+//            for (Spell spell : spellCaster.getCharacterSpellList()) {
+//                spells.put(spell, 0);
+//            }
+//
+//            spells.put(returnSpellWithTheHighestTotalDamage(spellCaster), 2);
+//
+//            for (Map.Entry<Spell, Integer> spellIntegerEntry : spells.entrySet()) {
+//                if (spellIntegerEntry.getKey().isCanSpellBeCasted()) {
+//                    priorityPoints = 0;
+//                    for (Action action : spellIntegerEntry.getKey().getSpellActions()) {
+//
+//                        if (action instanceof ActionIncreaseAbilityPoint || action instanceof ActionDecreaseAbilityPoint) {
+//                            priorityPoints += 2;
+//                        }
+//
+//                        if (action instanceof ActionReflectSpell) {
+//                            priorityPoints += 3;
+//                        }
+//
+//                        if (action instanceof ActionInvulnerability) {
+//                            priorityPoints += 5;
+//                        }
+//
+//                        if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getMaxAbilities().get(Ability.MANA) * 0.3)
+//                                && action instanceof ActionRestoreMana) {
+//                            priorityPoints += 3;
+//                        }
+//
+//                        for (ActionWithDuration actionWithDuration : spellCaster.getBattleActionsWithDuration()) {
+//                            if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF)
+//                                    && action instanceof ActionRemoveBuffOrDebuff actionRemoveBuffOrDebuff
+//                                    && actionRemoveBuffOrDebuff.getActionStatusEffectToRemove().equals(ActionStatusEffect.DEBUFF)) {
+//
+//                                priorityPoints += 2;
+//                            }
+//                        }
+//
+//                        if (action instanceof ActionRestoreHealth || action instanceof ActionRestoreHealthOverTime || action instanceof ActionAbsorbDamage) {
+//                            if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 2) {
+//                                priorityPoints += 2;
+//                            } else if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 3) {
+//                                priorityPoints += 4;
+//                            }
+//                        }
+//
+//                        if (action instanceof ActionSummonCreature) {
+//                            priorityPoints += 4;
+//                        }
+//
+//                        if (action instanceof ActionStun) {
+//                            priorityPoints += 3;
+//                        }
+//                    }
+//
+//                    // Determine the spell with the highest priority points
+//                    spellIntegerEntry.setValue(spellIntegerEntry.getValue() + priorityPoints);
+//                    if (spellIntegerEntry.getValue() > spells.get(spellToCast)) {
+//                        spellToCast = spellIntegerEntry.getKey();
+//                    }
+//                }
+//            }
+//        }
+//
+//        spellService.useSpell(spellToCast, new CharactersInvolvedInBattle(hero, spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
+////        spellToCast.useSpell(spellCaster, spellTarget, enemyList, hero, tempCharacterList);
+//    }
+
     private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, Hero hero) {
         Map<Spell, Integer> spells = new HashMap<>();
 
@@ -341,54 +424,14 @@ public class BattleService {
                 spells.put(spell, 0);
             }
 
-            spells.put(returnSpellWithTheHighestTotalDamage(spellCaster), 2);
+//            spells.put(returnSpellWithTheHighestTotalDamage(spellCaster), 2);
 
             for (Map.Entry<Spell, Integer> spellIntegerEntry : spells.entrySet()) {
                 if (spellIntegerEntry.getKey().isCanSpellBeCasted()) {
                     priorityPoints = 0;
                     for (Action action : spellIntegerEntry.getKey().getSpellActions()) {
 
-                        if (action instanceof ActionIncreaseAbilityPoint || action instanceof ActionDecreaseAbilityPoint) {
-                            priorityPoints += 2;
-                        }
-
-                        if (action instanceof ActionReflectSpell) {
-                            priorityPoints += 3;
-                        }
-
-                        if (action instanceof ActionInvulnerability) {
-                            priorityPoints += 5;
-                        }
-
-                        if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getMaxAbilities().get(Ability.MANA) * 0.3)
-                                && action instanceof ActionRestoreMana) {
-                            priorityPoints += 3;
-                        }
-
-                        for (ActionWithDuration actionWithDuration : spellCaster.getBattleActionsWithDuration()) {
-                            if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF)
-                                    && action instanceof ActionRemoveBuffOrDebuff actionRemoveBuffOrDebuff
-                                    && actionRemoveBuffOrDebuff.getActionStatusEffectToRemove().equals(ActionStatusEffect.DEBUFF)) {
-
-                                priorityPoints += 2;
-                            }
-                        }
-
-                        if (action instanceof ActionRestoreHealth || action instanceof ActionRestoreHealthOverTime || action instanceof ActionAbsorbDamage) {
-                            if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 2) {
-                                priorityPoints += 2;
-                            } else if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 3) {
-                                priorityPoints += 4;
-                            }
-                        }
-
-                        if (action instanceof ActionSummonCreature) {
-                            priorityPoints += 4;
-                        }
-
-                        if (action instanceof ActionStun || action instanceof ActionInstantStun) {
-                            priorityPoints += 3;
-                        }
+                        priorityPoints += action.returnPriorityPoints(spellCaster, spellTarget);
                     }
 
                     // Determine the spell with the highest priority points
@@ -400,48 +443,49 @@ public class BattleService {
             }
         }
 
-        spellToCast.useSpell(spellCaster, spellTarget, enemyList, hero, tempCharacterList);
+        spellService.useSpell(spellToCast, new CharactersInvolvedInBattle(hero, spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
+//        spellToCast.useSpell(spellCaster, spellTarget, enemyList, hero, tempCharacterList);
     }
 
-    /**
-     * Returns the spell in the character's spell list with the highest potential total damage output.
-     *
-     * @param gameCharacter The character whose spell list is considered.
-     * @return The spell with the highest potential total damage.
-     */
-    private Spell returnSpellWithTheHighestTotalDamage(GameCharacter gameCharacter) {
-
-        Spell spellWithMaxDamage = gameCharacter.getCharacterSpellList().getFirst();
-
-        int totalDamage = 0;
-        int maxTotalDamage = 0;
-
-        for (Spell spell : gameCharacter.getCharacterSpellList()) {
-            if (spell.isCanSpellBeCasted()) {
-
-                // Calculate the total damage of the spell, including any damage over time effects
-                for (Action action : spell.getSpellActions()) {
-                    if (action instanceof ActionDealDamage) {
-                        totalDamage += action.returnTotalActionValue(spell.getBonusValueFromAbility(), gameCharacter);
-                    }
-
-                    if (action instanceof ActionDealDamageOverTime) {
-                        int damageWithStacks = action.returnTotalActionValue(spell.getBonusValueFromAbility(), gameCharacter)
-                                * ((ActionDealDamageOverTime) action).getActionMaxStacks();
-                        totalDamage += damageWithStacks;
-                    }
-                }
-
-                // Update the spell with the highest total damage if necessary
-                if (totalDamage > maxTotalDamage) {
-                    maxTotalDamage = totalDamage;
-                    spellWithMaxDamage = spell;
-                }
-            }
-        }
-
-        return spellWithMaxDamage;
-    }
+//    /**
+//     * Returns the spell in the character's spell list with the highest potential total damage output.
+//     *
+//     * @param gameCharacter The character whose spell list is considered.
+//     * @return The spell with the highest potential total damage.
+//     */
+//    private Spell returnSpellWithTheHighestTotalDamage(GameCharacter gameCharacter) {
+//
+//        Spell spellWithMaxDamage = gameCharacter.getCharacterSpellList().getFirst();
+//
+//        int totalDamage = 0;
+//        int maxTotalDamage = 0;
+//
+//        for (Spell spell : gameCharacter.getCharacterSpellList()) {
+//            if (spell.isCanSpellBeCasted()) {
+//
+//                // Calculate the total damage of the spell, including any damage over time effects
+//                for (Action action : spell.getSpellActions()) {
+//                    if (action instanceof ActionDealDamage) {
+//                        totalDamage += action.returnTotalActionValue(spell.getBonusValueFromAbility(), gameCharacter);
+//                    }
+//
+//                    if (action instanceof ActionDealDamageOverTime) {
+//                        int damageWithStacks = action.returnTotalActionValue(spell.getBonusValueFromAbility(), gameCharacter)
+//                                * ((ActionDealDamageOverTime) action).getActionMaxStacks();
+//                        totalDamage += damageWithStacks;
+//                    }
+//                }
+//
+//                // Update the spell with the highest total damage if necessary
+//                if (totalDamage > maxTotalDamage) {
+//                    maxTotalDamage = totalDamage;
+//                    spellWithMaxDamage = spell;
+//                }
+//            }
+//        }
+//
+//        return spellWithMaxDamage;
+//    }
 
     private void checkSpellsCoolDowns(GameCharacter gameCharacter) {
         for (Spell spell : gameCharacter.getCharacterSpellList()) {

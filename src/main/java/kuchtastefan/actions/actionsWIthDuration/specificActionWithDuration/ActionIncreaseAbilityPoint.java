@@ -1,11 +1,13 @@
-package kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration;
+package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
-import kuchtastefan.actions.actionsWIthDuration.ActionStatusEffect;
+import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithBaseValue;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByAbility;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
@@ -15,7 +17,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class ActionIncreaseAbilityPoint extends ActionWithDuration {
+public class ActionIncreaseAbilityPoint extends ActionWithDuration implements ActionWithBaseValue {
 
     private final Ability ability;
 
@@ -25,7 +27,7 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration {
                                       Ability ability, int chanceToPerformAction, boolean canBeActionCriticalHit,
                                       ActionStatusEffect actionStatusEffect) {
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 2);
         this.ability = ability;
     }
 
@@ -36,6 +38,13 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration {
         gameCharacter.increaseCurrentAbilityValue(this.ability, increaseAbilityWithStacksValue);
 
         System.out.println("\t" + ConsoleColor.YELLOW + this.ability + ConsoleColor.RESET + " is increased by " + increaseAbilityWithStacksValue);
+    }
+
+    @Override
+    public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
+        System.out.print("Increase " + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET
+                + " " + this.ability.toString()
+                + " by " + ConsoleColor.GREEN + this.returnActionValueRange(spellCaster).onlyValue() + ConsoleColor.RESET);
     }
 
     @Override

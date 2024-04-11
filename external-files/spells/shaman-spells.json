@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 5,
+        "baseActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -30,7 +30,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 8,
+        "baseActionValue": 8,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -39,7 +39,7 @@
         "type": "ActionDecreaseAbilityPoint",
         "actionName": "DECREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -66,7 +66,7 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
-        "maxActionValue": 7,
+        "baseActionValue": 7,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -88,7 +88,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 17,
+        "baseActionValue": 17,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -111,7 +111,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 12,
+        "baseActionValue": 12,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -120,7 +120,7 @@
         "type": "ActionDecreaseAbilityPoint",
         "actionName": "DECREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 2,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -147,7 +147,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
@@ -169,7 +169,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 601,
         "canBeActionCriticalHit": false,
@@ -192,7 +192,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 100,
+        "baseActionValue": 100,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -217,7 +217,7 @@
       {
         "type": "ActionRemoveBuffOrDebuff",
         "actionName": "REMOVE_BUFF",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true,
@@ -241,7 +241,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 7,
+        "baseActionValue": 7,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -264,7 +264,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
@@ -273,7 +273,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
@@ -296,7 +296,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -309,7 +309,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -322,7 +322,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -349,7 +349,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
@@ -358,7 +358,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
@@ -367,7 +367,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
@@ -376,7 +376,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,

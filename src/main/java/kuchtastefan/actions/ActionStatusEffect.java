@@ -1,4 +1,4 @@
-package kuchtastefan.actions.actionsWIthDuration;
+package kuchtastefan.actions;
 
 import org.apache.commons.lang3.StringUtils;
 

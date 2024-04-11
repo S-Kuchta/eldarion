@@ -272,7 +272,7 @@ public class FileService {
                     consumableItem.setConsumableItemType(ConsumableItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
                     for (Action action : consumableItem.getActionList()) {
-                        action.setNewCurrentActionValue(action.getMaxActionValue());
+                        action.setCurrentActionValue(action.getBaseActionValue());
                     }
 
                     ItemDB.addItemToDB(consumableItem);

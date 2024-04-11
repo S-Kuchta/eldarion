@@ -2,10 +2,9 @@ package kuchtastefan.utility;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.ActionEffectOn;
-import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.ActionDecreaseAbilityPoint;
-import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.ActionIncreaseAbilityPoint;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDecreaseAbilityPoint;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionIncreaseAbilityPoint;
 import kuchtastefan.actions.instantActions.ActionRemoveBuffOrDebuff;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
@@ -27,6 +26,43 @@ import java.util.Set;
 
 public class PrintUtil {
 
+//    public static void printSpellDescription(Hero hero, GameCharacter spellTarget, Spell spell) {
+//
+//        System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
+//                + " [Mana Cost: " + ConsoleColor.BLUE + spell.getSpellManaCost() + ConsoleColor.RESET + "]");
+//        if (spell.getTurnCoolDown() > 0) {
+//            System.out.print("[CoolDown: "
+//                    + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
+//        }
+//
+//        if (spell.getBonusValueFromAbility() != null) {
+//            System.out.print("[Bonus From Ability: ");
+//            for (Map.Entry<Ability, Integer> abilityBonus : spell.getBonusValueFromAbility().entrySet()) {
+//                System.out.print(abilityBonus.getKey() + "(" + abilityBonus.getValue() + "x), ");
+//            }
+//            System.out.print("]");
+//        }
+//
+//        System.out.println("\n\t" + spell.getSpellDescription());
+//
+//        for (Action action : spell.getSpellActions()) {
+//
+//            int totalActionValue = action.returnTotalActionValue(spell.getBonusValueFromAbility(), hero);
+//            if (spellTarget != null && action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
+//                totalActionValue -= spellTarget.getCurrentAbilityValue(Ability.RESIST_DAMAGE);
+//            }
+//
+//            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on ");
+//            if (spell.isHitAllEnemy()) {
+//                System.out.print("All enemies ");
+//            } else {
+//                System.out.print(action.getActionEffectOn() + " ");
+//            }
+//
+//            printActionDetails(action, totalActionValue);
+//        }
+//    }
+
     public static void printSpellDescription(Hero hero, GameCharacter spellTarget, Spell spell) {
 
         System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
@@ -36,36 +72,20 @@ public class PrintUtil {
                     + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
         }
 
-        if (spell.getBonusValueFromAbility() != null) {
-            System.out.print("[Bonus From Ability: ");
-            for (Map.Entry<Ability, Integer> abilityBonus : spell.getBonusValueFromAbility().entrySet()) {
-                System.out.print(abilityBonus.getKey() + "(" + abilityBonus.getValue() + "x), ");
-            }
-            System.out.print("]");
-        }
-
-        System.out.println("\n\t" + spell.getSpellDescription());
-
         for (Action action : spell.getSpellActions()) {
-
-            int totalActionValue = action.returnTotalActionValue(spell.getBonusValueFromAbility(), hero);
-            if (spellTarget != null && action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-                totalActionValue -= spellTarget.getCurrentAbilityValue(Ability.RESIST_DAMAGE);
+            if (spellTarget == null) {
+                spellTarget = new Hero("Target");
             }
 
-            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on ");
-            if (spell.isHitAllEnemy()) {
-                System.out.print("All enemies ");
-            } else {
-                System.out.print(action.getActionEffectOn() + " ");
-            }
-
-            printActionDetails(action, totalActionValue);
+            System.out.println();
+            System.out.print("\t\t");
+            action.printActionDescription(hero, spellTarget);
+            System.out.print(", ");
         }
     }
 
     public static void printActionDetails(Action action, int totalActionValue) {
-        if (action.getMaxActionValue() != 0) {
+        if (action.getBaseActionValue() != 0) {
             switch (action) {
                 case ActionIncreaseAbilityPoint actionIncreaseAbilityPoint ->
                         System.out.print("[▲ " + actionIncreaseAbilityPoint.getAbility() + " +" + totalActionValue + " ▲]");
@@ -79,7 +99,7 @@ public class PrintUtil {
                                 + ConsoleColor.YELLOW + ((ActionRemoveBuffOrDebuff) action).getActionStatusEffectToRemove() + "s " + ConsoleColor.RESET);
                     } else {
                         System.out.println("[" + actionRemoveBuffOrDebuff.getActionStatusEffectToRemove()
-                                + " to remove: " + ConsoleColor.YELLOW + action.getMaxActionValue() + ConsoleColor.RESET + "]");
+                                + " to remove: " + ConsoleColor.YELLOW + action.getBaseActionValue() + ConsoleColor.RESET + "]");
                     }
                 }
 

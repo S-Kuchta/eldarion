@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 3,
+        "baseActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -31,7 +31,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 8,
+        "baseActionValue": 8,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -55,7 +55,7 @@
         "type": "ActionDealDamageOverTime",
         "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -81,7 +81,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true,
@@ -106,7 +106,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -119,7 +119,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -146,7 +146,7 @@
         "type": "ActionDealDamageOverTime",
         "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 4,
         "actionMaxStacks": 3,
         "actionDurationType": "BATTLE_ACTION",
@@ -171,7 +171,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 25,
+        "baseActionValue": 25,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -179,7 +179,7 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -204,7 +204,7 @@
         "type": "ActionStun",
         "actionName": "STUN",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "maxActionTurns": 2,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -230,7 +230,7 @@
         "type": "ActionDealDamageOverTime",
         "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 5,
+        "baseActionValue": 5,
         "maxActionTurns": 2,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -256,7 +256,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -264,7 +264,7 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -286,7 +286,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -294,7 +294,7 @@
       {
         "type": "ActionRestoreMana",
         "actionName": "RESTORE_MANA",
-        "maxActionValue": 15,
+        "baseActionValue": 15,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -317,7 +317,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -330,7 +330,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -343,7 +343,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -369,7 +369,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true,

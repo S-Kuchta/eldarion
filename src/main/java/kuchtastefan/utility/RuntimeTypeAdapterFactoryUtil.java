@@ -2,7 +2,7 @@ package kuchtastefan.utility;
 
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.*;
-import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.*;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.*;
 import kuchtastefan.actions.instantActions.*;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
@@ -48,7 +48,6 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionRestoreMana.class)
             .registerSubtype(ActionRestoreManaOverTime.class)
             .registerSubtype(ActionStun.class)
-            .registerSubtype(ActionInstantStun.class)
             .registerSubtype(ActionInvulnerability.class)
             .registerSubtype(ActionReflectSpell.class)
             .registerSubtype(ActionRemoveBuffOrDebuff.class)

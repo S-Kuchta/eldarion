@@ -80,13 +80,13 @@ public class ShopService {
         }
     }
 
-    public void successfullyItemBought(Hero hero, Item item) {
+    private void successfullyItemBought(Hero hero, Item item) {
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
         hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
         System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory");
     }
 
-    public void printHeroItemsForSale(Hero hero, VendorCharacter vendorCharacter) {
+    private void printHeroItemsForSale(Hero hero, VendorCharacter vendorCharacter) {
         List<Item> itemList = new ArrayList<>();
 
         PrintUtil.printShopHeader(hero, StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(
@@ -112,7 +112,7 @@ public class ShopService {
         sellItem(hero, itemList, vendorCharacter);
     }
 
-    protected void sellItem(Hero hero, List<? extends Item> itemList, VendorCharacter vendorCharacter) {
+    private void sellItem(Hero hero, List<? extends Item> itemList, VendorCharacter vendorCharacter) {
 
         while (true) {
             try {

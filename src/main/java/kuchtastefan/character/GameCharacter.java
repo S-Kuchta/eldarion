@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.*;
-import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.ActionAbsorbDamage;
-import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.ActionReflectSpell;
-import kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration.ActionStun;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionReflectSpell;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionStun;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
@@ -18,6 +18,7 @@ import java.util.*;
 @Setter
 @Getter
 public abstract class GameCharacter {
+
     protected String name;
     protected int level;
     protected Map<Ability, Integer> abilities;
@@ -41,14 +42,14 @@ public abstract class GameCharacter {
         this.canPerformAction = true;
     }
 
-    public GameCharacter(String name, int level) {
-        this.name = name;
-        this.level = level;
-        this.abilities = initializeAbilityForNonEnemyCharacters();
-        this.maxAbilities = new HashMap<>(initializeAbilityForNonEnemyCharacters());
-        this.currentAbilities = new HashMap<>(initializeAbilityForNonEnemyCharacters());
-        this.characterSpellList = new ArrayList<>();
-    }
+//    public GameCharacter(String name, int level) {
+//        this.name = name;
+//        this.level = level;
+//        this.abilities = initializeAbilityForNonEnemyCharacters();
+//        this.maxAbilities = new HashMap<>(initializeAbilityForNonEnemyCharacters());
+//        this.currentAbilities = new HashMap<>(initializeAbilityForNonEnemyCharacters());
+//        this.characterSpellList = new ArrayList<>();
+//    }
 
     public void addActionWithDuration(ActionWithDuration actionWithDuration) {
         if (actionWithDuration.getActionDurationType().equals(ActionDurationType.REGION_ACTION)) {
@@ -80,13 +81,13 @@ public abstract class GameCharacter {
         } else {
             for (ActionWithDuration action : actions) {
                 if (action.equals(actionWithDuration) && action.getActionCurrentStacks() < action.getActionMaxStacks()) {
-                    action.setNewCurrentActionValue(actionWithDuration.getCurrentActionValue());
+                    action.setCurrentActionValue(actionWithDuration.getCurrentActionValue());
                     action.addActionStack();
                     action.actionCurrentTurnReset();
                 }
 
                 if (action.equals(actionWithDuration) && action.getActionCurrentStacks() == action.getActionMaxStacks()) {
-                    action.setNewCurrentActionValue(actionWithDuration.getCurrentActionValue());
+                    action.setCurrentActionValue(actionWithDuration.getCurrentActionValue());
                     action.actionCurrentTurnReset();
                 }
             }
@@ -162,14 +163,10 @@ public abstract class GameCharacter {
      * If damage is higher than absorb damage, then absorb damage drop to 0 and left amount of damage will be dealt to health
      * If Absorb damage is 0, all actions with duration will be removed from battleActionsWithDuration.
      *
-     * @param damage dealt
+     * @param incomingDamage - damage dealt by attacker
      */
-    public void receiveDamage(int damage) {
-        if (getCurrentAbilityValue(Ability.RESIST_DAMAGE) >= damage) {
-            damage = 0;
-        } else {
-            damage -= getCurrentAbilityValue(Ability.RESIST_DAMAGE);
-        }
+    public void receiveDamage(int incomingDamage) {
+        int damage = returnDamageAfterResistDamage(incomingDamage);
 
         // Handle absorb damage
         int absorbDamage = 0;
@@ -179,11 +176,11 @@ public abstract class GameCharacter {
             ActionWithDuration actionAbsorbDamage = iterator.next();
             if (actionAbsorbDamage instanceof ActionAbsorbDamage) {
                 if (actionAbsorbDamage.getCurrentActionValue() >= damage) {
-                    actionAbsorbDamage.setNewCurrentActionValue(actionAbsorbDamage.getCurrentActionValue() - damage);
+                    actionAbsorbDamage.setCurrentActionValue(actionAbsorbDamage.getCurrentActionValue() - damage);
                     damage = 0;
                 } else {
                     damage -= actionAbsorbDamage.getCurrentActionValue();
-                    actionAbsorbDamage.setNewCurrentActionValue(0);
+                    actionAbsorbDamage.setCurrentActionValue(0);
                     iterator.remove();
                 }
 
@@ -194,6 +191,14 @@ public abstract class GameCharacter {
         System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage to " + this.name);
         this.currentAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
         this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
+    }
+
+    public int returnDamageAfterResistDamage(int damage) {
+        if (this.getCurrentAbilityValue(Ability.RESIST_DAMAGE) >= damage) {
+            return  0;
+        } else {
+            return damage - this.getCurrentAbilityValue(Ability.RESIST_DAMAGE);
+        }
     }
 
     public void restoreAbility(int valueOfRestore, Ability ability) {

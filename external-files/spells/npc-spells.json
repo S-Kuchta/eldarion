@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 3,
+        "baseActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -31,7 +31,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 5,
+        "baseActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -55,7 +55,7 @@
         "type": "ActionStun",
         "actionName": "STUN",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "maxActionTurns": 1,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -80,7 +80,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 5,
+        "baseActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -103,7 +103,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 5,
+        "baseActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -125,7 +125,7 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
-        "maxActionValue": 5,
+        "baseActionValue": 5,
         "actionEffectOn": "PLAYER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -147,7 +147,7 @@
       {
         "type": "ActionSkipTurn",
         "actionName": "SKIP",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
@@ -169,7 +169,7 @@
         "type": "ActionStun",
         "actionName": "STUN",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "maxActionTurns": 1,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -194,7 +194,7 @@
         "type": "ActionReflectSpell",
         "actionName": "REFLECT_SPELL",
         "actionEffectOn": "PLAYER",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -218,7 +218,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 3,
+        "baseActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true
@@ -227,7 +227,7 @@
         "type": "ActionDecreaseAbilityPoint",
         "actionName": "DECREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 1,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -255,7 +255,7 @@
         "type": "ActionDealDamageOverTime",
         "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
-        "maxActionValue": 1,
+        "baseActionValue": 1,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -281,7 +281,7 @@
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
-        "maxActionValue": 0,
+        "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true,
@@ -305,7 +305,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "maxActionValue": 6,
+        "baseActionValue": 6,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true

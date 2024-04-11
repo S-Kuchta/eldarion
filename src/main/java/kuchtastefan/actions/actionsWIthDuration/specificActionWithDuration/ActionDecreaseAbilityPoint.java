@@ -1,11 +1,14 @@
-package kuchtastefan.actions.actionsWIthDuration.specificActionsWithDuration;
+package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
-import kuchtastefan.actions.actionsWIthDuration.ActionStatusEffect;
+import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithBaseValue;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
@@ -13,7 +16,7 @@ import lombok.Getter;
 import java.util.Objects;
 
 @Getter
-public class ActionDecreaseAbilityPoint extends ActionWithDuration {
+public class ActionDecreaseAbilityPoint extends ActionWithDuration implements ActionWithBaseValue {
 
     private final Ability ability;
 
@@ -22,7 +25,7 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration {
                                       int chanceToPerformAction, boolean canBeActionCriticalHit, Ability ability,
                                       ActionStatusEffect actionStatusEffect) {
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect, 2);
         this.ability = ability;
     }
 
@@ -33,6 +36,11 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration {
         gameCharacter.decreaseCurrentAbilityValue(decreaseAbilityWithStacksValue, this.ability);
 
         System.out.println("\t" + ConsoleColor.RED + this.ability + ConsoleColor.RESET + " is decreased by " + decreaseAbilityWithStacksValue);
+    }
+
+    @Override
+    public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
+        System.out.print("Decrease " + this.returnTargetName(spellCaster, spellTarget) + " " + this.ability.toString() + " by " + this.returnActionValueRange(spellCaster).onlyValue());
     }
 
     @Override

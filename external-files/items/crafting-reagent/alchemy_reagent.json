@@ -1,6 +1,12 @@
 [
   {
     "itemId": 800,
+    "name": "PeaceBloom",
+    "price": 5,
+    "itemLevel": 1
+  },
+  {
+    "itemId": 801,
     "name": "DeathBloom",
     "price": 10,
     "itemLevel": 2

@@ -8,7 +8,7 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
-        "maxActionValue": 20,
+        "baseActionValue": 20,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
@@ -24,7 +24,7 @@
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
-        "maxActionValue": 15,
+        "baseActionValue": 15,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
@@ -32,7 +32,7 @@
       {
         "type": "ActionRestoreHealthOverTime",
         "actionName": "HEAL_OVER_TIME",
-        "maxActionValue": 5,
+        "baseActionValue": 5,
         "maxActionTurns": 3,
         "actionDurationType": "BATTLE_ACTION",
         "actionMaxStacks": 1,
@@ -51,7 +51,7 @@
       {
         "type": "ActionRestoreMana",
         "actionName": "HEAL",
-        "maxActionValue": 20,
+        "baseActionValue": 20,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false
@@ -67,7 +67,7 @@
       {
         "type": "ActionRestoreMana",
         "actionName": "HEAL",
-        "maxActionValue": 40,
+        "baseActionValue": 40,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false

@@ -87,9 +87,31 @@
     "questLevel": 2,
     "questObjectives": [
       {
-        "type": "QuestBringItemFromEnemyObjective",
+        "type": "QuestFindItemObjective",
         "questObjectiveName": "Find the Book of Elders",
         "objectiveItemId": 104
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+        903,901,903,901
+      ],
+      "goldsReward": 50.0
+    }
+  },
+  {
+    "type": "Quest",
+    "questId": 4,
+    "questName": "Wolf Meat",
+    "questDescription": "wuf wuf",
+    "questLevel": 1,
+    "questObjectives": [
+      {
+        "type": "QuestBringItemFromEnemyObjective",
+        "questObjectiveName": "Wolf meat",
+        "objectiveItemId": 100,
+        "itemDropFromEnemy": [100,102],
+        "itemDropCountNeeded": 1
       }
     ],
     "questReward": {

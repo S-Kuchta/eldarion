@@ -37,7 +37,6 @@ public class GatherCraftingReagentItemEvent extends Event {
         }
 
         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-        hero.checkQuestProgress(null);
         hero.checkIfQuestObjectivesAndQuestIsCompleted();
 
         return true;

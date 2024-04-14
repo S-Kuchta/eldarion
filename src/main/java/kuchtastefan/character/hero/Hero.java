@@ -213,11 +213,6 @@ public class Hero extends GameCharacter {
         }
     }
 
-    public void checkQuestProgress(Integer questEnemyId) {
-        QuestService questService = new QuestService();
-        questService.checkQuestProgress(questEnemyId, this.heroAcceptedQuest, this);
-    }
-
     /**
      * Check if quest and quest objective is completed.
      * Add this method at the end of each event which can complete quest or quest objective

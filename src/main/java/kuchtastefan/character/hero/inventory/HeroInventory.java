@@ -57,6 +57,16 @@ public class HeroInventory {
         }
     }
 
+    public Item returnItemFromInventory(int itemId) {
+        for (Item item : this.heroInventory.keySet()) {
+            if (item.getItemId() == itemId) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * This method is used for check hero inventory for needed items and item count in inventory.
      * If hero inventory has enough items, method return true, otherwise return false.
@@ -108,8 +118,8 @@ public class HeroInventory {
     public Map<WearableItem, Integer> returnInventoryWearableItemMap() {
         Map<WearableItem, Integer> wearableItemMap = new HashMap<>();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof WearableItem) {
-                wearableItemMap.put((WearableItem) item.getKey(), item.getValue());
+            if (item.getKey() instanceof WearableItem wearableItem) {
+                wearableItemMap.put(wearableItem, item.getValue());
             }
         }
 
@@ -119,8 +129,8 @@ public class HeroInventory {
     public Map<CraftingReagentItem, Integer> returnInventoryCraftingReagentItemMap() {
         Map<CraftingReagentItem, Integer> craftingReagentItems = new HashMap<>();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof CraftingReagentItem) {
-                craftingReagentItems.put((CraftingReagentItem) item.getKey(), item.getValue());
+            if (item.getKey() instanceof CraftingReagentItem craftingReagentItem) {
+                craftingReagentItems.put(craftingReagentItem, item.getValue());
             }
         }
 
@@ -130,8 +140,8 @@ public class HeroInventory {
     public Map<JunkItem, Integer> returnInventoryJunkItemMap() {
         Map<JunkItem, Integer> junkItems = new HashMap<>();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof JunkItem) {
-                junkItems.put((JunkItem) item.getKey(), item.getValue());
+            if (item.getKey() instanceof JunkItem junkItem) {
+                junkItems.put(junkItem, item.getValue());
             }
         }
 
@@ -141,8 +151,8 @@ public class HeroInventory {
     public Map<QuestItem, Integer> returnInventoryQuestItemMap() {
         Map<QuestItem, Integer> questItems = new HashMap<>();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof QuestItem) {
-                questItems.put((QuestItem) item.getKey(), item.getValue());
+            if (item.getKey() instanceof QuestItem questItem) {
+                questItems.put(questItem, item.getValue());
             }
         }
 
@@ -152,8 +162,8 @@ public class HeroInventory {
     public Map<ConsumableItem, Integer> returnInventoryConsumableItemMap() {
         Map<ConsumableItem, Integer> consumableItems = new HashMap<>();
         for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof ConsumableItem) {
-                consumableItems.put((ConsumableItem) item.getKey(), item.getValue());
+            if (item.getKey() instanceof ConsumableItem consumableItem) {
+                consumableItems.put(consumableItem, item.getValue());
             }
         }
 

@@ -75,7 +75,7 @@ public abstract class Action {
             }
 
             if (spellCaster instanceof NonPlayerCharacter nonPlayerCharacter) {
-                valueIncreasedByPrimaryAbility = spellCaster.getCurrentAbilityValue(
+                valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(
                         nonPlayerCharacter.getNpcType().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
             }
         }

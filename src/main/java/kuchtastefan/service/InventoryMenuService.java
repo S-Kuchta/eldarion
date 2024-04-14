@@ -74,9 +74,7 @@ public class InventoryMenuService {
 
         int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> {
-                this.inventoryMenu(hero);
-            }
+            case 0 -> this.inventoryMenu(hero);
             case 1 -> printWearableItemInventoryMenuByItemType(WearableItemType.WEAPON, hero);
             case 2 -> printWearableItemInventoryMenuByItemType(WearableItemType.BODY, hero);
             case 3 -> printWearableItemInventoryMenuByItemType(WearableItemType.HEAD, hero);
@@ -165,9 +163,7 @@ public class InventoryMenuService {
         }
 
         int choice = InputUtil.intScanner();
-        if (choice == 0) {
-            return false;
-        } else {
+        if (choice != 0) {
             try {
                 consumableItems.get(choice - 1).useItem(hero);
                 if (!isHeroInCombat) {
@@ -180,8 +176,8 @@ public class InventoryMenuService {
                 this.consumableItemsMenu(hero, isHeroInCombat);
             }
 
-            return false;
         }
+        return false;
     }
 
     public void questItemsMenu(Hero hero) {
@@ -191,7 +187,7 @@ public class InventoryMenuService {
         System.out.println();
 
         for (Map.Entry<QuestItem, Integer> item : hero.getHeroInventory().returnInventoryQuestItemMap().entrySet()) {
-            PrintUtil.printIndexAndText(item.toString(), "(" + item.getValue() + "x) " + item.getKey().getName());
+            PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) " + item.getKey().getName());
         }
 
         int choice = InputUtil.intScanner();

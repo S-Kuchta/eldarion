@@ -1,16 +1,15 @@
 package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.utility.ConsoleColor;
 
-public class QuestFindObjective extends QuestObjective implements RemoveObjectiveProgress {
+public class QuestFindItemObjective extends QuestObjective implements RemoveObjectiveProgress {
 
     private final int objectiveItemId;
 
-    public QuestFindObjective(String questObjectiveName, int objectiveItemId) {
+    public QuestFindItemObjective(String questObjectiveName, int objectiveItemId) {
         super(questObjectiveName);
         this.objectiveItemId = objectiveItemId;
     }

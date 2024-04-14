@@ -1,9 +1,9 @@
 package kuchtastefan.item.consumeableItem;
 
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
+import kuchtastefan.service.ActionService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
@@ -26,12 +26,9 @@ public class ConsumableItem extends Item {
     }
 
     public void useItem(Hero hero) {
+        ActionService actionService = new ActionService();
         for (Action action : this.actionList) {
-            if (action instanceof ActionWithDuration) {
-                hero.addActionWithDuration((ActionWithDuration) action);
-            } else {
-                action.performAction(hero);
-            }
+            actionService.applyActionToTarget(action, hero);
         }
 
         hero.getHeroInventory().removeItemFromHeroInventory(this);

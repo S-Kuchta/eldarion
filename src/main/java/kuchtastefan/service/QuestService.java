@@ -32,26 +32,27 @@ public class QuestService {
         PrintUtil.printDivider();
 
         printQuestsMenu(quests);
-        while (true) {
-            try {
-                int choice = InputUtil.intScanner();
-                if (choice == 0) {
-                    break;
-                }
-
-                if (hero.getHeroAcceptedQuest().containsValue(quests.get(choice - 1))) {
-                    this.selectedQuestMenu(hero.getHeroAcceptedQuest()
-                            .get(quests.get(choice - 1).getQuestId()), hero, quests, name);
-                } else {
-                    this.selectedQuestMenu(quests.get(choice - 1), hero, quests, name);
-                }
-
-                this.questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
-                break;
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("\tEnter valid input");
+//        while (true) {
+        try {
+            int choice = InputUtil.intScanner();
+            if (choice == 0) {
+                return;
+//                    break;
             }
+
+            if (hero.getHeroAcceptedQuest().containsValue(quests.get(choice - 1))) {
+                this.selectedQuestMenu(hero.getHeroAcceptedQuest()
+                        .get(quests.get(choice - 1).getQuestId()), hero, quests, name);
+            } else {
+                this.selectedQuestMenu(quests.get(choice - 1), hero, quests, name);
+            }
+
+            this.questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
+//                break;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("\tEnter valid input");
         }
+//        }
     }
 
     public void heroAcceptedQuestMenu(Hero hero, Map<Integer, Quest> questMap) {
@@ -133,7 +134,7 @@ public class QuestService {
                 System.out.println(ConsoleColor.RED + "\tQuest can not be accepted yet." + ConsoleColor.RESET);
                 PrintUtil.printIndexAndText("0", "Go back\n");
             }
-            case QuestStatus.ACCEPTED ->  {
+            case QuestStatus.ACCEPTED -> {
                 this.printQuestDetails(quest, hero);
                 this.questGiverMenu(hero, quests, name);
             }
@@ -220,21 +221,21 @@ public class QuestService {
         for (Map.Entry<Integer, Quest> questMap : heroAcceptedQuests.entrySet()) {
             for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
                 if (!questObjective.isCompleted()) {
-                    if (questObjective instanceof QuestKillObjective
-                            && ((QuestKillObjective) questObjective).getQuestEnemyId().equals(questEnemyId)) {
+                    if (questObjective instanceof QuestKillObjective questKillObjective
+                            && questKillObjective.getQuestEnemyId().equals(questEnemyId)) {
 
-                        ((QuestKillObjective) questObjective).increaseCurrentCountEnemyProgress();
+                        questKillObjective.increaseCurrentCountEnemyProgress();
                         questObjective.printQuestObjectiveAssignment(hero);
                     }
 
-                    if (questObjective instanceof QuestBringItemFromEnemyObjective
-                            && ((QuestBringItemFromEnemyObjective) questObjective).checkEnemy(questEnemyId)) {
+                    if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective
+                            && questBringItemFromEnemyObjective.checkEnemy(questEnemyId)) {
 
                         Item questItem = ItemDB.returnItemFromDB(
-                                ((QuestBringItemFromEnemyObjective) questObjective).getObjectiveItemId());
+                                questBringItemFromEnemyObjective.getObjectiveItemId());
                         System.out.println("\t-- You loot " + (questItem.getName() + " --"));
 
-                        hero.getHeroInventory().addItemWithNewCopyToItemList((questItem));
+                        hero.getHeroInventory().addItemWithNewCopyToItemList(questItem);
                         questObjective.printQuestObjectiveAssignment(hero);
                     }
                 }

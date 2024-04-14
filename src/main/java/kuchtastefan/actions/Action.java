@@ -9,7 +9,6 @@ import kuchtastefan.actions.instantAction.ActionDealDamage;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.NonPlayerCharacter;
-import kuchtastefan.character.npc.NpcType;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -57,7 +56,7 @@ public abstract class Action {
      * @return An ActionValueRange object representing the range of action values.
      */
     public ActionValueRange returnActionValueRange(GameCharacter spellCaster) {
-        // Value of action increase by multiplier per level - min. ability value
+        // Value of action increase by multiplier per level -> min. ability value
         int valueIncreasedByLevel = this.baseActionValue + (spellCaster.getLevel() * Constant.BONUS_VALUE_PER_LEVEL);
         // max. ability value
         int valueIncreasedByPrimaryAbility = 0;
@@ -76,21 +75,8 @@ public abstract class Action {
             }
 
             if (spellCaster instanceof NonPlayerCharacter nonPlayerCharacter) {
-                if (nonPlayerCharacter.getNpcType().equals(NpcType.MAGE)) {
-                    valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(Ability.INTELLECT) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
-                }
-
-                if (nonPlayerCharacter.getNpcType().equals(NpcType.WARRIOR)) {
-                    valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(Ability.STRENGTH) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
-                }
-
-                if (nonPlayerCharacter.getNpcType().equals(NpcType.ROGUE)) {
-                    valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(Ability.HASTE) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
-                }
-
-                if (nonPlayerCharacter.getNpcType().equals(NpcType.DEFENDER)) {
-                    valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(Ability.RESIST_DAMAGE) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
-                }
+                valueIncreasedByPrimaryAbility = spellCaster.getCurrentAbilityValue(
+                        nonPlayerCharacter.getNpcType().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
             }
         }
 

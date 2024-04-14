@@ -168,7 +168,7 @@ public class Hero extends GameCharacter {
             }
 
             this.setHeroMaxAbilities();
-            this.resetCurrentAbilitiesToMaxAbilities(true);
+            this.resetAbilitiesToMaxValues(true);
             this.performActionsWithDuration(null);
             this.updateAbilityPoints(heroAvailablePointsChange);
         }

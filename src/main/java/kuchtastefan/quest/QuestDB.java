@@ -19,18 +19,18 @@ public class QuestDB {
 
     public static void setInitialQuestsStatus(Hero hero) {
         for (Quest quest : QUEST_DB.values()) {
-
-            if (quest instanceof QuestChain && !((QuestChain) quest).canBeQuestAccepted(hero)) {
-                quest.setQuestStatus(QuestStatus.UNAVAILABLE);
-                continue;
-            }
-
-            if (quest instanceof QuestChain && ((QuestChain) quest).canBeQuestAccepted(hero)) {
-                quest.setQuestStatus(QuestStatus.AVAILABLE);
-            } else if (quest.getQuestLevel() <= hero.getLevel()) {
-                quest.setQuestStatus(QuestStatus.AVAILABLE);
+            if (quest instanceof QuestChain questChain) {
+                if (questChain.canBeQuestAccepted(hero)) {
+                    quest.setQuestStatus(QuestStatus.AVAILABLE);
+                } else {
+                    quest.setQuestStatus(QuestStatus.UNAVAILABLE);
+                }
             } else {
-                quest.setQuestStatus(QuestStatus.UNAVAILABLE);
+                if (quest.getQuestLevel() <= hero.getLevel()) {
+                    quest.setQuestStatus(QuestStatus.AVAILABLE);
+                } else {
+                    quest.setQuestStatus(QuestStatus.UNAVAILABLE);
+                }
             }
         }
     }

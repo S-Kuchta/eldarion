@@ -1,14 +1,11 @@
 package kuchtastefan.character;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,49 +38,6 @@ public abstract class GameCharacter {
         this.canPerformAction = true;
     }
 
-    public void addActionWithDuration(ActionWithDuration actionWithDuration) {
-        if (actionWithDuration.getActionDurationType().equals(ActionDurationType.REGION_ACTION)) {
-            setNewActionOrAddStackToExistingAction(actionWithDuration, this.regionActionsWithDuration);
-        }
-
-        if (actionWithDuration.getActionDurationType().equals(ActionDurationType.BATTLE_ACTION)) {
-            setNewActionOrAddStackToExistingAction(actionWithDuration, this.battleActionsWithDuration);
-        }
-    }
-
-    /**
-     * Method is responsible for add action to action list and reset turn value to 0. If list does not contain action,
-     * action will be added as a new object. If list contains action and does not already reach max action stack,
-     * you will get a new stack.
-     *
-     * @param actionWithDuration action with duration
-     * @param actions            list where you want to add new action
-     */
-    private void setNewActionOrAddStackToExistingAction(ActionWithDuration actionWithDuration, Set<ActionWithDuration> actions) {
-        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-
-        if (!actions.contains(actionWithDuration)) {
-            ActionWithDuration actionWithDurationNewCopy = gson.fromJson(gson.toJson(actionWithDuration), actionWithDuration.getClass());
-            actions.add(actionWithDurationNewCopy);
-            actionWithDurationNewCopy.addActionStack();
-            actionWithDurationNewCopy.actionCurrentTurnReset();
-
-        } else {
-            for (ActionWithDuration action : actions) {
-                if (action.equals(actionWithDuration) && action.getActionCurrentStacks() < action.getActionMaxStacks()) {
-                    action.setCurrentActionValue(actionWithDuration.getCurrentActionValue());
-                    action.addActionStack();
-                    action.actionCurrentTurnReset();
-                }
-
-                if (action.equals(actionWithDuration) && action.getActionCurrentStacks() == action.getActionMaxStacks()) {
-                    action.setCurrentActionValue(actionWithDuration.getCurrentActionValue());
-                    action.actionCurrentTurnReset();
-                }
-            }
-        }
-    }
-
     /**
      * Call this method when you want to update ability points depending on active actions (buff, de buff)
      * If actionDurationType is same as type from parameter, you will get turn for action
@@ -92,7 +46,7 @@ public abstract class GameCharacter {
      * @param actionDurationType from where you call method (BATTLE or REGION(EVENT))
      */
     public void performActionsWithDuration(ActionDurationType actionDurationType) {
-        resetCurrentAbilitiesToMaxAbilities(false);
+        resetAbilitiesToMaxValues(false);
 
         Set<ActionWithDuration> actions = new HashSet<>();
         actions.addAll(this.regionActionsWithDuration);
@@ -114,7 +68,7 @@ public abstract class GameCharacter {
         this.regionActionsWithDuration.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
     }
 
-    public void resetCurrentAbilitiesToMaxAbilities(boolean setHealthOrManaToMaxValue) {
+    public void resetAbilitiesToMaxValues(boolean setHealthOrManaToMaxValue) {
         this.canPerformAction = true;
         this.reflectSpell = false;
 
@@ -149,18 +103,18 @@ public abstract class GameCharacter {
         Iterator<ActionWithDuration> iterator = this.battleActionsWithDuration.iterator();
         while (iterator.hasNext()) {
 
-            ActionWithDuration actionAbsorbDamage = iterator.next();
-            if (actionAbsorbDamage instanceof ActionAbsorbDamage) {
-                if (actionAbsorbDamage.getCurrentActionValue() >= damage) {
-                    actionAbsorbDamage.setCurrentActionValue(actionAbsorbDamage.getCurrentActionValue() - damage);
+            ActionWithDuration action = iterator.next();
+            if (action instanceof ActionAbsorbDamage) {
+                if (action.getCurrentActionValue() >= damage) {
+                    action.setCurrentActionValue(action.getCurrentActionValue() - damage);
                     damage = 0;
                 } else {
-                    damage -= actionAbsorbDamage.getCurrentActionValue();
-                    actionAbsorbDamage.setCurrentActionValue(0);
+                    damage -= action.getCurrentActionValue();
+                    action.setCurrentActionValue(0);
                     iterator.remove();
                 }
 
-                absorbDamage += actionAbsorbDamage.getCurrentActionValue();
+                absorbDamage += action.getCurrentActionValue();
             }
         }
 
@@ -169,11 +123,11 @@ public abstract class GameCharacter {
         this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
     }
 
-    public int returnDamageAfterResistDamage(int damage) {
-        if (this.getCurrentAbilityValue(Ability.RESIST_DAMAGE) >= damage) {
+    public int returnDamageAfterResistDamage(int incomingDamage) {
+        if (this.getCurrentAbilityValue(Ability.RESIST_DAMAGE) >= incomingDamage) {
             return 0;
         } else {
-            return damage - this.getCurrentAbilityValue(Ability.RESIST_DAMAGE);
+            return incomingDamage - this.getCurrentAbilityValue(Ability.RESIST_DAMAGE);
         }
     }
 

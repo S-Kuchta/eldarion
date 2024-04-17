@@ -102,23 +102,23 @@
   {
     "type": "Quest",
     "questId": 4,
-    "questName": "Wolf Meat",
-    "questDescription": "wuf wuf",
+    "questName": "Coursed Medallion",
+    "questDescription": "After reading Tattered Letter near a corpse, you discover a chilling message written upon it. The message speaks of a cursed medallion stolen from the altar within the Tower of the Damned. It warns of dire consequences should the medallion remain in the wrong hands.",
     "questLevel": 1,
     "questObjectives": [
       {
-        "type": "QuestBringItemFromEnemyObjective",
-        "questObjectiveName": "Wolf meat",
-        "objectiveItemId": 100,
-        "itemDropFromEnemy": [100,102],
-        "itemDropCountNeeded": 1
+        "type": "QuestUseItemObjective",
+        "questObjectiveName": "Fill Empty Socket with Coursed Medallion",
+        "itemToUseId": 106,
+        "locationId": 1,
+        "locationStageId": 3
       }
     ],
     "questReward": {
       "itemsReward": [
-        903,901,903,901
+        901,901
       ],
-      "goldsReward": 50.0
+      "goldsReward": 0.0
     }
   }
 ]

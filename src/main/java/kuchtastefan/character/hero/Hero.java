@@ -226,7 +226,7 @@ public class Hero extends GameCharacter {
                     }
                 }
 
-                quest.checkIfAllQuestObjectivesAreCompleted();
+                quest.checkIfAllQuestObjectivesAreCompleted(this);
             }
         }
     }

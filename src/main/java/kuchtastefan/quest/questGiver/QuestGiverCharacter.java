@@ -109,10 +109,6 @@ public class QuestGiverCharacter {
         return numberOfTurnedInQuests == this.quests.size() ? " -- " + ConsoleColor.YELLOW + "COMPLETED" + ConsoleColor.RESET + " -- " : "";
     }
 
-    public void addQuest(Quest quest) {
-        this.quests.add(quest);
-    }
-
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
         boolean questCompleted = true;
         for (Quest quest : hero.getHeroAcceptedQuest().values()) {

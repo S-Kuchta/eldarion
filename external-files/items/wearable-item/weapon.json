@@ -30,7 +30,7 @@
     "name": "Arcana Shard Spire",
     "abilities": {
       "ATTACK": 2,
-      "INTELLECT": 3
+      "HASTE": 3
     },
     "itemLevel": 1
   },

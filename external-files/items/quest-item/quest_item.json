@@ -34,5 +34,11 @@
     "name": "Necromancer Staff",
     "price": 0,
     "itemLevel": 2
+  },
+  {
+    "itemId": 106,
+    "name": "Coursed Medallion",
+    "price": 0,
+    "itemLevel": 2
   }
 ]

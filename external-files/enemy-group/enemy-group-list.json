@@ -4,7 +4,14 @@
     "groupLevel": 1,
     "enemiesId": [
       100,
-      102
+      100
+    ]
+  },
+  {
+    "biome": "FOREST",
+    "groupLevel": 1,
+    "enemiesId": [
+      100
     ]
   },
   {
@@ -35,6 +42,15 @@
     "groupLevel": 2,
     "enemiesId": [
       100,
+      100,
+      100,
+      102
+    ]
+  },
+  {
+    "biome": "FOREST",
+    "groupLevel": 2,
+    "enemiesId": [
       100,
       100,
       102

@@ -183,6 +183,15 @@
         ]
       },
       "3": {
+        "type": "LocationStageUseItem",
+        "stageName": "Empty Socket in Cursed Altar",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemId": [
+          106
+        ]
+      },
+      "4": {
         "type": "LocationStageCombat",
         "stageName": "Sorrowful Chapel",
         "stageDiscovered": false,
@@ -191,7 +200,7 @@
           304
         ]
       },
-      "4": {
+      "5": {
         "type": "LocationStageFindItem",
         "stageName": "Spectral Library",
         "stageDiscovered": false,
@@ -201,7 +210,7 @@
           306
         ]
       },
-      "5": {
+      "6": {
         "type": "LocationStageCombat",
         "stageName": "Malevolent Throne Room",
         "stageDiscovered": false,
@@ -210,7 +219,7 @@
           209
         ]
       },
-      "6": {
+      "7": {
         "type": "LocationStageFindItem",
         "stageName": "Necromancer Hidden Chest",
         "stageDiscovered": false,
@@ -287,6 +296,40 @@
           401,
           402
         ]
+      }
+    }
+  },
+  {
+    "locationId": 3,
+    "locationName": "Bear Cave",
+    "locationLevel": 1,
+    "canLocationBeExplored": true,
+    "locationDifficulty": "MEDIUM",
+    "locationStages": {
+      "0": {
+        "type": "LocationStageCombat",
+        "stageName": "Bear Cave main room",
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          401
+        ]
+      },
+      "1": {
+        "type": "LocationStageFindItem",
+        "stageName": "Human Corpse",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          106
+        ]
+      },
+      "2": {
+        "type": "LocationStageQuestGiver",
+        "stageName": "Letter next to Corpse",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "questGiverId": 1
       }
     }
   }

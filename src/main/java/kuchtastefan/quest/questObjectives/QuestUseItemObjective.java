@@ -32,7 +32,6 @@ public class QuestUseItemObjective extends QuestObjective implements RemoveObjec
 
         System.out.println("\tUse " + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " in "
                 + location.getLocationName() + "  " + locationStage.getStageName());
-
     }
 
     @Override

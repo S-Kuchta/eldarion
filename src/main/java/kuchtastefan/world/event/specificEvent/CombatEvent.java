@@ -5,11 +5,8 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemDB;
-import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.questObjectives.QuestBringItemFromEnemyObjective;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.BattleService;
+import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -33,6 +30,7 @@ public class CombatEvent extends Event {
 
     @Override
     public boolean eventOccurs(Hero hero) {
+        QuestService questService = new QuestService();
 
         System.out.println("\tIn the distance, you've caught sight of:");
         for (Enemy enemy : this.enemies) {
@@ -87,13 +85,13 @@ public class CombatEvent extends Event {
             final boolean haveHeroWon = this.battleService.battle(hero, this.enemies);
 
             if (haveHeroWon) {
-                checkAndAddItemToEnemyDropNeededForQuest(hero);
-                for (Enemy randomEnemy : this.enemies) {
-                    double goldEarn = randomEnemy.getGoldDrop();
-                    double experiencePointGained = randomEnemy.enemyExperiencePointsValue();
+                for (Enemy enemy : this.enemies) {
+                    questService.updateQuestProgressFromEnemyActions(hero, enemy);
+                    double goldEarn = enemy.getGoldDrop();
+                    double experiencePointGained = enemy.enemyExperiencePointsValue();
 
                     PrintUtil.printLongDivider();
-                    for (Item item : randomEnemy.getItemsDrop()) {
+                    for (Item item : enemy.getItemsDrop()) {
                         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
                         System.out.println("\tYou loot " + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET);
                     }
@@ -104,7 +102,6 @@ public class CombatEvent extends Event {
 
                     hero.addGolds(goldEarn);
                     hero.gainExperiencePoints(experiencePointGained);
-//                    hero.checkQuestProgress(randomEnemy.getNpcId());
                     hero.checkIfQuestObjectivesAndQuestIsCompleted();
                     PrintUtil.printLongDivider();
                 }
@@ -113,18 +110,5 @@ public class CombatEvent extends Event {
         }
 
         return false;
-    }
-
-    private void checkAndAddItemToEnemyDropNeededForQuest(Hero hero) {
-        for (Quest quest : hero.getHeroAcceptedQuest().values()) {
-            for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective) {
-                    for (Enemy enemy : this.enemies) {
-                        if (questBringItemFromEnemyObjective.checkEnemy(enemy.getNpcId()))
-                            enemy.addItemToItemDrop(ItemDB.returnItemFromDB(questBringItemFromEnemyObjective.getObjectiveItemId()));
-                    }
-                }
-            }
-        }
     }
 }

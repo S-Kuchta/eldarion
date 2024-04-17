@@ -1,7 +1,7 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.Item;
+import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
@@ -9,7 +9,6 @@ import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.quest.questObjectives.QuestBringItemFromEnemyObjective;
 import kuchtastefan.quest.questObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -32,12 +31,10 @@ public class QuestService {
         PrintUtil.printDivider();
 
         printQuestsMenu(quests);
-//        while (true) {
         try {
             int choice = InputUtil.intScanner();
             if (choice == 0) {
                 return;
-//                    break;
             }
 
             if (hero.getHeroAcceptedQuest().containsValue(quests.get(choice - 1))) {
@@ -48,11 +45,9 @@ public class QuestService {
             }
 
             this.questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
-//                break;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("\tEnter valid input");
         }
-//        }
     }
 
     public void heroAcceptedQuestMenu(Hero hero, Map<Integer, Quest> questMap) {
@@ -75,7 +70,7 @@ public class QuestService {
                 }
 
                 if (!quests.get(choice - 1).getQuestStatus().equals(QuestStatus.TURNED_IN)) {
-                    printQuestDetails(quests.get(choice - 1), hero);
+                    PrintUtil.printQuestDetails(quests.get(choice - 1), hero);
                 } else {
                     System.out.println("\t-- Quest " + quests.get(choice - 1).getQuestName() + " Completed --");
                 }
@@ -122,7 +117,7 @@ public class QuestService {
      */
     private void selectedQuestMenu(Quest quest, Hero hero, List<Quest> quests, String name) {
 
-        this.printQuestDetails(quest, hero);
+        PrintUtil.printQuestDetails(quest, hero);
         System.out.println();
 
         switch (quest.getQuestStatus()) {
@@ -135,7 +130,7 @@ public class QuestService {
                 PrintUtil.printIndexAndText("0", "Go back\n");
             }
             case QuestStatus.ACCEPTED -> {
-                this.printQuestDetails(quest, hero);
+                PrintUtil.printQuestDetails(quest, hero);
                 this.questGiverMenu(hero, quests, name);
             }
             case QuestStatus.COMPLETED -> {
@@ -154,12 +149,12 @@ public class QuestService {
             case 1 -> {
                 if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
                     System.out.println("\t\t --> Quest accepted <--");
-                    this.startTheQuest(quest, hero);
+                    quest.startTheQuest(hero);
                     this.questGiverMenu(hero, quests, name);
                 }
 
                 if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
-                    this.turnInTheQuest(quest, hero);
+                    quest.turnInTheQuest(hero);
                     this.questGiverMenu(hero, quests, name);
                 }
             }
@@ -170,76 +165,20 @@ public class QuestService {
         }
     }
 
-    private void startTheQuest(Quest quest, Hero hero) {
-        if (!hero.getHeroAcceptedQuest().containsValue(quest)) {
-            hero.getHeroAcceptedQuest().put(quest.getQuestId(), quest);
-            hero.checkIfQuestObjectivesAndQuestIsCompleted();
-            quest.setQuestStatus(QuestStatus.ACCEPTED);
-        }
-    }
+    public void updateQuestProgressFromEnemyActions(Hero hero, Enemy enemy) {
+        for (Quest quest : hero.getHeroAcceptedQuest().values()) {
+            for (QuestObjective questObjective : quest.getQuestObjectives()) {
+                if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective) {
+                    if (questBringItemFromEnemyObjective.checkEnemy(enemy.getNpcId()))
+                        enemy.addItemToItemDrop(ItemDB.returnItemFromDB(questBringItemFromEnemyObjective.getObjectiveItemId()));
+                }
 
-    /**
-     * Turn in the quest, give quest reward to hero and remove items/killed enemy etc. from hero
-     *
-     * @param quest quest to turn in
-     */
-    private void turnInTheQuest(Quest quest, Hero hero) {
-        if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
-            PrintUtil.printLongDivider();
-            PrintUtil.printCompleteQuestText(quest.getQuestName());
-            PrintUtil.printLongDivider();
-            quest.getQuestReward().giveQuestReward(hero);
-            quest.setQuestStatus(QuestStatus.TURNED_IN);
-        }
-
-        for (QuestObjective questObjective : quest.getQuestObjectives()) {
-            if (questObjective instanceof RemoveObjectiveProgress removeObjectiveProgress) {
-                removeObjectiveProgress.removeCompletedQuestObjectiveAssignment(hero);
+                if (questObjective instanceof QuestKillObjective questKillObjective) {
+                    if (enemy.getNpcId() == questKillObjective.getQuestEnemyId()) {
+                        questKillObjective.increaseCurrentCountEnemyProgress();
+                    }
+                }
             }
         }
     }
-
-    private void printQuestDetails(Quest quest, Hero hero) {
-        PrintUtil.printLongDivider();
-        System.out.println("\t\t\t\t------ " + quest.getQuestName() + " ------");
-        System.out.print("\t");
-        PrintUtil.printTextWrap(quest.getQuestDescription());
-        System.out.println();
-
-        for (QuestObjective questObjective : quest.getQuestObjectives()) {
-            questObjective.printQuestObjectiveAssignment(hero);
-        }
-    }
-
-//    /**
-//     * check if enemy killed in CombatEvent belongs to some of accepted Quest.
-//     * If yes increase current count progress in questObjective
-//     * and print QuestObjectiveAssignment with QuestObjective progress.
-//     * If you need to use this method, Use it always before checkIfQuestObjectivesAndQuestIsCompleted() method.
-//     */
-//    public void checkQuestProgress(Integer questEnemyId, Map<Integer, Quest> heroAcceptedQuests, Hero hero) {
-//        for (Map.Entry<Integer, Quest> questMap : heroAcceptedQuests.entrySet()) {
-//            for (QuestObjective questObjective : questMap.getValue().getQuestObjectives()) {
-//                if (!questObjective.isCompleted()) {
-//                    if (questObjective instanceof QuestKillObjective questKillObjective
-//                            && questKillObjective.getQuestEnemyId().equals(questEnemyId)) {
-//
-//                        questKillObjective.increaseCurrentCountEnemyProgress();
-//                        questObjective.printQuestObjectiveAssignment(hero);
-//                    }
-//
-//                    if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective
-//                            && questBringItemFromEnemyObjective.checkEnemy(questEnemyId)) {
-//
-//                        Item questItem = ItemDB.returnItemFromDB(
-//                                questBringItemFromEnemyObjective.getObjectiveItemId());
-//                        System.out.println("\t-- You loot " + (questItem.getName() + " --"));
-//
-//                        hero.getHeroInventory().addItemWithNewCopyToItemList(questItem);
-//                        questObjective.printQuestObjectiveAssignment(hero);
-//                    }
-//                }
-//            }
-//        }
-//    }
 }

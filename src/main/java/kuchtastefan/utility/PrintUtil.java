@@ -19,6 +19,8 @@ import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.junkItem.JunkItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.questObjectives.QuestObjective;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -491,6 +493,18 @@ public class PrintUtil {
         System.out.print("\t");
         PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
         PrintUtil.printGameSettingsYesOrNo(GameSettingsDB.returnGameSettingValue(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+    }
+
+    public static void printQuestDetails(Quest quest, Hero hero) {
+        PrintUtil.printLongDivider();
+        System.out.println("\t\t\t\t------ " + quest.getQuestName() + " ------");
+        System.out.print("\t");
+        PrintUtil.printTextWrap(quest.getQuestDescription());
+        System.out.println();
+
+        for (QuestObjective questObjective : quest.getQuestObjectives()) {
+            questObjective.printQuestObjectiveAssignment(hero);
+        }
     }
 }
 

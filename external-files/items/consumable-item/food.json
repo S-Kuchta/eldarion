@@ -74,5 +74,21 @@
         "canBeActionCriticalHit": false
       }
     ]
+  },
+  {
+    "itemId": 1004,
+    "name": "Apple",
+    "price": 15,
+    "itemLevel": 1,
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "baseActionValue": 16,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "canBeActionCriticalHit": false
+      }
+    ]
   }
 ]

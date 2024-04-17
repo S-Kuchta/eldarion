@@ -23,8 +23,8 @@ public abstract class LocationStage {
     public abstract boolean exploreStage(Hero hero, Location location);
 
     public boolean canHeroEnterStage(Hero hero) {
-        for (Integer i : this.itemsIdNeededToEnterStage) {
-            Item item = ItemDB.returnItemFromDB(i);
+        for (Integer itemId : this.itemsIdNeededToEnterStage) {
+            Item item = ItemDB.returnItemFromDB(itemId);
             if (!hero.getHeroInventory().getHeroInventory().containsKey(item)) {
                 return false;
             }

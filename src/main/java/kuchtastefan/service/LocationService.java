@@ -33,11 +33,12 @@ public class LocationService {
         HintDB.printHint(HintName.LOCATION_HINT);
 
         while (true) {
-            PrintUtil.printLongDivider();
+            PrintUtil.printExtraLongDivider();
             System.out.println(ConsoleColor.YELLOW + "\t" + location.getLocationName() + ConsoleColor.RESET
                     + "\tLocation level: " + location.getLocationLevel() + " "
-                    + "\tStages completed " + location.getStageCompleted() + " / " + location.getStageTotal());
-            PrintUtil.printLongDivider();
+                    + "\tStages completed: " + location.getStageCompleted() + " / " + location.getStageTotal() + " "
+                    + "\tLocation difficulty: " + location.getLocationDifficulty());
+            PrintUtil.printExtraLongDivider();
 
             // Print stage menu
             System.out.println("\tWhat do you want to do?");
@@ -134,12 +135,12 @@ public class LocationService {
             return;
         }
 
-        if (locationStage.isStageCompleted()) {
-            if (!(locationStage instanceof CanEnterStageAfterComplete)) {
+//        if (locationStage.isStageCompleted()) {
+            if (!(locationStage instanceof CanEnterStageAfterComplete) && locationStage.isStageCompleted()) {
                 System.out.println("\tNothing new to do in " + locationStage.getStageName());
                 return;
             }
-        }
+//        }
 
         // LocationStage header
         PrintUtil.printLongDivider();

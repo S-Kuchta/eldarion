@@ -3,7 +3,7 @@
     "characterClass": "WARLOCK",
     "unspentAbilityPoints": 0,
     "heroGold": 150.0,
-    "experiencePoints": 50.0,
+    "experiencePoints": 100.0,
     "equippedItem": {
       "HEAD": {
         "wearableItemType": "HEAD",
@@ -214,6 +214,28 @@
             "itemLevel": 2
           },
           1
+        ],
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "BLACKSMITH_REAGENT",
+            "itemId": 704,
+            "name": "Leather",
+            "price": 5.0,
+            "itemLevel": 1
+          },
+          1
+        ],
+        [
+          {
+            "type": "CraftingReagentItem",
+            "craftingReagentItemType": "ALCHEMY_REAGENT",
+            "itemId": 800,
+            "name": "PeaceBloom",
+            "price": 5.0,
+            "itemLevel": 1
+          },
+          1
         ]
       ]
     },
@@ -346,6 +368,83 @@
               210
             ],
             "stageName": "Tavern Back door",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": []
+          }
+        }
+      },
+      "2": {
+        "locationId": 2,
+        "locationName": "Crystal Lake",
+        "locationLevel": 1,
+        "stageTotal": 6,
+        "stageCompleted": 0,
+        "cleared": false,
+        "canLocationBeExplored": true,
+        "locationDifficulty": "EASY",
+        "locationStages": {
+          "0": {
+            "type": "LocationStageQuestGiver",
+            "questGiverId": 2,
+            "stageName": "Fisherman Cabin",
+            "stageCompleted": false,
+            "stageDiscovered": true,
+            "itemsIdNeededToEnterStage": []
+          },
+          "1": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              401
+            ],
+            "stageName": "Lake shore",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": []
+          },
+          "2": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              401
+            ],
+            "stageName": "Lake shore",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": []
+          },
+          "3": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              401,
+              401
+            ],
+            "stageName": "Old fishing pier",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": []
+          },
+          "4": {
+            "type": "LocationStageFindItem",
+            "itemsId": [
+              301,
+              900,
+              902,
+              1003,
+              1003,
+              1002
+            ],
+            "stageName": "The End of Old fishing pier",
+            "stageCompleted": false,
+            "stageDiscovered": false,
+            "itemsIdNeededToEnterStage": []
+          },
+          "5": {
+            "type": "LocationStageCombat",
+            "locationEnemyIdList": [
+              401,
+              402
+            ],
+            "stageName": "Lake Isle",
             "stageCompleted": false,
             "stageDiscovered": false,
             "itemsIdNeededToEnterStage": []
@@ -630,6 +729,28 @@
         "name": "Mystic Hollow house key",
         "price": 0.0,
         "itemLevel": 2
+      },
+      1
+    ],
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "BLACKSMITH_REAGENT",
+        "itemId": 704,
+        "name": "Leather",
+        "price": 5.0,
+        "itemLevel": 1
+      },
+      1
+    ],
+    [
+      {
+        "type": "CraftingReagentItem",
+        "craftingReagentItemType": "ALCHEMY_REAGENT",
+        "itemId": 800,
+        "name": "PeaceBloom",
+        "price": 5.0,
+        "itemLevel": 1
       },
       1
     ]

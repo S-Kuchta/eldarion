@@ -1,6 +1,7 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.item.Item;
 import kuchtastefan.item.consumeableItem.ConsumableItem;
 import kuchtastefan.item.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
@@ -96,7 +97,7 @@ public class InventoryMenuService {
         for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
             if (item.getKey().getWearableItemType() == wearableItemType) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-                PrintUtil.printItemDescription(item.getKey(), true, hero);
+                item.getKey().printItemDescription(hero);
 
                 tempList.add(item.getKey());
                 index++;
@@ -120,15 +121,31 @@ public class InventoryMenuService {
         }
     }
 
-    public void craftingReagentsItemMenu(Hero hero) {
+    public void printItemInventory(Hero hero, Map<? extends Item, Integer> items) {
         int index = 1;
-        PrintUtil.printInventoryHeader("\tCrafting reagents");
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
-        for (Map.Entry<CraftingReagentItem, Integer> item : hero.getHeroInventory().returnInventoryCraftingReagentItemMap().entrySet()) {
-            PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-            PrintUtil.printCraftingReagentItemInfo(item.getKey(), true);
+        if (items.isEmpty()) {
+            System.out.println("\tItem list is empty");
+        } else {
+            for (Map.Entry<? extends Item, Integer> item : items.entrySet()) {
+                PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
+                item.getKey().printItemDescription(hero);
+                index++;
+            }
         }
+    }
+
+    public void craftingReagentsItemMenu(Hero hero) {
+//        int index = 1;
+//        PrintUtil.printInventoryHeader("\tCrafting reagents");
+//        PrintUtil.printIndexAndText("0", "Go back");
+//        System.out.println();
+//        for (Map.Entry<CraftingReagentItem, Integer> item : hero.getHeroInventory().returnInventoryCraftingReagentItemMap().entrySet()) {
+//            PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
+//            item.getKey().printItemDescription(hero);
+//        }
+        printItemInventory(hero, hero.getHeroInventory().returnInventoryCraftingReagentItemMap());
 
         int choice = InputUtil.intScanner();
         if (choice == 0) {
@@ -149,13 +166,13 @@ public class InventoryMenuService {
             if (isHeroInCombat) {
                 if (item.getKey().getConsumableItemType().equals(ConsumableItemType.POTION)) {
                     PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-                    PrintUtil.printConsumableItemInfo(item.getKey(), true);
+                    item.getKey().printItemDescription(hero);
                     consumableItems.add(item.getKey());
                     index++;
                 }
             } else {
                 PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-                PrintUtil.printConsumableItemInfo(item.getKey(), true);
+                item.getKey().printItemDescription(hero);
                 consumableItems.add(item.getKey());
                 System.out.println();
                 index++;

@@ -83,6 +83,9 @@ public class PrintUtil {
             System.out.println();
             System.out.print("\t\t");
             action.printActionDescription(hero, spellTarget);
+            if (GameSettingsDB.returnGameSettingValue(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
+                System.out.print("\n\t\t" + action.getActionName().getDescription());
+            }
         }
     }
 
@@ -252,18 +255,6 @@ public class PrintUtil {
             System.out.printf("%47s", "" + ConsoleColor.RESET);
             System.out.print("] «");
         }
-
-    }
-
-    public static void printAbilityPoints(GameCharacter gameCharacter) {
-        printExtraLongDivider();
-        System.out.printf("%58s %n", gameCharacter instanceof Hero ? "Your abilities:" : "Enemy abilities:");
-        System.out.print("\t");
-        for (Map.Entry<Ability, Integer> entry : gameCharacter.getAbilities().entrySet()) {
-            System.out.print(entry.getKey() + ": " + entry.getValue() + ", ");
-        }
-        System.out.println();
-        printExtraLongDivider();
     }
 
     public static void printSimplifiedAbilityPoints(GameCharacter gameCharacter) {
@@ -297,39 +288,6 @@ public class PrintUtil {
         }
         System.out.println();
         printExtraLongDivider();
-    }
-
-    /**
-     * Print full wearable item description.
-     * Includes: if is right now equipped, item name, item type, item quality,
-     * item level, buy/sell price and ability points of item
-     *
-     * @param wearableItem show this item description
-     * @param sellItem     if this param is true, price will be set to sell price
-     */
-    public static void printItemDescription(WearableItem wearableItem, boolean sellItem, Hero hero) {
-
-        if (hero.getEquippedItem().containsValue(wearableItem)) {
-            System.out.print("-- EQUIPPED -- ");
-        }
-        System.out.print(wearableItem.getWearableItemType() + ": "
-                + wearableItem.getName()
-                + " (" + wearableItem.getWearableItemQuality() + "), iLevel: " + wearableItem.getItemLevel());
-        if (!sellItem) {
-            System.out.print(", Item Price: " + wearableItem.getPrice());
-        } else {
-            System.out.print(", Sell Price: " + wearableItem.returnSellItemPrice());
-        }
-
-        if (!wearableItem.getName().equals("No item")) {
-            System.out.print("\n\t\tItem stats: ");
-        }
-        for (Map.Entry<Ability, Integer> ability : wearableItem.getAbilities().entrySet()) {
-            if (ability.getValue() != 0) {
-                System.out.print(ability.getKey() + ": " + ability.getValue() + ", ");
-            }
-        }
-        System.out.println();
     }
 
     public static void printCurrentWearingArmor(Hero hero) {
@@ -411,10 +369,6 @@ public class PrintUtil {
         return count;
     }
 
-    public static int returnItemCountInHeroInventory(Hero hero, Item item) {
-        return hero.getHeroInventory().getHeroInventory().get(item);
-    }
-
     public static void printShopHeader(Hero hero, String shop) {
         printLongDivider();
         System.out.println("\t\t" + "Welcome to the "
@@ -435,34 +389,6 @@ public class PrintUtil {
         printLongDivider();
     }
 
-    public static void printConsumableItemInfo(ConsumableItem consumableItem, boolean sellItem) {
-
-        System.out.print(consumableItem.getName()
-                + ", " + consumableItem.getConsumableItemType()
-                + ", iLevel: " + consumableItem.getItemLevel());
-        if (!sellItem) {
-            System.out.print(", Item Price: " + consumableItem.getPrice());
-        } else {
-            System.out.print(", Sell Price: " + consumableItem.returnSellItemPrice());
-        }
-        System.out.println();
-        for (Action action : consumableItem.getActionList()) {
-            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on " + action.getActionEffectOn() + " ");
-            printActionDetails(action, action.getCurrentActionValue());
-        }
-    }
-
-    public static void printJunkItemInfo(JunkItem junkItem, boolean sellItem) {
-        double sellPrice = sellItem ? junkItem.returnSellItemPrice() : junkItem.getPrice();
-        System.out.print(junkItem.getName() + ", Item price: " + sellPrice + " golds");
-    }
-
-    public static void printCraftingReagentItemInfo(CraftingReagentItem craftingReagentItem, boolean sellItem) {
-        double sellPrice = sellItem ? craftingReagentItem.returnSellItemPrice() : craftingReagentItem.getPrice();
-
-        System.out.println(craftingReagentItem.getName() + ", Item Type: " + craftingReagentItem.getCraftingReagentItemType()
-                + ", iLevel: " + craftingReagentItem.getItemLevel() + ", Item price: " + sellPrice + " golds");
-    }
 
     public static void printEnterValidInput() {
         System.out.println(ConsoleColor.RED + "\tEnter valid input" + ConsoleColor.RESET);

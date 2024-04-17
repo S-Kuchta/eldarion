@@ -5,6 +5,9 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.junkItem.JunkItem;
+import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.service.BattleService;
 import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.ConsoleColor;
@@ -93,7 +96,13 @@ public class CombatEvent extends Event {
                     PrintUtil.printLongDivider();
                     for (Item item : enemy.getItemsDrop()) {
                         hero.getHeroInventory().addItemWithNewCopyToItemList(item);
-                        System.out.println("\tYou loot " + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET);
+
+                        ConsoleColor consoleColor = ConsoleColor.YELLOW;
+                        if (item instanceof JunkItem) {
+                            consoleColor = ConsoleColor.WHITE;
+                        }
+
+                        System.out.println("\tYou loot " + consoleColor + item.getName() + ConsoleColor.RESET);
                     }
 
                     if (goldEarn > 0) {

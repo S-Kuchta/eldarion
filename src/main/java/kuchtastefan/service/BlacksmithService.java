@@ -1,10 +1,9 @@
 package kuchtastefan.service;
 
 import com.google.gson.Gson;
-import kuchtastefan.character.npc.vendor.VendorDB;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
+import kuchtastefan.hint.HintName;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
@@ -21,6 +20,12 @@ import java.util.List;
 import java.util.Map;
 
 public class BlacksmithService {
+
+    private final InventoryMenuService inventoryMenuService;
+
+    public BlacksmithService() {
+        this.inventoryMenuService = new InventoryMenuService();
+    }
 
     public void blacksmithMenu(Hero hero) {
         HintDB.printHint(HintName.BLACKSMITH_HINT);
@@ -79,7 +84,7 @@ public class BlacksmithService {
 
                         // Print item description and add it to the refinement map and temporary item list
                         PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-                        PrintUtil.printItemDescription(item.getKey(), false, hero);
+                        item.getKey().printItemDescription(hero);
 
                         refinementItemMap.put(item.getKey(), itemsNeededToRefinement(item.getKey()));
                         tempItemList.add(item.getKey());
@@ -160,7 +165,7 @@ public class BlacksmithService {
      * adjusting its price, and adding it to the hero's inventory.
      *
      * @param wearableItem The wearable item to be updated after refinement.
-     * @param hero The hero whose inventory the refined item will be added to.
+     * @param hero         The hero whose inventory the refined item will be added to.
      */
     private void afterSuccessFullRefinementItem(WearableItem wearableItem, Hero hero) {
         wearableItem.increaseWearableItemAbilityValue(wearableItem);
@@ -184,7 +189,7 @@ public class BlacksmithService {
         System.out.println("\t\tDismantle item");
         PrintUtil.printDivider();
 
-        List<WearableItem> tempItemList = printItemList(hero);
+        List<WearableItem> tempItemList = returnItemList(hero);
         WearableItem wearableItem = selectItem(tempItemList);
         if (wearableItem == null) {
             return;
@@ -196,7 +201,7 @@ public class BlacksmithService {
 
         CraftingReagentItem item = null;
         int numbersOfIteration = 0;
-        for (int i = 0; i < RandomNumberGenerator.getRandomNumber(2, 4) + wearableItem.getItemLevel(); i++) {
+        for (int i = 0; i < RandomNumberGenerator.getRandomNumber(1, 2) + wearableItem.getItemLevel(); i++) {
             item = tempList.get(RandomNumberGenerator.getRandomNumber(0, tempList.size() - 1));
             hero.getHeroInventory().addItemToInventory(item);
             numbersOfIteration++;
@@ -228,21 +233,10 @@ public class BlacksmithService {
         }
     }
 
-    private List<WearableItem> printItemList(Hero hero) {
-        List<WearableItem> tempItemList = new ArrayList<>();
-        int index = 1;
-        PrintUtil.printIndexAndText("0", "Go back");
+    private List<WearableItem> returnItemList(Hero hero) {
+        List<WearableItem> tempItemList = hero.getHeroInventory().returnInventoryWearableItemMap().keySet().stream().toList();
         System.out.println();
-        if (hero.getHeroInventory().getHeroInventory().isEmpty()) {
-            System.out.println("\tItem list is empty");
-        } else {
-            for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
-                tempItemList.add(item.getKey());
-                PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-                PrintUtil.printItemDescription(item.getKey(), false, hero);
-                index++;
-            }
-        }
+        this.inventoryMenuService.printItemInventory(hero, hero.getHeroInventory().returnInventoryWearableItemMap());
 
         return tempItemList;
     }

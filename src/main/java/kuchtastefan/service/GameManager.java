@@ -43,8 +43,9 @@ public class GameManager {
             QuestGiverCharacterDB.setAllQuestGiversName(this.hero);
 
             PrintUtil.printLongDivider();
-            System.out.println("\t\t\t\t\t\t\t------ Mystic Hollow ------");
+            System.out.println("\t\t\t\t\t\t\t------ Main Menu ------");
             PrintUtil.printLongDivider();
+
             PrintUtil.printIndexAndText("0", "Explore World");
             System.out.println();
             PrintUtil.printIndexAndText("1", "Hero menu");
@@ -91,14 +92,12 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 ->
-                    new RegionService().adventuringAcrossTheRegion(heroMenuService, RegionDB.returnRegion(0), this.hero);
+            case 1 -> new RegionService().adventuringAcrossTheRegion(heroMenuService, RegionDB.returnRegion(0), this.hero);
             default -> PrintUtil.printEnterValidInput();
         }
     }
 
     private void alchemistMenu() {
-
         PrintUtil.printDivider();
         System.out.println("\t\tAlchemist shop");
         PrintUtil.printDivider();
@@ -107,21 +106,12 @@ public class GameManager {
         System.out.println();
         PrintUtil.printIndexAndText("1", "Create potion");
         System.out.println();
-//        PrintUtil.printIndexAndText("2", cityAlchemistReagentVendor.getName() + " (Alchemy reagents Merchant)");
-//        System.out.println();
-//        PrintUtil.printIndexAndText("3", cityPotionsVendor.getName() + " (Potions Merchant)");
-        System.out.println();
-        PrintUtil.printIndexAndText("4", QuestGiverCharacterDB.returnQuestGiverName(0));
-        System.out.println();
 
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
             case 1 -> System.out.println("Work in progress");
-//            case 2 -> cityAlchemistReagentVendor.vendorMenu(this.hero);
-//            case 3 -> cityPotionsVendor.vendorMenu(this.hero);
-            case 4 -> QuestGiverCharacterDB.returnQuestGiverMenu(0, this.hero);
             default -> PrintUtil.printEnterValidInput();
         }
     }

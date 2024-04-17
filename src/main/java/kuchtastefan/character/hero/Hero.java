@@ -40,6 +40,7 @@ public class Hero extends GameCharacter {
     private final Map<Integer, Quest> heroAcceptedQuest;
     private final Map<Integer, Spell> learnedSpells;
     private final Map<Integer, Location> discoveredLocationList;
+    private boolean isInCombat;
 
 
     public Hero(String name) {
@@ -56,6 +57,7 @@ public class Hero extends GameCharacter {
         this.heroAcceptedQuest = new HashMap<>();
         this.learnedSpells = new HashMap<>();
         this.discoveredLocationList = new HashMap<>();
+        this.isInCombat = false;
     }
 
     public void equipItem(WearableItem wearableItem) {

@@ -3,6 +3,7 @@ package kuchtastefan.item.consumeableItem;
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.UsableItem;
 import kuchtastefan.service.ActionService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ConsumableItem extends Item {
+public class ConsumableItem extends Item implements UsableItem {
 
     private ConsumableItemType consumableItemType;
     private final List<? extends Action> actionList;
@@ -25,13 +26,21 @@ public class ConsumableItem extends Item {
         this.actionList = actionList;
     }
 
-    public void useItem(Hero hero) {
-        ActionService actionService = new ActionService();
-        for (Action action : this.actionList) {
-            actionService.applyActionToTarget(action, hero);
+    public boolean useItem(Hero hero) {
+
+        if (hero.isInCombat() && this.consumableItemType.equals(ConsumableItemType.FOOD)) {
+            System.out.println("\t" + ConsoleColor.RED + this.getName() + "Can't be used in combat!" + ConsoleColor.RESET);
+        } else {
+            ActionService actionService = new ActionService();
+            for (Action action : this.actionList) {
+                actionService.applyActionToTarget(action, hero);
+            }
+
+            hero.getHeroInventory().removeItemFromHeroInventory(this);
+            return true;
         }
 
-        hero.getHeroInventory().removeItemFromHeroInventory(this);
+        return false;
     }
 
     @Override

@@ -3,6 +3,7 @@ package kuchtastefan.item.wearableItem;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.UsableItem;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class WearableItem extends Item {
+public class WearableItem extends Item implements UsableItem {
 
     private WearableItemType wearableItemType;
     private final Map<Ability, Integer> abilities;
@@ -27,17 +28,6 @@ public class WearableItem extends Item {
         this.wearableItemQuality = wearableItemQuality;
     }
 
-    public void increaseWearableItemAbilityValue(WearableItem wearableItem) {
-        for (Ability ability : Ability.values()) {
-            if (wearableItem.getAbilities().get(ability) != 0) {
-                wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) * 2));
-            }
-        }
-    }
-
-    public void setItemQuality(WearableItemQuality wearableItemQuality) {
-        this.wearableItemQuality = wearableItemQuality;
-    }
 
     @Override
     public void printItemDescription(Hero hero) {
@@ -63,6 +53,24 @@ public class WearableItem extends Item {
             }
         }
         System.out.println();
+    }
+
+    @Override
+    public boolean useItem(Hero hero) {
+        hero.equipItem(this);
+        return true;
+    }
+
+    public void increaseWearableItemAbilityValue(WearableItem wearableItem) {
+        for (Ability ability : Ability.values()) {
+            if (wearableItem.getAbilities().get(ability) != 0) {
+                wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) * 2));
+            }
+        }
+    }
+
+    public void setItemQuality(WearableItemQuality wearableItemQuality) {
+        this.wearableItemQuality = wearableItemQuality;
     }
 
     @Override

@@ -24,6 +24,7 @@ public abstract class Item {
         this.itemLevel = itemLevel;
     }
 
+
     public abstract void printItemDescription(Hero hero);
 
     public double returnSellItemPrice() {

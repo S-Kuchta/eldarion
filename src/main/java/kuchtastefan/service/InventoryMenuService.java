@@ -2,16 +2,12 @@ package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.consumeableItem.ConsumableItemType;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.questItem.QuestItem;
+import kuchtastefan.item.UsableItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,39 +33,27 @@ public class InventoryMenuService {
             case 0 -> {
             }
             case 1 -> this.wearableItemsMenu(hero);
-            case 2 -> this.craftingReagentsItemMenu(hero);
-            case 3 -> this.consumableItemsMenu(hero, false);
-            case 4 -> this.questItemsMenu(hero);
+            case 2 -> this.itemInventoryMenu(hero, hero.getHeroInventory().returnInventoryCraftingReagentItemMap());
+            case 3 -> this.itemInventoryMenu(hero, hero.getHeroInventory().returnInventoryConsumableItemMap());
+            case 4 -> this.itemInventoryMenu(hero, hero.getHeroInventory().returnInventoryQuestItemMap());
             default -> PrintUtil.printEnterValidInput();
         }
     }
 
     public void wearableItemsMenu(Hero hero) {
-
         PrintUtil.printInventoryHeader("Wearable");
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
-
-        PrintUtil.printIndexAndText("1", "Weapons ("
-                + PrintUtil.printWearableItemCountByType(hero, WearableItemType.WEAPON) + ")");
+        PrintUtil.printIndexAndText("1", "Weapons (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.WEAPON) + ")");
         System.out.println();
-
-        PrintUtil.printIndexAndText("2", "Body ("
-                + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BODY) + ")");
+        PrintUtil.printIndexAndText("2", "Body (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BODY) + ")");
         System.out.println();
-
-        PrintUtil.printIndexAndText("3", "Head ("
-                + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HEAD) + ")");
+        PrintUtil.printIndexAndText("3", "Head (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HEAD) + ")");
         System.out.println();
-
-        PrintUtil.printIndexAndText("4", "Hands ("
-                + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HANDS) + ")");
+        PrintUtil.printIndexAndText("4", "Hands (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HANDS) + ")");
         System.out.println();
-
-        PrintUtil.printIndexAndText("5", "Boots ("
-                + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BOOTS) + ")");
+        PrintUtil.printIndexAndText("5", "Boots (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BOOTS) + ")");
         System.out.println();
-
         PrintUtil.printIndexAndText("6", "Wear off all equip");
         System.out.println();
 
@@ -87,38 +71,10 @@ public class InventoryMenuService {
     }
 
     private void printWearableItemInventoryMenuByItemType(WearableItemType wearableItemType, Hero hero) {
-        PrintUtil.printInventoryWearableItemTypeHeader(wearableItemType);
-        int index = 1;
-        List<WearableItem> tempList = new ArrayList<>();
+        Map<WearableItem, Integer> tempMap = hero.getHeroInventory().returnInventoryWearableItemMap();
 
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-
-        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
-            if (item.getKey().getWearableItemType() == wearableItemType) {
-                PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-                item.getKey().printItemDescription(hero);
-
-                tempList.add(item.getKey());
-                index++;
-            }
-        }
-
-        while (true) {
-            try {
-                int choice = InputUtil.intScanner();
-                if (choice == 0) {
-                    wearableItemsMenu(hero);
-                    break;
-                }
-
-                hero.equipItem(tempList.get(choice - 1));
-                wearableItemsMenu(hero);
-                break;
-            } catch (IndexOutOfBoundsException e) {
-                PrintUtil.printEnterValidInput();
-            }
-        }
+        tempMap.entrySet().removeIf(entry -> !entry.getKey().getWearableItemType().equals(wearableItemType));
+        itemInventoryMenu(hero, tempMap);
     }
 
     public void printItemInventory(Hero hero, Map<? extends Item, Integer> items) {
@@ -136,83 +92,33 @@ public class InventoryMenuService {
         }
     }
 
-    public void craftingReagentsItemMenu(Hero hero) {
-//        int index = 1;
-//        PrintUtil.printInventoryHeader("\tCrafting reagents");
-//        PrintUtil.printIndexAndText("0", "Go back");
-//        System.out.println();
-//        for (Map.Entry<CraftingReagentItem, Integer> item : hero.getHeroInventory().returnInventoryCraftingReagentItemMap().entrySet()) {
-//            PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-//            item.getKey().printItemDescription(hero);
-//        }
-        printItemInventory(hero, hero.getHeroInventory().returnInventoryCraftingReagentItemMap());
-
-        int choice = InputUtil.intScanner();
-        if (choice == 0) {
-            this.inventoryMenu(hero);
+    public boolean itemInventoryMenu(Hero hero, Map<? extends Item, Integer> items) {
+        List<? extends Item> tempList = items.keySet().stream().toList();
+        if (!tempList.isEmpty()) {
+            PrintUtil.printInventoryHeader(tempList.getFirst().getClass().getSimpleName() + "Inventory");
         } else {
-            PrintUtil.printEnterValidInput();
+            PrintUtil.printInventoryHeader("Empty Inventory");
         }
-    }
 
-    public boolean consumableItemsMenu(Hero hero, boolean isHeroInCombat) {
-        PrintUtil.printInventoryHeader("Consumable");
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-
-        List<ConsumableItem> consumableItems = new ArrayList<>();
-        int index = 1;
-        for (Map.Entry<ConsumableItem, Integer> item : hero.getHeroInventory().returnInventoryConsumableItemMap().entrySet()) {
-            if (isHeroInCombat) {
-                if (item.getKey().getConsumableItemType().equals(ConsumableItemType.POTION)) {
-                    PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-                    item.getKey().printItemDescription(hero);
-                    consumableItems.add(item.getKey());
-                    index++;
+        this.printItemInventory(hero, items);
+        int choice = InputUtil.intScanner();
+        try {
+            if (choice == 0) {
+                if (hero.isInCombat()) {
+                    return false;
+                } else {
+                    this.inventoryMenu(hero);
                 }
             } else {
-                PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) ");
-                item.getKey().printItemDescription(hero);
-                consumableItems.add(item.getKey());
-                System.out.println();
-                index++;
-            }
-        }
-
-        int choice = InputUtil.intScanner();
-        if (choice != 0) {
-            try {
-                consumableItems.get(choice - 1).useItem(hero);
-                if (!isHeroInCombat) {
-                    consumableItemsMenu(hero, false);
-                } else {
-                    return true;
+                Item item = tempList.get(choice - 1);
+                if (item instanceof UsableItem usableItem) {
+                    return usableItem.useItem(hero);
                 }
-            } catch (IndexOutOfBoundsException e) {
-                PrintUtil.printEnterValidInput();
-                this.consumableItemsMenu(hero, isHeroInCombat);
             }
-
-        }
-        return false;
-    }
-
-    public void questItemsMenu(Hero hero) {
-        int index = 1;
-        PrintUtil.printInventoryHeader("Quest");
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-
-        for (Map.Entry<QuestItem, Integer> item : hero.getHeroInventory().returnInventoryQuestItemMap().entrySet()) {
-            PrintUtil.printIndexAndText(String.valueOf(index), "(" + item.getValue() + "x) " + item.getKey().getName());
-        }
-
-        int choice = InputUtil.intScanner();
-        if (choice == 0) {
-            this.inventoryMenu(hero);
-        } else {
+        } catch (IndexOutOfBoundsException e) {
             PrintUtil.printEnterValidInput();
         }
-    }
 
+        return false;
+    }
 }

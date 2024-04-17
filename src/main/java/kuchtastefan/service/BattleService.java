@@ -42,6 +42,7 @@ public class BattleService {
 
     public boolean battle(Hero hero, List<Enemy> enemies) {
         HintDB.printHint(HintName.BATTLE_HINT);
+        hero.setInCombat(true);
 
         // Initialize lists for battle
         enemyList.addAll(enemies);
@@ -69,6 +70,7 @@ public class BattleService {
                 // Clear hero's battle actions and reset spell CoolDowns
                 hero.getBattleActionsWithDuration().clear();
                 this.resetSpellsCoolDowns(hero);
+                hero.setInCombat(false);
                 return true; // Battle won
             }
 
@@ -88,6 +90,7 @@ public class BattleService {
                 System.out.println("\tYou lost " + goldToRemove + " golds!");
                 System.out.println("\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
                 PrintUtil.printDivider();
+                hero.setInCombat(false);
                 return false; // Battle lost
             }
         }
@@ -194,9 +197,12 @@ public class BattleService {
                     if (parsedChoice == hero.getCharacterSpellList().size()) {
 
                         // If choice is for consumable items, open inventory menu
-                        if (inventoryMenuService.consumableItemsMenu(hero, true)) {
+                        if (inventoryMenuService.itemInventoryMenu(hero, hero.getHeroInventory().returnInventoryConsumableItemMap())) {
                             break;
                         }
+//                        if (inventoryMenuService.consumableItemsMenu(hero, true)) {
+//                            break;
+//                        }
                     } else {
                         // If choice is for a spell, use the spell on the enemy
                         if (spellService.useSpell(hero.getCharacterSpellList().get(parsedChoice),

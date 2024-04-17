@@ -8,6 +8,7 @@ import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -57,7 +58,7 @@ public class QuestGiverCharacter {
 
         connectHeroQuestListWithCharacterQuestList(hero);
         setNameBasedOnQuestsAvailable(hero);
-        questService.questGiverMenu(hero, this.quests, this.name);
+        questService.questGiverMenu(hero, this.quests);
     }
 
     /**
@@ -69,6 +70,7 @@ public class QuestGiverCharacter {
     public void setNameBasedOnQuestsAvailable(Hero hero) {
         this.name = this.baseName + returnNameSuffix(hero);
     }
+
 
     private String returnNameSuffix(Hero hero) {
         connectHeroQuestListWithCharacterQuestList(hero);
@@ -95,7 +97,7 @@ public class QuestGiverCharacter {
         }
 
         if (haveQuestAvailable && haveQuestUnavailable) {
-            return " - " + ConsoleColor.YELLOW + "!" + ConsoleColor.RESET + " - ";
+            return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
         }
 
         if (!haveQuestAvailable && haveQuestUnavailable) {
@@ -103,7 +105,7 @@ public class QuestGiverCharacter {
         }
 
         if (haveQuestAvailable) {
-            return " - " + ConsoleColor.YELLOW + "!" + ConsoleColor.RESET + " - ";
+            return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
         }
 
         return numberOfTurnedInQuests == this.quests.size() ? " -- " + ConsoleColor.YELLOW + "COMPLETED" + ConsoleColor.RESET + " -- " : "";

@@ -25,11 +25,7 @@ public class QuestService {
 
     private QuestGiverCharacter questGiverCharacter;
 
-    public void questGiverMenu(Hero hero, List<Quest> quests, String name) {
-        PrintUtil.printDivider();
-        System.out.println("\t\t\t" + name);
-        PrintUtil.printDivider();
-
+    public void questGiverMenu(Hero hero, List<Quest> quests) {
         printQuestsMenu(quests);
         try {
             int choice = InputUtil.intScanner();
@@ -39,9 +35,9 @@ public class QuestService {
 
             if (hero.getHeroAcceptedQuest().containsValue(quests.get(choice - 1))) {
                 this.selectedQuestMenu(hero.getHeroAcceptedQuest()
-                        .get(quests.get(choice - 1).getQuestId()), hero, quests, name);
+                        .get(quests.get(choice - 1).getQuestId()), hero, quests);
             } else {
-                this.selectedQuestMenu(quests.get(choice - 1), hero, quests, name);
+                this.selectedQuestMenu(quests.get(choice - 1), hero, quests);
             }
 
             this.questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
@@ -88,18 +84,7 @@ public class QuestService {
         int index = 1;
         for (Quest quest : quests) {
             PrintUtil.printIndexAndText(String.valueOf(index),
-                    quest.getQuestName() + " (recommended level: " + quest.getQuestLevel() + ")");
-
-            switch (quest.getQuestStatus()) {
-                case QuestStatus.UNAVAILABLE ->
-                        System.out.print(" - " + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + " - ");
-                case QuestStatus.AVAILABLE ->
-                        System.out.print(" - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ");
-                case QuestStatus.COMPLETED ->
-                        System.out.print(" - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + " - ");
-                case QuestStatus.TURNED_IN -> System.out.print(" -- Completed --");
-                default -> System.out.print("");
-            }
+                    quest.getQuestName() + " " + PrintUtil.returnQuestSuffix(quest));
 
             index++;
             System.out.println();
@@ -113,9 +98,8 @@ public class QuestService {
      *
      * @param quest  quest which come dynamically depending on you choice
      * @param quests only needed for switching between menus
-     * @param name   same as quests
      */
-    private void selectedQuestMenu(Quest quest, Hero hero, List<Quest> quests, String name) {
+    private void selectedQuestMenu(Quest quest, Hero hero, List<Quest> quests) {
 
         PrintUtil.printQuestDetails(quest, hero);
         System.out.println();
@@ -131,7 +115,7 @@ public class QuestService {
             }
             case QuestStatus.ACCEPTED -> {
                 PrintUtil.printQuestDetails(quest, hero);
-                this.questGiverMenu(hero, quests, name);
+                this.questGiverMenu(hero, quests);
             }
             case QuestStatus.COMPLETED -> {
                 PrintUtil.printIndexAndText("0", "Go back\n");
@@ -145,22 +129,22 @@ public class QuestService {
 
         int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> this.questGiverMenu(hero, quests, name);
+            case 0 -> this.questGiverMenu(hero, quests);
             case 1 -> {
                 if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
                     System.out.println("\t\t --> Quest accepted <--");
                     quest.startTheQuest(hero);
-                    this.questGiverMenu(hero, quests, name);
+                    this.questGiverMenu(hero, quests);
                 }
 
                 if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
                     quest.turnInTheQuest(hero);
-                    this.questGiverMenu(hero, quests, name);
+                    this.questGiverMenu(hero, quests);
                 }
             }
             default -> {
                 PrintUtil.printEnterValidInput();
-                this.selectedQuestMenu(quest, hero, quests, name);
+                this.selectedQuestMenu(quest, hero, quests);
             }
         }
     }

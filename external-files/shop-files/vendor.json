@@ -48,6 +48,15 @@
     "currentItemListId": 0
   },
   {
+    "type": "ConsumableVendorCharacter",
+    "vendorId": 5,
+    "name": "Mystic Hollow Tavern Keeper",
+    "itemListsId": [
+      5
+    ],
+    "currentItemListId": 0
+  },
+  {
     "type": "WearableItemVendorCharacter",
     "vendorId": 100,
     "name": "",

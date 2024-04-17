@@ -20,6 +20,7 @@ import kuchtastefan.item.junkItem.JunkItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 
 import java.util.HashSet;
@@ -504,6 +505,26 @@ public class PrintUtil {
 
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             questObjective.printQuestObjectiveAssignment(hero);
+        }
+    }
+
+    public static String returnQuestSuffix(Quest quest) {
+        switch (quest.getQuestStatus()) {
+            case QuestStatus.UNAVAILABLE -> {
+                return "-" + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + "-";
+            }
+            case QuestStatus.AVAILABLE -> {
+                return "-" + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + "-";
+            }
+            case QuestStatus.COMPLETED -> {
+                return "-" + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + "-";
+            }
+            case QuestStatus.TURNED_IN -> {
+                return " -- Completed --";
+            }
+            default -> {
+                return "";
+            }
         }
     }
 }

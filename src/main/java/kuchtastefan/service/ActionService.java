@@ -21,9 +21,6 @@ public class ActionService {
         GameCharacter actionTarget;
 
         if (action.willPerformAction()) {
-            System.out.println(action.returnActionValueRange(charactersInvolvedInBattle.spellCaster()).minimumValue());
-            System.out.println(action.returnActionValueRange(charactersInvolvedInBattle.spellCaster()).maximumValue());
-
             int totalActionValue = RandomNumberGenerator.getRandomNumber(
                     action.returnActionValueRange(charactersInvolvedInBattle.spellCaster()).minimumValue(),
                     action.returnActionValueRange(charactersInvolvedInBattle.spellCaster()).maximumValue());

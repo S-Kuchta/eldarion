@@ -3,8 +3,9 @@
     "type": "Quest",
     "questId": 0,
     "questName": "Cleansing Crystal Lake",
-    "questDescription": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Kill all water Elementals all over the Crystal Lake.",
+    "questDescription": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Kill water Elementals all over the Crystal Lake.",
     "questLevel": 1,
+    "instantTurnIn": false,
     "questObjectives": [
       {
         "type": "QuestKillObjective",
@@ -32,6 +33,7 @@
     "questName": "Clear Crystal Lake",
     "questDescription": "Clear the area of Crystal lake.",
     "questLevel": 1,
+    "instantTurnIn": false,
     "questObjectives": [
       {
         "type": "QuestClearLocationObjective",
@@ -52,6 +54,7 @@
     "questName": "Bandits and Miners",
     "questDescription": "Hey there, could you lend me a hand? They've locked me up in this cell for no reason! I used to serve them, lead the miners, and now I'm stuck here... I want to revenge, can you help me?",
     "questLevel": 2,
+    "instantTurnIn": false,
     "questObjectives": [
       {
         "type": "QuestKillObjective",
@@ -82,9 +85,10 @@
   {
     "type": "Quest",
     "questId": 3,
-    "questName": "Finding the Lost Book",
+    "questName": "Find the Lost Book",
     "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
     "questLevel": 2,
+    "instantTurnIn": false,
     "questObjectives": [
       {
         "type": "QuestFindItemObjective",
@@ -120,26 +124,6 @@
         901,901
       ],
       "goldsReward": 0.0
-    }
-  },
-  {
-    "type": "Quest",
-    "questId": 5,
-    "questName": "Explore Mystic Hollow",
-    "questDescription": "Explore Mystic Hollow",
-    "questLevel": 1,
-    "instantTurnIn": true,
-    "questObjectives": [
-      {
-        "type": "QuestClearLocationObjective",
-        "questObjectiveName": "Explore Mystic Hollow",
-        "locationId": 4
-      }
-    ],
-    "questReward": {
-      "itemsReward": [
-      ],
-      "goldsReward": 20.0
     }
   }
 ]

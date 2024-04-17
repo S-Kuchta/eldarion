@@ -212,5 +212,26 @@
 
     ],
     "level": 2
+  },
+  {
+    "npcId": 210,
+    "name": "Drunken Man",
+    "characterRarity": "COMMON",
+    "npcType": "ROGUE",
+    "abilities": {
+      "ATTACK": 3,
+      "RESIST_DAMAGE": 1,
+      "STRENGTH": 1,
+      "INTELLECT": 1,
+      "HASTE": 2,
+      "CRITICAL_HIT_CHANCE": 2,
+      "HEALTH": 50,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100
+    ],
+    "level": 1
   }
 ]

@@ -71,7 +71,8 @@ public abstract class Action {
 
         if (this instanceof ActionWithIncreasedValueByAbility) {
             if (spellCaster instanceof Hero hero) {
-                valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(hero.getCharacterClass().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
+                valueIncreasedByPrimaryAbility = valueIncreasedByLevel +
+                        spellCaster.getCurrentAbilityValue(hero.getCharacterClass().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
             }
 
             if (spellCaster instanceof NonPlayerCharacter nonPlayerCharacter) {

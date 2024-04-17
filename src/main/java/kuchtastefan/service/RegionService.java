@@ -27,9 +27,7 @@ public class RegionService {
             PrintUtil.printLongDivider();
             System.out.println("\t\t" + region.getRegionName()
                     + " \tRegion level: " + region.getMinimumRegionLevel() + " - " + region.getMaximumRegionLevel()
-                    + " \tDiscovered locations: "
-                    + hero.getDiscoveredLocationList().size() + " / "
-                    + region.getAllLocations().size());
+                    + " \tDiscovered locations: " + hero.getDiscoveredLocationList().size() + " / " + region.getAllLocations().size());
             PrintUtil.printLongDivider();
 
             PrintUtil.printIndexAndText("0", "Go back to the city");
@@ -43,9 +41,7 @@ public class RegionService {
             int index = 3;
             List<Location> locations = new ArrayList<>();
             for (Map.Entry<Integer, Location> location : hero.getDiscoveredLocationList().entrySet()) {
-                String s = location.getValue().getLocationName()
-                        + " (recommended level: "
-                        + location.getValue().getLocationLevel() + ")";
+                String s = location.getValue().getLocationName() + " " + location.getValue().returnLocationServices();
 
                 PrintUtil.printIndexAndText(String.valueOf(index), s);
                 locations.add(location.getValue());
@@ -73,4 +69,6 @@ public class RegionService {
             }
         }
     }
+
+
 }

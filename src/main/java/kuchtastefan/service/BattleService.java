@@ -432,7 +432,6 @@ public class BattleService {
                 if (spellIntegerEntry.getKey().isCanSpellBeCasted()) {
                     priorityPoints = 0;
                     for (Action action : spellIntegerEntry.getKey().getSpellActions()) {
-                        System.out.println(action.returnPriorityPoints(spellCaster, spellTarget));
                         priorityPoints += action.returnPriorityPoints(spellCaster, spellTarget);
                     }
 
@@ -446,48 +445,7 @@ public class BattleService {
         }
 
         spellService.useSpell(spellToCast, new CharactersInvolvedInBattle(hero, spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
-//        spellToCast.useSpell(spellCaster, spellTarget, enemyList, hero, tempCharacterList);
     }
-
-//    /**
-//     * Returns the spell in the character's spell list with the highest potential total damage output.
-//     *
-//     * @param gameCharacter The character whose spell list is considered.
-//     * @return The spell with the highest potential total damage.
-//     */
-//    private Spell returnSpellWithTheHighestTotalDamage(GameCharacter gameCharacter) {
-//
-//        Spell spellWithMaxDamage = gameCharacter.getCharacterSpellList().getFirst();
-//
-//        int totalDamage = 0;
-//        int maxTotalDamage = 0;
-//
-//        for (Spell spell : gameCharacter.getCharacterSpellList()) {
-//            if (spell.isCanSpellBeCasted()) {
-//
-//                // Calculate the total damage of the spell, including any damage over time effects
-//                for (Action action : spell.getSpellActions()) {
-//                    if (action instanceof ActionDealDamage) {
-//                        totalDamage += action.returnTotalActionValue(spell.getBonusValueFromAbility(), gameCharacter);
-//                    }
-//
-//                    if (action instanceof ActionDealDamageOverTime) {
-//                        int damageWithStacks = action.returnTotalActionValue(spell.getBonusValueFromAbility(), gameCharacter)
-//                                * ((ActionDealDamageOverTime) action).getActionMaxStacks();
-//                        totalDamage += damageWithStacks;
-//                    }
-//                }
-//
-//                // Update the spell with the highest total damage if necessary
-//                if (totalDamage > maxTotalDamage) {
-//                    maxTotalDamage = totalDamage;
-//                    spellWithMaxDamage = spell;
-//                }
-//            }
-//        }
-//
-//        return spellWithMaxDamage;
-//    }
 
     private void checkSpellsCoolDowns(GameCharacter gameCharacter) {
         for (Spell spell : gameCharacter.getCharacterSpellList()) {

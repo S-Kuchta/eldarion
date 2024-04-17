@@ -34,7 +34,7 @@
       }
     ],
     "spellLevel": 0,
-    "spellManaCost": 21,
+    "spellManaCost": 19,
     "turnCoolDown": 0
   },
   {
@@ -47,7 +47,7 @@
         "type": "ActionDealDamageOverTime",
         "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
-        "baseActionValue": 1,
+        "baseActionValue": 7,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "actionDurationType": "BATTLE_ACTION",
@@ -57,8 +57,8 @@
       }
     ],
     "spellLevel": 0,
-    "spellManaCost": 25,
-    "turnCoolDown": 3
+    "spellManaCost": 22,
+    "turnCoolDown": 0
   },
   {
     "spellId": 403,

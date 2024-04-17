@@ -1,6 +1,14 @@
 package kuchtastefan.world.location;
 
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestStatus;
+import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
+import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.location.locationStage.LocationStage;
+import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageBlacksmith;
+import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;
+import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageVendor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +44,43 @@ public class Location {
 
     public void incrementStageCompleted() {
         this.stageCompleted++;
+    }
+
+    public StringBuilder returnLocationServices() {
+        boolean vendor = false;
+        int numOfVendors = 0;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (LocationStage stage : locationStages.values()) {
+            if (stage instanceof LocationStageVendor) {
+                vendor = true;
+                numOfVendors++;
+            }
+
+            if (stage instanceof LocationStageBlacksmith) {
+                stringBuilder.append("[");
+                stringBuilder.append(ConsoleColor.YELLOW).append("Blacksmithing").append(ConsoleColor.RESET);
+                stringBuilder.append("]");
+            }
+
+            if (stage instanceof LocationStageQuestGiver locationStageQuestGiver) {
+                for (Quest quest : QuestGiverCharacterDB.returnQuestGiverFromDB(locationStageQuestGiver.getQuestGiverId()).getQuests()) {
+                    if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE) || quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+                        stringBuilder.append("[");
+                        stringBuilder.append(PrintUtil.returnQuestSuffix(quest));
+                        stringBuilder.append("]");
+                    }
+                }
+            }
+        }
+
+        if (vendor) {
+            stringBuilder.append("[").append(ConsoleColor.YELLOW);
+            stringBuilder.append("Vendor ").append(ConsoleColor.RESET).append("(").append(numOfVendors).append("x)");
+            stringBuilder.append("]");
+        }
+
+        return stringBuilder;
     }
 
     @Override

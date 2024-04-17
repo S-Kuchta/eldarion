@@ -395,6 +395,31 @@
         "itemsIdNeededToEnterStage": [
           107
         ]
+      },
+      "8": {
+        "type": "LocationStageVendor",
+        "stageName": "Tavern Keeper",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "vendorId": 5
+      },
+      "9": {
+        "type": "LocationStageQuestGiver",
+        "stageName": "Man with cape in Tavern",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "questGiverId": 0
+      },
+      "10": {
+        "type": "LocationStageCombat",
+        "stageName": "Tavern Back door",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          210,
+          210,
+          210
+        ]
       }
     }
   }

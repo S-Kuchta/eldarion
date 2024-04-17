@@ -40,5 +40,11 @@
     "name": "Coursed Medallion",
     "price": 0,
     "itemLevel": 2
+  },
+  {
+    "itemId": 107,
+    "name": "Mystic Hollow house key",
+    "price": 0,
+    "itemLevel": 2
   }
 ]

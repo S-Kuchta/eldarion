@@ -15,9 +15,9 @@ public class QuestChain extends Quest {
 
     public QuestChain(int questId, String questName, String questDescription, int questLevel,
                       List<? extends QuestObjective> questObjectives,
-                      QuestReward questReward, int previousQuestId) {
+                      QuestReward questReward, int previousQuestId, boolean instantTurnIn) {
 
-        super(questId, questName, questDescription, questLevel, questObjectives, questReward);
+        super(questId, questName, questDescription, questLevel, questObjectives, questReward, instantTurnIn);
         this.previousQuestId = previousQuestId;
     }
 

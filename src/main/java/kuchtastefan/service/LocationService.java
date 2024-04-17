@@ -1,16 +1,20 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
+import kuchtastefan.hint.HintName;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.location.Location;
+import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
 import kuchtastefan.world.location.locationStage.LocationStage;
-import kuchtastefan.world.location.locationStage.LocationStageQuestGiver;
 import kuchtastefan.world.location.locationStage.RemoveLocationStageProgress;
+import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageBlacksmith;
+import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStagePlaceToRest;
+import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;
+import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageVendor;
 
 import java.util.Map;
 
@@ -46,10 +50,16 @@ public class LocationService {
 
             // Print discovered location Stages
             int index = 3;
-            System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t\tLocation Stages\t\t\t\t\t\t" + ConsoleColor.RESET);
+            System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t\t\tLocation Stages\t\t\t\t\t\t\t" + ConsoleColor.RESET);
             for (Map.Entry<Integer, LocationStage> locationStage : location.getLocationStages().entrySet()) {
                 if (locationStage.getValue().isStageDiscovered()) {
-                    String completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
+                    String completed;
+                    if (locationStage.getValue() instanceof CanEnterStageAfterComplete && location.isCleared()) {
+                        completed = "";
+                    } else {
+                        completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
+                    }
+
                     PrintUtil.printIndexAndText(String.valueOf(index + locationStage.getKey()),
                             locationStage.getValue().getStageName() + " " + completed);
 
@@ -111,26 +121,24 @@ public class LocationService {
             location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
         }
 
-        if (location.isCleared()) {
-            System.out.println("\tLocation Cleared!");
-            return;
-        }
-
         if (!locationStage.isStageDiscovered()) {
             locationStage.setStageDiscovered(true);
         }
 
         if (!locationStage.canHeroEnterStage(hero)) {
             System.out.println("\tYou don't have needed keys to enter location! You need: ");
-            for (Integer i : locationStage.getItemsIdNeededToEnterStage()) {
-                System.out.println("\t" + ItemDB.returnItemFromDB(i).getName());
+            for (int itemId : locationStage.getItemsIdNeededToEnterStage()) {
+                System.out.println("\t" + ItemDB.returnItemFromDB(itemId).getName());
             }
+
             return;
         }
 
         if (locationStage.isStageCompleted()) {
-            System.out.println("\t" + locationStage.getStageName() + " is cleared!");
-            return;
+            if (!(locationStage instanceof CanEnterStageAfterComplete)) {
+                System.out.println("\tNothing new to do in " + locationStage.getStageName());
+                return;
+            }
         }
 
         // LocationStage header
@@ -142,7 +150,7 @@ public class LocationService {
         boolean isStageCompleted = locationStage.exploreStage(hero, location);
 
         // check if stage is successfully cleared
-        if (isStageCompleted) {
+        if (isStageCompleted && !locationStage.isStageCompleted()) {
             location.incrementStageCompleted();
             locationStage.setStageCompleted(true);
 

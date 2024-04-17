@@ -187,7 +187,7 @@
         "stageName": "Empty Socket in Cursed Altar",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
-        "itemId": [
+        "itemsId": [
           106
         ]
       },
@@ -302,16 +302,17 @@
   {
     "locationId": 3,
     "locationName": "Bear Cave",
-    "locationLevel": 1,
+    "locationLevel": 2,
     "canLocationBeExplored": true,
     "locationDifficulty": "MEDIUM",
     "locationStages": {
       "0": {
         "type": "LocationStageCombat",
-        "stageName": "Bear Cave main room",
+        "stageName": "Bear cave chamber",
         "stageDiscovered": true,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
+          401,
           401
         ]
       },
@@ -326,10 +327,74 @@
       },
       "2": {
         "type": "LocationStageQuestGiver",
-        "stageName": "Letter next to Corpse",
+        "stageName": "Letter lying next to corpse",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "questGiverId": 1
+      }
+    }
+  },
+  {
+    "locationId": 4,
+    "locationName": "Mystic Hollow",
+    "locationLevel": 1,
+    "canLocationBeExplored": true,
+    "locationDifficulty": "EASY",
+    "locationStages": {
+      "0": {
+        "type": "LocationStageNothingOutcome",
+        "stageName": "Main gate City Guard",
+        "stageDiscovered": true,
+        "itemsIdNeededToEnterStage": []
+      },
+      "1": {
+        "type": "LocationStageBlacksmith",
+        "stageName": "Blacksmith Equipment",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": []
+      },
+      "2": {
+        "type": "LocationStageVendor",
+        "stageName": "Blacksmith Equipment Merchant",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "vendorId": 0
+      },
+      "3": {
+        "type": "LocationStageVendor",
+        "stageName": "Ore Merchant",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "vendorId": 1
+      },
+      "4": {
+        "type": "LocationStageVendor",
+        "stageName": "Alchemist potion Vendor",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "vendorId": 2
+      },
+      "5": {
+        "type": "LocationStageVendor",
+        "stageName": "Alchemist reagent Vendor",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "vendorId": 4
+      },
+      "6": {
+        "type": "LocationStageVendor",
+        "stageName": "Merchant of Trinkets",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [],
+        "vendorId": 3
+      },
+      "7": {
+        "type": "LocationStagePlaceToRest",
+        "stageName": "Empty house",
+        "stageDiscovered": false,
+        "itemsIdNeededToEnterStage": [
+          107
+        ]
       }
     }
   }

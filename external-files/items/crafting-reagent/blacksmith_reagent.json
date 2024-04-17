@@ -2,25 +2,31 @@
   {
     "itemId": 700,
     "name": "Iron ore",
-    "price": 10,
+    "price": 17,
     "itemLevel": 3
   },
   {
     "itemId": 701,
     "name": "Silver ore",
-    "price": 25,
+    "price": 27,
     "itemLevel": 4
   },
   {
     "itemId": 702,
     "name": "Gold ore",
-    "price": 25,
+    "price": 35,
     "itemLevel": 5
   },
   {
     "itemId": 703,
     "name": "Cooper ore",
-    "price": 7,
+    "price": 12,
     "itemLevel": 2
+  },
+  {
+    "itemId": 704,
+    "name": "Leather",
+    "price": 5,
+    "itemLevel": 1
   }
 ]

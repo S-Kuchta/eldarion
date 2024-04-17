@@ -14,10 +14,9 @@
   {
     "type": "CraftingReagentItemVendorCharacter",
     "vendorId": 1,
-    "name": "Rumpir",
+    "name": "Bedgraen Grimdelver",
     "itemListsId": [
-      7,
-      8
+      7
     ],
     "currentItemListId": 0
   },
@@ -26,7 +25,6 @@
     "vendorId": 2,
     "name": "Faraine Daeyra",
     "itemListsId": [
-      5,
       6
     ],
     "currentItemListId": 0
@@ -37,6 +35,15 @@
     "name": "Lucky Thorne",
     "itemListsId": [
       9
+    ],
+    "currentItemListId": 0
+  },
+  {
+    "type": "CraftingReagentItemVendorCharacter",
+    "vendorId": 4,
+    "name": "Elora Quiqen",
+    "itemListsId": [
+      8
     ],
     "currentItemListId": 0
   },

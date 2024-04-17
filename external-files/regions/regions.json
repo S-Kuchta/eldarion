@@ -6,6 +6,6 @@
     "minimumRegionLevel": 1,
     "maximumRegionLevel": 2,
     "biome": "FOREST",
-    "locationsId": [0,1,2]
+    "locationsId": [0,1,2,3,4]
   }
 ]

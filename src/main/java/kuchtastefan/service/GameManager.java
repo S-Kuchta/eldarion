@@ -1,13 +1,16 @@
 package kuchtastefan.service;
 
-import kuchtastefan.character.hero.*;
+import kuchtastefan.character.hero.CharacterClass;
+import kuchtastefan.character.hero.GameLoaded;
+import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.HeroAbilityManager;
 import kuchtastefan.character.npc.vendor.VendorDB;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettingsDB;
-import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
+import kuchtastefan.hint.HintName;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.ConsoleColor;
@@ -22,7 +25,6 @@ public class GameManager {
     private Hero hero;
     private final HeroAbilityManager heroAbilityManager;
     private final FileService fileService;
-    private final BlacksmithService blacksmithService;
     private final HeroMenuService heroMenuService;
 
 
@@ -30,7 +32,6 @@ public class GameManager {
         this.hero = new Hero("");
         this.fileService = new FileService();
         this.heroAbilityManager = new HeroAbilityManager(this.hero);
-        this.blacksmithService = new BlacksmithService();
         this.heroMenuService = new HeroMenuService(this.heroAbilityManager);
     }
 
@@ -44,37 +45,21 @@ public class GameManager {
             PrintUtil.printLongDivider();
             System.out.println("\t\t\t\t\t\t\t------ Mystic Hollow ------");
             PrintUtil.printLongDivider();
-            PrintUtil.printIndexAndText("0", "Explore surrounding regions");
+            PrintUtil.printIndexAndText("0", "Explore World");
             System.out.println();
             PrintUtil.printIndexAndText("1", "Hero menu");
             System.out.println();
-            PrintUtil.printIndexAndText("2", "Junk Merchant");
+            PrintUtil.printIndexAndText("2", "Save game");
             System.out.println();
-            PrintUtil.printIndexAndText("3", "Tavern");
-            System.out.println();
-            PrintUtil.printIndexAndText("4", "Alchemist");
-            System.out.println();
-            PrintUtil.printIndexAndText("5", "Blacksmith");
-            System.out.println();
-            PrintUtil.printIndexAndText("6", "Save game");
-            System.out.println();
-            PrintUtil.printIndexAndText("7", "Exit game");
+            PrintUtil.printIndexAndText("3", "Exit game");
             System.out.println();
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> exploreSurroundingRegions();
                 case 1 -> this.heroMenuService.heroCharacterMenu(this.hero);
-                case 2 -> {
-//                    JunkVendorCharacter junkVendorCharacter = new JunkVendorCharacter("Dazres Heitholt", 8,
-//                            ItemDB.returnJunkItemListByItemLevel(this.hero.getLevel(), 0), JunkItem.class);
-//                    junkVendorCharacter.vendorMenu(this.hero);
-                }
-                case 3 -> this.tavernMenu();
-                case 4 -> this.alchemistMenu();
-                case 5 -> this.blacksmithService.blacksmithMenu(this.hero);
-                case 6 -> this.fileService.saveGame(this.hero);
-                case 7 -> {
+                case 2 -> this.fileService.saveGame(this.hero);
+                case 3 -> {
                     System.out.println("Are you sure?");
                     PrintUtil.printIndexAndText("0", "No");
                     System.out.println();
@@ -106,32 +91,9 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> new RegionService().adventuringAcrossTheRegion(heroMenuService, RegionDB.returnRegion(0), this.hero);
+            case 1 ->
+                    new RegionService().adventuringAcrossTheRegion(heroMenuService, RegionDB.returnRegion(0), this.hero);
             default -> PrintUtil.printEnterValidInput();
-        }
-    }
-
-    private void tavernMenu() {
-//        final ConsumableVendorCharacter cityFoodVendor = new ConsumableVendorCharacter("Ved Of Kaedwen", 8,
-//                ItemDB.returnConsumableItemListByTypeAndItemLevel(ConsumableItemType.FOOD, this.hero.getLevel(), null), ConsumableItem.class);
-
-        PrintUtil.printDivider();
-        System.out.println("\t\tTavern");
-        PrintUtil.printDivider();
-
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-//        PrintUtil.printIndexAndText("1", cityFoodVendor.getName() + " (Food Merchant)");
-//        System.out.println();
-//        PrintUtil.printIndexAndText("2", QuestGiverCharacterDB.returnQuestGiverName(0));
-//        System.out.println();
-
-        int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> {
-            }
-//            case 1 -> cityFoodVendor.vendorMenu(this.hero);
-
         }
     }
 

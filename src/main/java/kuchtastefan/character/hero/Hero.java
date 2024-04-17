@@ -1,6 +1,8 @@
 package kuchtastefan.character.hero;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.ActionStatusEffect;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventory;
 import kuchtastefan.character.spell.Spell;
@@ -243,11 +245,18 @@ public class Hero extends GameCharacter {
         this.heroGold += golds;
     }
 
+    public void rest() {
+        this.resetAbilitiesToMaxValues(true);
+        this.regionActionsWithDuration.removeIf(actionWithDuration -> actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF));
+
+    }
+
     public void setInitialEquip() {
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(200));
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(400));
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(500));
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(600));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(107));
 
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(200));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(400));

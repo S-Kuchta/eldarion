@@ -1,8 +1,9 @@
-package kuchtastefan.world.location.locationStage;
+package kuchtastefan.world.location.locationStage.specificLocationStage;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.world.event.specificEvent.FindItemEvent;
 import kuchtastefan.world.location.Location;
+import kuchtastefan.world.location.locationStage.LocationStage;
 
 public class LocationStageFindItem extends LocationStage {
     private final int[] itemsId;

@@ -50,7 +50,7 @@
     "type": "Quest",
     "questId": 2,
     "questName": "Bandits and Miners",
-    "questDescription": "Hey there, could you lend me a hand? They've locked me up in this cell for no reason! I used to serve them, lead the miners, and now I'm stuck here... I want to get back at them, can you help me out?",
+    "questDescription": "Hey there, could you lend me a hand? They've locked me up in this cell for no reason! I used to serve them, lead the miners, and now I'm stuck here... I want to revenge, can you help me?",
     "questLevel": 2,
     "questObjectives": [
       {
@@ -104,7 +104,8 @@
     "questId": 4,
     "questName": "Coursed Medallion",
     "questDescription": "After reading Tattered Letter near a corpse, you discover a chilling message written upon it. The message speaks of a cursed medallion stolen from the altar within the Tower of the Damned. It warns of dire consequences should the medallion remain in the wrong hands.",
-    "questLevel": 1,
+    "questLevel": 2,
+    "instantTurnIn": true,
     "questObjectives": [
       {
         "type": "QuestUseItemObjective",
@@ -119,6 +120,26 @@
         901,901
       ],
       "goldsReward": 0.0
+    }
+  },
+  {
+    "type": "Quest",
+    "questId": 5,
+    "questName": "Explore Mystic Hollow",
+    "questDescription": "Explore Mystic Hollow",
+    "questLevel": 1,
+    "instantTurnIn": true,
+    "questObjectives": [
+      {
+        "type": "QuestClearLocationObjective",
+        "questObjectiveName": "Explore Mystic Hollow",
+        "locationId": 4
+      }
+    ],
+    "questReward": {
+      "itemsReward": [
+      ],
+      "goldsReward": 20.0
     }
   }
 ]

@@ -23,9 +23,7 @@ import java.util.Map;
 public class BlacksmithService {
 
     public void blacksmithMenu(Hero hero) {
-        ShopService shopService = new ShopService();
         HintDB.printHint(HintName.BLACKSMITH_HINT);
-
 
         PrintUtil.printDivider();
         System.out.println("\t\tBlacksmith");
@@ -37,12 +35,6 @@ public class BlacksmithService {
         System.out.println();
         PrintUtil.printIndexAndText("2", "Dismantle item");
         System.out.println();
-        PrintUtil.printIndexAndText("3", VendorDB.returnVendorCharacterFromDb(0).getName());
-        System.out.println();
-//        PrintUtil.printIndexAndText("3", citySmithVendor.getName() + " (Wearable Items Merchant)");
-//        System.out.println();
-//        PrintUtil.printIndexAndText("4", cityReagentVendor.getName() + " (Blacksmith reagents Merchant)");
-        System.out.println();
 
         final int choice = InputUtil.intScanner();
         switch (choice) {
@@ -50,9 +42,6 @@ public class BlacksmithService {
             }
             case 1 -> this.refinementItemQuality(hero);
             case 2 -> this.dismantleItem(hero);
-            case 3 -> shopService.vendorMenu(hero, VendorDB.returnVendorCharacterFromDb(0));
-//            case 3 -> citySmithVendor.vendorMenu(hero);
-//            case 4 -> cityReagentVendor.vendorMenu(hero);
             default -> PrintUtil.printEnterValidInput();
         }
     }

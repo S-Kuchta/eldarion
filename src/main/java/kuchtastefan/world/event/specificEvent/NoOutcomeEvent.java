@@ -10,7 +10,7 @@ public class NoOutcomeEvent extends Event {
 
     @Override
     public boolean eventOccurs(Hero hero) {
-        System.out.println("\t--> Nothing happened, just calm walking through the region <--");
+        System.out.println("\t--> Nothing happened, just calm walking through <--");
         return true;
     }
 }

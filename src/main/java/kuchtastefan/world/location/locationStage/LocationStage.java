@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 public abstract class LocationStage {
 
-    private final String stageName;
+    private String stageName;
     private boolean stageCompleted;
     private boolean stageDiscovered;
     private Integer[] itemsIdNeededToEnterStage;

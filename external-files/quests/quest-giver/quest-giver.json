@@ -26,5 +26,12 @@
     "questsId": [
       4
     ]
+  },
+  {
+    "questGiverId": 4,
+    "baseName": "City Guard",
+    "questsId": [
+      5
+    ]
   }
 ]

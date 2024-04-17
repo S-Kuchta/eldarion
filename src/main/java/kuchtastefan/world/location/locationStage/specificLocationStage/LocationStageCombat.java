@@ -1,10 +1,12 @@
-package kuchtastefan.world.location.locationStage;
+package kuchtastefan.world.location.locationStage.specificLocationStage;
 
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.world.event.specificEvent.CombatEvent;
 import kuchtastefan.world.location.Location;
+import kuchtastefan.world.location.locationStage.LocationStage;
+import kuchtastefan.world.location.locationStage.RemoveLocationStageProgress;
 
 import java.util.ArrayList;
 import java.util.Arrays;

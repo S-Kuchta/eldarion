@@ -24,6 +24,7 @@ import kuchtastefan.quest.QuestChain;
 import kuchtastefan.quest.questObjectives.*;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
 import kuchtastefan.world.location.locationStage.*;
+import kuchtastefan.world.location.locationStage.specificLocationStage.*;
 
 
 public class RuntimeTypeAdapterFactoryUtil {
@@ -68,6 +69,7 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(QuestKillObjective.class)
             .registerSubtype(QuestBringItemFromEnemyObjective.class)
             .registerSubtype(QuestClearLocationObjective.class)
+            .registerSubtype(QuestUseItemObjective.class)
             .registerSubtype(QuestFindItemObjective.class);
 
     public static final RuntimeTypeAdapterFactory<? extends Item> itemsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
@@ -83,7 +85,12 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(LocationStageQuestGiver.class)
             .registerSubtype(LocationStageCombat.class)
             .registerSubtype(LocationStageFindTreasure.class)
-            .registerSubtype(LocationStageFindItem.class);
+            .registerSubtype(LocationStageFindItem.class)
+            .registerSubtype(LocationStageUseItem.class)
+            .registerSubtype(LocationStageBlacksmith.class)
+            .registerSubtype(LocationStagePlaceToRest.class)
+            .registerSubtype(LocationStageNothingOutcome.class)
+            .registerSubtype(LocationStageVendor.class);
 
     public static final RuntimeTypeAdapterFactory<? extends Quest> questRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Quest.class)

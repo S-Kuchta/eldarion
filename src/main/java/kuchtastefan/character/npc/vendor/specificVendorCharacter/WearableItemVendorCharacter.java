@@ -26,8 +26,8 @@ public class WearableItemVendorCharacter extends VendorCharacter implements Sort
     public void sortVendorOffer() {
         if (this.returnVendorOffer().size() > 2) {
             this.returnVendorOffer().sort((item1, item2) -> {
-                WearableItemType wearableItemType1 = ((WearableItem) item1).getWearableItemType();
-                WearableItemType wearableItemType2 = ((WearableItem) item2).getWearableItemType();
+                WearableItemType wearableItemType1 = ((WearableItem) item1).getItemType();
+                WearableItemType wearableItemType2 = ((WearableItem) item2).getItemType();
                 return wearableItemType1.compareTo(wearableItemType2);
             });
         }

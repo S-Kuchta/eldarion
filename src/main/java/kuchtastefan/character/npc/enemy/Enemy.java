@@ -6,6 +6,7 @@ import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.ItemFilter;
 import kuchtastefan.world.Biome;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -48,7 +49,7 @@ public class Enemy extends NonPlayerCharacter {
             this.itemsDrop = new ArrayList<>();
         }
 
-        List<Item> itemList = ItemDB.returnItemListByLevel(getLevel(), null);
+        List<Item> itemList = ItemDB.returnItemListForEnemy(new ItemFilter(this.level));
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
 
         for (int i = 0; i < itemsForDrop; i++) {

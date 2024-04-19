@@ -64,7 +64,7 @@ public class InventoryMenuService {
      */
     private void printWearableItemInventoryMenuByItemType(WearableItemType wearableItemType, Hero hero) {
         Map<WearableItem, Integer> itemMap = new HashMap<>(hero.getHeroInventory().returnHeroInventory(WearableItem.class));
-        itemMap.entrySet().removeIf(entry -> !entry.getKey().getWearableItemType().equals(wearableItemType));
+        itemMap.entrySet().removeIf(entry -> !entry.getKey().getItemType().equals(wearableItemType));
 
         itemInventoryMenu(hero, itemMap);
     }

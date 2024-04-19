@@ -1,6 +1,7 @@
 package kuchtastefan.world.event.specificEvent;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.item.ItemFilter;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
@@ -27,11 +28,11 @@ public class GatherCraftingReagentItemEvent extends Event {
         }
 
         for (int i = 0; i < numberOfFindingItems; i++) {
-            if (item.getCraftingReagentItemType().equals(CraftingReagentItemType.ALCHEMY_REAGENT)) {
+            if (item.getItemType().equals(CraftingReagentItemType.ALCHEMY_REAGENT)) {
                 System.out.println("\t--> You gather " + item.getName() + " <--");
             }
 
-            if (item.getCraftingReagentItemType().equals(CraftingReagentItemType.BLACKSMITH_REAGENT)) {
+            if (item.getItemType().equals(CraftingReagentItemType.BLACKSMITH_REAGENT)) {
                 System.out.println("\t--> You mined " + item.getName() + " <--");
             }
         }
@@ -44,7 +45,9 @@ public class GatherCraftingReagentItemEvent extends Event {
     }
 
     private CraftingReagentItem findRandomCraftingReagentItem() {
-        List<CraftingReagentItem> craftingReagentItemList = ItemDB.returnCraftingReagentItemListByItemLevel(this.eventLevel, 0);
+        List<CraftingReagentItem> craftingReagentItemList = ItemDB.returnItemListByLevelAndType(CraftingReagentItem.class,
+                new ItemFilter(this.eventLevel, 0));
+
         return craftingReagentItemList.get(RandomNumberGenerator.getRandomNumber(0, craftingReagentItemList.size() - 1));
     }
 }

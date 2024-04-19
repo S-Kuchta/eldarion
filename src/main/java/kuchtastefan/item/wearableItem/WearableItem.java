@@ -2,6 +2,7 @@ package kuchtastefan.item.wearableItem;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.item.HaveType;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.UsableItem;
 import lombok.Getter;
@@ -12,18 +13,18 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class WearableItem extends Item implements UsableItem {
+public class WearableItem extends Item implements UsableItem, HaveType {
 
-    private WearableItemType wearableItemType;
+    private WearableItemType itemType;
     private final Map<Ability, Integer> abilities;
     private WearableItemQuality wearableItemQuality;
 
     public WearableItem(Integer itemId, String name, double price, int itemLevel,
-                        WearableItemType wearableItemType,
+                        WearableItemType itemType,
                         Map<Ability, Integer> abilities,
                         WearableItemQuality wearableItemQuality) {
         super(itemId, name, price, itemLevel);
-        this.wearableItemType = wearableItemType;
+        this.itemType = itemType;
         this.abilities = abilities;
         this.wearableItemQuality = wearableItemQuality;
     }
@@ -36,7 +37,7 @@ public class WearableItem extends Item implements UsableItem {
             System.out.print("-- EQUIPPED -- ");
         }
 
-        System.out.print(this.getWearableItemType() + ": "
+        System.out.print(this.getItemType() + ": "
                 + this.getName()
                 + " (" + this.getWearableItemQuality() + "), iLevel: " + this.getItemLevel());
 
@@ -79,12 +80,12 @@ public class WearableItem extends Item implements UsableItem {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         WearableItem that = (WearableItem) o;
-        return Objects.equals(itemLevel, that.itemLevel) && wearableItemType == that.wearableItemType && Objects.equals(abilities, that.abilities) && wearableItemQuality == that.wearableItemQuality;
+        return Objects.equals(itemLevel, that.itemLevel) && itemType == that.itemType && Objects.equals(abilities, that.abilities) && wearableItemQuality == that.wearableItemQuality;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), wearableItemType, abilities, itemLevel, wearableItemQuality);
+        return Objects.hash(super.hashCode(), itemType, abilities, itemLevel, wearableItemQuality);
     }
 
 

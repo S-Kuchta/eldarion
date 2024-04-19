@@ -11,6 +11,13 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.ItemType;
+import kuchtastefan.item.consumeableItem.ConsumableItemType;
+import kuchtastefan.item.craftingItem.CraftingReagentItemType;
+import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.ConsoleColor;
@@ -116,7 +123,17 @@ public class GameManager {
         }
     }
 
+    private void testMethod(ItemType itemType) {
+        System.out.println(itemType.toString());
+        System.out.println(itemType.name());
+        System.out.println(itemType.getDescription());
+    }
+
     private void initGame() {
+        testMethod(ConsumableItemType.POTION);
+        testMethod(WearableItemType.BOOTS);
+        testMethod(CraftingReagentItemType.ALCHEMY_REAGENT);
+
         this.fileService.importWearableItemsFromFile();
         this.fileService.importCraftingReagentItemsFromFile();
         this.fileService.importConsumableItemsFromFile();
@@ -138,6 +155,12 @@ public class GameManager {
         this.fileService.importVendorItemListsFromFile();
 
         HintDB.initializeHintList();
+
+        Item item = ItemDB.returnItemFromDB(200);
+        if (item instanceof WearableItem wearableItem) {
+            System.out.println(wearableItem.getItemType().equals(WearableItemType.WEAPON));
+        }
+
 
         System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\tWelcome to the Eldarion!\t\t\n" + ConsoleColor.RESET);
         PrintUtil.printIndexAndText("0", "Start new game");

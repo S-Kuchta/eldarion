@@ -209,12 +209,10 @@ public class FileService {
                 }.getType());
 
                 for (WearableItem wearableItem : wearableItems) {
-                    wearableItem.setWearableItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
+                    wearableItem.setItemType(WearableItemType.valueOf(file.replace(".json", "").toUpperCase()));
                     wearableItemMissingValuesSet(wearableItem);
                     ItemDB.addItemToDB(wearableItem);
                 }
-
-                ItemDB.getWearableItemList().addAll(wearableItems);
 
                 reader.close();
             }
@@ -244,13 +242,11 @@ public class FileService {
                 }.getType());
 
                 for (CraftingReagentItem craftingReagentItem : craftingReagentItemsList) {
-                    craftingReagentItem.setCraftingReagentItemType(
+                    craftingReagentItem.setItemType(
                             CraftingReagentItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
                     ItemDB.addItemToDB(craftingReagentItem);
                 }
-
-                ItemDB.getCraftingReagentItems().addAll(craftingReagentItemsList);
 
                 reader.close();
             }
@@ -269,7 +265,7 @@ public class FileService {
                 }.getType());
 
                 for (ConsumableItem consumableItem : consumableItemList) {
-                    consumableItem.setConsumableItemType(ConsumableItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
+                    consumableItem.setItemType(ConsumableItemType.valueOf(file.toUpperCase().replace(".JSON", "")));
 
                     for (Action action : consumableItem.getActionList()) {
                         action.setCurrentActionValue(action.getBaseActionValue());
@@ -278,7 +274,6 @@ public class FileService {
                     ItemDB.addItemToDB(consumableItem);
                 }
 
-                ItemDB.getConsumableItems().addAll(consumableItemList);
 
                 reader.close();
             }
@@ -298,8 +293,6 @@ public class FileService {
                 for (QuestItem questItem : questItemList) {
                     ItemDB.addItemToDB(questItem);
                 }
-
-                ItemDB.getQuestItems().addAll(questItemList);
 
                 reader.close();
             }
@@ -324,8 +317,6 @@ public class FileService {
 
                     ItemDB.addItemToDB(junkItem);
                 }
-
-                ItemDB.getJunkItems().addAll(junkItemList);
 
                 reader.close();
             }

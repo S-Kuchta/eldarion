@@ -2,7 +2,6 @@ package kuchtastefan.character.hero;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventory;
 import kuchtastefan.character.spell.Spell;
@@ -15,7 +14,6 @@ import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
-import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.location.Location;
@@ -67,7 +65,7 @@ public class Hero extends GameCharacter {
             PrintUtil.printLongDivider();
         } else {
             System.out.println("\tYou equip " + ConsoleColor.YELLOW + wearableItem.getName() + ConsoleColor.RESET);
-            this.equippedItem.put(wearableItem.getWearableItemType(), wearableItem);
+            this.equippedItem.put(wearableItem.getItemType(), wearableItem);
         }
         updateWearingItemAbilityPoints();
     }
@@ -78,8 +76,8 @@ public class Hero extends GameCharacter {
      * @param wearableItem item checked for wear down
      */
     public void unEquipItem(WearableItem wearableItem) {
-        if (this.equippedItem.get(wearableItem.getWearableItemType()).equals(wearableItem)) {
-            this.equippedItem.putAll(returnNoItemToEquippedMap(wearableItem.getWearableItemType()));
+        if (this.equippedItem.get(wearableItem.getItemType()).equals(wearableItem)) {
+            this.equippedItem.putAll(returnNoItemToEquippedMap(wearableItem.getItemType()));
         }
 
         updateWearingItemAbilityPoints();

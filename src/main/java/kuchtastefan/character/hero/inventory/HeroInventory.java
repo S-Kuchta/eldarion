@@ -120,18 +120,6 @@ public class HeroInventory {
         }
     }
 
-//    public Map<? extends Item, Integer> returnHeroInventory(Class<? extends Item> itemClass) {
-//        Map<? extends Item, Integer> itemMap = new HashMap<>(this.getHeroInventory());
-//        itemMap.entrySet().removeIf(entry -> !itemClass.isInstance(entry.getKey()));
-//        return itemMap;
-//    }
-
-//    public <T extends Item> Map<T, Integer> returnHeroInventory(Class<T> itemClass) {
-//        return this.getHeroInventory().entrySet().stream()
-//                .filter(entry -> itemClass.isInstance(entry.getKey()))
-//                .collect(Collectors.toMap(entry -> itemClass.cast(entry.getKey()), Map.Entry::getValue));
-//    }
-
     public <T extends Item> Map<T, Integer> returnHeroInventory(Class<T> itemClass) {
         Map<T, Integer> itemMap = new HashMap<>();
         Map<? extends Item, Integer> originalMap = new HashMap<>(this.getHeroInventory());

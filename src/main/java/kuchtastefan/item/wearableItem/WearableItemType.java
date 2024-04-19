@@ -1,10 +1,11 @@
 package kuchtastefan.item.wearableItem;
 
+import kuchtastefan.item.ItemType;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 @Getter
-public enum WearableItemType {
+public enum WearableItemType implements ItemType {
 
     WEAPON("Weapon"),
     HEAD("Head armor"),
@@ -22,5 +23,4 @@ public enum WearableItemType {
     public String toString() {
         return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
     }
-
 }

@@ -13,10 +13,6 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.junkItem.JunkItem;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
@@ -361,7 +357,7 @@ public class PrintUtil {
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
         for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnHeroInventory(WearableItem.class).entrySet()) {
-            if (item.getKey().getWearableItemType().equals(wearableItemType)) {
+            if (item.getKey().getItemType().equals(wearableItemType)) {
                 count += item.getValue();
             }
         }

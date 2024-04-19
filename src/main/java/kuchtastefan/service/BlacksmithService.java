@@ -4,8 +4,8 @@ import com.google.gson.Gson;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.ItemFilter;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.wearableItem.WearableItem;
@@ -145,7 +145,10 @@ public class BlacksmithService {
      * @return A map containing the crafting reagent item needed for refinement and the quantity required.
      */
     private Map<CraftingReagentItem, Integer> itemsNeededToRefinement(WearableItem wearableItem) {
-        List<CraftingReagentItem> tempList = ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
+
+        List<CraftingReagentItem> tempList = ItemDB.returnItemListByLevelAndType(CraftingReagentItem.class,
+                new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel()));
+
         Map<CraftingReagentItem, Integer> itemsNeededForRefinement = new HashMap<>();
         int itemsNeededToRefinement = 0;
 
@@ -196,9 +199,8 @@ public class BlacksmithService {
             return;
         }
 
-
-        List<CraftingReagentItem> tempList = ItemDB.returnCraftingReagentItemListByTypeAndItemLevel(
-                CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel(), null);
+        List<CraftingReagentItem> tempList = ItemDB.returnItemListByLevelAndType(CraftingReagentItem.class,
+                new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, wearableItem.getItemLevel()));
 
         CraftingReagentItem item = null;
         int numbersOfIteration = 0;

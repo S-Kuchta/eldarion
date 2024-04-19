@@ -1,10 +1,11 @@
 package kuchtastefan.item.craftingItem;
 
+import kuchtastefan.item.ItemType;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
 @Getter
-public enum CraftingReagentItemType {
+public enum CraftingReagentItemType implements ItemType {
     BLACKSMITH_REAGENT("Reagent used for blacksmith. For smith or refinement items."),
     ALCHEMY_REAGENT("Reagent used for alchemy. For create new potions,");
 
@@ -18,5 +19,4 @@ public enum CraftingReagentItemType {
     public String toString() {
         return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
     }
-
 }

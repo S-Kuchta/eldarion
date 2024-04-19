@@ -201,9 +201,6 @@ public class BattleService {
                         if (inventoryMenuService.itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventory(ConsumableItem.class))) {
                             break;
                         }
-//                        if (inventoryMenuService.consumableItemsMenu(hero, true)) {
-//                            break;
-//                        }
                     } else {
                         // If choice is for a spell, use the spell on the enemy
                         if (spellService.useSpell(hero.getCharacterSpellList().get(parsedChoice),

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
@@ -77,7 +78,7 @@ public class BlacksmithService {
             if (hero.getHeroInventory().getHeroInventory().isEmpty()) {
                 System.out.println("\tItem list is empty");
             } else {
-                for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnInventoryWearableItemMap().entrySet()) {
+                for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnHeroInventory(WearableItem.class).entrySet()) {
 
                     // Check if the item's quality is eligible for refinement
                     if (item.getKey().getWearableItemQuality().equals(WearableItemQuality.BASIC)) {
@@ -234,9 +235,9 @@ public class BlacksmithService {
     }
 
     private List<WearableItem> returnItemList(Hero hero) {
-        List<WearableItem> tempItemList = hero.getHeroInventory().returnInventoryWearableItemMap().keySet().stream().toList();
+        List<WearableItem> tempItemList = hero.getHeroInventory().returnHeroInventory(WearableItem.class).keySet().stream().toList();
         System.out.println();
-        this.inventoryMenuService.printItemInventory(hero, hero.getHeroInventory().returnInventoryWearableItemMap());
+        this.inventoryMenuService.printInventoryItems(hero, hero.getHeroInventory().returnHeroInventory(WearableItem.class));
 
         return tempItemList;
     }

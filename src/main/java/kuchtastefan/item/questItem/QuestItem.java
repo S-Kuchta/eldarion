@@ -15,6 +15,6 @@ public class QuestItem extends Item {
 
     @Override
     public void printItemDescription(Hero hero) {
-
+        System.out.print(this.name);
     }
 }

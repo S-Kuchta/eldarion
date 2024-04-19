@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -103,6 +104,10 @@ public class HeroInventory {
             return;
         }
 
+        heroInventory.entrySet().removeIf(entry ->
+                checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(Map.of(item, 1), false)
+                && entry.getKey().equals(item) && entry.getValue() == 1);
+
         Iterator<Map.Entry<Item, Integer>> iterator = heroInventory.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<Item, Integer> entry = iterator.next();
@@ -115,59 +120,29 @@ public class HeroInventory {
         }
     }
 
-    public Map<WearableItem, Integer> returnInventoryWearableItemMap() {
-        Map<WearableItem, Integer> wearableItemMap = new HashMap<>();
-        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof WearableItem wearableItem) {
-                wearableItemMap.put(wearableItem, item.getValue());
+//    public Map<? extends Item, Integer> returnHeroInventory(Class<? extends Item> itemClass) {
+//        Map<? extends Item, Integer> itemMap = new HashMap<>(this.getHeroInventory());
+//        itemMap.entrySet().removeIf(entry -> !itemClass.isInstance(entry.getKey()));
+//        return itemMap;
+//    }
+
+//    public <T extends Item> Map<T, Integer> returnHeroInventory(Class<T> itemClass) {
+//        return this.getHeroInventory().entrySet().stream()
+//                .filter(entry -> itemClass.isInstance(entry.getKey()))
+//                .collect(Collectors.toMap(entry -> itemClass.cast(entry.getKey()), Map.Entry::getValue));
+//    }
+
+    public <T extends Item> Map<T, Integer> returnHeroInventory(Class<T> itemClass) {
+        Map<T, Integer> itemMap = new HashMap<>();
+        Map<? extends Item, Integer> originalMap = new HashMap<>(this.getHeroInventory());
+
+        for (Map.Entry<? extends Item, Integer> entry : originalMap.entrySet()) {
+            if (itemClass.isInstance(entry.getKey())) {
+                itemMap.put(itemClass.cast(entry.getKey()), entry.getValue());
             }
         }
 
-        return wearableItemMap;
-    }
-
-    public Map<CraftingReagentItem, Integer> returnInventoryCraftingReagentItemMap() {
-        Map<CraftingReagentItem, Integer> craftingReagentItems = new HashMap<>();
-        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof CraftingReagentItem craftingReagentItem) {
-                craftingReagentItems.put(craftingReagentItem, item.getValue());
-            }
-        }
-
-        return craftingReagentItems;
-    }
-
-    public Map<JunkItem, Integer> returnInventoryJunkItemMap() {
-        Map<JunkItem, Integer> junkItems = new HashMap<>();
-        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof JunkItem junkItem) {
-                junkItems.put(junkItem, item.getValue());
-            }
-        }
-
-        return junkItems;
-    }
-
-    public Map<QuestItem, Integer> returnInventoryQuestItemMap() {
-        Map<QuestItem, Integer> questItems = new HashMap<>();
-        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof QuestItem questItem) {
-                questItems.put(questItem, item.getValue());
-            }
-        }
-
-        return questItems;
-    }
-
-    public Map<ConsumableItem, Integer> returnInventoryConsumableItemMap() {
-        Map<ConsumableItem, Integer> consumableItems = new HashMap<>();
-        for (Map.Entry<Item, Integer> item : this.heroInventory.entrySet()) {
-            if (item.getKey() instanceof ConsumableItem consumableItem) {
-                consumableItems.put(consumableItem, item.getValue());
-            }
-        }
-
-        return consumableItems;
+        return itemMap;
     }
 
     @Override

@@ -360,8 +360,7 @@ public class PrintUtil {
 
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
-        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory()
-                .returnInventoryWearableItemMap().entrySet()) {
+        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnHeroInventory(WearableItem.class).entrySet()) {
             if (item.getKey().getWearableItemType().equals(wearableItemType)) {
                 count += item.getValue();
             }
@@ -451,6 +450,19 @@ public class PrintUtil {
             default -> {
                 return "";
             }
+        }
+    }
+
+    public static void printMenuHeader(String header) {
+        PrintUtil.printDivider();
+        System.out.printf("\t\t------ %s ------\n", header);
+        PrintUtil.printDivider();
+    }
+
+    public static void printMenuOptions(String... options) {
+        for (int i = 0; i < options.length; i++) {
+            PrintUtil.printIndexAndText(String.valueOf(i), options[i]);
+            System.out.println();
         }
     }
 }

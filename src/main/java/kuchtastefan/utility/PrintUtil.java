@@ -195,7 +195,7 @@ public class PrintUtil {
     }
 
     private static void printBar(GameCharacter gameCharacter, Ability ability) {
-        int maxValue = gameCharacter.getMaxAbilities().get(ability);
+        int maxValue = gameCharacter.getEnhancedAbilities().get(ability);
         int currentValue = gameCharacter.getCurrentAbilityValue(ability);
         double oneBarValue = (double) maxValue / 15;
 
@@ -257,7 +257,7 @@ public class PrintUtil {
         printExtraLongDivider();
         System.out.printf("%58s %n", "Abilities:");
         System.out.print("\t");
-        for (Map.Entry<Ability, Integer> ability : gameCharacter.getAbilities().entrySet()) {
+        for (Map.Entry<Ability, Integer> ability : gameCharacter.getBaseAbilities().entrySet()) {
             if (!(ability.getKey().equals(Ability.MANA)
                     || ability.getKey().equals(Ability.HEALTH)
                     || ability.getKey().equals(Ability.ABSORB_DAMAGE))) {
@@ -273,7 +273,7 @@ public class PrintUtil {
         printHeaderWithStatsBar(hero);
         System.out.printf("%80s %n", ConsoleColor.YELLOW + "Current Ability points with items" + ConsoleColor.RESET);
         System.out.print("\t\t\t");
-        for (Map.Entry<Ability, Integer> abilityPoints : hero.getCurrentAbilities().entrySet()) {
+        for (Map.Entry<Ability, Integer> abilityPoints : hero.getEffectiveAbilities().entrySet()) {
 
             if (!(abilityPoints.getKey().equals(Ability.MANA)
                     || abilityPoints.getKey().equals(Ability.HEALTH)

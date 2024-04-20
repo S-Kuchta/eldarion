@@ -4,7 +4,7 @@
     "name": "Succubus",
     "characterRarity": "SUMMONED",
     "npcType": "MAGE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 2,
@@ -27,7 +27,7 @@
     "name": "FelGuard",
     "characterRarity": "SUMMONED",
     "npcType": "WARRIOR",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 15,
       "RESIST_DAMAGE": 10,
       "STRENGTH": 10,

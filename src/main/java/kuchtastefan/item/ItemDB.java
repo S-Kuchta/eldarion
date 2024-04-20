@@ -21,7 +21,7 @@ public class ItemDB {
         ITEM_DB.put(item.getItemId(), item);
     }
 
-    public static List<Item> returnItemListForEnemy(ItemFilter itemFilter) {
+    public static List<Item> returnItemListForEnemyDrop(ItemFilter itemFilter) {
         List<Item> itemList = new ArrayList<>(returnItemListByLevelAndType(Item.class, itemFilter));
         itemList.removeIf(item -> item instanceof QuestItem);
 

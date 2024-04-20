@@ -28,7 +28,6 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
     }
 
     public boolean useItem(Hero hero) {
-
         if (hero.isInCombat() && this.itemType.equals(ConsumableItemType.FOOD)) {
             System.out.println("\t" + ConsoleColor.RED + this.getName() + "Can't be used in combat!" + ConsoleColor.RESET);
         } else {
@@ -56,17 +55,9 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
         System.out.println();
         for (Action action : this.getActionList()) {
             System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on " + action.getActionEffectOn() + " ");
-            PrintUtil.printActionDetails(action, action.getCurrentActionValue());
+            action.printActionDescription(hero, hero);
+//            PrintUtil.printActionDetails(action, action.getCurrentActionValue());
+//            PrintUtil.printActionDetails(action, action.returnActionValueRange(hero).onlyValue());
         }
     }
-
-//    @Override
-//    public String getDescription() {
-//        return consumableItemType.getDescription();
-//    }
-//
-//    @Override
-//    public String name() {
-//        return consumableItemType.name();
-//    }
 }

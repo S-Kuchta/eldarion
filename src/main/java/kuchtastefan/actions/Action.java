@@ -88,7 +88,6 @@ public abstract class Action {
         return new ActionValueRange(valueIncreasedByLevel, valueIncreasedByPrimaryAbility, valueIncreasedByLevel);
     }
 
-
     protected String returnTargetName(GameCharacter spellCaster, GameCharacter spellTarget) {
         if (this.actionEffectOn.equals(ActionEffectOn.SPELL_CASTER)) {
             return spellCaster.getName();

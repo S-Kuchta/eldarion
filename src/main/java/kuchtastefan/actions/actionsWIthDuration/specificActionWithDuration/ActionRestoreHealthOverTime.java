@@ -39,9 +39,9 @@ public class ActionRestoreHealthOverTime extends ActionWithDuration implements A
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 2) {
+        if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 2) {
             return 2;
-        } else if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 3) {
+        } else if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 3) {
             return 4;
         } else {
             return 1;

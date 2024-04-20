@@ -4,7 +4,7 @@
     "name": "Young Wolf",
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 2,
       "STRENGTH": 2,
@@ -25,7 +25,7 @@
     "name": "Bear",
     "characterRarity": "RARE",
     "npcType": "DEFENDER",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 2,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 4,
@@ -46,7 +46,7 @@
     "name": "Alpha Wolf",
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 2,
@@ -67,7 +67,7 @@
     "name": "Coyote",
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 4,
@@ -88,7 +88,7 @@
     "name": "Spirit Wolf",
     "characterRarity": "SUMMONED",
     "npcType": "WARRIOR",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 3,

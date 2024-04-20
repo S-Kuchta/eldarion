@@ -23,7 +23,6 @@ import java.util.*;
 @Getter
 public class BattleService {
 
-    private final SpellService spellService;
     private GameCharacter playerTarget;
     private String selectedEnemyForShowSelection;
     private final List<GameCharacter> enemyList;
@@ -32,7 +31,6 @@ public class BattleService {
     private boolean heroPlay;
 
     public BattleService() {
-        this.spellService = new SpellService();
         this.selectedEnemyForShowSelection = "A";
         this.enemyList = new ArrayList<>();
         this.alliesList = new ArrayList<>();
@@ -83,7 +81,7 @@ public class BattleService {
                 int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
 
                 hero.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
-                hero.getCurrentAbilities().put(Ability.HEALTH, hero.getMaxAbilities().get(Ability.HEALTH));
+                hero.getEffectiveAbilities().put(Ability.HEALTH, hero.getEnhancedAbilities().get(Ability.HEALTH));
                 this.resetSpellsCoolDowns(hero);
 
                 // Print death message
@@ -201,10 +199,11 @@ public class BattleService {
                         if (inventoryMenuService.itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventory(ConsumableItem.class))) {
                             break;
                         }
+
                     } else {
                         // If choice is for a spell, use the spell on the enemy
-                        if (spellService.useSpell(hero.getCharacterSpellList().get(parsedChoice),
-                                new CharactersInvolvedInBattle(hero, hero, this.playerTarget, enemyList, alliesList, tempCharacterList))) {
+                        if (hero.getCharacterSpellList().get(parsedChoice).useSpell(
+                                new CharactersInvolvedInBattle(hero, this.playerTarget, enemyList, alliesList, tempCharacterList))) {
 
                             break;
                         }
@@ -256,8 +255,7 @@ public class BattleService {
     }
 
     private void restoreManaAfterTurn(GameCharacter gameCharacter) {
-        gameCharacter.restoreAbilityValue(gameCharacter.getCurrentAbilityValue(Ability.HASTE)
-                * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
+        gameCharacter.restoreHealthAndManaAfterTurn();
     }
 
     private void printBattleMenu(Hero hero) {
@@ -372,7 +370,7 @@ public class BattleService {
             }
         }
 
-        spellService.useSpell(spellToCast, new CharactersInvolvedInBattle(hero, spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
+        spellToCast.useSpell(new CharactersInvolvedInBattle(hero, spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
     }
 
     private void checkSpellsCoolDowns(GameCharacter gameCharacter) {

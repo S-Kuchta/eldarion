@@ -22,6 +22,7 @@ import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.region.RegionDB;
 
@@ -99,26 +100,7 @@ public class GameManager {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> new RegionService().adventuringAcrossTheRegion(heroMenuService, RegionDB.returnRegion(0), this.hero);
-            default -> PrintUtil.printEnterValidInput();
-        }
-    }
-
-    private void alchemistMenu() {
-        PrintUtil.printDivider();
-        System.out.println("\t\tAlchemist shop");
-        PrintUtil.printDivider();
-
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-        PrintUtil.printIndexAndText("1", "Create potion");
-        System.out.println();
-
-        int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> {
-            }
-            case 1 -> System.out.println("Work in progress");
+            case 1 -> RegionDB.returnRegion(0).adventuringAcrossTheRegion(heroMenuService, this.hero);
             default -> PrintUtil.printEnterValidInput();
         }
     }

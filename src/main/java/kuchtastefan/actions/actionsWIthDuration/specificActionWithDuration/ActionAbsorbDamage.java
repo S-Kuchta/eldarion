@@ -37,7 +37,7 @@ public class ActionAbsorbDamage extends ActionWithDuration implements ActionWith
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getMaxAbilities().get(Ability.HEALTH) / 3) {
+        if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 3) {
             return 4;
         } else {
             return 2;

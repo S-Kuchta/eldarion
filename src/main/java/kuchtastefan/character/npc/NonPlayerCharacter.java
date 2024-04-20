@@ -34,27 +34,27 @@ public class NonPlayerCharacter extends GameCharacter {
     }
 
     public void setMaxAbilitiesAndCurrentAbilities() {
-        this.currentAbilities = new HashMap<>();
-        this.maxAbilities = new HashMap<>();
+        this.effectiveAbilities = new HashMap<>();
+        this.enhancedAbilities = new HashMap<>();
 
         for (Ability ability : Ability.values()) {
-            this.currentAbilities.putIfAbsent(ability, this.abilities.get(ability));
-            this.maxAbilities.putIfAbsent(ability, this.abilities.get(ability));
+            this.effectiveAbilities.putIfAbsent(ability, this.baseAbilities.get(ability));
+            this.enhancedAbilities.putIfAbsent(ability, this.baseAbilities.get(ability));
         }
     }
 
     public void increaseAbilityPointsByMultiplier(double multiplier) {
         for (Ability ability : Ability.values()) {
-            if (this.getAbilities().containsKey(ability)) {
-                this.getAbilities().put(ability, (int) (this.getAbilities().get(ability) * multiplier));
+            if (this.getBaseAbilities().containsKey(ability)) {
+                this.getBaseAbilities().put(ability, (int) (this.getBaseAbilities().get(ability) * multiplier));
             }
         }
     }
 
     public void increaseAbilityPointsByAddition(double addition) {
         for (Ability ability : Ability.values()) {
-            if (this.getAbilities().containsKey(ability)) {
-                this.getAbilities().put(ability, (int) (this.getAbilities().get(ability) * addition));
+            if (this.getBaseAbilities().containsKey(ability)) {
+                this.getBaseAbilities().put(ability, (int) (this.getBaseAbilities().get(ability) * addition));
             }
         }
     }

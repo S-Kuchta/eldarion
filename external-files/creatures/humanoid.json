@@ -4,7 +4,7 @@
     "name": "Weak Defias Bandit",
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 2,
       "STRENGTH": 3,
@@ -25,7 +25,7 @@
     "name": "Weak Defias Looter",
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 3,
@@ -46,7 +46,7 @@
     "name": "Weak Defias Raider",
     "characterRarity": "RARE",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 5,
@@ -67,7 +67,7 @@
     "name": "Defias Boss",
     "characterRarity": "BOSS",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 4,
@@ -88,7 +88,7 @@
     "name": "Defias Miner",
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 4,
@@ -109,7 +109,7 @@
     "name": "Weak Defias WatchMan",
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 4,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 4,
@@ -130,7 +130,7 @@
     "name": "Defias WatchMan",
     "characterRarity": "RARE",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 7,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 6,
@@ -151,7 +151,7 @@
     "name": "Defias Leader",
     "characterRarity": "ELITE",
     "npcType": "WARRIOR",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 8,
       "RESIST_DAMAGE": 6,
       "STRENGTH": 7,
@@ -172,7 +172,7 @@
     "name": "Defias Miner Leader",
     "characterRarity": "RARE",
     "npcType": "WARRIOR",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 7,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 6,
@@ -193,7 +193,7 @@
     "name": "Damien Carnage",
     "characterRarity": "ELITE",
     "npcType": "MAGE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 8,
       "RESIST_DAMAGE": 6,
       "STRENGTH": 2,
@@ -218,7 +218,7 @@
     "name": "Drunken Man",
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 1,
       "STRENGTH": 1,

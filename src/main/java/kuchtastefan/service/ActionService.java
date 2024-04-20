@@ -22,8 +22,8 @@ public class ActionService {
 
         if (action.willPerformAction()) {
             int totalActionValue = RandomNumberGenerator.getRandomNumber(
-                    action.returnActionValueRange(charactersInvolvedInBattle.spellCaster()).minimumValue(),
-                    action.returnActionValueRange(charactersInvolvedInBattle.spellCaster()).maximumValue());
+                    action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).minimumValue(),
+                    action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).maximumValue());
 
             if (criticalHit && action.isCanBeActionCriticalHit()) {
                 System.out.println("\t" + action.getActionName() + " Critical hit!");
@@ -34,13 +34,13 @@ public class ActionService {
 
             if (hitAllInvolvedCharacters) {
                 if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
-                    for (GameCharacter aliesCharacter : charactersInvolvedInBattle.alliesCharacters()) {
+                    for (GameCharacter aliesCharacter : charactersInvolvedInBattle.getAlliesCharacters()) {
                         performAction(action, aliesCharacter);
                     }
                 }
 
                 if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-                    for (GameCharacter enemyCharacter : charactersInvolvedInBattle.alliesCharacters()) {
+                    for (GameCharacter enemyCharacter : charactersInvolvedInBattle.getAlliesCharacters()) {
                         performAction(action, enemyCharacter);
                     }
                 }
@@ -73,15 +73,15 @@ public class ActionService {
     private GameCharacter determineActionTarget(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle) {
 
         if (action.getActionEffectOn().equals(ActionEffectOn.PLAYER)) {
-            return charactersInvolvedInBattle.hero();
+            return charactersInvolvedInBattle.getHero();
         }
 
         if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-            return charactersInvolvedInBattle.spellTarget();
+            return charactersInvolvedInBattle.getSpellTarget();
         }
 
         if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
-            return charactersInvolvedInBattle.spellCaster();
+            return charactersInvolvedInBattle.getSpellCaster();
         }
 
         return null;
@@ -137,7 +137,7 @@ public class ActionService {
      */
     private void performActionWithSpecificNeeds(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle) {
         if (action instanceof ActionSummonCreature actionSummonCreature) {
-            charactersInvolvedInBattle.tempCharacterList().add(actionSummonCreature.returnSummonedCharacter());
+            charactersInvolvedInBattle.getTempCharacterList().add(actionSummonCreature.returnSummonedCharacter());
         }
     }
 }

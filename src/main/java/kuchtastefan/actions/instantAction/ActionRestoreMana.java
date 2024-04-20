@@ -31,7 +31,7 @@ public class ActionRestoreMana extends Action implements ActionWithIncreasedValu
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getMaxAbilities().get(Ability.MANA) * 0.3)) {
+        if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getEnhancedAbilities().get(Ability.MANA) * 0.3)) {
             return 3;
         } else {
             return 2;

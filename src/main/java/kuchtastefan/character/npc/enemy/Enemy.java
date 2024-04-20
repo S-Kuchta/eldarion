@@ -49,7 +49,7 @@ public class Enemy extends NonPlayerCharacter {
             this.itemsDrop = new ArrayList<>();
         }
 
-        List<Item> itemList = ItemDB.returnItemListForEnemy(new ItemFilter(this.level));
+        List<Item> itemList = ItemDB.returnItemListForEnemyDrop(new ItemFilter(this.level));
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
 
         for (int i = 0; i < itemsForDrop; i++) {

@@ -26,7 +26,6 @@ public class EventService {
 
     public void randomRegionEventGenerate(Hero hero, Biome biome) {
         int randomNumber = RandomNumberGenerator.getRandomNumber(0, 4);
-
         int eventLevel = hero.getLevel();
 
         switch (randomNumber) {
@@ -40,11 +39,7 @@ public class EventService {
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
 
-        hero.restoreAbilityValue(hero.getCurrentAbilityValue(Ability.HASTE)
-                * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
-        hero.restoreAbilityValue(hero.getCurrentAbilityValue(Ability.HASTE)
-                * Constant.RESTORE_HEALTH_PER_ONE_HASTE, Ability.HEALTH);
-
+        hero.restoreHealthAndManaAfterTurn();
         hero.performActionsWithDuration(ActionDurationType.REGION_ACTION);
     }
 }

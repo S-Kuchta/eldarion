@@ -4,7 +4,7 @@
     "name": "Fire Totem",
     "characterRarity": "COMMON",
     "npcType": "MAGE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 2,
       "RESIST_DAMAGE": 0,
       "STRENGTH": 0,
@@ -25,7 +25,7 @@
     "name": "Water Totem",
     "characterRarity": "COMMON",
     "npcType": "MAGE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 0,
       "RESIST_DAMAGE": 0,
       "STRENGTH": 0,
@@ -46,7 +46,7 @@
     "name": "Air Totem",
     "characterRarity": "COMMON",
     "npcType": "MAGE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 0,
       "RESIST_DAMAGE": 0,
       "STRENGTH": 0,
@@ -68,7 +68,7 @@
     "name": "Earth Totem",
     "characterRarity": "COMMON",
     "npcType": "MAGE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 0,
       "RESIST_DAMAGE": 0,
       "STRENGTH": 0,

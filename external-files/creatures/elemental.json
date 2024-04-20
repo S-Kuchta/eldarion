@@ -4,7 +4,7 @@
     "name": "Water Elemental",
     "characterRarity": "SUMMONED",
     "npcType": "MAGE",
-    "abilities": {
+    "basebaseAbilities": {
       "ATTACK": 2,
       "RESIST_DAMAGE": 2,
       "STRENGTH": 1,
@@ -26,7 +26,7 @@
     "name": "Weak Water Elemental",
     "characterRarity": "COMMON",
     "npcType": "MAGE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 2,
       "RESIST_DAMAGE": 1,
       "STRENGTH": 2,
@@ -48,7 +48,7 @@
     "name": "Lake Isle Water Elemental",
     "characterRarity": "RARE",
     "npcType": "MAGE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 2,
       "STRENGTH": 3,

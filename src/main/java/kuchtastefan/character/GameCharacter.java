@@ -4,7 +4,9 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,9 +19,9 @@ public abstract class GameCharacter {
 
     protected String name;
     protected int level;
-    protected Map<Ability, Integer> abilities;
-    protected Map<Ability, Integer> maxAbilities;
-    protected Map<Ability, Integer> currentAbilities;
+    protected Map<Ability, Integer> baseAbilities;
+    protected Map<Ability, Integer> enhancedAbilities;
+    protected Map<Ability, Integer> effectiveAbilities;
     protected Set<ActionWithDuration> regionActionsWithDuration;
     protected Set<ActionWithDuration> battleActionsWithDuration;
     protected List<Spell> characterSpellList;
@@ -27,11 +29,11 @@ public abstract class GameCharacter {
     protected boolean reflectSpell;
 
 
-    public GameCharacter(String name, Map<Ability, Integer> abilities) {
+    public GameCharacter(String name, Map<Ability, Integer> baseAbilities) {
         this.name = name;
-        this.abilities = abilities;
-        this.maxAbilities = new HashMap<>(abilities);
-        this.currentAbilities = new HashMap<>(abilities);
+        this.baseAbilities = baseAbilities;
+        this.enhancedAbilities = new HashMap<>(baseAbilities);
+        this.effectiveAbilities = new HashMap<>(baseAbilities);
         this.regionActionsWithDuration = new HashSet<>();
         this.battleActionsWithDuration = new HashSet<>();
         this.characterSpellList = new ArrayList<>();
@@ -75,13 +77,13 @@ public abstract class GameCharacter {
         for (Ability ability : Ability.values()) {
             if (ability.equals(Ability.HEALTH) || ability.equals(Ability.MANA)) {
                 if (setHealthOrManaToMaxValue) {
-                    this.currentAbilities.put(ability, this.maxAbilities.get(ability));
+                    this.effectiveAbilities.put(ability, this.enhancedAbilities.get(ability));
                 } else {
-                    this.currentAbilities.put(Ability.HEALTH, getCurrentAbilityValue(Ability.HEALTH));
-                    this.currentAbilities.put(Ability.MANA, getCurrentAbilityValue(Ability.MANA));
+                    this.effectiveAbilities.put(Ability.HEALTH, getCurrentAbilityValue(Ability.HEALTH));
+                    this.effectiveAbilities.put(Ability.MANA, getCurrentAbilityValue(Ability.MANA));
                 }
             } else {
-                this.currentAbilities.put(ability, this.maxAbilities.get(ability));
+                this.effectiveAbilities.put(ability, this.enhancedAbilities.get(ability));
             }
         }
     }
@@ -119,8 +121,8 @@ public abstract class GameCharacter {
         }
 
         System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage to " + this.name);
-        this.currentAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
-        this.currentAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
+        this.effectiveAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
+        this.effectiveAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
     }
 
     public int returnDamageAfterResistDamage(int incomingDamage) {
@@ -132,13 +134,13 @@ public abstract class GameCharacter {
     }
 
     public void restoreAbilityValue(int amountToRestore, Ability ability) {
-        int maxCharacterAbility = this.getMaxAbilities().get(ability);
+        int maxCharacterAbility = this.getEnhancedAbilities().get(ability);
         int currentCharacterAbility = this.getCurrentAbilityValue(ability);
 
         if (maxCharacterAbility - currentCharacterAbility <= amountToRestore) {
-            this.currentAbilities.put(ability, maxCharacterAbility);
+            this.effectiveAbilities.put(ability, maxCharacterAbility);
         } else {
-            this.currentAbilities.put(ability, currentCharacterAbility + amountToRestore);
+            this.effectiveAbilities.put(ability, currentCharacterAbility + amountToRestore);
         }
 
         ConsoleColor consoleColor = ConsoleColor.RED;
@@ -154,16 +156,26 @@ public abstract class GameCharacter {
         }
     }
 
+    public void restoreHealthAndManaAfterTurn() {
+        if (this instanceof Hero hero && !hero.isInCombat()) {
+            this.restoreAbilityValue(this.getCurrentAbilityValue(Ability.HASTE)
+                    * Constant.RESTORE_HEALTH_PER_ONE_HASTE, Ability.HEALTH);
+        }
+
+        this.restoreAbilityValue(this.getCurrentAbilityValue(Ability.HASTE)
+                * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
+    }
+
     public void decreaseCurrentAbilityValue(int valueOfLower, Ability ability) {
         int currentAbility = getCurrentAbilityValue(ability);
-        this.currentAbilities.put(ability, Math.max(currentAbility - valueOfLower, 0));
+        this.effectiveAbilities.put(ability, Math.max(currentAbility - valueOfLower, 0));
     }
 
     public int getCurrentAbilityValue(Ability ability) {
-        return this.currentAbilities.get(ability);
+        return this.effectiveAbilities.get(ability);
     }
 
     public void increaseCurrentAbilityValue(Ability ability, int valueToIncrease) {
-        this.currentAbilities.put(ability, this.getCurrentAbilityValue(ability) + valueToIncrease);
+        this.effectiveAbilities.put(ability, this.getCurrentAbilityValue(ability) + valueToIncrease);
     }
 }

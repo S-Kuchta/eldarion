@@ -9,6 +9,7 @@ import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByAbility;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.RandomNumberGenerator;
 
 public class ActionRestoreManaOverTime extends ActionWithDuration implements ActionWithIncreasedValueByAbility {
 
@@ -23,6 +24,7 @@ public class ActionRestoreManaOverTime extends ActionWithDuration implements Act
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
+//        gameCharacter.restoreAbilityValue(RandomNumberGenerator.getRandomNumber(this.returnActionValueRange(gameCharacter).), Ability.MANA);
         gameCharacter.restoreAbilityValue(this.currentActionValue, Ability.MANA);
     }
 
@@ -39,7 +41,7 @@ public class ActionRestoreManaOverTime extends ActionWithDuration implements Act
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getMaxAbilities().get(Ability.MANA) * 0.3)) {
+        if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getEnhancedAbilities().get(Ability.MANA) * 0.3)) {
             return 3;
         } else {
             return 2;

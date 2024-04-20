@@ -4,7 +4,7 @@
     "name": "Summoned Weak Zombie",
     "characterRarity": "COMMON",
     "npcType": "WARRIOR",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 3,
       "RESIST_DAMAGE": 2,
       "STRENGTH": 2,
@@ -25,7 +25,7 @@
     "name": "NightBane Dark Runner",
     "characterRarity": "COMMON",
     "npcType": "WARRIOR",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 5,
@@ -46,7 +46,7 @@
     "name": "Insane Ghoul",
     "characterRarity": "RARE",
     "npcType": "WARRIOR",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 7,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 3,
@@ -67,7 +67,7 @@
     "name": "Weak Skeleton",
     "characterRarity": "COMMON",
     "npcType": "WARRIOR",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 6,
       "RESIST_DAMAGE": 2,
       "STRENGTH": 2,
@@ -88,7 +88,7 @@
     "name": "Damned Priest",
     "characterRarity": "RARE",
     "npcType": "MAGE",
-    "abilities": {
+    "baseAbilities": {
       "ATTACK": 5,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 1,

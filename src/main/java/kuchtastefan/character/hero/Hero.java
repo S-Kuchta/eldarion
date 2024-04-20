@@ -38,13 +38,13 @@ public class Hero extends GameCharacter {
     private final Map<Integer, Quest> heroAcceptedQuest;
     private final Map<Integer, Spell> learnedSpells;
     private final Map<Integer, Location> discoveredLocationList;
-    private boolean isInCombat;
+    private boolean inCombat;
 
 
     public Hero(String name) {
         super(name, new HashMap<>());
-        this.abilities = this.getInitialAbilityPoints();
-        this.currentAbilities = this.getInitialAbilityPoints();
+        this.baseAbilities = this.getInitialAbilityPoints();
+        this.effectiveAbilities = this.getInitialAbilityPoints();
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
         this.wearingItemAbilityPoints = getItemsInitialAbilityPoints();
         this.equippedItem = initialEquip();
@@ -55,7 +55,7 @@ public class Hero extends GameCharacter {
         this.heroAcceptedQuest = new HashMap<>();
         this.learnedSpells = new HashMap<>();
         this.discoveredLocationList = new HashMap<>();
-        this.isInCombat = false;
+        this.inCombat = false;
     }
 
     public void equipItem(WearableItem wearableItem) {
@@ -106,7 +106,7 @@ public class Hero extends GameCharacter {
             }
         }
 
-        this.setHeroMaxAbilities();
+        this.setHeroEnhancedAbilities();
         this.performActionsWithDuration(null);
     }
 
@@ -115,18 +115,18 @@ public class Hero extends GameCharacter {
      * Call this method whenever you change your equip (best in updateWearingAbilityPoints),
      * or update basic ability points
      */
-    private void setHeroMaxAbilities() {
+    private void setHeroEnhancedAbilities() {
         for (Ability ability : Ability.values()) {
-            this.maxAbilities.put(ability, this.abilities.get(ability) + this.wearingItemAbilityPoints.get(ability));
+            this.enhancedAbilities.put(ability, this.baseAbilities.get(ability) + this.wearingItemAbilityPoints.get(ability));
         }
 
         bonusFromAbility();
     }
 
     private void bonusFromAbility() {
-        this.maxAbilities.put(Ability.MANA, getMaxAbilities().get(Ability.MANA) + getMaxAbilities().get(Ability.INTELLECT) * Constant.MANA_PER_POINT_OF_INTELLECT);
-        this.maxAbilities.put(Ability.HEALTH, getMaxAbilities().get(Ability.HEALTH) + getMaxAbilities().get(Ability.STRENGTH) * Constant.HEALTH_PER_POINT_OF_STRENGTH);
-        this.maxAbilities.put(Ability.CRITICAL_HIT_CHANCE, (int) (getMaxAbilities().get(Ability.CRITICAL_HIT_CHANCE) + (getMaxAbilities().get(Ability.ATTACK) * Constant.CRITICAL_PER_ATTACK)));
+        this.enhancedAbilities.put(Ability.MANA, getEnhancedAbilities().get(Ability.MANA) + getEnhancedAbilities().get(Ability.INTELLECT) * Constant.MANA_PER_POINT_OF_INTELLECT);
+        this.enhancedAbilities.put(Ability.HEALTH, getEnhancedAbilities().get(Ability.HEALTH) + getEnhancedAbilities().get(Ability.STRENGTH) * Constant.HEALTH_PER_POINT_OF_STRENGTH);
+        this.enhancedAbilities.put(Ability.CRITICAL_HIT_CHANCE, (int) (getEnhancedAbilities().get(Ability.CRITICAL_HIT_CHANCE) + (getEnhancedAbilities().get(Ability.ATTACK) * Constant.CRITICAL_PER_ATTACK)));
     }
 
     /**
@@ -154,22 +154,22 @@ public class Hero extends GameCharacter {
             minimumPoints = 50;
         }
 
-        if ((this.abilities.get(ability) + pointsToChange) < minimumPoints) {
+        if ((this.baseAbilities.get(ability) + pointsToChange) < minimumPoints) {
             System.out.println("You don't have enough points!");
         } else {
-            if ((this.abilities.get(ability) + pointsToChange) < this.abilities.get(ability)) {
+            if ((this.baseAbilities.get(ability) + pointsToChange) < this.baseAbilities.get(ability)) {
                 System.out.println("You have removed 1 point from " + ability.name());
             }
 
             if (ability.equals(Ability.HEALTH)) {
-                this.abilities.put(ability, this.abilities.get(ability) + pointsToChange * Constant.HEALTH_OF_ONE_POINT);
+                this.baseAbilities.put(ability, this.baseAbilities.get(ability) + pointsToChange * Constant.HEALTH_OF_ONE_POINT);
             } else if (ability.equals(Ability.MANA)) {
-                this.abilities.put(ability, this.abilities.get(ability) + pointsToChange * Constant.MANA_OF_ONE_POINT);
+                this.baseAbilities.put(ability, this.baseAbilities.get(ability) + pointsToChange * Constant.MANA_OF_ONE_POINT);
             } else {
-                this.abilities.put(ability, this.abilities.get(ability) + pointsToChange);
+                this.baseAbilities.put(ability, this.baseAbilities.get(ability) + pointsToChange);
             }
 
-            this.setHeroMaxAbilities();
+            this.setHeroEnhancedAbilities();
             this.resetAbilitiesToMaxValues(true);
             this.performActionsWithDuration(null);
             this.updateAbilityPoints(heroAvailablePointsChange);
@@ -178,10 +178,6 @@ public class Hero extends GameCharacter {
 
     public void updateAbilityPoints(int numberOfPoints) {
         this.unspentAbilityPoints += numberOfPoints;
-    }
-
-    public void setAbilityValue(Ability ability, int abilityValueToSet) {
-        this.abilities.put(ability, abilityValueToSet);
     }
 
     /**
@@ -248,7 +244,6 @@ public class Hero extends GameCharacter {
     public void rest() {
         this.resetAbilitiesToMaxValues(true);
         this.regionActionsWithDuration.removeIf(actionWithDuration -> actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF));
-
     }
 
     public void setInitialEquip() {
@@ -256,6 +251,7 @@ public class Hero extends GameCharacter {
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(400));
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(500));
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(600));
+
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(107));
 
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(200));

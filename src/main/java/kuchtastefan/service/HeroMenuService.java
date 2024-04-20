@@ -7,6 +7,9 @@ import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.questItem.QuestItem;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -36,21 +39,8 @@ public class HeroMenuService {
         PrintUtil.printLongDivider();
         System.out.printf("%30s %n", ConsoleColor.YELLOW + "Hero menu" + ConsoleColor.RESET);
         PrintUtil.printLongDivider();
+        PrintUtil.printMenuOptions("Go back", "Hero Info", "Inventory", "Abilities", "Quests", "Spells", "Game Settings");
 
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-        PrintUtil.printIndexAndText("1", "Hero Info");
-        System.out.println();
-        PrintUtil.printIndexAndText("2", "Inventory");
-        System.out.println();
-        PrintUtil.printIndexAndText("3", "Abilities");
-        System.out.println();
-        PrintUtil.printIndexAndText("4", "Quests");
-        System.out.println();
-        PrintUtil.printIndexAndText("5", "Spells");
-        System.out.println();
-        PrintUtil.printIndexAndText("6", "Game Settings");
-        System.out.println();
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {

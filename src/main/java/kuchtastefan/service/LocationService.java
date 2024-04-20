@@ -154,6 +154,7 @@ public class LocationService {
         if (isStageCompleted && !locationStage.isStageCompleted()) {
             location.incrementStageCompleted();
             locationStage.setStageCompleted(true);
+            hero.restoreHealthAndManaAfterTurn();
 
             if (locationStage instanceof RemoveLocationStageProgress removeStageProgress) {
                 removeStageProgress.removeProgressAfterCompletedStage();

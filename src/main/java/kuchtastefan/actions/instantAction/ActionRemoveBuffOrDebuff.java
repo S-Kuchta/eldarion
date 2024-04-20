@@ -27,12 +27,12 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
     @Override
     public void performAction(GameCharacter gameCharacter) {
         if (this.removeAllStatusEffects) {
-            gameCharacter.getBattleActionsWithDuration().removeIf(action -> action.getActionStatusEffect().equals(this.actionStatusEffectToRemove));
+            gameCharacter.getBuffsAndDebuffs().removeIf(action -> action.getActionStatusEffect().equals(this.actionStatusEffectToRemove));
         } else {
-            for (ActionWithDuration action : gameCharacter.getBattleActionsWithDuration()) {
+            for (ActionWithDuration action : gameCharacter.getBuffsAndDebuffs()) {
                 for (int i = 0; i < this.baseActionValue; i++) {
                     if (action.getActionStatusEffect().equals(this.actionStatusEffectToRemove)) {
-                        gameCharacter.getBattleActionsWithDuration().remove(action);
+                        gameCharacter.getBuffsAndDebuffs().remove(action);
                     }
                 }
             }
@@ -47,7 +47,7 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        for (ActionWithDuration actionWithDuration : spellCaster.getBattleActionsWithDuration()) {
+        for (ActionWithDuration actionWithDuration : spellCaster.getBuffsAndDebuffs()) {
             if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF)
                     && this.getActionStatusEffectToRemove().equals(ActionStatusEffect.DEBUFF)) {
 
@@ -55,7 +55,7 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
             }
         }
 
-        for (ActionWithDuration actionWithDuration : spellTarget.getBattleActionsWithDuration()) {
+        for (ActionWithDuration actionWithDuration : spellTarget.getBuffsAndDebuffs()) {
             if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.BUFF)
                     && this.getActionStatusEffectToRemove().equals(ActionStatusEffect.BUFF)) {
 

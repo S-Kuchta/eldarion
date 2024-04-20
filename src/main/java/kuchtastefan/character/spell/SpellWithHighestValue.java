@@ -1,9 +1,5 @@
 package kuchtastefan.character.spell;
 
-import kuchtastefan.actions.Action;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
-import kuchtastefan.character.GameCharacter;
-
 public class SpellWithHighestValue {
 
 //    public Spell returnSpellWithTheHighestTotalDamage(GameCharacter gameCharacter, Class<Action> actionClass) {

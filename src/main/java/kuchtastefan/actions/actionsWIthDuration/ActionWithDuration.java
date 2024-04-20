@@ -18,12 +18,11 @@ public abstract class ActionWithDuration extends Action {
     private int currentActionTurn;
     private final int actionMaxStacks;
     private int actionCurrentStacks;
-    private final ActionDurationType actionDurationType;
     private final ActionStatusEffect actionStatusEffect;
 
 
     public ActionWithDuration(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int maxActionTurns,
-                              int actionMaxStacks, ActionDurationType actionDurationType, int chanceToPerformAction,
+                              int actionMaxStacks, int chanceToPerformAction,
                               boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
         super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
         this.maxActionTurns = maxActionTurns;
@@ -31,7 +30,6 @@ public abstract class ActionWithDuration extends Action {
         this.currentActionTurn = 0;
         this.actionMaxStacks = actionMaxStacks;
         this.actionCurrentStacks = 0;
-        this.actionDurationType = actionDurationType;
     }
 
     @Override
@@ -58,11 +56,11 @@ public abstract class ActionWithDuration extends Action {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ActionWithDuration that = (ActionWithDuration) o;
-        return actionName.equals(that.actionName) && maxActionTurns == that.maxActionTurns && actionMaxStacks == that.actionMaxStacks && actionDurationType == that.actionDurationType;
+        return actionName.equals(that.actionName) && maxActionTurns == that.maxActionTurns && actionMaxStacks == that.actionMaxStacks;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxActionTurns, actionDurationType, actionMaxStacks);
+        return Objects.hash(maxActionTurns, actionMaxStacks);
     }
 }

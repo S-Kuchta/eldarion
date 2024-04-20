@@ -2,10 +2,10 @@ package kuchtastefan.actions;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithBaseValue;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
-import kuchtastefan.actions.instantAction.ActionDealDamage;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTimePrimary;
+import kuchtastefan.actions.instantAction.ActionDealDamagePrimary;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.NonPlayerCharacter;
@@ -61,7 +61,7 @@ public abstract class Action {
         // max. ability value
         int valueIncreasedByPrimaryAbility = 0;
 
-        if (this instanceof ActionDealDamage || this instanceof ActionDealDamageOverTime) {
+        if (this instanceof ActionDealDamagePrimary || this instanceof ActionDealDamageOverTimePrimary) {
             valueIncreasedByLevel += spellCaster.getCurrentAbilityValue(Ability.ATTACK);
         }
 
@@ -69,7 +69,7 @@ public abstract class Action {
             valueIncreasedByPrimaryAbility = valueIncreasedByLevel;
         }
 
-        if (this instanceof ActionWithIncreasedValueByAbility) {
+        if (this instanceof ActionWithIncreasedValueByPrimaryAbility) {
             if (spellCaster instanceof Hero hero) {
                 valueIncreasedByPrimaryAbility = valueIncreasedByLevel +
                         spellCaster.getCurrentAbilityValue(hero.getCharacterClass().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;

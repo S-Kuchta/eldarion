@@ -3,12 +3,9 @@ package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithBaseValue;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByAbility;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
@@ -21,11 +18,11 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration implements Ac
     private final Ability ability;
 
     public ActionDecreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                                      int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType,
-                                      int chanceToPerformAction, boolean canBeActionCriticalHit, Ability ability,
-                                      ActionStatusEffect actionStatusEffect) {
+                                      int maxActionTurns, int actionMaxStacks, int chanceToPerformAction, boolean canBeActionCriticalHit,
+                                      Ability ability, ActionStatusEffect actionStatusEffect) {
+
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
         this.ability = ability;
     }
 

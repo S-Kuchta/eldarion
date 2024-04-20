@@ -4,14 +4,14 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
 
-public class ActionRestoreMana extends Action implements ActionWithIncreasedValueByAbility {
-    public ActionRestoreMana(ActionName actionName, ActionEffectOn actionEffectOn,
-                             int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
+public class ActionRestoreManaPrimary extends Action implements ActionWithIncreasedValueByPrimaryAbility {
+    public ActionRestoreManaPrimary(ActionName actionName, ActionEffectOn actionEffectOn,
+                                    int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
         super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 
@@ -25,7 +25,7 @@ public class ActionRestoreMana extends Action implements ActionWithIncreasedValu
         System.out.print("Restore "
                 + ConsoleColor.BLUE + this.returnActionValueRange(spellCaster).minimumValue() + ConsoleColor.RESET
                 +  " - " + ConsoleColor.BLUE + this.returnActionValueRange(spellCaster).maximumValue() + ConsoleColor.RESET
-                + returnTargetName(spellCaster, spellTarget)
+                + " of " + ConsoleColor.YELLOW + returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET
                 + " Mana");
     }
 

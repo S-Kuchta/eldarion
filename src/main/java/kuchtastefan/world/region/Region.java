@@ -46,7 +46,6 @@ public class Region {
             // Printing region information and options
             System.out.println();
             PrintUtil.printHeaderWithStatsBar(hero);
-            PrintUtil.printRegionBuffs(hero);
             PrintUtil.printExtraLongDivider();
             PrintUtil.printLongDivider();
             System.out.println("\t\t" + this.getRegionName()

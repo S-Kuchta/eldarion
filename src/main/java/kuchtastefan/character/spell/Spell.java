@@ -15,6 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Spell {
+
     private final int spellId;
     private final String spellName;
     private final String spellDescription;

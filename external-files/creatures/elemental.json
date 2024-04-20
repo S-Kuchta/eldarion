@@ -4,7 +4,7 @@
     "name": "Water Elemental",
     "characterRarity": "SUMMONED",
     "npcType": "MAGE",
-    "basebaseAbilities": {
+    "baseAbilities": {
       "ATTACK": 2,
       "RESIST_DAMAGE": 2,
       "STRENGTH": 1,

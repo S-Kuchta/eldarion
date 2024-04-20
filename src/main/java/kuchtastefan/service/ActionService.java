@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
-import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.instantAction.ActionSummonCreature;
 import kuchtastefan.character.GameCharacter;
@@ -40,11 +39,10 @@ public class ActionService {
                 }
 
                 if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-                    for (GameCharacter enemyCharacter : charactersInvolvedInBattle.getAlliesCharacters()) {
+                    for (GameCharacter enemyCharacter : charactersInvolvedInBattle.getEnemyCharacters()) {
                         performAction(action, enemyCharacter);
                     }
                 }
-
             } else {
                 actionTarget = determineActionTarget(action, charactersInvolvedInBattle);
                 performAction(action, actionTarget);
@@ -61,7 +59,7 @@ public class ActionService {
     private void performAction(Action action, GameCharacter actionTarget) {
         if (action instanceof ActionWithDuration actionWithDuration) {
             if (actionTarget != null) {
-                addActionWithDurationToCharacter(actionWithDuration, actionTarget);
+                setNewActionOrAddStackToExistingAction(actionWithDuration, actionTarget.getBuffsAndDebuffs());
             } else {
                 System.out.println("\tYou don't have a target!");
             }
@@ -85,16 +83,6 @@ public class ActionService {
         }
 
         return null;
-    }
-
-    public void addActionWithDurationToCharacter(ActionWithDuration actionWithDuration, GameCharacter actionTarget) {
-        if (actionWithDuration.getActionDurationType().equals(ActionDurationType.REGION_ACTION)) {
-            setNewActionOrAddStackToExistingAction(actionWithDuration, actionTarget.getRegionActionsWithDuration());
-        }
-
-        if (actionWithDuration.getActionDurationType().equals(ActionDurationType.BATTLE_ACTION)) {
-            setNewActionOrAddStackToExistingAction(actionWithDuration, actionTarget.getBattleActionsWithDuration());
-        }
     }
 
     /**

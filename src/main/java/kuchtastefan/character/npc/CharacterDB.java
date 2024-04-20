@@ -38,12 +38,8 @@ public class CharacterDB {
         character.setCanPerformAction(true);
         character.setMaxAbilitiesAndCurrentAbilities();
 
-        if (character.getRegionActionsWithDuration() == null) {
-            character.setRegionActionsWithDuration(new HashSet<>());
-        }
-
-        if (character.getBattleActionsWithDuration() == null) {
-            character.setBattleActionsWithDuration(new HashSet<>());
+        if (character.getBuffsAndDebuffs() == null) {
+            character.setBuffsAndDebuffs(new HashSet<>());
         }
 
         CHARACTER_DB.put(character.getNpcId(), character);

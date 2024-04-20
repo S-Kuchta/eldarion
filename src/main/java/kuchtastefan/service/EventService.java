@@ -1,11 +1,8 @@
 package kuchtastefan.service;
 
-import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.npc.enemy.EnemyGroupDB;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.constant.Constant;
 import kuchtastefan.world.event.specificEvent.*;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.Biome;
@@ -40,6 +37,6 @@ public class EventService {
         }
 
         hero.restoreHealthAndManaAfterTurn();
-        hero.performActionsWithDuration(ActionDurationType.REGION_ACTION);
+        hero.performActionsWithDuration(true);
     }
 }

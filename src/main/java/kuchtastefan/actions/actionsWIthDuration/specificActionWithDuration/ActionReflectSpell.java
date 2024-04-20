@@ -2,7 +2,6 @@ package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
 
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
@@ -10,10 +9,11 @@ import kuchtastefan.character.GameCharacter;
 
 public class ActionReflectSpell extends ActionWithDuration implements ActionWithoutValue {
     public ActionReflectSpell(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                              int maxActionTurns, int actionMaxStacks, ActionDurationType actionDurationType,
-                              int chanceToPerformAction, boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
+                              int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
+                              boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
+
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override

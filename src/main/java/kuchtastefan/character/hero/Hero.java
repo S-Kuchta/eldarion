@@ -107,7 +107,7 @@ public class Hero extends GameCharacter {
         }
 
         this.setHeroEnhancedAbilities();
-        this.performActionsWithDuration(null);
+        this.performActionsWithDuration(false);
     }
 
     /**
@@ -171,7 +171,7 @@ public class Hero extends GameCharacter {
 
             this.setHeroEnhancedAbilities();
             this.resetAbilitiesToMaxValues(true);
-            this.performActionsWithDuration(null);
+            this.performActionsWithDuration(false);
             this.updateAbilityPoints(heroAvailablePointsChange);
         }
     }
@@ -251,6 +251,14 @@ public class Hero extends GameCharacter {
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(400));
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(500));
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(600));
+
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(1001));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(1001));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(1002));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(1002));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(900));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(900));
+        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(902));
 
         this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(107));
 

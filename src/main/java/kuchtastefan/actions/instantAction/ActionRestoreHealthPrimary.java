@@ -4,14 +4,14 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionRestoreHealth extends Action implements ActionWithIncreasedValueByAbility {
+public class ActionRestoreHealthPrimary extends Action implements ActionWithIncreasedValueByPrimaryAbility {
 
-    public ActionRestoreHealth(ActionName actionName, ActionEffectOn actionEffectOn,
-                               int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
+    public ActionRestoreHealthPrimary(ActionName actionName, ActionEffectOn actionEffectOn,
+                                      int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
         super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 

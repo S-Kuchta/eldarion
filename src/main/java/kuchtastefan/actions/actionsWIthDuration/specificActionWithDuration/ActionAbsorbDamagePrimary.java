@@ -4,21 +4,19 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
-import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionAbsorbDamage extends ActionWithDuration implements ActionWithIncreasedValueByAbility {
+public class ActionAbsorbDamagePrimary extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
 
-    public ActionAbsorbDamage(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                              int maxActionTurns, int actionMaxStacks,
-                              ActionDurationType actionDurationType, int chanceToPerformAction,
-                              boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
+    public ActionAbsorbDamagePrimary(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+                                     int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
+                                     boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
         super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
-                actionDurationType, chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override

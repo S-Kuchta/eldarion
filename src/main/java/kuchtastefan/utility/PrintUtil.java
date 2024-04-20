@@ -3,9 +3,6 @@ package kuchtastefan.utility;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDecreaseAbilityPoint;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionIncreaseAbilityPoint;
-import kuchtastefan.actions.instantAction.ActionRemoveBuffOrDebuff;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
@@ -85,62 +82,12 @@ public class PrintUtil {
         }
     }
 
-    public static void printActionDetails(Action action, int totalActionValue) {
-        if (action.getBaseActionValue() != 0) {
-            switch (action) {
-                case ActionIncreaseAbilityPoint actionIncreaseAbilityPoint ->
-                        System.out.print("[▲ " + actionIncreaseAbilityPoint.getAbility() + " +" + totalActionValue + " ▲]");
-
-                case ActionDecreaseAbilityPoint actionDecreaseAbilityPoint ->
-                        System.out.print("[▼ " + actionDecreaseAbilityPoint.getAbility() + " -" + totalActionValue + " ▼]");
-
-                case ActionRemoveBuffOrDebuff actionRemoveBuffOrDebuff -> {
-                    if (((ActionRemoveBuffOrDebuff) action).isRemoveAllStatusEffects()) {
-                        System.out.println("[Remove all "
-                                + ConsoleColor.YELLOW + ((ActionRemoveBuffOrDebuff) action).getActionStatusEffectToRemove() + "s " + ConsoleColor.RESET);
-                    } else {
-                        System.out.println("[" + actionRemoveBuffOrDebuff.getActionStatusEffectToRemove()
-                                + " to remove: " + ConsoleColor.YELLOW + action.getBaseActionValue() + ConsoleColor.RESET + "]");
-                    }
-                }
-
-                default -> System.out.print("[Value: "
-                        + ConsoleColor.YELLOW + (int) (totalActionValue * Constant.LOWER_DAMAGE_MULTIPLIER) + ConsoleColor.RESET
-                        + " - "
-                        + ConsoleColor.YELLOW + totalActionValue + ConsoleColor.RESET + "]");
-            }
-        }
-
-        if (action.getChanceToPerformAction() < 100) {
-            System.out.print("[Chance: " + ConsoleColor.YELLOW + action.getChanceToPerformAction() + ConsoleColor.RESET + "%]");
-        }
-
-        if (action instanceof ActionWithDuration) {
-            System.out.print("[Turns Duration: "
-                    + ConsoleColor.YELLOW + ((ActionWithDuration) action).getMaxActionTurns() + ConsoleColor.RESET + "]");
-
-            if (((ActionWithDuration) action).getActionMaxStacks() > 1) {
-                System.out.println("[Max Stacks: "
-                        + ConsoleColor.YELLOW + ((ActionWithDuration) action).getActionMaxStacks() + ConsoleColor.RESET + "]");
-            }
-        }
-
-        if (GameSettingsDB.returnGameSettingValue(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
-            System.out.print("\n\t\t" + action.getActionName().getDescription());
-        }
-        System.out.println();
-    }
-
     public static void printBattleBuffs(GameCharacter gameCharacter) {
-        if (gameCharacter.getBattleActionsWithDuration() == null) {
-            gameCharacter.setBattleActionsWithDuration(new HashSet<>());
+        if (gameCharacter.getBuffsAndDebuffs() == null) {
+            gameCharacter.setBuffsAndDebuffs(new HashSet<>());
         }
 
-        generateTableWithBuffs(gameCharacter.getBattleActionsWithDuration());
-    }
-
-    public static void printRegionBuffs(Hero hero) {
-        generateTableWithBuffs(hero.getRegionActionsWithDuration());
+        generateTableWithBuffs(gameCharacter.getBuffsAndDebuffs());
     }
 
     public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {

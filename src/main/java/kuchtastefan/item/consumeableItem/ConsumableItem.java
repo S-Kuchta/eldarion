@@ -54,8 +54,9 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
 
         System.out.println();
         for (Action action : this.getActionList()) {
-            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on " + action.getActionEffectOn() + " ");
+//            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on " + action.getActionEffectOn() + " ");
             action.printActionDescription(hero, hero);
+            System.out.println();
 //            PrintUtil.printActionDetails(action, action.getCurrentActionValue());
 //            PrintUtil.printActionDetails(action, action.returnActionValueRange(hero).onlyValue());
         }

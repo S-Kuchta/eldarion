@@ -1,9 +1,8 @@
 package kuchtastefan.character;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamagePrimary;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
@@ -22,8 +21,7 @@ public abstract class GameCharacter {
     protected Map<Ability, Integer> baseAbilities;
     protected Map<Ability, Integer> enhancedAbilities;
     protected Map<Ability, Integer> effectiveAbilities;
-    protected Set<ActionWithDuration> regionActionsWithDuration;
-    protected Set<ActionWithDuration> battleActionsWithDuration;
+    protected Set<ActionWithDuration> buffsAndDebuffs;
     protected List<Spell> characterSpellList;
     protected boolean canPerformAction;
     protected boolean reflectSpell;
@@ -34,8 +32,7 @@ public abstract class GameCharacter {
         this.baseAbilities = baseAbilities;
         this.enhancedAbilities = new HashMap<>(baseAbilities);
         this.effectiveAbilities = new HashMap<>(baseAbilities);
-        this.regionActionsWithDuration = new HashSet<>();
-        this.battleActionsWithDuration = new HashSet<>();
+        this.buffsAndDebuffs = new HashSet<>();
         this.characterSpellList = new ArrayList<>();
         this.canPerformAction = true;
     }
@@ -44,30 +41,22 @@ public abstract class GameCharacter {
      * Call this method when you want to update ability points depending on active actions (buff, de buff)
      * If actionDurationType is same as type from parameter, you will get turn for action
      * Method also check if you reach max turns. If yes, action is removed.
-     *
-     * @param actionDurationType from where you call method (BATTLE or REGION(EVENT))
      */
-    public void performActionsWithDuration(ActionDurationType actionDurationType) {
+    public void performActionsWithDuration(boolean addTurn) {
         resetAbilitiesToMaxValues(false);
 
-        Set<ActionWithDuration> actions = new HashSet<>();
-        actions.addAll(this.regionActionsWithDuration);
-        actions.addAll(this.battleActionsWithDuration);
-
-        for (ActionWithDuration actionWithDuration : actions) {
+        for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
             actionWithDuration.performAction(this);
-            if (actionWithDuration.getActionDurationType().equals(actionDurationType)) {
+            if (addTurn) {
                 actionWithDuration.actionAddTurn();
             }
         }
 
         checkAndRemoveActionTurns();
-        actions.clear();
     }
 
     public void checkAndRemoveActionTurns() {
-        this.battleActionsWithDuration.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
-        this.regionActionsWithDuration.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
+        this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
     }
 
     public void resetAbilitiesToMaxValues(boolean setHealthOrManaToMaxValue) {
@@ -102,11 +91,11 @@ public abstract class GameCharacter {
 
         // Handle absorb damage
         int absorbDamage = 0;
-        Iterator<ActionWithDuration> iterator = this.battleActionsWithDuration.iterator();
+        Iterator<ActionWithDuration> iterator = this.buffsAndDebuffs.iterator();
         while (iterator.hasNext()) {
 
             ActionWithDuration action = iterator.next();
-            if (action instanceof ActionAbsorbDamage) {
+            if (action instanceof ActionAbsorbDamagePrimary) {
                 if (action.getCurrentActionValue() >= damage) {
                     action.setCurrentActionValue(action.getCurrentActionValue() - damage);
                     damage = 0;

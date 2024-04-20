@@ -2,7 +2,6 @@ package kuchtastefan.service;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.actionsWIthDuration.ActionDurationType;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.NonPlayerCharacter;
@@ -22,6 +21,8 @@ import java.util.*;
 
 @Getter
 public class BattleService {
+
+    // TODO - Refactor this class to use the CharactersInvolvedInBattle class
 
     private GameCharacter playerTarget;
     private String selectedEnemyForShowSelection;
@@ -50,8 +51,7 @@ public class BattleService {
         // Initialize variables for selected hero and enemy
         playerTarget = enemyList.getFirst();
 
-        hero.getBattleActionsWithDuration().clear();
-        hero.getBattleActionsWithDuration().addAll(hero.getRegionActionsWithDuration());
+        hero.getBuffsAndDebuffs().clear();
 
         // Main battle loop
         while (true) {
@@ -67,7 +67,7 @@ public class BattleService {
             // Check if all enemies are defeated
             if (enemyList.isEmpty()) {
                 // Clear hero's battle actions and reset spell CoolDowns
-                hero.getBattleActionsWithDuration().clear();
+                hero.getBuffsAndDebuffs().clear();
                 this.resetSpellsCoolDowns(hero);
                 hero.setInCombat(false);
                 return true; // Battle won
@@ -76,8 +76,7 @@ public class BattleService {
             // Check if hero's health reaches zero
             if (hero.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
                 // Clear hero's actions and battle actions, deduct gold, reset health, and reset spell CoolDowns
-                hero.getRegionActionsWithDuration().clear();
-                hero.getBattleActionsWithDuration().clear();
+                hero.getBuffsAndDebuffs().clear();
                 int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
 
                 hero.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
@@ -246,12 +245,12 @@ public class BattleService {
     }
 
     private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
-        if (!gameCharacter.getBattleActionsWithDuration().isEmpty()) {
+        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
             System.out.println("\t_____ " + gameCharacter.getName() + " buffs and debuffs _____");
             System.out.println();
         }
 
-        gameCharacter.performActionsWithDuration(ActionDurationType.BATTLE_ACTION);
+        gameCharacter.performActionsWithDuration(true);
     }
 
     private void restoreManaAfterTurn(GameCharacter gameCharacter) {

@@ -223,7 +223,7 @@ public class FileService {
         wearableItem.setPrice(70 * wearableItem.getItemLevel());
 
         if (wearableItem.getWearableItemQuality() == null) {
-            wearableItem.setItemQuality(WearableItemQuality.BASIC);
+            wearableItem.setWearableItemQuality(WearableItemQuality.BASIC);
         }
 
         for (Ability ability : Ability.values()) {

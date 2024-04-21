@@ -64,7 +64,7 @@ public class WearableItem extends Item implements UsableItem, HaveType {
         return true;
     }
 
-    public void refineItem() {
+    public void refine() {
         this.setPrice(this.getPrice() * 2);
         this.setWearableItemQuality(WearableItemQuality.IMPROVED);
 
@@ -81,7 +81,7 @@ public class WearableItem extends Item implements UsableItem, HaveType {
         return new ItemWithCount(reagent, count);
     }
 
-    public ItemWithCount dismantleItem() {
+    public ItemWithCount dismantle() {
         Item reagent = ItemDB.getRandomItem(CraftingReagentItem.class, new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, this.itemLevel));
         return new ItemWithCount(reagent, RandomNumberGenerator.getRandomNumber(2,4) + this.itemLevel);
     }

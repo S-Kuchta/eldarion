@@ -4,13 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
+import kuchtastefan.workshop.Workshop;
 import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -122,6 +126,22 @@ public class HeroInventory {
         }
 
         return itemMap;
+    }
+
+    public <T extends Item> void selectItem(Hero hero, Class<T> itemClass, Workshop workshop) {
+        hero.getHeroInventory().printHeroInventoryByClass(itemClass, 1, hero);
+
+        final int choice = InputUtil.intScanner();
+        if (choice == 0) {
+            workshop.workshopMenu(hero);
+        } else {
+            List<T> items = new ArrayList<>(hero.getHeroInventory().returnHeroInventoryByClass(itemClass).keySet());
+            if (choice - 1 < items.size()) {
+                workshop.itemMenu(hero, items.get(choice - 1));
+            } else {
+                PrintUtil.printEnterValidInput();
+            }
+        }
     }
 
     public <T extends Item> void printHeroInventoryByClass(Class<T> itemClass, int indexStart, Hero hero) {

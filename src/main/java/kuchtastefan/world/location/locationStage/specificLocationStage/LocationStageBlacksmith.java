@@ -1,7 +1,6 @@
 package kuchtastefan.world.location.locationStage.specificLocationStage;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.service.BlacksmithService;
 import kuchtastefan.service.BlacksmithingService;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
@@ -18,7 +17,7 @@ public class LocationStageBlacksmith extends LocationStage implements CanEnterSt
 //        BlacksmithService blacksmithService = new BlacksmithService();
 //        blacksmithService.blacksmithMenu(hero);
         BlacksmithingService blacksmithingService = new BlacksmithingService();
-        blacksmithingService.blacksmithingMenu(hero);
+        blacksmithingService.workshopMenu(hero);
         return true;
     }
 }

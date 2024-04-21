@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.criticalHit.CanBeCriticalHit;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.Constant;
@@ -15,7 +16,9 @@ import java.util.Set;
 
 public class ActionService {
 
-    public void applyActionToTarget(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle, boolean criticalHit, boolean hitAllInvolvedCharacters) {
+    public void applyActionToTarget(Action originalAction, CharactersInvolvedInBattle charactersInvolvedInBattle, boolean criticalHit, boolean hitAllInvolvedCharacters) {
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
+        Action action = gson.fromJson(gson.toJson(originalAction), originalAction.getClass());
         action.setCharactersInvolvedInBattle(charactersInvolvedInBattle);
 
         if (action.willPerformAction()) {
@@ -23,7 +26,7 @@ public class ActionService {
                     action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).minimumValue(),
                     action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).maximumValue());
 
-            if (criticalHit && action.isCanBeActionCriticalHit()) {
+            if (criticalHit && action instanceof CanBeCriticalHit) {
                 System.out.println("\t" + action.getActionName() + " Critical hit!");
                 totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
             }
@@ -46,7 +49,6 @@ public class ActionService {
                 GameCharacter actionTarget = determineActionTarget(action, charactersInvolvedInBattle);
                 performAction(action, actionTarget);
             }
-//            this.performActionWithSpecificNeeds(action, charactersInvolvedInBattle);
         }
     }
 
@@ -92,39 +94,22 @@ public class ActionService {
      * @param actions            list where you want to add new action
      */
     private void setNewActionOrAddStackToExistingAction(ActionWithDuration actionWithDuration, Set<ActionWithDuration> actions) {
-        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-
         System.out.println(actions.contains(actionWithDuration));
         if (!actions.contains(actionWithDuration)) {
-            //TODO - check if this is necessary
-//            ActionWithDuration actionWithDurationNewCopy = gson.fromJson(gson.toJson(actionWithDuration), actionWithDuration.getClass());
             actions.add(actionWithDuration);
             actionWithDuration.addActionStack();
             actionWithDuration.actionCurrentTurnReset();
         } else {
             for (ActionWithDuration action : actions) {
                 if (action.equals(actionWithDuration) && action.getActionCurrentStacks() < action.getActionMaxStacks()) {
-//                    action.setCurrentActionValue(actionWithDuration.getCurrentActionValue());
                     action.addActionStack();
                     action.actionCurrentTurnReset();
                 }
 
                 if (action.equals(actionWithDuration) && action.getActionCurrentStacks() == action.getActionMaxStacks()) {
-//                    action.setCurrentActionValue(actionWithDuration.getCurrentActionValue());
                     action.actionCurrentTurnReset();
                 }
             }
         }
     }
-
-//    /**
-//     * Actions that cannot be performed in the 'perform action' method of the respective action due to various reasons
-//     *
-//     * @param action to perform
-//     */
-//    private void performActionWithSpecificNeeds(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle) {
-//        if (action instanceof ActionSummonCreature actionSummonCreature) {
-//            charactersInvolvedInBattle.getTempCharacterList().add(actionSummonCreature.returnSummonedCharacter());
-//        }
-//    }
 }

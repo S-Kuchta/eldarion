@@ -5,18 +5,16 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.criticalHit.CanBeCriticalHit;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionRestoreHealthOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
+public class ActionRestoreHealthOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility, CanBeCriticalHit {
 
-    public ActionRestoreHealthOverTime(ActionName actionName, ActionEffectOn actionEffectOn,
-                                       int maxActionValue, int baseActionValue, int actionMaxStacks, int chanceToPerformAction,
-                                       boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
-
-        super(actionName, actionEffectOn, maxActionValue, baseActionValue, actionMaxStacks,
-                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+    public ActionRestoreHealthOverTime(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int baseActionValue,
+                                       int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
+        super(actionName, actionEffectOn, maxActionValue, baseActionValue, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
     }
 
     @Override

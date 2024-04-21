@@ -22,8 +22,6 @@ import java.util.*;
 @Getter
 public class BattleService {
 
-    // TODO - Refactor this class to use the CharactersInvolvedInBattle class
-
     private GameCharacter playerTarget;
     private String selectedEnemyForShowSelection;
     private final List<GameCharacter> enemyList;

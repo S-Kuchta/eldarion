@@ -5,7 +5,7 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithBaseValue;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithBaseValue;
 import kuchtastefan.character.GameCharacter;
 import lombok.Getter;
 
@@ -15,11 +15,9 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
     private final boolean removeAllStatusEffects;
     private final ActionStatusEffect actionStatusEffectToRemove;
 
-    public ActionRemoveBuffOrDebuff(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
-                                    int chanceToPerformAction, boolean canBeActionCriticalHit,
+    public ActionRemoveBuffOrDebuff(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int chanceToPerformAction,
                                     boolean removeAllStatusEffects, ActionStatusEffect actionStatusEffectToRemove) {
-
-        super(actionName, actionEffectOn, baseActionValue, chanceToPerformAction, canBeActionCriticalHit);
+        super(actionName, actionEffectOn, baseActionValue, chanceToPerformAction);
         this.removeAllStatusEffects = removeAllStatusEffects;
         this.actionStatusEffectToRemove = actionStatusEffectToRemove;
     }
@@ -51,7 +49,7 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
             if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF)
                     && this.getActionStatusEffectToRemove().equals(ActionStatusEffect.DEBUFF)) {
 
-                return  2;
+                return 2;
             }
         }
 
@@ -59,7 +57,7 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
             if (actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.BUFF)
                     && this.getActionStatusEffectToRemove().equals(ActionStatusEffect.BUFF)) {
 
-                return  2;
+                return 2;
             }
         }
 

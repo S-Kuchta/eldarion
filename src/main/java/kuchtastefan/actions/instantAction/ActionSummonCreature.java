@@ -3,7 +3,7 @@ package kuchtastefan.actions.instantAction;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.NonPlayerCharacter;
@@ -16,9 +16,9 @@ public class ActionSummonCreature extends Action implements ActionWithoutValue {
     private final int summonedNpcId;
 
     public ActionSummonCreature(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                                int chanceToPerformAction, boolean canBeActionCriticalHit, int summonedNpcId) {
+                                int chanceToPerformAction, int summonedNpcId) {
 
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction);
         this.summonedNpcId = summonedNpcId;
     }
 

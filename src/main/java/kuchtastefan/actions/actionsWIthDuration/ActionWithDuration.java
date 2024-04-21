@@ -22,9 +22,8 @@ public abstract class ActionWithDuration extends Action {
 
 
     public ActionWithDuration(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int maxActionTurns,
-                              int actionMaxStacks, int chanceToPerformAction,
-                              boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
+                              int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction);
         this.maxActionTurns = maxActionTurns;
         this.actionStatusEffect = actionStatusEffect;
         this.currentActionTurn = 0;

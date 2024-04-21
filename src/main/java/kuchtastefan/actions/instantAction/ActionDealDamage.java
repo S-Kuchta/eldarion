@@ -3,15 +3,15 @@ package kuchtastefan.actions.instantAction;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.criticalHit.CanBeCriticalHit;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionDealDamage extends Action implements ActionWithIncreasedValueByPrimaryAbility {
-    public ActionDealDamage(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
-                            int chanceToPerformAction, boolean canBeActionCriticalHit) {
+public class ActionDealDamage extends Action implements ActionWithIncreasedValueByPrimaryAbility, CanBeCriticalHit {
+    public ActionDealDamage(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int chanceToPerformAction) {
 
-        super(actionName, actionEffectOn, baseActionValue, chanceToPerformAction, canBeActionCriticalHit);
+        super(actionName, actionEffectOn, baseActionValue, chanceToPerformAction);
     }
 
     @Override

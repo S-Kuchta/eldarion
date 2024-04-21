@@ -4,17 +4,15 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.criticalHit.CanBeCriticalHit;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionDealDamageOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
-    public ActionDealDamageOverTime(ActionName actionName, ActionEffectOn actionEffectOn,
-                                    int baseActionValue, int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
-                                    boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
-
-        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
-                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+public class ActionDealDamageOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility, CanBeCriticalHit {
+    public ActionDealDamageOverTime(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
+                                    int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
+        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
     }
 
     @Override

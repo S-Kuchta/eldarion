@@ -10,8 +10,7 @@
         "actionName": "DAMAGE",
         "baseActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 0,
@@ -29,8 +28,7 @@
         "actionName": "DAMAGE",
         "baseActionValue": 8,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       },
       {
         "type": "ActionDecreaseAbilityPoint",
@@ -40,7 +38,6 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "HASTE",
         "actionStatusEffect": "DEBUFF"
       }
@@ -60,8 +57,7 @@
         "actionName": "HEAL",
         "baseActionValue": 7,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 0,
@@ -79,8 +75,7 @@
         "actionName": "DAMAGE",
         "baseActionValue": 17,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 1,
@@ -98,8 +93,7 @@
         "actionName": "DAMAGE",
         "baseActionValue": 12,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       },
       {
         "type": "ActionDecreaseAbilityPoint",
@@ -109,7 +103,6 @@
         "maxActionTurns": 2,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "CRITICAL_HIT_CHANCE",
         "actionStatusEffect": "BUFF"
       }
@@ -130,7 +123,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "summonedNpcId": 600
       }
     ],
@@ -150,7 +142,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 601,
-        "canBeActionCriticalHit": false,
         "summonedNpcId": 400
       }
     ],
@@ -172,7 +163,6 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "CRITICAL_HIT_CHANCE",
         "actionStatusEffect": "BUFF"
       }
@@ -193,7 +183,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true,
         "removeAllStatusEffects": true,
         "actionStatusEffectToRemove": "BUFF"
       }
@@ -214,8 +203,7 @@
         "actionName": "DAMAGE",
         "baseActionValue": 7,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 5,
@@ -234,7 +222,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "summonedNpcId": 104
       },
       {
@@ -243,7 +230,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "summonedNpcId": 104
       }
     ],
@@ -265,7 +251,6 @@
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "ATTACK",
         "actionStatusEffect": "BUFF"
       },
@@ -277,7 +262,6 @@
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "INTELLECT",
         "actionStatusEffect": "BUFF"
       },
@@ -289,7 +273,6 @@
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "HASTE",
         "actionStatusEffect": "BUFF"
       }
@@ -310,7 +293,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "summonedNpcId": 600
       },
       {
@@ -319,7 +301,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "summonedNpcId": 601
       },
       {
@@ -328,7 +309,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "summonedNpcId": 602
       },
       {
@@ -337,7 +317,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "summonedNpcId": 603
       }
     ],

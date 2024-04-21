@@ -5,35 +5,31 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithIncreasedValueByPrimaryAbility;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
 public class ActionRestoreManaOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
 
-    public ActionRestoreManaOverTime(ActionName actionName, ActionEffectOn actionEffectOn,
-                                     int maxActionValue, int baseActionValue, int actionMaxStacks, int chanceToPerformAction,
-                                     boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
-
-        super(actionName, actionEffectOn, maxActionValue, baseActionValue, actionMaxStacks,
-                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+    public ActionRestoreManaOverTime(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int baseActionValue,
+                                     int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
+        super(actionName, actionEffectOn, maxActionValue, baseActionValue, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-//        gameCharacter.restoreAbilityValue(RandomNumberGenerator.getRandomNumber(this.returnActionValueRange(gameCharacter).), Ability.MANA);
         gameCharacter.restoreAbilityValue(this.currentActionValue, Ability.MANA);
     }
 
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
-            System.out.print("Restore " + ConsoleColor.RED
-                    + (this.returnActionValueRange(spellCaster).minimumValue() * this.getMaxActionTurns())
-                    + ConsoleColor.RESET + " - " + ConsoleColor.RED
-                    + (this.returnActionValueRange(spellCaster).maximumValue() * this.getMaxActionTurns())
-                    + ConsoleColor.RESET
-                    + " Mana " + " over " + this.getMaxActionTurns() + " turns on "
-                    + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET);
+        System.out.print("Restore " + ConsoleColor.RED
+                + (this.returnActionValueRange(spellCaster).minimumValue() * this.getMaxActionTurns())
+                + ConsoleColor.RESET + " - " + ConsoleColor.RED
+                + (this.returnActionValueRange(spellCaster).maximumValue() * this.getMaxActionTurns())
+                + ConsoleColor.RESET
+                + " Mana " + " over " + this.getMaxActionTurns() + " turns on "
+                + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET);
     }
 
     @Override

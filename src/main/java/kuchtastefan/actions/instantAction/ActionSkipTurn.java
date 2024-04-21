@@ -3,14 +3,12 @@ package kuchtastefan.actions.instantAction;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 
 public class ActionSkipTurn extends Action implements ActionWithoutValue {
-    public ActionSkipTurn(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                          int chanceToPerformAction, boolean canBeActionCriticalHit) {
-
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
+    public ActionSkipTurn(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int chanceToPerformAction) {
+        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction);
     }
 
     @Override

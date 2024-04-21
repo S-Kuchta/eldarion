@@ -3,6 +3,7 @@ package kuchtastefan.world.event.specificEvent;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.Enemy;
+import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.junkItem.JunkItem;

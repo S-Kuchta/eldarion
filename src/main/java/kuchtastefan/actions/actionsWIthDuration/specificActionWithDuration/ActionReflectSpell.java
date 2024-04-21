@@ -4,16 +4,13 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 
 public class ActionReflectSpell extends ActionWithDuration implements ActionWithoutValue {
-    public ActionReflectSpell(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
-                              int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
-                              boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
-
-        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
-                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+    public ActionReflectSpell(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
+                              int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
+        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
     }
 
     @Override

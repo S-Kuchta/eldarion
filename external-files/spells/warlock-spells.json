@@ -10,8 +10,7 @@
         "actionName": "DAMAGE",
         "baseActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 0,
@@ -29,8 +28,7 @@
         "actionName": "DAMAGE",
         "baseActionValue": 8,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 0,
@@ -51,7 +49,6 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true,
         "actionStatusEffect": "DEBUFF"
       }
     ],
@@ -71,7 +68,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "summonedNpcId": 500
       }
     ],
@@ -93,7 +89,6 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "RESIST_DAMAGE",
         "actionStatusEffect": "BUFF"
       },
@@ -105,7 +100,6 @@
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "INTELLECT",
         "actionStatusEffect": "BUFF"
       }
@@ -128,7 +122,6 @@
         "maxActionTurns": 4,
         "actionMaxStacks": 3,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "actionStatusEffect": "DEBUFF"
       }
     ],
@@ -147,16 +140,14 @@
         "actionName": "DAMAGE",
         "baseActionValue": 25,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       },
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
         "baseActionValue": 1,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 2,
@@ -178,7 +169,6 @@
         "maxActionTurns": 2,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "actionStatusEffect": "DEBUFF"
       }
     ],
@@ -201,7 +191,6 @@
         "maxActionTurns": 2,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "actionStatusEffect": "DEBUFF"
       }
     ],
@@ -220,16 +209,14 @@
         "actionName": "DAMAGE",
         "baseActionValue": 1,
         "actionEffectOn": "SPELL_TARGET",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       },
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
         "baseActionValue": 1,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 5,
@@ -247,16 +234,14 @@
         "actionName": "DAMAGE",
         "baseActionValue": 1,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       },
       {
         "type": "ActionRestoreMana",
         "actionName": "RESTORE_MANA",
         "baseActionValue": 15,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true
+        "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 5,
@@ -277,7 +262,6 @@
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "ATTACK",
         "actionStatusEffect": "BUFF"
       },
@@ -289,7 +273,6 @@
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "INTELLECT",
         "actionStatusEffect": "BUFF"
       },
@@ -301,7 +284,6 @@
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false,
         "ability": "RESIST_DAMAGE",
         "actionStatusEffect": "BUFF"
       }
@@ -322,7 +304,6 @@
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": true,
         "summonedNpcId": 501
       }
     ],

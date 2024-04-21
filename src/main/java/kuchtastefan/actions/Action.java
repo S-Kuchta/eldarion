@@ -1,9 +1,9 @@
 package kuchtastefan.actions;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithBaseValue;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithBaseValue;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithoutValue;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
 import kuchtastefan.actions.instantAction.ActionDealDamage;
 import kuchtastefan.character.GameCharacter;
@@ -24,17 +24,15 @@ public abstract class Action {
     protected int currentActionValue;
     protected final ActionEffectOn actionEffectOn;
     protected final int chanceToPerformAction;
-    protected final boolean canBeActionCriticalHit;
     protected CharactersInvolvedInBattle charactersInvolvedInBattle;
 
 
-    public Action(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
+    public Action(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int chanceToPerformAction) {
         this.actionName = actionName;
         this.baseActionValue = baseActionValue;
         this.currentActionValue = baseActionValue;
         this.actionEffectOn = actionEffectOn;
         this.chanceToPerformAction = chanceToPerformAction;
-        this.canBeActionCriticalHit = canBeActionCriticalHit;
     }
 
     public abstract void performAction(GameCharacter gameCharacter);

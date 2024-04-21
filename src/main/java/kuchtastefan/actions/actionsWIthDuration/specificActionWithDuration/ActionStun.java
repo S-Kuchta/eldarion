@@ -4,18 +4,16 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
+import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
 public class ActionStun extends ActionWithDuration implements ActionWithoutValue {
 
-    public ActionStun(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
-                      int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
-                      boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
-
+    public ActionStun(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
+                      int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
         super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
-                chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
+                chanceToPerformAction, actionStatusEffect);
     }
 
     @Override
@@ -26,7 +24,7 @@ public class ActionStun extends ActionWithDuration implements ActionWithoutValue
 
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
-        System.out.println("Stun " + this.returnTargetName(spellCaster, spellTarget) + " for next " + this.getMaxActionTurns() + " turns" );
+        System.out.println("Stun " + this.returnTargetName(spellCaster, spellTarget) + " for next " + this.getMaxActionTurns() + " turns");
     }
 
     @Override

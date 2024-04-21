@@ -27,7 +27,7 @@ public class FindTreasureEvent extends Event {
         WearableItem wearableItem = tempWearableItemList.get(RandomNumberGenerator.getRandomNumber(0, tempWearableItemList.size() - 1));
         System.out.print("\t");
 
-        hero.getHeroInventory().addItemWithNewCopyToItemList(wearableItem);
+        hero.getHeroInventory().addItemWithNewCopyToItemList(wearableItem, 1);
         wearableItem.printItemDescription(hero);
 
         int numberOfItems = RandomNumberGenerator.getRandomNumber(2, 4);
@@ -35,7 +35,7 @@ public class FindTreasureEvent extends Event {
             ConsumableItem consumableItem = tempConsumableItemList.get(
                     RandomNumberGenerator.getRandomNumber(0, tempConsumableItemList.size() - 1));
 
-            hero.getHeroInventory().addItemWithNewCopyToItemList(consumableItem);
+            hero.getHeroInventory().addItemWithNewCopyToItemList(consumableItem, 1);
             System.out.print("\t");
             consumableItem.printItemDescription(hero);
         }

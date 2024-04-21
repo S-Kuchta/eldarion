@@ -27,8 +27,8 @@ public class QuestReward {
 
         for (Integer itemId : this.itemsReward) {
             Item itemReward = ItemDB.returnItemFromDB(itemId);
-            hero.getHeroInventory().addItemWithNewCopyToItemList(itemReward);
-            System.out.println("\tReward for completing the quest: " + ConsoleColor.YELLOW + itemReward.getName() + ConsoleColor.RESET);
+            hero.getHeroInventory().addItemWithNewCopyToItemList(itemReward, 1);
+            System.out.println("\tReward for completing the quest: " + itemReward.getName());
         }
     }
 

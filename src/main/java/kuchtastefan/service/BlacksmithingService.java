@@ -8,7 +8,6 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemWithCount;
 import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.item.wearableItem.WearableItemQuality;
-import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.workshop.Workshop;
@@ -61,12 +60,10 @@ public class BlacksmithingService implements Workshop {
      */
     private void dismantleItem(Hero hero, WearableItem item) {
         ItemWithCount reagent = item.dismantle();
-        System.out.println("\t" + ConsoleColor.YELLOW + reagent.item().getName()
-                + ConsoleColor.RESET + " " + reagent.count() + "x obtained!");
+        hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
 
-        for (int i = 0; i < reagent.count(); i++) {
-            hero.getHeroInventory().addItemWithNewCopyToItemList(reagent.item());
-        }
+        hero.getHeroInventory().addItemWithNewCopyToItemList(reagent.item(), reagent.count());
+        System.out.println("\t" + reagent.item().getName() + " " + reagent.count() + "x obtained!");
     }
 
     /**

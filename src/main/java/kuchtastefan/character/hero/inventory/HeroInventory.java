@@ -4,11 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
-import kuchtastefan.workshop.Workshop;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
+import kuchtastefan.workshop.Workshop;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,15 +23,17 @@ public class HeroInventory {
 
     private final Map<Item, Integer> heroInventory;
 
-
     public HeroInventory() {
         this.heroInventory = new HashMap<>();
     }
 
-    public void addItemWithNewCopyToItemList(Item item) {
+
+    public void addItemWithNewCopyToItemList(Item item, int count) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
         Item itemCopy = gson.fromJson(gson.toJson(item), item.getClass());
-        addItemToInventory(itemCopy);
+        for (int i = 0; i < count; i++) {
+            addItemToInventory(itemCopy);
+        }
     }
 
     public void addItemToInventory(Item item) {
@@ -65,29 +67,6 @@ public class HeroInventory {
         }
 
         return null;
-    }
-
-    /**
-     * This method is used for check hero inventory for needed items and item count in inventory.
-     * If hero inventory has enough items, method return true, otherwise return false.
-     *
-     * @param neededItems Map of needed items - as a key use needed Item and as Integer count of items needed
-     * @param removeItem  if true item will be removed from hero inventory
-     * @return return true or false
-     */
-    public boolean checkAndRemoveItemsIfRequired(Map<? extends Item, Integer> neededItems, boolean removeItem) {
-        for (Map.Entry<? extends Item, Integer> neededItem : neededItems.entrySet()) {
-            if (this.heroInventory.containsKey(neededItem.getKey())
-                    && neededItem.getValue() <= this.heroInventory.get(neededItem.getKey())) {
-
-                if (removeItem) {
-                    this.heroInventory.put(neededItem.getKey(), this.heroInventory.get(neededItem.getKey()) - neededItem.getValue());
-                }
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public boolean hasRequiredItems(Item item, int count) {
@@ -128,6 +107,16 @@ public class HeroInventory {
         return itemMap;
     }
 
+    public <T extends Item> void printHeroInventoryByClass(Class<T> itemClass, int indexStart, Hero hero) {
+        Map<T, Integer> inventory = returnHeroInventoryByClass(itemClass);
+        int index = indexStart;
+        for (Map.Entry<T, Integer> entry : inventory.entrySet()) {
+            PrintUtil.printIndexAndText(String.valueOf(index), "(" + entry.getValue() + "x) ");
+            entry.getKey().printItemDescription(hero);
+            index++;
+        }
+    }
+
     public <T extends Item> void selectItem(Hero hero, Class<T> itemClass, Workshop workshop) {
         hero.getHeroInventory().printHeroInventoryByClass(itemClass, 1, hero);
 
@@ -141,16 +130,6 @@ public class HeroInventory {
             } else {
                 PrintUtil.printEnterValidInput();
             }
-        }
-    }
-
-    public <T extends Item> void printHeroInventoryByClass(Class<T> itemClass, int indexStart, Hero hero) {
-        Map<T, Integer> inventory = returnHeroInventoryByClass(itemClass);
-        int index = indexStart;
-        for (Map.Entry<T, Integer> entry : inventory.entrySet()) {
-            PrintUtil.printIndexAndText(String.valueOf(index), "(" + entry.getValue() + "x) ");
-            entry.getKey().printItemDescription(hero);
-            index++;
         }
     }
 }

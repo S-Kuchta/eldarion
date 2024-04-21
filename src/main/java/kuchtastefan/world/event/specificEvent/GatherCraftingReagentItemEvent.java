@@ -1,8 +1,8 @@
 package kuchtastefan.world.event.specificEvent;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.ItemFilter;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.ItemFilter;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.craftingItem.CraftingReagentItemType;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -27,17 +27,15 @@ public class GatherCraftingReagentItemEvent extends Event {
             return true;
         }
 
-        for (int i = 0; i < numberOfFindingItems; i++) {
-            if (item.getItemType().equals(CraftingReagentItemType.ALCHEMY_REAGENT)) {
-                System.out.println("\t--> You gather " + item.getName() + " <--");
-            }
-
-            if (item.getItemType().equals(CraftingReagentItemType.BLACKSMITH_REAGENT)) {
-                System.out.println("\t--> You mined " + item.getName() + " <--");
-            }
+        if (item.getItemType().equals(CraftingReagentItemType.ALCHEMY_REAGENT)) {
+            System.out.println("\t--> You gather " + numberOfFindingItems + "x " + item.getName() + " <--");
         }
 
-        hero.getHeroInventory().addItemWithNewCopyToItemList(item);
+        if (item.getItemType().equals(CraftingReagentItemType.BLACKSMITH_REAGENT)) {
+            System.out.println("\t--> You mined " + numberOfFindingItems + "x " + item.getName() + " <--");
+        }
+
+        hero.getHeroInventory().addItemWithNewCopyToItemList(item, numberOfFindingItems);
         hero.checkIfQuestObjectivesAndQuestIsCompleted();
 
         return true;

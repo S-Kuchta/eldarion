@@ -1,4 +1,4 @@
-package kuchtastefan.item.wearableItem;
+package kuchtastefan.item.specificItems.wearableItem;
 
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;

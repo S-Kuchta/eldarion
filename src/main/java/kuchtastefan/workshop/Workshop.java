@@ -1,10 +1,7 @@
 package kuchtastefan.workshop;
 
-import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.Item;
+import kuchtastefan.character.hero.inventory.UsingHeroInventory;
 
-public interface Workshop {
+public interface Workshop extends UsingHeroInventory {
 
-    void workshopMenu(Hero hero);
-    void itemMenu(Hero hero, Item item);
 }

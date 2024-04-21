@@ -1,12 +1,8 @@
 package kuchtastefan.character.npc.vendor.specificVendorCharacter;
 
-import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.junkItem.JunkItem;
-import kuchtastefan.utility.PrintUtil;
-
-import java.util.List;
+import kuchtastefan.item.specificItems.junkItem.JunkItem;
 
 public class JunkVendorCharacter extends VendorCharacter {
 

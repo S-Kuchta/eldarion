@@ -1,10 +1,10 @@
 package kuchtastefan.world.event.specificEvent;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.ItemFilter;
+import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
 import kuchtastefan.item.ItemDB;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.RandomNumberGenerator;
 import kuchtastefan.world.event.Event;
 

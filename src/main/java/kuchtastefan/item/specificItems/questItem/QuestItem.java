@@ -1,4 +1,4 @@
-package kuchtastefan.item.questItem;
+package kuchtastefan.item.specificItems.questItem;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;

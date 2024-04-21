@@ -3,8 +3,8 @@ package kuchtastefan.character.npc.vendor.specificVendorCharacter;
 import kuchtastefan.character.npc.vendor.SortVendorOffer;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItemType;
+import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
 
 public class CraftingReagentItemVendorCharacter extends VendorCharacter implements SortVendorOffer {
 

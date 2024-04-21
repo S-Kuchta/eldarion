@@ -14,11 +14,11 @@ import kuchtastefan.character.npc.vendor.specificVendorCharacter.CraftingReagent
 import kuchtastefan.character.npc.vendor.specificVendorCharacter.JunkVendorCharacter;
 import kuchtastefan.character.npc.vendor.specificVendorCharacter.WearableItemVendorCharacter;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.junkItem.JunkItem;
-import kuchtastefan.item.questItem.QuestItem;
-import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
+import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.specificItems.junkItem.JunkItem;
+import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestChain;
 import kuchtastefan.quest.questObjectives.*;

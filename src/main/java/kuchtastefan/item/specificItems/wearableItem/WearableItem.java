@@ -1,11 +1,13 @@
-package kuchtastefan.item.wearableItem;
+package kuchtastefan.item.specificItems.wearableItem;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.*;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItemType;
-import kuchtastefan.item.ItemWithCount;
+import kuchtastefan.item.itemType.HaveType;
+import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
+import kuchtastefan.item.ItemAndCount;
+import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -75,15 +77,15 @@ public class WearableItem extends Item implements UsableItem, HaveType {
         }
     }
 
-    public ItemWithCount reagentNeededToRefine() {
+    public ItemAndCount reagentNeededToRefine() {
         Item reagent = ItemDB.getRandomItem(CraftingReagentItem.class, new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, this.itemLevel));
         int count = this.itemLevel * 2;
-        return new ItemWithCount(reagent, count);
+        return new ItemAndCount(reagent, count);
     }
 
-    public ItemWithCount dismantle() {
+    public ItemAndCount dismantle() {
         Item reagent = ItemDB.getRandomItem(CraftingReagentItem.class, new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, this.itemLevel));
-        return new ItemWithCount(reagent, RandomNumberGenerator.getRandomNumber(2,4) + this.itemLevel);
+        return new ItemAndCount(reagent, RandomNumberGenerator.getRandomNumber(2,4) + this.itemLevel);
     }
 
     @Override

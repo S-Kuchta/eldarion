@@ -2,9 +2,9 @@ package kuchtastefan.world.event.specificEvent;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.ItemDB;
-import kuchtastefan.item.ItemFilter;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItemType;
+import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
 import kuchtastefan.utility.RandomNumberGenerator;
 import kuchtastefan.world.event.Event;
 

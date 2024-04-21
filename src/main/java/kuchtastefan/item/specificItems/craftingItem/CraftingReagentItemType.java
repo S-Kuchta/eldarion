@@ -1,6 +1,6 @@
-package kuchtastefan.item.craftingItem;
+package kuchtastefan.item.specificItems.craftingItem;
 
-import kuchtastefan.item.ItemType;
+import kuchtastefan.item.itemType.ItemType;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 

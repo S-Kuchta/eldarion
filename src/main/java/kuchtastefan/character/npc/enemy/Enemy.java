@@ -6,7 +6,7 @@ import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
-import kuchtastefan.item.ItemFilter;
+import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
 import kuchtastefan.world.Biome;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;

@@ -7,9 +7,9 @@ import kuchtastefan.character.hero.inventory.HeroInventory;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.ItemDB;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemQuality;
-import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
@@ -64,7 +64,7 @@ public class Hero extends GameCharacter {
             System.out.println("\tYou don't meet minimal level requirement to wear this item!");
             PrintUtil.printLongDivider();
         } else {
-            System.out.println("\tYou equip " + ConsoleColor.YELLOW + wearableItem.getName() + ConsoleColor.RESET);
+            System.out.println("\tYou equipped " + wearableItem.getName());
             this.equippedItem.put(wearableItem.getItemType(), wearableItem);
         }
         updateWearingItemAbilityPoints();
@@ -78,6 +78,7 @@ public class Hero extends GameCharacter {
     public void unEquipItem(WearableItem wearableItem) {
         if (this.equippedItem.get(wearableItem.getItemType()).equals(wearableItem)) {
             this.equippedItem.putAll(returnNoItemToEquippedMap(wearableItem.getItemType()));
+            System.out.println("\t" + wearableItem.getName() + " has been unequipped");
         }
 
         updateWearingItemAbilityPoints();

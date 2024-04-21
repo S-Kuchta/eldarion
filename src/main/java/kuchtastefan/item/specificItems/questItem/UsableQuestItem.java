@@ -1,4 +1,4 @@
-package kuchtastefan.item.questItem;
+package kuchtastefan.item.specificItems.questItem;
 
 import lombok.Getter;
 import lombok.Setter;

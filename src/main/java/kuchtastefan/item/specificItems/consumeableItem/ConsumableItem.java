@@ -1,13 +1,12 @@
-package kuchtastefan.item.consumeableItem;
+package kuchtastefan.item.specificItems.consumeableItem;
 
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.HaveType;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.UsableItem;
+import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.service.ActionService;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +28,7 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
 
     public boolean useItem(Hero hero) {
         if (hero.isInCombat() && this.itemType.equals(ConsumableItemType.FOOD)) {
-            System.out.println("\t" + ConsoleColor.RED + this.getName() + "Can't be used in combat!" + ConsoleColor.RESET);
+            System.out.println("\t" + ConsoleColor.RED + this.getName() + " Can't be used in combat!" + ConsoleColor.RESET);
         } else {
             ActionService actionService = new ActionService();
             for (Action action : this.actionList) {
@@ -54,11 +53,9 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
 
         System.out.println();
         for (Action action : this.getActionList()) {
-//            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on " + action.getActionEffectOn() + " ");
+            System.out.print("\t\t\t");
             action.printActionDescription(hero, hero);
             System.out.println();
-//            PrintUtil.printActionDetails(action, action.getCurrentActionValue());
-//            PrintUtil.printActionDetails(action, action.returnActionValueRange(hero).onlyValue());
         }
     }
 }

@@ -10,8 +10,8 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
@@ -303,7 +303,7 @@ public class PrintUtil {
 
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
         int count = 0;
-        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnHeroInventoryByClass(WearableItem.class).entrySet()) {
+        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnHeroInventory(WearableItem.class).entrySet()) {
             if (item.getKey().getItemType().equals(wearableItemType)) {
                 count += item.getValue();
             }
@@ -397,9 +397,7 @@ public class PrintUtil {
     }
 
     public static void printMenuHeader(String header) {
-        PrintUtil.printDivider();
-        System.out.printf("\t\t------ %s ------\n", header);
-        PrintUtil.printDivider();
+        System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t" + ConsoleColor.YELLOW + header + ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t" + ConsoleColor.RESET);
     }
 
     public static void printMenuOptions(String... options) {

@@ -3,8 +3,8 @@ package kuchtastefan.character.npc.vendor.specificVendorCharacter;
 import kuchtastefan.character.npc.vendor.SortVendorOffer;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.consumeableItem.ConsumableItemType;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
 
 public class ConsumableVendorCharacter extends VendorCharacter implements SortVendorOffer {
 

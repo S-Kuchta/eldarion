@@ -1,7 +1,7 @@
-package kuchtastefan.item.craftingItem;
+package kuchtastefan.item.specificItems.craftingItem;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.HaveType;
+import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.Item;
 import lombok.Getter;
 import lombok.Setter;

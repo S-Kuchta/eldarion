@@ -11,18 +11,10 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemDB;
-import kuchtastefan.item.ItemType;
-import kuchtastefan.item.consumeableItem.ConsumableItemType;
-import kuchtastefan.item.craftingItem.CraftingReagentItemType;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemType;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.region.RegionDB;
 

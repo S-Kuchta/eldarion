@@ -1,6 +1,9 @@
 package kuchtastefan.item;
 
-import kuchtastefan.item.questItem.QuestItem;
+import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.itemType.HaveType;
+import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.utility.LevelCondition;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 
@@ -32,7 +35,7 @@ public class ItemDB {
     public static <T extends Item> List<T> returnItemListByLevelAndType(Class<T> itemClass, ItemFilter itemFilter) {
         List<T> itemList = new ArrayList<>();
         for (Item item : ITEM_DB.values()) {
-            if (!itemClass.isInstance(item) || !checkItemLevelCondition(item, itemFilter.getMaxItemLevel(), itemFilter.getMinItemLevel())) {
+            if (!itemClass.isInstance(item) || !LevelCondition.checkItemLevelCondition(item, itemFilter.getMaxItemLevel(), itemFilter.getMinItemLevel())) {
                 continue;
             }
 
@@ -53,11 +56,4 @@ public class ItemDB {
         return items.get(RandomNumberGenerator.getRandomNumber(0, items.size() - 1));
     }
 
-    private static boolean checkItemLevelCondition(Item item, int maxItemLevel, int minItemLevel) {
-        if (item.getItemLevel() == 0) {
-            item.setItemLevel(maxItemLevel);
-        }
-
-        return maxItemLevel == item.getItemLevel() && minItemLevel <= item.getItemLevel();
-    }
 }

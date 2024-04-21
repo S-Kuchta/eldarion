@@ -14,10 +14,8 @@ public class LocationStageBlacksmith extends LocationStage implements CanEnterSt
 
     @Override
     public boolean exploreStage(Hero hero, Location location) {
-//        BlacksmithService blacksmithService = new BlacksmithService();
-//        blacksmithService.blacksmithMenu(hero);
         BlacksmithingService blacksmithingService = new BlacksmithingService();
-        blacksmithingService.workshopMenu(hero);
+        blacksmithingService.mainMenu(hero);
         return true;
     }
 }

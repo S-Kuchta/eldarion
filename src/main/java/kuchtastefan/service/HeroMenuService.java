@@ -7,9 +7,6 @@ import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.questItem.QuestItem;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -49,7 +46,7 @@ public class HeroMenuService {
                 showHeroInfo(hero);
                 heroCharacterMenu(hero);
             }
-            case 2 -> this.inventoryMenuService.inventoryMenu(hero);
+            case 2 -> this.inventoryMenuService.mainMenu(hero);
             case 3 -> this.upgradeAbilityMenu(hero);
             case 4 -> this.questService.heroAcceptedQuestMenu(hero, hero.getHeroAcceptedQuest());
             case 5 -> this.heroSpellManager.spellMenu(hero);

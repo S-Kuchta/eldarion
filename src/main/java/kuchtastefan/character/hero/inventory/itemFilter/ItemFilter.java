@@ -1,5 +1,6 @@
-package kuchtastefan.item;
+package kuchtastefan.character.hero.inventory.itemFilter;
 
+import kuchtastefan.item.itemType.ItemType;
 import lombok.Getter;
 
 /**
@@ -9,8 +10,8 @@ import lombok.Getter;
 public class ItemFilter {
 
     private ItemType itemType;
-    private final int maxItemLevel;
-    private final int minItemLevel;
+    private int maxItemLevel;
+    private int minItemLevel;
 
     public ItemFilter(ItemType itemType, int maxItemLevel, int minItemLevel) {
         this.itemType = itemType;
@@ -21,7 +22,7 @@ public class ItemFilter {
     /**
      * Constructs a new ItemFilter with the specified item type and maximum level. The minimum level is set to the same value as the maximum level.
      *
-     * @param itemType The type of items to filter.
+     * @param itemType     The type of items to filter.
      * @param maxItemLevel The maximum level of items to filter.
      */
     public ItemFilter(ItemType itemType, int maxItemLevel) {
@@ -40,8 +41,18 @@ public class ItemFilter {
         this.minItemLevel = maxItemLevel;
     }
 
+    public ItemFilter(ItemType itemType) {
+        this.itemType = itemType;
+    }
+
+    public ItemFilter() {
+    }
 
     public boolean isCheckType() {
         return itemType != null;
+    }
+
+    public boolean isCheckLevel() {
+        return maxItemLevel != 0 || minItemLevel != 0;
     }
 }

@@ -5,16 +5,18 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemWithCount;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemQuality;
+import kuchtastefan.item.ItemAndCount;
+import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.workshop.Workshop;
 
 public class BlacksmithingService implements Workshop {
 
-    public void workshopMenu(Hero hero) {
+    @Override
+    public void mainMenu(Hero hero) {
         HintDB.printHint(HintName.BLACKSMITH_HINT);
 
         PrintUtil.printMenuHeader("Blacksmithing");
@@ -24,7 +26,7 @@ public class BlacksmithingService implements Workshop {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, this);
+            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(), this, 1);
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -36,19 +38,23 @@ public class BlacksmithingService implements Workshop {
      *
      * @param hero The hero who owns the item.
      * @param item The item to be managed.
+     * @return True if the item was successfully managed, false otherwise.
      */
-    public void itemMenu(Hero hero, Item item) {
+    @Override
+    public boolean itemOptions(Hero hero, Item item) {
+        boolean success = false;
         PrintUtil.printMenuHeader(item.getName());
         PrintUtil.printMenuOptions("Go back", "Refinement item", "Dismantle item");
 
         final int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, this);
-            case 1 -> this.refineItemQuality(hero, (WearableItem) item);
-            case 2 -> this.dismantleItem(hero, (WearableItem) item);
-
+            case 0 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(), this, 1);
+            case 1 -> success = this.refineItemQuality(hero, (WearableItem) item);
+            case 2 -> success = this.dismantleItem(hero, (WearableItem) item);
             default -> PrintUtil.printEnterValidInput();
         }
+
+        return success;
     }
 
     /**
@@ -58,12 +64,12 @@ public class BlacksmithingService implements Workshop {
      * @param hero The hero for whom the item is to be dismantled.
      * @param item The wearable item to be dismantled.
      */
-    private void dismantleItem(Hero hero, WearableItem item) {
-        ItemWithCount reagent = item.dismantle();
+    private boolean dismantleItem(Hero hero, WearableItem item) {
+        ItemAndCount reagent = item.dismantle();
+        hero.unEquipItem(item);
         hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
-
         hero.getHeroInventory().addItemWithNewCopyToItemList(reagent.item(), reagent.count());
-        System.out.println("\t" + reagent.item().getName() + " " + reagent.count() + "x obtained!");
+        return true;
     }
 
     /**
@@ -76,24 +82,25 @@ public class BlacksmithingService implements Workshop {
      * @param hero The hero for whom the item is to be refined.
      * @param item The wearable item to be refined.
      */
-    private void refineItemQuality(Hero hero, WearableItem item) {
+    private boolean refineItemQuality(Hero hero, WearableItem item) {
         if (item.getWearableItemQuality() != WearableItemQuality.BASIC) {
             System.out.println("\tYou can not refine your item. Your item has the highest quality");
-            return;
+            return false;
         }
 
-        ItemWithCount requiredReagent = item.reagentNeededToRefine();
+        ItemAndCount requiredReagent = item.reagentNeededToRefine();
         if (!hero.getHeroInventory().hasRequiredItems(requiredReagent.item(), requiredReagent.count())) {
             System.out.println("\tYou don't have enough reagents. Your can't refine your item");
-            return;
+            return false;
         }
 
         WearableItem refinedItem = new Gson().fromJson(new Gson().toJson(item), WearableItem.class);
         refinedItem.refine();
-        hero.getHeroInventory().addItemToInventory(refinedItem);
         hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
         hero.getHeroInventory().removeItemFromHeroInventory(requiredReagent.item(), requiredReagent.count());
+        hero.getHeroInventory().addItemWithNewCopyToItemList(refinedItem, 1);
 
         System.out.println("\tYou refinement your item " + refinedItem.getName() + " to " + refinedItem.getWearableItemQuality() + " quality");
+        return true;
     }
 }

@@ -2,9 +2,7 @@ package kuchtastefan.world.event.specificEvent;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.ItemDB;
-import kuchtastefan.item.questItem.QuestItem;
-import kuchtastefan.item.questItem.UsableQuestItem;
+import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.event.Event;
@@ -20,7 +18,7 @@ public class UseItemEvent extends Event {
 
     @Override
     public boolean eventOccurs(Hero hero) {
-        Item item = hero.getHeroInventory().returnItemFromInventory(this.itemId);
+        Item item = hero.getHeroInventory().getItemFromInventory(this.itemId);
 
         System.out.println("Do you want to use item " + item.getName() + "?");
         PrintUtil.printIndexAndText("0", "No");

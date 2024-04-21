@@ -3,8 +3,8 @@ package kuchtastefan.character.npc.vendor.specificVendorCharacter;
 import kuchtastefan.character.npc.vendor.SortVendorOffer;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemType;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 
 public class WearableItemVendorCharacter extends VendorCharacter implements SortVendorOffer {
 

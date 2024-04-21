@@ -4,7 +4,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.vendor.SortVendorOffer;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;

@@ -13,7 +13,8 @@ import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
+import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.utility.*;
 import lombok.Getter;
 
@@ -193,7 +194,10 @@ public class BattleService {
                     if (parsedChoice == hero.getCharacterSpellList().size()) {
 
                         // If choice is for consumable items, open inventory menu
-                        if (inventoryMenuService.itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventoryByClass(ConsumableItem.class))) {
+//                        if (inventoryMenuService.itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventory(ConsumableItem.class))) {
+//                            break;
+//                        }
+                        if (hero.getHeroInventory().selectItem(hero, ConsumableItem.class, new ItemFilter(), inventoryMenuService, 1)) {
                             break;
                         }
 

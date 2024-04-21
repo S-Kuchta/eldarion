@@ -1,4 +1,4 @@
-package kuchtastefan.item;
+package kuchtastefan.item.itemType;
 
 public interface ItemType {
 

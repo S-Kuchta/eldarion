@@ -36,7 +36,7 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
                 actionService.applyActionToTarget(action, hero);
             }
 
-            hero.getHeroInventory().removeItemFromHeroInventory(this);
+            hero.getHeroInventory().removeItemFromHeroInventory(this, 1);
             return true;
         }
 

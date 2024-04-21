@@ -1,9 +1,11 @@
-package kuchtastefan.quest.questObjectives;
+package kuchtastefan.quest.questObjectives.specificQuestObjectives;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.questItem.UsableQuestItem;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.LocationDB;
@@ -38,14 +40,12 @@ public class QuestUseItemObjective extends QuestObjective implements RemoveObjec
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
             Item item = hero.getHeroInventory().returnItemFromInventory(this.itemToUseId);
             if (item instanceof UsableQuestItem usableQuestItem && usableQuestItem.isWasUsed()) {
-                System.out.println("\t" + " You completed "
-                        + ConsoleColor.YELLOW + this.getQuestObjectiveName() + ConsoleColor.RESET
-                        + " quest objective ");
+                System.out.println("\t" + " You completed " + this.getQuestObjectiveName() + " quest objective");
             }
     }
 
     @Override
     public void removeCompletedQuestObjectiveAssignment(Hero hero) {
-            hero.getHeroInventory().removeItemFromHeroInventory(hero.getHeroInventory().returnItemFromInventory(this.itemToUseId));
+            hero.getHeroInventory().removeItemFromHeroInventory(hero.getHeroInventory().returnItemFromInventory(this.itemToUseId), 1);
     }
 }

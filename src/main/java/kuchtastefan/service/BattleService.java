@@ -193,7 +193,7 @@ public class BattleService {
                     if (parsedChoice == hero.getCharacterSpellList().size()) {
 
                         // If choice is for consumable items, open inventory menu
-                        if (inventoryMenuService.itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventory(ConsumableItem.class))) {
+                        if (inventoryMenuService.itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventoryByClass(ConsumableItem.class))) {
                             break;
                         }
 

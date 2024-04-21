@@ -2,6 +2,7 @@ package kuchtastefan.item;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,6 +30,10 @@ public abstract class Item {
 
     public double returnSellItemPrice() {
         return Math.floor(this.price * Constant.SELL_ITEM_PRICE_MULTIPLIER);
+    }
+
+    public String getName() {
+        return ConsoleColor.YELLOW + name + ConsoleColor.RESET;
     }
 
     @Override

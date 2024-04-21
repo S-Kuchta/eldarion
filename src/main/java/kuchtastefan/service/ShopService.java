@@ -126,7 +126,7 @@ public class ShopService {
                         hero.unEquipItem(wearableItem);
                     }
 
-                    hero.getHeroInventory().removeItemFromHeroInventory(item);
+                    hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
                     System.out.println("\t" + item.getName() + " sold for " + item.returnSellItemPrice() + " golds");
                     vendorMenu(hero, vendorCharacter);
                 }

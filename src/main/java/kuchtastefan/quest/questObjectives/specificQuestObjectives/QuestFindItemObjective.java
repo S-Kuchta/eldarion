@@ -1,9 +1,10 @@
-package kuchtastefan.quest.questObjectives;
+package kuchtastefan.quest.questObjectives.specificQuestObjectives;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
-import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 
 public class QuestFindItemObjective extends QuestObjective implements RemoveObjectiveProgress {
 
@@ -17,7 +18,7 @@ public class QuestFindItemObjective extends QuestObjective implements RemoveObje
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.objectiveItemId);
-        System.out.println("\tFind " + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET);
+        System.out.println("\tFind " + item.getName());
     }
 
     @Override
@@ -25,15 +26,13 @@ public class QuestFindItemObjective extends QuestObjective implements RemoveObje
         Item item = ItemDB.returnItemFromDB(this.objectiveItemId);
         if (hero.getHeroInventory().getHeroInventory().containsKey(item)) {
             setCompleted(true);
-            System.out.println("\t" + " You completed "
-                    + ConsoleColor.YELLOW + this.getQuestObjectiveName() + ConsoleColor.RESET
-                    + " quest objective ");
+            System.out.println("\t" + "You completed " + this.getQuestObjectiveName() + " quest objective");
         }
     }
 
     @Override
     public void removeCompletedQuestObjectiveAssignment(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.objectiveItemId);
-        hero.getHeroInventory().removeItemFromHeroInventory(item);
+        hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
     }
 }

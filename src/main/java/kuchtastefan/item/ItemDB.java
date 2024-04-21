@@ -1,6 +1,7 @@
 package kuchtastefan.item;
 
 import kuchtastefan.item.questItem.QuestItem;
+import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -45,6 +46,11 @@ public class ItemDB {
         }
 
         return itemList;
+    }
+
+    public static <T extends Item> Item getRandomItem(Class<T> itemClass, ItemFilter itemFilter) {
+        List<T> items = returnItemListByLevelAndType(itemClass, itemFilter);
+        return items.get(RandomNumberGenerator.getRandomNumber(0, items.size() - 1));
     }
 
     private static boolean checkItemLevelCondition(Item item, int maxItemLevel, int minItemLevel) {

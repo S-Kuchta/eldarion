@@ -2,9 +2,11 @@ package kuchtastefan.item.wearableItem;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.HaveType;
-import kuchtastefan.item.Item;
-import kuchtastefan.item.UsableItem;
+import kuchtastefan.item.*;
+import kuchtastefan.item.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.craftingItem.CraftingReagentItemType;
+import kuchtastefan.item.ItemWithCount;
+import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -62,16 +64,26 @@ public class WearableItem extends Item implements UsableItem, HaveType {
         return true;
     }
 
-    public void increaseWearableItemAbilityValue(WearableItem wearableItem) {
+    public void refineItem() {
+        this.setPrice(this.getPrice() * 2);
+        this.setWearableItemQuality(WearableItemQuality.IMPROVED);
+
         for (Ability ability : Ability.values()) {
-            if (wearableItem.getAbilities().get(ability) != 0) {
-                wearableItem.getAbilities().put(ability, (wearableItem.getAbilities().get(ability) * 2));
+            if (this.getAbilities().get(ability) != 0) {
+                this.getAbilities().put(ability, (this.getAbilities().get(ability) * 2));
             }
         }
     }
 
-    public void setItemQuality(WearableItemQuality wearableItemQuality) {
-        this.wearableItemQuality = wearableItemQuality;
+    public ItemWithCount reagentNeededToRefine() {
+        Item reagent = ItemDB.getRandomItem(CraftingReagentItem.class, new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, this.itemLevel));
+        int count = this.itemLevel * 2;
+        return new ItemWithCount(reagent, count);
+    }
+
+    public ItemWithCount dismantleItem() {
+        Item reagent = ItemDB.getRandomItem(CraftingReagentItem.class, new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, this.itemLevel));
+        return new ItemWithCount(reagent, RandomNumberGenerator.getRandomNumber(2,4) + this.itemLevel);
     }
 
     @Override

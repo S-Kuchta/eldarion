@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.ItemFilter;
 import kuchtastefan.item.craftingItem.CraftingReagentItem;
@@ -78,7 +79,7 @@ public class BlacksmithService {
             if (hero.getHeroInventory().getHeroInventory().isEmpty()) {
                 System.out.println("\tItem list is empty");
             } else {
-                for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnHeroInventory(WearableItem.class).entrySet()) {
+                for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnHeroInventoryByClass(WearableItem.class).entrySet()) {
 
                     // Check if the item's quality is eligible for refinement
                     if (item.getKey().getWearableItemQuality().equals(WearableItemQuality.BASIC)) {
@@ -103,7 +104,8 @@ public class BlacksmithService {
                 }
                 try {
                     // Check if the hero has enough crafting reagents to refine the selected item
-                    if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(refinementItemMap.get(tempItemList.get(choice - 1)), true)) {
+//                    if (hero.getHeroInventory().checkAndRemoveItemsIfRequired(refinementItemMap.get(tempItemList.get(choice - 1)), true)) {
+                    if (hero.getHeroInventory().hasRequiredItems((Item) refinementItemMap.get(tempItemList.get(choice - 1)), 1)) {
                         wearableItem = tempItemList.get(choice - 1);
                         break;
                     } else {
@@ -126,8 +128,8 @@ public class BlacksmithService {
 
                 // Check the current quality of the item and upgrade it if possible
                 if (wearableItemQuality == WearableItemQuality.BASIC) {
-                    hero.getHeroInventory().removeItemFromHeroInventory(wearableItem);
-                    itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
+                    hero.getHeroInventory().removeItemFromHeroInventory(wearableItem, 1);
+//                    itemCopy.setItemQuality(WearableItemQuality.IMPROVED);
                     afterSuccessFullRefinementItem(itemCopy, hero);
                 } else {
                     PrintUtil.printLongDivider();
@@ -172,7 +174,7 @@ public class BlacksmithService {
      * @param hero         The hero whose inventory the refined item will be added to.
      */
     private void afterSuccessFullRefinementItem(WearableItem wearableItem, Hero hero) {
-        wearableItem.increaseWearableItemAbilityValue(wearableItem);
+//        wearableItem.refinementItem(wearableItem);
         wearableItem.setPrice(wearableItem.getPrice() * 2);
         hero.getHeroInventory().addItemToInventory(wearableItem);
 
@@ -218,7 +220,7 @@ public class BlacksmithService {
         PrintUtil.printLongDivider();
 
         hero.unEquipItem(wearableItem);
-        hero.getHeroInventory().removeItemFromHeroInventory(wearableItem);
+        hero.getHeroInventory().removeItemFromHeroInventory(wearableItem, 1);
     }
 
     private WearableItem selectItem(List<WearableItem> tempItemList) {
@@ -237,9 +239,9 @@ public class BlacksmithService {
     }
 
     private List<WearableItem> returnItemList(Hero hero) {
-        List<WearableItem> tempItemList = hero.getHeroInventory().returnHeroInventory(WearableItem.class).keySet().stream().toList();
+        List<WearableItem> tempItemList = hero.getHeroInventory().returnHeroInventoryByClass(WearableItem.class).keySet().stream().toList();
         System.out.println();
-        this.inventoryMenuService.printInventoryItems(hero, hero.getHeroInventory().returnHeroInventory(WearableItem.class));
+        this.inventoryMenuService.printInventoryItems(hero, hero.getHeroInventory().returnHeroInventoryByClass(WearableItem.class));
 
         return tempItemList;
     }

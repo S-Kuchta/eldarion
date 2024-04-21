@@ -22,6 +22,7 @@ import kuchtastefan.item.wearableItem.WearableItem;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestChain;
 import kuchtastefan.quest.questObjectives.*;
+import kuchtastefan.quest.questObjectives.specificQuestObjectives.*;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
 import kuchtastefan.world.location.locationStage.*;
 import kuchtastefan.world.location.locationStage.specificLocationStage.*;

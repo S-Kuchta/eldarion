@@ -1,8 +1,9 @@
-package kuchtastefan.quest.questObjectives;
+package kuchtastefan.quest.questObjectives.specificQuestObjectives;
 
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.NonPlayerCharacter;
+import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,14 +28,14 @@ public class QuestKillObjective extends QuestObjective {
         if (currentCountEnemyProgress <= this.countEnemyToKill) {
             System.out.println("\t" + " Kill " + this.countEnemyToKill + "x " + enemy.getCharacterRarity() + " "
                     + ConsoleColor.YELLOW + enemy.getName() + ConsoleColor.RESET + " - " +
-                    "You have " + this.currentCountEnemyProgress +
-                    " / " + this.countEnemyToKill + " killed ");
+                    "You have " + this.currentCountEnemyProgress + " / " + this.countEnemyToKill + " killed ");
         }
     }
 
     @Override
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
         if (countEnemyToKill == currentCountEnemyProgress) {
+            System.out.println("\t" + " You completed " + this.getQuestObjectiveName() + " quest objective");
             setCompleted(true);
         }
     }

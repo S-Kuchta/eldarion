@@ -27,9 +27,9 @@ public class InventoryMenuService {
             case 0 -> {
             }
             case 1 -> wearableItemsMenu(hero);
-            case 2 -> itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventory(CraftingReagentItem.class));
-            case 3 -> itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventory(ConsumableItem.class));
-            case 4 -> itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventory(QuestItem.class));
+            case 2 -> itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventoryByClass(CraftingReagentItem.class));
+            case 3 -> itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventoryByClass(ConsumableItem.class));
+            case 4 -> itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventoryByClass(QuestItem.class));
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -63,7 +63,7 @@ public class InventoryMenuService {
      * @param hero             The hero whose inventory is to be printed.
      */
     private void printWearableItemInventoryMenuByItemType(WearableItemType wearableItemType, Hero hero) {
-        Map<WearableItem, Integer> itemMap = new HashMap<>(hero.getHeroInventory().returnHeroInventory(WearableItem.class));
+        Map<WearableItem, Integer> itemMap = new HashMap<>(hero.getHeroInventory().returnHeroInventoryByClass(WearableItem.class));
         itemMap.entrySet().removeIf(entry -> !entry.getKey().getItemType().equals(wearableItemType));
 
         itemInventoryMenu(hero, itemMap);

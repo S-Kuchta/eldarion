@@ -2,21 +2,16 @@ package kuchtastefan.character.hero.inventory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.consumeableItem.ConsumableItem;
-import kuchtastefan.item.craftingItem.CraftingReagentItem;
-import kuchtastefan.item.junkItem.JunkItem;
-import kuchtastefan.item.questItem.QuestItem;
-import kuchtastefan.item.wearableItem.WearableItem;
+import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -31,32 +26,32 @@ public class HeroInventory {
 
     public void addItemWithNewCopyToItemList(Item item) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-        Class<? extends Item> itemClass = item.getClass();
-
-        if (Item.class.isAssignableFrom(itemClass)) {
-            Item itemCopy = gson.fromJson(gson.toJson(item), itemClass);
-            addItemToInventory(itemCopy);
-        }
+        Item itemCopy = gson.fromJson(gson.toJson(item), item.getClass());
+        addItemToInventory(itemCopy);
     }
 
     public void addItemToInventory(Item item) {
-        if (this.getHeroInventory().isEmpty()) {
-            this.getHeroInventory().put(item, 1);
-        } else {
-            boolean found = false;
-            for (Map.Entry<Item, Integer> itemMap : this.getHeroInventory().entrySet()) {
-                if (itemMap.getKey().equals(item)) {
-                    itemMap.setValue(itemMap.getValue() + 1);
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found) {
-                this.getHeroInventory().put(item, 1);
-            }
-        }
+        this.heroInventory.merge(item, 1, Integer::sum);
     }
+
+//    public void addItemToInventory(Item item) {
+//        if (this.getHeroInventory().isEmpty()) {
+//            this.getHeroInventory().put(item, 1);
+//        } else {
+//            boolean found = false;
+//            for (Map.Entry<Item, Integer> itemMap : this.getHeroInventory().entrySet()) {
+//                if (itemMap.getKey().equals(item)) {
+//                    itemMap.setValue(itemMap.getValue() + 1);
+//                    found = true;
+//                    break;
+//                }
+//            }
+//
+//            if (!found) {
+//                this.getHeroInventory().put(item, 1);
+//            }
+//        }
+//    }
 
     public Item returnItemFromInventory(int itemId) {
         for (Item item : this.heroInventory.keySet()) {
@@ -73,10 +68,10 @@ public class HeroInventory {
      * If hero inventory has enough items, method return true, otherwise return false.
      *
      * @param neededItems Map of needed items - as a key use needed Item and as Integer count of items needed
-     * @param removeItem if true item will be removed from hero inventory
+     * @param removeItem  if true item will be removed from hero inventory
      * @return return true or false
      */
-    public boolean checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(Map<? extends Item, Integer> neededItems, boolean removeItem) {
+    public boolean checkAndRemoveItemsIfRequired(Map<? extends Item, Integer> neededItems, boolean removeItem) {
         for (Map.Entry<? extends Item, Integer> neededItem : neededItems.entrySet()) {
             if (this.heroInventory.containsKey(neededItem.getKey())
                     && neededItem.getValue() <= this.heroInventory.get(neededItem.getKey())) {
@@ -91,40 +86,36 @@ public class HeroInventory {
         return false;
     }
 
-    /**
-     * Remove one item from hero inventory, if in inventory are more than one item, change count value.
-     *
-     * @param item to remove
-     */
-    public void removeItemFromHeroInventory(Item item) {
-        Map<Item, Integer> heroInventory = this.getHeroInventory();
+    public boolean hasRequiredItems(Item item, int count) {
+        if (this.heroInventory.containsKey(item)) {
+            return this.heroInventory.get(item) >= count;
+        }
 
-        if (heroInventory == null) {
+        return false;
+    }
+
+    public void removeItemFromHeroInventory(Item item, int count) {
+        if (this.heroInventory.isEmpty()) {
             System.out.println("\tYou don't have anything to remove");
             return;
         }
 
-        heroInventory.entrySet().removeIf(entry ->
-                checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(Map.of(item, 1), false)
-                && entry.getKey().equals(item) && entry.getValue() == 1);
-
-        Iterator<Map.Entry<Item, Integer>> iterator = heroInventory.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<Item, Integer> entry = iterator.next();
-            if (entry.getKey().equals(item) && entry.getValue() > 1) {
-                heroInventory.put(item, entry.getValue() - 1);
-                break;
-            } else if (entry.getKey().equals(item)) {
-                iterator.remove();
+        if (hasRequiredItems(item, count)) {
+            if (this.heroInventory.get(item) == count) {
+                this.heroInventory.remove(item);
+                System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " removed from inventory");
+            } else {
+                this.heroInventory.put(item, this.heroInventory.get(item) - count);
+                System.out.println("\tYou now have " + this.heroInventory.get(item) + "x "
+                        + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " in inventory");
             }
         }
     }
 
-    public <T extends Item> Map<T, Integer> returnHeroInventory(Class<T> itemClass) {
+    public <T extends Item> Map<T, Integer> returnHeroInventoryByClass(Class<T> itemClass) {
         Map<T, Integer> itemMap = new HashMap<>();
-        Map<? extends Item, Integer> originalMap = new HashMap<>(this.getHeroInventory());
 
-        for (Map.Entry<? extends Item, Integer> entry : originalMap.entrySet()) {
+        for (Map.Entry<? extends Item, Integer> entry : this.getHeroInventory().entrySet()) {
             if (itemClass.isInstance(entry.getKey())) {
                 itemMap.put(itemClass.cast(entry.getKey()), entry.getValue());
             }
@@ -133,16 +124,13 @@ public class HeroInventory {
         return itemMap;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HeroInventory that = (HeroInventory) o;
-        return Objects.equals(heroInventory, that.heroInventory);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(heroInventory);
+    public <T extends Item> void printHeroInventoryByClass(Class<T> itemClass, int indexStart, Hero hero) {
+        Map<T, Integer> inventory = returnHeroInventoryByClass(itemClass);
+        int index = indexStart;
+        for (Map.Entry<T, Integer> entry : inventory.entrySet()) {
+            PrintUtil.printIndexAndText(String.valueOf(index), "(" + entry.getValue() + "x) ");
+            entry.getKey().printItemDescription(hero);
+            index++;
+        }
     }
 }

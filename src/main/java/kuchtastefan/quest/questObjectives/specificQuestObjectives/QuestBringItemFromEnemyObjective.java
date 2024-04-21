@@ -1,15 +1,13 @@
-package kuchtastefan.quest.questObjectives;
+package kuchtastefan.quest.questObjectives.specificQuestObjectives;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
-import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import lombok.Getter;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 @Getter
 public class QuestBringItemFromEnemyObjective extends QuestObjective implements RemoveObjectiveProgress {
@@ -34,9 +32,7 @@ public class QuestBringItemFromEnemyObjective extends QuestObjective implements 
         hero.getHeroInventory().getHeroInventory().putIfAbsent(questItem, 0);
 
         if (hero.getHeroInventory().getHeroInventory().get(questItem) < this.itemDropCountNeeded) {
-            System.out.println("\tBring " + this.itemDropCountNeeded + "x "
-                    + ConsoleColor.YELLOW + questItem.getName() + ConsoleColor.RESET
-                    + " - You have: "
+            System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "
                     + hero.getHeroInventory().getHeroInventory().get(questItem) + " / " + this.itemDropCountNeeded);
         } else {
             System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "
@@ -48,13 +44,8 @@ public class QuestBringItemFromEnemyObjective extends QuestObjective implements 
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
         Item questItem = ItemDB.returnItemFromDB(this.objectiveItemId);
 
-        if (hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
-                new HashMap<>(Map.of(questItem, this.itemDropCountNeeded)), false)) {
-
-            System.out.println("\t" + " You completed "
-                    + ConsoleColor.YELLOW + getQuestObjectiveName() + ConsoleColor.RESET
-                    + " quest objective ");
-
+        if (hero.getHeroInventory().hasRequiredItems(questItem, this.itemDropCountNeeded)) {
+            System.out.println("\t" + " You completed " + getQuestObjectiveName() + " quest objective");
             setCompleted(true);
         } else {
             setCompleted(false);
@@ -64,9 +55,7 @@ public class QuestBringItemFromEnemyObjective extends QuestObjective implements 
     @Override
     public void removeCompletedQuestObjectiveAssignment(Hero hero) {
         Item questItem = ItemDB.returnItemFromDB(this.objectiveItemId);
-
-        hero.getHeroInventory().checkIfHeroInventoryContainsNeededItemsIfTrueRemoveIt(
-                new HashMap<>(Map.of(questItem, this.itemDropCountNeeded)), true);
+        hero.getHeroInventory().removeItemFromHeroInventory(questItem, this.itemDropCountNeeded);
     }
 
     public boolean checkEnemy(Integer questEnemyId) {

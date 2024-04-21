@@ -17,11 +17,11 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration implements Ac
 
     private final Ability ability;
 
-    public ActionDecreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+    public ActionDecreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
                                       int maxActionTurns, int actionMaxStacks, int chanceToPerformAction, boolean canBeActionCriticalHit,
                                       Ability ability, ActionStatusEffect actionStatusEffect) {
 
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
+        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
                 chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
         this.ability = ability;
     }
@@ -30,7 +30,7 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration implements Ac
     public void performAction(GameCharacter gameCharacter) {
 
         int decreaseAbilityWithStacksValue = this.getCurrentActionValue() * this.getActionCurrentStacks();
-        gameCharacter.decreaseCurrentAbilityValue(decreaseAbilityWithStacksValue, this.ability);
+        gameCharacter.decreaseEffectiveAbilityValue(decreaseAbilityWithStacksValue, this.ability);
 
         System.out.println("\t" + ConsoleColor.RED + this.ability + ConsoleColor.RESET + " is decreased by " + decreaseAbilityWithStacksValue);
     }

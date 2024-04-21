@@ -4,11 +4,12 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithBaseValue;
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithIncreasedValueByPrimaryAbility;
 import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWithoutValue;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTimePrimary;
-import kuchtastefan.actions.instantAction.ActionDealDamagePrimary;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
+import kuchtastefan.actions.instantAction.ActionDealDamage;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.NonPlayerCharacter;
+import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public abstract class Action {
     protected final ActionEffectOn actionEffectOn;
     protected final int chanceToPerformAction;
     protected final boolean canBeActionCriticalHit;
+    protected CharactersInvolvedInBattle charactersInvolvedInBattle;
 
 
     public Action(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
@@ -61,8 +63,8 @@ public abstract class Action {
         // max. ability value
         int valueIncreasedByPrimaryAbility = 0;
 
-        if (this instanceof ActionDealDamagePrimary || this instanceof ActionDealDamageOverTimePrimary) {
-            valueIncreasedByLevel += spellCaster.getCurrentAbilityValue(Ability.ATTACK);
+        if (this instanceof ActionDealDamage || this instanceof ActionDealDamageOverTime) {
+            valueIncreasedByLevel += spellCaster.getEffectiveAbilityValue(Ability.ATTACK);
         }
 
         if (this instanceof ActionWithBaseValue) {
@@ -72,11 +74,11 @@ public abstract class Action {
         if (this instanceof ActionWithIncreasedValueByPrimaryAbility) {
             if (spellCaster instanceof Hero hero) {
                 valueIncreasedByPrimaryAbility = valueIncreasedByLevel +
-                        spellCaster.getCurrentAbilityValue(hero.getCharacterClass().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
+                        spellCaster.getEffectiveAbilityValue(hero.getCharacterClass().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
             }
 
             if (spellCaster instanceof NonPlayerCharacter nonPlayerCharacter) {
-                valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getCurrentAbilityValue(
+                valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getEffectiveAbilityValue(
                         nonPlayerCharacter.getNpcType().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
             }
         }

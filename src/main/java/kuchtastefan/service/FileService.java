@@ -77,8 +77,7 @@ public class FileService {
     private final String savedGamesPath = "external-files/saved-games/";
 
     public void saveGame(Hero hero) {
-        GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(),
-                hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
+        GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
 
         while (true) {
             System.out.println("How do you want to name your save?");
@@ -116,8 +115,7 @@ public class FileService {
 
     public void autoSave(Hero hero) {
         if (GameSettingsDB.returnGameSettingValue(GameSetting.AUTO_SAVE)) {
-            GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(),
-                    hero.getRegionActionsWithDuration(), hero.getHeroInventory().getHeroInventory());
+            GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
 
             final String path = this.savedGamesPath + hero.getName() + "_AutoSave" + ".json";
             saveGame(gameLoaded, path, hero.getName());

@@ -2,7 +2,7 @@ package kuchtastefan.character;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamagePrimary;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
@@ -50,13 +50,9 @@ public abstract class GameCharacter {
             if (addTurn) {
                 actionWithDuration.actionAddTurn();
             }
+
+            this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
         }
-
-        checkAndRemoveActionTurns();
-    }
-
-    public void checkAndRemoveActionTurns() {
-        this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
     }
 
     public void resetAbilitiesToMaxValues(boolean setHealthOrManaToMaxValue) {
@@ -68,8 +64,8 @@ public abstract class GameCharacter {
                 if (setHealthOrManaToMaxValue) {
                     this.effectiveAbilities.put(ability, this.enhancedAbilities.get(ability));
                 } else {
-                    this.effectiveAbilities.put(Ability.HEALTH, getCurrentAbilityValue(Ability.HEALTH));
-                    this.effectiveAbilities.put(Ability.MANA, getCurrentAbilityValue(Ability.MANA));
+                    this.effectiveAbilities.put(Ability.HEALTH, getEffectiveAbilityValue(Ability.HEALTH));
+                    this.effectiveAbilities.put(Ability.MANA, getEffectiveAbilityValue(Ability.MANA));
                 }
             } else {
                 this.effectiveAbilities.put(ability, this.enhancedAbilities.get(ability));
@@ -93,9 +89,8 @@ public abstract class GameCharacter {
         int absorbDamage = 0;
         Iterator<ActionWithDuration> iterator = this.buffsAndDebuffs.iterator();
         while (iterator.hasNext()) {
-
             ActionWithDuration action = iterator.next();
-            if (action instanceof ActionAbsorbDamagePrimary) {
+            if (action instanceof ActionAbsorbDamage) {
                 if (action.getCurrentActionValue() >= damage) {
                     action.setCurrentActionValue(action.getCurrentActionValue() - damage);
                     damage = 0;
@@ -109,22 +104,23 @@ public abstract class GameCharacter {
             }
         }
 
+
         System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage to " + this.name);
         this.effectiveAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
-        this.effectiveAbilities.put(Ability.HEALTH, this.getCurrentAbilityValue(Ability.HEALTH) - damage);
+        this.effectiveAbilities.put(Ability.HEALTH, this.getEffectiveAbilityValue(Ability.HEALTH) - damage);
     }
 
     public int returnDamageAfterResistDamage(int incomingDamage) {
-        if (this.getCurrentAbilityValue(Ability.RESIST_DAMAGE) >= incomingDamage) {
+        if (this.getEffectiveAbilityValue(Ability.RESIST_DAMAGE) >= incomingDamage) {
             return 0;
         } else {
-            return incomingDamage - this.getCurrentAbilityValue(Ability.RESIST_DAMAGE);
+            return incomingDamage - this.getEffectiveAbilityValue(Ability.RESIST_DAMAGE);
         }
     }
 
     public void restoreAbilityValue(int amountToRestore, Ability ability) {
         int maxCharacterAbility = this.getEnhancedAbilities().get(ability);
-        int currentCharacterAbility = this.getCurrentAbilityValue(ability);
+        int currentCharacterAbility = this.getEffectiveAbilityValue(ability);
 
         if (maxCharacterAbility - currentCharacterAbility <= amountToRestore) {
             this.effectiveAbilities.put(ability, maxCharacterAbility);
@@ -137,34 +133,34 @@ public abstract class GameCharacter {
             consoleColor = ConsoleColor.BLUE;
         }
 
-        if (ability.equals(Ability.HEALTH) || (ability.equals(Ability.MANA) && this.getCurrentAbilityValue(Ability.MANA) != 0)) {
+        if (ability.equals(Ability.HEALTH) || (ability.equals(Ability.MANA) && this.getEffectiveAbilityValue(Ability.MANA) != 0)) {
             System.out.println("\t" + this.name + " have restored " + consoleColor + amountToRestore + ConsoleColor.RESET
                     + " " + ability.name()
                     + ". " + this.name + " " + ability.name() + " is "
-                    + consoleColor + this.getCurrentAbilityValue(ability) + ConsoleColor.RESET);
+                    + consoleColor + this.getEffectiveAbilityValue(ability) + ConsoleColor.RESET);
         }
     }
 
     public void restoreHealthAndManaAfterTurn() {
         if (this instanceof Hero hero && !hero.isInCombat()) {
-            this.restoreAbilityValue(this.getCurrentAbilityValue(Ability.HASTE)
+            this.restoreAbilityValue(this.getEffectiveAbilityValue(Ability.HASTE)
                     * Constant.RESTORE_HEALTH_PER_ONE_HASTE, Ability.HEALTH);
         }
 
-        this.restoreAbilityValue(this.getCurrentAbilityValue(Ability.HASTE)
+        this.restoreAbilityValue(this.getEffectiveAbilityValue(Ability.HASTE)
                 * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
     }
 
-    public void decreaseCurrentAbilityValue(int valueOfLower, Ability ability) {
-        int currentAbility = getCurrentAbilityValue(ability);
+    public void increaseEffectiveAbilityValue(Ability ability, int valueToIncrease) {
+        this.effectiveAbilities.put(ability, this.getEffectiveAbilityValue(ability) + valueToIncrease);
+    }
+
+    public void decreaseEffectiveAbilityValue(int valueOfLower, Ability ability) {
+        int currentAbility = getEffectiveAbilityValue(ability);
         this.effectiveAbilities.put(ability, Math.max(currentAbility - valueOfLower, 0));
     }
 
-    public int getCurrentAbilityValue(Ability ability) {
+    public int getEffectiveAbilityValue(Ability ability) {
         return this.effectiveAbilities.get(ability);
-    }
-
-    public void increaseCurrentAbilityValue(Ability ability, int valueToIncrease) {
-        this.effectiveAbilities.put(ability, this.getCurrentAbilityValue(ability) + valueToIncrease);
     }
 }

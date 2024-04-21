@@ -7,11 +7,11 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWith
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionDealDamagePrimary extends Action implements ActionWithIncreasedValueByPrimaryAbility {
-    public ActionDealDamagePrimary(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                                   int chanceToPerformAction, boolean canBeActionCriticalHit) {
+public class ActionDealDamage extends Action implements ActionWithIncreasedValueByPrimaryAbility {
+    public ActionDealDamage(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
+                            int chanceToPerformAction, boolean canBeActionCriticalHit) {
 
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
+        super(actionName, actionEffectOn, baseActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override

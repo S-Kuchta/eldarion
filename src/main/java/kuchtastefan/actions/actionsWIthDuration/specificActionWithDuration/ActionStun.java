@@ -10,11 +10,11 @@ import kuchtastefan.utility.ConsoleColor;
 
 public class ActionStun extends ActionWithDuration implements ActionWithoutValue {
 
-    public ActionStun(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+    public ActionStun(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
                       int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
                       boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
+        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
                 chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 

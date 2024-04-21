@@ -8,11 +8,11 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWith
 import kuchtastefan.character.GameCharacter;
 
 public class ActionReflectSpell extends ActionWithDuration implements ActionWithoutValue {
-    public ActionReflectSpell(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+    public ActionReflectSpell(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
                               int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
                               boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
+        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
                 chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 

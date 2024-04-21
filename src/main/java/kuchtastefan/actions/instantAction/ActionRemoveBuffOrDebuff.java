@@ -15,11 +15,11 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
     private final boolean removeAllStatusEffects;
     private final ActionStatusEffect actionStatusEffectToRemove;
 
-    public ActionRemoveBuffOrDebuff(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+    public ActionRemoveBuffOrDebuff(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
                                     int chanceToPerformAction, boolean canBeActionCriticalHit,
                                     boolean removeAllStatusEffects, ActionStatusEffect actionStatusEffectToRemove) {
 
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
+        super(actionName, actionEffectOn, baseActionValue, chanceToPerformAction, canBeActionCriticalHit);
         this.removeAllStatusEffects = removeAllStatusEffects;
         this.actionStatusEffectToRemove = actionStatusEffectToRemove;
     }

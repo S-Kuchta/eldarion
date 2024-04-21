@@ -143,7 +143,7 @@ public class PrintUtil {
 
     private static void printBar(GameCharacter gameCharacter, Ability ability) {
         int maxValue = gameCharacter.getEnhancedAbilities().get(ability);
-        int currentValue = gameCharacter.getCurrentAbilityValue(ability);
+        int currentValue = gameCharacter.getEffectiveAbilityValue(ability);
         double oneBarValue = (double) maxValue / 15;
 
         ConsoleColor consoleColor = ConsoleColor.RESET;

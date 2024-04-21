@@ -61,12 +61,12 @@ public class Spell {
         GameCharacter spellCaster = charactersInvolvedInBattle.getSpellCaster();
         GameCharacter spellTarget = charactersInvolvedInBattle.getSpellTarget();
 
-        if (this.isCanSpellBeCasted() && spellCaster.getCurrentAbilityValue(Ability.MANA) >= this.getSpellManaCost()) {
+        if (this.isCanSpellBeCasted() && spellCaster.getEffectiveAbilityValue(Ability.MANA) >= this.getSpellManaCost()) {
 
             System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.getSpellName() + ConsoleColor.RESET);
 
             if (isAttackSuccessful(spellCaster, spellTarget)) {
-                boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getCurrentAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+                boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getEffectiveAbilityValue(Ability.CRITICAL_HIT_CHANCE);
 
                 for (Action action : this.getSpellActions()) {
                     actionService.applyActionToTarget(action, charactersInvolvedInBattle, criticalHit, this.isHitAllEnemy());
@@ -75,12 +75,12 @@ public class Spell {
                 System.out.println("\t" + ConsoleColor.RED + spellCaster.getName() + " Missed Enemy!");
             }
 
-            spellCaster.decreaseCurrentAbilityValue(this.getSpellManaCost(), Ability.MANA);
+            spellCaster.decreaseEffectiveAbilityValue(this.getSpellManaCost(), Ability.MANA);
             this.setCurrentTurnCoolDown(0);
             this.checkSpellCoolDown();
             return true;
         } else {
-            if (spellCaster.getCurrentAbilityValue(Ability.MANA) < this.getSpellManaCost()) {
+            if (spellCaster.getEffectiveAbilityValue(Ability.MANA) < this.getSpellManaCost()) {
                 System.out.println(ConsoleColor.RED + "\tYou do not have enough Mana to perform this ability!" + ConsoleColor.RESET);
             } else {
                 System.out.println(ConsoleColor.RED + "\tYou can not cast " + this.getSpellName() + ". Spell is on coolDown! (You have to wait "
@@ -92,8 +92,8 @@ public class Spell {
     }
 
     private boolean isAttackSuccessful(GameCharacter spellCaster, GameCharacter spellTarget) {
-        int spellCasterHaste = spellCaster.getCurrentAbilityValue(Ability.HASTE);
-        int spellTargetHaste = spellTarget.getCurrentAbilityValue(Ability.HASTE);
+        int spellCasterHaste = spellCaster.getEffectiveAbilityValue(Ability.HASTE);
+        int spellTargetHaste = spellTarget.getEffectiveAbilityValue(Ability.HASTE);
 
         if (spellCasterHaste >= spellTargetHaste) {
             return true;

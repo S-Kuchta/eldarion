@@ -8,18 +8,18 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWith
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionDealDamageOverTimePrimary extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
-    public ActionDealDamageOverTimePrimary(ActionName actionName, ActionEffectOn actionEffectOn,
-                                           int maxActionValue, int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
-                                           boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
+public class ActionDealDamageOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
+    public ActionDealDamageOverTime(ActionName actionName, ActionEffectOn actionEffectOn,
+                                    int baseActionValue, int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
+                                    boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
+        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
                 chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        int damageWithStacks = this.getCurrentActionValue() * this.getActionCurrentStacks();
+        int damageWithStacks = this.currentActionValue * this.getActionCurrentStacks();
 
         System.out.print("\t" + ConsoleColor.YELLOW + this.getActionName() + ConsoleColor.RESET + ": ");
         gameCharacter.receiveDamage(damageWithStacks);

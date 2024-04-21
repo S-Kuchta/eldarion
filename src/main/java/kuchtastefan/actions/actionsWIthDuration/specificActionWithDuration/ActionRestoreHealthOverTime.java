@@ -9,13 +9,13 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWith
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionRestoreHealthOverTimePrimary extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
+public class ActionRestoreHealthOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
 
-    public ActionRestoreHealthOverTimePrimary(ActionName actionName, ActionEffectOn actionEffectOn,
-                                              int maxActionValue, int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
-                                              boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
+    public ActionRestoreHealthOverTime(ActionName actionName, ActionEffectOn actionEffectOn,
+                                       int maxActionValue, int baseActionValue, int actionMaxStacks, int chanceToPerformAction,
+                                       boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
+        super(actionName, actionEffectOn, maxActionValue, baseActionValue, actionMaxStacks,
                 chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
@@ -37,9 +37,9 @@ public class ActionRestoreHealthOverTimePrimary extends ActionWithDuration imple
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 2) {
+        if (spellCaster.getEffectiveAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 2) {
             return 2;
-        } else if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 3) {
+        } else if (spellCaster.getEffectiveAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 3) {
             return 4;
         } else {
             return 1;

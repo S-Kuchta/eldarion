@@ -8,11 +8,12 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWith
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionRestoreHealthPrimary extends Action implements ActionWithIncreasedValueByPrimaryAbility {
+public class ActionRestoreHealth extends Action implements ActionWithIncreasedValueByPrimaryAbility {
 
-    public ActionRestoreHealthPrimary(ActionName actionName, ActionEffectOn actionEffectOn,
-                                      int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
+    public ActionRestoreHealth(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
+                               int chanceToPerformAction, boolean canBeActionCriticalHit) {
+
+        super(actionName, actionEffectOn, baseActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override
@@ -31,9 +32,9 @@ public class ActionRestoreHealthPrimary extends Action implements ActionWithIncr
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 2) {
+        if (spellCaster.getEffectiveAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 2) {
             return 2;
-        } else if (spellCaster.getCurrentAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 3) {
+        } else if (spellCaster.getEffectiveAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 3) {
             return 4;
         } else {
             return 1;

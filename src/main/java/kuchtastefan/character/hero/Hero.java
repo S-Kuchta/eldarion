@@ -243,7 +243,7 @@ public class Hero extends GameCharacter {
 
     public void rest() {
         this.resetAbilitiesToMaxValues(true);
-        this.regionActionsWithDuration.removeIf(actionWithDuration -> actionWithDuration.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF));
+        this.buffsAndDebuffs.removeIf(debuffs -> debuffs.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF));
     }
 
     public void setInitialEquip() {

@@ -61,6 +61,6 @@ public abstract class ActionWithDuration extends Action {
 
     @Override
     public int hashCode() {
-        return Objects.hash(maxActionTurns, actionMaxStacks);
+        return Objects.hash(actionName, maxActionTurns, actionMaxStacks);
     }
 }

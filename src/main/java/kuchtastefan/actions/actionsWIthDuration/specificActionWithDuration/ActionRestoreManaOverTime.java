@@ -9,13 +9,13 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWith
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionRestoreManaOverTimePrimary extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
+public class ActionRestoreManaOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
 
-    public ActionRestoreManaOverTimePrimary(ActionName actionName, ActionEffectOn actionEffectOn,
-                                            int maxActionValue, int maxActionTurns, int actionMaxStacks, int chanceToPerformAction,
-                                            boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
+    public ActionRestoreManaOverTime(ActionName actionName, ActionEffectOn actionEffectOn,
+                                     int maxActionValue, int baseActionValue, int actionMaxStacks, int chanceToPerformAction,
+                                     boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
+        super(actionName, actionEffectOn, maxActionValue, baseActionValue, actionMaxStacks,
                 chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
@@ -38,7 +38,7 @@ public class ActionRestoreManaOverTimePrimary extends ActionWithDuration impleme
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getEnhancedAbilities().get(Ability.MANA) * 0.3)) {
+        if (spellCaster.getEffectiveAbilityValue(Ability.MANA) < (spellCaster.getEnhancedAbilities().get(Ability.MANA) * 0.3)) {
             return 3;
         } else {
             return 2;

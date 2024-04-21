@@ -20,11 +20,11 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration implements Ac
     private final Ability ability;
 
 
-    public ActionIncreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
+    public ActionIncreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
                                       int maxActionTurns, int actionMaxStacks, Ability ability, int chanceToPerformAction,
                                       boolean canBeActionCriticalHit, ActionStatusEffect actionStatusEffect) {
 
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
+        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
                 chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
         this.ability = ability;
     }
@@ -33,7 +33,7 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration implements Ac
     public void performAction(GameCharacter gameCharacter) {
 
         int increaseAbilityWithStacksValue = this.getCurrentActionValue() * this.getActionCurrentStacks();
-        gameCharacter.increaseCurrentAbilityValue(this.ability, increaseAbilityWithStacksValue);
+        gameCharacter.increaseEffectiveAbilityValue(this.ability, increaseAbilityWithStacksValue);
 
         System.out.println("\t" + ConsoleColor.YELLOW + this.ability + ConsoleColor.RESET + " is increased by " + increaseAbilityWithStacksValue);
     }

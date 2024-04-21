@@ -6,8 +6,6 @@ import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.junkItem.JunkItem;
-import kuchtastefan.item.wearableItem.WearableItem;
-import kuchtastefan.item.wearableItem.WearableItemQuality;
 import kuchtastefan.service.BattleService;
 import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.ConsoleColor;
@@ -47,12 +45,12 @@ public class CombatEvent extends Event {
         boolean battle = false;
         int enemyHaste = 0;
         for (Enemy enemy : this.enemies) {
-            if (enemy.getCurrentAbilityValue(Ability.HASTE) > enemyHaste) {
-                enemyHaste = enemy.getCurrentAbilityValue(Ability.HASTE);
+            if (enemy.getEffectiveAbilityValue(Ability.HASTE) > enemyHaste) {
+                enemyHaste = enemy.getEffectiveAbilityValue(Ability.HASTE);
             }
         }
 
-        int heroHaste = hero.getCurrentAbilityValue(Ability.HASTE);
+        int heroHaste = hero.getEffectiveAbilityValue(Ability.HASTE);
         int chanceToEvasion = 50 + (heroHaste - enemyHaste);
         if (chanceToEvasion > 100) {
             chanceToEvasion = 100;

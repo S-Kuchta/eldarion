@@ -50,7 +50,6 @@
         "baseActionValue": 0,
         "maxActionTurns": 2,
         "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
         "actionStatusEffect": "DEBUFF"
@@ -150,7 +149,6 @@
         "baseActionValue": 0,
         "maxActionTurns": 1,
         "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
         "actionStatusEffect": "DEBUFF"
@@ -173,7 +171,6 @@
         "baseActionValue": 0,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false,
         "actionStatusEffect": "BUFF"
@@ -204,7 +201,6 @@
         "baseActionValue": 1,
         "maxActionTurns": 1,
         "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 20,
         "canBeActionCriticalHit": false,
         "ability": "ATTACK",
@@ -228,7 +224,6 @@
         "baseActionValue": 1,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
-        "actionDurationType": "BATTLE_ACTION",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": true,
         "actionStatusEffect": "DEBUFF"

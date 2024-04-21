@@ -14,7 +14,6 @@ import lombok.Getter;
 public class ActionSummonCreature extends Action implements ActionWithoutValue {
 
     private final int summonedNpcId;
-    private int gameCharacterLevel;
 
     public ActionSummonCreature(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
                                 int chanceToPerformAction, boolean canBeActionCriticalHit, int summonedNpcId) {
@@ -25,21 +24,20 @@ public class ActionSummonCreature extends Action implements ActionWithoutValue {
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        this.gameCharacterLevel = gameCharacter.getLevel();
         System.out.println("\t" + gameCharacter.getName() + " summoned " + CharacterDB.CHARACTER_DB.get(this.summonedNpcId).getName());
+        this.charactersInvolvedInBattle.getTempCharacterList().add(returnSummonedCharacter(gameCharacter.getLevel()));
     }
 
-    public NonPlayerCharacter returnSummonedCharacter() {
+    public NonPlayerCharacter returnSummonedCharacter(int gameCharacterLevel) {
         NonPlayerCharacter nonPlayerCharacter = CharacterDB.returnNewCharacter(this.summonedNpcId);
-        nonPlayerCharacter.increaseAbilityPointsByMultiplier(this.gameCharacterLevel);
+        nonPlayerCharacter.increaseAbilityPointsByMultiplier(gameCharacterLevel);
 
         return nonPlayerCharacter;
     }
 
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
-        NonPlayerCharacter nonPlayerCharacter = returnSummonedCharacter();
-        System.out.print("Summon " + ConsoleColor.YELLOW + nonPlayerCharacter.getName() + ConsoleColor.RESET + " to fight on your side");
+        System.out.print("Summon " + ConsoleColor.YELLOW + returnSummonedCharacter(spellCaster.getLevel()).getName() + ConsoleColor.RESET + " to fight on your side");
     }
 
     @Override

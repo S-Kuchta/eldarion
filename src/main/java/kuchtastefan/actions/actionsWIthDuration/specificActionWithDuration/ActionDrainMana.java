@@ -9,25 +9,25 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.ActionWith
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionDrainManaPrimary extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
+public class ActionDrainMana extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
 
-    public ActionDrainManaPrimary(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue,
-                                  int maxActionTurns, int actionMaxStacks, int chanceToPerformAction, boolean canBeActionCriticalHit,
-                                  ActionStatusEffect actionStatusEffect) {
+    public ActionDrainMana(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
+                           int maxActionTurns, int actionMaxStacks, int chanceToPerformAction, boolean canBeActionCriticalHit,
+                           ActionStatusEffect actionStatusEffect) {
 
-        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks,
+        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
                 chanceToPerformAction, canBeActionCriticalHit, actionStatusEffect);
     }
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
         int value = this.currentActionValue;
-        if (gameCharacter.getCurrentAbilityValue(Ability.MANA) < this.currentActionValue) {
-            value = gameCharacter.getCurrentAbilityValue(Ability.MANA);
+        if (gameCharacter.getEffectiveAbilityValue(Ability.MANA) < this.currentActionValue) {
+            value = gameCharacter.getEffectiveAbilityValue(Ability.MANA);
         }
 
         System.out.println("\t" + gameCharacter.getName() + " lost " + value + " Mana");
-        gameCharacter.decreaseCurrentAbilityValue(this.currentActionValue, Ability.MANA);
+        gameCharacter.decreaseEffectiveAbilityValue(this.currentActionValue, Ability.MANA);
     }
 
     @Override

@@ -74,7 +74,7 @@ public class BattleService {
             }
 
             // Check if hero's health reaches zero
-            if (hero.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+            if (hero.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
                 // Clear hero's actions and battle actions, deduct gold, reset health, and reset spell CoolDowns
                 hero.getBuffsAndDebuffs().clear();
                 int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
@@ -113,7 +113,7 @@ public class BattleService {
 
             this.printAndPerformActionOverTime(attackingCharacter);
             // If character is alive
-            if (attackingCharacter.getCurrentAbilityValue(Ability.HEALTH) > 0) {
+            if (attackingCharacter.getEffectiveAbilityValue(Ability.HEALTH) > 0) {
 
                 // If character can't perform action, skip to next character
                 if (!attackingCharacter.isCanPerformAction()) {
@@ -163,7 +163,7 @@ public class BattleService {
     }
 
     private boolean checkIfCharacterDied(GameCharacter characterToCheck) {
-        if (characterToCheck.getCurrentAbilityValue(Ability.HEALTH) <= 0) {
+        if (characterToCheck.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
             System.out.println();
             System.out.println("\t" + ConsoleColor.RED + characterToCheck.getName() + " died!" + ConsoleColor.RESET);
             return true;
@@ -293,7 +293,7 @@ public class BattleService {
                     String enemy = consoleColor + enemyFromList.getName() + " - "
                             + nonPlayerCharacter.getCharacterRarity() + " - "
                             + healthsColor + "Healths: "
-                            + enemyFromList.getCurrentAbilityValue(Ability.HEALTH) + ConsoleColor.RESET;
+                            + enemyFromList.getEffectiveAbilityValue(Ability.HEALTH) + ConsoleColor.RESET;
 
                     PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index), enemy);
                     index++;

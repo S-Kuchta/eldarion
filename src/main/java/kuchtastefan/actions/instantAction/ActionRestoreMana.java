@@ -9,10 +9,11 @@ import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
 
-public class ActionRestoreManaPrimary extends Action implements ActionWithIncreasedValueByPrimaryAbility {
-    public ActionRestoreManaPrimary(ActionName actionName, ActionEffectOn actionEffectOn,
-                                    int maxActionValue, int chanceToPerformAction, boolean canBeActionCriticalHit) {
-        super(actionName, actionEffectOn, maxActionValue, chanceToPerformAction, canBeActionCriticalHit);
+public class ActionRestoreMana extends Action implements ActionWithIncreasedValueByPrimaryAbility {
+    public ActionRestoreMana(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue,
+                             int chanceToPerformAction, boolean canBeActionCriticalHit) {
+
+        super(actionName, actionEffectOn, baseActionValue, chanceToPerformAction, canBeActionCriticalHit);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class ActionRestoreManaPrimary extends Action implements ActionWithIncrea
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
-        if (spellCaster.getCurrentAbilityValue(Ability.MANA) < (spellCaster.getEnhancedAbilities().get(Ability.MANA) * 0.3)) {
+        if (spellCaster.getEffectiveAbilityValue(Ability.MANA) < (spellCaster.getEnhancedAbilities().get(Ability.MANA) * 0.3)) {
             return 3;
         } else {
             return 2;

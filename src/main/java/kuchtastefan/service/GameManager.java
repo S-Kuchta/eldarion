@@ -105,17 +105,7 @@ public class GameManager {
         }
     }
 
-    private void testMethod(ItemType itemType) {
-        System.out.println(itemType.toString());
-        System.out.println(itemType.name());
-        System.out.println(itemType.getDescription());
-    }
-
-    private void initGame() {
-        testMethod(ConsumableItemType.POTION);
-        testMethod(WearableItemType.BOOTS);
-        testMethod(CraftingReagentItemType.ALCHEMY_REAGENT);
-
+    private void handleImportsFromFiles() {
         this.fileService.importWearableItemsFromFile();
         this.fileService.importCraftingReagentItemsFromFile();
         this.fileService.importConsumableItemsFromFile();
@@ -137,12 +127,10 @@ public class GameManager {
         this.fileService.importVendorItemListsFromFile();
 
         HintDB.initializeHintList();
+    }
 
-        Item item = ItemDB.returnItemFromDB(200);
-        if (item instanceof WearableItem wearableItem) {
-            System.out.println(wearableItem.getItemType().equals(WearableItemType.WEAPON));
-        }
-
+    private void initGame() {
+        this.handleImportsFromFiles();
 
         System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\tWelcome to the Eldarion!\t\t\n" + ConsoleColor.RESET);
         PrintUtil.printIndexAndText("0", "Start new game");
@@ -162,7 +150,6 @@ public class GameManager {
                     HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
                     QuestDB.setInitialQuestsStatus(this.hero);
                     QuestDB.loadQuests(this.hero);
-                    this.hero.getRegionActionsWithDuration().addAll(gameLoaded.getRegionActionsWithDuration());
 
                     return;
                 }

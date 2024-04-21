@@ -87,6 +87,4 @@ public class WearableItem extends Item implements UsableItem, HaveType {
     public int hashCode() {
         return Objects.hash(super.hashCode(), itemType, abilities, itemLevel, wearableItemQuality);
     }
-
-
 }

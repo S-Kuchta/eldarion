@@ -59,16 +59,18 @@ public class InventoryMenuService implements UsingHeroInventory {
 
     public void wearableItemsMenu(Hero hero) {
         PrintUtil.printMenuHeader("Wearable");
-        String[] wearableTypes = {"Weapons", "Head", "Body", "Hands", "Boots", "Wear off all equip"};
-        for (int i = 0; i < wearableTypes.length; i++) {
-            PrintUtil.printMenuOptions(wearableTypes[i] + " (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.values()[i]) + ")");
-        }
+        String[] wearableTypes = {"Go Back",
+                "Weapons (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.WEAPON) + "x)",
+                "Head (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HEAD) + "x)",
+                "Body (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BODY) + "x)",
+                "Hands (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HANDS) + "x)",
+                "Boots (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BOOTS) + "x)"};
 
+        PrintUtil.printMenuOptions(wearableTypes);
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> mainMenu(hero);
             case 1, 2, 3, 4, 5 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.values()[choice - 1]), this, 1);
-            case 6 -> hero.wearDownAllEquippedItems();
             default -> PrintUtil.printEnterValidInput();
         }
     }

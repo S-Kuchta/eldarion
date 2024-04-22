@@ -18,7 +18,7 @@ public class FindItemEvent extends Event {
     @Override
     public boolean eventOccurs(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.itemId);
-        hero.getHeroInventory().addItemWithNewCopyToItemList(item, 1);
+        hero.getHeroInventory().addItemToInventory(item, 1);
         System.out.println("\tYou found " + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET);
         hero.checkIfQuestObjectivesAndQuestIsCompleted();
         return true;

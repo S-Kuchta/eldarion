@@ -3,8 +3,8 @@ package kuchtastefan.character.hero.inventory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.Item;
 import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.Item;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.utility.*;
 import lombok.Getter;
@@ -26,17 +26,13 @@ public class HeroInventory {
     }
 
 
-    public void addItemWithNewCopyToItemList(Item item, int count) {
+    public void addItemToInventory(Item item, int count) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
         Item itemCopy = gson.fromJson(gson.toJson(item), item.getClass());
         System.out.println("\t" + count + "x " + itemCopy.getName() + " has been added to your inventory");
         for (int i = 0; i < count; i++) {
-            addItemToInventory(itemCopy);
+            this.heroInventory.merge(itemCopy, 1, Integer::sum);
         }
-    }
-
-    public void addItemToInventory(Item item) {
-        this.heroInventory.merge(item, 1, Integer::sum);
     }
 
     public Item getItemFromInventory(int itemId) {
@@ -107,9 +103,16 @@ public class HeroInventory {
         return itemMap;
     }
 
-    public <T extends Item> void printHeroInventory(Class<T> itemClass, ItemFilter itemFilter, int indexStart, Hero hero) {
+    private <T extends Item> void printHeroInventory(Class<T> itemClass, ItemFilter itemFilter, int indexStart, Hero hero) {
         Map<T, Integer> inventory = returnHeroInventory(itemClass, itemFilter);
         int index = indexStart;
+
+        String header = itemFilter.isCheckType() ? itemFilter.getItemType().toString() : SplitByCamelCase.splitByCamelCase(itemClass.getSimpleName());
+        PrintUtil.printMenuHeader(header + " Inventory");
+
+        if (inventory.isEmpty()) {
+            System.out.println("\tInventory is empty");
+        }
 
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
@@ -124,9 +127,7 @@ public class HeroInventory {
 
         final int choice = InputUtil.intScanner();
         if (choice == 0) {
-            if (!hero.isInCombat()) {
-                usingHeroInventory.mainMenu(hero);
-            }
+            usingHeroInventory.mainMenu(hero);
         } else {
             List<T> items = new ArrayList<>(hero.getHeroInventory().returnHeroInventory(itemClass, itemFilter).keySet());
             if (choice - 1 < items.size()) {

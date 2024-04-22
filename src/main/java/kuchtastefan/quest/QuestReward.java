@@ -3,7 +3,6 @@ package kuchtastefan.quest;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
-import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,7 +26,7 @@ public class QuestReward {
 
         for (Integer itemId : this.itemsReward) {
             Item itemReward = ItemDB.returnItemFromDB(itemId);
-            hero.getHeroInventory().addItemWithNewCopyToItemList(itemReward, 1);
+            hero.getHeroInventory().addItemToInventory(itemReward, 1);
             System.out.println("\tReward for completing the quest: " + itemReward.getName());
         }
     }

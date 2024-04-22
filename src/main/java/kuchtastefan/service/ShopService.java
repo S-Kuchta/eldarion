@@ -81,7 +81,7 @@ public class ShopService {
     }
 
     private void successfullyItemBought(Hero hero, Item item) {
-        hero.getHeroInventory().addItemWithNewCopyToItemList(item, 1);
+        hero.getHeroInventory().addItemToInventory(item, 1);
         hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
         System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory");
     }

@@ -93,7 +93,7 @@ public class CombatEvent extends Event {
 
                     PrintUtil.printLongDivider();
                     for (Item item : enemy.getItemsDrop()) {
-                        hero.getHeroInventory().addItemWithNewCopyToItemList(item, 1);
+                        hero.getHeroInventory().addItemToInventory(item, 1);
 
                         ConsoleColor consoleColor = ConsoleColor.YELLOW;
                         if (item instanceof JunkItem) {

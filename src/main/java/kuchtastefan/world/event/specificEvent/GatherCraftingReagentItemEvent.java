@@ -35,7 +35,7 @@ public class GatherCraftingReagentItemEvent extends Event {
             System.out.println("\t--> You mined " + numberOfFindingItems + "x " + item.getName() + " <--");
         }
 
-        hero.getHeroInventory().addItemWithNewCopyToItemList(item, numberOfFindingItems);
+        hero.getHeroInventory().addItemToInventory(item, numberOfFindingItems);
         hero.checkIfQuestObjectivesAndQuestIsCompleted();
 
         return true;

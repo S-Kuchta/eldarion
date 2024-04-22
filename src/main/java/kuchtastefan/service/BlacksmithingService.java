@@ -68,7 +68,7 @@ public class BlacksmithingService implements Workshop {
         ItemAndCount reagent = item.dismantle();
         hero.unEquipItem(item);
         hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
-        hero.getHeroInventory().addItemWithNewCopyToItemList(reagent.item(), reagent.count());
+        hero.getHeroInventory().addItemToInventory(reagent.item(), reagent.count());
         return true;
     }
 
@@ -98,7 +98,7 @@ public class BlacksmithingService implements Workshop {
         refinedItem.refine();
         hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
         hero.getHeroInventory().removeItemFromHeroInventory(requiredReagent.item(), requiredReagent.count());
-        hero.getHeroInventory().addItemWithNewCopyToItemList(refinedItem, 1);
+        hero.getHeroInventory().addItemToInventory(refinedItem, 1);
 
         System.out.println("\tYou refinement your item " + refinedItem.getName() + " to " + refinedItem.getWearableItemQuality() + " quality");
         return true;

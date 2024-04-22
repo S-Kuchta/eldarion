@@ -248,17 +248,17 @@ public class Hero extends GameCharacter {
     }
 
     public void setInitialEquip() {
-        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(200), 1);
-        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(400), 1);
-        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(500), 1);
-        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(600), 1);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(200), 1);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(400), 1);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(500), 1);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(600), 1);
 
-        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(1001), 2);
-        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(1002), 2);
-        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(900), 2);
-        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(902), 1);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(1001), 2);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(1002), 2);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(900), 2);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(902), 1);
 
-        this.heroInventory.addItemWithNewCopyToItemList(ItemDB.returnItemFromDB(107), 1);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(107), 1);
 
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(200));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(400));

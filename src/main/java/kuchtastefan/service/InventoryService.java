@@ -2,11 +2,10 @@ package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.UsingHeroInventory;
+import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.UsableItem;
-import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
-import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
@@ -14,22 +13,20 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-public class InventoryMenuService implements UsingHeroInventory {
+public class InventoryService implements UsingHeroInventory {
 
     @Override
     public void mainMenu(Hero hero) {
-        PrintUtil.printMenuHeader(hero.getName() + " Inventory");
-
-        if (hero.isInCombat()) {
-            hero.getHeroInventory().selectItem(hero, ConsumableItem.class, new ItemFilter(), this, 1);
-        } else {
+        if (!hero.isInCombat()) {
+            PrintUtil.printMenuHeader(hero.getName() + " Inventory");
             PrintUtil.printMenuOptions("Go back", "Wearable Items", "Crafting reagents", "Consumable Items", "Quest Items");
             int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
                 }
                 case 1 -> wearableItemsMenu(hero);
-                case 2 -> hero.getHeroInventory().selectItem(hero, CraftingReagentItem.class, new ItemFilter(), this, 1);
+                case 2 ->
+                        hero.getHeroInventory().selectItem(hero, CraftingReagentItem.class, new ItemFilter(), this, 1);
                 case 3 -> hero.getHeroInventory().selectItem(hero, ConsumableItem.class, new ItemFilter(), this, 1);
                 case 4 -> hero.getHeroInventory().selectItem(hero, QuestItem.class, new ItemFilter(), this, 1);
                 default -> PrintUtil.printEnterValidInput();
@@ -70,7 +67,8 @@ public class InventoryMenuService implements UsingHeroInventory {
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> mainMenu(hero);
-            case 1, 2, 3, 4, 5 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.values()[choice - 1]), this, 1);
+            case 1, 2, 3, 4, 5 ->
+                    hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.values()[choice - 1]), this, 1);
             default -> PrintUtil.printEnterValidInput();
         }
     }

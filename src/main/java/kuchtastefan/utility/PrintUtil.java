@@ -15,6 +15,7 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -318,19 +319,6 @@ public class PrintUtil {
                 + hero.getHeroGold() + " golds");
         printLongDivider();
     }
-
-    public static void printInventoryWearableItemTypeHeader(WearableItemType wearableItemType) {
-        printLongDivider();
-        System.out.println("\t\t\t\t\t\t------ " + wearableItemType + " inventory ------");
-        printLongDivider();
-    }
-
-    public static void printInventoryHeader(String inventory) {
-        printLongDivider();
-        System.out.println("\t\t\t\t------ " + inventory + " items Inventory ------");
-        printLongDivider();
-    }
-
 
     public static void printEnterValidInput() {
         System.out.println(ConsoleColor.RED + "\tEnter valid input" + ConsoleColor.RESET);

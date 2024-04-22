@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
@@ -13,8 +14,8 @@ import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
 import kuchtastefan.utility.*;
 import lombok.Getter;
 
@@ -179,7 +180,7 @@ public class BattleService {
     }
 
     private void playerTurn(Hero hero) {
-        InventoryMenuService inventoryMenuService = new InventoryMenuService();
+        InventoryService inventoryService = new InventoryService();
 
         // Loop for hero's actions
         while (true) {
@@ -194,10 +195,7 @@ public class BattleService {
                     if (parsedChoice == hero.getCharacterSpellList().size()) {
 
                         // If choice is for consumable items, open inventory menu
-//                        if (inventoryMenuService.itemInventoryMenu(hero, hero.getHeroInventory().returnHeroInventory(ConsumableItem.class))) {
-//                            break;
-//                        }
-                        if (hero.getHeroInventory().selectItem(hero, ConsumableItem.class, new ItemFilter(), inventoryMenuService, 1)) {
+                        if (hero.getHeroInventory().selectItem(hero, ConsumableItem.class, new ItemFilter(ConsumableItemType.POTION), inventoryService, 1)) {
                             break;
                         }
 

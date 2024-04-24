@@ -163,4 +163,8 @@ public abstract class GameCharacter {
     public int getEffectiveAbilityValue(Ability ability) {
         return this.effectiveAbilities.get(ability);
     }
+
+    public String getName() {
+        return ConsoleColor.YELLOW + name + ConsoleColor.RESET;
+    }
 }

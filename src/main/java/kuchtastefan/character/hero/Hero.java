@@ -206,8 +206,8 @@ public class Hero extends GameCharacter {
             }
 
             if (experiencePointsGained > 0) {
-                System.out.println("\tYou gained " + ConsoleColor.YELLOW_BRIGHT + (int) experiencePointsGained
-                        + " experience points" + ConsoleColor.RESET);
+                System.out.println("\tYou gained " + ConsoleColor.YELLOW + (int) experiencePointsGained
+                        + " Experience points" + ConsoleColor.RESET);
             }
         }
     }

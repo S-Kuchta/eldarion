@@ -3,6 +3,7 @@ package kuchtastefan.world.event.specificEvent;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.Enemy;
+import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.service.BattleService;
@@ -95,6 +96,7 @@ public class CombatEvent extends Event {
 
     private void battleWon(Hero hero) {
         for (Enemy enemy : this.enemies) {
+            System.out.println();
             this.questService.updateQuestProgressFromEnemyActions(hero, enemy);
             double goldEarn = enemy.getGoldDrop();
 

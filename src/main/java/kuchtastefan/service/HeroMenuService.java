@@ -72,7 +72,7 @@ public class HeroMenuService {
     }
 
     private void showHeroInfo(Hero hero) {
-        PrintUtil.printCurrentAbilityPointsWithItems(hero);
+        PrintUtil.printEffectiveAbilityPoints(hero);
         PrintUtil.printCurrentWearingArmor(hero);
     }
 

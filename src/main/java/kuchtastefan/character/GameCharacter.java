@@ -50,9 +50,9 @@ public abstract class GameCharacter {
             if (addTurn) {
                 actionWithDuration.actionAddTurn();
             }
-
-            this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
         }
+
+        this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
     }
 
     public void resetAbilitiesToMaxValues(boolean setHealthOrManaToMaxValue) {
@@ -142,6 +142,7 @@ public abstract class GameCharacter {
     }
 
     public void restoreHealthAndManaAfterTurn() {
+        System.out.println();
         if (this instanceof Hero hero && !hero.isInCombat()) {
             this.restoreAbilityValue(this.getEffectiveAbilityValue(Ability.HASTE)
                     * Constant.RESTORE_HEALTH_PER_ONE_HASTE, Ability.HEALTH);

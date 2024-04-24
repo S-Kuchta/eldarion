@@ -15,7 +15,6 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -129,7 +128,8 @@ public class PrintUtil {
 
     public static void printHeaderWithStatsBar(GameCharacter gameCharacter) {
         printExtraLongDivider();
-        System.out.printf("%58s %n", gameCharacter.getName());
+//        System.out.printf("%58s %n", gameCharacter.getName());
+        System.out.println("\t" + gameCharacter.getName());
 
         printBar(gameCharacter, Ability.HEALTH);
         printBar(gameCharacter, Ability.MANA);
@@ -201,7 +201,7 @@ public class PrintUtil {
         }
     }
 
-    public static void printSimplifiedAbilityPoints(GameCharacter gameCharacter) {
+    public static void printBaseAbilityPoints(GameCharacter gameCharacter) {
         printExtraLongDivider();
         System.out.printf("%58s %n", "Abilities:");
         System.out.print("\t");
@@ -217,11 +217,11 @@ public class PrintUtil {
         printExtraLongDivider();
     }
 
-    public static void printCurrentAbilityPointsWithItems(Hero hero) {
-        printHeaderWithStatsBar(hero);
-        System.out.printf("%80s %n", ConsoleColor.YELLOW + "Current Ability points with items" + ConsoleColor.RESET);
+    public static void printEffectiveAbilityPoints(GameCharacter gameCharacter) {
+//        printHeaderWithStatsBar(gameCharacter);
+//        System.out.printf("%80s %n", gameCharacter.getName() + " Ability Points");
         System.out.print("\t\t\t");
-        for (Map.Entry<Ability, Integer> abilityPoints : hero.getEffectiveAbilities().entrySet()) {
+        for (Map.Entry<Ability, Integer> abilityPoints : gameCharacter.getEffectiveAbilities().entrySet()) {
 
             if (!(abilityPoints.getKey().equals(Ability.MANA)
                     || abilityPoints.getKey().equals(Ability.HEALTH)

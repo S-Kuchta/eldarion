@@ -63,7 +63,7 @@ public class Spell {
 
         if (this.isCanSpellBeCasted() && spellCaster.getEffectiveAbilityValue(Ability.MANA) >= this.getSpellManaCost()) {
 
-            System.out.println("\t" + spellCaster.getName() + " use " + ConsoleColor.MAGENTA + this.getSpellName() + ConsoleColor.RESET);
+            System.out.println("\t" + spellCaster.getName() + " use " + this.getSpellName());
 
             if (isAttackSuccessful(spellCaster, spellTarget)) {
                 boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getEffectiveAbilityValue(Ability.CRITICAL_HIT_CHANCE);
@@ -116,5 +116,9 @@ public class Spell {
         if (this.currentTurnCoolDown >= this.turnCoolDown) {
             this.canSpellBeCasted = true;
         }
+    }
+
+    public String getSpellName() {
+        return ConsoleColor.MAGENTA + spellName + ConsoleColor.RESET;
     }
 }

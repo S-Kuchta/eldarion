@@ -1,4 +1,4 @@
-package kuchtastefan.character.hero.inventory.itemFilter;
+package kuchtastefan.item.itemFilter;
 
 import kuchtastefan.item.itemType.ItemType;
 import lombok.Getter;

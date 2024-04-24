@@ -1,6 +1,7 @@
 package kuchtastefan.character.npc.vendor;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.npc.vendor.vendorOffer.VendorOfferDB;
 import kuchtastefan.item.Item;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package kuchtastefan.world.event.specificEvent;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;

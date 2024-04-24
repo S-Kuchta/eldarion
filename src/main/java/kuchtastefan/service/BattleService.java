@@ -4,16 +4,15 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.character.spell.Spell;
-import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
 import kuchtastefan.utility.*;
@@ -42,7 +41,6 @@ public class BattleService {
 
     public boolean battle(Hero hero, List<Enemy> enemies) {
         HintDB.printHint(HintName.BATTLE_HINT);
-        hero.setInCombat(true);
 
         // Initialize lists for battle
         enemyList.addAll(enemies);
@@ -66,29 +64,11 @@ public class BattleService {
 
             // Check if all enemies are defeated
             if (enemyList.isEmpty()) {
-                // Clear hero's battle actions and reset spell CoolDowns
-                hero.getBuffsAndDebuffs().clear();
-                this.resetSpellsCoolDowns(hero);
-                hero.setInCombat(false);
                 return true; // Battle won
             }
 
             // Check if hero's health reaches zero
             if (hero.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
-                // Clear hero's actions and battle actions, deduct gold, reset health, and reset spell CoolDowns
-                hero.getBuffsAndDebuffs().clear();
-                int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
-
-                hero.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
-                hero.getEffectiveAbilities().put(Ability.HEALTH, hero.getEnhancedAbilities().get(Ability.HEALTH));
-                this.resetSpellsCoolDowns(hero);
-
-                // Print death message
-                PrintUtil.printDivider();
-                System.out.println("\tYou lost " + goldToRemove + " golds!");
-                System.out.println("\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
-                PrintUtil.printDivider();
-                hero.setInCombat(false);
                 return false; // Battle lost
             }
         }
@@ -378,7 +358,7 @@ public class BattleService {
         }
     }
 
-    private void resetSpellsCoolDowns(Hero hero) {
+    public void resetSpellsCoolDowns(Hero hero) {
         for (Spell spell : hero.getCharacterSpellList()) {
             spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
             spell.checkSpellCoolDown();

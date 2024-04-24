@@ -7,7 +7,7 @@ import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.ItemAndCount;
-import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;

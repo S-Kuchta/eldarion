@@ -8,8 +8,7 @@
       2,
       3,
       4
-    ],
-    "currentItemListId": 0
+    ]
   },
   {
     "type": "CraftingReagentItemVendorCharacter",
@@ -17,8 +16,7 @@
     "name": "Bedgraen Grimdelver",
     "itemListsId": [
       7
-    ],
-    "currentItemListId": 0
+    ]
   },
   {
     "type": "ConsumableVendorCharacter",
@@ -26,8 +24,7 @@
     "name": "Faraine Daeyra",
     "itemListsId": [
       6
-    ],
-    "currentItemListId": 0
+    ]
   },
   {
     "type": "JunkVendorCharacter",
@@ -35,8 +32,7 @@
     "name": "Lucky Thorne",
     "itemListsId": [
       9
-    ],
-    "currentItemListId": 0
+    ]
   },
   {
     "type": "CraftingReagentItemVendorCharacter",
@@ -44,8 +40,7 @@
     "name": "Elora Quiqen",
     "itemListsId": [
       8
-    ],
-    "currentItemListId": 0
+    ]
   },
   {
     "type": "ConsumableVendorCharacter",
@@ -53,8 +48,7 @@
     "name": "Mystic Hollow Tavern Keeper",
     "itemListsId": [
       5
-    ],
-    "currentItemListId": 0
+    ]
   },
   {
     "type": "WearableItemVendorCharacter",

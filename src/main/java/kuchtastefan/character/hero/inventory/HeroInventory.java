@@ -3,7 +3,7 @@ package kuchtastefan.character.hero.inventory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.utility.*;
@@ -107,7 +107,7 @@ public class HeroInventory {
         Map<T, Integer> inventory = returnHeroInventory(itemClass, itemFilter);
         int index = indexStart;
 
-        String header = itemFilter.isCheckType() ? itemFilter.getItemType().toString() : SplitByCamelCase.splitByCamelCase(itemClass.getSimpleName());
+        String header = itemFilter.isCheckType() ? itemFilter.getItemType().toString() : SplitByCamelCase.splitStringByCamelCase(itemClass.getSimpleName());
         PrintUtil.printMenuHeader(header + " Inventory");
 
         if (inventory.isEmpty()) {

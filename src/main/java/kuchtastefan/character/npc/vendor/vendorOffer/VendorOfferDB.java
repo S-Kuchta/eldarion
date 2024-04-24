@@ -1,5 +1,6 @@
-package kuchtastefan.character.npc.vendor;
+package kuchtastefan.character.npc.vendor.vendorOffer;
 
+import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.utility.RandomNumberGenerator;

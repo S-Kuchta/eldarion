@@ -3,6 +3,7 @@ package kuchtastefan.world.event.specificEvent;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.Enemy;
+import kuchtastefan.constant.Constant;
 import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.junkItem.JunkItem;
@@ -82,40 +83,53 @@ public class CombatEvent extends Event {
             }
         }
 
+        boolean haveHeroWon =false;
         if (battle) {
-            final boolean haveHeroWon = this.battleService.battle(hero, this.enemies);
+            hero.setInCombat(true);
+            haveHeroWon = this.battleService.battle(hero, this.enemies);
 
             if (haveHeroWon) {
-                for (Enemy enemy : this.enemies) {
-                    questService.updateQuestProgressFromEnemyActions(hero, enemy);
-                    double goldEarn = enemy.getGoldDrop();
-                    double experiencePointGained = enemy.enemyExperiencePointsValue();
-
-                    PrintUtil.printLongDivider();
-                    for (Item item : enemy.getItemsDrop()) {
-                        hero.getHeroInventory().addItemToInventory(item, 1);
-
-                        ConsoleColor consoleColor = ConsoleColor.YELLOW;
-                        if (item instanceof JunkItem) {
-                            consoleColor = ConsoleColor.WHITE;
-                        }
-
-                        System.out.println("\tYou loot " + consoleColor + item.getName() + ConsoleColor.RESET);
-                    }
-
-                    if (goldEarn > 0) {
-                        System.out.println("\tYou loot " + ConsoleColor.YELLOW + goldEarn + ConsoleColor.RESET + " golds");
-                    }
-
-                    hero.addGolds(goldEarn);
-                    hero.gainExperiencePoints(experiencePointGained);
-                    hero.checkIfQuestObjectivesAndQuestIsCompleted();
-                    PrintUtil.printLongDivider();
-                }
-                return true;
+                battleWon(hero, questService);
+            } else {
+                battleLost(hero);
             }
+
+            this.battleService.resetSpellsCoolDowns(hero);
+            hero.getBuffsAndDebuffs().clear();
+            hero.setInCombat(false);
         }
 
-        return false;
+        return haveHeroWon;
+    }
+
+    private void battleWon(Hero hero, QuestService questService) {
+        for (Enemy enemy : this.enemies) {
+            questService.updateQuestProgressFromEnemyActions(hero, enemy);
+            double goldEarn = enemy.getGoldDrop();
+
+            PrintUtil.printMenuHeader("Loot from " + enemy.getName());
+            for (Item item : enemy.getItemsDrop()) {
+                hero.getHeroInventory().addItemToInventory(item, 1);
+            }
+
+            if (goldEarn > 0) {
+                System.out.println("\tYou loot " + ConsoleColor.YELLOW + goldEarn + ConsoleColor.RESET + " golds");
+            }
+
+            hero.addGolds(goldEarn);
+            hero.gainExperiencePoints(enemy.enemyExperiencePointsValue());
+            hero.checkIfQuestObjectivesAndQuestIsCompleted();
+        }
+    }
+
+    private void battleLost(Hero hero) {
+        int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
+
+        hero.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
+        hero.getEffectiveAbilities().put(Ability.HEALTH, hero.getEnhancedAbilities().get(Ability.HEALTH));
+
+        // Print death message
+        System.out.println("\tYou lost " + goldToRemove + " golds!");
+        System.out.println("\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
     }
 }

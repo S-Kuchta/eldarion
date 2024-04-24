@@ -22,13 +22,13 @@ public class LocationStageVendor extends LocationStage implements CanEnterStageA
 
     @Override
     public boolean exploreStage(Hero hero, Location location) {
-        ShopService shopService = new ShopService();
         VendorCharacter vendorCharacter = VendorDB.returnVendorCharacterFromDb(this.vendorId);
+        ShopService shopService = new ShopService(vendorCharacter);
 
         this.setStageName(vendorCharacter.getName() + " (" +  StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(
                 vendorCharacter.returnItemClass().getSimpleName().replaceAll("\\d+", "")), " ") + " Vendor)");
 
-        shopService.vendorMenu(hero, vendorCharacter);
+        shopService.mainMenu(hero);
         return true;
     }
 }

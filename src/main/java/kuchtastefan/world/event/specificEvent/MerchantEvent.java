@@ -19,7 +19,7 @@ public class MerchantEvent extends Event {
 
     @Override
     public boolean eventOccurs(Hero hero) {
-        ShopService shopService = new ShopService();
+
         int randomNumberToMeet = RandomNumberGenerator.getRandomNumber(0, 1);
 
         if (randomNumberToMeet == 0) {
@@ -38,7 +38,8 @@ public class MerchantEvent extends Event {
                     VendorCharacter vendorCharacter = VendorDB.returnRandomMerchant();
                     vendorCharacter.setRandomCurrentItemListId(this.eventLevel);
                     vendorCharacter.setName(RandomNameGenerator.getRandomName());
-                    shopService.vendorMenu(hero, vendorCharacter);
+                    ShopService shopService = new ShopService(vendorCharacter);
+                    shopService.mainMenu(hero);
                 }
                 default -> PrintUtil.printEnterValidInput();
             }

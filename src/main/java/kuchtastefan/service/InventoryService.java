@@ -2,7 +2,7 @@ package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.UsingHeroInventory;
-import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.UsableItem;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;

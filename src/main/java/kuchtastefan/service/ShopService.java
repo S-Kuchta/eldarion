@@ -1,22 +1,26 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.npc.vendor.SortVendorOffer;
+import kuchtastefan.character.hero.inventory.UsingHeroInventory;
+import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.character.npc.vendor.vendorOffer.SortVendorOffer;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+public class ShopService implements UsingHeroInventory {
 
-public class ShopService {
+    private final VendorCharacter vendorCharacter;
 
-    public void vendorMenu(Hero hero, VendorCharacter vendorCharacter) {
+    public ShopService(VendorCharacter vendorCharacter) {
+        this.vendorCharacter = vendorCharacter;
+    }
+
+
+    public void mainMenu(Hero hero) {
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
         PrintUtil.printIndexAndText("1", "Buy items");
@@ -28,27 +32,53 @@ public class ShopService {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> vendorOffer(hero, vendorCharacter);
-            case 2 -> printHeroItemsForSale(hero, vendorCharacter);
+            case 1 -> vendorOffer(hero);
+            case 2 ->
+                    hero.getHeroInventory().selectItem(hero, this.vendorCharacter.returnItemClass(), new ItemFilter(), this, 1);
             default -> PrintUtil.printEnterValidInput();
         }
     }
 
-    private void vendorOffer(Hero hero, VendorCharacter vendorCharacter) {
-        if (vendorCharacter instanceof SortVendorOffer sortVendorOffer) {
+    @Override
+    public boolean itemOptions(Hero hero, Item item) {
+        PrintUtil.printMenuHeader(item.getName());
+        PrintUtil.printMenuOptions("Go back", "Sell item");
+
+        int choice = InputUtil.intScanner();
+        if (choice == 0) {
+            mainMenu(hero);
+        } else if (choice == 1) {
+            hero.addGolds(item.returnSellItemPrice());
+            if (item instanceof WearableItem wearableItem) {
+                hero.unEquipItem(wearableItem);
+            }
+
+            hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
+            System.out.println("\t" + item.getName() + " sold for " + item.returnSellItemPrice() + " golds");
+            mainMenu(hero);
+            return true;
+        } else {
+            PrintUtil.printEnterValidInput();
+        }
+
+        return false;
+    }
+
+    private void vendorOffer(Hero hero) {
+        if (this.vendorCharacter instanceof SortVendorOffer sortVendorOffer) {
             sortVendorOffer.sortVendorOffer();
         }
 
-        PrintUtil.printShopHeader(hero, vendorCharacter.returnItemClass().getSimpleName().replaceAll("\\d+", ""));
-        vendorCharacter.printVendorItemsOffer(hero);
-        buyItem(hero, vendorCharacter);
+        PrintUtil.printShopHeader(hero, this.vendorCharacter.returnItemClass().getSimpleName().replaceAll("\\d+", ""));
+        this.vendorCharacter.printVendorItemsOffer(hero);
+        buyItem(hero);
     }
 
-    protected void buyItem(Hero hero, VendorCharacter vendorCharacter) {
+    protected void buyItem(Hero hero) {
         while (true) {
             int choice = InputUtil.intScanner();
             if (choice == 0) {
-                vendorMenu(hero, vendorCharacter);
+                mainMenu(hero);
                 break;
             }
 
@@ -68,72 +98,18 @@ public class ShopService {
                     switch (confirmInput) {
                         case 0 -> {
                         }
-                        case 1 -> successfullyItemBought(hero, item);
+                        case 1 -> {
+                            hero.getHeroInventory().addItemToInventory(item, 1);
+                            hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
+                            System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory");
+                        }
                         default -> PrintUtil.printEnterValidInput();
                     }
-                    vendorMenu(hero, vendorCharacter);
+                    mainMenu(hero);
                     return;
                 } else {
                     System.out.println("\tYou don't have enough golds!");
                 }
-            }
-        }
-    }
-
-    private void successfullyItemBought(Hero hero, Item item) {
-        hero.getHeroInventory().addItemToInventory(item, 1);
-        hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
-        System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory");
-    }
-
-    private void printHeroItemsForSale(Hero hero, VendorCharacter vendorCharacter) {
-        List<Item> itemList = new ArrayList<>();
-
-        PrintUtil.printShopHeader(hero, StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(
-                vendorCharacter.returnItemClass().getSimpleName().replaceAll("\\d+", "")), " "));
-
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-
-        int index = 1;
-        for (Map.Entry<Item, Integer> item : hero.getHeroInventory().getHeroInventory().entrySet()) {
-            if (vendorCharacter.returnItemClass().isInstance(item.getKey())) {
-                itemList.add(item.getKey());
-                PrintUtil.printIndexAndText(String.valueOf(index), " (" + item.getValue() + "x) ");
-                item.getKey().printItemDescription(hero);
-                index++;
-            }
-        }
-
-        if (itemList.isEmpty()) {
-            System.out.println("\tItem list is empty\n");
-        }
-
-        sellItem(hero, itemList, vendorCharacter);
-    }
-
-    private void sellItem(Hero hero, List<? extends Item> itemList, VendorCharacter vendorCharacter) {
-
-        while (true) {
-            try {
-                int choice = InputUtil.intScanner();
-                if (choice == 0) {
-                    vendorMenu(hero, vendorCharacter);
-                } else {
-                    Item item = itemList.get(choice - 1);
-                    hero.addGolds(item.returnSellItemPrice());
-                    if (item instanceof WearableItem wearableItem) {
-                        hero.unEquipItem(wearableItem);
-                    }
-
-                    hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
-                    System.out.println("\t" + item.getName() + " sold for " + item.returnSellItemPrice() + " golds");
-                    vendorMenu(hero, vendorCharacter);
-                }
-
-                return;
-            } catch (IndexOutOfBoundsException e) {
-                PrintUtil.printEnterValidInput();
             }
         }
     }

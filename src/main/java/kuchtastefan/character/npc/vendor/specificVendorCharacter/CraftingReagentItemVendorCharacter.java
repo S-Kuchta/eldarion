@@ -1,6 +1,6 @@
 package kuchtastefan.character.npc.vendor.specificVendorCharacter;
 
-import kuchtastefan.character.npc.vendor.SortVendorOffer;
+import kuchtastefan.character.npc.vendor.vendorOffer.SortVendorOffer;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;

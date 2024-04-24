@@ -1,6 +1,6 @@
 package kuchtastefan.item;
 
-import kuchtastefan.character.hero.inventory.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.utility.LevelCondition;

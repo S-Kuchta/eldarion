@@ -38,6 +38,19 @@ public class BattleService {
     }
 
 
+    /**
+     * This method handles the main battle loop in the game.
+     * It initializes the battle by adding the hero and enemies to their respective lists and setting the player's target.
+     * Then it enters a loop that continues until either all enemies are defeated or the hero's health reaches zero.
+     * In each iteration of the loop, it calls the battleTurn method to handle the turn mechanics.
+     * If all enemies are defeated, it returns true indicating a victory for the player.
+     * If the hero's health reaches zero, it returns false indicating a defeat.
+     * Between each turn, there is a delay of 2.5 seconds to allow the player to read the battle log.
+     *
+     * @param hero    The hero character controlled by the player.
+     * @param enemies A list of enemy characters the player will fight against.
+     * @return boolean True if the player wins the battle, false if the player loses.
+     */
     public boolean battle(Hero hero, List<Enemy> enemies) {
         HintDB.printHint(HintName.BATTLE_HINT);
 
@@ -45,22 +58,16 @@ public class BattleService {
         enemyList.addAll(enemies);
         alliesList.add(hero);
 
-        for (int i = 0; i < this.enemyList.size(); i++) {
-            if (enemyList.get(i) instanceof Enemy enemy) {
-                enemy.setCount(i);
-            }
-        }
-
         List<GameCharacter> allCharacters = new ArrayList<>();
         allCharacters.addAll(this.alliesList);
         allCharacters.addAll(this.enemyList);
 
-        // Initialize variables for selected hero and enemy
         playerTarget = enemyList.getFirst();
 
         // Main battle loop
         while (true) {
             battleTurn(hero, allCharacters);
+
             try {
                 Thread.sleep(2500);
             } catch (InterruptedException e) {
@@ -79,6 +86,7 @@ public class BattleService {
         }
     }
 
+
     /**
      * This method handles the turn mechanics during a battle.
      * It sorts the characters by their haste, determines if the first character is a Hero,
@@ -88,7 +96,7 @@ public class BattleService {
      * After the character's turn, it increases the cooldown of their spells and restores their health and mana.
      * If the character has died, it removes them from the list of characters.
      *
-     * @param hero The hero character participating in the battle.
+     * @param hero          The hero character participating in the battle.
      * @param allCharacters A list of all characters participating in the battle.
      */
     private void battleTurn(Hero hero, List<GameCharacter> allCharacters) {
@@ -98,6 +106,7 @@ public class BattleService {
 
         while (iterator.hasNext()) {
             GameCharacter attackingCharacter = iterator.next();
+            GameCharacter target = playerTarget;
 
             if (attackingCharacter.getEffectiveAbilityValue(Ability.HEALTH) > 0) {
                 printBattleHeader(attackingCharacter);
@@ -114,56 +123,76 @@ public class BattleService {
                         playerTurn(hero);
                         heroPlay = false;
                     } else {
-                        this.npcUseSpell(attackingCharacter, setNpcTarget(attackingCharacter), hero);
+                        target = setNpcTarget(attackingCharacter);
+//                        System.out.println();
+                        this.npcUseSpell(attackingCharacter, target, hero);
                     }
                 }
 
+                checkIfCharacterDied(target);
                 attackingCharacter.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
                 attackingCharacter.restoreHealthAndManaAfterTurn();
                 addSummonedCreature(iterator, attackingCharacter);
-
             } else {
                 iterator.remove();
+                setTarget();
+            }
+
+            if (alliesList.isEmpty() || enemyList.isEmpty()) {
+                break;
             }
         }
     }
 
     private void printBattleHeader(GameCharacter attackingCharacter) {
         if (attackingCharacter instanceof Hero) {
-            printCharacterStats();
-            printEnemyStats();
+            printAliesStats();
+//            printStats(playerTarget);
         } else {
             npcPrintHeader(attackingCharacter);
         }
     }
 
+    private void printAliesStats() {
+        for (GameCharacter gameCharacter : this.alliesList) {
+            printCharacterStats(gameCharacter);
+        }
+    }
+
+    private void printCharacterStats(GameCharacter gameCharacter) {
+        PrintUtil.printHeaderWithStatsBar(gameCharacter);
+        PrintUtil.printEffectiveAbilityPoints(gameCharacter);
+        PrintUtil.printBattleBuffs(gameCharacter);
+    }
+
     private GameCharacter setNpcTarget(GameCharacter attackingCharacter) {
-        List<GameCharacter> returnList = returnListContainsCharacter(attackingCharacter);
+        List<GameCharacter> returnList = getCharacterList(attackingCharacter, false);
         return returnList.get(RandomNumberGenerator.getRandomNumber(0, returnList.size() - 1));
     }
 
     private boolean checkIfCharacterDied(GameCharacter characterToCheck) {
-        if (characterToCheck.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
-            System.out.println();
-            System.out.println("\t" + characterToCheck.getName() + ConsoleColor.RED + " died!" + ConsoleColor.RESET);
-            returnListContainsCharacter(characterToCheck).remove(characterToCheck);
-
-            setTarget();
-            return true;
-        } else {
-            return false;
+        if (getCharacterList(characterToCheck, true).contains(characterToCheck)) {
+            if (characterToCheck.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
+                System.out.println();
+                System.out.println("\t" + characterToCheck.getName() + ConsoleColor.RED + " died!" + ConsoleColor.RESET);
+                getCharacterList(characterToCheck, true).remove(characterToCheck);
+                return true;
+            }
         }
+
+        return false;
     }
 
-    private List<GameCharacter> returnListContainsCharacter(GameCharacter gameCharacter) {
-        return alliesList.contains(gameCharacter) ? alliesList : enemyList;
+    private List<GameCharacter> getCharacterList(GameCharacter gameCharacter, boolean isSameList) {
+        return alliesList.contains(gameCharacter) == isSameList ? alliesList : enemyList;
     }
+
 
     private void addSummonedCreature(ListIterator<GameCharacter> iterator, GameCharacter attackingCharacter) {
         if (!this.tempCharacterList.isEmpty()) {
             for (GameCharacter character : this.tempCharacterList) {
                 iterator.add(character);
-                returnListContainsCharacter(attackingCharacter).add(character);
+                getCharacterList(attackingCharacter, true).add(character);
             }
 
             this.tempCharacterList.clear();
@@ -266,8 +295,7 @@ public class BattleService {
      * @param hero The hero character participating in the battle.
      */
     private void printHeroBattleMenu(Hero hero) {
-//        printCharacterStats();
-//        printEnemyStats();
+        printCharacterStats(playerTarget);
 
         int index = 1;
         for (GameCharacter enemy : enemyList) {
@@ -281,20 +309,6 @@ public class BattleService {
         printHeroSpells(hero);
         PrintUtil.printIndexAndText(String.valueOf(hero.getCharacterSpellList().size()), "Potions Menu");
         System.out.println();
-    }
-
-    private void printCharacterStats() {
-        for (GameCharacter gameCharacter : this.alliesList) {
-            PrintUtil.printHeaderWithStatsBar(gameCharacter);
-            PrintUtil.printEffectiveAbilityPoints(gameCharacter);
-            PrintUtil.printBattleBuffs(gameCharacter);
-        }
-    }
-
-    private void printEnemyStats() {
-        PrintUtil.printHeaderWithStatsBar(playerTarget);
-        PrintUtil.printEffectiveAbilityPoints(playerTarget);
-        PrintUtil.printBattleBuffs(playerTarget);
     }
 
     private void printEnemySelection(int index, NonPlayerCharacter nonPlayerCharacter) {
@@ -365,9 +379,9 @@ public class BattleService {
     private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
         if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
             System.out.println("\t" + "Buffs & Debuffs");
-            gameCharacter.performActionsWithDuration(true);
-            System.out.println();
         }
+
+        gameCharacter.performActionsWithDuration(true);
     }
 
     public void resetSpellsCoolDowns(Hero hero) {

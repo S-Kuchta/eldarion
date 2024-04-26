@@ -63,11 +63,11 @@ public class Spell {
 
         if (this.isCanSpellBeCasted() && spellCaster.getEffectiveAbilityValue(Ability.MANA) >= this.getSpellManaCost()) {
 
-            System.out.println("\t" + spellCaster.getName() + " use " + this.getSpellName());
+            boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getEffectiveAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+            String criticalHitMessage = criticalHit ? " with " + ConsoleColor.YELLOW + "Critical Hit!" + ConsoleColor.RESET : "";
+            System.out.println("\t" + spellCaster.getName() + " use " + this.getSpellName() + criticalHitMessage);
 
             if (isAttackSuccessful(spellCaster, spellTarget)) {
-                boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getEffectiveAbilityValue(Ability.CRITICAL_HIT_CHANCE);
-
                 for (Action action : this.getSpellActions()) {
                     actionService.applyActionToTarget(action, charactersInvolvedInBattle, criticalHit, this.isHitAllEnemy());
                 }

@@ -12,7 +12,7 @@ public class EnemyGroupDB {
 
     public static final List<EnemyGroup> ENEMY_GROUP_DB = new ArrayList<>();
 
-    public static List<Enemy> returnEnemyGroupByLocationTypeAndHeroLevel(Biome biome, int heroLevel) {
+    public static List<Enemy> returnEnemyGroupByBiomeAndHeroLevel(Biome biome, int heroLevel) {
         List<EnemyGroup> enemyGroups = new ArrayList<>();
 
         for (EnemyGroup enemyGroup : ENEMY_GROUP_DB) {

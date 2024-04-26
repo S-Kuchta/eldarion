@@ -23,7 +23,6 @@ public class Enemy extends NonPlayerCharacter {
     private double goldDrop;
     private final Biome[] biome;
     private final int maxStack;
-    private int count;
 
 
     public Enemy(String name, Map<Ability, Integer> abilities,
@@ -78,18 +77,18 @@ public class Enemy extends NonPlayerCharacter {
         return this.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + this.getCharacterRarity().getExperienceGainedValue();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Enemy enemy = (Enemy) o;
-        return this.name.equals(enemy.name) && characterType == enemy.characterType && Arrays.equals(biome, enemy.biome) && enemy.characterRarity.equals(((Enemy) o).characterRarity) && this.count == enemy.count;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(name, goldDrop, characterType, characterRarity, count);
-        result = 31 * result + Arrays.hashCode(biome);
-        return result;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Enemy enemy = (Enemy) o;
+//        return this.name.equals(enemy.name) && characterType == enemy.characterType && Arrays.equals(biome, enemy.biome) && enemy.characterRarity.equals(((Enemy) o).characterRarity) && this.count == enemy.count;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        int result = Objects.hash(name, goldDrop, characterType, characterRarity, count);
+//        result = 31 * result + Arrays.hashCode(biome);
+//        return result;
+//    }
 }

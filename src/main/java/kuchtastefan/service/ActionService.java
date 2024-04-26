@@ -27,7 +27,7 @@ public class ActionService {
                     action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).maximumValue());
 
             if (criticalHit && action instanceof CanBeCriticalHit) {
-                System.out.println("\t" + action.getActionName() + " Critical hit!");
+//                System.out.println("\t" + action.getActionName() + " Critical hit!");
                 totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
             }
 
@@ -94,7 +94,6 @@ public class ActionService {
      * @param actions            list where you want to add new action
      */
     private void setNewActionOrAddStackToExistingAction(ActionWithDuration actionWithDuration, Set<ActionWithDuration> actions) {
-        System.out.println(actions.contains(actionWithDuration));
         if (!actions.contains(actionWithDuration)) {
             actions.add(actionWithDuration);
             actionWithDuration.addActionStack();

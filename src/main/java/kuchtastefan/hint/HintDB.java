@@ -54,7 +54,7 @@ public class HintDB {
         HINT_DB.put(HintName.BATTLE_HINT, new Hint("""
                 \tOne of the most important parts of the game are the battles. Battles occur in turns.
                 \tCombat is conducted using spells, each spell has actions that are performed after using the spell.
-                \tActions with durations are always performed at the end of the character's turn.
+                \tActions with durations are always performed before of the character's turn.
                 \tHowever, be careful, some actions do not have a 100% chance of execution.
                 \tIf action has lower chance to perform, you will see percentage chance in action description.
                 \tSpells on CoolDowns can't be used.

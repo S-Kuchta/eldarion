@@ -28,7 +28,7 @@ public class EventService {
         switch (randomNumber) {
             case 0 -> new MerchantEvent(eventLevel).eventOccurs(hero);
             case 1 -> {
-                List<Enemy> enemyList = EnemyGroupDB.returnEnemyGroupByLocationTypeAndHeroLevel(biome, hero.getLevel());
+                List<Enemy> enemyList = EnemyGroupDB.returnEnemyGroupByBiomeAndHeroLevel(biome, hero.getLevel());
                 new CombatEvent(eventLevel, enemyList).eventOccurs(hero);
             }
             case 2 -> new DiscoverLocationEvent(eventLevel, this.allLocations).eventOccurs(hero);

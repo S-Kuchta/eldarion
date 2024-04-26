@@ -100,7 +100,7 @@ public class CombatEvent extends Event {
             this.questService.updateQuestProgressFromEnemyActions(hero, enemy);
             double goldEarn = enemy.getGoldDrop();
 
-            PrintUtil.printMenuHeader("Loot from " + enemy.getName());
+            PrintUtil.printMenuHeader(ConsoleColor.RESET + "Loot from " + enemy.getName());
             for (Item item : enemy.getItemsDrop()) {
                 hero.getHeroInventory().addItemToInventory(item, 1);
             }

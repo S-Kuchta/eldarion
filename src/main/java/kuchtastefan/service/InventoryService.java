@@ -58,6 +58,7 @@ public class InventoryService implements UsingHeroInventory {
         PrintUtil.printMenuHeader("Wearable");
         String[] wearableTypes = {"Go Back",
                 "Weapons (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.WEAPON) + "x)",
+//                "Weapons (" + hero.getHeroInventory().returnHeroInventory(WearableItem.class, new ItemFilter(WearableItemType.WEAPON)).size() + "x)",
                 "Head (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HEAD) + "x)",
                 "Body (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BODY) + "x)",
                 "Hands (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HANDS) + "x)",

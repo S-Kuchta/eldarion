@@ -87,30 +87,53 @@ public class ShopService implements UsingHeroInventory {
             } else {
                 Item item = vendorCharacter.returnVendorOffer().get(choice - 1);
                 if (hero.getHeroGold() >= item.getPrice()) {
-                    PrintUtil.printLongDivider();
-                    System.out.println("\tAre you sure you want to buy " + item.getName());
-                    PrintUtil.printIndexAndText("0", "No");
-                    System.out.println();
-                    PrintUtil.printIndexAndText("1", "Yes");
-                    System.out.println();
-
-                    int confirmInput = InputUtil.intScanner();
-                    switch (confirmInput) {
-                        case 0 -> {
-                        }
-                        case 1 -> {
-                            hero.getHeroInventory().addItemToInventory(item, 1);
-                            hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
-                            System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory");
-                        }
-                        default -> PrintUtil.printEnterValidInput();
-                    }
+                    confirmPurchase(hero, item);
+//                    PrintUtil.printLongDivider();
+//                    System.out.println("\tAre you sure you want to buy " + item.getName());
+//                    PrintUtil.printIndexAndText("0", "No");
+//                    System.out.println();
+//                    PrintUtil.printIndexAndText("1", "Yes");
+//                    System.out.println();
+//
+//                    int confirmInput = InputUtil.intScanner();
+//                    switch (confirmInput) {
+//                        case 0 -> {
+//                        }
+//                        case 1 -> {
+//                            hero.getHeroInventory().addItemToInventory(item, 1);
+//                            hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
+//                            System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory");
+//                        }
+//                        default -> PrintUtil.printEnterValidInput();
+//                    }
                     mainMenu(hero);
                     return;
                 } else {
                     System.out.println("\tYou don't have enough golds!");
                 }
             }
+        }
+    }
+
+    private void confirmPurchase(Hero hero, Item item) {
+        PrintUtil.printLongDivider();
+        System.out.println("\tAre you sure you want to buy " + item.getName());
+        PrintUtil.printIndexAndText("0", "No");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Yes");
+        System.out.println();
+
+        int confirmInput = InputUtil.intScanner();
+        switch (confirmInput) {
+            case 0 -> {
+                return;
+            }
+            case 1 -> {
+                hero.getHeroInventory().addItemToInventory(item, 1);
+                hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
+                System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory\n");
+            }
+            default -> PrintUtil.printEnterValidInput();
         }
     }
 }

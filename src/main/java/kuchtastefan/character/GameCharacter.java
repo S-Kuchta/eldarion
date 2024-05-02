@@ -168,4 +168,8 @@ public abstract class GameCharacter {
     public String getName() {
         return ConsoleColor.YELLOW + name + ConsoleColor.RESET;
     }
+
+    public String getNameWithoutColor() {
+        return name;
+    }
 }

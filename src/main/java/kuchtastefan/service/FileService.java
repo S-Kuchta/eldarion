@@ -14,8 +14,8 @@ import kuchtastefan.character.npc.enemy.EnemyGroup;
 import kuchtastefan.character.npc.enemy.EnemyGroupDB;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.character.npc.vendor.VendorDB;
-import kuchtastefan.character.npc.vendor.vendorOffer.VendorOfferDB;
 import kuchtastefan.character.npc.vendor.vendorOffer.VendorItemList;
+import kuchtastefan.character.npc.vendor.vendorOffer.VendorOfferDB;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.gameSettings.GameSetting;
@@ -35,10 +35,7 @@ import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
-import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.utility.RandomNameGenerator;
-import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
+import kuchtastefan.utility.*;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.LocationDB;
 import kuchtastefan.world.region.Region;
@@ -56,16 +53,6 @@ import java.util.stream.Stream;
 
 public class FileService {
 
-    static class SaveGame {
-        boolean gameSaved;
-        String message;
-
-        public SaveGame(boolean gameSaved, String message) {
-            this.gameSaved = gameSaved;
-            this.message = message;
-        }
-    }
-
     private final Gson gson = new GsonBuilder()
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
@@ -74,40 +61,25 @@ public class FileService {
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.vendorRuntimeTypeAdapterFactory)
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
+
     private final String savedGamesPath = "external-files/saved-games/";
+
 
     public void saveGame(Hero hero) {
         GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
 
         while (true) {
-            System.out.println("How do you want to name your save?");
+            System.out.println("\tHow do you want to name your save?");
             final String name = InputUtil.stringScanner();
             final String path = this.savedGamesPath + name + ".json";
 
             if (new File(path).exists()) {
-                System.out.println("\tGame with this name is already saved");
-                System.out.println("\tDo you want to overwrite it?");
-                PrintUtil.printIndexAndText("0", "No");
-                System.out.println();
-                PrintUtil.printIndexAndText("1", "Yes");
-                System.out.println();
-                int choice = InputUtil.intScanner();
-                switch (choice) {
-                    case 0 -> {
-                        continue;
-                    }
-                    case 1 -> {
-                    }
-                    default -> {
-                        PrintUtil.printEnterValidInput();
-                        continue;
-                    }
+                if (!overwriteSaveGame()) {
+                    continue;
                 }
             }
 
-            SaveGame saveGame = saveGame(gameLoaded, path, name);
-            System.out.println(saveGame.message);
-            if (saveGame.gameSaved) {
+            if (saveGame(gameLoaded, path, name)) {
                 break;
             }
         }
@@ -115,32 +87,61 @@ public class FileService {
 
     public void autoSave(Hero hero) {
         if (GameSettingsDB.returnGameSettingValue(GameSetting.AUTO_SAVE)) {
-            GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
+            final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
 
-            final String path = this.savedGamesPath + hero.getName() + "_AutoSave" + ".json";
+            final String path = this.savedGamesPath + hero.getNameWithoutColor() + "_AutoSave" + ".json";
             saveGame(gameLoaded, path, hero.getName());
         }
     }
 
-    private SaveGame saveGame(GameLoaded gameLoaded, String path, String saveGameName) {
+    private boolean saveGame(GameLoaded gameLoaded, String path, String saveGameName) {
+        String errorMessage;
+
         if (saveGameName.isEmpty()) {
-            return new SaveGame(false, "\tSave game title can not be empty!");
+            errorMessage = "Save game title can not be empty!";
+        } else {
+            try {
+                final Writer writer = Files.newBufferedWriter(Paths.get(path));
+                this.gson.toJson(gameLoaded, writer);
+                writer.close();
+                System.out.println(ConsoleColor.YELLOW + "\tGame saved!\n" + ConsoleColor.RESET);
+                return true;
+            } catch (IOException e) {
+                errorMessage = "Error while saving game!";
+            } catch (InvalidPathException e) {
+                errorMessage = "Invalid characters in file name!";
+            }
         }
 
-        try {
-            Writer writer = Files.newBufferedWriter(Paths.get(path));
-            this.gson.toJson(gameLoaded, writer);
-            writer.close();
-            return new SaveGame(true, "\tGame saved");
-        } catch (IOException e) {
-            return new SaveGame(true, "\tError while saving game");
-        } catch (InvalidPathException e) {
-            return new SaveGame(true, "\tInvalid characters in file name");
+        System.out.println(ConsoleColor.RED + "\tSomething went wrong while saving the game!" + ConsoleColor.RESET);
+        System.out.println("\t" + errorMessage + "\n");
+        return false;
+    }
+
+    private boolean overwriteSaveGame() {
+        System.out.println("\tGame with this name is already saved");
+        System.out.println("\tDo you want to overwrite it?");
+        PrintUtil.printIndexAndText("0", "No");
+        System.out.println();
+        PrintUtil.printIndexAndText("1", "Yes");
+        System.out.println();
+        int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
+                return false;
+            }
+            case 1 -> {
+                return true;
+            }
+            default -> {
+                PrintUtil.printEnterValidInput();
+                return false;
+            }
         }
     }
 
     public GameLoaded loadGame() {
-        List<String> listOfSavedGames = returnFileList(this.savedGamesPath);
+        final List<String> listOfSavedGames = returnFileList(this.savedGamesPath);
 
         if (listOfSavedGames.isEmpty()) {
             return null;
@@ -497,7 +498,7 @@ public class FileService {
             List<VendorItemList> vendorItemLists = this.gson.fromJson(reader, new TypeToken<List<VendorItemList>>() {
             }.getType());
 
-            for (VendorItemList vendorItemList :vendorItemLists) {
+            for (VendorItemList vendorItemList : vendorItemLists) {
                 VendorOfferDB.addVendorItemToDb(vendorItemList);
             }
 

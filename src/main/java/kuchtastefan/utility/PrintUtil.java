@@ -309,6 +309,7 @@ public class PrintUtil {
                 count += item.getValue();
             }
         }
+
         return count;
     }
 

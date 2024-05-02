@@ -135,7 +135,6 @@ public class BattleService {
                 addSummonedCreature(iterator, attackingCharacter);
             } else {
                 iterator.remove();
-                setTarget();
             }
 
             if (alliesList.isEmpty() || enemyList.isEmpty()) {
@@ -147,7 +146,6 @@ public class BattleService {
     private void printBattleHeader(GameCharacter attackingCharacter) {
         if (attackingCharacter instanceof Hero) {
             printAliesStats();
-//            printStats(playerTarget);
         } else {
             npcPrintHeader(attackingCharacter);
         }
@@ -176,6 +174,7 @@ public class BattleService {
                 System.out.println();
                 System.out.println("\t" + characterToCheck.getName() + ConsoleColor.RED + " died!" + ConsoleColor.RESET);
                 getCharacterList(characterToCheck, true).remove(characterToCheck);
+                setTarget();
                 return true;
             }
         }

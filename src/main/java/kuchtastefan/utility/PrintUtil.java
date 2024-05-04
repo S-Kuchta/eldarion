@@ -91,16 +91,17 @@ public class PrintUtil {
     }
 
     public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {
-        String leftAlignment = "| %-30s | %-20s | %-28s | %-20s |%n";
-        for (ActionWithDuration actionWithDuration : actionWithDurationList) {
+        if (!actionWithDurationList.isEmpty()) {
+            String leftAlignment = "| %-30s | %-20s | %-28s | %-20s |%n";
+            for (ActionWithDuration actionWithDuration : actionWithDurationList) {
+                System.out.format(leftAlignment, actionWithDuration.getActionName(),
+                        "Action Value: " + actionWithDuration.getCurrentActionValue(),
+                        "Turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()),
+                        "Stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
+            }
 
-            System.out.format(leftAlignment, actionWithDuration.getActionName(),
-                    "Action Value: " + actionWithDuration.getCurrentActionValue(),
-                    "Turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()),
-                    "Stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
+            printExtraLongDivider();
         }
-
-        printExtraLongDivider();
     }
 
     public static StringBuilder printActionTurnRemaining(int currentValue, int maxValue) {
@@ -331,12 +332,10 @@ public class PrintUtil {
         System.out.print(ConsoleColor.CYAN + "\t" + index + ". " + ConsoleColor.RESET + text);
     }
 
-    public static void printGameSettingsYesOrNo(boolean gameSetting) {
-        if (!gameSetting) {
-            System.out.print(ConsoleColor.WHITE + "Yes" + ConsoleColor.RESET + " / No");
-        } else {
-            System.out.print("Yes / " + ConsoleColor.WHITE + "No" + ConsoleColor.RESET);
-        }
+    public static void printYesNoSelection(boolean gameSetting) {
+        String yes = gameSetting ? "Yes" : ConsoleColor.WHITE + "Yes" + ConsoleColor.RESET;
+        String no = gameSetting ? ConsoleColor.WHITE + "No" + ConsoleColor.RESET : "No";
+        System.out.print(yes + " / " + no);
     }
 
     public static void printCompleteQuestText(String questName) {
@@ -348,11 +347,11 @@ public class PrintUtil {
     public static void printSpellGameSettings() {
         System.out.println();
         PrintUtil.printIndexAndText("X", "Hide action description - ");
-        PrintUtil.printGameSettingsYesOrNo(GameSettingsDB.returnGameSettingValue(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
+        PrintUtil.printYesNoSelection(GameSettingsDB.returnGameSettingValue(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME));
 
         System.out.print("\t");
         PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
-        PrintUtil.printGameSettingsYesOrNo(GameSettingsDB.returnGameSettingValue(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+        PrintUtil.printYesNoSelection(GameSettingsDB.returnGameSettingValue(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
     }
 
     public static void printQuestDetails(Quest quest, Hero hero) {

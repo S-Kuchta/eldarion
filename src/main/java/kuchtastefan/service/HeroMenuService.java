@@ -47,7 +47,7 @@ public class HeroMenuService {
                 heroCharacterMenu(hero);
             }
             case 2 -> this.inventoryService.mainMenu(hero);
-            case 3 -> this.upgradeAbilityMenu(hero);
+            case 3 -> this.abilityMenu(hero);
             case 4 -> this.questService.heroAcceptedQuestMenu(hero, hero.getHeroAcceptedQuest());
             case 5 -> this.heroSpellManager.spellMenu(hero);
             case 6 -> this.gameSettingsMenu();
@@ -55,15 +55,10 @@ public class HeroMenuService {
         }
     }
 
-    private void upgradeAbilityMenu(Hero hero) {
+    private void abilityMenu(Hero hero) {
 
         PrintUtil.printMenuOptions("Go back", "Spend points (" + hero.getUnspentAbilityPoints() + " points left)", "Remove points");
-//        PrintUtil.printIndexAndText("0", "Go back");
-//        System.out.println();
-//        PrintUtil.printIndexAndText("1", "Spend points (" + hero.getUnspentAbilityPoints() + " points left)");
-//        System.out.println();
-//        PrintUtil.printIndexAndText("2", "Remove points");
-//        System.out.println();
+
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> heroCharacterMenu(hero);
@@ -84,14 +79,16 @@ public class HeroMenuService {
             List<GameSetting> gameSettingList = new ArrayList<>();
             PrintUtil.printIndexAndText("0", "Go back");
             System.out.println();
+
             int index = 1;
             for (Map.Entry<GameSetting, Boolean> gameSettings : GameSettingsDB.getGAME_SETTINGS_DB().entrySet()) {
                 gameSettingList.add(gameSettings.getKey());
                 PrintUtil.printIndexAndText(String.valueOf(index), gameSettings.getKey().toString() + " - ");
-                PrintUtil.printGameSettingsYesOrNo(gameSettings.getValue());
+                PrintUtil.printYesNoSelection(gameSettings.getValue());
                 System.out.println();
                 index++;
             }
+
             PrintUtil.printIndexAndText(String.valueOf(index), "Reset all Hints");
             System.out.println();
 

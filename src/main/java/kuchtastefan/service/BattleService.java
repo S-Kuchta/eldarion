@@ -28,7 +28,6 @@ public class BattleService {
     private final List<GameCharacter> enemyList;
     private final List<GameCharacter> alliesList;
     private final List<GameCharacter> tempCharacterList;
-    private boolean heroPlay;
 
     public BattleService() {
         this.selectedEnemyForShowSelection = "A";
@@ -74,12 +73,10 @@ public class BattleService {
                 System.out.println(e.getMessage());
             }
 
-            // Check if all enemies are defeated
             if (this.enemyList.isEmpty()) {
                 return true; // Battle won
             }
 
-            // Check if hero's health reaches zero
             if (hero.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
                 return false; // Battle lost
             }
@@ -105,7 +102,7 @@ public class BattleService {
 
         while (iterator.hasNext()) {
             GameCharacter attackingCharacter = iterator.next();
-            GameCharacter target = playerTarget;
+            GameCharacter target = setNpcTarget(attackingCharacter);
 
             if (attackingCharacter.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
                 iterator.remove();
@@ -123,8 +120,8 @@ public class BattleService {
             if (attackingCharacter.isCanPerformAction()) {
                 if (attackingCharacter instanceof Hero) {
                     playerTurn(hero);
+                    target = playerTarget;
                 } else {
-                    target = setNpcTarget(attackingCharacter);
                     this.npcUseSpell(attackingCharacter, target, hero);
                 }
             }
@@ -182,7 +179,6 @@ public class BattleService {
     private List<GameCharacter> getCharacterList(GameCharacter gameCharacter, boolean isSameList) {
         return alliesList.contains(gameCharacter) == isSameList ? alliesList : enemyList;
     }
-
 
     private void addSummonedCreature(ListIterator<GameCharacter> iterator, GameCharacter attackingCharacter) {
         if (!this.tempCharacterList.isEmpty()) {

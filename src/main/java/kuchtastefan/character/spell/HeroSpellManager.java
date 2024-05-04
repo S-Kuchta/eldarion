@@ -19,14 +19,8 @@ import java.util.Map;
 public class HeroSpellManager {
 
     public void spellMenu(Hero hero) {
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-        PrintUtil.printIndexAndText("1", "Learn new Spell");
-        System.out.println();
-        PrintUtil.printIndexAndText("2", "Reset spells");
-        System.out.println();
-        PrintUtil.printIndexAndText("3", "Show learned spells");
-        System.out.println();
+        PrintUtil.printMenuOptions("Go back", "Learn new Spell", "Reset spells", "Show learned spells");
+
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {

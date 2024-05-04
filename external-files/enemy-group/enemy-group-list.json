@@ -3,36 +3,6 @@
     "biome": "FOREST",
     "groupLevel": 1,
     "enemiesId": [
-      100,
-      100
-    ]
-  },
-  {
-    "biome": "FOREST",
-    "groupLevel": 1,
-    "enemiesId": [
-      100
-    ]
-  },
-  {
-    "biome": "FOREST",
-    "groupLevel": 1,
-    "enemiesId": [
-      200
-    ]
-  },
-  {
-    "biome": "FOREST",
-    "groupLevel": 1,
-    "enemiesId": [
-      200,
-      200
-    ]
-  },
-  {
-    "biome": "FOREST",
-    "groupLevel": 1,
-    "enemiesId": [
       200,
       201
     ]

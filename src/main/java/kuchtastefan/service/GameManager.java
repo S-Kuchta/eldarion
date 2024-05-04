@@ -46,14 +46,7 @@ public class GameManager {
             System.out.println("\t\t\t\t\t\t\t------ Main Menu ------");
             PrintUtil.printLongDivider();
 
-            PrintUtil.printIndexAndText("0", "Explore World");
-            System.out.println();
-            PrintUtil.printIndexAndText("1", "Hero menu");
-            System.out.println();
-            PrintUtil.printIndexAndText("2", "Save game");
-            System.out.println();
-            PrintUtil.printIndexAndText("3", "Exit game");
-            System.out.println();
+            PrintUtil.printMenuOptions("Explore World", "Hero menu", "Save game", "Exit game");
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
@@ -62,10 +55,7 @@ public class GameManager {
                 case 2 -> this.fileService.saveGame(this.hero);
                 case 3 -> {
                     System.out.println("Are you sure?");
-                    PrintUtil.printIndexAndText("0", "No");
-                    System.out.println();
-                    PrintUtil.printIndexAndText("1", "Yes");
-                    System.out.println();
+                    PrintUtil.printMenuOptions("No", "Yes");
                     final int exitChoice = InputUtil.intScanner();
                     if (exitChoice == 0) {
                         continue;

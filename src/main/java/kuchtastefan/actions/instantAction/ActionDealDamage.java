@@ -16,8 +16,13 @@ public class ActionDealDamage extends Action implements ActionWithIncreasedValue
 
     @Override
     public void performAction(GameCharacter gameCharacter) {
-        System.out.print("\t" + ConsoleColor.YELLOW + this.getActionName() + ConsoleColor.RESET + ": ");
-        gameCharacter.receiveDamage(this.currentActionValue);
+        int damage = gameCharacter.receiveDamage(this.currentActionValue);
+
+        System.out.println("\t" + ConsoleColor.YELLOW + this.getActionName() + ConsoleColor.RESET + ": " + ConsoleColor.RED_BRIGHT
+                + damage + ConsoleColor.RESET + " damage to " + gameCharacter.getName());
+
+//        gameCharacter.receiveDamage(this.currentActionValue);
+//        System.out.print(" to" + gameCharacter.getName());
     }
 
     @Override

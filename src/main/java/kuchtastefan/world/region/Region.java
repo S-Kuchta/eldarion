@@ -53,12 +53,7 @@ public class Region {
                     + " \tDiscovered locations: " + hero.getDiscoveredLocationList().size() + " / " + this.getAllLocations().size());
             PrintUtil.printLongDivider();
 
-            PrintUtil.printIndexAndText("0", "Go back to the city");
-            System.out.println();
-            PrintUtil.printIndexAndText("1", "Travel across region " + this.getRegionName());
-            System.out.println();
-            PrintUtil.printIndexAndText("2", "Hero menu");
-            System.out.println();
+            PrintUtil.printMenuOptions("Go back to the city", "Travel across region" + this.getRegionName(), "Hero menu");
 
             // Printing discovered locations
             int index = 3;

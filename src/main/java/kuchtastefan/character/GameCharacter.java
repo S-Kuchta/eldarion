@@ -82,7 +82,7 @@ public abstract class GameCharacter {
      *
      * @param incomingDamage - damage dealt by attacker
      */
-    public void receiveDamage(int incomingDamage) {
+    public int receiveDamage(int incomingDamage) {
         int damage = returnDamageAfterResistDamage(incomingDamage);
 
         // Handle absorb damage
@@ -105,9 +105,11 @@ public abstract class GameCharacter {
         }
 
 
-        System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage to " + this.name);
+//        System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage to " + this.name);
+//        System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage ");
         this.effectiveAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
         this.effectiveAbilities.put(Ability.HEALTH, this.getEffectiveAbilityValue(Ability.HEALTH) - damage);
+        return damage;
     }
 
     public int returnDamageAfterResistDamage(int incomingDamage) {

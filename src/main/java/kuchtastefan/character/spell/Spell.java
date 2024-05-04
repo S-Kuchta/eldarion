@@ -63,6 +63,7 @@ public class Spell {
 
         if (this.isCanSpellBeCasted() && spellCaster.getEffectiveAbilityValue(Ability.MANA) >= this.getSpellManaCost()) {
 
+            // TODO - refactor critical hit chance to be calculated in the action service
             boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getEffectiveAbilityValue(Ability.CRITICAL_HIT_CHANCE);
             String criticalHitMessage = criticalHit ? " with " + ConsoleColor.YELLOW + "Critical Hit!" + ConsoleColor.RESET : "";
             System.out.println("\t" + spellCaster.getName() + " use " + this.getSpellName() + criticalHitMessage);
@@ -78,6 +79,7 @@ public class Spell {
             spellCaster.decreaseEffectiveAbilityValue(this.getSpellManaCost(), Ability.MANA);
             this.setCurrentTurnCoolDown(0);
             this.checkSpellCoolDown();
+
             return true;
         } else {
             if (spellCaster.getEffectiveAbilityValue(Ability.MANA) < this.getSpellManaCost()) {
@@ -92,15 +94,8 @@ public class Spell {
     }
 
     private boolean isAttackSuccessful(GameCharacter spellCaster, GameCharacter spellTarget) {
-        int spellCasterHaste = spellCaster.getEffectiveAbilityValue(Ability.HASTE);
-        int spellTargetHaste = spellTarget.getEffectiveAbilityValue(Ability.HASTE);
-
-        if (spellCasterHaste >= spellTargetHaste) {
-            return true;
-        } else {
-            int chanceToMiss = spellTargetHaste - spellCasterHaste;
-            return chanceToMiss <= RandomNumberGenerator.getRandomNumber(0, 100);
-        }
+        int chanceToMiss = spellTarget.getEffectiveAbilityValue(Ability.HASTE) - spellCaster.getEffectiveAbilityValue(Ability.HASTE);
+        return chanceToMiss <= RandomNumberGenerator.getRandomNumber(0, 100);
     }
 
     public void increaseSpellCoolDown() {
@@ -109,13 +104,7 @@ public class Spell {
     }
 
     public void checkSpellCoolDown() {
-        if (this.currentTurnCoolDown < this.turnCoolDown) {
-            this.canSpellBeCasted = false;
-        }
-
-        if (this.currentTurnCoolDown >= this.turnCoolDown) {
-            this.canSpellBeCasted = true;
-        }
+        this.canSpellBeCasted = this.currentTurnCoolDown >= this.turnCoolDown;
     }
 
     public String getSpellName() {

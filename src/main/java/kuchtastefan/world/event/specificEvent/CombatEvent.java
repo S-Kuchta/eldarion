@@ -3,7 +3,6 @@ package kuchtastefan.world.event.specificEvent;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.Enemy;
-import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.service.BattleService;
@@ -22,13 +21,11 @@ public class CombatEvent extends Event {
 
     private final BattleService battleService;
     private final List<Enemy> enemies;
-    private final QuestService questService;
 
     public CombatEvent(int eventLevel, List<Enemy> enemies) {
         super(eventLevel);
         this.battleService = new BattleService();
         this.enemies = enemies;
-        this.questService = new QuestService();
     }
 
     @Override
@@ -95,9 +92,10 @@ public class CombatEvent extends Event {
     }
 
     private void battleWon(Hero hero) {
+        QuestService questService = new QuestService();
         for (Enemy enemy : this.enemies) {
             System.out.println();
-            this.questService.updateQuestProgressFromEnemyActions(hero, enemy);
+            questService.updateQuestProgressFromEnemyActions(hero, enemy);
             double goldEarn = enemy.getGoldDrop();
 
             PrintUtil.printMenuHeader(ConsoleColor.RESET + "Loot from " + enemy.getName());

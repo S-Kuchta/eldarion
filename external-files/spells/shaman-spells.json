@@ -206,7 +206,7 @@
         "chanceToPerformAction": 100
       }
     ],
-    "spellLevel": 5,
+    "spellLevel": 4,
     "spellManaCost": 32,
     "turnCoolDown": 4
   },
@@ -233,7 +233,7 @@
         "summonedNpcId": 104
       }
     ],
-    "spellLevel": 5,
+    "spellLevel": 4,
     "spellManaCost": 32,
     "turnCoolDown": 8
   },
@@ -277,7 +277,7 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "spellLevel": 7,
+    "spellLevel": 5,
     "spellManaCost": 38,
     "turnCoolDown": 9
   },
@@ -320,7 +320,7 @@
         "summonedNpcId": 603
       }
     ],
-    "spellLevel": 7,
+    "spellLevel": 5,
     "spellManaCost": 38,
     "turnCoolDown": 11
   }

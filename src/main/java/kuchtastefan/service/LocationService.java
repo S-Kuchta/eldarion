@@ -41,13 +41,9 @@ public class LocationService {
             PrintUtil.printExtraLongDivider();
 
             // Print stage menu
+
             System.out.println("\tWhat do you want to do?");
-            PrintUtil.printIndexAndText("0", "Go back on the path");
-            System.out.println();
-            PrintUtil.printIndexAndText("1", "Explore location");
-            System.out.println();
-            PrintUtil.printIndexAndText("2", "Hero Menu");
-            System.out.println();
+            PrintUtil.printMenuOptions("Go back on the path", "Explore location", "Hero Menu");
 
             // Print discovered location Stages
             int index = 3;

@@ -36,6 +36,7 @@ public class EventService {
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
 
+
         hero.restoreHealthAndManaAfterTurn();
         hero.performActionsWithDuration(true);
     }

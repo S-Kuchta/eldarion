@@ -98,12 +98,13 @@
     "spellName": "Water Totem Heal",
     "spellClass": "NPC",
     "spellDescription": "",
+    "hitAllEnemy": true,
     "spellActions": [
       {
         "type": "ActionRestoreHealth",
         "actionName": "HEAL",
         "baseActionValue": 5,
-        "actionEffectOn": "PLAYER",
+        "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100
       }
     ],
@@ -155,11 +156,12 @@
     "spellName": "Air totem spell reflect",
     "spellClass": "NPC",
     "spellDescription": "",
+    "hitAllEnemy": true,
     "spellActions": [
       {
         "type": "ActionReflectSpell",
         "actionName": "REFLECT_SPELL",
-        "actionEffectOn": "PLAYER",
+        "actionEffectOn": "SPELL_CASTER",
         "baseActionValue": 0,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,

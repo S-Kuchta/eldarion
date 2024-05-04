@@ -6,9 +6,9 @@ import kuchtastefan.item.ItemDB;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
+import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestBringItemFromEnemyObjective;
 import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestKillObjective;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -152,16 +152,20 @@ public class QuestService {
     public void updateQuestProgressFromEnemyActions(Hero hero, Enemy enemy) {
         for (Quest quest : hero.getHeroAcceptedQuest().values()) {
             for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective) {
-                    if (questBringItemFromEnemyObjective.checkEnemy(enemy.getNpcId()))
-                        enemy.addItemToItemDrop(ItemDB.returnItemFromDB(questBringItemFromEnemyObjective.getObjectiveItemId()));
-                }
+                if (!questObjective.isCompleted()) {
+                    if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective) {
+                        if (questBringItemFromEnemyObjective.checkEnemy(enemy.getNpcId()))
+                            enemy.addItemToItemDrop(ItemDB.returnItemFromDB(questBringItemFromEnemyObjective.getObjectiveItemId()));
+                    }
 
-                if (questObjective instanceof QuestKillObjective questKillObjective) {
-                    if (enemy.getNpcId() == questKillObjective.getQuestEnemyId()) {
-                        questKillObjective.increaseCurrentCountEnemyProgress();
+                    if (questObjective instanceof QuestKillObjective questKillObjective) {
+                        if (enemy.getNpcId() == questKillObjective.getQuestEnemyId()) {
+                            questKillObjective.increaseCurrentCountEnemyProgress();
+                        }
                     }
                 }
+//                questObjective.printQuestObjectiveAssignment(hero);
+//                questObjective.checkIfQuestObjectiveIsCompleted(hero);
             }
         }
     }

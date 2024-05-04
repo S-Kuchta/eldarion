@@ -56,12 +56,14 @@ public class HeroMenuService {
     }
 
     private void upgradeAbilityMenu(Hero hero) {
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-        PrintUtil.printIndexAndText("1", "Spend points (" + hero.getUnspentAbilityPoints() + " points left)");
-        System.out.println();
-        PrintUtil.printIndexAndText("2", "Remove points");
-        System.out.println();
+
+        PrintUtil.printMenuOptions("Go back", "Spend points (" + hero.getUnspentAbilityPoints() + " points left)", "Remove points");
+//        PrintUtil.printIndexAndText("0", "Go back");
+//        System.out.println();
+//        PrintUtil.printIndexAndText("1", "Spend points (" + hero.getUnspentAbilityPoints() + " points left)");
+//        System.out.println();
+//        PrintUtil.printIndexAndText("2", "Remove points");
+//        System.out.println();
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> heroCharacterMenu(hero);
@@ -72,6 +74,7 @@ public class HeroMenuService {
     }
 
     private void showHeroInfo(Hero hero) {
+        PrintUtil.printHeaderWithStatsBar(hero);
         PrintUtil.printEffectiveAbilityPoints(hero);
         PrintUtil.printCurrentWearingArmor(hero);
     }

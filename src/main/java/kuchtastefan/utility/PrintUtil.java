@@ -99,6 +99,8 @@ public class PrintUtil {
                     "Turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()),
                     "Stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
         }
+
+        printExtraLongDivider();
     }
 
     public static StringBuilder printActionTurnRemaining(int currentValue, int maxValue) {
@@ -134,10 +136,10 @@ public class PrintUtil {
         printBar(gameCharacter, Ability.HEALTH);
         printBar(gameCharacter, Ability.MANA);
         printBar(gameCharacter, Ability.ABSORB_DAMAGE);
-        if (gameCharacter instanceof Hero) {
+        if (gameCharacter instanceof Hero hero) {
             System.out.println();
             System.out.println();
-            printExperienceBar((Hero) gameCharacter);
+            printExperienceBar(hero);
         }
         System.out.println();
     }

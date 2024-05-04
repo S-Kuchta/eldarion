@@ -252,7 +252,7 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "spellLevel": 5,
+    "spellLevel": 4,
     "spellManaCost": 55,
     "turnCoolDown": 7
   },
@@ -273,7 +273,7 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "spellLevel": 5,
+    "spellLevel": 4,
     "spellManaCost": 55,
     "turnCoolDown": 6
   },
@@ -305,38 +305,8 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "spellLevel": 7,
+    "spellLevel": 5,
     "spellManaCost": 0,
-    "turnCoolDown": 8
-  },
-  {
-    "spellId": 212,
-    "spellName": "Renew",
-    "spellClass": "MAGE",
-    "spellDescription": "Heals the spell caster over 3 turns. Also, remove all debuffs from spell caster.",
-    "spellActions": [
-      {
-        "type": "ActionRestoreHealthOverTime",
-        "actionName": "HEAL_OVER_TIME",
-        "baseActionValue": 10,
-        "maxActionTurns": 3,
-        "actionMaxStacks": 1,
-        "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "actionStatusEffect": "BUFF"
-      },
-      {
-        "type": "ActionRemoveBuffOrDebuff",
-        "actionName": "REMOVE_DEBUFF",
-        "baseActionValue": 0,
-        "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "removeAllStatusEffects": true,
-        "actionStatusEffectToRemove": "DEBUFF"
-      }
-    ],
-    "spellLevel": 7,
-    "spellManaCost": 45,
     "turnCoolDown": 8
   },
   {
@@ -354,7 +324,7 @@
         "summonedNpcId": 400
       }
     ],
-    "spellLevel": 7,
+    "spellLevel": 5,
     "spellManaCost": 60,
     "turnCoolDown": 10
   }

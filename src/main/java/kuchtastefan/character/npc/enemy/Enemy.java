@@ -1,12 +1,16 @@
 package kuchtastefan.character.npc.enemy;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestBringItemFromEnemyObjective;
 import kuchtastefan.world.Biome;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -77,18 +81,4 @@ public class Enemy extends NonPlayerCharacter {
         return this.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + this.getCharacterRarity().getExperienceGainedValue();
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Enemy enemy = (Enemy) o;
-//        return this.name.equals(enemy.name) && characterType == enemy.characterType && Arrays.equals(biome, enemy.biome) && enemy.characterRarity.equals(((Enemy) o).characterRarity) && this.count == enemy.count;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = Objects.hash(name, goldDrop, characterType, characterRarity, count);
-//        result = 31 * result + Arrays.hashCode(biome);
-//        return result;
-//    }
 }

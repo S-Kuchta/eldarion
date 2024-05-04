@@ -3,7 +3,6 @@ package kuchtastefan.quest;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
-import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,10 +44,10 @@ public class Quest {
     }
 
     /**
-     * Check if is Quest completed, Quest is completed if all
-     * questObjectives belonging to quest are completed.
+     * Check if Quest is completed
+     * Quest is completed if all questObjectives belonging to quest are completed.
      */
-    public void checkIfAllQuestObjectivesAreCompleted(Hero hero) {
+    public void checkIfQuestIsCompleted(Hero hero) {
         boolean completed = true;
         for (QuestObjective questObjective : this.questObjectives) {
             if (!questObjective.isCompleted()) {

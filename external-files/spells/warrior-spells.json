@@ -220,7 +220,7 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "spellLevel": 5,
+    "spellLevel": 4,
     "spellManaCost": 15,
     "turnCoolDown": 5
   },
@@ -241,7 +241,7 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "spellLevel": 5,
+    "spellLevel": 4,
     "spellManaCost": 45,
     "turnCoolDown": 6
   },
@@ -263,7 +263,7 @@
         "actionStatusEffect": "DEBUFF"
       }
     ],
-    "spellLevel": 7,
+    "spellLevel": 5,
     "spellManaCost": 15,
     "turnCoolDown": 7
   },
@@ -284,8 +284,8 @@
         "actionStatusEffect": "BUFF"
       }
     ],
-    "spellLevel": 7,
+    "spellLevel": 5,
     "spellManaCost": 70,
-    "turnCoolDown": 9
+    "turnCoolDown": 12
   }
 ]

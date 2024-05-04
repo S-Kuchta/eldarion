@@ -27,7 +27,6 @@ public class ActionService {
                     action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).maximumValue());
 
             if (criticalHit && action instanceof CanBeCriticalHit) {
-//                System.out.println("\t" + action.getActionName() + " Critical hit!");
                 totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
             }
 

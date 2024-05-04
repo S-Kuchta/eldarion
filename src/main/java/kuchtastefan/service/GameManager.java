@@ -158,7 +158,7 @@ public class GameManager {
         List<CharacterClass> characterClassList = new ArrayList<>();
         for (CharacterClass characterClass : CharacterClass.values()) {
             if (!characterClass.equals(CharacterClass.NPC)) {
-                System.out.println("\t" + index + ". " + characterClass.name());
+                PrintUtil.printIndexAndText(String.valueOf(index), characterClass.toString());
                 characterClassList.add(characterClass);
                 index++;
             }
@@ -191,6 +191,7 @@ public class GameManager {
 
         this.hero.setInitialEquip();
         this.heroAbilityManager.spendAbilityPoints();
+
 
         HintDB.printHint(HintName.WELCOME);
     }

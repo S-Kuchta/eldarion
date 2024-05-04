@@ -101,41 +101,38 @@ public class BattleService {
      */
     private void battleTurn(Hero hero, List<GameCharacter> allCharacters) {
         sortCharactersByHaste(allCharacters);
-        heroPlay = allCharacters.getFirst() instanceof Hero;
         ListIterator<GameCharacter> iterator = allCharacters.listIterator();
 
         while (iterator.hasNext()) {
             GameCharacter attackingCharacter = iterator.next();
             GameCharacter target = playerTarget;
 
-            if (attackingCharacter.getEffectiveAbilityValue(Ability.HEALTH) > 0) {
-                printBattleHeader(attackingCharacter);
-                this.printAndPerformActionOverTime(attackingCharacter);
-            }
-
-            if (!checkIfCharacterDied(attackingCharacter)) {
-                if (!attackingCharacter.isCanPerformAction()) {
-                    if (heroPlay) {
-                        heroPlay = false;
-                    }
-                } else {
-                    if (heroPlay) {
-                        playerTurn(hero);
-                        heroPlay = false;
-                    } else {
-                        target = setNpcTarget(attackingCharacter);
-//                        System.out.println();
-                        this.npcUseSpell(attackingCharacter, target, hero);
-                    }
-                }
-
-                checkIfCharacterDied(target);
-                attackingCharacter.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
-                attackingCharacter.restoreHealthAndManaAfterTurn();
-                addSummonedCreature(iterator, attackingCharacter);
-            } else {
+            if (attackingCharacter.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
                 iterator.remove();
+                continue;
             }
+
+            this.printBattleHeader(attackingCharacter);
+            this.printAndPerformActionOverTime(attackingCharacter);
+
+            if (checkIfCharacterDied(attackingCharacter)) {
+                iterator.remove();
+                continue;
+            }
+
+            if (attackingCharacter.isCanPerformAction()) {
+                if (attackingCharacter instanceof Hero) {
+                    playerTurn(hero);
+                } else {
+                    target = setNpcTarget(attackingCharacter);
+                    this.npcUseSpell(attackingCharacter, target, hero);
+                }
+            }
+
+            checkIfCharacterDied(target);
+            attackingCharacter.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
+            attackingCharacter.restoreHealthAndManaAfterTurn();
+            addSummonedCreature(iterator, attackingCharacter);
 
             if (alliesList.isEmpty() || enemyList.isEmpty()) {
                 break;
@@ -172,7 +169,7 @@ public class BattleService {
         if (getCharacterList(characterToCheck, true).contains(characterToCheck)) {
             if (characterToCheck.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
                 System.out.println();
-                System.out.println("\t" + characterToCheck.getName() + ConsoleColor.RED + " died!" + ConsoleColor.RESET);
+                System.out.println("\t" + ConsoleColor.RED + characterToCheck.getNameWithoutColor() + " died!" + ConsoleColor.RESET);
                 getCharacterList(characterToCheck, true).remove(characterToCheck);
                 setTarget();
                 return true;
@@ -210,9 +207,7 @@ public class BattleService {
         }
 
         PrintUtil.printLongDivider();
-        System.out.println("\t" + ConsoleColor.YELLOW_UNDERLINED
-                + gameCharacter.getName() + " Turn!"
-                + ConsoleColor.RESET);
+        System.out.println("\t" + ConsoleColor.YELLOW_UNDERLINED + gameCharacter.getName() + " Turn!" + ConsoleColor.RESET);
         System.out.println();
     }
 

@@ -27,17 +27,24 @@ public class QuestBringItemFromEnemyObjective extends QuestObjective implements 
 
     @Override
     public void printQuestObjectiveAssignment(Hero hero) {
-
         Item questItem = ItemDB.returnItemFromDB(this.objectiveItemId);
         hero.getHeroInventory().getHeroInventory().putIfAbsent(questItem, 0);
 
-        if (hero.getHeroInventory().getHeroInventory().get(questItem) < this.itemDropCountNeeded) {
-            System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "
-                    + hero.getHeroInventory().getHeroInventory().get(questItem) + " / " + this.itemDropCountNeeded);
-        } else {
-            System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "
-                    + this.itemDropCountNeeded + " / " + this.itemDropCountNeeded);
-        }
+        int itemCount = hero.getHeroInventory().getHeroInventory().get(questItem) < this.itemDropCountNeeded ?
+                hero.getHeroInventory().getHeroInventory().get(questItem) : this.itemDropCountNeeded;
+
+        System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "
+                + itemCount + " / " + this.itemDropCountNeeded);
+
+//        if (hero.getHeroInventory().getHeroInventory().get(questItem) < this.itemDropCountNeeded) {
+//            System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "
+//                    + hero.getHeroInventory().getHeroInventory().get(questItem) + " / " + this.itemDropCountNeeded);
+//        } else {
+//            System.out.println("\tBring " + this.itemDropCountNeeded + "x " + questItem.getName() + " - You have: "
+//                    + this.itemDropCountNeeded + " / " + this.itemDropCountNeeded);
+//        }
+
+
     }
 
     @Override

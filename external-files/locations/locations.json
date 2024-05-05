@@ -3,7 +3,6 @@
     "locationId": 0,
     "locationName": "DeadMines",
     "locationLevel": 2,
-    "canLocationBeExplored": true,
     "locationDifficulty": "EASY",
     "locationStages": {
       "0": {
@@ -148,7 +147,6 @@
     "locationId": 1,
     "locationName": "Tower of Damned",
     "locationLevel": 2,
-    "canLocationBeExplored": true,
     "locationDifficulty": "MEDIUM",
     "locationStages": {
       "0": {
@@ -235,13 +233,12 @@
     "locationId": 2,
     "locationName": "Crystal Lake",
     "locationLevel": 1,
-    "canLocationBeExplored": true,
     "locationDifficulty": "EASY",
     "locationStages": {
       "0": {
         "type": "LocationStageQuestGiver",
         "stageName": "Fisherman Cabin",
-        "stageDiscovered": true,
+        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "questGiverId": 2
       },
@@ -303,7 +300,6 @@
     "locationId": 3,
     "locationName": "Bear Cave",
     "locationLevel": 2,
-    "canLocationBeExplored": true,
     "locationDifficulty": "MEDIUM",
     "locationStages": {
       "0": {
@@ -338,7 +334,6 @@
     "locationId": 4,
     "locationName": "Mystic Hollow",
     "locationLevel": 1,
-    "canLocationBeExplored": true,
     "locationDifficulty": "EASY",
     "locationStages": {
       "0": {

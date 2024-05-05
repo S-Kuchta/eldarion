@@ -5,6 +5,7 @@ import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageBlacksmith;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;
@@ -23,30 +24,23 @@ public class Location {
     private final int locationId;
     protected final String locationName;
     protected final int locationLevel;
-    protected int stageTotal;
     protected int stageCompleted;
+    protected int stageDiscovered;
     protected boolean cleared;
-    protected boolean canLocationBeExplored;
     protected LocationDifficulty locationDifficulty;
     protected Map<Integer, LocationStage> locationStages;
 
 
-    public Location(int locationId, String locationName, int locationLevel, int stageTotal, boolean canLocationBeExplored) {
+    public Location(int locationId, String locationName, int locationLevel) {
         this.locationId = locationId;
         this.locationName = locationName;
         this.locationLevel = locationLevel;
-        this.stageTotal = stageTotal;
         this.stageCompleted = 0;
         this.cleared = false;
-        this.canLocationBeExplored = canLocationBeExplored;
         this.locationStages = new HashMap<>();
     }
 
-    public void incrementStageCompleted() {
-        this.stageCompleted++;
-    }
-
-    public StringBuilder returnLocationServices() {
+    public StringBuilder printLocationServices() {
         boolean vendor = false;
         int numOfVendors = 0;
 
@@ -83,6 +77,55 @@ public class Location {
         return stringBuilder;
     }
 
+    public int getStageTotal() {
+        return locationStages.size();
+    }
+
+    public void incrementStageCompleted() {
+        this.stageCompleted++;
+    }
+
+    public void incrementStageDiscovered() {
+        if (stageDiscovered < locationStages.size()) {
+            this.stageDiscovered++;
+        }
+    }
+
+    public LocationStage getLocationStage(int order) {
+        return locationStages.get(order);
+    }
+
+    public void printLocationHeader() {
+        PrintUtil.printExtraLongDivider();
+        System.out.println(ConsoleColor.YELLOW + "\t" + this.getLocationName() + ConsoleColor.RESET
+                + "\tLocation level: " + this.locationLevel + " "
+                + "\tStages completed: " + this.stageCompleted + " / " + this.getStageTotal() + " "
+                + "\tLocation difficulty: " + this.locationDifficulty);
+        PrintUtil.printExtraLongDivider();
+    }
+
+    public void printLocationMenu(int index) {
+        System.out.println("\tWhat do you want to do?");
+        PrintUtil.printMenuOptions("Go back on the path", "Explore location", "Hero Menu");
+
+        if (this.stageDiscovered > 0) {
+            System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t\t\tLocation Stages\t\t\t\t\t\t\t" + ConsoleColor.RESET);
+            for (Map.Entry<Integer, LocationStage> locationStage : this.getLocationStages().entrySet()) {
+                if (locationStage.getValue().isStageDiscovered()) {
+                    String completed;
+                    if (locationStage.getValue() instanceof CanEnterStageAfterComplete && this.isCleared()) {
+                        completed = "";
+                    } else {
+                        completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
+                    }
+
+                    PrintUtil.printIndexAndText(String.valueOf(index + locationStage.getKey()), locationStage.getValue().getStageName() + " " + completed);
+                    System.out.println();
+                }
+            }
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,12 +133,11 @@ public class Location {
         Location location = (Location) o;
         return locationLevel == location.locationLevel
                 && cleared == location.cleared
-                && stageTotal == location.stageTotal
                 && Objects.equals(locationName, location.locationName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(locationName, locationLevel, stageTotal, cleared);
+        return Objects.hash(locationName, locationLevel, cleared);
     }
 }

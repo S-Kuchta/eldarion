@@ -4,7 +4,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.UsingHeroInventory;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.UsableItem;
+import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.questItem.QuestItem;

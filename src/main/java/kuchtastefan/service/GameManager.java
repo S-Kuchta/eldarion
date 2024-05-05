@@ -39,7 +39,7 @@ public class GameManager {
         this.initGame();
 
         while (true) {
-            this.fileService.autoSave(this.hero);
+//            this.fileService.autoSave(this.hero);
             QuestGiverCharacterDB.setAllQuestGiversName(this.hero);
 
             PrintUtil.printLongDivider();

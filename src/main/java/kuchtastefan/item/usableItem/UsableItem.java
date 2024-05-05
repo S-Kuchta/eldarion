@@ -1,4 +1,4 @@
-package kuchtastefan.item;
+package kuchtastefan.item.usableItem;
 
 import kuchtastefan.character.hero.Hero;
 

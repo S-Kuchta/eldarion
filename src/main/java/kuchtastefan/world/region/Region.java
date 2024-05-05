@@ -59,7 +59,7 @@ public class Region {
             int index = 3;
             List<Location> locations = new ArrayList<>();
             for (Map.Entry<Integer, Location> location : hero.getDiscoveredLocationList().entrySet()) {
-                String s = location.getValue().getLocationName() + " " + location.getValue().returnLocationServices();
+                String s = location.getValue().getLocationName() + " " + location.getValue().printLocationServices();
 
                 PrintUtil.printIndexAndText(String.valueOf(index), s);
                 locations.add(location.getValue());

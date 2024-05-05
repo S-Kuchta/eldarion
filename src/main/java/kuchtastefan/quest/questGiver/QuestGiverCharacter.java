@@ -59,6 +59,7 @@ public class QuestGiverCharacter {
         connectHeroQuestListWithCharacterQuestList(hero);
         setNameBasedOnQuestsAvailable(hero);
         questService.questGiverMenu(hero, this.quests);
+        connectHeroQuestListWithCharacterQuestList(hero);
     }
 
     /**

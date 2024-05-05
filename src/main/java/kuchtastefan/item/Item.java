@@ -3,8 +3,7 @@ package kuchtastefan.item;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Objects;
 
@@ -33,7 +32,7 @@ public abstract class Item {
     }
 
     public String getName() {
-        return ConsoleColor.YELLOW + name + ConsoleColor.RESET;
+        return ConsoleColor.YELLOW + this.name + ConsoleColor.RESET;
     }
 
     @Override

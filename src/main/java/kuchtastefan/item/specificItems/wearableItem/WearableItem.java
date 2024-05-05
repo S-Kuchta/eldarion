@@ -2,13 +2,16 @@ package kuchtastefan.item.specificItems.wearableItem;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.*;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemAndCount;
+import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
-import kuchtastefan.item.ItemAndCount;
-import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.RandomNumberGenerator;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,17 +39,12 @@ public class WearableItem extends Item implements UsableItem, HaveType {
 
     @Override
     public void printItemDescription(Hero hero) {
-
         if (hero.getEquippedItem().containsValue(this)) {
             System.out.print("-- EQUIPPED -- ");
         }
 
-        System.out.print(this.getItemType() + ": "
-                + this.getName()
-                + " (" + this.getWearableItemQuality() + "), iLevel: " + this.getItemLevel());
-
-        System.out.print(", Item Price: " + this.getPrice()
-                + "(Sell Value: " + this.returnSellItemPrice() + ")");
+        System.out.print(this.getItemType() + ": " + this.getName() + " (" + this.getWearableItemQuality() + "), iLevel: " + this.getItemLevel());
+        System.out.print(", Item Price: " + this.getPrice() + "(Sell Value: " + this.returnSellItemPrice() + ")");
 
         if (!this.getName().equals("No item")) {
             System.out.print("\n\t\tItem stats: ");
@@ -85,7 +83,7 @@ public class WearableItem extends Item implements UsableItem, HaveType {
 
     public ItemAndCount dismantle() {
         Item reagent = ItemDB.getRandomItem(CraftingReagentItem.class, new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, this.itemLevel));
-        return new ItemAndCount(reagent, RandomNumberGenerator.getRandomNumber(2,4) + this.itemLevel);
+        return new ItemAndCount(reagent, RandomNumberGenerator.getRandomNumber(2, 4) + this.itemLevel);
     }
 
     @Override

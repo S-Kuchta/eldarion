@@ -13,7 +13,7 @@ public class QuestGiverCharacterDB {
         return QUEST_GIVER_CHARACTER_DB.get(questGiverId).getName();
     }
 
-    public static void returnQuestGiverMenu(int questGiverId, Hero hero) {
+    public static void questGiverMenu(int questGiverId, Hero hero) {
         QUEST_GIVER_CHARACTER_DB.get(questGiverId).questGiverMenu(hero);
     }
 

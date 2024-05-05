@@ -3,8 +3,8 @@ package kuchtastefan.item.specificItems.consumeableItem;
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.UsableItem;
 import kuchtastefan.item.itemType.HaveType;
+import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.service.ActionService;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
@@ -29,6 +29,7 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
     public boolean useItem(Hero hero) {
         if (hero.isInCombat() && this.itemType.equals(ConsumableItemType.FOOD)) {
             System.out.println("\t" + ConsoleColor.RED + this.getName() + " Can't be used in combat!" + ConsoleColor.RESET);
+            return false;
         } else {
             ActionService actionService = new ActionService();
             for (Action action : this.actionList) {
@@ -38,18 +39,12 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
             hero.getHeroInventory().removeItemFromHeroInventory(this, 1);
             return true;
         }
-
-        return false;
     }
 
     @Override
     public void printItemDescription(Hero hero) {
-
-        System.out.print(this.getName()
-                + ", " + this.getItemType()
-                + ", iLevel: " + this.getItemLevel());
-        System.out.print(", Item Price: " + this.getPrice()
-                + "(Sell Value: " + this.returnSellItemPrice() + ")");
+        System.out.print(this.getName() + ", " + this.getItemType() + ", iLevel: " + this.getItemLevel());
+        System.out.print(", Item Price: " + this.getPrice() + "(Sell Value: " + this.returnSellItemPrice() + ")");
 
         System.out.println();
         for (Action action : this.getActionList()) {

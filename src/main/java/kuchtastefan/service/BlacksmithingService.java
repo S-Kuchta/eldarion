@@ -84,13 +84,13 @@ public class BlacksmithingService implements Workshop {
      */
     private boolean refineItemQuality(Hero hero, WearableItem item) {
         if (item.getWearableItemQuality() != WearableItemQuality.BASIC) {
-            System.out.println("\tYou can not refine your item. Your item has the highest quality");
+            System.out.println("\tYou can not refine your item. It's not basic quality.");
             return false;
         }
 
         ItemAndCount requiredReagent = item.reagentNeededToRefine();
         if (!hero.getHeroInventory().hasRequiredItems(requiredReagent.item(), requiredReagent.count())) {
-            System.out.println("\tYou don't have enough reagents. Your can't refine your item");
+            System.out.println("\tYou don't have enough reagents. Your can't refine your item.");
             return false;
         }
 

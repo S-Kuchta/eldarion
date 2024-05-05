@@ -3,6 +3,7 @@ package kuchtastefan.service;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.npc.enemy.EnemyGroupDB;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.utility.AutosaveCount;
 import kuchtastefan.world.event.specificEvent.*;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.Biome;
@@ -22,6 +23,8 @@ public class EventService {
     }
 
     public void randomRegionEventGenerate(Hero hero, Biome biome) {
+        AutosaveCount.checkAutosaveCount(hero);
+
         int randomNumber = RandomNumberGenerator.getRandomNumber(0, 4);
         int eventLevel = hero.getLevel();
 
@@ -35,7 +38,6 @@ public class EventService {
             case 3 -> new GatherCraftingReagentItemEvent(eventLevel).eventOccurs(hero);
             default -> new NoOutcomeEvent(0).eventOccurs(hero);
         }
-
 
         hero.restoreHealthAndManaAfterTurn();
         hero.performActionsWithDuration(true);

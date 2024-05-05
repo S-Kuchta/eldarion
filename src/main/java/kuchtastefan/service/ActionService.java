@@ -9,6 +9,7 @@ import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.criticalHi
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 
@@ -28,6 +29,9 @@ public class ActionService {
 
             if (criticalHit && action instanceof CanBeCriticalHit) {
                 totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
+
+                // TODO watch for color of this print
+                System.out.println(ConsoleColor.GREEN_BRIGHT + "\tCritical hit!" + ConsoleColor.RESET);
             }
 
             action.setCurrentActionValue(totalActionValue);

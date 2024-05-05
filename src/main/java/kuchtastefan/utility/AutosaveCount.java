@@ -18,11 +18,11 @@ public class AutosaveCount {
         }
     }
 
-    public static void incrementAutosaveCount() {
+    private static void incrementAutosaveCount() {
         autosaveCount++;
     }
 
-    public static void resetAutosaveCount() {
+    private static void resetAutosaveCount() {
         autosaveCount = 0;
     }
 }

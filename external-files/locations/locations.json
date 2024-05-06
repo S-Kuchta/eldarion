@@ -244,7 +244,7 @@
       },
       "1": {
         "type": "LocationStageCombat",
-        "stageName": "Lake shore",
+        "stageName": "Right Lake shore",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
@@ -253,7 +253,7 @@
       },
       "2": {
         "type": "LocationStageCombat",
-        "stageName": "Lake shore",
+        "stageName": "Left Lake shore",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
@@ -339,7 +339,7 @@
       "0": {
         "type": "LocationStageNothingOutcome",
         "stageName": "Main gate City Guard",
-        "stageDiscovered": true,
+        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": []
       },
       "1": {

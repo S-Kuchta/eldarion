@@ -131,6 +131,7 @@ public class PrintUtil {
 
     public static void printHeaderWithStatsBar(GameCharacter gameCharacter) {
         printExtraLongDivider();
+//        printWhiteLine(20);
 //        System.out.printf("%58s %n", gameCharacter.getName());
         System.out.println("\t" + gameCharacter.getName());
 
@@ -176,7 +177,6 @@ public class PrintUtil {
     }
 
     private static void printExperienceBar(Hero hero) {
-
         if (hero.getLevel() < Constant.MAX_LEVEL) {
             double currentValue = hero.getExperiencePoints();
             double maxValue = hero.getExperiencePointsService().getNeededExperiencePointsForNewLevel();
@@ -221,8 +221,6 @@ public class PrintUtil {
     }
 
     public static void printEffectiveAbilityPoints(GameCharacter gameCharacter) {
-//        printHeaderWithStatsBar(gameCharacter);
-//        System.out.printf("%80s %n", gameCharacter.getName() + " Ability Points");
         System.out.print("\t\t\t");
         for (Map.Entry<Ability, Integer> abilityPoints : gameCharacter.getEffectiveAbilities().entrySet()) {
 
@@ -294,15 +292,18 @@ public class PrintUtil {
     }
 
     public static void printDivider() {
-        System.out.println("|-----------------------------------------------|");
+        printWhiteLine(15);
+//        System.out.println("|-----------------------------------------------|");
     }
 
     public static void printLongDivider() {
-        System.out.println("|----------------------------------------------------------------------------------|");
+        printWhiteLine(22);
+//        System.out.println("|----------------------------------------------------------------------------------|");
     }
 
     public static void printExtraLongDivider() {
-        System.out.println("|-------------------------------------------------------------------------------------------------------------|");
+        printWhiteLine(30);
+//        System.out.println("|-------------------------------------------------------------------------------------------------------------|");
     }
 
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
@@ -395,6 +396,13 @@ public class PrintUtil {
             PrintUtil.printIndexAndText(String.valueOf(i), options[i]);
             System.out.println();
         }
+    }
+
+    public static void printWhiteLine(int numberOfSpaces) {
+        for (int i = 0; i < numberOfSpaces; i++) {
+            System.out.print(ConsoleColor.WHITE_UNDERLINED + "\t" + ConsoleColor.RESET);
+        }
+        System.out.println();
     }
 }
 

@@ -223,8 +223,10 @@ public class Hero extends GameCharacter {
             if (!quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
                 for (QuestObjective questObjective : quest.getQuestObjectives()) {
                     if (!questObjective.isCompleted()) {
-                        System.out.println("\n\tQuest Progress " + quest.getQuestName());
-                        questObjective.printQuestObjectiveAssignment(this);
+
+                        // TODO fix print every time when checkIfQuestObjectivesAndQuestIsCompleted is called
+//                        System.out.println("\n\tQuest Progress " + quest.getQuestName());
+//                        questObjective.printQuestObjectiveAssignment(this);
                         questObjective.checkIfQuestObjectiveIsCompleted(this);
                     }
                 }

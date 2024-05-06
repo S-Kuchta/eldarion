@@ -13,23 +13,28 @@ import kuchtastefan.world.location.locationStage.specificLocationStage.LocationS
 
 public class LocationService {
 
+    private final Location location;
+
+    public LocationService(Location location) {
+        this.location = location;
+    }
+
     /**
      * Displays the menu for interacting with a specific location.
      * Allows the hero to explore the location, view hero menu options, or go back on the path.
      * Also displays discovered stages within the location and their completion status.
      *
      * @param hero            The hero exploring the location.
-     * @param location        The location being explored.
      * @param heroMenuService The service handling hero menu actions.
      */
-    public void locationMenu(Hero hero, Location location, HeroMenuService heroMenuService) {
+    public void locationMenu(Hero hero, HeroMenuService heroMenuService) {
         HintDB.printHint(HintName.LOCATION_HINT);
         int index = 3;
 
         while (true) {
             QuestGiverCharacterDB.setAllQuestGiversName(hero);
-            location.printLocationHeader();
-            location.printLocationMenu(index);
+            location.printHeader();
+            location.printMenu(index);
 
             int choice = InputUtil.intScanner();
             if (choice < 0 || choice > location.getLocationStages().size() + 2) {
@@ -40,12 +45,7 @@ public class LocationService {
                 }
 
                 if (choice == 1) {
-                    if (location.getStageTotal() == location.getStageDiscovered()) {
-                        exploreLocationStage(hero, location, location.getStageDiscovered() - 1);
-                    } else {
-                        exploreLocationStage(hero, location, location.getStageDiscovered());
-                    }
-
+                    exploreLocationStage(hero, location, determineLocationStage(location, location.getStageCompleted()));
                     continue;
                 }
 
@@ -55,7 +55,7 @@ public class LocationService {
                 }
 
                 if (location.getLocationStage(choice - index).isStageDiscovered()) {
-                    exploreLocationStage(hero, location, choice - index);
+                    exploreLocationStage(hero, location, location.getLocationStage(choice - index));
                 } else {
                     PrintUtil.printEnterValidInput();
                 }
@@ -71,26 +71,11 @@ public class LocationService {
      *
      * @param hero               Exploring LocationStage
      * @param location           which stage belong
-     * @param locationStageOrder order in location
      */
-    public void exploreLocationStage(Hero hero, Location location, int locationStageOrder) {
-        LocationStage locationStage = location.getLocationStages().get(locationStageOrder);
+    public void exploreLocationStage(Hero hero, Location location, LocationStage locationStage) {
         AutosaveCount.checkAutosaveCount(hero);
 
-        if (locationStage instanceof LocationStageQuestGiver) {
-            if (!locationStage.isStageDiscovered()) {
-                location.incrementStageDiscovered();
-            }
-
-            discoverNextStage(location, locationStageOrder);
-        }
-
-        if (!location.getLocationStage(0).isStageDiscovered()) {
-            location.getLocationStage(0).setStageDiscovered(true);
-            location.incrementStageDiscovered();
-        }
-
-        System.out.println("location stage discovered: " + location.getStageDiscovered());
+        locationStage.setStageDiscovered(true);
         if (!locationStage.canHeroEnterStage(hero)) {
             return;
         }
@@ -105,9 +90,7 @@ public class LocationService {
 
         // check if stage is successfully cleared
         if (isStageCompleted && !locationStage.isStageCompleted()) {
-            location.incrementStageCompleted();
-            location.incrementStageDiscovered();
-            discoverNextStage(location, locationStageOrder);
+            discoverNextStage(location, location.getStageCompleted() + 1);
             locationStage.completeStage();
             hero.restoreHealthAndManaAfterTurn();
         }
@@ -120,7 +103,7 @@ public class LocationService {
     }
 
     private void discoverNextStage(Location location, int locationStageOrder) {
-        LocationStage nextLocationStage = location.getLocationStages().get(locationStageOrder + 1);
+        LocationStage nextLocationStage = location.getLocationStages().get(locationStageOrder);
         if (nextLocationStage != null) {
             nextLocationStage.setStageDiscovered(true);
 
@@ -128,6 +111,30 @@ public class LocationService {
                 locationStageQuestGiver.setStageName(QuestGiverCharacterDB.returnQuestGiverName(locationStageQuestGiver.getQuestGiverId()));
             }
         }
+    }
+
+    private LocationStage determineLocationStage(Location location, int locationStageOrder) {
+        LocationStage locationStage = location.getLocationStages().get(locationStageOrder);
+
+        if (locationStage instanceof LocationStageQuestGiver) {
+            if (locationStage.isStageDiscovered() && location.getLocationStage(locationStageOrder + 1) != null) {
+                locationStage = location.getLocationStages().get(locationStageOrder + 1);
+            } else {
+                discoverNextStage(location, locationStageOrder + 1);
+            }
+        } else {
+            if (locationStage != null && locationStage.isStageCompleted()) {
+                locationStage = location.getLocationStages().get(locationStageOrder + 1);
+
+                discoverNextStage(location, locationStageOrder);
+            }
+        }
+
+        if (locationStage == null) {
+            locationStage = location.getLocationStages().get(location.getStageCompleted() - 1);
+        }
+
+        return locationStage;
     }
 }
 

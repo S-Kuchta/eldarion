@@ -24,18 +24,16 @@ public class Location {
     private final int locationId;
     protected final String locationName;
     protected final int locationLevel;
-    protected int stageCompleted;
-    protected int stageDiscovered;
     protected boolean cleared;
     protected LocationDifficulty locationDifficulty;
     protected Map<Integer, LocationStage> locationStages;
+    private int currentStageToEnter;
 
 
     public Location(int locationId, String locationName, int locationLevel) {
         this.locationId = locationId;
         this.locationName = locationName;
         this.locationLevel = locationLevel;
-        this.stageCompleted = 0;
         this.cleared = false;
         this.locationStages = new HashMap<>();
     }
@@ -78,20 +76,20 @@ public class Location {
         return stringBuilder;
     }
 
-    public void printLocationHeader() {
+    public void printHeader() {
         PrintUtil.printExtraLongDivider();
         System.out.println(ConsoleColor.YELLOW + "\t" + this.getLocationName() + ConsoleColor.RESET
                 + "\tLocation level: " + this.locationLevel + " "
-                + "\tStages completed: " + this.stageCompleted + " / " + this.getStageTotal() + " "
+                + "\tStages completed: " + this.getStageCompleted() + " / " + this.getStageTotal() + " "
                 + "\tLocation difficulty: " + this.locationDifficulty);
         PrintUtil.printExtraLongDivider();
     }
 
-    public void printLocationMenu(int index) {
+    public void printMenu(int index) {
         System.out.println("\tWhat do you want to do?");
         PrintUtil.printMenuOptions("Go back on the path", "Explore location", "Hero Menu");
 
-        if (this.stageDiscovered > 0) {
+        if (this.getStageDiscovered() > 0) {
             System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t\t\tLocation Stages\t\t\t\t\t\t\t" + ConsoleColor.RESET);
             for (Map.Entry<Integer, LocationStage> locationStage : this.getLocationStages().entrySet()) {
                 if (locationStage.getValue().isStageDiscovered()) {
@@ -109,22 +107,42 @@ public class Location {
         }
     }
 
+    public int getStageDiscovered() {
+        int count = 0;
+        for (LocationStage locationStage : locationStages.values()) {
+            if (locationStage.isStageDiscovered()) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public int getStageCompleted() {
+        int count = 0;
+        for (LocationStage locationStage : locationStages.values()) {
+            if (locationStage.isStageCompleted()) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public int currentStageToEnter(int stageOrder) {
+        if (this.locationStages.get(stageOrder) instanceof LocationStageQuestGiver) {
+            return stageOrder + 1;
+        } else {
+            return stageOrder;
+        }
+    }
+
     public LocationStage getLocationStage(int order) {
         return locationStages.get(order);
     }
 
     public int getStageTotal() {
         return locationStages.size();
-    }
-
-    public void incrementStageCompleted() {
-        this.stageCompleted++;
-    }
-
-    public void incrementStageDiscovered() {
-        if (stageDiscovered < locationStages.size()) {
-            this.stageDiscovered++;
-        }
     }
 
     @Override

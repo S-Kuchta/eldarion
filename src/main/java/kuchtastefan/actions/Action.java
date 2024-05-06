@@ -42,7 +42,7 @@ public abstract class Action {
     public abstract int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget);
 
     public boolean willPerformAction() {
-        return RandomNumberGenerator.getRandomNumber(0, 100) < this.chanceToPerformAction;
+        return RandomNumberGenerator.getRandomNumber(0, 100) <= this.chanceToPerformAction;
     }
 
     /**

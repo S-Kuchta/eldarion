@@ -6,10 +6,11 @@ import kuchtastefan.hint.HintName;
 import kuchtastefan.service.EventService;
 import kuchtastefan.service.HeroMenuService;
 import kuchtastefan.service.LocationService;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
-import kuchtastefan.world.location.Location;
 import kuchtastefan.world.Biome;
+import kuchtastefan.world.location.Location;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,14 +47,16 @@ public class Region {
             // Printing region information and options
             System.out.println();
             PrintUtil.printHeaderWithStatsBar(hero);
-            PrintUtil.printExtraLongDivider();
-            PrintUtil.printLongDivider();
-            System.out.println("\t\t" + this.getRegionName()
-                    + " \tRegion level: " + this.getMinimumRegionLevel() + " - " + this.getMaximumRegionLevel()
-                    + " \tDiscovered locations: " + hero.getDiscoveredLocationList().size() + " / " + this.getAllLocations().size());
-            PrintUtil.printLongDivider();
+            System.out.println(ConsoleColor.WHITE_UNDERLINED + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + ConsoleColor.RESET);
+//            PrintUtil.printExtraLongDivider();
 
-            PrintUtil.printMenuOptions("Go back to the city", "Travel across region" + this.getRegionName(), "Hero menu");
+//            PrintUtil.printLongDivider();
+            System.out.println("\n\t" + this.getRegionName()
+                    + " \tRegion level: " + this.getMinimumRegionLevel() + " - " + this.getMaximumRegionLevel()
+                    + " \tDiscovered locations: " + hero.getDiscoveredLocationList().size() + " / " + this.getAllLocations().size() + "\n");
+//            PrintUtil.printLongDivider();
+
+            PrintUtil.printMenuOptions("Go back to the city", "Travel across region " + this.getRegionName(), "Hero menu");
 
             // Printing discovered locations
             int index = 3;
@@ -78,13 +81,16 @@ public class Region {
                 case 2 -> heroMenuService.heroCharacterMenu(hero); // Open hero menu
                 default -> {
                     try {
-                        // Open the menu for the selected location
-                        new LocationService().locationMenu(hero, locations.get(choice - 3), heroMenuService);
+                        new LocationService(locations.get(choice - 3)).locationMenu(hero, heroMenuService);
                     } catch (IndexOutOfBoundsException e) {
                         PrintUtil.printEnterValidInput();
                     }
                 }
             }
         }
+    }
+
+    public String getRegionName() {
+        return ConsoleColor.YELLOW + regionName + ConsoleColor.RESET;
     }
 }

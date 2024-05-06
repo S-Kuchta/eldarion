@@ -13,7 +13,7 @@ import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.EnemyGroup;
 import kuchtastefan.character.npc.enemy.EnemyGroupDB;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
-import kuchtastefan.character.npc.vendor.VendorDB;
+import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.npc.vendor.vendorOffer.VendorItemList;
 import kuchtastefan.character.npc.vendor.vendorOffer.VendorOfferDB;
 import kuchtastefan.character.spell.Spell;
@@ -66,7 +66,8 @@ public class FileService {
 
 
     public void saveGame(Hero hero) {
-        GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
+        final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
+        gameLoaded.setVendorIdAndItemListId();
 
         while (true) {
             System.out.println("\tHow do you want to name your save?");
@@ -88,6 +89,7 @@ public class FileService {
     public void autoSave(Hero hero) {
         if (GameSettingsDB.returnGameSettingValue(GameSetting.AUTO_SAVE)) {
             final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
+            gameLoaded.setVendorIdAndItemListId();
 
             final String path = this.savedGamesPath + hero.getNameWithoutColor() + "_AutoSave" + ".json";
             saveGame(gameLoaded, path, hero.getName());
@@ -483,7 +485,7 @@ public class FileService {
             }.getType());
 
             for (VendorCharacter vendorCharacter : vendorCharacters) {
-                VendorDB.addVendorToDb(vendorCharacter);
+                VendorCharacterDB.addVendorToDb(vendorCharacter);
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -499,7 +501,7 @@ public class FileService {
             }.getType());
 
             for (VendorItemList vendorItemList : vendorItemLists) {
-                VendorOfferDB.addVendorItemToDb(vendorItemList);
+                VendorOfferDB.addVendorItemsToDb(vendorItemList);
             }
 
         } catch (IOException e) {

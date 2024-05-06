@@ -2,7 +2,7 @@ package kuchtastefan.world.location.locationStage.specificLocationStage;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
-import kuchtastefan.character.npc.vendor.VendorDB;
+import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.service.ShopService;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
@@ -22,7 +22,7 @@ public class LocationStageVendor extends LocationStage implements CanEnterStageA
 
     @Override
     public boolean exploreStage(Hero hero, Location location) {
-        VendorCharacter vendorCharacter = VendorDB.returnVendorCharacterFromDb(this.vendorId);
+        VendorCharacter vendorCharacter = VendorCharacterDB.returnVendorCharacterFromDb(this.vendorId);
         ShopService shopService = new ShopService(vendorCharacter);
 
         this.setStageName(vendorCharacter.getName() + " (" +  StringUtils.join(StringUtils.splitByCharacterTypeCamelCase(

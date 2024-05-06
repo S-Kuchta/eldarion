@@ -4,7 +4,7 @@ import kuchtastefan.character.hero.CharacterClass;
 import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.HeroAbilityManager;
-import kuchtastefan.character.npc.vendor.VendorDB;
+import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
@@ -39,7 +39,6 @@ public class GameManager {
         this.initGame();
 
         while (true) {
-//            this.fileService.autoSave(this.hero);
             QuestGiverCharacterDB.setAllQuestGiversName(this.hero);
 
             PrintUtil.printLongDivider();
@@ -132,6 +131,7 @@ public class GameManager {
                     HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
                     QuestDB.setInitialQuestsStatus(this.hero);
                     QuestDB.loadQuests(this.hero);
+                    VendorCharacterDB.setVendorCharacterItemListId(gameLoaded.getVendorIdAndItemListId());
 
                     return;
                 }
@@ -174,7 +174,7 @@ public class GameManager {
         this.hero.setLevel(Constant.INITIAL_LEVEL);
         this.hero.gainExperiencePoints(0);
         QuestDB.setInitialQuestsStatus(this.hero);
-        VendorDB.setRandomCurrentVendorCharacterItemListId(this.hero.getLevel());
+        VendorCharacterDB.setRandomCurrentVendorCharacterItemListId(this.hero.getLevel());
 
         System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();

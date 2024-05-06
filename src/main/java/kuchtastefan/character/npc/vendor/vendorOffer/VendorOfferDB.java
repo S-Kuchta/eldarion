@@ -12,15 +12,15 @@ import java.util.Map;
 
 public class VendorOfferDB {
 
-    private static final Map<Integer, VendorItemList> VENDOR_ITEM_DB = new HashMap<>();
+    private static final Map<Integer, VendorItemList> VENDOR_ITEMS_DB = new HashMap<>();
 
-    public static void addVendorItemToDb(VendorItemList vendorItemList) {
-        VENDOR_ITEM_DB.put(vendorItemList.itemListId(), vendorItemList);
+    public static void addVendorItemsToDb(VendorItemList vendorItemList) {
+        VENDOR_ITEMS_DB.put(vendorItemList.itemListId(), vendorItemList);
     }
 
     public static List<Item> convertIdArrayToItemList(int vendorItemListId) {
         List<Item> itemList = new ArrayList<>();
-        for (int itemId : VENDOR_ITEM_DB.get(vendorItemListId).itemsId()) {
+        for (int itemId : VENDOR_ITEMS_DB.get(vendorItemListId).itemsId()) {
             itemList.add(ItemDB.returnItemFromDB(itemId));
         }
 
@@ -31,7 +31,7 @@ public class VendorOfferDB {
         List<VendorItemList> tempVendorItemList = new ArrayList<>();
 
         for (int vendorItemListId : vendorCharacter.getItemListsId()) {
-            VendorItemList vendorItemList = VENDOR_ITEM_DB.get(vendorItemListId);
+            VendorItemList vendorItemList = VENDOR_ITEMS_DB.get(vendorItemListId);
             if (vendorItemList.listLevel() == level) {
                 tempVendorItemList.add(vendorItemList);
             }
@@ -40,7 +40,7 @@ public class VendorOfferDB {
         try {
             return tempVendorItemList.get(RandomNumberGenerator.getRandomNumber(0, tempVendorItemList.size() - 1));
         } catch (Exception e) {
-            return VENDOR_ITEM_DB.get(0);
+            return VENDOR_ITEMS_DB.get(0);
         }
     }
 }

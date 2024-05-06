@@ -40,6 +40,7 @@ public class Location {
         this.locationStages = new HashMap<>();
     }
 
+
     public StringBuilder printLocationServices() {
         boolean vendor = false;
         int numOfVendors = 0;
@@ -77,24 +78,6 @@ public class Location {
         return stringBuilder;
     }
 
-    public int getStageTotal() {
-        return locationStages.size();
-    }
-
-    public void incrementStageCompleted() {
-        this.stageCompleted++;
-    }
-
-    public void incrementStageDiscovered() {
-        if (stageDiscovered < locationStages.size()) {
-            this.stageDiscovered++;
-        }
-    }
-
-    public LocationStage getLocationStage(int order) {
-        return locationStages.get(order);
-    }
-
     public void printLocationHeader() {
         PrintUtil.printExtraLongDivider();
         System.out.println(ConsoleColor.YELLOW + "\t" + this.getLocationName() + ConsoleColor.RESET
@@ -123,6 +106,24 @@ public class Location {
                     System.out.println();
                 }
             }
+        }
+    }
+
+    public LocationStage getLocationStage(int order) {
+        return locationStages.get(order);
+    }
+
+    public int getStageTotal() {
+        return locationStages.size();
+    }
+
+    public void incrementStageCompleted() {
+        this.stageCompleted++;
+    }
+
+    public void incrementStageDiscovered() {
+        if (stageDiscovered < locationStages.size()) {
+            this.stageDiscovered++;
         }
     }
 

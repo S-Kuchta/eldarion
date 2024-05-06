@@ -48,7 +48,7 @@ public class HeroMenuService {
             }
             case 2 -> this.inventoryService.mainMenu(hero);
             case 3 -> this.abilityMenu(hero);
-            case 4 -> this.questService.heroAcceptedQuestMenu(hero, hero.getHeroAcceptedQuest());
+            case 4 -> this.questService.heroAcceptedQuestMenu(hero);
             case 5 -> this.heroSpellManager.spellMenu(hero);
             case 6 -> this.gameSettingsMenu();
             default -> PrintUtil.printEnterValidInput();

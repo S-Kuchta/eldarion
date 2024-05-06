@@ -109,6 +109,7 @@ public class LocationService {
             location.incrementStageDiscovered();
             discoverNextStage(location, locationStageOrder);
             locationStage.completeStage();
+            hero.restoreHealthAndManaAfterTurn();
         }
 
         // Completing all location stages
@@ -116,13 +117,16 @@ public class LocationService {
             location.setCleared(true);
             hero.checkIfQuestObjectivesAndQuestIsCompleted();
         }
-
-        hero.restoreHealthAndManaAfterTurn();
     }
 
     private void discoverNextStage(Location location, int locationStageOrder) {
-        if (location.getLocationStages().get(locationStageOrder + 1) != null) {
-            location.getLocationStages().get(locationStageOrder + 1).setStageDiscovered(true);
+        LocationStage nextLocationStage = location.getLocationStages().get(locationStageOrder + 1);
+        if (nextLocationStage != null) {
+            nextLocationStage.setStageDiscovered(true);
+
+            if (nextLocationStage instanceof LocationStageQuestGiver locationStageQuestGiver) {
+                locationStageQuestGiver.setStageName(QuestGiverCharacterDB.returnQuestGiverName(locationStageQuestGiver.getQuestGiverId()));
+            }
         }
     }
 }

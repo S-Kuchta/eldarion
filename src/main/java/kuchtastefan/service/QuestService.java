@@ -17,7 +17,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Setter
 @Getter
@@ -26,6 +25,7 @@ public class QuestService {
     private QuestGiverCharacter questGiverCharacter;
 
     public void questGiverMenu(Hero hero, List<Quest> quests) {
+        System.out.println("quest giver menu");
         printQuestsMenu(quests);
         try {
             int choice = InputUtil.intScanner();
@@ -34,8 +34,7 @@ public class QuestService {
             }
 
             if (hero.getHeroAcceptedQuest().containsValue(quests.get(choice - 1))) {
-                this.selectedQuestMenu(hero.getHeroAcceptedQuest()
-                        .get(quests.get(choice - 1).getQuestId()), hero, quests);
+                this.selectedQuestMenu(hero.getHeroAcceptedQuest().get(quests.get(choice - 1).getQuestId()), hero, quests);
             } else {
                 this.selectedQuestMenu(quests.get(choice - 1), hero, quests);
             }
@@ -46,11 +45,8 @@ public class QuestService {
         }
     }
 
-    public void heroAcceptedQuestMenu(Hero hero, Map<Integer, Quest> questMap) {
-        List<Quest> quests = new ArrayList<>();
-        for (Map.Entry<Integer, Quest> questEntry : questMap.entrySet()) {
-            quests.add(questEntry.getValue());
-        }
+    public void heroAcceptedQuestMenu(Hero hero) {
+        List<Quest> quests = new ArrayList<>(hero.getHeroAcceptedQuest().values());
 
         PrintUtil.printLongDivider();
         System.out.println("\t-- Quest Details --");
@@ -78,14 +74,13 @@ public class QuestService {
     }
 
     private void printQuestsMenu(List<Quest> quests) {
+        System.out.println("print quests menu");
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
 
         int index = 1;
         for (Quest quest : quests) {
-            PrintUtil.printIndexAndText(String.valueOf(index),
-                    quest.getQuestName() + " " + PrintUtil.returnQuestSuffix(quest));
-
+            PrintUtil.printIndexAndText(String.valueOf(index), quest.getQuestName() + " " + PrintUtil.returnQuestSuffix(quest));
             index++;
             System.out.println();
         }
@@ -100,7 +95,7 @@ public class QuestService {
      * @param quests only needed for switching between menus
      */
     private void selectedQuestMenu(Quest quest, Hero hero, List<Quest> quests) {
-
+        System.out.println("som tu ked sa to deje? ");
         PrintUtil.printQuestDetails(quest, hero);
         System.out.println();
 
@@ -127,10 +122,11 @@ public class QuestService {
             }
         }
 
-        int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> this.questGiverMenu(hero, quests);
-            case 1 -> {
+        while (true) {
+            int choice = InputUtil.intScanner();
+            if (choice == 0) {
+                break;
+            } else if (choice == 1) {
                 if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
                     System.out.println("\t\t --> Quest accepted <--");
                     quest.startTheQuest(hero);
@@ -141,12 +137,40 @@ public class QuestService {
                     quest.turnInTheQuest(hero);
                     this.questGiverMenu(hero, quests);
                 }
-            }
-            default -> {
+            } else {
                 PrintUtil.printEnterValidInput();
                 this.selectedQuestMenu(quest, hero, quests);
             }
         }
+
+
+
+//        while (true) {
+//            int choice = InputUtil.intScanner();
+//            switch (choice) {
+////            case 0 -> this.questGiverMenu(hero, quests);
+//                case 0 -> {
+//                    return;
+//                }
+//                case 1 -> {
+//                    if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
+//                        System.out.println("\t\t --> Quest accepted <--");
+//                        quest.startTheQuest(hero);
+//                        this.questGiverMenu(hero, quests);
+//                    }
+//
+//                    if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+//                        quest.turnInTheQuest(hero);
+//                        this.questGiverMenu(hero, quests);
+//                    }
+//                }
+//                default -> {
+//                    PrintUtil.printEnterValidInput();
+//                    this.selectedQuestMenu(quest, hero, quests);
+//                }
+//            }
+//        }
+
     }
 
     public void updateQuestProgressFromEnemyActions(Hero hero, Enemy enemy) {
@@ -154,8 +178,9 @@ public class QuestService {
             for (QuestObjective questObjective : quest.getQuestObjectives()) {
                 if (!questObjective.isCompleted()) {
                     if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective) {
-                        if (questBringItemFromEnemyObjective.checkEnemy(enemy.getNpcId()))
+                        if (questBringItemFromEnemyObjective.checkEnemy(enemy.getNpcId())) {
                             enemy.addItemToItemDrop(ItemDB.returnItemFromDB(questBringItemFromEnemyObjective.getObjectiveItemId()));
+                        }
                     }
 
                     if (questObjective instanceof QuestKillObjective questKillObjective) {
@@ -164,8 +189,6 @@ public class QuestService {
                         }
                     }
                 }
-//                questObjective.printQuestObjectiveAssignment(hero);
-//                questObjective.checkIfQuestObjectiveIsCompleted(hero);
             }
         }
     }

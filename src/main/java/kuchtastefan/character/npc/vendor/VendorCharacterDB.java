@@ -1,12 +1,14 @@
 package kuchtastefan.character.npc.vendor;
 
 import kuchtastefan.utility.RandomNumberGenerator;
+import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class VendorDB {
+public class VendorCharacterDB {
 
+    @Getter
     private static final Map<Integer, VendorCharacter> VENDOR_DB = new HashMap<>();
     private static final Map<Integer, VendorCharacter> MERCHANT_DB = new HashMap<>();
 
@@ -21,6 +23,12 @@ public class VendorDB {
     public static void setRandomCurrentVendorCharacterItemListId(int level) {
         for (VendorCharacter vendorCharacter : VENDOR_DB.values()) {
             vendorCharacter.setRandomCurrentItemListId(level);
+        }
+    }
+
+    public static void setVendorCharacterItemListId(Map<Integer, Integer> vendorIdAndItemListId) {
+        for (Map.Entry<Integer, Integer> entry : vendorIdAndItemListId.entrySet()) {
+            VENDOR_DB.get(entry.getKey()).setCurrentItemListId(entry.getValue());
         }
     }
 

@@ -3,7 +3,7 @@ package kuchtastefan.constant;
 public class Constant {
     public static final int INITIAL_ABILITY_POINTS = 10;
     public static final int INCREASE_ABILITY_POINTS_AFTER_LEVEL_UP = 4;
-    public static final int BASE_EXPERIENCE_POINTS_NEEDED_FOR_NEW_LEVEL = 550;
+    public static final int BASE_EXPERIENCE_POINTS_NEEDED_FOR_NEW_LEVEL = 750;
     public static final int HEALTH_OF_ONE_POINT = 7;
     public static final int MANA_OF_ONE_POINT = 7;
     public static final int INITIAL_LEVEL = 1;

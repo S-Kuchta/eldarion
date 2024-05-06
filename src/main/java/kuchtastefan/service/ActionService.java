@@ -31,7 +31,7 @@ public class ActionService {
                 totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
 
                 // TODO watch for color of this print
-                System.out.println(ConsoleColor.GREEN_BRIGHT + "\tCritical hit!" + ConsoleColor.RESET);
+                System.out.print(ConsoleColor.RED + "\tCritical hit! " + ConsoleColor.RESET);
             }
 
             action.setCurrentActionValue(totalActionValue);

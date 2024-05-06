@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventory;
+import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.ItemDB;
@@ -203,6 +204,7 @@ public class Hero extends GameCharacter {
 
                 this.experiencePoints -= this.experiencePointsService.getNeededExperiencePointsForNewLevel();
                 this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
+                VendorCharacterDB.setRandomCurrentVendorCharacterItemListId(this.level);
             }
 
             if (experiencePointsGained > 0) {

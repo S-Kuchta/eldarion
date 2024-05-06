@@ -8,7 +8,6 @@ import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,7 +39,7 @@ public class QuestGiverCharacter {
      *
      * @param hero The hero whose accepted quest list is being connected.
      */
-    private void connectHeroQuestListWithCharacterQuestList(Hero hero) {
+    public void connectHeroQuestListWithCharacterQuestList(Hero hero) {
         for (Quest quest : this.quests) {
             for (Map.Entry<Integer, Quest> questMap : hero.getHeroAcceptedQuest().entrySet()) {
                 if (quest.equals(questMap.getValue())) {
@@ -59,7 +58,6 @@ public class QuestGiverCharacter {
         connectHeroQuestListWithCharacterQuestList(hero);
         setNameBasedOnQuestsAvailable(hero);
         questService.questGiverMenu(hero, this.quests);
-        connectHeroQuestListWithCharacterQuestList(hero);
     }
 
     /**
@@ -72,7 +70,6 @@ public class QuestGiverCharacter {
         this.name = this.baseName + returnNameSuffix(hero);
     }
 
-
     private String returnNameSuffix(Hero hero) {
         connectHeroQuestListWithCharacterQuestList(hero);
         int numberOfTurnedInQuests = 0;
@@ -81,21 +78,36 @@ public class QuestGiverCharacter {
 
         for (Quest quest : this.quests) {
 
-            if (quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
-                numberOfTurnedInQuests++;
-            }
-            if (quest.getQuestStatus().equals(QuestStatus.UNAVAILABLE)) {
-                haveQuestUnavailable = true;
-            }
-
-            if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
-                haveQuestAvailable = true;
-            }
-
-            if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
-                return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + " - ";
+            switch (quest.getQuestStatus()) {
+                case TURNED_IN:
+                    numberOfTurnedInQuests++;
+                    break;
+                case UNAVAILABLE:
+                    haveQuestUnavailable = true;
+                    break;
+                case AVAILABLE:
+                    haveQuestAvailable = true;
+                    break;
+                case COMPLETED:
+                    return " - ?";
             }
         }
+
+//            if (quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
+//                numberOfTurnedInQuests++;
+//            }
+//            if (quest.getQuestStatus().equals(QuestStatus.UNAVAILABLE)) {
+//                haveQuestUnavailable = true;
+//            }
+//
+//            if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
+//                haveQuestAvailable = true;
+//            }
+//
+//            if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+//                return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + " - ";
+//            }
+//        }
 
         if (haveQuestAvailable && haveQuestUnavailable) {
             return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
@@ -109,7 +121,7 @@ public class QuestGiverCharacter {
             return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
         }
 
-        return numberOfTurnedInQuests == this.quests.size() ? " -- " + ConsoleColor.YELLOW + "COMPLETED" + ConsoleColor.RESET + " -- " : "";
+        return numberOfTurnedInQuests == this.quests.size() ? " > Completed < " : "";
     }
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
@@ -134,7 +146,6 @@ public class QuestGiverCharacter {
 
     public void convertQuestIdToQuest() {
         this.quests = new ArrayList<>();
-
         for (int questId : this.questsId) {
             this.quests.add(QuestDB.returnQuestFromDB(questId));
         }

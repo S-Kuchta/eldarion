@@ -3,7 +3,7 @@ package kuchtastefan.world.event.specificEvent;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.service.ShopService;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
-import kuchtastefan.character.npc.vendor.VendorDB;
+import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.utility.RandomNameGenerator;
@@ -35,7 +35,7 @@ public class MerchantEvent extends Event {
             switch (choice) {
                 case 0 -> System.out.println("\t--> You just walk around merchant and greets him <--");
                 case 1 -> {
-                    VendorCharacter vendorCharacter = VendorDB.returnRandomMerchant();
+                    VendorCharacter vendorCharacter = VendorCharacterDB.returnRandomMerchant();
                     vendorCharacter.setRandomCurrentItemListId(this.eventLevel);
                     vendorCharacter.setName(RandomNameGenerator.getRandomName());
                     ShopService shopService = new ShopService(vendorCharacter);

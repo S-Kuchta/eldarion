@@ -36,4 +36,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
-#/external-files/saved-games/**
+/external-files/saved-games/**

@@ -97,7 +97,8 @@ public class Location {
                     if (locationStage.getValue() instanceof CanEnterStageAfterComplete && this.isCleared()) {
                         completed = "";
                     } else {
-                        completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
+//                        completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
+                        completed = locationStage.getValue().isStageCompleted() ? ConsoleColor.YELLOW + " ✔ " + ConsoleColor.RESET : "";
                     }
 
                     PrintUtil.printIndexAndText(String.valueOf(index + locationStage.getKey()), locationStage.getValue().getStageName() + " " + completed);

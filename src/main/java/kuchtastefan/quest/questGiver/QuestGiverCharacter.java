@@ -121,7 +121,8 @@ public class QuestGiverCharacter {
             return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
         }
 
-        return numberOfTurnedInQuests == this.quests.size() ? " > Completed < " : "";
+//        return numberOfTurnedInQuests == this.quests.size() ? " > Completed < " : "";
+        return numberOfTurnedInQuests == this.quests.size() ? ConsoleColor.YELLOW + "  ✔ " + ConsoleColor.RESET : "";
     }
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {

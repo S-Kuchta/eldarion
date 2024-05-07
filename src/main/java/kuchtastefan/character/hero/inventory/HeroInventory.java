@@ -60,13 +60,12 @@ public class HeroInventory {
         }
 
         if (hasRequiredItems(item, count)) {
+            System.out.print("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " has been removed from your inventory");
             if (this.heroInventory.get(item) == count) {
                 this.heroInventory.remove(item);
-                System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " has been removed from your inventory");
             } else {
                 this.heroInventory.put(item, this.heroInventory.get(item) - count);
-                System.out.println("\tYou have " + this.heroInventory.get(item) + "x "
-                        + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " in inventory");
+                System.out.println(" -> " + this.heroInventory.get(item) + "x left");
             }
         }
     }

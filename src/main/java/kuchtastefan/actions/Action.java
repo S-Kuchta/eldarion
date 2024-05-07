@@ -56,6 +56,8 @@ public abstract class Action {
      * @return An ActionValueRange object representing the range of action values.
      */
     public ActionValueRange returnActionValueRange(GameCharacter spellCaster) {
+        // TODO watch for values of abilities
+
         // Value of action increase by multiplier per level -> min. ability value
         int valueIncreasedByLevel = this.baseActionValue + (spellCaster.getLevel() * Constant.BONUS_VALUE_PER_LEVEL);
         // max. ability value

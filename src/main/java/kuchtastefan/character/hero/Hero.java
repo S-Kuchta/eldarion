@@ -85,12 +85,8 @@ public class Hero extends GameCharacter {
         updateWearingItemAbilityPoints();
     }
 
-    /**
-     * Set all items to NoItem and set all wearingItemAbilityPoints to 0 for each ability.
-     */
-    public void wearDownAllEquippedItems() {
-        this.equippedItem = initialEquip();
-        this.updateWearingItemAbilityPoints();
+    public boolean isItemEquipped(WearableItem wearableItem) {
+        return this.getEquippedItem().get(wearableItem.getItemType()).equals(wearableItem);
     }
 
     /**

@@ -66,7 +66,9 @@ public class BlacksmithingService implements Workshop {
      */
     private boolean dismantleItem(Hero hero, WearableItem item) {
         ItemAndCount reagent = item.dismantle();
-        hero.unEquipItem(item);
+        if (hero.isItemEquipped(item)) {
+            hero.unEquipItem(item);
+        }
         hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
         hero.getHeroInventory().addItemToInventory(reagent.item(), reagent.count());
         return true;

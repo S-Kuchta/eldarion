@@ -20,6 +20,7 @@ public class ShopService implements UsingHeroInventory {
     }
 
 
+    @Override
     public void mainMenu(Hero hero) {
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
@@ -49,7 +50,7 @@ public class ShopService implements UsingHeroInventory {
             mainMenu(hero);
         } else if (choice == 1) {
             hero.addGolds(item.returnSellItemPrice());
-            if (item instanceof WearableItem wearableItem) {
+            if (item instanceof WearableItem wearableItem && hero.isItemEquipped(wearableItem)) {
                 hero.unEquipItem(wearableItem);
             }
 
@@ -88,24 +89,6 @@ public class ShopService implements UsingHeroInventory {
                 Item item = vendorCharacter.returnVendorOffer().get(choice - 1);
                 if (hero.getHeroGold() >= item.getPrice()) {
                     confirmPurchase(hero, item);
-//                    PrintUtil.printLongDivider();
-//                    System.out.println("\tAre you sure you want to buy " + item.getName());
-//                    PrintUtil.printIndexAndText("0", "No");
-//                    System.out.println();
-//                    PrintUtil.printIndexAndText("1", "Yes");
-//                    System.out.println();
-//
-//                    int confirmInput = InputUtil.intScanner();
-//                    switch (confirmInput) {
-//                        case 0 -> {
-//                        }
-//                        case 1 -> {
-//                            hero.getHeroInventory().addItemToInventory(item, 1);
-//                            hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
-//                            System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory");
-//                        }
-//                        default -> PrintUtil.printEnterValidInput();
-//                    }
                     mainMenu(hero);
                     return;
                 } else {
@@ -126,7 +109,6 @@ public class ShopService implements UsingHeroInventory {
         int confirmInput = InputUtil.intScanner();
         switch (confirmInput) {
             case 0 -> {
-                return;
             }
             case 1 -> {
                 hero.getHeroInventory().addItemToInventory(item, 1);

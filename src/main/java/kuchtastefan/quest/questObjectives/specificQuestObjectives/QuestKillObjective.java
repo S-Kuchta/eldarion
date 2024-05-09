@@ -34,9 +34,10 @@ public class QuestKillObjective extends QuestObjective {
 
     @Override
     public void questObjectiveAssignment(Hero hero) {
-        NonPlayerCharacter questTarget = CharacterDB.CHARACTER_DB.get(this.questEnemyId);
-
-        System.out.println("\tKill " + hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget) + this.countEnemyToKill + "/" + " " + questTarget.getName());
+        QuestEnemy questTarget = (QuestEnemy) CharacterDB.CHARACTER_DB.get(this.questEnemyId);
+//        System.out.println(hero.getEnemyKilled().getEnemyKilled().get(questTarget));
+//        System.out.println(hero.getEnemyKilled().containsEnemy(questTarget));
+        System.out.println("\tKill " + hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget) + "/" + this.countEnemyToKill + " " + questTarget.getName());
     }
 
     @Override

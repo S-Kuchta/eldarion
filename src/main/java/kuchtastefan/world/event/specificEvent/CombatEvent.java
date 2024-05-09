@@ -113,6 +113,7 @@ public class CombatEvent extends Event {
 
             hero.addGolds(goldEarn);
             hero.gainExperiencePoints(enemy.enemyExperiencePointsValue());
+
             if (enemy instanceof QuestEnemy questEnemy) {
                 hero.getEnemyKilled().addQuestEnemyKilled(hero, questEnemy);
             }

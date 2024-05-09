@@ -1,13 +1,13 @@
 package kuchtastefan.character.npc.enemy;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.world.Biome;
 import lombok.Getter;
 
 import java.util.Map;
+import java.util.Objects;
 
 @Getter
 public class QuestEnemy extends Enemy implements QuestObjectiveTarget {
@@ -19,10 +19,16 @@ public class QuestEnemy extends Enemy implements QuestObjectiveTarget {
         this.questObjectiveId = questObjectiveId;
     }
 
-//    @Override
-//    public void makeProgressInQuestObjective(Hero hero) {
-//        if (hero.getHeroQuests().containsQuestObjective(questObjectiveId)) {
-//            hero.getHeroQuests().getQuestObjective(this.questObjectiveId).questObjectiveAssignment(hero);
-//        }
-//    }
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        QuestEnemy that = (QuestEnemy) object;
+        return questObjectiveId == that.questObjectiveId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(questObjectiveId);
+    }
 }

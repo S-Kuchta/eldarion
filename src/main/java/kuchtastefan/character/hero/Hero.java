@@ -37,7 +37,6 @@ public class Hero extends GameCharacter {
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
-//    private final Map<Integer, Quest> heroAcceptedQuest;
     private final HeroQuests heroQuests;
     private final Map<Integer, Spell> learnedSpells;
     private final Map<Integer, Location> discoveredLocationList;
@@ -58,7 +57,6 @@ public class Hero extends GameCharacter {
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
         this.heroQuests = new HeroQuests();
-//        this.heroAcceptedQuest = new HashMap<>();
         this.learnedSpells = new HashMap<>();
         this.discoveredLocationList = new HashMap<>();
         this.inCombat = false;

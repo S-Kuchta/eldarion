@@ -23,11 +23,31 @@ public class CharacterDB {
     private static final Gson GSON = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
     public static Enemy returnNewEnemy(int characterId) {
-        Enemy newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), Enemy.class);
+
+        System.out.println(CHARACTER_DB.get(characterId).getClass());
+        Enemy newEnemy = (Enemy) CHARACTER_DB.get(characterId);
+        System.out.println(newEnemy.getClass());
+
+
+        if (CHARACTER_DB.get(characterId) instanceof QuestEnemy) {
+            System.out.println("returning enemy");
+            newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), QuestEnemy.class);
+        } else {
+            System.out.println("returning quest enemy");
+            newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), Enemy.class);
+        }
+
+        System.out.println(newEnemy.getClass());
+
         newEnemy.setItemDrop();
         newEnemy.setGoldDrop();
-
         return newEnemy;
+
+//        Enemy newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), Enemy.class);
+//        newEnemy.setItemDrop();
+//        newEnemy.setGoldDrop();
+
+//        return newEnemy;
     }
 
     public static NonPlayerCharacter returnNewCharacter(int characterId) {
@@ -47,15 +67,17 @@ public class CharacterDB {
             character.setBuffsAndDebuffs(new HashSet<>());
         }
 
-        if (character instanceof QuestEnemy questEnemy) {
-            QUEST_ENEMY_DB.put(character.getNpcId(), questEnemy);
-            System.out.println("Quest enemy added to db" + questEnemy.getName());
-        } else if (character instanceof Enemy enemy) {
-            CHARACTER_DB.put(character.getNpcId(), enemy);
-            System.out.println("Enemy added to db" + enemy.getName());
-        } else {
-            CHARACTER_DB.put(character.getNpcId(), character);
-            System.out.println("Character added to db" + character.getName());
-        }
+        CHARACTER_DB.put(character.getNpcId(), character);
+
+//        if (character instanceof QuestEnemy questEnemy) {
+//            QUEST_ENEMY_DB.put(character.getNpcId(), questEnemy);
+//            System.out.println("Quest enemy added to db" + questEnemy.getName());
+//        } else if (character instanceof Enemy enemy) {
+//            CHARACTER_DB.put(character.getNpcId(), enemy);
+//            System.out.println("Enemy added to db" + enemy.getName());
+//        } else {
+//            CHARACTER_DB.put(character.getNpcId(), character);
+//            System.out.println("Character added to db" + character.getName());
+//        }
     }
 }

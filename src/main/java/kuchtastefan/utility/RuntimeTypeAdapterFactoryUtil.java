@@ -59,8 +59,8 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(ActionSkipTurn.class)
             .registerSubtype(ActionDecreaseAbilityPoint.class);
 
-    public static final RuntimeTypeAdapterFactory<GameCharacter> gameCharactersRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
-            .of(GameCharacter.class)
+    public static final RuntimeTypeAdapterFactory<NonPlayerCharacter> gameCharactersRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
+            .of(NonPlayerCharacter.class)
             .registerSubtype(NonPlayerCharacter.class)
             .registerSubtype(Enemy.class)
             .registerSubtype(QuestEnemy.class);

@@ -27,14 +27,7 @@ public class GatherCraftingReagentItemEvent extends Event {
             return true;
         }
 
-        if (item.getItemType().equals(CraftingReagentItemType.ALCHEMY_REAGENT)) {
-            System.out.println("\t--> You gather " + numberOfFindingItems + "x " + item.getName() + " <--");
-        }
-
-        if (item.getItemType().equals(CraftingReagentItemType.BLACKSMITH_REAGENT)) {
-            System.out.println("\t--> You mined " + numberOfFindingItems + "x " + item.getName() + " <--");
-        }
-
+        System.out.println("--> During travelling You find and gather <--");
         hero.getHeroInventory().addItemToInventory(item, numberOfFindingItems);
         hero.checkIfQuestObjectivesAndQuestIsCompleted();
 
@@ -44,7 +37,7 @@ public class GatherCraftingReagentItemEvent extends Event {
 
     private CraftingReagentItem findRandomCraftingReagentItem() {
         List<CraftingReagentItem> craftingReagentItemList = ItemDB.returnItemListByLevelAndType(CraftingReagentItem.class,
-                new ItemFilter(this.eventLevel, 0));
+                new ItemFilter(this.eventLevel, 1));
 
         return craftingReagentItemList.get(RandomNumberGenerator.getRandomNumber(0, craftingReagentItemList.size() - 1));
     }

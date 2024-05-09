@@ -97,7 +97,6 @@ public class Location {
                     if (locationStage.getValue() instanceof CanEnterStageAfterComplete && this.isCleared()) {
                         completed = "";
                     } else {
-//                        completed = locationStage.getValue().isStageCompleted() ? " - COMPLETED -" : "";
                         completed = locationStage.getValue().isStageCompleted() ? ConsoleColor.YELLOW + " ✔ " + ConsoleColor.RESET : "";
                     }
 
@@ -128,14 +127,6 @@ public class Location {
         }
 
         return count;
-    }
-
-    public int currentStageToEnter(int stageOrder) {
-        if (this.locationStages.get(stageOrder) instanceof LocationStageQuestGiver) {
-            return stageOrder + 1;
-        } else {
-            return stageOrder;
-        }
     }
 
     public LocationStage getLocationStage(int order) {

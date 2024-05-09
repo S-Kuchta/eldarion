@@ -2,16 +2,18 @@ package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.UsingHeroInventory;
-import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.Item;
-import kuchtastefan.item.usableItem.UsableItem;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
+import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
+
+import static kuchtastefan.item.usableItem.UsableItem.returnUseItemText;
 
 public class InventoryService implements UsingHeroInventory {
 
@@ -36,21 +38,22 @@ public class InventoryService implements UsingHeroInventory {
 
     @Override
     public boolean itemOptions(Hero hero, Item item) {
-        PrintUtil.printMenuHeader(item.getName());
-        PrintUtil.printMenuOptions("Go back", "Use item");
+        if (item instanceof UsableItem usableItem) {
+            PrintUtil.printMenuHeader(item.getName());
+            PrintUtil.printMenuOptions("Go back", returnUseItemText(item));
 
-        final int choice = InputUtil.intScanner();
-        switch (choice) {
-            case 0 -> mainMenu(hero);
-            case 1 -> {
-                if (item instanceof UsableItem usableItem) {
+            final int choice = InputUtil.intScanner();
+            switch (choice) {
+                case 0 -> mainMenu(hero);
+                case 1 -> {
                     return usableItem.useItem(hero);
                 }
-            }
 
-            default -> PrintUtil.printEnterValidInput();
+                default -> PrintUtil.printEnterValidInput();
+            }
         }
 
+        mainMenu(hero);
         return false;
     }
 

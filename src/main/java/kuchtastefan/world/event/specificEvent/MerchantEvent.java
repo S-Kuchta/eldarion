@@ -20,7 +20,7 @@ public class MerchantEvent extends Event {
     @Override
     public boolean eventOccurs(Hero hero) {
 
-        int randomNumberToMeet = RandomNumberGenerator.getRandomNumber(0, 1);
+        int randomNumberToMeet = RandomNumberGenerator.getRandomNumber(0, 2);
 
         if (randomNumberToMeet == 0) {
             System.out.println("\t--> The merchant was too fast for you, you couldn't catch up and talk to him <--");

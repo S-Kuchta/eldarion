@@ -32,17 +32,17 @@ public class DiscoverLocationEvent extends Event {
             }
 
             if (location.getLocationLevel() > hero.getLevel()) {
-                System.out.println("\tYou are too afraid to go closer to the location.");
+                System.out.println("\t--> You are too afraid to go closer to the location <--");
                 break;
             }
 
             if (hero.getDiscoveredLocationList().containsKey(location.getLocationId())) {
-                System.out.println("\tThis location seems familiar to you, you've been here before.");
+                System.out.println("\t--> This location seems familiar to you, you've been here before <--");
                 break;
             }
 
             if (this.allLocations.size() == hero.getDiscoveredLocationList().size()) {
-                System.out.println("\tYou discovered all locations in this region.");
+                System.out.println("\t--> You discovered all locations in this region <--");
                 break;
             }
         }

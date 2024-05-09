@@ -2,8 +2,11 @@ package kuchtastefan.item;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.ConsoleColor;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
@@ -34,6 +37,18 @@ public abstract class Item {
     public String getName() {
         return ConsoleColor.YELLOW + this.name + ConsoleColor.RESET;
     }
+
+//    public String returnUseItemText() {
+//        if (this instanceof ConsumableItem) {
+//            return "Consume item";
+//        }
+//
+//        if (this instanceof WearableItem) {
+//            return "Equip item";
+//        }
+//
+//        return "Use item";
+//    }
 
     @Override
     public boolean equals(Object o) {

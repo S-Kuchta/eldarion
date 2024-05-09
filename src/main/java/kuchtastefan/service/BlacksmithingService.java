@@ -42,9 +42,12 @@ public class BlacksmithingService implements Workshop {
      */
     @Override
     public boolean itemOptions(Hero hero, Item item) {
+        ItemAndCount neededToRefine = ((WearableItem) item).reagentNeededToRefine();
         boolean success = false;
         PrintUtil.printMenuHeader(item.getName());
-        PrintUtil.printMenuOptions("Go back", "Refinement item", "Dismantle item");
+        PrintUtil.printMenuOptions("Go back",
+                "Refinement item (" + neededToRefine.count() + "x " + neededToRefine.item().getName() + ")",
+                "Dismantle item");
 
         final int choice = InputUtil.intScanner();
         switch (choice) {
@@ -103,6 +106,11 @@ public class BlacksmithingService implements Workshop {
         hero.getHeroInventory().addItemToInventory(refinedItem, 1);
 
         System.out.println("\tYou refinement your item " + refinedItem.getName() + " to " + refinedItem.getWearableItemQuality() + " quality");
+        if (hero.isItemEquipped(item)) {
+            hero.unEquipItem(item);
+            hero.equipItem(refinedItem);
+        }
+
         return true;
     }
 }

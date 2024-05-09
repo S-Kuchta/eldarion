@@ -81,9 +81,10 @@ public class LocationService {
         }
 
         // LocationStage header
-        PrintUtil.printLongDivider();
-        System.out.println("\t\t\t" + locationStage.getStageName());
-        PrintUtil.printLongDivider();
+        PrintUtil.printMenuHeader(locationStage.getStageName());
+//        PrintUtil.printLongDivider();
+//        System.out.println("\t\t\t" + locationStage.getStageName());
+//        PrintUtil.printLongDivider();
 
         // Explore location stage
         boolean isStageCompleted = locationStage.exploreStage(hero, location);

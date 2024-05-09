@@ -77,53 +77,37 @@ public class QuestGiverCharacter {
         boolean haveQuestUnavailable = false;
 
         for (Quest quest : this.quests) {
+            if (quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
+                numberOfTurnedInQuests++;
+            }
+            if (quest.getQuestStatus().equals(QuestStatus.UNAVAILABLE)) {
+                haveQuestUnavailable = true;
+            }
 
-            switch (quest.getQuestStatus()) {
-                case TURNED_IN:
-                    numberOfTurnedInQuests++;
-                    break;
-                case UNAVAILABLE:
-                    haveQuestUnavailable = true;
-                    break;
-                case AVAILABLE:
-                    haveQuestAvailable = true;
-                    break;
-                case COMPLETED:
-                    return " - ?";
+            if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
+                haveQuestAvailable = true;
+            }
+
+            if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+                return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + " - ";
             }
         }
 
-//            if (quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
-//                numberOfTurnedInQuests++;
-//            }
-//            if (quest.getQuestStatus().equals(QuestStatus.UNAVAILABLE)) {
-//                haveQuestUnavailable = true;
-//            }
-//
-//            if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
-//                haveQuestAvailable = true;
-//            }
-//
-//            if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
-//                return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + " - ";
-//            }
-//        }
+            if (haveQuestAvailable && haveQuestUnavailable) {
+                return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
+            }
 
-        if (haveQuestAvailable && haveQuestUnavailable) {
-            return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
+            if (!haveQuestAvailable && haveQuestUnavailable) {
+                return " - " + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + " - ";
+            }
+
+            if (haveQuestAvailable) {
+                return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
+            }
+
+            return numberOfTurnedInQuests == this.quests.size() ? ConsoleColor.YELLOW + "  ✔ " + ConsoleColor.RESET : "";
         }
 
-        if (!haveQuestAvailable && haveQuestUnavailable) {
-            return " - " + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + " - ";
-        }
-
-        if (haveQuestAvailable) {
-            return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
-        }
-
-//        return numberOfTurnedInQuests == this.quests.size() ? " > Completed < " : "";
-        return numberOfTurnedInQuests == this.quests.size() ? ConsoleColor.YELLOW + "  ✔ " + ConsoleColor.RESET : "";
-    }
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
         boolean questCompleted = true;

@@ -13,8 +13,6 @@ import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-import static kuchtastefan.item.usableItem.UsableItem.returnUseItemText;
-
 public class InventoryService implements UsingHeroInventory {
 
     @Override
@@ -40,7 +38,7 @@ public class InventoryService implements UsingHeroInventory {
     public boolean itemOptions(Hero hero, Item item) {
         if (item instanceof UsableItem usableItem) {
             PrintUtil.printMenuHeader(item.getName());
-            PrintUtil.printMenuOptions("Go back", returnUseItemText(item));
+            PrintUtil.printMenuOptions("Go back", UsableItem.returnUseItemText(item));
 
             final int choice = InputUtil.intScanner();
             switch (choice) {

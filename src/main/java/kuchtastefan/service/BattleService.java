@@ -339,6 +339,7 @@ public class BattleService {
      * Determines the spell the enemy character will cast during battle based on certain criteria.
      * Evaluates factors such as potential damage, healing ability, and utility of each spell.
      * The spell with the highest priority points is selected for casting.
+     * There is 20% chance to cast a random spell
      *
      * @param spellCaster The enemy character casting the spell.
      * @param spellTarget The target of the spell (usually the player's character).
@@ -346,10 +347,18 @@ public class BattleService {
     private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, Hero hero) {
         Map<Spell, Integer> spells = new HashMap<>();
         Spell spellToCast = spellCaster.getCharacterSpellList().getFirst();
-        spellCaster.getCharacterSpellList().forEach(spell -> spells.put(spell, 0));
 
-        for (Map.Entry<Spell, Integer> spellIntegerEntry : spells.entrySet()) {
-            if (spellIntegerEntry.getKey().isCanSpellBeCasted()) {
+        spellCaster.getCharacterSpellList().forEach(spell -> {
+            if (spell.isCanSpellBeCasted()) {
+                spells.put(spell, 0);
+            }
+        });
+
+        if (RandomNumberGenerator.getRandomNumber(0, 100) <= 20) {
+            List<Spell> spellList = new ArrayList<>(spells.keySet());
+            spellToCast = spellList.get(RandomNumberGenerator.getRandomNumber(0, spellList.size() - 1));
+        } else {
+            for (Map.Entry<Spell, Integer> spellIntegerEntry : spells.entrySet()) {
                 int priorityPoints = 0;
                 for (Action action : spellIntegerEntry.getKey().getSpellActions()) {
                     priorityPoints += action.returnPriorityPoints(spellCaster, spellTarget);

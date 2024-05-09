@@ -19,7 +19,7 @@ public class BlacksmithingService implements Workshop {
     public void mainMenu(Hero hero) {
         HintDB.printHint(HintName.BLACKSMITH_HINT);
 
-        PrintUtil.printMenuHeader("Blacksmithing");
+//        PrintUtil.printMenuHeader("Blacksmithing");
         PrintUtil.printMenuOptions("Go back", "Hero Inventory");
 
         final int choice = InputUtil.intScanner();

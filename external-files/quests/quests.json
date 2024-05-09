@@ -91,9 +91,10 @@
     "instantTurnIn": false,
     "questObjectives": [
       {
-        "type": "QuestFindItemObjective",
+        "type": "QuestBringItemObjective",
         "questObjectiveName": "Find the Book of Elders",
-        "objectiveItemId": 104
+        "objectiveItemId": 104,
+        "itemCountNeeded": 1
       }
     ],
     "questReward": {

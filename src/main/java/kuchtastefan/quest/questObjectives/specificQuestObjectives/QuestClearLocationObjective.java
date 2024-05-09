@@ -2,6 +2,7 @@ package kuchtastefan.quest.questObjectives.specificQuestObjectives;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.world.location.LocationDB;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
@@ -28,12 +29,13 @@ public class QuestClearLocationObjective extends QuestObjective {
     }
 
     @Override
-    public void printQuestObjectiveAssignment(Hero hero) {
+    public boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget, Hero hero) {
+        return false;
+    }
+
+    @Override
+    public void questObjectiveAssignment(Hero hero) {
         String cleared = this.isCompleted() ? "Cleared" : "Not Cleared Yet";
-        System.out.println("\tClear "
-                + ConsoleColor.YELLOW
-                + LocationDB.returnLocation(this.locationId).getLocationName()
-                + ConsoleColor.RESET
-                + " -> " + cleared);
+        System.out.println("\tClear " + LocationDB.returnLocation(this.locationId).getLocationName() + " -> " + cleared);
     }
 }

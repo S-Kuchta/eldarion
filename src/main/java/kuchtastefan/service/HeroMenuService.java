@@ -18,13 +18,13 @@ import java.util.Map;
 
 @Getter
 public class HeroMenuService {
-    private final InventoryService inventoryService;
+    private final InventoryMenuService inventoryMenuService;
     private final HeroAbilityManager heroAbilityManager;
     private final QuestService questService;
     private final HeroSpellManager heroSpellManager;
 
     public HeroMenuService(HeroAbilityManager heroAbilityManager) {
-        this.inventoryService = new InventoryService();
+        this.inventoryMenuService = new InventoryMenuService();
         this.heroAbilityManager = heroAbilityManager;
         this.questService = new QuestService();
         this.heroSpellManager = new HeroSpellManager();
@@ -46,7 +46,7 @@ public class HeroMenuService {
                 showHeroInfo(hero);
                 heroCharacterMenu(hero);
             }
-            case 2 -> this.inventoryService.mainMenu(hero);
+            case 2 -> this.inventoryMenuService.mainMenu(hero);
             case 3 -> this.abilityMenu(hero);
             case 4 -> this.questService.heroAcceptedQuestMenu(hero);
             case 5 -> this.heroSpellManager.spellMenu(hero);

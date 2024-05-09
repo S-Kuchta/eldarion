@@ -28,6 +28,7 @@ public class QuestService {
 
     public void questGiverMenu(Hero hero, List<Quest> quests) {
         System.out.println("quest giver menu");
+
         printQuestsMenu(quests);
         try {
             int choice = InputUtil.intScanner();
@@ -77,6 +78,7 @@ public class QuestService {
 
     private void printQuestsMenu(List<Quest> quests) {
         System.out.println("print quests menu");
+
         PrintUtil.printIndexAndText("0", "Go back");
         System.out.println();
 
@@ -98,6 +100,7 @@ public class QuestService {
      */
     private void selectedQuestMenu(Quest quest, Hero hero, List<Quest> quests) {
         System.out.println("som tu ked sa to deje? ");
+
         PrintUtil.printQuestDetails(quest, hero);
         System.out.println();
 
@@ -175,23 +178,23 @@ public class QuestService {
 
     }
 
-    public void updateQuestProgressFromEnemyActions(Hero hero, Enemy enemy) {
-        for (Quest quest : hero.getHeroAcceptedQuest().values()) {
-            for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                if (!questObjective.isCompleted()) {
-                    if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective) {
-                        if (questBringItemFromEnemyObjective.checkEnemy(enemy.getNpcId())) {
-                            enemy.addItemToItemDrop(ItemDB.returnItemFromDB(questBringItemFromEnemyObjective.getObjectiveItemId()));
-                        }
-                    }
-
-                    if (questObjective instanceof QuestKillObjective questKillObjective) {
-                        if (enemy.getNpcId() == questKillObjective.getQuestEnemyId()) {
-                            questKillObjective.increaseCurrentCountEnemyProgress();
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    public void updateQuestProgressFromEnemyActions(Hero hero, Enemy enemy) {
+//        for (Quest quest : hero.getHeroAcceptedQuest().values()) {
+//            for (QuestObjective questObjective : quest.getQuestObjectives()) {
+//                if (!questObjective.isCompleted()) {
+//                    if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective) {
+//                        if (questBringItemFromEnemyObjective.checkEnemy(enemy.getNpcId())) {
+//                            enemy.addItemToItemDrop(ItemDB.returnItemFromDB(questBringItemFromEnemyObjective.getObjectiveItemId()));
+//                        }
+//                    }
+//
+//                    if (questObjective instanceof QuestKillObjective questKillObjective) {
+//                        if (enemy.getNpcId() == questKillObjective.getQuestEnemyId()) {
+//                            questKillObjective.increaseCurrentCountEnemyProgress();
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

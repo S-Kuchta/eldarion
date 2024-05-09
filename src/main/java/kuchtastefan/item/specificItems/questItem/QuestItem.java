@@ -9,8 +9,11 @@ import lombok.Setter;
 @Setter
 public class QuestItem extends Item {
 
-    public QuestItem(Integer itemId, String name, double price, int itemLevel) {
+    final int questId;
+
+    public QuestItem(Integer itemId, String name, double price, int itemLevel, int questId) {
         super(itemId, name, price, itemLevel);
+        this.questId = questId;
     }
 
     @Override

@@ -2,7 +2,9 @@ package kuchtastefan.character.npc;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.Enemy;
+import kuchtastefan.quest.Quest;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 

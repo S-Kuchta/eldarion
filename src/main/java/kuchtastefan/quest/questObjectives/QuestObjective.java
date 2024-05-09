@@ -18,11 +18,14 @@ public abstract class QuestObjective {
         this.questObjectiveName = questObjectiveName;
     }
 
-    public abstract void printQuestObjectiveAssignment(Hero hero);
+    public abstract void questObjectiveAssignment(Hero hero);
 
     public abstract void checkIfQuestObjectiveIsCompleted(Hero hero);
 
     public String getQuestObjectiveName() {
         return ConsoleColor.YELLOW + questObjectiveName + ConsoleColor.RESET;
     }
+
+    public abstract boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget, Hero hero);
+
 }

@@ -224,12 +224,12 @@ public class BattleService {
      * @param hero The hero character controlled by the player.
      */
     private void playerTurn(Hero hero) {
-        InventoryService inventoryService = new InventoryService();
+        InventoryMenuService inventoryMenuService = new InventoryMenuService();
 
         while (true) {
             printHeroBattleMenu(hero);
             String choice = InputUtil.stringScanner().toUpperCase();
-            if (choice.matches("\\d+") && handleNumericChoice(hero, inventoryService, Integer.parseInt(choice))) {
+            if (choice.matches("\\d+") && handleNumericChoice(hero, inventoryMenuService, Integer.parseInt(choice))) {
                 break;
             } else if (handleNonNumericChoice(choice)) {
                 break;
@@ -237,12 +237,12 @@ public class BattleService {
         }
     }
 
-    private boolean handleNumericChoice(Hero hero, InventoryService inventoryService, int parsedChoice) {
+    private boolean handleNumericChoice(Hero hero, InventoryMenuService inventoryMenuService, int parsedChoice) {
         try {
             PrintUtil.printExtraLongDivider();
             if (parsedChoice == hero.getCharacterSpellList().size()) {
                 return hero.getHeroInventory().selectItem(hero, ConsumableItem.class,
-                        new ItemFilter(ConsumableItemType.POTION), inventoryService, 1);
+                        new ItemFilter(ConsumableItemType.POTION), inventoryMenuService, 1);
             } else {
                 return hero.getCharacterSpellList().get(parsedChoice).useSpell(
                         new CharactersInvolvedInBattle(hero, this.playerTarget, enemyList, alliesList, tempCharacterList));

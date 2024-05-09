@@ -68,6 +68,7 @@ public class Hero extends GameCharacter {
             System.out.println("\tYou equipped " + wearableItem.getName());
             this.equippedItem.put(wearableItem.getItemType(), wearableItem);
         }
+
         updateWearingItemAbilityPoints();
     }
 
@@ -241,6 +242,7 @@ public class Hero extends GameCharacter {
     }
 
     public void addGolds(double golds) {
+        // TODO refactor print
         this.heroGold += golds;
     }
 

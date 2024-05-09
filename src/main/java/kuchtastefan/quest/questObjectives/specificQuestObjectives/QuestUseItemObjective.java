@@ -5,6 +5,7 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.world.location.Location;
@@ -27,7 +28,7 @@ public class QuestUseItemObjective extends QuestObjective implements RemoveObjec
     }
 
     @Override
-    public void printQuestObjectiveAssignment(Hero hero) {
+    public void questObjectiveAssignment(Hero hero) {
         Location location = LocationDB.returnLocation(this.locationId);
         LocationStage locationStage = location.getLocationStages().get(this.locationStageId);
         Item item = ItemDB.returnItemFromDB(this.itemToUseId);
@@ -42,6 +43,11 @@ public class QuestUseItemObjective extends QuestObjective implements RemoveObjec
             if (item instanceof UsableQuestItem usableQuestItem && usableQuestItem.isWasUsed()) {
                 System.out.println("\t" + " You completed " + this.getQuestObjectiveName() + " quest objective");
             }
+    }
+
+    @Override
+    public boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget, Hero hero) {
+        return false;
     }
 
     @Override

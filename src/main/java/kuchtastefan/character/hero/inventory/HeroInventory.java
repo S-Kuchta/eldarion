@@ -6,6 +6,10 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.itemType.HaveType;
+import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.quest.questObjectives.MakeProgressInQuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.utility.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +21,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class HeroInventory {
+public class HeroInventory implements MakeProgressInQuestObjective {
 
     private final Map<Item, Integer> heroInventory;
 
@@ -26,12 +30,24 @@ public class HeroInventory {
     }
 
 
+    @Override
+    public boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget) {
+        return false;
+    }
+
     public void addItemToInventory(Item item, int count) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
         Item itemCopy = gson.fromJson(gson.toJson(item), item.getClass());
+
         System.out.println("\t" + count + "x " + itemCopy.getName() + " has been added to your inventory");
         for (int i = 0; i < count; i++) {
             this.heroInventory.merge(itemCopy, 1, Integer::sum);
+        }
+    }
+
+    public void addQuestItemToInventory(QuestItem questItem, int count, Hero hero) {
+        if (hero.getHeroAcceptedQuest().containsKey(questItem.getQuestId())) {
+            addItemToInventory(questItem, count);
         }
     }
 
@@ -43,6 +59,10 @@ public class HeroInventory {
         }
 
         return null;
+    }
+
+    public int getItemCount(Item item) {
+        return this.heroInventory.getOrDefault(item, 0);
     }
 
     public boolean hasRequiredItems(Item item, int count) {

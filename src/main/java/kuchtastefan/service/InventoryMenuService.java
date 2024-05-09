@@ -13,7 +13,7 @@ import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 
-public class InventoryService implements UsingHeroInventory {
+public class InventoryMenuService implements UsingHeroInventory {
 
     @Override
     public void mainMenu(Hero hero) {

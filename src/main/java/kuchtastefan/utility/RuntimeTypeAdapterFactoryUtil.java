@@ -71,7 +71,7 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(QuestBringItemFromEnemyObjective.class)
             .registerSubtype(QuestClearLocationObjective.class)
             .registerSubtype(QuestUseItemObjective.class)
-            .registerSubtype(QuestFindItemObjective.class);
+            .registerSubtype(QuestBringItemObjective.class);
 
     public static final RuntimeTypeAdapterFactory<? extends Item> itemsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Item.class)

@@ -5,6 +5,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.service.BattleService;
 import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.ConsoleColor;
@@ -95,7 +96,7 @@ public class CombatEvent extends Event {
         QuestService questService = new QuestService();
         for (Enemy enemy : this.enemies) {
             System.out.println();
-            questService.updateQuestProgressFromEnemyActions(hero, enemy);
+//            questService.updateQuestProgressFromEnemyActions(hero, enemy);
             double goldEarn = enemy.getGoldDrop();
 
             PrintUtil.printMenuHeader(ConsoleColor.RESET + "Loot from " + enemy.getName());

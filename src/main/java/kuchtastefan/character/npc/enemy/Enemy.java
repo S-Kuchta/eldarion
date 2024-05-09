@@ -10,6 +10,7 @@ import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestBringItemFromEnemyObjective;
 import kuchtastefan.world.Biome;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -20,7 +21,7 @@ import java.util.*;
 
 @Getter
 @Setter
-public class Enemy extends NonPlayerCharacter {
+public class Enemy extends NonPlayerCharacter implements QuestObjectiveTarget {
 
     private List<Item> itemsDrop;
     private Integer[] specialItemsDrop;

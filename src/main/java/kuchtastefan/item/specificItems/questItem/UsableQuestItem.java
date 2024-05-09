@@ -9,8 +9,8 @@ public class UsableQuestItem extends QuestItem {
 
     private boolean wasUsed;
 
-    public UsableQuestItem(Integer itemId, String name, double price, int itemLevel, boolean wasUsed) {
-        super(itemId, name, price, itemLevel);
+    public UsableQuestItem(Integer itemId, String name, double price, int itemLevel, boolean wasUsed, int questId) {
+        super(itemId, name, price, itemLevel, questId);
         this.wasUsed = wasUsed;
     }
 }

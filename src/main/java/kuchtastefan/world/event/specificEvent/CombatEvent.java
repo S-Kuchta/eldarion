@@ -3,11 +3,11 @@ package kuchtastefan.world.event.specificEvent;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.Enemy;
+import kuchtastefan.character.npc.enemy.QuestEnemy;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.service.BattleService;
-import kuchtastefan.service.QuestService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -93,14 +93,17 @@ public class CombatEvent extends Event {
     }
 
     private void battleWon(Hero hero) {
-        QuestService questService = new QuestService();
         for (Enemy enemy : this.enemies) {
             System.out.println();
-//            questService.updateQuestProgressFromEnemyActions(hero, enemy);
             double goldEarn = enemy.getGoldDrop();
 
             PrintUtil.printMenuHeader(ConsoleColor.RESET + "Loot from " + enemy.getName());
             for (Item item : enemy.getItemsDrop()) {
+                if (item instanceof QuestItem questItem) {
+                    hero.getHeroInventory().addQuestItemToInventory(questItem, 1, hero);
+                    continue;
+                }
+
                 hero.getHeroInventory().addItemToInventory(item, 1);
             }
 
@@ -110,7 +113,9 @@ public class CombatEvent extends Event {
 
             hero.addGolds(goldEarn);
             hero.gainExperiencePoints(enemy.enemyExperiencePointsValue());
-            hero.checkIfQuestObjectivesAndQuestIsCompleted();
+            if (enemy instanceof QuestEnemy questEnemy) {
+                hero.getEnemyKilled().addQuestEnemyKilled(hero, questEnemy);
+            }
         }
     }
 

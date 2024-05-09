@@ -14,16 +14,16 @@ public class QuestChain extends Quest {
     private final int previousQuestId;
 
     public QuestChain(int questId, String questName, String questDescription, int questLevel,
-                      List<? extends QuestObjective> questObjectives,
+                      int[] questObjectivesIds,
                       QuestReward questReward, int previousQuestId, boolean instantTurnIn) {
 
-        super(questId, questName, questDescription, questLevel, questObjectives, questReward, instantTurnIn);
+        super(questId, questName, questDescription, questLevel, questObjectivesIds, questReward, instantTurnIn);
         this.previousQuestId = previousQuestId;
     }
 
     public boolean canBeQuestAccepted(Hero hero) {
         try {
-            return hero.getHeroAcceptedQuest().get(this.previousQuestId).getQuestStatus().equals(QuestStatus.TURNED_IN);
+            return hero.getHeroQuests().getHeroAcceptedQuest().get(this.previousQuestId).getQuestStatus().equals(QuestStatus.TURNED_IN);
         } catch (NullPointerException e) {
             return false;
         }

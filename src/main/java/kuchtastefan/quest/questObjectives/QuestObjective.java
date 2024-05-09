@@ -10,10 +10,12 @@ import lombok.Setter;
 @Getter
 public abstract class QuestObjective {
 
+    private final int questObjectiveId;
     protected boolean completed;
     protected final String questObjectiveName;
 
-    public QuestObjective(String questObjectiveName) {
+    public QuestObjective(int questObjectiveId, String questObjectiveName) {
+        this.questObjectiveId = questObjectiveId;
         this.completed = false;
         this.questObjectiveName = questObjectiveName;
     }

@@ -1,8 +1,9 @@
 [
   {
+    "type": "NonPlayerCharacter",
     "npcId": 300,
     "name": "Summoned Weak Zombie",
-    "characterRarity": "COMMON",
+    "characterRarity": "SUMMONED",
     "npcType": "WARRIOR",
     "baseAbilities": {
       "ATTACK": 3,
@@ -21,6 +22,7 @@
     "level": 1
   },
   {
+    "type": "Enemy",
     "npcId": 301,
     "name": "NightBane Dark Runner",
     "characterRarity": "COMMON",
@@ -42,6 +44,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 302,
     "name": "Insane Ghoul",
     "characterRarity": "RARE",
@@ -63,6 +66,7 @@
     "level": 3
   },
   {
+    "type": "Enemy",
     "npcId": 303,
     "name": "Weak Skeleton",
     "characterRarity": "COMMON",
@@ -84,6 +88,7 @@
     "level": 1
   },
   {
+    "type": "Enemy",
     "npcId": 304,
     "name": "Damned Priest",
     "characterRarity": "RARE",

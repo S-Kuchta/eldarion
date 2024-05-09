@@ -35,6 +35,8 @@ import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.*;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.LocationDB;
@@ -59,6 +61,7 @@ public class FileService {
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationStageRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.gameCharactersRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.vendorRuntimeTypeAdapterFactory)
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
 
@@ -338,6 +341,27 @@ public class FileService {
                     character.setCharacterType(CharacterType.valueOf(file.toUpperCase().replace(".JSON", "")));
                     CharacterDB.addCharacterToDB(character);
                 }
+
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importQuestGiverFromFile() {
+        String path = "external-files/quests/quest-giver";
+        try {
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+
+                List<QuestGiverCharacter> questGivers = this.gson.fromJson(reader, new TypeToken<List<QuestGiverCharacter>>() {
+                }.getType());
+
+                for (QuestGiverCharacter questGiverCharacter : questGivers) {
+                    QuestGiverCharacterDB.addQuestGiverToDB(questGiverCharacter);
+                }
+
                 reader.close();
             }
         } catch (IOException e) {
@@ -356,6 +380,26 @@ public class FileService {
 
                 for (Quest quest : quests) {
                     QuestDB.addQuestToDB(quest);
+                }
+
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importQuestsObjectiveListFromFile() {
+        String path = "external-files/quests/quest-objective";
+
+        try {
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                List<QuestObjective> questObjectives = this.gson.fromJson(reader, new TypeToken<List<QuestObjective>>() {
+                }.getType());
+
+                for (QuestObjective questObjective : questObjectives) {
+                    QuestObjectiveDB.addQuestObjectiveToDB(questObjective);
                 }
 
                 reader.close();
@@ -437,26 +481,6 @@ public class FileService {
 
                 EnemyGroupDB.ENEMY_GROUP_DB.addAll(this.gson.fromJson(reader, new TypeToken<List<EnemyGroup>>() {
                 }.getType()));
-
-                reader.close();
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void importQuestGiverFromFile() {
-        String path = "external-files/quests/quest-giver";
-        try {
-            for (String file : returnFileList(path)) {
-                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-
-                List<QuestGiverCharacter> questGivers = this.gson.fromJson(reader, new TypeToken<List<QuestGiverCharacter>>() {
-                }.getType());
-
-                for (QuestGiverCharacter questGiverCharacter : questGivers) {
-                    QuestGiverCharacterDB.addQuestGiverToDB(questGiverCharacter);
-                }
 
                 reader.close();
             }

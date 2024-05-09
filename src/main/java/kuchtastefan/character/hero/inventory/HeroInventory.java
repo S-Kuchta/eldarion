@@ -3,12 +3,11 @@ package kuchtastefan.character.hero.inventory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.quest.questObjectives.MakeProgressInQuestObjective;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.utility.*;
 import lombok.Getter;
@@ -30,11 +29,6 @@ public class HeroInventory implements MakeProgressInQuestObjective {
     }
 
 
-    @Override
-    public boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget) {
-        return false;
-    }
-
     public void addItemToInventory(Item item, int count) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
         Item itemCopy = gson.fromJson(gson.toJson(item), item.getClass());
@@ -46,8 +40,9 @@ public class HeroInventory implements MakeProgressInQuestObjective {
     }
 
     public void addQuestItemToInventory(QuestItem questItem, int count, Hero hero) {
-        if (hero.getHeroAcceptedQuest().containsKey(questItem.getQuestId())) {
+        if (hero.getHeroQuests().containsQuestObjective(questItem.getQuestObjectiveId())) {
             addItemToInventory(questItem, count);
+            QuestObjectiveTarget.makeProgressInQuestObjective(questItem.getQuestObjectiveId(), hero);
         }
     }
 

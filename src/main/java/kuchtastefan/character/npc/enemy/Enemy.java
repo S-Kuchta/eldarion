@@ -8,20 +8,19 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
-import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
-import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestBringItemFromEnemyObjective;
-import kuchtastefan.world.Biome;
 import kuchtastefan.utility.RandomNumberGenerator;
+import kuchtastefan.world.Biome;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
-public class Enemy extends NonPlayerCharacter implements QuestObjectiveTarget {
+public class Enemy extends NonPlayerCharacter {
 
     private List<Item> itemsDrop;
     private Integer[] specialItemsDrop;
@@ -81,5 +80,4 @@ public class Enemy extends NonPlayerCharacter implements QuestObjectiveTarget {
     public double enemyExperiencePointsValue() {
         return this.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + this.getCharacterRarity().getExperienceGainedValue();
     }
-
 }

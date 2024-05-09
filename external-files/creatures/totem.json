@@ -1,5 +1,6 @@
 [
   {
+    "type": "NonPlayerCharacter",
     "npcId": 600,
     "name": "Fire Totem",
     "characterRarity": "COMMON",
@@ -21,6 +22,7 @@
     "level": 2
   },
   {
+    "type": "NonPlayerCharacter",
     "npcId": 601,
     "name": "Water Totem",
     "characterRarity": "COMMON",
@@ -42,6 +44,7 @@
     "level": 2
   },
   {
+    "type": "NonPlayerCharacter",
     "npcId": 602,
     "name": "Air Totem",
     "characterRarity": "COMMON",
@@ -64,6 +67,7 @@
     "level": 2
   },
   {
+    "type": "NonPlayerCharacter",
     "npcId": 603,
     "name": "Earth Totem",
     "characterRarity": "COMMON",

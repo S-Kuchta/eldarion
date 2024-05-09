@@ -1,5 +1,6 @@
 [
   {
+    "type": "NonPlayerCharacter",
     "npcId": 400,
     "name": "Water Elemental",
     "characterRarity": "SUMMONED",
@@ -22,7 +23,9 @@
     "level": 0
   },
   {
+    "type": "QuestEnemy",
     "npcId": 401,
+    "questObjectiveId": 1,
     "name": "Weak Water Elemental",
     "characterRarity": "COMMON",
     "npcType": "MAGE",
@@ -44,7 +47,9 @@
     "level": 1
   },
   {
+    "type": "QuestEnemy",
     "npcId": 402,
+    "questObjectiveId": 2,
     "name": "Lake Isle Water Elemental",
     "characterRarity": "RARE",
     "npcType": "MAGE",

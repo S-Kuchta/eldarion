@@ -99,7 +99,7 @@ public class LocationService {
         // Completing all location stages
         if (location.getStageCompleted() == location.getStageTotal()) {
             location.setCleared(true);
-            hero.checkIfQuestObjectivesAndQuestIsCompleted();
+//            hero.checkIfQuestObjectivesAndQuestIsCompleted();
         }
     }
 

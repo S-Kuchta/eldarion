@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventory;
+import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
@@ -36,14 +37,17 @@ public class Hero extends GameCharacter {
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
-    private final Map<Integer, Quest> heroAcceptedQuest;
+//    private final Map<Integer, Quest> heroAcceptedQuest;
+    private final HeroQuests heroQuests;
     private final Map<Integer, Spell> learnedSpells;
     private final Map<Integer, Location> discoveredLocationList;
+    private final EnemyKilled enemyKilled;
     private boolean inCombat;
 
 
     public Hero(String name) {
         super(name, new HashMap<>());
+        this.enemyKilled = new EnemyKilled();
         this.baseAbilities = this.getInitialAbilityPoints();
         this.effectiveAbilities = this.getInitialAbilityPoints();
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
@@ -53,7 +57,8 @@ public class Hero extends GameCharacter {
         this.experiencePointsService = new ExperiencePointsService();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
-        this.heroAcceptedQuest = new HashMap<>();
+        this.heroQuests = new HeroQuests();
+//        this.heroAcceptedQuest = new HashMap<>();
         this.learnedSpells = new HashMap<>();
         this.discoveredLocationList = new HashMap<>();
         this.inCombat = false;
@@ -211,27 +216,27 @@ public class Hero extends GameCharacter {
         }
     }
 
-    /**
-     * Check if quest and quest objective is completed.
-     * Add this method at the end of each event which can complete quest or quest objective
-     */
-    public void checkIfQuestObjectivesAndQuestIsCompleted() {
-        for (Quest quest : this.heroAcceptedQuest.values()) {
-            if (!quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
-                for (QuestObjective questObjective : quest.getQuestObjectives()) {
-                    if (!questObjective.isCompleted()) {
-
-                        // TODO fix print every time when checkIfQuestObjectivesAndQuestIsCompleted is called
-//                        System.out.println("\n\tQuest Progress " + quest.getQuestName());
-//                        questObjective.printQuestObjectiveAssignment(this);
-                        questObjective.checkIfQuestObjectiveIsCompleted(this);
-                    }
-                }
-
-                quest.checkIfQuestIsCompleted(this);
-            }
-        }
-    }
+//    /**
+//     * Check if quest and quest objective is completed.
+//     * Add this method at the end of each event which can complete quest or quest objective
+//     */
+//    public void checkIfQuestObjectivesAndQuestIsCompleted() {
+//        for (Quest quest : this.heroAcceptedQuest.values()) {
+//            if (!quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
+//                for (QuestObjective questObjective : quest.getQuestObjectives()) {
+//                    if (!questObjective.isCompleted()) {
+//
+//                        // TODO fix print every time when checkIfQuestObjectivesAndQuestIsCompleted is called
+////                        System.out.println("\n\tQuest Progress " + quest.getQuestName());
+////                        questObjective.printQuestObjectiveAssignment(this);
+//                        questObjective.checkIfQuestObjectiveIsCompleted(this);
+//                    }
+//                }
+//
+//                quest.checkIfQuestIsCompleted(this);
+//            }
+//        }
+//    }
 
     public void checkHeroGoldsAndSubtractIfHaveEnough(double goldNeeded) {
         if (this.heroGold >= goldNeeded) {

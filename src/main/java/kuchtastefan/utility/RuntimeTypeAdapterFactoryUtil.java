@@ -8,6 +8,7 @@ import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.npc.enemy.QuestEnemy;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.character.npc.vendor.specificVendorCharacter.ConsumableVendorCharacter;
 import kuchtastefan.character.npc.vendor.specificVendorCharacter.CraftingReagentItemVendorCharacter;
@@ -60,15 +61,13 @@ public class RuntimeTypeAdapterFactoryUtil {
 
     public static final RuntimeTypeAdapterFactory<GameCharacter> gameCharactersRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(GameCharacter.class)
-            .registerSubtype(GameCharacter.class)
             .registerSubtype(NonPlayerCharacter.class)
             .registerSubtype(Enemy.class)
-            .registerSubtype(Hero.class);
+            .registerSubtype(QuestEnemy.class);
 
     public static final RuntimeTypeAdapterFactory<QuestObjective> questObjectiveRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(QuestObjective.class)
             .registerSubtype(QuestKillObjective.class)
-            .registerSubtype(QuestBringItemFromEnemyObjective.class)
             .registerSubtype(QuestClearLocationObjective.class)
             .registerSubtype(QuestUseItemObjective.class)
             .registerSubtype(QuestBringItemObjective.class);

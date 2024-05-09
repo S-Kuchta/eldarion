@@ -20,8 +20,8 @@ public class QuestUseItemObjective extends QuestObjective implements RemoveObjec
     private final int locationId;
     private final int locationStageId;
 
-    public QuestUseItemObjective(String questObjectiveName, int itemToUseId, int locationId, int locationStageId) {
-        super(questObjectiveName);
+    public QuestUseItemObjective(String questObjectiveName, int itemToUseId, int locationId, int locationStageId, int questObjectiveId) {
+        super(questObjectiveId, questObjectiveName);
         this.itemToUseId = itemToUseId;
         this.locationId = locationId;
         this.locationStageId = locationStageId;

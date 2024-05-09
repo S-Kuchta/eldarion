@@ -6,19 +6,9 @@
     "questDescription": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Kill water Elementals all over the Crystal Lake.",
     "questLevel": 1,
     "instantTurnIn": false,
-    "questObjectives": [
-      {
-        "type": "QuestKillObjective",
-        "questObjectiveName": "Kill Weak Water Elemental",
-        "questEnemyId": 401,
-        "countEnemyToKill": 5
-      },
-      {
-        "type": "QuestKillObjective",
-        "questObjectiveName": "Lake Isle Water Elemental",
-        "questEnemyId": 402,
-        "countEnemyToKill": 1
-      }
+    "questObjectivesIds": [
+      1,
+      2
     ],
     "questReward": {
       "itemsReward": [
@@ -34,12 +24,8 @@
     "questDescription": "Clear the area of Crystal lake.",
     "questLevel": 1,
     "instantTurnIn": false,
-    "questObjectives": [
-      {
-        "type": "QuestClearLocationObjective",
-        "questObjectiveName": "Clear Crystal Lake",
-        "locationId": 2
-      }
+    "questObjectivesIds": [
+      3
     ],
     "questReward": {
       "itemsReward": [
@@ -55,25 +41,10 @@
     "questDescription": "Hey there, could you lend me a hand? They've locked me up in this cell for no reason! I used to serve them, lead the miners, and now I'm stuck here... I want to revenge, can you help me?",
     "questLevel": 2,
     "instantTurnIn": false,
-    "questObjectives": [
-      {
-        "type": "QuestKillObjective",
-        "questObjectiveName": "Kill Miners",
-        "questEnemyId": 204,
-        "countEnemyToKill": 5
-      },
-      {
-        "type": "QuestKillObjective",
-        "questObjectiveName": "Kill Weak WatchMans",
-        "questEnemyId": 205,
-        "countEnemyToKill": 2
-      },
-      {
-        "type": "QuestKillObjective",
-        "questObjectiveName": "Kill Miner Leader",
-        "questEnemyId": 208,
-        "countEnemyToKill": 1
-      }
+    "questObjectivesIds": [
+      4,
+      5,
+      6
     ],
     "questReward": {
       "itemsReward": [
@@ -90,16 +61,14 @@
     "questLevel": 2,
     "instantTurnIn": false,
     "questObjectives": [
-      {
-        "type": "QuestBringItemObjective",
-        "questObjectiveName": "Find the Book of Elders",
-        "objectiveItemId": 104,
-        "itemCountNeeded": 1
-      }
+      7
     ],
     "questReward": {
       "itemsReward": [
-        903,901,903,901
+        903,
+        901,
+        903,
+        901
       ],
       "goldsReward": 50.0
     }
@@ -112,17 +81,12 @@
     "questLevel": 2,
     "instantTurnIn": true,
     "questObjectives": [
-      {
-        "type": "QuestUseItemObjective",
-        "questObjectiveName": "Fill Empty Socket with Coursed Medallion",
-        "itemToUseId": 106,
-        "locationId": 1,
-        "locationStageId": 3
-      }
+      8
     ],
     "questReward": {
       "itemsReward": [
-        901,901
+        901,
+        901
       ],
       "goldsReward": 0.0
     }

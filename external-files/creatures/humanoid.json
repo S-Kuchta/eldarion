@@ -1,5 +1,6 @@
 [
   {
+    "type": "Enemy",
     "npcId": 200,
     "name": "Weak Defias Bandit",
     "characterRarity": "COMMON",
@@ -21,6 +22,7 @@
     "level": 1
   },
   {
+    "type": "Enemy",
     "npcId": 201,
     "name": "Weak Defias Looter",
     "characterRarity": "COMMON",
@@ -42,6 +44,7 @@
     "level": 1
   },
   {
+    "type": "Enemy",
     "npcId": 202,
     "name": "Weak Defias Raider",
     "characterRarity": "RARE",
@@ -63,6 +66,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 203,
     "name": "Defias Boss",
     "characterRarity": "BOSS",
@@ -84,6 +88,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 204,
     "name": "Defias Miner",
     "characterRarity": "COMMON",
@@ -105,6 +110,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 205,
     "name": "Weak Defias WatchMan",
     "characterRarity": "COMMON",
@@ -126,6 +132,7 @@
     "level": 1
   },
   {
+    "type": "Enemy",
     "npcId": 206,
     "name": "Defias WatchMan",
     "characterRarity": "RARE",
@@ -147,6 +154,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 207,
     "name": "Defias Leader",
     "characterRarity": "ELITE",
@@ -168,6 +176,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 208,
     "name": "Defias Miner Leader",
     "characterRarity": "RARE",
@@ -189,6 +198,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 209,
     "name": "Damien Carnage",
     "characterRarity": "ELITE",
@@ -214,6 +224,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 210,
     "name": "Drunken Man",
     "characterRarity": "COMMON",

@@ -11,8 +11,8 @@ import lombok.Getter;
 public class QuestClearLocationObjective extends QuestObjective {
     private final Integer locationId;
 
-    public QuestClearLocationObjective(String questObjectiveName, Integer locationId) {
-        super(questObjectiveName);
+    public QuestClearLocationObjective(String questObjectiveName, Integer locationId, int questObjectiveId) {
+        super(questObjectiveId, questObjectiveName);
         this.locationId = locationId;
     }
 

@@ -1,14 +1,9 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.npc.enemy.Enemy;
-import kuchtastefan.item.ItemDB;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
-import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestBringItemFromEnemyObjective;
-import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestKillObjective;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
@@ -36,8 +31,8 @@ public class QuestService {
                 return;
             }
 
-            if (hero.getHeroAcceptedQuest().containsValue(quests.get(choice - 1))) {
-                this.selectedQuestMenu(hero.getHeroAcceptedQuest().get(quests.get(choice - 1).getQuestId()), hero, quests);
+            if (hero.getHeroQuests().containsQuest(quests.get(choice - 1).getQuestId())) {
+                this.selectedQuestMenu(hero.getHeroQuests().getQuest(choice - 1), hero, quests);
             } else {
                 this.selectedQuestMenu(quests.get(choice - 1), hero, quests);
             }
@@ -49,7 +44,7 @@ public class QuestService {
     }
 
     public void heroAcceptedQuestMenu(Hero hero) {
-        List<Quest> quests = new ArrayList<>(hero.getHeroAcceptedQuest().values());
+        List<Quest> quests = new ArrayList<>(hero.getHeroQuests().getHeroAcceptedQuest().values());
 
         PrintUtil.printLongDivider();
         System.out.println("\t-- Quest Details --");
@@ -147,7 +142,6 @@ public class QuestService {
                 this.selectedQuestMenu(quest, hero, quests);
             }
         }
-
 
 
 //        while (true) {

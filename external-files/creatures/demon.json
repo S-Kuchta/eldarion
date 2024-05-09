@@ -1,5 +1,6 @@
 [
   {
+    "type": "NonPlayerCharacter",
     "npcId": 500,
     "name": "Succubus",
     "characterRarity": "SUMMONED",
@@ -23,6 +24,7 @@
     "level": 1
   },
   {
+    "type": "NonPlayerCharacter",
     "npcId": 501,
     "name": "FelGuard",
     "characterRarity": "SUMMONED",

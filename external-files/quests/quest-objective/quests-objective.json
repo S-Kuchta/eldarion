@@ -1,0 +1,58 @@
+[
+  {
+    "type": "QuestKillObjective",
+    "questObjectiveId": 1,
+    "questObjectiveName": "Kill Weak Water Elemental",
+    "questEnemyId": 401,
+    "countEnemyToKill": 5
+  },
+  {
+    "type": "QuestKillObjective",
+    "questObjectiveId": 2,
+    "questObjectiveName": "Lake Isle Water Elemental",
+    "questEnemyId": 402,
+    "countEnemyToKill": 1
+  },
+  {
+    "type": "QuestClearLocationObjective",
+    "questObjectiveId": 3,
+    "questObjectiveName": "Clear Crystal Lake",
+    "locationId": 2
+  },
+  {
+    "type": "QuestKillObjective",
+    "questObjectiveId": 4,
+    "questObjectiveName": "Kill Miners",
+    "questEnemyId": 204,
+    "countEnemyToKill": 5
+  },
+  {
+    "type": "QuestKillObjective",
+    "questObjectiveId": 5,
+    "questObjectiveName": "Kill Weak WatchMans",
+    "questEnemyId": 205,
+    "countEnemyToKill": 2
+  },
+  {
+    "type": "QuestKillObjective",
+    "questObjectiveId": 6,
+    "questObjectiveName": "Kill Miner Leader",
+    "questEnemyId": 208,
+    "countEnemyToKill": 1
+  },
+  {
+    "type": "QuestBringItemObjective",
+    "questObjectiveId": 7,
+    "questObjectiveName": "Find the Book of Elders",
+    "objectiveItemId": 104,
+    "itemCountNeeded": 1
+  },
+  {
+    "type": "QuestUseItemObjective",
+    "questObjectiveId": 8,
+    "questObjectiveName": "Fill Empty Socket with Coursed Medallion",
+    "itemToUseId": 106,
+    "locationId": 1,
+    "locationStageId": 3
+  }
+]

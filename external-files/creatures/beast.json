@@ -1,5 +1,6 @@
 [
   {
+    "type": "Enemy",
     "npcId": 100,
     "name": "Young Wolf",
     "characterRarity": "COMMON",
@@ -21,6 +22,7 @@
     "level": 1
   },
   {
+    "type": "Enemy",
     "npcId": 101,
     "name": "Bear",
     "characterRarity": "RARE",
@@ -42,6 +44,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 102,
     "name": "Alpha Wolf",
     "characterRarity": "COMMON",
@@ -63,6 +66,7 @@
     "level": 2
   },
   {
+    "type": "Enemy",
     "npcId": 103,
     "name": "Coyote",
     "characterRarity": "COMMON",
@@ -84,6 +88,7 @@
     "level": 3
   },
   {
+    "type": "NonPlayerCharacter",
     "npcId": 104,
     "name": "Spirit Wolf",
     "characterRarity": "SUMMONED",

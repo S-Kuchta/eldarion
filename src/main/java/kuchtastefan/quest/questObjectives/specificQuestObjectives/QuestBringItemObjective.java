@@ -14,8 +14,8 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
     private final int objectiveItemId;
     private final int itemCountNeeded;
 
-    public QuestBringItemObjective(String questObjectiveName, int objectiveItemId, int itemCountNeeded) {
-        super(questObjectiveName);
+    public QuestBringItemObjective(String questObjectiveName, int objectiveItemId, int itemCountNeeded, int questObjectiveId) {
+        super(questObjectiveId, questObjectiveName);
         this.objectiveItemId = objectiveItemId;
         this.itemCountNeeded = itemCountNeeded;
     }

@@ -2,11 +2,14 @@ package kuchtastefan.quest;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,30 +20,40 @@ public class Quest {
     private final String questName;
     private final String questDescription;
     private final int questLevel;
-    private List<? extends QuestObjective> questObjectives;
+    private final int[] questObjectivesIds;
     private final QuestReward questReward;
     private QuestStatus questStatus;
     private final boolean instantTurnIn;
 
 
     public Quest(int questId, String questName, String questDescription, int questLevel,
-                 List<? extends QuestObjective> questObjectives, QuestReward questReward, boolean instantTurnIn) {
+                 int[] questObjectivesIds, QuestReward questReward, boolean instantTurnIn) {
         this.questId = questId;
         this.questName = questName;
         this.questDescription = questDescription;
         this.questLevel = questLevel;
-        this.questObjectives = questObjectives;
+        this.questObjectivesIds = questObjectivesIds;
         this.questReward = questReward;
         this.instantTurnIn = instantTurnIn;
     }
 
 
     public void startTheQuest(Hero hero) {
-        if (!hero.getHeroAcceptedQuest().containsValue(this)) {
-            hero.getHeroAcceptedQuest().put(this.getQuestId(), this);
-            hero.checkIfQuestObjectivesAndQuestIsCompleted();
+        System.out.println(hero.getHeroQuests().containsQuest(this.questId));
+        if (!hero.getHeroQuests().containsQuest(this.questId)) {
+            hero.getHeroQuests().addQuestToHeroAcceptedQuest(this);
             this.setQuestStatus(QuestStatus.ACCEPTED);
+            this.checkIfQuestIsCompleted(hero);
         }
+    }
+
+    public List<QuestObjective> getQuestObjectives() {
+        List<QuestObjective> questObjectives = new ArrayList<>();
+        for (int questObjectiveId : this.questObjectivesIds) {
+            questObjectives.add(QuestObjectiveDB.returnQuestObjectiveFromDb(questObjectiveId));
+        }
+
+        return questObjectives;
     }
 
     /**
@@ -49,7 +62,7 @@ public class Quest {
      */
     public void checkIfQuestIsCompleted(Hero hero) {
         boolean completed = true;
-        for (QuestObjective questObjective : this.questObjectives) {
+        for (QuestObjective questObjective : this.getQuestObjectives()) {
             if (!questObjective.isCompleted()) {
                 completed = false;
                 break;

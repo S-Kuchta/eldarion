@@ -37,8 +37,8 @@ public class QuestDB {
 
     public static void loadQuests(Hero hero) {
         for (Quest quest : QUEST_DB.values()) {
-            if (hero.getHeroAcceptedQuest().containsValue(quest)) {
-                quest.setQuestStatus(hero.getHeroAcceptedQuest().get(quest.getQuestId()).getQuestStatus());
+            if (hero.getHeroQuests().getHeroAcceptedQuest().containsValue(quest)) {
+                quest.setQuestStatus(hero.getHeroQuests().getHeroAcceptedQuest().get(quest.getQuestId()).getQuestStatus());
             }
         }
     }

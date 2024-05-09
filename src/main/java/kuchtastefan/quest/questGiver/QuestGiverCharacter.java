@@ -41,7 +41,7 @@ public class QuestGiverCharacter {
      */
     public void connectHeroQuestListWithCharacterQuestList(Hero hero) {
         for (Quest quest : this.quests) {
-            for (Map.Entry<Integer, Quest> questMap : hero.getHeroAcceptedQuest().entrySet()) {
+            for (Map.Entry<Integer, Quest> questMap : hero.getHeroQuests().getHeroAcceptedQuest().entrySet()) {
                 if (quest.equals(questMap.getValue())) {
                     int position = this.quests.indexOf(questMap.getValue());
                     this.quests.set(position, questMap.getValue());
@@ -111,7 +111,7 @@ public class QuestGiverCharacter {
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
         boolean questCompleted = true;
-        for (Quest quest : hero.getHeroAcceptedQuest().values()) {
+        for (Quest quest : hero.getHeroQuests().getHeroAcceptedQuest().values()) {
 
             if (this.quests.contains(quest) && !quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
                 questCompleted = false;
@@ -120,7 +120,7 @@ public class QuestGiverCharacter {
         }
 
         for (Quest quest : this.quests) {
-            if (!hero.getHeroAcceptedQuest().containsValue(quest)) {
+            if (!hero.getHeroQuests().getHeroAcceptedQuest().containsValue(quest)) {
                 questCompleted = false;
                 break;
             }

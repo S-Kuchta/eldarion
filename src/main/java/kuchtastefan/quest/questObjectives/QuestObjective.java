@@ -20,9 +20,9 @@ public abstract class QuestObjective {
         this.questObjectiveName = questObjectiveName;
     }
 
-    public abstract void questObjectiveAssignment(Hero hero);
+    public abstract void printQuestObjectiveProgress(Hero hero);
 
-    public abstract void checkIfQuestObjectiveIsCompleted(Hero hero);
+    public abstract void verifyQuestObjectiveCompletion(Hero hero);
 
     public String getQuestObjectiveName() {
         return ConsoleColor.YELLOW + questObjectiveName + ConsoleColor.RESET;

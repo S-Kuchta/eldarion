@@ -18,6 +18,7 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.junkItem.JunkItem;
+import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.quest.Quest;
@@ -78,6 +79,7 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(CraftingReagentItem.class)
             .registerSubtype(JunkItem.class)
             .registerSubtype(QuestItem.class)
+            .registerSubtype(KeyItem.class)
             .registerSubtype(WearableItem.class);
 
     public static final RuntimeTypeAdapterFactory<? extends LocationStage> locationStageRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory

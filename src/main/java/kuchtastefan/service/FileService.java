@@ -27,7 +27,9 @@ import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.specificItems.junkItem.JunkItem;
+import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
@@ -291,8 +293,14 @@ public class FileService {
         try {
             for (String file : returnFileList(path)) {
                 BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
-                List<QuestItem> questItemList = new Gson().fromJson(reader, new TypeToken<List<QuestItem>>() {
-                }.getType());
+                List<? extends QuestItem> questItemList;
+                if (file.equals("usable_quest_item.json")) {
+                    questItemList = new Gson().fromJson(reader, new TypeToken<List<UsableQuestItem>>() {
+                    }.getType());
+                } else {
+                    questItemList = new Gson().fromJson(reader, new TypeToken<List<QuestItem>>() {
+                    }.getType());
+                }
 
                 for (QuestItem questItem : questItemList) {
                     ItemDB.addItemToDB(questItem);
@@ -320,6 +328,25 @@ public class FileService {
                     }
 
                     ItemDB.addItemToDB(junkItem);
+                }
+
+                reader.close();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importKeyItemsFromFile() {
+        String path = "external-files/items/key-item";
+        try {
+            for (String file : returnFileList(path)) {
+                BufferedReader reader = new BufferedReader(new FileReader(path + "/" + file));
+                List<KeyItem> keyItemList = new Gson().fromJson(reader, new TypeToken<List<KeyItem>>() {
+                }.getType());
+
+                for (KeyItem keyItem : keyItemList) {
+                    ItemDB.addItemToDB(keyItem);
                 }
 
                 reader.close();

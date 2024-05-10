@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.criticalHit.CanBeCriticalHit;
+import kuchtastefan.actions.criticalHit.CanBeCriticalHit;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.Constant;

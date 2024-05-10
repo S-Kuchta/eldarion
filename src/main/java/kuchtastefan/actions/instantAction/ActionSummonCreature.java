@@ -3,7 +3,7 @@ package kuchtastefan.actions.instantAction;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithoutValue;
+import kuchtastefan.actions.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.NonPlayerCharacter;

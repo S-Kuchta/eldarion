@@ -23,7 +23,7 @@ public class EnemyKilled {
                 this.enemyKilled.put(questEnemy, 1);
             }
 
-            hero.getHeroQuests().getQuestObjective(questEnemy.getQuestObjectiveId()).questObjectiveAssignment(hero);
+            hero.getHeroQuests().makeProgressInQuestObjective(hero, questEnemy.getQuestObjectiveId());
         }
     }
 

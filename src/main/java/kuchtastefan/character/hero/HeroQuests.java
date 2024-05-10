@@ -82,4 +82,10 @@ public class HeroQuests {
             quest.checkIfQuestIsCompleted(hero);
         }
     }
+
+    public void makeProgressInQuestObjective(Hero hero, int questObjectiveId) {
+        QuestObjective questObjective = this.getQuestObjective(questObjectiveId);
+        questObjective.printQuestObjectiveProgress(hero);
+        questObjective.verifyQuestObjectiveCompletion(hero);
+    }
 }

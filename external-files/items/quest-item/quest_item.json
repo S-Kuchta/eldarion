@@ -18,12 +18,6 @@
     "itemLevel": 2
   },
   {
-    "itemId": 103,
-    "name": "Key to Tower of Damned",
-    "price": 0,
-    "itemLevel": 2
-  },
-  {
     "itemId": 104,
     "name": "Book of Elders",
     "price": 0,
@@ -32,18 +26,6 @@
   {
     "itemId": 105,
     "name": "Necromancer Staff",
-    "price": 0,
-    "itemLevel": 2
-  },
-  {
-    "itemId": 106,
-    "name": "Coursed Medallion",
-    "price": 0,
-    "itemLevel": 2
-  },
-  {
-    "itemId": 107,
-    "name": "Mystic Hollow house key",
     "price": 0,
     "itemLevel": 2
   }

@@ -154,7 +154,7 @@
         "stageName": "Tower Door",
         "stageDiscovered": true,
         "itemsIdNeededToEnterStage": [
-          103
+          1201
         ],
         "locationEnemyIdList": [
           303
@@ -388,7 +388,7 @@
         "stageName": "Empty house",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [
-          107
+          1200
         ]
       },
       "8": {

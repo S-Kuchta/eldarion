@@ -363,7 +363,7 @@ public class PrintUtil {
         System.out.println();
 
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
-            questObjective.questObjectiveAssignment(hero);
+            questObjective.printQuestObjectiveProgress(hero);
         }
     }
 

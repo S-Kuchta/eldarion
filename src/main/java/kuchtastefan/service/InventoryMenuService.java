@@ -6,6 +6,7 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
@@ -19,7 +20,7 @@ public class InventoryMenuService implements UsingHeroInventory {
     public void mainMenu(Hero hero) {
         if (!hero.isInCombat()) {
             PrintUtil.printMenuHeader(hero.getName() + " Inventory");
-            PrintUtil.printMenuOptions("Go back", "Wearable Items", "Crafting reagents", "Consumable Items", "Quest Items");
+            PrintUtil.printMenuOptions("Go back", "Wearable Items", "Crafting reagents", "Consumable Items", "Quest Items", "Key Items");
             int choice = InputUtil.intScanner();
             switch (choice) {
                 case 0 -> {
@@ -29,6 +30,7 @@ public class InventoryMenuService implements UsingHeroInventory {
                         hero.getHeroInventory().selectItem(hero, CraftingReagentItem.class, new ItemFilter(), this, 1);
                 case 3 -> hero.getHeroInventory().selectItem(hero, ConsumableItem.class, new ItemFilter(), this, 1);
                 case 4 -> hero.getHeroInventory().selectItem(hero, QuestItem.class, new ItemFilter(), this, 1);
+                case 5 -> hero.getHeroInventory().selectItem(hero, KeyItem.class, new ItemFilter(), this, 1);
                 default -> PrintUtil.printEnterValidInput();
             }
         }
@@ -36,23 +38,7 @@ public class InventoryMenuService implements UsingHeroInventory {
 
     @Override
     public boolean itemOptions(Hero hero, Item item) {
-        if (item instanceof UsableItem usableItem) {
-            PrintUtil.printMenuHeader(item.getName());
-            PrintUtil.printMenuOptions("Go back", UsableItem.returnUseItemText(item));
-
-            final int choice = InputUtil.intScanner();
-            switch (choice) {
-                case 0 -> mainMenu(hero);
-                case 1 -> {
-                    return usableItem.useItem(hero);
-                }
-
-                default -> PrintUtil.printEnterValidInput();
-            }
-        }
-
-        mainMenu(hero);
-        return false;
+        return UsableItem.useItem(hero, item, this);
     }
 
     public void wearableItemsMenu(Hero hero) {

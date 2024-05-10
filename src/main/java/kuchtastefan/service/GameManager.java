@@ -92,6 +92,7 @@ public class GameManager {
         this.fileService.importConsumableItemsFromFile();
         this.fileService.importQuestItemsFromFile();
         this.fileService.importJunkItemsFromFile();
+        this.fileService.importKeyItemsFromFile();
 
         GameSettingsDB.initializeGameSettings();
 

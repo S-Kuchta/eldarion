@@ -7,8 +7,6 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
-import kuchtastefan.quest.questObjectives.MakeProgressInQuestObjective;
-import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.utility.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +18,7 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class HeroInventory implements MakeProgressInQuestObjective {
+public class HeroInventory {
 
     private final Map<Item, Integer> heroInventory;
 
@@ -42,7 +40,7 @@ public class HeroInventory implements MakeProgressInQuestObjective {
     public void addQuestItemToInventory(QuestItem questItem, int count, Hero hero) {
         if (hero.getHeroQuests().containsQuestObjective(questItem.getQuestObjectiveId())) {
             addItemToInventory(questItem, count);
-            QuestObjectiveTarget.makeProgressInQuestObjective(questItem.getQuestObjectiveId(), hero);
+            hero.getHeroQuests().makeProgressInQuestObjective(hero, questItem.getQuestObjectiveId());
         }
     }
 

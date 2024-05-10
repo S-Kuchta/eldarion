@@ -4,7 +4,7 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithoutValue;
+import kuchtastefan.actions.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 
 public class ActionReflectSpell extends ActionWithDuration implements ActionWithoutValue {

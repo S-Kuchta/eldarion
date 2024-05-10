@@ -214,28 +214,6 @@ public class Hero extends GameCharacter {
         }
     }
 
-//    /**
-//     * Check if quest and quest objective is completed.
-//     * Add this method at the end of each event which can complete quest or quest objective
-//     */
-//    public void checkIfQuestObjectivesAndQuestIsCompleted() {
-//        for (Quest quest : this.heroAcceptedQuest.values()) {
-//            if (!quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
-//                for (QuestObjective questObjective : quest.getQuestObjectives()) {
-//                    if (!questObjective.isCompleted()) {
-//
-//                        // TODO fix print every time when checkIfQuestObjectivesAndQuestIsCompleted is called
-////                        System.out.println("\n\tQuest Progress " + quest.getQuestName());
-////                        questObjective.printQuestObjectiveAssignment(this);
-//                        questObjective.checkIfQuestObjectiveIsCompleted(this);
-//                    }
-//                }
-//
-//                quest.checkIfQuestIsCompleted(this);
-//            }
-//        }
-//    }
-
     public void checkHeroGoldsAndSubtractIfHaveEnough(double goldNeeded) {
         if (this.heroGold >= goldNeeded) {
             this.heroGold -= goldNeeded;
@@ -265,7 +243,7 @@ public class Hero extends GameCharacter {
         this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(900), 2);
         this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(902), 1);
 
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(107), 1);
+        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(1200), 1);
 
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(200));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(400));

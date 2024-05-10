@@ -2,7 +2,6 @@ package kuchtastefan.character.npc.enemy;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.character.npc.CharacterType;
-import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.world.Biome;
 import lombok.Getter;
 
@@ -10,7 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Getter
-public class QuestEnemy extends Enemy implements QuestObjectiveTarget {
+public class QuestEnemy extends Enemy {
 
     final int questObjectiveId;
 

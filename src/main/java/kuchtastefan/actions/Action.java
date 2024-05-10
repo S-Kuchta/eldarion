@@ -1,14 +1,10 @@
 package kuchtastefan.actions;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithBaseValue;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithIncreasedValueByPrimaryAbility;
-import kuchtastefan.actions.actionsWIthDuration.actionMarkerInterface.actionValue.ActionWithoutValue;
+import kuchtastefan.actions.actionValue.ActionValue;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
 import kuchtastefan.actions.instantAction.ActionDealDamage;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -17,7 +13,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class Action {
+public abstract class Action implements ActionValue {
 
     protected ActionName actionName;
     protected final int baseActionValue;
@@ -56,36 +52,15 @@ public abstract class Action {
      * @return An ActionValueRange object representing the range of action values.
      */
     public ActionValueRange returnActionValueRange(GameCharacter spellCaster) {
-        // TODO watch for values of abilities
-
-        // Value of action increase by multiplier per level -> min. ability value
+        // Base Value of action increase by multiplier per level -> min. ability value
         int valueIncreasedByLevel = this.baseActionValue + (spellCaster.getLevel() * Constant.BONUS_VALUE_PER_LEVEL);
-        // max. ability value
-        int valueIncreasedByPrimaryAbility = 0;
 
         if (this instanceof ActionDealDamage || this instanceof ActionDealDamageOverTime) {
             valueIncreasedByLevel += spellCaster.getEffectiveAbilityValue(Ability.ATTACK);
         }
 
-        if (this instanceof ActionWithBaseValue) {
-            valueIncreasedByPrimaryAbility = valueIncreasedByLevel;
-        }
-
-        if (this instanceof ActionWithIncreasedValueByPrimaryAbility) {
-            if (spellCaster instanceof Hero hero) {
-                valueIncreasedByPrimaryAbility = valueIncreasedByLevel +
-                        spellCaster.getEffectiveAbilityValue(hero.getCharacterClass().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
-            }
-
-            if (spellCaster instanceof NonPlayerCharacter nonPlayerCharacter) {
-                valueIncreasedByPrimaryAbility = valueIncreasedByLevel + spellCaster.getEffectiveAbilityValue(
-                        nonPlayerCharacter.getNpcType().getPrimaryAbility()) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
-            }
-        }
-
-        if (this instanceof ActionWithoutValue) {
-            valueIncreasedByLevel = 0;
-        }
+        // max. ability value
+        int valueIncreasedByPrimaryAbility = this.actionValue(spellCaster, valueIncreasedByLevel);
 
         return new ActionValueRange(valueIncreasedByLevel, valueIncreasedByPrimaryAbility, valueIncreasedByLevel);
     }

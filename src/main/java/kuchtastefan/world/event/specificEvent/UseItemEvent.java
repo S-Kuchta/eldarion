@@ -1,49 +1,61 @@
 package kuchtastefan.world.event.specificEvent;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.inventory.UsingHeroInventory;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
+import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.event.Event;
 
-public class UseItemEvent extends Event {
+public class UseItemEvent extends Event implements UsingHeroInventory {
 
     private final int itemId;
+    private boolean wasUsed;
 
     public UseItemEvent(int eventLevel, int itemId) {
         super(eventLevel);
         this.itemId = itemId;
+        this.wasUsed = false;
     }
 
     @Override
     public boolean eventOccurs(Hero hero) {
-        Item item = hero.getHeroInventory().getItemFromInventory(this.itemId);
+        mainMenu(hero);
+        return wasUsed;
+    }
 
-        System.out.println("Do you want to use item " + item.getName() + "?");
-        PrintUtil.printIndexAndText("0", "No");
-        PrintUtil.printIndexAndText("1", "Yes");
-
-        while (true) {
-            int input = InputUtil.intScanner();
-            switch (input) {
-                case 0 -> {
-                    return false;
-                }
-                case 1 -> {
-                    if (hero.getHeroInventory().getHeroInventory().containsKey(item)) {
-                        System.out.println("\tYou are using " + item.getName());
-                        if (item instanceof UsableQuestItem usableQuestItem) {
-                            usableQuestItem.setWasUsed(true);
-                        }
-                        return true;
-                    } else {
-                        System.out.println("\tYou do not have needed item!");
-                        return false;
-                    }
-                }
-                default -> PrintUtil.printEnterValidInput();
+    @Override
+    public void mainMenu(Hero hero) {
+        PrintUtil.printMenuOptions("Go back", "Quest items", "Keys");
+        int choice = InputUtil.intScanner();
+        switch (choice) {
+            case 0 -> {
             }
+            case 1 -> hero.getHeroInventory().selectItem(hero, UsableQuestItem.class, new ItemFilter(), this, 1);
+            case 2 -> hero.getHeroInventory().selectItem(hero, KeyItem.class, new ItemFilter(), this, 1);
+            default -> PrintUtil.printEnterValidInput();
         }
     }
+
+    @Override
+    public boolean itemOptions(Hero hero, Item item) {
+        Item neededItem = hero.getHeroInventory().getItemFromInventory(this.itemId);
+        if (neededItem.equals(item)) {
+            this.wasUsed = UsableItem.useItem(hero, item, this);
+            if (item instanceof UsableQuestItem usableQuestItem) {
+                usableQuestItem.setWasUsed(this.wasUsed);
+            }
+        } else {
+            System.out.println("\tThis item does not fit here!");
+            mainMenu(hero);
+            this.wasUsed = false;
+        }
+
+        return this.wasUsed;
+    }
+
 }

@@ -24,7 +24,7 @@ public class QuestEnemy extends Enemy implements QuestObjectiveTarget {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         QuestEnemy that = (QuestEnemy) object;
-        return questObjectiveId == that.questObjectiveId;
+        return questObjectiveId == that.questObjectiveId && super.name.equals(that.name) && super.npcId == that.npcId;
     }
 
     @Override

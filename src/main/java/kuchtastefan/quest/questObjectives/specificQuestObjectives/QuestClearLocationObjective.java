@@ -17,25 +17,18 @@ public class QuestClearLocationObjective extends QuestObjective {
     }
 
     @Override
-    public void checkIfQuestObjectiveIsCompleted(Hero hero) {
-        if (!hero.getDiscoveredLocationList().isEmpty()
-                && hero.getDiscoveredLocationList().get(this.locationId) != null) {
-
-            if (hero.getDiscoveredLocationList().get(this.locationId).isCleared()) {
-                System.out.println("\t" + " You completed " + getQuestObjectiveName() + " quest objective");
-                this.setCompleted(true);
-            }
-        }
-    }
-
-    @Override
-    public boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget, Hero hero) {
-        return false;
-    }
-
-    @Override
     public void questObjectiveAssignment(Hero hero) {
         String cleared = this.isCompleted() ? "Cleared" : "Not Cleared Yet";
         System.out.println("\tClear " + LocationDB.returnLocation(this.locationId).getLocationName() + " -> " + cleared);
+        checkIfQuestObjectiveIsCompleted(hero);
+    }
+
+    @Override
+    public void checkIfQuestObjectiveIsCompleted(Hero hero) {
+        if (!hero.getDiscoveredLocationList().isEmpty() && hero.getDiscoveredLocationList().get(this.locationId) != null) {
+            if (!this.completed && hero.getDiscoveredLocationList().get(this.locationId).isCleared()) {
+                this.setCompleted(hero, true);
+            }
+        }
     }
 }

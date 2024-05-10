@@ -28,6 +28,9 @@ public abstract class QuestObjective {
         return ConsoleColor.YELLOW + questObjectiveName + ConsoleColor.RESET;
     }
 
-    public abstract boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget, Hero hero);
-
+    public void setCompleted(Hero hero, boolean completed) {
+        this.completed = completed;
+        System.out.println("\tYou have completed " + this.getQuestObjectiveName() + " quest objective");
+        hero.getHeroQuests().checkQuestCompletion(hero, this.questObjectiveId);
+    }
 }

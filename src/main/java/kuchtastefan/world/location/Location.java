@@ -1,5 +1,6 @@
 package kuchtastefan.world.location;
 
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
@@ -135,6 +136,16 @@ public class Location {
 
     public int getStageTotal() {
         return locationStages.size();
+    }
+
+    public void setCleared(Hero hero, boolean cleared) {
+        this.cleared = cleared;
+
+        try {
+            hero.getHeroQuests().getQuestObjectiveContainsLocationNeeded(this.locationId).questObjectiveAssignment(hero);
+        } catch (NullPointerException ignored) {
+        }
+
     }
 
     @Override

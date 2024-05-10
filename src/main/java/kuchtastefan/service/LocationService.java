@@ -45,7 +45,7 @@ public class LocationService {
                 }
 
                 if (choice == 1) {
-                    exploreLocationStage(hero, location, determineLocationStage(location, location.getStageCompleted()));
+                    exploreLocationStage(hero, determineLocationStage(location.getStageCompleted()));
                     continue;
                 }
 
@@ -55,7 +55,7 @@ public class LocationService {
                 }
 
                 if (location.getLocationStage(choice - index).isStageDiscovered()) {
-                    exploreLocationStage(hero, location, location.getLocationStage(choice - index));
+                    exploreLocationStage(hero, location.getLocationStage(choice - index));
                 } else {
                     PrintUtil.printEnterValidInput();
                 }
@@ -70,9 +70,8 @@ public class LocationService {
      * If stageCompleted meet value of stageTotal, location is completed and rewards are granted
      *
      * @param hero               Exploring LocationStage
-     * @param location           which stage belong
      */
-    public void exploreLocationStage(Hero hero, Location location, LocationStage locationStage) {
+    public void exploreLocationStage(Hero hero, LocationStage locationStage) {
         AutosaveCount.checkAutosaveCount(hero);
 
         locationStage.setStageDiscovered(true);
@@ -82,9 +81,6 @@ public class LocationService {
 
         // LocationStage header
         PrintUtil.printMenuHeader(locationStage.getStageName());
-//        PrintUtil.printLongDivider();
-//        System.out.println("\t\t\t" + locationStage.getStageName());
-//        PrintUtil.printLongDivider();
 
         // Explore location stage
         boolean isStageCompleted = locationStage.exploreStage(hero, location);
@@ -98,8 +94,7 @@ public class LocationService {
 
         // Completing all location stages
         if (location.getStageCompleted() == location.getStageTotal()) {
-            location.setCleared(true);
-//            hero.checkIfQuestObjectivesAndQuestIsCompleted();
+            location.setCleared(hero, true);
         }
     }
 
@@ -114,7 +109,7 @@ public class LocationService {
         }
     }
 
-    private LocationStage determineLocationStage(Location location, int locationStageOrder) {
+    private LocationStage determineLocationStage(int locationStageOrder) {
         LocationStage locationStage = location.getLocationStages().get(locationStageOrder);
 
         if (locationStage instanceof LocationStageQuestGiver) {
@@ -126,7 +121,6 @@ public class LocationService {
         } else {
             if (locationStage != null && locationStage.isStageCompleted()) {
                 locationStage = location.getLocationStages().get(locationStageOrder + 1);
-
                 discoverNextStage(location, locationStageOrder);
             }
         }

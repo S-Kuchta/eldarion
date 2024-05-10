@@ -5,7 +5,6 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
 import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.world.location.Location;
@@ -13,7 +12,7 @@ import kuchtastefan.world.location.LocationDB;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import lombok.Getter;
 
-@Getter
+//@Getter
 public class QuestUseItemObjective extends QuestObjective implements RemoveObjectiveProgress {
 
     private final int itemToUseId;
@@ -33,25 +32,20 @@ public class QuestUseItemObjective extends QuestObjective implements RemoveObjec
         LocationStage locationStage = location.getLocationStages().get(this.locationStageId);
         Item item = ItemDB.returnItemFromDB(this.itemToUseId);
 
-        System.out.println("\tUse " + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " in "
-                + location.getLocationName() + "  " + locationStage.getStageName());
+        System.out.println("\tUse " + item.getName() + " in " + location.getLocationName() + "  " + locationStage.getStageName());
+        checkIfQuestObjectiveIsCompleted(hero);
     }
 
     @Override
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
-            Item item = hero.getHeroInventory().getItemFromInventory(this.itemToUseId);
-            if (item instanceof UsableQuestItem usableQuestItem && usableQuestItem.isWasUsed()) {
-                System.out.println("\t" + " You completed " + this.getQuestObjectiveName() + " quest objective");
-            }
-    }
-
-    @Override
-    public boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget, Hero hero) {
-        return false;
+        Item item = hero.getHeroInventory().getItemFromInventory(this.itemToUseId);
+        if (!this.completed && item instanceof UsableQuestItem usableQuestItem && usableQuestItem.isWasUsed()) {
+            setCompleted(hero, true);
+        }
     }
 
     @Override
     public void removeCompletedQuestObjectiveAssignment(Hero hero) {
-            hero.getHeroInventory().removeItemFromHeroInventory(hero.getHeroInventory().getItemFromInventory(this.itemToUseId), 1);
+        hero.getHeroInventory().removeItemFromHeroInventory(hero.getHeroInventory().getItemFromInventory(this.itemToUseId), 1);
     }
 }

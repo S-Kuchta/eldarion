@@ -2,6 +2,7 @@ package kuchtastefan.character.hero;
 
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestClearLocationObjective;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -33,7 +34,7 @@ public class HeroQuests {
         return this.heroAcceptedQuest.get(questId);
     }
 
-    public void addQuestObjectiveToHeroQuestObjectives(QuestObjective questObjective) {
+    private void addQuestObjectiveToHeroQuestObjectives(QuestObjective questObjective) {
         this.heroQuestObjectives.put(questObjective.getQuestObjectiveId(), questObjective);
     }
 
@@ -43,5 +44,42 @@ public class HeroQuests {
 
     public QuestObjective getQuestObjective(int questObjectiveId) {
         return this.heroQuestObjectives.get(questObjectiveId);
+    }
+
+    public QuestObjective getQuestObjectiveContainsLocationNeeded(int locationId) {
+        for (QuestObjective questObjective : this.getHeroQuestObjectives().values()) {
+            if (questObjective instanceof QuestClearLocationObjective questClearLocationObjective) {
+                if (questClearLocationObjective.getLocationId().equals(locationId)) {
+                    return questClearLocationObjective;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private Quest findQuestByObjective(int questObjectiveId) {
+        for (Quest quest : this.getHeroAcceptedQuest().values()) {
+            for (QuestObjective questObjective : quest.getQuestObjectives()) {
+                if (questObjective.getQuestObjectiveId() == questObjectiveId) {
+                    return quest;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public void checkQuestCompletion(Hero hero, int questObjectiveId) {
+        Quest quest = findQuestByObjective(questObjectiveId);
+        if (quest != null) {
+            quest.checkIfQuestIsCompleted(hero);
+        }
+    }
+
+    public void checkIfQuestsAreCompleted(Hero hero) {
+        for (Quest quest : this.getHeroAcceptedQuest().values()) {
+            quest.checkIfQuestIsCompleted(hero);
+        }
     }
 }

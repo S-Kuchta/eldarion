@@ -1,6 +1,5 @@
 package kuchtastefan.character.hero;
 
-import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.enemy.QuestEnemy;
 import lombok.Getter;
 
@@ -33,12 +32,6 @@ public class EnemyKilled {
     }
 
     public int getAmountOfKilledEnemy(QuestEnemy questEnemy) {
-        System.out.println(this.containsEnemy(questEnemy));
-        for(QuestEnemy questEnemy1 : this.enemyKilled.keySet()) {
-            System.out.println(questEnemy1.getName());
-            System.out.println(questEnemy1.equals(questEnemy));
-        }
-
         this.enemyKilled.putIfAbsent(questEnemy, 0);
         return this.enemyKilled.get(questEnemy);
     }

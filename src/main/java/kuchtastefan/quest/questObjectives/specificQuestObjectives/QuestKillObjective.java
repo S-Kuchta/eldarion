@@ -11,12 +11,11 @@ import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+//@Getter
+//@Setter
 public class QuestKillObjective extends QuestObjective {
     private final int questEnemyId;
     private final int countEnemyToKill;
-    private int currentCountEnemyProgress;
 
 
     public QuestKillObjective(String questObjectiveName, int questEnemyId, int countEnemyToKill, int questObjectiveId) {
@@ -25,39 +24,18 @@ public class QuestKillObjective extends QuestObjective {
         this.countEnemyToKill = countEnemyToKill;
     }
 
-//    @Override
-//    public void questObjectiveAssignment(Hero hero) {
-//        NonPlayerCharacter enemy = CharacterDB.CHARACTER_DB.get(this.questEnemyId);
-//        System.out.println("\tKill " + this.countEnemyToKill + "x " + enemy.getCharacterRarity() + " "
-//                + enemy.getName() + " - " + "You have " + this.currentCountEnemyProgress + " / " + this.countEnemyToKill + " killed ");
-//    }
-
     @Override
     public void questObjectiveAssignment(Hero hero) {
         QuestEnemy questTarget = (QuestEnemy) CharacterDB.CHARACTER_DB.get(this.questEnemyId);
-//        System.out.println(hero.getEnemyKilled().getEnemyKilled().get(questTarget));
-//        System.out.println(hero.getEnemyKilled().containsEnemy(questTarget));
         System.out.println("\tKill " + hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget) + "/" + this.countEnemyToKill + " " + questTarget.getName());
+        checkIfQuestObjectiveIsCompleted(hero);
     }
 
     @Override
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
-        if (countEnemyToKill == currentCountEnemyProgress) {
-            System.out.println("\t" + " You completed " + this.getQuestObjectiveName() + " quest objective");
-            setCompleted(true);
+        QuestEnemy questTarget = (QuestEnemy) CharacterDB.CHARACTER_DB.get(this.questEnemyId);
+        if (!this.completed && countEnemyToKill == hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget)) {
+            setCompleted(hero, true);
         }
-    }
-
-    @Override
-    public boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget, Hero hero) {
-        if (questObjectiveTarget instanceof Enemy enemy) {
-            return enemy.getNpcId() == questEnemyId;
-        }
-
-        return false;
-    }
-
-    public void increaseCurrentCountEnemyProgress() {
-        this.currentCountEnemyProgress++;
     }
 }

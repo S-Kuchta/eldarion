@@ -23,21 +23,16 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
     @Override
     public void questObjectiveAssignment(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.objectiveItemId);
-        System.out.println("\tBring " + hero.getHeroInventory().getItemCount(item) + "/" + itemCountNeeded + " " + item.getName() );
+        System.out.println("\tBring " + hero.getHeroInventory().getItemCount(item) + "/" + this.itemCountNeeded + " " + item.getName() );
+        checkIfQuestObjectiveIsCompleted(hero);
     }
 
     @Override
     public void checkIfQuestObjectiveIsCompleted(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.objectiveItemId);
-        if (hero.getHeroInventory().hasRequiredItems(item, this.itemCountNeeded)) {
-            setCompleted(true);
-            System.out.println("\t" + "You completed " + this.getQuestObjectiveName() + " quest objective");
+        if (!this.completed && hero.getHeroInventory().hasRequiredItems(item, this.itemCountNeeded)) {
+            setCompleted(hero, true);
         }
-    }
-
-    @Override
-    public boolean makeProgressInQuestObjective(QuestObjectiveTarget questObjectiveTarget, Hero hero) {
-        return false;
     }
 
     @Override

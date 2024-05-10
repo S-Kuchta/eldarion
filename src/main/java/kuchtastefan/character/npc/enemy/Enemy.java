@@ -1,14 +1,12 @@
 package kuchtastefan.character.npc.enemy;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
-import kuchtastefan.quest.questObjectives.QuestObjectiveTarget;
 import kuchtastefan.utility.RandomNumberGenerator;
 import kuchtastefan.world.Biome;
 import lombok.Getter;

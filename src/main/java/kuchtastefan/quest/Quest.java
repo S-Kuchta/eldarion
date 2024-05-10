@@ -61,15 +61,13 @@ public class Quest {
      * Quest is completed if all questObjectives belonging to quest are completed.
      */
     public void checkIfQuestIsCompleted(Hero hero) {
-        boolean completed = true;
         for (QuestObjective questObjective : this.getQuestObjectives()) {
             if (!questObjective.isCompleted()) {
-                completed = false;
-                break;
+                return;
             }
         }
 
-        if (completed && !this.questStatus.equals(QuestStatus.COMPLETED)) {
+        if (!this.questStatus.equals(QuestStatus.COMPLETED)) {
             PrintUtil.printCompleteQuestText(this.questName);
             this.questStatus = QuestStatus.COMPLETED;
         }
@@ -85,7 +83,7 @@ public class Quest {
     public void turnInTheQuest(Hero hero) {
         if (this.getQuestStatus().equals(QuestStatus.COMPLETED)) {
             PrintUtil.printLongDivider();
-            PrintUtil.printCompleteQuestText(this.getQuestName());
+            PrintUtil.printCompleteQuestText(this.questName);
             PrintUtil.printLongDivider();
             this.getQuestReward().giveQuestReward(hero);
             this.setQuestStatus(QuestStatus.TURNED_IN);

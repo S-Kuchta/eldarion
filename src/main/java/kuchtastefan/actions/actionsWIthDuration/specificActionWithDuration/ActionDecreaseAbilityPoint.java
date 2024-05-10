@@ -34,7 +34,7 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration implements Ac
 
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
-        System.out.print("Decrease " + this.returnTargetName(spellCaster, spellTarget) + " " + this.ability.toString() + " by " + this.returnActionValueRange(spellCaster).onlyValue());
+        System.out.print("Decrease " + this.returnTargetName(spellCaster, spellTarget) + " " + this.ability.toString() + " by " + this.returnActionValueRange(spellCaster).getOnlyValue());
     }
 
     @Override

@@ -39,7 +39,7 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration implements Ac
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Increase " + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET
                 + " " + this.ability.toString()
-                + " by " + ConsoleColor.GREEN + this.returnActionValueRange(spellCaster).onlyValue() + ConsoleColor.RESET);
+                + " by " + ConsoleColor.GREEN + this.returnActionValueRange(spellCaster).getOnlyValue() + ConsoleColor.RESET);
     }
 
     @Override

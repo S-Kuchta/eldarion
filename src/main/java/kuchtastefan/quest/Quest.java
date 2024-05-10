@@ -39,7 +39,6 @@ public class Quest {
 
 
     public void startTheQuest(Hero hero) {
-        System.out.println(hero.getHeroQuests().containsQuest(this.questId));
         if (!hero.getHeroQuests().containsQuest(this.questId)) {
             hero.getHeroQuests().addQuestToHeroAcceptedQuest(this);
             this.setQuestStatus(QuestStatus.ACCEPTED);

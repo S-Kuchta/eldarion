@@ -2,6 +2,7 @@ package kuchtastefan.actions;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionValue.ActionValue;
+import kuchtastefan.actions.actionValue.ActionValueRange;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
 import kuchtastefan.actions.instantAction.ActionDealDamage;
 import kuchtastefan.character.GameCharacter;

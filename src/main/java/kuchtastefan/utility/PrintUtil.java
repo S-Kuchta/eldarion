@@ -131,8 +131,6 @@ public class PrintUtil {
 
     public static void printHeaderWithStatsBar(GameCharacter gameCharacter) {
         printExtraLongDivider();
-//        printWhiteLine(20);
-//        System.out.printf("%58s %n", gameCharacter.getName());
         System.out.println("\t" + gameCharacter.getName());
 
         printBar(gameCharacter, Ability.HEALTH);
@@ -270,40 +268,44 @@ public class PrintUtil {
                 }
             }
         }
+
         System.out.println();
     }
 
     public static void printTextWrap(String text) {
-        StringBuilder line = new StringBuilder();
-
+        StringBuilder currentLine = new StringBuilder();
         for (String word : text.split("\\s")) {
-            if (line.length() + word.length() <= 60) {
-                line.append(word).append(" ");
+            if (currentLine.length() + word.length() <= 80) {
+                currentLine.append(word).append(" ");
             } else {
-                printStringSlowly(line.toString().trim());
-                line.setLength(0);
-                line.append(word).append(" ");
+                PrintUtil.printStringSlowly("\t" + currentLine.toString().trim());
+                currentLine.setLength(0);
+                currentLine.append(word).append(" ");
             }
         }
 
-        if (!line.isEmpty()) {
-            printStringSlowly(line.toString().trim());
+        if (!currentLine.isEmpty()) {
+            PrintUtil.printStringSlowly("\t" + currentLine.toString().trim());
         }
+    }
+
+    public static void printWhiteLine(int numberOfSpaces) {
+        for (int i = 0; i < numberOfSpaces; i++) {
+            System.out.print(ConsoleColor.WHITE_UNDERLINED + "\t" + ConsoleColor.RESET);
+        }
+        System.out.println();
     }
 
     public static void printDivider() {
         printWhiteLine(15);
-//        System.out.println("|-----------------------------------------------|");
     }
 
     public static void printLongDivider() {
         printWhiteLine(22);
-//        System.out.println("|----------------------------------------------------------------------------------|");
     }
 
     public static void printExtraLongDivider() {
         printWhiteLine(30);
-//        System.out.println("|-------------------------------------------------------------------------------------------------------------|");
     }
 
     public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
@@ -357,14 +359,15 @@ public class PrintUtil {
 
     public static void printQuestDetails(Quest quest, Hero hero) {
         PrintUtil.printLongDivider();
-        System.out.println("\t\t\t\t------ " + quest.getQuestName() + " ------");
-        System.out.print("\t");
+        System.out.println("\t" + ConsoleColor.MAGENTA + quest.getQuestName() + ConsoleColor.RESET);
         PrintUtil.printTextWrap(quest.getQuestDescription());
-        System.out.println();
 
+        System.out.println("\n\tQuest Objective(s):");
         for (QuestObjective questObjective : quest.getQuestObjectives()) {
             questObjective.printQuestObjectiveProgress(hero);
         }
+
+        PrintUtil.printLongDivider();
     }
 
     public static String returnQuestSuffix(Quest quest) {
@@ -396,13 +399,6 @@ public class PrintUtil {
             PrintUtil.printIndexAndText(String.valueOf(i), options[i]);
             System.out.println();
         }
-    }
-
-    public static void printWhiteLine(int numberOfSpaces) {
-        for (int i = 0; i < numberOfSpaces; i++) {
-            System.out.print(ConsoleColor.WHITE_UNDERLINED + "\t" + ConsoleColor.RESET);
-        }
-        System.out.println();
     }
 }
 

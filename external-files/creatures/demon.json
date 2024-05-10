@@ -10,10 +10,11 @@
       "RESIST_DAMAGE": 3,
       "STRENGTH": 2,
       "INTELLECT": 4,
+      "SPIRIT": 3,
       "HASTE": 3,
       "CRITICAL_HIT_CHANCE": 4,
       "HEALTH": 50,
-      "MANA": 80,
+      "MANA": 73,
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
@@ -34,6 +35,7 @@
       "RESIST_DAMAGE": 10,
       "STRENGTH": 10,
       "INTELLECT": 7,
+      "SPIRIT": 2,
       "HASTE": 10,
       "CRITICAL_HIT_CHANCE": 4,
       "HEALTH": 220,

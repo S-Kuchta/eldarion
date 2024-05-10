@@ -50,12 +50,4 @@ public class NonPlayerCharacter extends GameCharacter {
             }
         }
     }
-
-    public void increaseAbilityPointsByAddition(double addition) {
-        for (Ability ability : Ability.values()) {
-            if (this.getBaseAbilities().containsKey(ability)) {
-                this.getBaseAbilities().put(ability, (int) (this.getBaseAbilities().get(ability) * addition));
-            }
-        }
-    }
 }

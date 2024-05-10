@@ -4,9 +4,9 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.enemy.QuestEnemy;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import lombok.Getter;
 
-//@Getter
-//@Setter
+@Getter
 public class QuestKillObjective extends QuestObjective {
     private final int questEnemyId;
     private final int countEnemyToKill;

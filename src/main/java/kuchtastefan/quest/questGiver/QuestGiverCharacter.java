@@ -56,8 +56,8 @@ public class QuestGiverCharacter {
         HintDB.printHint(HintName.QUEST_HINT);
 
         connectHeroQuestListWithCharacterQuestList(hero);
-        setNameBasedOnQuestsAvailable(hero);
         questService.questGiverMenu(hero, this.quests);
+        setNameBasedOnQuestsAvailable(hero);
     }
 
     /**
@@ -89,30 +89,29 @@ public class QuestGiverCharacter {
             }
 
             if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
-                return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + " - ";
+                return " -" + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + "-";
             }
         }
 
-            if (haveQuestAvailable && haveQuestUnavailable) {
-                return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
-            }
-
-            if (!haveQuestAvailable && haveQuestUnavailable) {
-                return " - " + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + " - ";
-            }
-
-            if (haveQuestAvailable) {
-                return " - " + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + " - ";
-            }
-
-            return numberOfTurnedInQuests == this.quests.size() ? ConsoleColor.YELLOW + "  ✔ " + ConsoleColor.RESET : "";
+        if (haveQuestAvailable && haveQuestUnavailable) {
+            return " -" + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + "-";
         }
+
+        if (!haveQuestAvailable && haveQuestUnavailable) {
+            return " -" + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + "-";
+        }
+
+        if (haveQuestAvailable) {
+            return ConsoleColor.RESET + " -" + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + "-";
+        }
+
+        return numberOfTurnedInQuests == this.quests.size() ? ConsoleColor.YELLOW + "  ✔ " + ConsoleColor.RESET : "";
+    }
 
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
         boolean questCompleted = true;
         for (Quest quest : hero.getHeroQuests().getHeroAcceptedQuest().values()) {
-
             if (this.quests.contains(quest) && !quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
                 questCompleted = false;
                 break;

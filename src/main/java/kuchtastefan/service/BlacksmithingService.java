@@ -18,8 +18,6 @@ public class BlacksmithingService implements Workshop {
     @Override
     public void mainMenu(Hero hero) {
         HintDB.printHint(HintName.BLACKSMITH_HINT);
-
-//        PrintUtil.printMenuHeader("Blacksmithing");
         PrintUtil.printMenuOptions("Go back", "Hero Inventory");
 
         final int choice = InputUtil.intScanner();
@@ -43,7 +41,6 @@ public class BlacksmithingService implements Workshop {
     @Override
     public boolean itemOptions(Hero hero, Item item) {
         ItemAndCount neededToRefine = ((WearableItem) item).reagentNeededToRefine();
-        boolean success = false;
         PrintUtil.printMenuHeader(item.getName());
         PrintUtil.printMenuOptions("Go back",
                 "Refinement item (" + neededToRefine.count() + "x " + neededToRefine.item().getName() + ")",
@@ -52,12 +49,16 @@ public class BlacksmithingService implements Workshop {
         final int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(), this, 1);
-            case 1 -> success = this.refineItemQuality(hero, (WearableItem) item);
-            case 2 -> success = this.dismantleItem(hero, (WearableItem) item);
+            case 1 -> {
+                return this.refineItemQuality(hero, (WearableItem) item);
+            }
+            case 2 -> {
+                return this.dismantleItem(hero, (WearableItem) item);
+            }
             default -> PrintUtil.printEnterValidInput();
         }
 
-        return success;
+        return false;
     }
 
     /**

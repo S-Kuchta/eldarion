@@ -13,74 +13,51 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO problem with menu
-
 @Setter
 @Getter
 public class QuestService {
 
     private QuestGiverCharacter questGiverCharacter;
 
-    public void questGiverMenu(Hero hero, List<Quest> quests) {
-        System.out.println("quest giver menu");
 
-        printQuestsMenu(quests);
-        try {
+    public void questGiverMenu(Hero hero, List<Quest> quests) {
+        while (true) {
+            printQuestsMenu(quests);
             int choice = InputUtil.intScanner();
             if (choice == 0) {
-                return;
-            }
-
-            if (hero.getHeroQuests().containsQuest(quests.get(choice - 1).getQuestId())) {
-                this.selectedQuestMenu(hero.getHeroQuests().getQuest(choice - 1), hero, quests);
+                break;
+            } else if (choice > 0 && choice <= quests.size()) {
+                this.questMenu(quests.get(choice - 1), hero);
             } else {
-                this.selectedQuestMenu(quests.get(choice - 1), hero, quests);
+                PrintUtil.printEnterValidInput();
             }
-
-            this.questGiverCharacter.setNameBasedOnQuestsAvailable(hero);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("\tEnter valid input");
         }
     }
 
     public void heroAcceptedQuestMenu(Hero hero) {
         List<Quest> quests = new ArrayList<>(hero.getHeroQuests().getHeroAcceptedQuest().values());
 
-        PrintUtil.printLongDivider();
-        System.out.println("\t-- Quest Details --");
-        PrintUtil.printLongDivider();
-
         while (true) {
-            try {
-                PrintUtil.printLongDivider();
-                printQuestsMenu(quests);
-                int choice = InputUtil.intScanner();
-                if (choice == 0) {
-                    break;
-                }
-
-                if (!quests.get(choice - 1).getQuestStatus().equals(QuestStatus.TURNED_IN)) {
-                    PrintUtil.printQuestDetails(quests.get(choice - 1), hero);
-                } else {
-                    System.out.println("\t-- Quest " + quests.get(choice - 1).getQuestName() + " Completed --");
-                }
-
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("\tEnter valid input");
+            printQuestsMenu(quests);
+            int choice = InputUtil.intScanner();
+            if (choice == 0) {
+                break;
+            } else if (choice > 0 && choice <= quests.size()) {
+                PrintUtil.printQuestDetails(quests.get(choice - 1), hero);
+            } else {
+                PrintUtil.printEnterValidInput();
             }
         }
     }
 
     private void printQuestsMenu(List<Quest> quests) {
-        System.out.println("print quests menu");
+        String questGiverName = questGiverCharacter == null ? "Accepted" : "Available";
+        System.out.println("\t" + questGiverName + " Quests:");
 
-        PrintUtil.printIndexAndText("0", "Go back");
-        System.out.println();
-
+        PrintUtil.printIndexAndText("0", "Go back\n");
         int index = 1;
         for (Quest quest : quests) {
-            PrintUtil.printIndexAndText(String.valueOf(index), quest.getQuestName() + " " + PrintUtil.returnQuestSuffix(quest));
-            index++;
+            PrintUtil.printIndexAndText(String.valueOf(index++), quest.getQuestName() + " " + PrintUtil.returnQuestSuffix(quest));
             System.out.println();
         }
     }
@@ -90,105 +67,50 @@ public class QuestService {
      * If hero does not contain selected quest you can to take it
      * If you have quest completed but not turned it yet, you can turn in
      *
-     * @param quest  quest which come dynamically depending on you choice
-     * @param quests only needed for switching between menus
+     * @param quest quest which come dynamically depending on you choice
      */
-    private void selectedQuestMenu(Quest quest, Hero hero, List<Quest> quests) {
-        System.out.println("som tu ked sa to deje? ");
-
-        PrintUtil.printQuestDetails(quest, hero);
-        System.out.println();
-
-        switch (quest.getQuestStatus()) {
-            case QuestStatus.AVAILABLE -> {
-                PrintUtil.printIndexAndText("0", "Go back\n");
-                PrintUtil.printIndexAndText("1", "Accept quest\n");
-            }
-            case QuestStatus.UNAVAILABLE -> {
-                System.out.println(ConsoleColor.RED + "\tQuest can not be accepted yet." + ConsoleColor.RESET);
-                PrintUtil.printIndexAndText("0", "Go back\n");
-            }
-            case QuestStatus.ACCEPTED -> {
-                PrintUtil.printQuestDetails(quest, hero);
-                this.questGiverMenu(hero, quests);
-            }
-            case QuestStatus.COMPLETED -> {
-                PrintUtil.printIndexAndText("0", "Go back\n");
-                PrintUtil.printIndexAndText("1", "Complete quest\n");
-            }
-            case QuestStatus.TURNED_IN -> {
-                System.out.println("\t-- Quest " + quest.getQuestName() + " Completed --");
-                PrintUtil.printIndexAndText("0", "Go back\n");
-            }
-        }
-
+    private void questMenu(Quest quest, Hero hero) {
         while (true) {
-            int choice = InputUtil.intScanner();
-            if (choice == 0) {
-                break;
-            } else if (choice == 1) {
-                if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
-                    System.out.println("\t\t --> Quest accepted <--");
-                    quest.startTheQuest(hero);
-                    this.questGiverMenu(hero, quests);
-                }
+            PrintUtil.printQuestDetails(quest, hero);
+            if (printQuestOptions(hero, quest)) {
+                int choice = InputUtil.intScanner();
+                if (choice == 0) {
+                    break;
+                } else if (choice == 1) {
+                    if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
+                        quest.startTheQuest(hero);
+                        System.out.println(ConsoleColor.YELLOW + "\tQuest Accepted\n" + ConsoleColor.RESET);
+                    }
 
-                if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
-                    quest.turnInTheQuest(hero);
-                    this.questGiverMenu(hero, quests);
+                    if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+                        quest.turnInTheQuest(hero);
+                        System.out.println(ConsoleColor.YELLOW + "\tQuest Completed\n" + ConsoleColor.RESET);
+                    }
+                } else {
+                    PrintUtil.printEnterValidInput();
                 }
-            } else {
-                PrintUtil.printEnterValidInput();
-                this.selectedQuestMenu(quest, hero, quests);
             }
         }
-
-
-//        while (true) {
-//            int choice = InputUtil.intScanner();
-//            switch (choice) {
-////            case 0 -> this.questGiverMenu(hero, quests);
-//                case 0 -> {
-//                    return;
-//                }
-//                case 1 -> {
-//                    if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
-//                        System.out.println("\t\t --> Quest accepted <--");
-//                        quest.startTheQuest(hero);
-//                        this.questGiverMenu(hero, quests);
-//                    }
-//
-//                    if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
-//                        quest.turnInTheQuest(hero);
-//                        this.questGiverMenu(hero, quests);
-//                    }
-//                }
-//                default -> {
-//                    PrintUtil.printEnterValidInput();
-//                    this.selectedQuestMenu(quest, hero, quests);
-//                }
-//            }
-//        }
-
     }
 
-//    public void updateQuestProgressFromEnemyActions(Hero hero, Enemy enemy) {
-//        for (Quest quest : hero.getHeroAcceptedQuest().values()) {
-//            for (QuestObjective questObjective : quest.getQuestObjectives()) {
-//                if (!questObjective.isCompleted()) {
-//                    if (questObjective instanceof QuestBringItemFromEnemyObjective questBringItemFromEnemyObjective) {
-//                        if (questBringItemFromEnemyObjective.checkEnemy(enemy.getNpcId())) {
-//                            enemy.addItemToItemDrop(ItemDB.returnItemFromDB(questBringItemFromEnemyObjective.getObjectiveItemId()));
-//                        }
-//                    }
-//
-//                    if (questObjective instanceof QuestKillObjective questKillObjective) {
-//                        if (enemy.getNpcId() == questKillObjective.getQuestEnemyId()) {
-//                            questKillObjective.increaseCurrentCountEnemyProgress();
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
+    private boolean printQuestOptions(Hero hero, Quest quest) {
+        switch (quest.getQuestStatus()) {
+            case QuestStatus.AVAILABLE -> {
+                PrintUtil.printIndexAndText("0", "Go back");
+                PrintUtil.printIndexAndText("1", "Accept quest\n");
+                return true;
+            }
+            case QuestStatus.COMPLETED -> {
+                PrintUtil.printIndexAndText("0", "Go back");
+                PrintUtil.printIndexAndText("1", "Complete quest\n");
+                return true;
+            }
+            case QuestStatus.ACCEPTED -> PrintUtil.printQuestDetails(quest, hero);
+            case QuestStatus.TURNED_IN -> System.out.println("\tQuest " + quest.getQuestName() + " is Completed");
+            case QuestStatus.UNAVAILABLE ->
+                    System.out.println(ConsoleColor.RED + "\tQuest can not be accepted yet." + ConsoleColor.RESET);
+        }
+
+        return false;
+    }
 }

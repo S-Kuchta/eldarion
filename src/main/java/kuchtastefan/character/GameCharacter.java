@@ -104,9 +104,6 @@ public abstract class GameCharacter {
             }
         }
 
-
-//        System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage to " + this.name);
-//        System.out.println(ConsoleColor.RED + "" + damage + ConsoleColor.RESET + " damage ");
         this.effectiveAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
         this.effectiveAbilities.put(Ability.HEALTH, this.getEffectiveAbilityValue(Ability.HEALTH) - damage);
         return damage;
@@ -146,11 +143,11 @@ public abstract class GameCharacter {
     public void restoreHealthAndManaAfterTurn() {
         System.out.println();
         if (this instanceof Hero hero && !hero.isInCombat()) {
-            this.restoreAbilityValue(this.getEffectiveAbilityValue(Ability.HASTE)
+            this.restoreAbilityValue(this.getEffectiveAbilityValue(Ability.SPIRIT)
                     * Constant.RESTORE_HEALTH_PER_ONE_HASTE, Ability.HEALTH);
         }
 
-        this.restoreAbilityValue(this.getEffectiveAbilityValue(Ability.HASTE)
+        this.restoreAbilityValue(this.getEffectiveAbilityValue(Ability.SPIRIT)
                 * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
     }
 

@@ -29,13 +29,9 @@ public class ActionDrainMana extends ActionWithDuration implements ActionWithInc
 
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
-        System.out.print("Drain " + ConsoleColor.BLUE
-                + this.returnActionValueRange(spellCaster).minimumValue()
-                + ConsoleColor.RESET + " - " + ConsoleColor.BLUE
-                + this.returnActionValueRange(spellCaster).maximumValue()
-                + ConsoleColor.RESET
-                + " Mana over " + this.getMaxActionTurns() + " from "
-                + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET);
+        System.out.print("Drain " + ConsoleColor.BLUE + this.returnActionValueRange(spellCaster).minimumValue() + ConsoleColor.RESET
+                + " - " + ConsoleColor.BLUE + this.returnActionValueRange(spellCaster).maximumValue() + ConsoleColor.RESET
+                + " Mana over " + this.getMaxActionTurns() + " from " + this.returnTargetName(spellCaster, spellTarget));
     }
 
     @Override

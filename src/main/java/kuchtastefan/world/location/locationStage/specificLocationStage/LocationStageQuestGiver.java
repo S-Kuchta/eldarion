@@ -2,6 +2,7 @@ package kuchtastefan.world.location.locationStage.specificLocationStage;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
+import kuchtastefan.service.QuestService;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
 import kuchtastefan.world.location.locationStage.LocationStage;

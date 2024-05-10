@@ -26,7 +26,7 @@ public class ActionDealDamage extends Action implements ActionWithIncreasedValue
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Deal " + ConsoleColor.RED_BRIGHT
                 + spellTarget.returnDamageAfterResistDamage(this.returnActionValueRange(spellCaster).minimumValue())
-                + ConsoleColor.RESET + " to " + ConsoleColor.RED_BRIGHT
+                + ConsoleColor.RESET + " - " + ConsoleColor.RED_BRIGHT
                 + spellTarget.returnDamageAfterResistDamage(this.returnActionValueRange(spellCaster).maximumValue())
                 + ConsoleColor.RESET
                 + " damage to " + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET);

@@ -8,7 +8,6 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.utility.RandomNumberGenerator;
-import kuchtastefan.world.Biome;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,17 +22,13 @@ public class Enemy extends NonPlayerCharacter {
     private List<Item> itemsDrop;
     private Integer[] specialItemsDrop;
     private double goldDrop;
-    private final Biome[] biome;
-    private final int maxStack;
 
 
     public Enemy(String name, Map<Ability, Integer> abilities,
-                 CharacterType characterType, Biome[] biome, int maxStack, int[] enemySpells) {
+                 CharacterType characterType, int[] enemySpells) {
 
         super(name, abilities, enemySpells, characterType);
         this.goldDrop = 0;
-        this.biome = biome;
-        this.maxStack = maxStack;
         this.itemsDrop = new ArrayList<>();
     }
 
@@ -69,10 +64,6 @@ public class Enemy extends NonPlayerCharacter {
         if (!this.itemsDrop.contains(item)) {
             this.itemsDrop.add(item);
         }
-    }
-
-    public void removeItemFromItemDrop(Item item) {
-        this.itemsDrop.remove(item);
     }
 
     public double enemyExperiencePointsValue() {

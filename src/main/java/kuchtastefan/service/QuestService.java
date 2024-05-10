@@ -70,9 +70,10 @@ public class QuestService {
      * @param quest quest which come dynamically depending on you choice
      */
     private void questMenu(Quest quest, Hero hero) {
-        while (true) {
-            PrintUtil.printQuestDetails(quest, hero);
-            if (printQuestOptions(hero, quest)) {
+
+        PrintUtil.printQuestDetails(quest, hero);
+        if (printQuestOptions(hero, quest)) {
+            while (true) {
                 int choice = InputUtil.intScanner();
                 if (choice == 0) {
                     break;
@@ -86,6 +87,8 @@ public class QuestService {
                         quest.turnInTheQuest(hero);
                         System.out.println(ConsoleColor.YELLOW + "\tQuest Completed\n" + ConsoleColor.RESET);
                     }
+
+                    break;
                 } else {
                     PrintUtil.printEnterValidInput();
                 }

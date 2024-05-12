@@ -23,12 +23,14 @@ public abstract class GameCharacter {
     protected Map<Ability, Integer> effectiveAbilities;
     protected Set<ActionWithDuration> buffsAndDebuffs;
     protected List<Spell> characterSpellList;
+    protected boolean defeated;
     protected boolean canPerformAction;
     protected boolean reflectSpell;
 
 
     public GameCharacter(String name, Map<Ability, Integer> baseAbilities) {
         this.name = name;
+        this.defeated = false;
         this.baseAbilities = baseAbilities;
         this.enhancedAbilities = new HashMap<>(baseAbilities);
         this.effectiveAbilities = new HashMap<>(baseAbilities);

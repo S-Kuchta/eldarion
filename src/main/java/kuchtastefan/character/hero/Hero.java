@@ -223,7 +223,6 @@ public class Hero extends GameCharacter {
     }
 
     public void addGolds(double golds) {
-        // TODO refactor print
         this.heroGold += golds;
     }
 

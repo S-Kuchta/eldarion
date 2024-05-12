@@ -11,9 +11,7 @@ import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 @Setter
@@ -69,6 +67,4 @@ public class Enemy extends NonPlayerCharacter {
     public double enemyExperiencePointsValue() {
         return this.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + this.getCharacterRarity().getExperienceGainedValue();
     }
-
-
 }

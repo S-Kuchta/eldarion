@@ -6,8 +6,10 @@ import kuchtastefan.character.spell.SpellDB;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -15,7 +17,6 @@ public class NonPlayerCharacter extends GameCharacter {
 
     protected int npcId;
     protected int[] npcCharacterSpellsId;
-    protected boolean defeated;
     protected CharacterRarity characterRarity;
     protected CharacterType characterType;
     protected NpcType npcType;
@@ -24,7 +25,6 @@ public class NonPlayerCharacter extends GameCharacter {
         super(name, abilities);
         this.characterType = characterType;
         this.npcCharacterSpellsId = npcCharacterSpellsId;
-        this.defeated = false;
     }
 
     public void convertSpellIdToSpellList() {

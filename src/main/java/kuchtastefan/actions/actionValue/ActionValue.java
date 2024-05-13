@@ -4,5 +4,5 @@ import kuchtastefan.character.GameCharacter;
 
 public interface ActionValue {
 
-    int actionValue(GameCharacter spellCaster, int valueIncreasedByLevel);
+    ActionValueRange actionValue(GameCharacter spellCaster, int valueIncreasedByLevel);
 }

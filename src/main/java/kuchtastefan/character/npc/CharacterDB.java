@@ -21,15 +21,22 @@ public class CharacterDB {
     private static final Gson GSON = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
 
     public static Enemy returnNewEnemy(int characterId) {
+        Enemy enemy = (Enemy)CHARACTER_DB.get(characterId);
         Enemy newEnemy;
-        if (CHARACTER_DB.get(characterId) instanceof QuestEnemy) {
-            newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), QuestEnemy.class);
-        } else {
-            newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), Enemy.class);
-        }
+
+
+//        if (CHARACTER_DB.get(characterId) instanceof QuestEnemy) {
+//            newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), QuestEnemy.class);
+//        } else {
+//            newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), Enemy.class);
+//        }
+
+        newEnemy = GSON.fromJson(GSON.toJson(CHARACTER_DB.get(characterId)), enemy.getClass());
 
         newEnemy.setItemDrop();
         newEnemy.setGoldDrop();
+        System.out.println(newEnemy.hashCode());
+        System.out.println(newEnemy.getClass());
         return newEnemy;
     }
 

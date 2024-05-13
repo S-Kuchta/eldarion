@@ -67,4 +67,17 @@ public class Enemy extends NonPlayerCharacter {
     public double enemyExperiencePointsValue() {
         return this.getLevel() * Constant.GAIN_EXPERIENCE_LEVEL_MULTIPLIER + this.getCharacterRarity().getExperienceGainedValue();
     }
+
+//    @Override
+//    public boolean equals(Object object) {
+//        if (this == object) return true;
+//        if (object == null || getClass() != object.getClass()) return false;
+//        Enemy enemy = (Enemy) object;
+//        return Double.compare(goldDrop, enemy.goldDrop) == 0 && Objects.equals(itemsDrop, enemy.itemsDrop) && Objects.deepEquals(specialItemsDrop, enemy.specialItemsDrop);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(itemsDrop, Arrays.hashCode(specialItemsDrop), goldDrop);
+//    }
 }

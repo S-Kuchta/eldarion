@@ -60,10 +60,7 @@ public abstract class Action implements ActionValue {
             valueIncreasedByLevel += spellCaster.getEffectiveAbilityValue(Ability.ATTACK);
         }
 
-        // max. ability value
-        int valueIncreasedByPrimaryAbility = this.actionValue(spellCaster, valueIncreasedByLevel);
-
-        return new ActionValueRange(valueIncreasedByLevel, valueIncreasedByPrimaryAbility);
+        return this.actionValue(spellCaster, valueIncreasedByLevel);
     }
 
     protected String returnTargetName(GameCharacter spellCaster, GameCharacter spellTarget) {

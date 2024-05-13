@@ -126,7 +126,8 @@ public class CombatEvent extends Event {
         hero.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
         hero.getEffectiveAbilities().put(Ability.HEALTH, hero.getEnhancedAbilities().get(Ability.HEALTH));
 
+        System.out.println("\n\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
         System.out.println("\tYou lost " + goldToRemove + " golds!");
-        System.out.println("\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
+
     }
 }

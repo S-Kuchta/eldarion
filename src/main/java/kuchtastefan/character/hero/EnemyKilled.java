@@ -9,7 +9,7 @@ import java.util.Map;
 @Getter
 public class EnemyKilled {
 
-    private final Map<QuestEnemy, Integer> enemyKilled;
+    private final Map<Integer, Integer> enemyKilled;
 
     public EnemyKilled() {
         this.enemyKilled = new HashMap<>();
@@ -17,22 +17,22 @@ public class EnemyKilled {
 
     public void addQuestEnemyKilled(Hero hero, QuestEnemy questEnemy) {
         if (hero.getHeroQuests().containsQuestObjective(questEnemy.getQuestObjectiveId())) {
-            if (containsEnemy(questEnemy)) {
-                this.enemyKilled.put(questEnemy, this.enemyKilled.get(questEnemy) + 1);
+            if (containsEnemy(questEnemy.getNpcId())) {
+                this.enemyKilled.put(questEnemy.getNpcId(), this.enemyKilled.get(questEnemy.getNpcId()) + 1);
             } else {
-                this.enemyKilled.put(questEnemy, 1);
+                this.enemyKilled.put(questEnemy.getNpcId(), 1);
             }
 
             hero.getHeroQuests().makeProgressInQuestObjective(hero, questEnemy.getQuestObjectiveId());
         }
     }
 
-    public boolean containsEnemy(QuestEnemy questEnemy) {
-        return this.enemyKilled.containsKey(questEnemy);
+    public boolean containsEnemy(int questEnemyId) {
+        return this.enemyKilled.containsKey(questEnemyId);
     }
 
     public int getAmountOfKilledEnemy(QuestEnemy questEnemy) {
-        this.enemyKilled.putIfAbsent(questEnemy, 0);
-        return this.enemyKilled.get(questEnemy);
+        this.enemyKilled.putIfAbsent(questEnemy.getNpcId(), 0);
+        return this.enemyKilled.get(questEnemy.getNpcId());
     }
 }

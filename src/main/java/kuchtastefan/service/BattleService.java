@@ -62,25 +62,8 @@ public class BattleService {
         allCharacters.addAll(this.enemyList);
 
         playerTarget = enemyList.getFirst();
-
-        // Main battle loop
-        while (true) {
-            battleTurn(hero, allCharacters);
-
-            try {
-                Thread.sleep(2500);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-
-            if (this.enemyList.isEmpty()) {
-                return true; // Battle won
-            }
-
-            if (hero.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
-                return false; // Battle lost
-            }
-        }
+        battleMechanic(hero, allCharacters);
+        return this.enemyList.isEmpty();
     }
 
 
@@ -96,27 +79,30 @@ public class BattleService {
      * @param hero          The hero character participating in the battle.
      * @param allCharacters A list of all characters participating in the battle.
      */
-    private void battleTurn(Hero hero, List<GameCharacter> allCharacters) {
+    private void battleMechanic(Hero hero, List<GameCharacter> allCharacters) {
         sortCharactersByHaste(allCharacters);
-        ListIterator<GameCharacter> iterator = allCharacters.listIterator();
+        int currentTurn = 0;
 
-        while (iterator.hasNext()) {
-            GameCharacter attackingCharacter = iterator.next();
-            GameCharacter target = setNpcTarget(attackingCharacter);
-
-            if (attackingCharacter.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
-                iterator.remove();
-                continue;
+        while (!isBattleFinished() || hero.getEffectiveAbilityValue(Ability.HEALTH) > 0) {
+            if (currentTurn >= allCharacters.size()) {
+                currentTurn = 0;
             }
+
+            if (isBattleFinished()) {
+                return;
+            }
+
+            GameCharacter attackingCharacter = allCharacters.get(currentTurn);
 
             this.printBattleHeader(attackingCharacter);
             this.printAndPerformActionOverTime(attackingCharacter);
 
-            if (checkIfCharacterDied(attackingCharacter)) {
-                iterator.remove();
+            if (checkIfCharacterDied(attackingCharacter, allCharacters)) {
+                currentTurn++;
                 continue;
             }
 
+            GameCharacter target = setNpcTarget(attackingCharacter);
             if (attackingCharacter.isCanPerformAction()) {
                 if (attackingCharacter instanceof Hero) {
                     playerTurn(hero);
@@ -124,109 +110,25 @@ public class BattleService {
                 } else {
                     this.npcUseSpell(attackingCharacter, target, hero);
                 }
+
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
             }
 
-            checkIfCharacterDied(target);
+            checkIfCharacterDied(target, allCharacters);
             attackingCharacter.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
             attackingCharacter.restoreHealthAndManaAfterTurn();
-            addSummonedCreature(iterator, attackingCharacter);
-
-            if (alliesList.isEmpty() || enemyList.isEmpty()) {
-                break;
-            }
+            addSummonedCreature(attackingCharacter, allCharacters);
+            currentTurn++;
         }
     }
-//    private void battleTurn(Hero hero, List<GameCharacter> allCharacters) {
-//        sortCharactersByHaste(allCharacters);
-//        System.out.println(enemyList.getFirst().equals(enemyList.get(1)));
-//
-//        while (!isBattleFinished()) {
-//            for (GameCharacter attackingCharacter : allCharacters) {
-//                GameCharacter target = setNpcTarget(attackingCharacter);
-//
-//                this.printBattleHeader(attackingCharacter);
-//                this.printAndPerformActionOverTime(attackingCharacter);
-//
-//                if (checkIfCharacterDied(attackingCharacter)) {
-//                    if (attackingCharacter instanceof NonPlayerCharacter npc) {
-//                        npc.setDefeated(true);
-//                    }
-//                    continue;
-//                }
-//
-//
-//                if (attackingCharacter.isCanPerformAction() && !attackingCharacter.isDefeated()) {
-//                    if (attackingCharacter instanceof Hero) {
-//                        playerTurn(hero);
-//                        target = playerTarget;
-//                    } else {
-//                        System.out.println(attackingCharacter.hashCode());
-//                        System.out.println(attackingCharacter.getClass());
-//                        this.npcUseSpell(attackingCharacter, target, hero);
-//                    }
-//                }
-//
-//                checkIfCharacterDied(target);
-//                attackingCharacter.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
-//                attackingCharacter.restoreHealthAndManaAfterTurn();
-//                addSummonedCreature(attackingCharacter);
-//
-//                if (isBattleFinished()) {
-//                    return;
-//                }
-//            }
-//
-//            removeDefeatedCharacters();
-//            if (isBattleFinished() || hero.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
-//                break;
-//            }
-//        }
 
-//        while (iterator.hasNext()) {
-//            GameCharacter attackingCharacter = iterator.next();
-//            GameCharacter target = setNpcTarget(attackingCharacter);
-//
-//            if (attackingCharacter.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
-//                iterator.remove();
-//                continue;
-//            }
-//
-//            this.printBattleHeader(attackingCharacter);
-//            this.printAndPerformActionOverTime(attackingCharacter);
-//
-//            if (checkIfCharacterDied(attackingCharacter)) {
-//                iterator.remove();
-//                continue;
-//            }
-//
-//            if (attackingCharacter.isCanPerformAction()) {
-//                if (attackingCharacter instanceof Hero) {
-//                    playerTurn(hero);
-//                    target = playerTarget;
-//                } else {
-//                    this.npcUseSpell(attackingCharacter, target, hero);
-//                }
-//            }
-//
-//            checkIfCharacterDied(target);
-//            attackingCharacter.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
-//            attackingCharacter.restoreHealthAndManaAfterTurn();
-//            addSummonedCreature(iterator, attackingCharacter);
-//
-//            if (alliesList.isEmpty() || enemyList.isEmpty()) {
-//                break;
-//            }
-//        }
-//    }
-
-//    private void removeDefeatedCharacters() {
-//        alliesList.removeIf(GameCharacter::isDefeated);
-//        enemyList.removeIf(GameCharacter::isDefeated);
-//    }
-//
-//    private boolean isBattleFinished() {
-//        return alliesList.isEmpty() || enemyList.isEmpty();
-//    }
+    private boolean isBattleFinished() {
+        return alliesList.isEmpty() || enemyList.isEmpty();
+    }
 
     private void printBattleHeader(GameCharacter attackingCharacter) {
         if (attackingCharacter instanceof Hero) {
@@ -253,19 +155,16 @@ public class BattleService {
         return returnList.get(RandomNumberGenerator.getRandomNumber(0, returnList.size() - 1));
     }
 
-    private boolean checkIfCharacterDied(GameCharacter characterToCheck) {
-        if (getCharacterList(characterToCheck, true).contains(characterToCheck)) {
-            if (characterToCheck.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
-                System.out.println();
-                System.out.println("\t" + ConsoleColor.RED + characterToCheck.getNameWithoutColor() + " died!" + ConsoleColor.RESET);
-                getCharacterList(characterToCheck, true).remove(characterToCheck);
-                if (characterToCheck instanceof NonPlayerCharacter npc) {
-                    npc.setDefeated(true);
-                }
-
-                setTarget();
-                return true;
+    private boolean checkIfCharacterDied(GameCharacter characterToCheck, List<GameCharacter> allCharacters) {
+        if (characterToCheck.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
+            if (characterToCheck instanceof NonPlayerCharacter) {
+                System.out.println("\n\t" + ConsoleColor.RED + characterToCheck.getNameWithoutColor() + " died!" + ConsoleColor.RESET);
             }
+
+            getCharacterList(characterToCheck, true).remove(characterToCheck);
+            allCharacters.remove(characterToCheck);
+            setTarget();
+            return true;
         }
 
         return false;
@@ -275,39 +174,24 @@ public class BattleService {
         return alliesList.contains(gameCharacter) == isSameList ? alliesList : enemyList;
     }
 
-    private void addSummonedCreature(ListIterator<GameCharacter> iterator, GameCharacter attackingCharacter) {
+    private void addSummonedCreature(GameCharacter attackingCharacter, List<GameCharacter> allCharacters) {
         if (!this.tempCharacterList.isEmpty()) {
             for (GameCharacter character : this.tempCharacterList) {
-                iterator.add(character);
                 getCharacterList(attackingCharacter, true).add(character);
+                allCharacters.add(character);
             }
 
             this.tempCharacterList.clear();
         }
+
+        sortCharactersByHaste(allCharacters);
     }
-
-    private void addSummonedCreature(GameCharacter attackingCharacter) {
-        if (!this.tempCharacterList.isEmpty()) {
-            for (GameCharacter character : this.tempCharacterList) {
-                getCharacterList(attackingCharacter, true).add(character);
-            }
-
-            this.tempCharacterList.clear();
-        }
-    }
-
 
     private void sortCharactersByHaste(List<GameCharacter> characters) {
         characters.sort(Comparator.comparingInt(character -> -character.getEffectiveAbilityValue(Ability.HASTE)));
     }
 
     private void npcPrintHeader(GameCharacter gameCharacter) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
-        }
-
         PrintUtil.printLongDivider();
         System.out.println("\t" + ConsoleColor.YELLOW_UNDERLINED + gameCharacter.getName() + " Turn!" + ConsoleColor.RESET);
         System.out.println();
@@ -375,11 +259,11 @@ public class BattleService {
         try {
             selectedEnemyForShowSelection = choice;
             playerTarget = enemyList.get(LetterToNumber.valueOf(choice).getValue() - 1);
-        } catch (IndexOutOfBoundsException e) {
-            PrintUtil.printEnterValidInput();
         } catch (IllegalArgumentException e) {
             selectedEnemyForShowSelection = "A";
             playerTarget = enemyList.getFirst();
+        } catch (IndexOutOfBoundsException e) {
+            PrintUtil.printEnterValidInput();
         }
     }
 

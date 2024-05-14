@@ -19,6 +19,9 @@ public interface ActionWithIncreasedValueByPrimaryAbility extends ActionValue {
             primaryAbility = nonPlayerCharacter.getNpcType().getPrimaryAbility();
         }
 
-        return new ActionValueRange(valueIncreasedByLevel, valueIncreasedByLevel + spellCaster.getEffectiveAbilityValue(primaryAbility) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER);
+        int value = valueIncreasedByLevel + spellCaster.getEffectiveAbilityValue(primaryAbility) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
+
+//        return new ActionValueRange(valueIncreasedByLevel, valueIncreasedByLevel + spellCaster.getEffectiveAbilityValue(primaryAbility) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER);
+        return new ActionValueRange((int) (value * 0.75), value);
     }
 }

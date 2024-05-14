@@ -5,11 +5,8 @@ import com.google.gson.GsonBuilder;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.criticalHit.CanBeCriticalHit;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
-import kuchtastefan.constant.Constant;
-import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 
@@ -27,10 +24,10 @@ public class ActionService {
                     action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).minimumValue(),
                     action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).maximumValue());
 
-            if (criticalHit && action instanceof CanBeCriticalHit) {
-                totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
-                System.out.print(ConsoleColor.RED + "\tCritical hit!" + ConsoleColor.RESET);
-            }
+//            if (criticalHit && action instanceof CanBeCriticalHit) {
+//                totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
+//                System.out.print(ConsoleColor.RED + "\tCritical hit!" + ConsoleColor.RESET);
+//            }
 
             action.setCurrentActionValue(totalActionValue);
 
@@ -65,7 +62,8 @@ public class ActionService {
                 System.out.println("\tYou don't have a target!");
             }
         } else {
-            action.performAction(actionTarget);
+//            action.performAction(actionTarget, );
+            action.performAction(, );
         }
     }
 

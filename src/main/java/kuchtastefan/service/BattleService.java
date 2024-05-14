@@ -84,6 +84,7 @@ public class BattleService {
         int currentTurn = 0;
 
         while (!isBattleFinished() || hero.getEffectiveAbilityValue(Ability.HEALTH) > 0) {
+            sortCharactersByHaste(allCharacters);
             if (currentTurn >= allCharacters.size()) {
                 currentTurn = 0;
             }
@@ -110,15 +111,15 @@ public class BattleService {
                 } else {
                     this.npcUseSpell(attackingCharacter, target, hero);
                 }
-
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException e) {
-                    System.out.println(e.getMessage());
-                }
             }
 
             checkIfCharacterDied(target, allCharacters);
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                System.out.println(e.getMessage());
+            }
+
             attackingCharacter.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
             attackingCharacter.restoreHealthAndManaAfterTurn();
             addSummonedCreature(attackingCharacter, allCharacters);

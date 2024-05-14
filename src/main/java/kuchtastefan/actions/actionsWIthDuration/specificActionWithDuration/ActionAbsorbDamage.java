@@ -17,9 +17,9 @@ public class ActionAbsorbDamage extends ActionWithDuration implements ActionWith
     }
 
     @Override
-    public void performAction(GameCharacter gameCharacter) {
+    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
         int increaseAbilityWithStacks = this.currentActionValue * this.getActionCurrentStacks();
-        gameCharacter.increaseEffectiveAbilityValue(Ability.ABSORB_DAMAGE, increaseAbilityWithStacks);
+        spellCaster.increaseEffectiveAbilityValue(Ability.ABSORB_DAMAGE, increaseAbilityWithStacks);
     }
 
     @Override

@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionValue.ActionValue;
 import kuchtastefan.actions.actionValue.ActionValueRange;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
+import kuchtastefan.actions.criticalHit.CanBeCriticalHit;
 import kuchtastefan.actions.instantAction.ActionDealDamage;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
@@ -32,7 +33,7 @@ public abstract class Action implements ActionValue {
         this.chanceToPerformAction = chanceToPerformAction;
     }
 
-    public abstract void performAction(GameCharacter gameCharacter);
+    public abstract void performAction(GameCharacter spellCaster, GameCharacter spellTarget);
 
     public abstract void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget);
 
@@ -53,7 +54,6 @@ public abstract class Action implements ActionValue {
      * @return An ActionValueRange object representing the range of action values.
      */
     public ActionValueRange returnActionValueRange(GameCharacter spellCaster) {
-        // Base Value of action increase by multiplier per level -> min. ability value
         int valueIncreasedByLevel = this.baseActionValue + (spellCaster.getLevel() * Constant.BONUS_VALUE_PER_LEVEL);
 
         if (this instanceof ActionDealDamage || this instanceof ActionDealDamageOverTime) {
@@ -61,6 +61,18 @@ public abstract class Action implements ActionValue {
         }
 
         return this.actionValue(spellCaster, valueIncreasedByLevel);
+    }
+
+    public int returnFinalValue(GameCharacter spellCaster) {
+        int value = RandomNumberGenerator.getRandomNumber(this.returnActionValueRange(spellCaster).minimumValue(),
+                this.returnActionValueRange(spellCaster).maximumValue());
+
+        boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getEffectiveAbilityValue(Ability.CRITICAL_HIT_CHANCE);
+        if (this instanceof CanBeCriticalHit && criticalHit) {
+            value *= Constant.CRITICAL_HIT_MULTIPLIER;
+        }
+
+        return value;
     }
 
     protected String returnTargetName(GameCharacter spellCaster, GameCharacter spellTarget) {

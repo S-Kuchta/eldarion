@@ -17,8 +17,8 @@ public class ActionRestoreManaOverTime extends ActionWithDuration implements Act
     }
 
     @Override
-    public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.restoreAbilityValue(this.currentActionValue, Ability.MANA);
+    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
+        spellCaster.restoreAbilityValue(this.currentActionValue, Ability.MANA);
     }
 
     @Override

@@ -14,8 +14,8 @@ public class ActionReflectSpell extends ActionWithDuration implements ActionWith
     }
 
     @Override
-    public void performAction(GameCharacter gameCharacter) {
-        gameCharacter.setReflectSpell(true);
+    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
+        spellCaster.setReflectSpell(true);
     }
 
     @Override

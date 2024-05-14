@@ -32,7 +32,7 @@ public abstract class ActionWithDuration extends Action {
     }
 
     @Override
-    public abstract void performAction(GameCharacter gameCharacter);
+    public abstract void performAction(GameCharacter spellCaster, GameCharacter spellTarget);
 
     public void addActionStack() {
         this.actionCurrentStacks++;

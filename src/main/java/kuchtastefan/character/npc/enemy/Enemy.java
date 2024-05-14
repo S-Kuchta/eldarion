@@ -18,7 +18,7 @@ import java.util.*;
 public class Enemy extends NonPlayerCharacter {
 
     private List<Item> itemsDrop;
-    private Integer[] specialItemsDrop;
+    private Integer[] constantItemDrop;
     private double goldDrop;
 
 
@@ -51,8 +51,8 @@ public class Enemy extends NonPlayerCharacter {
             addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)));
         }
 
-        if (this.specialItemsDrop != null) {
-            for (int itemId : this.specialItemsDrop) {
+        if (this.constantItemDrop != null) {
+            for (int itemId : this.constantItemDrop) {
                 addItemToItemDrop(ItemDB.returnItemFromDB(itemId));
             }
         }

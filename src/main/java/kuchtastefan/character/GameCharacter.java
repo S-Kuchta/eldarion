@@ -48,7 +48,7 @@ public abstract class GameCharacter {
         resetAbilitiesToMaxValues(false);
 
         for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
-            actionWithDuration.performAction(this);
+            actionWithDuration.performAction(this, );
             if (addTurn) {
                 actionWithDuration.actionAddTurn();
             }

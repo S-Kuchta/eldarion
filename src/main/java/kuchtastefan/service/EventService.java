@@ -40,6 +40,6 @@ public class EventService {
         }
 
         hero.restoreHealthAndManaAfterTurn();
-        hero.performActionsWithDuration(true);
+//        hero.performActionsWithDuration(true);
     }
 }

@@ -3,6 +3,7 @@ package kuchtastefan.actions;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionValue.ActionValue;
 import kuchtastefan.actions.actionValue.ActionValueRange;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
 import kuchtastefan.actions.criticalHit.CanBeCriticalHit;
 import kuchtastefan.actions.instantAction.ActionDealDamage;
@@ -43,6 +44,14 @@ public abstract class Action implements ActionValue {
         return RandomNumberGenerator.getRandomNumber(0, 100) <= this.chanceToPerformAction;
     }
 
+    public void performActionOrAddNewAction(GameCharacter spellCaster, GameCharacter spellTarget) {
+        if (this instanceof ActionWithDuration actionWithDuration) {
+            spellTarget.setNewActionOrAddStackToExistingAction(actionWithDuration);
+        } else {
+            this.performAction(spellCaster, spellTarget);
+        }
+    }
+
     /**
      * Calculates the range of action values for a given spell caster.
      * This method calculates the range of action values based on the attributes
@@ -53,7 +62,7 @@ public abstract class Action implements ActionValue {
      * @param spellCaster The character casting the spell.
      * @return An ActionValueRange object representing the range of action values.
      */
-    public ActionValueRange returnActionValueRange(GameCharacter spellCaster) {
+    protected ActionValueRange returnActionValueRange(GameCharacter spellCaster) {
         int valueIncreasedByLevel = this.baseActionValue + (spellCaster.getLevel() * Constant.BONUS_VALUE_PER_LEVEL);
 
         if (this instanceof ActionDealDamage || this instanceof ActionDealDamageOverTime) {
@@ -63,8 +72,9 @@ public abstract class Action implements ActionValue {
         return this.actionValue(spellCaster, valueIncreasedByLevel);
     }
 
-    public int returnFinalValue(GameCharacter spellCaster) {
-        int value = RandomNumberGenerator.getRandomNumber(this.returnActionValueRange(spellCaster).minimumValue(),
+    protected int returnFinalValue(GameCharacter spellCaster) {
+        int value = RandomNumberGenerator.getRandomNumber(
+                this.returnActionValueRange(spellCaster).minimumValue(),
                 this.returnActionValueRange(spellCaster).maximumValue());
 
         boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getEffectiveAbilityValue(Ability.CRITICAL_HIT_CHANCE);

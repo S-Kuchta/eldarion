@@ -94,16 +94,17 @@ public class BattleService {
             }
 
             GameCharacter attackingCharacter = allCharacters.get(currentTurn);
+            GameCharacter target = setNpcTarget(attackingCharacter);
 
             this.printBattleHeader(attackingCharacter);
-            this.printAndPerformActionOverTime(attackingCharacter);
+            this.printAndPerformActionOverTime(attackingCharacter, target);
 
             if (checkIfCharacterDied(attackingCharacter, allCharacters)) {
                 currentTurn++;
                 continue;
             }
 
-            GameCharacter target = setNpcTarget(attackingCharacter);
+
             if (attackingCharacter.isCanPerformAction()) {
                 if (attackingCharacter instanceof Hero) {
                     playerTurn(hero);
@@ -366,13 +367,21 @@ public class BattleService {
         spellToCast.useSpell(new CharactersInvolvedInBattle(hero, spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
     }
 
-    private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
-        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
+    //    private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
+//        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
+//            System.out.println("\t" + "Buffs & Debuffs");
+//        }
+//
+//        gameCharacter.performActionsWithDuration(true);
+//    }
+    private void printAndPerformActionOverTime(GameCharacter spellCaster, GameCharacter spellTarget) {
+        if (!spellCaster.getBuffsAndDebuffs().isEmpty()) {
             System.out.println("\t" + "Buffs & Debuffs");
         }
 
-        gameCharacter.performActionsWithDuration(true);
+        spellCaster.performActionsWithDuration(spellTarget, spellCaster);
     }
+
 
     public void resetSpellsCoolDowns(Hero hero) {
         hero.getCharacterSpellList().forEach(spell -> {

@@ -2,9 +2,9 @@ package kuchtastefan.character.spell;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.CharacterClass;
-import kuchtastefan.service.ActionService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
@@ -51,25 +51,19 @@ public class Spell {
      * If successful, performs the spell actions, applies bonuses from caster's abilities,
      * and handles critical hit chance. Then updates caster's mana, coolDown, and performs actions on the target.
      *
-     *
      * @param charactersInvolvedInBattle The characters targeted by the spell.
      * @return True if the spell was successfully cast, false otherwise.
      */
     public boolean useSpell(CharactersInvolvedInBattle charactersInvolvedInBattle) {
 
-        ActionService actionService = new ActionService();
         GameCharacter spellCaster = charactersInvolvedInBattle.getSpellCaster();
         GameCharacter spellTarget = charactersInvolvedInBattle.getSpellTarget();
 
         if (this.isCanSpellBeCasted() && spellCaster.getEffectiveAbilityValue(Ability.MANA) >= this.getSpellManaCost()) {
 
-            boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getEffectiveAbilityValue(Ability.CRITICAL_HIT_CHANCE);
             System.out.println("\t" + spellCaster.getName() + " use " + this.getSpellName());
-
             if (isAttackSuccessful(spellCaster, spellTarget)) {
-                for (Action action : this.getSpellActions()) {
-                    actionService.applyActionToTarget(action, charactersInvolvedInBattle, criticalHit, this.isHitAllEnemy());
-                }
+                performSuccessfulAttack(spellCaster, charactersInvolvedInBattle);
             } else {
                 System.out.println("\t" + ConsoleColor.RED + spellCaster.getName() + " Missed Enemy!");
             }
@@ -107,5 +101,28 @@ public class Spell {
 
     public String getSpellName() {
         return ConsoleColor.MAGENTA + spellName + ConsoleColor.RESET;
+    }
+
+    private void performSuccessfulAttack(GameCharacter spellCaster, CharactersInvolvedInBattle charactersInvolvedInBattle) {
+        for (Action action : this.getSpellActions()) {
+            if (action.willPerformAction()) {
+                GameCharacter spellTarget = determineActionTarget(action, charactersInvolvedInBattle);
+                if (hitAllEnemy) {
+                    for (GameCharacter character : charactersInvolvedInBattle.getCharacterList(spellTarget, true)) {
+                        action.performActionOrAddNewAction(spellCaster, character);
+                    }
+                } else {
+                    action.performActionOrAddNewAction(spellCaster, spellTarget);
+                }
+            }
+        }
+    }
+
+    private GameCharacter determineActionTarget(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle) {
+        if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
+            return charactersInvolvedInBattle.getSpellTarget();
+        } else {
+            return charactersInvolvedInBattle.getSpellCaster();
+        }
     }
 }

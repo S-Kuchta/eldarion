@@ -14,75 +14,75 @@ import java.util.Set;
 
 public class ActionService {
 
-    public void applyActionToTarget(Action originalAction, CharactersInvolvedInBattle charactersInvolvedInBattle, boolean criticalHit, boolean hitAllInvolvedCharacters) {
-        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-        Action action = gson.fromJson(gson.toJson(originalAction), originalAction.getClass());
-        action.setCharactersInvolvedInBattle(charactersInvolvedInBattle);
-
-        if (action.willPerformAction()) {
-            int totalActionValue = RandomNumberGenerator.getRandomNumber(
-                    action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).minimumValue(),
-                    action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).maximumValue());
-
-//            if (criticalHit && action instanceof CanBeCriticalHit) {
-//                totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
-//                System.out.print(ConsoleColor.RED + "\tCritical hit!" + ConsoleColor.RESET);
+//    public void applyActionToTarget(Action originalAction, CharactersInvolvedInBattle charactersInvolvedInBattle, boolean criticalHit, boolean hitAllInvolvedCharacters) {
+//        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
+//        Action action = gson.fromJson(gson.toJson(originalAction), originalAction.getClass());
+//        action.setCharactersInvolvedInBattle(charactersInvolvedInBattle);
+//
+//        if (action.willPerformAction()) {
+//            int totalActionValue = RandomNumberGenerator.getRandomNumber(
+//                    action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).minimumValue(),
+//                    action.returnActionValueRange(charactersInvolvedInBattle.getSpellCaster()).maximumValue());
+//
+////            if (criticalHit && action instanceof CanBeCriticalHit) {
+////                totalActionValue *= Constant.CRITICAL_HIT_MULTIPLIER;
+////                System.out.print(ConsoleColor.RED + "\tCritical hit!" + ConsoleColor.RESET);
+////            }
+//
+//            action.setCurrentActionValue(totalActionValue);
+//
+//            if (hitAllInvolvedCharacters) {
+//                if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
+//                    for (GameCharacter aliesCharacter : charactersInvolvedInBattle.getAlliesCharacters()) {
+//                        performAction(action, aliesCharacter);
+//                    }
+//                }
+//
+//                if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
+//                    for (GameCharacter enemyCharacter : charactersInvolvedInBattle.getEnemyCharacters()) {
+//                        performAction(action, enemyCharacter);
+//                    }
+//                }
+//            } else {
+//                GameCharacter actionTarget = determineActionTarget(action, charactersInvolvedInBattle);
+//                performAction(action, actionTarget);
 //            }
+//        }
+//    }
+//
+//    public void applyActionToTarget(Action action, GameCharacter hero) {
+//        performAction(action, hero);
+//    }
 
-            action.setCurrentActionValue(totalActionValue);
+//    private void performAction(Action action, GameCharacter actionTarget) {
+//        if (action instanceof ActionWithDuration actionWithDuration) {
+//            if (actionTarget != null) {
+//                setNewActionOrAddStackToExistingAction(actionWithDuration, actionTarget.getBuffsAndDebuffs());
+//            } else {
+//                System.out.println("\tYou don't have a target!");
+//            }
+//        } else {
+////            action.performAction(actionTarget, );
+//            action.performAction(, );
+//        }
+//    }
 
-            if (hitAllInvolvedCharacters) {
-                if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
-                    for (GameCharacter aliesCharacter : charactersInvolvedInBattle.getAlliesCharacters()) {
-                        performAction(action, aliesCharacter);
-                    }
-                }
-
-                if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-                    for (GameCharacter enemyCharacter : charactersInvolvedInBattle.getEnemyCharacters()) {
-                        performAction(action, enemyCharacter);
-                    }
-                }
-            } else {
-                GameCharacter actionTarget = determineActionTarget(action, charactersInvolvedInBattle);
-                performAction(action, actionTarget);
-            }
-        }
-    }
-
-    public void applyActionToTarget(Action action, GameCharacter hero) {
-        performAction(action, hero);
-    }
-
-    private void performAction(Action action, GameCharacter actionTarget) {
-        if (action instanceof ActionWithDuration actionWithDuration) {
-            if (actionTarget != null) {
-                setNewActionOrAddStackToExistingAction(actionWithDuration, actionTarget.getBuffsAndDebuffs());
-            } else {
-                System.out.println("\tYou don't have a target!");
-            }
-        } else {
-//            action.performAction(actionTarget, );
-            action.performAction(, );
-        }
-    }
-
-    private GameCharacter determineActionTarget(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle) {
-
-        if (action.getActionEffectOn().equals(ActionEffectOn.PLAYER)) {
-            return charactersInvolvedInBattle.getHero();
-        }
-
-        if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-            return charactersInvolvedInBattle.getSpellTarget();
-        }
-
-        if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
-            return charactersInvolvedInBattle.getSpellCaster();
-        }
-
-        return null;
-    }
+//    private GameCharacter determineActionTarget(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle) {
+//
+//        if (action.getActionEffectOn().equals(ActionEffectOn.PLAYER)) {
+//            return charactersInvolvedInBattle.getHero();
+//        }
+//
+//        if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
+//            return charactersInvolvedInBattle.getSpellTarget();
+//        }
+//
+//        if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_CASTER)) {
+//            return charactersInvolvedInBattle.getSpellCaster();
+//        }
+//
+//        return null;
+//    }
 
     /**
      * Method is responsible for add action to action list and reset turn value to 0. If list does not contain action,
@@ -92,22 +92,22 @@ public class ActionService {
      * @param actionWithDuration action with duration
      * @param actions            list where you want to add new action
      */
-    private void setNewActionOrAddStackToExistingAction(ActionWithDuration actionWithDuration, Set<ActionWithDuration> actions) {
-        if (!actions.contains(actionWithDuration)) {
-            actions.add(actionWithDuration);
-            actionWithDuration.addActionStack();
-            actionWithDuration.actionCurrentTurnReset();
-        } else {
-            for (ActionWithDuration action : actions) {
-                if (action.equals(actionWithDuration) && action.getActionCurrentStacks() < action.getActionMaxStacks()) {
-                    action.addActionStack();
-                    action.actionCurrentTurnReset();
-                }
-
-                if (action.equals(actionWithDuration) && action.getActionCurrentStacks() == action.getActionMaxStacks()) {
-                    action.actionCurrentTurnReset();
-                }
-            }
-        }
-    }
+//    private void setNewActionOrAddStackToExistingAction(ActionWithDuration actionWithDuration, Set<ActionWithDuration> actions) {
+//        if (!actions.contains(actionWithDuration)) {
+//            actions.add(actionWithDuration);
+//            actionWithDuration.addActionStack();
+//            actionWithDuration.actionCurrentTurnReset();
+//        } else {
+//            for (ActionWithDuration action : actions) {
+//                if (action.equals(actionWithDuration) && action.getActionCurrentStacks() < action.getActionMaxStacks()) {
+//                    action.addActionStack();
+//                    action.actionCurrentTurnReset();
+//                }
+//
+//                if (action.equals(actionWithDuration) && action.getActionCurrentStacks() == action.getActionMaxStacks()) {
+//                    action.actionCurrentTurnReset();
+//                }
+//            }
+//        }
+//    }
 }

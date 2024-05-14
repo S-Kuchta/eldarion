@@ -5,7 +5,6 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.usableItem.UsableItem;
-import kuchtastefan.service.ActionService;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,9 +30,8 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
             System.out.println("\t" + ConsoleColor.RED + this.getName() + " Can't be used in combat!" + ConsoleColor.RESET);
             return false;
         } else {
-            ActionService actionService = new ActionService();
             for (Action action : this.actionList) {
-                actionService.applyActionToTarget(action, hero);
+                action.performActionOrAddNewAction(hero, hero);
             }
 
             hero.getHeroInventory().removeItemFromHeroInventory(this, 1);

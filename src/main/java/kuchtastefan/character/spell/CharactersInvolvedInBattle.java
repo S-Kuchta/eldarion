@@ -3,18 +3,21 @@ package kuchtastefan.character.spell;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
 import lombok.Getter;
+import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 public class CharactersInvolvedInBattle {
 
         private Hero hero;
-        private final GameCharacter spellCaster;
-        private final GameCharacter spellTarget;
-        private final List<GameCharacter> enemyCharacters;
-        private final List<GameCharacter> alliesCharacters;
-        private final List<GameCharacter> tempCharacterList;
+        private GameCharacter spellCaster;
+        private GameCharacter spellTarget;
+        private List<GameCharacter> enemyCharacters;
+        private List<GameCharacter> alliesCharacters;
+        private List<GameCharacter> tempCharacterList;
 
         public CharactersInvolvedInBattle(Hero hero, GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyCharacters, List<GameCharacter> alliesCharacters, List<GameCharacter> tempCharacterList) {
                 this.hero = hero;
@@ -31,6 +34,19 @@ public class CharactersInvolvedInBattle {
                 this.enemyCharacters = enemyCharacters;
                 this.alliesCharacters = alliesCharacters;
                 this.tempCharacterList = tempCharacterList;
+        }
+
+        public CharactersInvolvedInBattle(Hero hero) {
+                this.hero = hero;
+                this.spellCaster = hero;
+                this.spellTarget = hero;
+                this.enemyCharacters = new ArrayList<>();
+                this.alliesCharacters = new ArrayList<>();
+                this.tempCharacterList = new ArrayList<>();
+        }
+
+        public List<GameCharacter> getCharacterList(GameCharacter gameCharacter, boolean isSameList) {
+                return alliesCharacters.contains(gameCharacter) == isSameList ? alliesCharacters : enemyCharacters;
         }
 }
 

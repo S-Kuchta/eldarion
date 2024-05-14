@@ -4,8 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public enum ActionEffectOn {
     SPELL_CASTER,
-    SPELL_TARGET,
-    PLAYER;
+    SPELL_TARGET;
 
     @Override
     public String toString() {

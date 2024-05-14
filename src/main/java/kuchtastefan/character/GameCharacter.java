@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
@@ -39,23 +40,53 @@ public abstract class GameCharacter {
         this.canPerformAction = true;
     }
 
+
+    public void setNewActionOrAddStackToExistingAction(ActionWithDuration actionWithDuration) {
+        if (!this.buffsAndDebuffs.contains(actionWithDuration)) {
+            this.buffsAndDebuffs.add(actionWithDuration);
+            actionWithDuration.addActionStack();
+            actionWithDuration.actionCurrentTurnReset();
+        } else {
+            for (ActionWithDuration action : this.buffsAndDebuffs) {
+                if (action.equals(actionWithDuration) && action.getActionCurrentStacks() < action.getActionMaxStacks()) {
+                    action.addActionStack();
+                    action.actionCurrentTurnReset();
+                }
+
+                if (action.equals(actionWithDuration) && action.getActionCurrentStacks() == action.getActionMaxStacks()) {
+                    action.actionCurrentTurnReset();
+                }
+            }
+        }
+    }
+
     /**
      * Call this method when you want to update ability points depending on active actions (buff, de buff)
      * If actionDurationType is same as type from parameter, you will get turn for action
      * Method also check if you reach max turns. If yes, action is removed.
      */
-    public void performActionsWithDuration(boolean addTurn) {
+    public void performActionsWithDuration(GameCharacter spellCaster, GameCharacter spellTarget) {
         resetAbilitiesToMaxValues(false);
 
         for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
-            actionWithDuration.performAction(this, );
-            if (addTurn) {
-                actionWithDuration.actionAddTurn();
-            }
+            actionWithDuration.performAction(spellCaster, spellTarget);
+            actionWithDuration.actionAddTurn();
         }
 
         this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
     }
+//    public void performActionsWithDuration(boolean addTurn) {
+//        resetAbilitiesToMaxValues(false);
+//
+//        for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
+//            actionWithDuration.performAction(this, );
+//            if (addTurn) {
+//                actionWithDuration.actionAddTurn();
+//            }
+//        }
+//
+//        this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
+//    }
 
     public void resetAbilitiesToMaxValues(boolean setHealthOrManaToMaxValue) {
         this.canPerformAction = true;

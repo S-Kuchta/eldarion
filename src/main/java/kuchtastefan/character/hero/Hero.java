@@ -109,7 +109,7 @@ public class Hero extends GameCharacter {
         }
 
         this.setHeroEnhancedAbilities();
-//        this.resetAbilitiesToMaxValues(true);
+        this.resetAbilitiesToMaxValues(true);
 //        this.performActionsWithDuration(false);
     }
 
@@ -173,8 +173,7 @@ public class Hero extends GameCharacter {
             }
 
             this.setHeroEnhancedAbilities();
-//            this.resetAbilitiesToMaxValues(true);
-//            this.performActionsWithDuration(false);
+            this.resetAbilitiesToMaxValues(true);
             this.updateAbilityPoints(heroAvailablePointsChange);
         }
     }

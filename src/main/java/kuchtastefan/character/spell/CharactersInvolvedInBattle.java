@@ -19,14 +19,6 @@ public class CharactersInvolvedInBattle {
         private List<GameCharacter> alliesCharacters;
         private List<GameCharacter> tempCharacterList;
 
-        public CharactersInvolvedInBattle(Hero hero, GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyCharacters, List<GameCharacter> alliesCharacters, List<GameCharacter> tempCharacterList) {
-                this.hero = hero;
-                this.spellCaster = spellCaster;
-                this.spellTarget = spellTarget;
-                this.enemyCharacters = enemyCharacters;
-                this.alliesCharacters = alliesCharacters;
-                this.tempCharacterList = tempCharacterList;
-        }
 
         public CharactersInvolvedInBattle(GameCharacter spellCaster, GameCharacter spellTarget, List<GameCharacter> enemyCharacters, List<GameCharacter> alliesCharacters, List<GameCharacter> tempCharacterList) {
                 this.spellCaster = spellCaster;

@@ -17,14 +17,19 @@ public class ActionDrainMana extends ActionWithDuration implements ActionWithInc
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
-        int value = this.currentActionValue;
-        if (spellCaster.getEffectiveAbilityValue(Ability.MANA) < this.currentActionValue) {
-            value = spellCaster.getEffectiveAbilityValue(Ability.MANA);
+    public void performAction() {
+        int drainManaValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
+        System.out.println(this.charactersInvolvedInBattle.getSpellCaster());
+        System.out.println(this.charactersInvolvedInBattle.getSpellTarget());
+        System.out.println(drainManaValue);
+
+        if (charactersInvolvedInBattle.getSpellTarget().getEffectiveAbilityValue(Ability.MANA) <= drainManaValue) {
+            drainManaValue = charactersInvolvedInBattle.getSpellTarget().getEffectiveAbilityValue(Ability.MANA);
         }
 
-        System.out.println("\t" + spellCaster.getName() + " lost " + value + " Mana");
-        spellCaster.decreaseEffectiveAbilityValue(this.currentActionValue, Ability.MANA);
+        System.out.println(drainManaValue);
+        charactersInvolvedInBattle.getSpellTarget().decreaseEffectiveAbilityValue(drainManaValue, Ability.MANA);
+        charactersInvolvedInBattle.getSpellCaster().increaseEffectiveAbilityValue(drainManaValue, Ability.MANA);
     }
 
     @Override

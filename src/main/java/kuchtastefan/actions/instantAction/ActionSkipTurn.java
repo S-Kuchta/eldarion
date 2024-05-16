@@ -12,7 +12,7 @@ public class ActionSkipTurn extends Action implements ActionWithoutValue {
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
+    public void performAction() {
 
     }
 

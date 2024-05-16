@@ -15,12 +15,12 @@ public class ActionDealDamage extends Action implements ActionWithIncreasedValue
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
+    public void performAction() {
 //        int damage = spellCaster.receiveDamage(this.currentActionValue);
-        int damage = spellTarget.receiveDamage(this.returnFinalValue(spellCaster));
+        int damage = charactersInvolvedInBattle.getSpellTarget().receiveDamage(this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()));
 
         System.out.println("\t" + ConsoleColor.YELLOW + this.getActionName() + ConsoleColor.RESET + ": " + ConsoleColor.RED_BRIGHT
-                + damage + ConsoleColor.RESET + " damage to " + spellTarget.getName());
+                + damage + ConsoleColor.RESET + " damage to " + charactersInvolvedInBattle.getSpellTarget().getName());
     }
 
     @Override

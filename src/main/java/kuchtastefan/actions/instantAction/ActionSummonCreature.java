@@ -23,9 +23,9 @@ public class ActionSummonCreature extends Action implements ActionWithoutValue {
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
-        System.out.println("\t" + spellCaster.getName() + " summoned " + CharacterDB.CHARACTER_DB.get(this.summonedNpcId).getName());
-        this.charactersInvolvedInBattle.getTempCharacterList().add(returnSummonedCharacter(spellCaster.getLevel()));
+    public void performAction() {
+        System.out.println("\t" + charactersInvolvedInBattle.getSpellCaster().getName() + " summoned " + CharacterDB.CHARACTER_DB.get(this.summonedNpcId).getName());
+        this.charactersInvolvedInBattle.getTempCharacterList().add(returnSummonedCharacter(charactersInvolvedInBattle.getSpellCaster().getLevel()));
     }
 
     private NonPlayerCharacter returnSummonedCharacter(int gameCharacterLevel) {

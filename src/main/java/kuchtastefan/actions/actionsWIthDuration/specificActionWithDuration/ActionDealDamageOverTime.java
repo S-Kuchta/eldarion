@@ -15,13 +15,13 @@ public class ActionDealDamageOverTime extends ActionWithDuration implements Acti
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
+    public void performAction() {
 //        int randomValueFromRange = RandomNumberGenerator.getRandomNumber(this.returnActionValueRange(gameCharacter).minimumValue(),
 //                this.returnActionValueRange(gameCharacter).maximumValue());
 
-        int damageWithStacks = spellTarget.receiveDamage(this.returnFinalValue(spellCaster) * this.getActionCurrentStacks());
+        int damageWithStacks = charactersInvolvedInBattle.getSpellTarget().receiveDamage(this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks());
 //        int damageWithStacks = gameCharacter.receiveDamage(this.currentActionValue * this.getActionCurrentStacks());
-        System.out.println("\t" + spellTarget.getName() + " take " + ConsoleColor.RED_BRIGHT + damageWithStacks + ConsoleColor.RESET + " damage ");
+        System.out.println("\t" + charactersInvolvedInBattle.getSpellTarget().getName() + " take " + ConsoleColor.RED_BRIGHT + damageWithStacks + ConsoleColor.RESET + " damage ");
     }
 
     @Override

@@ -1,10 +1,16 @@
 package kuchtastefan.actions.actionsWIthDuration;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionStun;
 import kuchtastefan.character.GameCharacter;
+import kuchtastefan.character.spell.CharactersInvolvedInBattle;
+import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,7 +38,15 @@ public abstract class ActionWithDuration extends Action {
     }
 
     @Override
-    public abstract void performAction(GameCharacter spellCaster, GameCharacter spellTarget);
+    public abstract void performAction();
+
+    @Override
+    public void handleAction(CharactersInvolvedInBattle charactersInvolvedInBattle) {
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
+        ActionWithDuration action = gson.fromJson(gson.toJson(this), this.getClass());
+        action.setNewCharactersInvolvedInBattle(charactersInvolvedInBattle);
+        action.getCharactersInvolvedInBattle().getSpellTarget().setNewActionOrAddStackToExistingAction(action);
+    }
 
     public void addActionStack() {
         this.actionCurrentStacks++;

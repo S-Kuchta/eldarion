@@ -2,7 +2,6 @@ package kuchtastefan.character.spell;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.CharacterClass;
 import kuchtastefan.utility.ConsoleColor;
@@ -63,7 +62,7 @@ public class Spell {
 
             System.out.println("\t" + spellCaster.getName() + " use " + this.getSpellName());
             if (isAttackSuccessful(spellCaster, spellTarget)) {
-                performSuccessfulAttack(spellCaster, charactersInvolvedInBattle);
+                performSuccessfulAttack(charactersInvolvedInBattle);
             } else {
                 System.out.println("\t" + ConsoleColor.RED + spellCaster.getName() + " Missed Enemy!");
             }
@@ -85,6 +84,24 @@ public class Spell {
         }
     }
 
+    private void performSuccessfulAttack(CharactersInvolvedInBattle charactersInvolvedInBattle) {
+        for (Action action : this.getSpellActions()) {
+            System.out.println("perform: " + action.getActionName());
+            if (action.willPerformAction()) {
+                charactersInvolvedInBattle.setSpellTarget(action.determineActionTarget(charactersInvolvedInBattle));
+                if (this.hitAllEnemy) {
+                    List<GameCharacter> characterList = charactersInvolvedInBattle.getCharacterList(action.determineActionTarget(charactersInvolvedInBattle), true);
+                    for (GameCharacter character : characterList) {
+                        charactersInvolvedInBattle.setSpellTarget(character);
+                        action.handleAction(charactersInvolvedInBattle);
+                    }
+                } else {
+                    action.handleAction(charactersInvolvedInBattle);
+                }
+            }
+        }
+    }
+
     private boolean isAttackSuccessful(GameCharacter spellCaster, GameCharacter spellTarget) {
         int chanceToMiss = spellTarget.getEffectiveAbilityValue(Ability.HASTE) - spellCaster.getEffectiveAbilityValue(Ability.HASTE);
         return chanceToMiss <= RandomNumberGenerator.getRandomNumber(0, 100);
@@ -103,26 +120,4 @@ public class Spell {
         return ConsoleColor.MAGENTA + spellName + ConsoleColor.RESET;
     }
 
-    private void performSuccessfulAttack(GameCharacter spellCaster, CharactersInvolvedInBattle charactersInvolvedInBattle) {
-        for (Action action : this.getSpellActions()) {
-            if (action.willPerformAction()) {
-                GameCharacter spellTarget = determineActionTarget(action, charactersInvolvedInBattle);
-                if (hitAllEnemy) {
-                    for (GameCharacter character : charactersInvolvedInBattle.getCharacterList(spellTarget, true)) {
-                        action.performActionOrAddNewAction(spellCaster, character);
-                    }
-                } else {
-                    action.performActionOrAddNewAction(spellCaster, spellTarget);
-                }
-            }
-        }
-    }
-
-    private GameCharacter determineActionTarget(Action action, CharactersInvolvedInBattle charactersInvolvedInBattle) {
-        if (action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-            return charactersInvolvedInBattle.getSpellTarget();
-        } else {
-            return charactersInvolvedInBattle.getSpellCaster();
-        }
-    }
 }

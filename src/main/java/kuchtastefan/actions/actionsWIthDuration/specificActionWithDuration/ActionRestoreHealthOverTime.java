@@ -18,8 +18,8 @@ public class ActionRestoreHealthOverTime extends ActionWithDuration implements A
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
-        spellCaster.restoreAbilityValue(getCurrentActionValue(), Ability.HEALTH);
+    public void performAction() {
+        charactersInvolvedInBattle.getSpellTarget().restoreAbilityValue(getCurrentActionValue(), Ability.HEALTH);
     }
 
     @Override

@@ -17,9 +17,9 @@ public class ActionStun extends ActionWithDuration implements ActionWithoutValue
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
-        spellCaster.setCanPerformAction(false);
-        System.out.println("\t" + ConsoleColor.YELLOW + spellCaster.getName() + ConsoleColor.RESET + " is stunned!");
+    public void performAction() {
+        charactersInvolvedInBattle.getSpellTarget().setCanPerformAction(false);
+        System.out.println("\t" + ConsoleColor.YELLOW + charactersInvolvedInBattle.getSpellTarget().getName() + ConsoleColor.RESET + " is stunned!");
     }
 
     @Override

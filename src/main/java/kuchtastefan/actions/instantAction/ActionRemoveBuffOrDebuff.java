@@ -23,14 +23,14 @@ public class ActionRemoveBuffOrDebuff extends Action implements ActionWithBaseVa
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
+    public void performAction() {
         if (this.removeAllStatusEffects) {
-            spellCaster.getBuffsAndDebuffs().removeIf(action -> action.getActionStatusEffect().equals(this.actionStatusEffectToRemove));
+            charactersInvolvedInBattle.getSpellTarget().getBuffsAndDebuffs().removeIf(action -> action.getActionStatusEffect().equals(this.actionStatusEffectToRemove));
         } else {
-            for (ActionWithDuration action : spellCaster.getBuffsAndDebuffs()) {
+            for (ActionWithDuration action : charactersInvolvedInBattle.getSpellTarget().getBuffsAndDebuffs()) {
                 for (int i = 0; i < this.baseActionValue; i++) {
                     if (action.getActionStatusEffect().equals(this.actionStatusEffectToRemove)) {
-                        spellCaster.getBuffsAndDebuffs().remove(action);
+                        charactersInvolvedInBattle.getSpellTarget().getBuffsAndDebuffs().remove(action);
                     }
                 }
             }

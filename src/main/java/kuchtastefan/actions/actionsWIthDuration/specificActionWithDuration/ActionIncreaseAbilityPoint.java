@@ -27,10 +27,10 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration implements Ac
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
+    public void performAction() {
 
-        int increaseAbilityWithStacksValue = (this.returnActionValueRange(spellTarget).getOnlyValue() * this.getActionCurrentStacks());
-        spellTarget.increaseEffectiveAbilityValue(this.ability, increaseAbilityWithStacksValue);
+        int increaseAbilityWithStacksValue = this.returnFinalValue(this.charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
+        charactersInvolvedInBattle.getSpellTarget().increaseEffectiveAbilityValue(increaseAbilityWithStacksValue, this.ability);
 
         System.out.println("\t" + ConsoleColor.YELLOW + this.ability + ConsoleColor.RESET + " is increased by " + increaseAbilityWithStacksValue);
     }

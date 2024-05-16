@@ -16,8 +16,8 @@ public class ActionRestoreMana extends Action implements ActionWithIncreasedValu
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
-        spellCaster.restoreAbilityValue(this.currentActionValue, Ability.MANA);
+    public void performAction() {
+        charactersInvolvedInBattle.getSpellTarget().restoreAbilityValue(this.currentActionValue, Ability.MANA);
     }
 
     @Override

@@ -24,9 +24,9 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration implements Ac
     }
 
     @Override
-    public void performAction(GameCharacter spellCaster, GameCharacter spellTarget) {
-        int decreaseAbilityWithStacksValue = this.currentActionValue * this.getActionCurrentStacks();
-        spellTarget.decreaseEffectiveAbilityValue(decreaseAbilityWithStacksValue, this.ability);
+    public void performAction() {
+        int decreaseAbilityWithStacksValue = this.returnFinalValue(this.charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
+        charactersInvolvedInBattle.getSpellTarget().decreaseEffectiveAbilityValue(decreaseAbilityWithStacksValue, this.ability);
 
         System.out.println("\t" + ConsoleColor.RED + this.ability + ConsoleColor.RESET + " is decreased by " + decreaseAbilityWithStacksValue);
     }

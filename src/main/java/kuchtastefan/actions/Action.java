@@ -3,13 +3,13 @@ package kuchtastefan.actions;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionValue.ActionValue;
 import kuchtastefan.actions.actionValue.ActionValueRange;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
 import kuchtastefan.actions.criticalHit.CanBeCriticalHit;
 import kuchtastefan.actions.instantAction.ActionDealDamage;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,7 +34,7 @@ public abstract class Action implements ActionValue {
         this.chanceToPerformAction = chanceToPerformAction;
     }
 
-    public abstract void performAction(GameCharacter spellCaster, GameCharacter spellTarget);
+    public abstract void performAction();
 
     public abstract void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget);
 
@@ -44,12 +44,9 @@ public abstract class Action implements ActionValue {
         return RandomNumberGenerator.getRandomNumber(0, 100) <= this.chanceToPerformAction;
     }
 
-    public void performActionOrAddNewAction(GameCharacter spellCaster, GameCharacter spellTarget) {
-        if (this instanceof ActionWithDuration actionWithDuration) {
-            spellTarget.setNewActionOrAddStackToExistingAction(actionWithDuration);
-        } else {
-            this.performAction(spellCaster, spellTarget);
-        }
+    public void handleAction(CharactersInvolvedInBattle charactersInvolvedInBattle) {
+        this.setNewCharactersInvolvedInBattle(charactersInvolvedInBattle);
+        this.performAction();
     }
 
     /**
@@ -72,17 +69,26 @@ public abstract class Action implements ActionValue {
         return this.actionValue(spellCaster, valueIncreasedByLevel);
     }
 
-    protected int returnFinalValue(GameCharacter spellCaster) {
+    public int returnFinalValue(GameCharacter spellCaster) {
         int value = RandomNumberGenerator.getRandomNumber(
                 this.returnActionValueRange(spellCaster).minimumValue(),
                 this.returnActionValueRange(spellCaster).maximumValue());
 
         boolean criticalHit = RandomNumberGenerator.getRandomNumber(1, 100) <= spellCaster.getEffectiveAbilityValue(Ability.CRITICAL_HIT_CHANCE);
         if (this instanceof CanBeCriticalHit && criticalHit) {
+            System.out.print("\t" + ConsoleColor.RED + "Critical hit!" + ConsoleColor.RESET);
             value *= Constant.CRITICAL_HIT_MULTIPLIER;
         }
 
         return value;
+    }
+
+    public GameCharacter determineActionTarget(CharactersInvolvedInBattle charactersInvolvedInBattle) {
+        if (this.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
+            return charactersInvolvedInBattle.getSpellTarget();
+        } else {
+            return charactersInvolvedInBattle.getSpellCaster();
+        }
     }
 
     protected String returnTargetName(GameCharacter spellCaster, GameCharacter spellTarget) {
@@ -91,5 +97,10 @@ public abstract class Action implements ActionValue {
         } else {
             return spellTarget.getName();
         }
+    }
+
+    protected void setNewCharactersInvolvedInBattle(CharactersInvolvedInBattle characters) {
+        this.setCharactersInvolvedInBattle(new CharactersInvolvedInBattle(characters.getSpellCaster(), characters.getSpellTarget(),
+                characters.getEnemyCharacters(), characters.getAlliesCharacters(), characters.getTempCharacterList()));
     }
 }

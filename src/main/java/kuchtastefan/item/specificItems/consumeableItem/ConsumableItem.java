@@ -2,6 +2,7 @@ package kuchtastefan.item.specificItems.consumeableItem;
 
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.usableItem.UsableItem;
@@ -31,7 +32,7 @@ public class ConsumableItem extends Item implements UsableItem, HaveType {
             return false;
         } else {
             for (Action action : this.actionList) {
-                action.performActionOrAddNewAction(hero, hero);
+                action.handleAction(new CharactersInvolvedInBattle(hero));
             }
 
             hero.getHeroInventory().removeItemFromHeroInventory(this, 1);

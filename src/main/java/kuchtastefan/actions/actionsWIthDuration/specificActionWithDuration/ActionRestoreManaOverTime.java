@@ -18,7 +18,13 @@ public class ActionRestoreManaOverTime extends ActionWithDuration implements Act
 
     @Override
     public void performAction() {
+        this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
         charactersInvolvedInBattle.getSpellTarget().restoreAbilityValue(this.currentActionValue, Ability.MANA);
+    }
+
+    @Override
+    public void printActionPerforming() {
+        System.out.println("\t" + charactersInvolvedInBattle.getSpellTarget().getName() + " restores " + ConsoleColor.RED + this.getCurrentActionValue() + ConsoleColor.RESET + " mana");
     }
 
     @Override

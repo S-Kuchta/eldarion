@@ -19,7 +19,13 @@ public class ActionRestoreHealthOverTime extends ActionWithDuration implements A
 
     @Override
     public void performAction() {
+        this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
         charactersInvolvedInBattle.getSpellTarget().restoreAbilityValue(getCurrentActionValue(), Ability.HEALTH);
+    }
+
+    @Override
+    public void printActionPerforming() {
+        System.out.println("\t" + charactersInvolvedInBattle.getSpellTarget().getName() + " restores " + ConsoleColor.RED + this.getCurrentActionValue() + ConsoleColor.RESET + " health");
     }
 
     @Override

@@ -52,8 +52,8 @@
         "actionStatusEffect": "BUFF"
       },
       {
-        "type": "ActionDrainMana",
-        "actionName": "DRAIN_MANA",
+        "type": "ActionLoseMana",
+        "actionName": "LOSE_MANA",
         "actionEffectOn": "SPELL_CASTER",
         "baseActionValue": 1,
         "maxActionTurns": 3,

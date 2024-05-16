@@ -18,18 +18,20 @@ public class ActionDrainMana extends ActionWithDuration implements ActionWithInc
 
     @Override
     public void performAction() {
-        int drainManaValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
-        System.out.println(this.charactersInvolvedInBattle.getSpellCaster());
-        System.out.println(this.charactersInvolvedInBattle.getSpellTarget());
-        System.out.println(drainManaValue);
+        this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
 
-        if (charactersInvolvedInBattle.getSpellTarget().getEffectiveAbilityValue(Ability.MANA) <= drainManaValue) {
-            drainManaValue = charactersInvolvedInBattle.getSpellTarget().getEffectiveAbilityValue(Ability.MANA);
+        if (charactersInvolvedInBattle.getSpellTarget().getEffectiveAbilityValue(Ability.MANA) <= this.currentActionValue) {
+            this.currentActionValue = charactersInvolvedInBattle.getSpellTarget().getEffectiveAbilityValue(Ability.MANA);
         }
 
-        System.out.println(drainManaValue);
-        charactersInvolvedInBattle.getSpellTarget().decreaseEffectiveAbilityValue(drainManaValue, Ability.MANA);
-        charactersInvolvedInBattle.getSpellCaster().increaseEffectiveAbilityValue(drainManaValue, Ability.MANA);
+        charactersInvolvedInBattle.getSpellTarget().decreaseEffectiveAbilityValue(this.currentActionValue, Ability.MANA);
+        charactersInvolvedInBattle.getSpellCaster().increaseEffectiveAbilityValue(this.currentActionValue, Ability.MANA);
+    }
+
+    @Override
+    public void printActionPerforming() {
+        System.out.println("\t" + this.charactersInvolvedInBattle.getSpellCaster().getName() + " drains "
+                + ConsoleColor.BLUE + this.currentActionValue + ConsoleColor.RESET + " mana from " + this.charactersInvolvedInBattle.getSpellTarget().getName());
     }
 
     @Override

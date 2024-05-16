@@ -96,13 +96,8 @@ public class BattleService {
             GameCharacter attackingCharacter = allCharacters.get(currentTurn);
             GameCharacter target = setNpcTarget(attackingCharacter);
 
+            attackingCharacter.performActionsWithDuration(true);
             this.printBattleHeader(attackingCharacter);
-            this.printAndPerformActionOverTime(attackingCharacter);
-
-            if (checkIfCharacterDied(attackingCharacter, allCharacters)) {
-                currentTurn++;
-                continue;
-            }
 
             if (attackingCharacter.isCanPerformAction()) {
                 if (attackingCharacter instanceof Hero) {
@@ -113,7 +108,17 @@ public class BattleService {
                 }
             }
 
+            attackingCharacter.performActionsWithDuration(false);
+            attackingCharacter.printActionsWithDuration();
+            attackingCharacter.removeActionWithDuration();
+
+            if (checkIfCharacterDied(attackingCharacter, allCharacters)) {
+                currentTurn++;
+                continue;
+            }
+
             checkIfCharacterDied(target, allCharacters);
+
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
@@ -373,13 +378,29 @@ public class BattleService {
 //
 //        gameCharacter.performActionsWithDuration(true);
 //    }
-    private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
-        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
-            System.out.println("\t" + "Buffs & Debuffs");
-        }
+//    private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
+//        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
+//            System.out.println("\t" + "Buffs & Debuffs");
+//        }
+//
+//        gameCharacter.performActionsWithDuration();
+//    }
 
-        gameCharacter.performActionsWithDuration();
-    }
+//    private void performActionOverTime(GameCharacter gameCharacter) {
+////        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
+////            System.out.println("\t" + "Buffs & Debuffs");
+////        }
+//
+//        gameCharacter.performActionsWithDuration();
+//    }
+
+//    private void printActionsOverTime(GameCharacter gameCharacter) {
+//        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
+//            System.out.println("\t" + "Buffs & Debuffs");
+//        }
+//
+//        gameCharacter.printActionsWithDuration();
+//    }
 
 
     public void resetSpellsCoolDowns(Hero hero) {

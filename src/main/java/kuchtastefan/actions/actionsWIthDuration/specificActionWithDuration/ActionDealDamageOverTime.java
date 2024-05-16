@@ -3,6 +3,7 @@ package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
+import kuchtastefan.actions.actionValue.ActionValueRange;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithIncreasedValueByPrimaryAbility;
 import kuchtastefan.character.GameCharacter;
@@ -16,12 +17,14 @@ public class ActionDealDamageOverTime extends ActionWithDuration implements Acti
 
     @Override
     public void performAction() {
-//        int randomValueFromRange = RandomNumberGenerator.getRandomNumber(this.returnActionValueRange(gameCharacter).minimumValue(),
-//                this.returnActionValueRange(gameCharacter).maximumValue());
+        this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
+        this.charactersInvolvedInBattle.getSpellTarget().receiveDamage(this.currentActionValue);
 
-        int damageWithStacks = charactersInvolvedInBattle.getSpellTarget().receiveDamage(this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks());
-//        int damageWithStacks = gameCharacter.receiveDamage(this.currentActionValue * this.getActionCurrentStacks());
-        System.out.println("\t" + charactersInvolvedInBattle.getSpellTarget().getName() + " take " + ConsoleColor.RED_BRIGHT + damageWithStacks + ConsoleColor.RESET + " damage ");
+    }
+
+    @Override
+    public void printActionPerforming() {
+        System.out.println("\t" + charactersInvolvedInBattle.getSpellTarget().getName() + " take " + ConsoleColor.RED_BRIGHT + this.currentActionValue + ConsoleColor.RESET + " damage ");
     }
 
     @Override

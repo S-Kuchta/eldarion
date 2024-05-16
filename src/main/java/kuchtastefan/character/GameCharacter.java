@@ -1,6 +1,7 @@
 package kuchtastefan.character;
 
 import kuchtastefan.ability.Ability;
+import kuchtastefan.actions.actionsWIthDuration.ActionPerformingBeforeTurn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
 import kuchtastefan.character.hero.Hero;
@@ -41,7 +42,6 @@ public abstract class GameCharacter {
 
 
     public void setNewActionOrAddStackToExistingAction(ActionWithDuration actionWithDuration) {
-        System.out.println("adding: " + actionWithDuration.getActionName());
         if (!this.buffsAndDebuffs.contains(actionWithDuration)) {
             this.buffsAndDebuffs.add(actionWithDuration);
             actionWithDuration.addActionStack();
@@ -65,15 +65,54 @@ public abstract class GameCharacter {
      * If actionDurationType is same as type from parameter, you will get turn for action
      * Method also check if you reach max turns. If yes, action is removed.
      */
-    public void performActionsWithDuration() {
-        resetAbilitiesToMaxValues(false);
-
+    public void performActionsWithDuration(boolean performBeforeTurn) {
         for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
-            actionWithDuration.performAction();
-            actionWithDuration.actionAddTurn();
+            if (actionWithDuration instanceof ActionPerformingBeforeTurn && performBeforeTurn) {
+                this.setCanPerformAction(true);
+                actionWithDuration.performAction();
+                actionWithDuration.actionAddTurn();
+            } else if (!(actionWithDuration instanceof ActionPerformingBeforeTurn) && !performBeforeTurn) {
+                resetAbilitiesToMaxValues(false);
+                actionWithDuration.performAction();
+                actionWithDuration.actionAddTurn();
+            }
         }
+    }
 
+
+//        if (performBeforeTurn) {
+//            for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
+//                if (actionWithDuration instanceof ActionPerformingBeforeTurn) {
+//                    actionWithDuration.performAction();
+//                    actionWithDuration.actionAddTurn();
+//                }
+//            }
+//        } else {
+//            for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
+//                if (actionWithDuration instanceof ActionPerformingBeforeTurn) {
+//                    continue;
+//                }
+//
+//                actionWithDuration.performAction();
+//                actionWithDuration.actionAddTurn();
+//            }
+//        }
+
+//        this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
+//    }
+
+    public void removeActionWithDuration() {
         this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
+    }
+
+    public void printActionsWithDuration() {
+        if (!this.getBuffsAndDebuffs().isEmpty()) {
+            System.out.println("\t" + "Buffs & Debuffs");
+
+            for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
+                actionWithDuration.printActionPerforming();
+            }
+        }
     }
 //    public void performActionsWithDuration(boolean addTurn) {
 //        resetAbilitiesToMaxValues(false);
@@ -123,12 +162,12 @@ public abstract class GameCharacter {
         Iterator<ActionWithDuration> iterator = this.buffsAndDebuffs.iterator();
         while (iterator.hasNext()) {
             ActionWithDuration action = iterator.next();
-            if (action instanceof ActionAbsorbDamage actionAbsorbDamage) {
+            if (action instanceof ActionAbsorbDamage) {
                 if (action.getCurrentActionValue() >= damage) {
                     action.setCurrentActionValue(action.getCurrentActionValue() - damage);
                     damage = 0;
                 } else {
-                    System.out.println("\t" + actionAbsorbDamage.getActionName() + " shield destroyed!");
+                    System.out.println("\t" + action.getActionName() + " shield destroyed!");
                     damage -= action.getCurrentActionValue();
                     action.setCurrentActionValue(0);
                     iterator.remove();
@@ -186,7 +225,6 @@ public abstract class GameCharacter {
     }
 
     public void increaseEffectiveAbilityValue(int valueToIncrease, Ability ability) {
-        System.out.println("increasing: " + valueToIncrease + " for: " + ability);
         this.effectiveAbilities.put(ability, this.getEffectiveAbilityValue(ability) + valueToIncrease);
     }
 

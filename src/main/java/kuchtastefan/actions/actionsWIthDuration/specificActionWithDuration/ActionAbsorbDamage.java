@@ -18,8 +18,13 @@ public class ActionAbsorbDamage extends ActionWithDuration implements ActionWith
 
     @Override
     public void performAction() {
-        int finalAbilityValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
-        this.determineActionTarget(charactersInvolvedInBattle).increaseEffectiveAbilityValue(finalAbilityValue, Ability.ABSORB_DAMAGE);
+        this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
+        this.determineActionTarget(charactersInvolvedInBattle).increaseEffectiveAbilityValue(this.currentActionValue, Ability.ABSORB_DAMAGE);
+    }
+
+    @Override
+    public void printActionPerforming() {
+        System.out.println("\t" + charactersInvolvedInBattle.getSpellTarget().getName() + " shield is increased by " + this.currentActionValue);
     }
 
     @Override

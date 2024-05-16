@@ -37,6 +37,8 @@ public abstract class ActionWithDuration extends Action {
         this.actionCurrentStacks = 0;
     }
 
+    public abstract void printActionPerforming();
+
     @Override
     public abstract void performAction();
 

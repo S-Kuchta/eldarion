@@ -4,8 +4,8 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithBaseValue;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
@@ -28,11 +28,13 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration implements Ac
 
     @Override
     public void performAction() {
+        this.currentActionValue = this.returnFinalValue(this.charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
+        charactersInvolvedInBattle.getSpellTarget().increaseEffectiveAbilityValue(this.currentActionValue, this.ability);
+    }
 
-        int increaseAbilityWithStacksValue = this.returnFinalValue(this.charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
-        charactersInvolvedInBattle.getSpellTarget().increaseEffectiveAbilityValue(increaseAbilityWithStacksValue, this.ability);
-
-        System.out.println("\t" + ConsoleColor.YELLOW + this.ability + ConsoleColor.RESET + " is increased by " + increaseAbilityWithStacksValue);
+    @Override
+    public void printActionPerforming() {
+        System.out.println("\t" + ConsoleColor.YELLOW + this.ability + ConsoleColor.RESET + " is increased by " + this.currentActionValue);
     }
 
     @Override

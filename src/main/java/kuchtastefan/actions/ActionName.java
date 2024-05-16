@@ -12,6 +12,7 @@ public enum ActionName {
     HEAL_OVER_TIME("Heal Over Time. Healths are restored every turn the action lasts."),
     RESTORE_MANA_OVER_TIME("Restore mana over Time. It restore mana per one turn."),
     RESTORE_MANA("Restore mana."),
+    LOSE_MANA("Lose mana."),
     INCREASE_ABILITY_POINTS("Increase Ability Points. It increases the ability points for the duration of the action."),
     DECREASE_ABILITY_POINTS("Decrease Ability Points. It decrease the ability points for the duration of the action."),
     ABSORB_DAMAGE("Absorb Damage Taken. It absorbs damage up to the specified value. The action lasts for a certain number of rounds."),

@@ -3,12 +3,13 @@ package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
+import kuchtastefan.actions.actionsWIthDuration.ActionPerformingBeforeTurn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionStun extends ActionWithDuration implements ActionWithoutValue {
+public class ActionStun extends ActionWithDuration implements ActionWithoutValue, ActionPerformingBeforeTurn {
 
     public ActionStun(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
                       int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
@@ -19,6 +20,10 @@ public class ActionStun extends ActionWithDuration implements ActionWithoutValue
     @Override
     public void performAction() {
         charactersInvolvedInBattle.getSpellTarget().setCanPerformAction(false);
+    }
+
+    @Override
+    public void printActionPerforming() {
         System.out.println("\t" + ConsoleColor.YELLOW + charactersInvolvedInBattle.getSpellTarget().getName() + ConsoleColor.RESET + " is stunned!");
     }
 

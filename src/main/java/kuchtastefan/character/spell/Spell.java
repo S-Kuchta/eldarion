@@ -86,7 +86,6 @@ public class Spell {
 
     private void performSuccessfulAttack(CharactersInvolvedInBattle charactersInvolvedInBattle) {
         for (Action action : this.getSpellActions()) {
-            System.out.println("perform: " + action.getActionName());
             if (action.willPerformAction()) {
                 charactersInvolvedInBattle.setSpellTarget(action.determineActionTarget(charactersInvolvedInBattle));
                 if (this.hitAllEnemy) {

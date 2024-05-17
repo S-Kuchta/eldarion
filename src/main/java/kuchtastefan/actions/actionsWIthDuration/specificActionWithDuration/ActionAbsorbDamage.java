@@ -4,8 +4,8 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
@@ -18,7 +18,10 @@ public class ActionAbsorbDamage extends ActionWithDuration implements ActionWith
 
     @Override
     public void performAction() {
-        this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
+        if (getCurrentActionTurn() == 0) {
+            this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
+        }
+
         this.determineActionTarget(charactersInvolvedInBattle).increaseEffectiveAbilityValue(this.currentActionValue, Ability.ABSORB_DAMAGE);
     }
 

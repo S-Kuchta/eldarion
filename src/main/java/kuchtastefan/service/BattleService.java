@@ -94,6 +94,7 @@ public class BattleService {
             }
 
             GameCharacter attackingCharacter = allCharacters.get(currentTurn);
+            attackingCharacter.removeActionWithDuration();
             GameCharacter target = setNpcTarget(attackingCharacter);
 
             attackingCharacter.performActionsWithDuration(true);
@@ -110,7 +111,7 @@ public class BattleService {
 
             attackingCharacter.performActionsWithDuration(false);
             attackingCharacter.printActionsWithDuration();
-            attackingCharacter.removeActionWithDuration();
+//            attackingCharacter.removeActionWithDuration();
 
             if (checkIfCharacterDied(attackingCharacter, allCharacters)) {
                 currentTurn++;
@@ -285,7 +286,7 @@ public class BattleService {
 
         int index = 1;
         for (GameCharacter enemy : enemyList) {
-            if (enemy instanceof NonPlayerCharacter nonPlayerCharacter && !nonPlayerCharacter.isDefeated()) {
+            if (enemy instanceof NonPlayerCharacter nonPlayerCharacter) {
                 printEnemySelection(index++, nonPlayerCharacter);
             }
         }

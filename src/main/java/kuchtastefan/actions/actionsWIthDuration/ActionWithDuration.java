@@ -45,9 +45,10 @@ public abstract class ActionWithDuration extends Action {
     @Override
     public void handleAction(CharactersInvolvedInBattle charactersInvolvedInBattle) {
         Gson gson = new GsonBuilder().registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory).create();
-        ActionWithDuration action = gson.fromJson(gson.toJson(this), this.getClass());
-        action.setNewCharactersInvolvedInBattle(charactersInvolvedInBattle);
-        action.getCharactersInvolvedInBattle().getSpellTarget().setNewActionOrAddStackToExistingAction(action);
+        ActionWithDuration actionWithDuration = gson.fromJson(gson.toJson(this), this.getClass());
+
+        actionWithDuration.setNewCharactersInvolvedInBattle(charactersInvolvedInBattle);
+        actionWithDuration.getCharactersInvolvedInBattle().getSpellTarget().setNewActionOrAddStackToExistingAction(actionWithDuration);
     }
 
     public void addActionStack() {

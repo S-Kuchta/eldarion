@@ -60,13 +60,13 @@ public abstract class Action implements ActionValue {
      * @return An ActionValueRange object representing the range of action values.
      */
     protected ActionValueRange returnActionValueRange(GameCharacter spellCaster) {
-        int valueIncreasedByLevel = this.baseActionValue + (spellCaster.getLevel() * Constant.BONUS_VALUE_PER_LEVEL);
+        int baseValue = this.baseActionValue + (spellCaster.getLevel() * Constant.BONUS_VALUE_PER_LEVEL);
 
         if (this instanceof ActionDealDamage || this instanceof ActionDealDamageOverTime) {
-            valueIncreasedByLevel += spellCaster.getEffectiveAbilityValue(Ability.ATTACK);
+            baseValue += spellCaster.getEffectiveAbilityValue(Ability.ATTACK);
         }
 
-        return this.actionValue(spellCaster, valueIncreasedByLevel);
+        return this.actionValue(spellCaster, baseValue);
     }
 
     public int returnFinalValue(GameCharacter spellCaster) {

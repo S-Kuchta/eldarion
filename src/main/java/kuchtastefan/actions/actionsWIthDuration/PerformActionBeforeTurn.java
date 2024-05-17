@@ -1,4 +1,4 @@
 package kuchtastefan.actions.actionsWIthDuration;
 
-public interface ActionPerformingBeforeTurn {
+public interface PerformActionBeforeTurn {
 }

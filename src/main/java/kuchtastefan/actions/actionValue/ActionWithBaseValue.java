@@ -5,7 +5,7 @@ import kuchtastefan.character.GameCharacter;
 public interface ActionWithBaseValue extends ActionValue {
 
     @Override
-    default ActionValueRange actionValue(GameCharacter spellCaster, int valueIncreasedByLevel) {
-        return new ActionValueRange(valueIncreasedByLevel, valueIncreasedByLevel);
+    default ActionValueRange actionValue(GameCharacter spellCaster, int baseValue) {
+        return new ActionValueRange(baseValue, baseValue);
     }
 }

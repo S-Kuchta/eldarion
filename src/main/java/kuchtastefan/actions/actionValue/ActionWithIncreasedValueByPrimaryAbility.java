@@ -9,7 +9,7 @@ import kuchtastefan.constant.Constant;
 public interface ActionWithIncreasedValueByPrimaryAbility extends ActionValue {
 
     @Override
-    default ActionValueRange actionValue(GameCharacter spellCaster, int valueIncreasedByLevel) {
+    default ActionValueRange actionValue(GameCharacter spellCaster, int baseValue) {
         Ability primaryAbility = null;
         if (spellCaster instanceof Hero hero) {
             primaryAbility = hero.getCharacterClass().getPrimaryAbility();
@@ -19,9 +19,7 @@ public interface ActionWithIncreasedValueByPrimaryAbility extends ActionValue {
             primaryAbility = nonPlayerCharacter.getNpcType().getPrimaryAbility();
         }
 
-        int value = valueIncreasedByLevel + spellCaster.getEffectiveAbilityValue(primaryAbility) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
-
-//        return new ActionValueRange(valueIncreasedByLevel, valueIncreasedByLevel + spellCaster.getEffectiveAbilityValue(primaryAbility) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER);
+        int value = baseValue + spellCaster.getEffectiveAbilityValue(primaryAbility) / Constant.MAX_DAMAGE_FROM_ABILITY_DIVIDER;
         return new ActionValueRange((int) (value * 0.75), value);
     }
 }

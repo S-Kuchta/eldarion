@@ -1,8 +1,8 @@
 package kuchtastefan.character;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.actionsWIthDuration.ActionPerformingBeforeTurn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.PerformActionBeforeTurn;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
@@ -24,14 +24,12 @@ public abstract class GameCharacter {
     protected Map<Ability, Integer> effectiveAbilities;
     protected Set<ActionWithDuration> buffsAndDebuffs;
     protected List<Spell> characterSpellList;
-    protected boolean defeated;
     protected boolean canPerformAction;
     protected boolean reflectSpell;
 
 
     public GameCharacter(String name, Map<Ability, Integer> baseAbilities) {
         this.name = name;
-        this.defeated = false;
         this.baseAbilities = baseAbilities;
         this.enhancedAbilities = new HashMap<>(baseAbilities);
         this.effectiveAbilities = new HashMap<>(baseAbilities);
@@ -61,45 +59,27 @@ public abstract class GameCharacter {
     }
 
     /**
-     * Call this method when you want to update ability points depending on active actions (buff, de buff)
+     * Call this method when you want to update ability points depending on active actions (buff, debuff)
      * If actionDurationType is same as type from parameter, you will get turn for action
      * Method also check if you reach max turns. If yes, action is removed.
      */
     public void performActionsWithDuration(boolean performBeforeTurn) {
+        if (performBeforeTurn) {
+            this.setCanPerformAction(true);
+        } else {
+            resetAbilitiesToMaxValues(false);
+        }
+
         for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
-            if (actionWithDuration instanceof ActionPerformingBeforeTurn && performBeforeTurn) {
-                this.setCanPerformAction(true);
+            if (actionWithDuration instanceof PerformActionBeforeTurn && performBeforeTurn) {
                 actionWithDuration.performAction();
                 actionWithDuration.actionAddTurn();
-            } else if (!(actionWithDuration instanceof ActionPerformingBeforeTurn) && !performBeforeTurn) {
-                resetAbilitiesToMaxValues(false);
+            } else if (!(actionWithDuration instanceof PerformActionBeforeTurn) && !performBeforeTurn) {
                 actionWithDuration.performAction();
                 actionWithDuration.actionAddTurn();
             }
         }
     }
-
-
-//        if (performBeforeTurn) {
-//            for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
-//                if (actionWithDuration instanceof ActionPerformingBeforeTurn) {
-//                    actionWithDuration.performAction();
-//                    actionWithDuration.actionAddTurn();
-//                }
-//            }
-//        } else {
-//            for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
-//                if (actionWithDuration instanceof ActionPerformingBeforeTurn) {
-//                    continue;
-//                }
-//
-//                actionWithDuration.performAction();
-//                actionWithDuration.actionAddTurn();
-//            }
-//        }
-
-//        this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
-//    }
 
     public void removeActionWithDuration() {
         this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
@@ -114,18 +94,6 @@ public abstract class GameCharacter {
             }
         }
     }
-//    public void performActionsWithDuration(boolean addTurn) {
-//        resetAbilitiesToMaxValues(false);
-//
-//        for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
-//            actionWithDuration.performAction(this, );
-//            if (addTurn) {
-//                actionWithDuration.actionAddTurn();
-//            }
-//        }
-//
-//        this.buffsAndDebuffs.removeIf(ActionWithDuration::checkIfActionReachMaxActionTurns);
-//    }
 
     public void resetAbilitiesToMaxValues(boolean setHealthOrManaToMaxValue) {
         this.canPerformAction = true;
@@ -156,6 +124,8 @@ public abstract class GameCharacter {
      */
     public int receiveDamage(int incomingDamage) {
         int damage = returnDamageAfterResistDamage(incomingDamage);
+        System.out.println("incoming damage: " + incomingDamage);
+        System.out.println("base damage: " + damage);
 
         // Handle absorb damage
         int absorbDamage = 0;

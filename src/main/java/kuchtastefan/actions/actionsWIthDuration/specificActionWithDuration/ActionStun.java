@@ -3,13 +3,13 @@ package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
-import kuchtastefan.actions.actionsWIthDuration.ActionPerformingBeforeTurn;
+import kuchtastefan.actions.actionsWIthDuration.PerformActionBeforeTurn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionStun extends ActionWithDuration implements ActionWithoutValue, ActionPerformingBeforeTurn {
+public class ActionStun extends ActionWithDuration implements ActionWithoutValue, PerformActionBeforeTurn {
 
     public ActionStun(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
                       int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {

@@ -37,7 +37,7 @@ public class ActionLoseMana extends ActionWithDuration implements ActionWithBase
 
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
-        System.out.println("Drain " + this.returnActionValueRange(spellCaster).getOnlyValue() + " mana");
+        System.out.print("Drain " + ConsoleColor.BLUE + this.returnActionValueRange(spellCaster).getOnlyValue() + ConsoleColor.RESET + " mana");
     }
 
     @Override

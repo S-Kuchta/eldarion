@@ -124,8 +124,6 @@ public abstract class GameCharacter {
      */
     public int receiveDamage(int incomingDamage) {
         int damage = returnDamageAfterResistDamage(incomingDamage);
-        System.out.println("incoming damage: " + incomingDamage);
-        System.out.println("base damage: " + damage);
 
         // Handle absorb damage
         int absorbDamage = 0;

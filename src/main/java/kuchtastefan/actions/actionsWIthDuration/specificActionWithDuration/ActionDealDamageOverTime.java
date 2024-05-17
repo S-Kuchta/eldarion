@@ -17,9 +17,10 @@ public class ActionDealDamageOverTime extends ActionWithDuration implements Acti
 
     @Override
     public void performAction() {
-        this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
-        this.charactersInvolvedInBattle.getSpellTarget().receiveDamage(this.currentActionValue);
+        this.currentActionValue = this.charactersInvolvedInBattle.getSpellTarget().returnDamageAfterResistDamage(
+                this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks());
 
+        this.charactersInvolvedInBattle.getSpellTarget().receiveDamage(this.currentActionValue);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package kuchtastefan.character.hero;
 
+import com.google.gson.annotations.Expose;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.character.GameCharacter;
@@ -35,7 +36,7 @@ public class Hero extends GameCharacter {
     private double experiencePoints;
     private Map<WearableItemType, WearableItem> equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints;
-    private final HeroInventory heroInventory;
+    private transient final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
     private final HeroQuests heroQuests;
     private final Map<Integer, Spell> learnedSpells;
@@ -110,7 +111,6 @@ public class Hero extends GameCharacter {
 
         this.setHeroEnhancedAbilities();
         this.resetAbilitiesToMaxValues(true);
-//        this.performActionsWithDuration(false);
     }
 
     /**

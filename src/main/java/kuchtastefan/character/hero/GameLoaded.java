@@ -17,13 +17,13 @@ public class GameLoaded {
 
     private final Hero hero;
     private final Map<HintName, Hint> hintUtil;
-    private final Map<Item, Integer> itemList;
+//    private final Map<Item, Integer> itemList;
     private final Map<Integer, Integer> vendorIdAndItemListId;
 
-    public GameLoaded(Hero hero, Map<HintName, Hint> hintUtil, Map<Item, Integer> itemList) {
+    public GameLoaded(Hero hero, Map<HintName, Hint> hintUtil/*, Map<Item, Integer> itemList*/) {
         this.hero = hero;
         this.hintUtil = hintUtil;
-        this.itemList = itemList;
+//        this.itemList = itemList;
         this.vendorIdAndItemListId = new HashMap<>();
     }
 

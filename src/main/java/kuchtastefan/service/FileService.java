@@ -58,6 +58,7 @@ import java.util.stream.Stream;
 public class FileService {
 
     private final Gson gson = new GsonBuilder()
+
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationStageRuntimeTypeAdapterFactory)
@@ -71,7 +72,7 @@ public class FileService {
 
 
     public void saveGame(Hero hero) {
-        final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
+        final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB()/*, hero.getHeroInventory().getHeroInventory()*/);
         gameLoaded.setVendorIdAndItemListId();
 
         while (true) {
@@ -93,7 +94,7 @@ public class FileService {
 
     public void autoSave(Hero hero) {
         if (GameSettingsDB.returnGameSettingValue(GameSetting.AUTO_SAVE)) {
-            final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB(), hero.getHeroInventory().getHeroInventory());
+            final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB()/*, hero.getHeroInventory().getHeroInventory()*/);
             gameLoaded.setVendorIdAndItemListId();
 
             final String path = this.savedGamesPath + hero.getNameWithoutColor() + "_AutoSave" + ".json";
@@ -117,6 +118,9 @@ public class FileService {
                 errorMessage = "Error while saving game!";
             } catch (InvalidPathException e) {
                 errorMessage = "Invalid characters in file name!";
+            } catch (StackOverflowError e) {
+                errorMessage = "";
+                System.out.println(e.getMessage());
             }
         }
 
@@ -126,12 +130,9 @@ public class FileService {
     }
 
     private boolean overwriteSaveGame() {
-        System.out.println("\tGame with this name is already saved");
+        System.out.println("\tGame with this name already exists!");
         System.out.println("\tDo you want to overwrite it?");
-        PrintUtil.printIndexAndText("0", "No");
-        System.out.println();
-        PrintUtil.printIndexAndText("1", "Yes");
-        System.out.println();
+        PrintUtil.printMenuOptions("No", "Yes");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {

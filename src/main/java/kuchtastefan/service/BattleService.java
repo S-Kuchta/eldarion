@@ -84,8 +84,8 @@ public class BattleService {
         int currentTurn = 0;
 
         while (!isBattleFinished() || hero.getEffectiveAbilityValue(Ability.HEALTH) > 0) {
-            sortCharactersByHaste(allCharacters);
-            if (currentTurn >= allCharacters.size()) {
+            if (currentTurn >= allCharacters.size() || currentTurn < 0) {
+                sortCharactersByHaste(allCharacters);
                 currentTurn = 0;
             }
 
@@ -111,14 +111,15 @@ public class BattleService {
 
             attackingCharacter.performActionsWithDuration(false);
             attackingCharacter.printActionsWithDuration();
-//            attackingCharacter.removeActionWithDuration();
 
             if (checkIfCharacterDied(attackingCharacter, allCharacters)) {
-                currentTurn++;
+                currentTurn--;
                 continue;
             }
 
-            checkIfCharacterDied(target, allCharacters);
+            if (checkIfCharacterDied(target, allCharacters)) {
+                currentTurn-=2;
+            }
 
             try {
                 Thread.sleep(1500);
@@ -371,38 +372,6 @@ public class BattleService {
 
         spellToCast.useSpell(new CharactersInvolvedInBattle(/*hero, */spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
     }
-
-    //    private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
-//        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
-//            System.out.println("\t" + "Buffs & Debuffs");
-//        }
-//
-//        gameCharacter.performActionsWithDuration(true);
-//    }
-//    private void printAndPerformActionOverTime(GameCharacter gameCharacter) {
-//        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
-//            System.out.println("\t" + "Buffs & Debuffs");
-//        }
-//
-//        gameCharacter.performActionsWithDuration();
-//    }
-
-//    private void performActionOverTime(GameCharacter gameCharacter) {
-////        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
-////            System.out.println("\t" + "Buffs & Debuffs");
-////        }
-//
-//        gameCharacter.performActionsWithDuration();
-//    }
-
-//    private void printActionsOverTime(GameCharacter gameCharacter) {
-//        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
-//            System.out.println("\t" + "Buffs & Debuffs");
-//        }
-//
-//        gameCharacter.printActionsWithDuration();
-//    }
-
 
     public void resetSpellsCoolDowns(Hero hero) {
         hero.getCharacterSpellList().forEach(spell -> {

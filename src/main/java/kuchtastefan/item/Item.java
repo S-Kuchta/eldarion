@@ -38,18 +38,6 @@ public abstract class Item {
         return ConsoleColor.YELLOW + this.name + ConsoleColor.RESET;
     }
 
-//    public String returnUseItemText() {
-//        if (this instanceof ConsumableItem) {
-//            return "Consume item";
-//        }
-//
-//        if (this instanceof WearableItem) {
-//            return "Equip item";
-//        }
-//
-//        return "Use item";
-//    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

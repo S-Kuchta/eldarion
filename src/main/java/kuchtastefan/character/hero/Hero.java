@@ -36,7 +36,7 @@ public class Hero extends GameCharacter {
     private double experiencePoints;
     private Map<WearableItemType, WearableItem> equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints;
-    private transient final HeroInventory heroInventory;
+    private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
     private final HeroQuests heroQuests;
     private final Map<Integer, Spell> learnedSpells;

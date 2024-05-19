@@ -18,6 +18,7 @@ public class ActionDealDamage extends Action implements ActionWithIncreasedValue
     public void performAction() {
         this.currentActionValue = this.charactersInvolvedInBattle.getSpellTarget().returnDamageAfterResistDamage(
                 this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()));
+        this.charactersInvolvedInBattle.getSpellTarget().receiveDamage(this.currentActionValue);
 
         System.out.println("\t" + ConsoleColor.YELLOW + this.getActionName() + ConsoleColor.RESET + ": " + ConsoleColor.RED_BRIGHT
                 + this.currentActionValue + ConsoleColor.RESET + " damage to " + charactersInvolvedInBattle.getSpellTarget().getName());

@@ -36,6 +36,7 @@ public abstract class GameCharacter {
         this.buffsAndDebuffs = new HashSet<>();
         this.characterSpellList = new ArrayList<>();
         this.canPerformAction = true;
+        this.reflectSpell = false;
     }
 
 
@@ -120,10 +121,10 @@ public abstract class GameCharacter {
      * If damage is higher than absorb damage, then absorb damage drop to 0 and left amount of damage will be dealt to health
      * If Absorb damage is 0, all actions with duration will be removed from battleActionsWithDuration.
      *
-     * @param incomingDamage - damage dealt by attacker
+     * @param damage - damage dealt by attacker
      */
-    public int receiveDamage(int incomingDamage) {
-        int damage = returnDamageAfterResistDamage(incomingDamage);
+    public void receiveDamage(int damage) {
+//        int damage = returnDamageAfterResistDamage(incomingDamage);
 
         // Handle absorb damage
         int absorbDamage = 0;
@@ -147,7 +148,7 @@ public abstract class GameCharacter {
 
         this.effectiveAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
         this.effectiveAbilities.put(Ability.HEALTH, this.getEffectiveAbilityValue(Ability.HEALTH) - damage);
-        return damage;
+//        return damage;
     }
 
     public int returnDamageAfterResistDamage(int incomingDamage) {

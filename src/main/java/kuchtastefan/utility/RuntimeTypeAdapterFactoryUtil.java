@@ -44,7 +44,6 @@ public class RuntimeTypeAdapterFactoryUtil {
 
     public static final RuntimeTypeAdapterFactory<Action> actionsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Action.class)
-            .registerSubtype(Action.class)
             .registerSubtype(ActionWithDuration.class)
             .registerSubtype(ActionRestoreHealth.class)
             .registerSubtype(ActionDealDamage.class)
@@ -79,7 +78,6 @@ public class RuntimeTypeAdapterFactoryUtil {
 
     public static final RuntimeTypeAdapterFactory<? extends Item> itemsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Item.class)
-            .registerSubtype(Item.class)
             .registerSubtype(ConsumableItem.class)
             .registerSubtype(CraftingReagentItem.class)
             .registerSubtype(JunkItem.class)

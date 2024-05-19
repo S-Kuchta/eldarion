@@ -10,6 +10,7 @@ import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.Exclude;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,9 +21,11 @@ public abstract class Action implements ActionValue {
 
     protected ActionName actionName;
     protected final int baseActionValue;
+    @Exclude
     protected int currentActionValue;
     protected final ActionEffectOn actionEffectOn;
     protected final int chanceToPerformAction;
+    @Exclude
     protected CharactersInvolvedInBattle charactersInvolvedInBattle;
 
 

@@ -58,7 +58,6 @@ import java.util.stream.Stream;
 public class FileService {
 
     private final Gson gson = new GsonBuilder()
-
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationStageRuntimeTypeAdapterFactory)
@@ -66,13 +65,14 @@ public class FileService {
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.gameCharactersRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.vendorRuntimeTypeAdapterFactory)
+            .setExclusionStrategies(new AnnotationExclusionStrategy())
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
 
     private final String savedGamesPath = "external-files/saved-games/";
 
 
     public void saveGame(Hero hero) {
-        final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB()/*, hero.getHeroInventory().getHeroInventory()*/);
+        final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB());
         gameLoaded.setVendorIdAndItemListId();
 
         while (true) {
@@ -94,7 +94,7 @@ public class FileService {
 
     public void autoSave(Hero hero) {
         if (GameSettingsDB.returnGameSettingValue(GameSetting.AUTO_SAVE)) {
-            final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB()/*, hero.getHeroInventory().getHeroInventory()*/);
+            final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB());
             gameLoaded.setVendorIdAndItemListId();
 
             final String path = this.savedGamesPath + hero.getNameWithoutColor() + "_AutoSave" + ".json";

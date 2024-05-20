@@ -40,6 +40,10 @@ public class CharactersInvolvedInBattle {
         public List<GameCharacter> getCharacterList(GameCharacter gameCharacter, boolean isSameList) {
                 return alliesCharacters.contains(gameCharacter) == isSameList ? alliesCharacters : enemyCharacters;
         }
+
+        public void changeSpellTargetToCaster() {
+                this.spellTarget = this.spellCaster;
+        }
 }
 
 

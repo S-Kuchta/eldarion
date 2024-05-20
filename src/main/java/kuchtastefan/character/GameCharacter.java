@@ -4,7 +4,9 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWIthDuration.PerformActionBeforeTurn;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionReflectSpell;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
@@ -124,8 +126,6 @@ public abstract class GameCharacter {
      * @param damage - damage dealt by attacker
      */
     public void receiveDamage(int damage) {
-//        int damage = returnDamageAfterResistDamage(incomingDamage);
-
         // Handle absorb damage
         int absorbDamage = 0;
         Iterator<ActionWithDuration> iterator = this.buffsAndDebuffs.iterator();
@@ -148,7 +148,6 @@ public abstract class GameCharacter {
 
         this.effectiveAbilities.put(Ability.ABSORB_DAMAGE, absorbDamage);
         this.effectiveAbilities.put(Ability.HEALTH, this.getEffectiveAbilityValue(Ability.HEALTH) - damage);
-//        return damage;
     }
 
     public int returnDamageAfterResistDamage(int incomingDamage) {
@@ -212,5 +211,13 @@ public abstract class GameCharacter {
 
     public String getNameWithoutColor() {
         return name;
+    }
+
+    public void reflectSpell(CharactersInvolvedInBattle charactersInvolvedInBattle) {
+        if (this.reflectSpell) {
+            charactersInvolvedInBattle.changeSpellTargetToCaster();
+            this.buffsAndDebuffs.removeIf(actionWithDuration -> actionWithDuration instanceof ActionReflectSpell);
+            this.setReflectSpell(false);
+        }
     }
 }

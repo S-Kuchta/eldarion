@@ -26,7 +26,7 @@ public class VendorCharacterDB {
         }
     }
 
-    public static void setVendorCharacterItemListId(Map<Integer, Integer> vendorIdAndItemListId) {
+    public static void setVendorCurrentCharacterItemListId(Map<Integer, Integer> vendorIdAndItemListId) {
         for (Map.Entry<Integer, Integer> entry : vendorIdAndItemListId.entrySet()) {
             VENDOR_DB.get(entry.getKey()).setCurrentItemListId(entry.getValue());
         }

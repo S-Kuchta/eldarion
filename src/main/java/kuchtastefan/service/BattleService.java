@@ -53,7 +53,6 @@ public class BattleService {
     public boolean battle(Hero hero, List<Enemy> enemies) {
         HintDB.printHint(HintName.BATTLE_HINT);
 
-        // Initialize lists for battle
         enemyList.addAll(enemies);
         alliesList.add(hero);
 
@@ -84,7 +83,7 @@ public class BattleService {
         int currentTurn = 0;
 
         while (!isBattleFinished() || hero.getEffectiveAbilityValue(Ability.HEALTH) > 0) {
-            if (currentTurn >= allCharacters.size() || currentTurn < 0) {
+            if (currentTurn >= allCharacters.size()) {
                 sortCharactersByHaste(allCharacters);
                 currentTurn = 0;
             }
@@ -105,7 +104,7 @@ public class BattleService {
                     playerTurn(hero);
                     target = playerTarget;
                 } else {
-                    this.npcUseSpell(attackingCharacter, target, hero);
+                    this.npcUseSpell(attackingCharacter, target);
                 }
             }
 
@@ -113,24 +112,24 @@ public class BattleService {
             attackingCharacter.printActionsWithDuration();
 
             if (checkIfCharacterDied(attackingCharacter, allCharacters)) {
-                currentTurn--;
                 continue;
             }
 
-            if (checkIfCharacterDied(target, allCharacters)) {
-                currentTurn-=2;
-            }
+            checkIfCharacterDied(target, allCharacters);
 
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-
+            turnWait();
             attackingCharacter.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
             attackingCharacter.restoreHealthAndManaAfterTurn();
             addSummonedCreature(attackingCharacter, allCharacters);
             currentTurn++;
+        }
+    }
+
+    private void turnWait() {
+        try {
+            Thread.sleep(1300);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -342,7 +341,7 @@ public class BattleService {
      * @param spellCaster The enemy character casting the spell.
      * @param spellTarget The target of the spell (usually the player's character).
      */
-    private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget, Hero hero) {
+    private void npcUseSpell(GameCharacter spellCaster, GameCharacter spellTarget) {
         Map<Spell, Integer> spells = new HashMap<>();
         Spell spellToCast = spellCaster.getCharacterSpellList().getFirst();
 

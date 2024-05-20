@@ -2,6 +2,7 @@ package kuchtastefan.character.spell;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionReflectSpell;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.CharacterClass;
 import kuchtastefan.utility.ConsoleColor;
@@ -62,6 +63,7 @@ public class Spell {
 
             System.out.println("\t" + spellCaster.getName() + " use " + this.getSpellName());
             if (isAttackSuccessful(spellCaster, spellTarget)) {
+                spellTarget.reflectSpell(charactersInvolvedInBattle);
                 performSuccessfulAttack(charactersInvolvedInBattle);
             } else {
                 System.out.println("\t" + ConsoleColor.RED + spellCaster.getName() + " Missed Enemy!");

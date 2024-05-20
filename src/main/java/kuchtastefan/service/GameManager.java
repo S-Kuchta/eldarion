@@ -116,61 +116,31 @@ public class GameManager {
         this.handleImportsFromFiles();
 
         System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\tWelcome to the Eldarion!\t\t\n" + ConsoleColor.RESET);
-        PrintUtil.printIndexAndText("0", "Start new game");
-        System.out.println();
-        PrintUtil.printIndexAndText("1", "Load game");
-        System.out.println();
+        PrintUtil.printMenuOptions("Start new game", "Load game");
 
         int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> System.out.println("\tLet's go then!");
+            case 0 -> {
+                System.out.println("\tLet's go then!");
+                startNewGame();
+            }
             case 1 -> {
                 final GameLoaded gameLoaded = fileService.loadGame();
                 if (gameLoaded != null) {
-                    this.hero = gameLoaded.getHero();
-                    this.hero.setLevel(gameLoaded.getHero().getLevel());
-                    this.heroAbilityManager.setHero(gameLoaded.getHero());
-                    HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
-                    QuestDB.setInitialQuestsStatus(this.hero);
-                    QuestDB.loadQuests(this.hero);
-                    VendorCharacterDB.setVendorCharacterItemListId(gameLoaded.getVendorIdAndItemListId());
-
-                    return;
+                    loadGame(gameLoaded);
                 }
             }
             default -> PrintUtil.printEnterValidInput();
         }
+    }
 
+    private void startNewGame() {
         System.out.println("\tEnter your name: ");
         final String name = InputUtil.stringScanner();
         PrintUtil.printLongDivider();
 
-        System.out.println("\tSelect your class: ");
-        int index = 0;
-        List<CharacterClass> characterClassList = new ArrayList<>();
-        for (CharacterClass characterClass : CharacterClass.values()) {
-            if (!characterClass.equals(CharacterClass.NPC)) {
-                PrintUtil.printIndexAndText(String.valueOf(index), characterClass.toString());
-                characterClassList.add(characterClass);
-                index++;
-            }
-        }
-
-        while (true) {
-            try {
-                final int heroClassChoice = InputUtil.intScanner();
-                this.hero.setCharacterClass(characterClassList.get(heroClassChoice));
-                break;
-            } catch (IndexOutOfBoundsException e) {
-                PrintUtil.printEnterValidInput();
-            }
-        }
-
-        for (Spell spell : SpellDB.SPELL_LIST) {
-            if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.hero.getCharacterClass())) {
-                this.hero.getCharacterSpellList().add(spell);
-            }
-        }
+        classSelect();
+        heroSpellInit();
 
         this.hero.setName(name);
         this.hero.setLevel(Constant.INITIAL_LEVEL);
@@ -178,13 +148,51 @@ public class GameManager {
         QuestDB.setInitialQuestsStatus(this.hero);
         VendorCharacterDB.setRandomCurrentVendorCharacterItemListId(this.hero.getLevel());
 
-        System.out.println("\t\tHello " + this.hero.getName() + ", Your class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
+        System.out.println("\t\tHello " + this.hero.getName() + ", Your character class is: " + this.hero.getCharacterClass() + ". Let's start the game!");
         PrintUtil.printLongDivider();
 
         this.hero.setInitialEquip();
         this.heroAbilityManager.spendAbilityPoints();
 
-
         HintDB.printHint(HintName.WELCOME);
+    }
+
+    private void loadGame(GameLoaded gameLoaded) {
+        this.hero = gameLoaded.getHero();
+        this.hero.setLevel(gameLoaded.getHero().getLevel());
+        this.heroAbilityManager.setHero(gameLoaded.getHero());
+        HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
+        QuestDB.setInitialQuestsStatus(this.hero);
+        QuestDB.loadQuests(this.hero);
+        VendorCharacterDB.setVendorCurrentCharacterItemListId(gameLoaded.getVendorIdAndItemListId());
+    }
+
+    private void classSelect() {
+        System.out.println("\tSelect your character class: ");
+        List<CharacterClass> characterClassList = new ArrayList<>(List.of(CharacterClass.values()));
+        characterClassList.removeIf(characterClass -> characterClass.equals(CharacterClass.NPC));
+
+        for (int i = 0; i < characterClassList.size(); i++) {
+            PrintUtil.printIndexAndText(String.valueOf(i), characterClassList.get(i).toString());
+        }
+
+        System.out.println();
+        while (true) {
+            int choice = InputUtil.intScanner();
+            if (choice >= 0 && choice < characterClassList.size()) {
+                this.hero.setCharacterClass(characterClassList.get(choice));
+                break;
+            } else {
+                PrintUtil.printEnterValidInput();
+            }
+        }
+    }
+
+    private void heroSpellInit() {
+        for (Spell spell : SpellDB.SPELL_LIST) {
+            if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.hero.getCharacterClass())) {
+                this.hero.getCharacterSpellList().add(spell);
+            }
+        }
     }
 }

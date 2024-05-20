@@ -18,6 +18,7 @@ import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.Exclude;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.location.Location;
 import lombok.Getter;

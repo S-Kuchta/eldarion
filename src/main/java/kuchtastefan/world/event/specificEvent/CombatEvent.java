@@ -49,12 +49,12 @@ public class CombatEvent extends Event {
 
         if (haveHeroWon) {
             battleWon(hero);
-        } else {
+        } /*else {
             battleLost(hero);
-        }
+        }*/
 
-        this.battleService.resetSpellsCoolDowns(hero);
-        hero.getBuffsAndDebuffs().clear();
+//        this.battleService.resetSpellsCoolDowns(hero);
+//        hero.getBuffsAndDebuffs().clear();
         hero.setInCombat(false);
 
         return haveHeroWon;
@@ -121,13 +121,13 @@ public class CombatEvent extends Event {
     }
 
     private void battleLost(Hero hero) {
-        int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
-
-        hero.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
-        hero.getEffectiveAbilities().put(Ability.HEALTH, hero.getEnhancedAbilities().get(Ability.HEALTH));
-
-        System.out.println("\n\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
-        System.out.println("\tYou lost " + goldToRemove + " golds!");
+//        int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
+//
+//        hero.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
+//        hero.getEffectiveAbilities().put(Ability.HEALTH, hero.getEnhancedAbilities().get(Ability.HEALTH));
+//
+//        System.out.println("\n\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
+//        System.out.println("\tYou lost " + goldToRemove + " golds!");
 
     }
 }

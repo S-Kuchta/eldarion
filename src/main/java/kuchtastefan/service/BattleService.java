@@ -82,7 +82,7 @@ public class BattleService {
         sortCharactersByHaste(allCharacters);
         int currentTurn = 0;
 
-        while (!isBattleFinished() || hero.getEffectiveAbilityValue(Ability.HEALTH) > 0) {
+        while (!isBattleFinished()/* || hero.getEffectiveAbilityValue(Ability.HEALTH) > 0*/) {
             if (currentTurn >= allCharacters.size()) {
                 sortCharactersByHaste(allCharacters);
                 currentTurn = 0;
@@ -163,9 +163,13 @@ public class BattleService {
     }
 
     private boolean checkIfCharacterDied(GameCharacter characterToCheck, List<GameCharacter> allCharacters) {
-        if (characterToCheck.getEffectiveAbilityValue(Ability.HEALTH) <= 0) {
+        if (characterToCheck.checkIfCharacterDies()) {
             if (characterToCheck instanceof NonPlayerCharacter) {
                 System.out.println("\n\t" + ConsoleColor.RED + characterToCheck.getNameWithoutColor() + " died!" + ConsoleColor.RESET);
+            }
+
+            if (characterToCheck instanceof Hero) {
+                alliesList.clear();
             }
 
             getCharacterList(characterToCheck, true).remove(characterToCheck);

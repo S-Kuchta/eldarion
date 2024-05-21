@@ -1,24 +1,19 @@
 package kuchtastefan.character.hero;
 
-import com.google.gson.annotations.Expose;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventory;
-import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.Spell;
+import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
-import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.QuestStatus;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.Exclude;
 import kuchtastefan.utility.PrintUtil;
 import kuchtastefan.world.location.Location;
 import lombok.Getter;
@@ -249,6 +244,29 @@ public class Hero extends GameCharacter {
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(400));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(500));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(600));
+    }
+
+    @Override
+    public boolean checkIfCharacterDies() {
+        if (super.checkIfCharacterDies()) {
+            int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * this.getLevel();
+            this.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
+            this.getEffectiveAbilities().put(Ability.HEALTH, this.getEnhancedAbilities().get(Ability.HEALTH));
+
+            System.out.println("\n\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
+            System.out.print("\t You lost " + goldToRemove + " golds!");
+            return true;
+        }
+
+        return false;
+    }
+
+    public void spellInit() {
+        for (Spell spell : SpellDB.SPELL_LIST) {
+            if (spell.getSpellLevel() == 0 && spell.getSpellClass().equals(this.getCharacterClass())) {
+                this.getCharacterSpellList().add(spell);
+            }
+        }
     }
 
     private Map<Ability, Integer> getInitialAbilityPoints() {

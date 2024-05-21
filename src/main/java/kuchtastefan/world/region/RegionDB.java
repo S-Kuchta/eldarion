@@ -1,12 +1,14 @@
 package kuchtastefan.world.region;
 
 import kuchtastefan.world.location.LocationDB;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RegionDB {
+    @Getter
     private static final Map<Integer, Region> REGION_DB = new HashMap<>();
 
     public static void addRegionToDB(Region region) {

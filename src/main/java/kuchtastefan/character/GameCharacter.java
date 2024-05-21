@@ -99,7 +99,7 @@ public abstract class GameCharacter {
     }
 
     public void resetAbilitiesToMaxValues(boolean setHealthOrManaToMaxValue) {
-        this.canPerformAction = true;
+//        this.canPerformAction = true;
         this.reflectSpell = false;
 
         for (Ability ability : Ability.values()) {
@@ -219,5 +219,9 @@ public abstract class GameCharacter {
             this.buffsAndDebuffs.removeIf(actionWithDuration -> actionWithDuration instanceof ActionReflectSpell);
             this.setReflectSpell(false);
         }
+    }
+
+    public boolean checkIfCharacterDies() {
+        return this.getEffectiveAbilityValue(Ability.HEALTH) <= 0;
     }
 }

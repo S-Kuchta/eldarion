@@ -11,7 +11,9 @@ import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -33,9 +35,7 @@ public class Enemy extends NonPlayerCharacter {
     public void setGoldDrop() {
         if (this.characterType.equals(CharacterType.HUMANOID)) {
             double goldDrop = 15 + this.level + ((double) this.characterRarity.getExperienceGainedValue() / 2);
-
-            setGoldDrop(RandomNumberGenerator.getRandomNumber(
-                    (int) (goldDrop * 0.75), (int) goldDrop));
+            setGoldDrop(RandomNumberGenerator.getRandomNumber((int) (goldDrop * 0.75), (int) goldDrop));
         }
     }
 

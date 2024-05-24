@@ -45,6 +45,7 @@ public class RuntimeTypeAdapterFactoryUtil {
     public static final RuntimeTypeAdapterFactory<Action> actionsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Action.class)
             .registerSubtype(ActionWithDuration.class)
+            .registerSubtype(ActionWithDurationPerformedOnce.class)
             .registerSubtype(ActionRestoreHealth.class)
             .registerSubtype(ActionDealDamage.class)
             .registerSubtype(ActionDealDamageOverTime.class)

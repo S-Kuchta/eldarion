@@ -106,7 +106,7 @@ public class Hero extends GameCharacter {
         }
 
         this.setHeroEnhancedAbilities();
-        this.resetAbilitiesToMaxValues(true);
+        this.resetAbilitiesToMaxValues();
     }
 
     /**
@@ -126,6 +126,17 @@ public class Hero extends GameCharacter {
         this.enhancedAbilities.put(Ability.MANA, getEnhancedAbilities().get(Ability.MANA) + getEnhancedAbilities().get(Ability.INTELLECT) * Constant.MANA_PER_POINT_OF_INTELLECT);
         this.enhancedAbilities.put(Ability.HEALTH, getEnhancedAbilities().get(Ability.HEALTH) + getEnhancedAbilities().get(Ability.STRENGTH) * Constant.HEALTH_PER_POINT_OF_STRENGTH);
         this.enhancedAbilities.put(Ability.CRITICAL_HIT_CHANCE, (int) (getEnhancedAbilities().get(Ability.CRITICAL_HIT_CHANCE) + (getEnhancedAbilities().get(Ability.ATTACK) * Constant.CRITICAL_PER_ATTACK)));
+    }
+
+    public void resetAbilitiesToMaxValues() {
+        for (Ability ability : Ability.values()) {
+            if (ability.equals(Ability.HEALTH) || ability.equals(Ability.MANA)) {
+                this.effectiveAbilities.put(Ability.HEALTH, getEffectiveAbilityValue(Ability.HEALTH));
+                this.effectiveAbilities.put(Ability.MANA, getEffectiveAbilityValue(Ability.MANA));
+            } else {
+                this.effectiveAbilities.put(ability, this.enhancedAbilities.get(ability));
+            }
+        }
     }
 
     /**
@@ -169,7 +180,7 @@ public class Hero extends GameCharacter {
             }
 
             this.setHeroEnhancedAbilities();
-            this.resetAbilitiesToMaxValues(true);
+            this.resetAbilitiesToMaxValues();
             this.updateAbilityPoints(heroAvailablePointsChange);
         }
     }
@@ -223,7 +234,7 @@ public class Hero extends GameCharacter {
     }
 
     public void rest() {
-        this.resetAbilitiesToMaxValues(true);
+        this.resetAbilitiesToMaxValues();
         this.buffsAndDebuffs.removeIf(debuffs -> debuffs.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF));
     }
 

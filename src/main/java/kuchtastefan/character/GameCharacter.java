@@ -2,6 +2,7 @@ package kuchtastefan.character;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.actions.actionsWIthDuration.PerformActionBeforeTurn;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionReflectSpell;
@@ -67,18 +68,21 @@ public abstract class GameCharacter {
      * Method also check if you reach max turns. If yes, action is removed.
      */
     public void performActionsWithDuration(boolean performBeforeTurn) {
-        if (performBeforeTurn) {
-            this.setCanPerformAction(true);
-        } else {
-            resetAbilitiesToMaxValues(false);
-        }
-
         for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
-            if (actionWithDuration instanceof PerformActionBeforeTurn && performBeforeTurn) {
-                actionWithDuration.performAction();
-                actionWithDuration.actionAddTurn();
-            } else if (!(actionWithDuration instanceof PerformActionBeforeTurn) && !performBeforeTurn) {
-                actionWithDuration.performAction();
+            boolean isPerformBeforeTurnAction = actionWithDuration instanceof PerformActionBeforeTurn;
+            boolean isPerformOnceAction = actionWithDuration instanceof ActionWithDurationPerformedOnce;
+
+            if (isPerformBeforeTurnAction == performBeforeTurn) {
+                if (isPerformOnceAction) {
+                    ActionWithDurationPerformedOnce actionWithDurationPerformedOnce = (ActionWithDurationPerformedOnce) actionWithDuration;
+                    if (!actionWithDurationPerformedOnce.isActionPerformed()) {
+                        actionWithDurationPerformedOnce.performAction();
+                        actionWithDurationPerformedOnce.setActionPerformed(true);
+                    }
+                } else {
+                    actionWithDuration.performAction();
+                }
+
                 actionWithDuration.actionAddTurn();
             }
         }
@@ -94,24 +98,6 @@ public abstract class GameCharacter {
 
             for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
                 actionWithDuration.printActionPerforming();
-            }
-        }
-    }
-
-    public void resetAbilitiesToMaxValues(boolean setHealthOrManaToMaxValue) {
-//        this.canPerformAction = true;
-        this.reflectSpell = false;
-
-        for (Ability ability : Ability.values()) {
-            if (ability.equals(Ability.HEALTH) || ability.equals(Ability.MANA)) {
-                if (setHealthOrManaToMaxValue) {
-                    this.effectiveAbilities.put(ability, this.enhancedAbilities.get(ability));
-                } else {
-                    this.effectiveAbilities.put(Ability.HEALTH, getEffectiveAbilityValue(Ability.HEALTH));
-                    this.effectiveAbilities.put(Ability.MANA, getEffectiveAbilityValue(Ability.MANA));
-                }
-            } else {
-                this.effectiveAbilities.put(ability, this.enhancedAbilities.get(ability));
             }
         }
     }

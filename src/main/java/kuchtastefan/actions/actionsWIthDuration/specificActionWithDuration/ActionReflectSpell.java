@@ -6,12 +6,14 @@ import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionValue.ActionValueRange;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithoutValue;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.character.GameCharacter;
 
-public class ActionReflectSpell extends ActionWithDuration implements ActionWithoutValue {
-    public ActionReflectSpell(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
+public class ActionReflectSpell extends ActionWithDurationPerformedOnce implements ActionWithoutValue {
+
+    public ActionReflectSpell(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int maxActionTurns,
                               int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
-        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
     }
 
     @Override
@@ -37,5 +39,10 @@ public class ActionReflectSpell extends ActionWithDuration implements ActionWith
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
         return 3;
+    }
+
+    @Override
+    public void returnToDefaultValues() {
+        this.charactersInvolvedInBattle.getSpellTarget().setReflectSpell(false);
     }
 }

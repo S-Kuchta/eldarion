@@ -3,19 +3,20 @@ package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.actions.actionsWIthDuration.PerformActionBeforeTurn;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionStun extends ActionWithDuration implements ActionWithoutValue, PerformActionBeforeTurn {
+public class ActionStun extends ActionWithDurationPerformedOnce implements ActionWithoutValue, PerformActionBeforeTurn {
 
-    public ActionStun(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
+    public ActionStun(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int maxActionTurns,
                       int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
-        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks,
-                chanceToPerformAction, actionStatusEffect);
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
     }
+
 
     @Override
     public void performAction() {
@@ -40,5 +41,10 @@ public class ActionStun extends ActionWithDuration implements ActionWithoutValue
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
         return 2 + getMaxActionTurns();
+    }
+
+    @Override
+    public void returnToDefaultValues() {
+        charactersInvolvedInBattle.getSpellTarget().setCanPerformAction(true);
     }
 }

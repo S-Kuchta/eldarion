@@ -6,15 +6,17 @@ import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionValue.ActionWithIncreasedValueByPrimaryAbility;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionAbsorbDamage extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
+public class ActionAbsorbDamage extends ActionWithDurationPerformedOnce implements ActionWithIncreasedValueByPrimaryAbility {
 
-    public ActionAbsorbDamage(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
+    public ActionAbsorbDamage(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int maxActionTurns,
                               int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
-        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
     }
+
 
     @Override
     public void performAction() {
@@ -22,7 +24,7 @@ public class ActionAbsorbDamage extends ActionWithDuration implements ActionWith
             this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster()) * this.getActionCurrentStacks();
         }
 
-        this.determineActionTarget(charactersInvolvedInBattle).increaseEffectiveAbilityValue(this.currentActionValue, Ability.ABSORB_DAMAGE);
+        this.charactersInvolvedInBattle.getSpellTarget().increaseEffectiveAbilityValue(this.currentActionValue, Ability.ABSORB_DAMAGE);
     }
 
     @Override
@@ -48,5 +50,10 @@ public class ActionAbsorbDamage extends ActionWithDuration implements ActionWith
         } else {
             return 2;
         }
+    }
+
+    @Override
+    public void returnToDefaultValues() {
+        this.charactersInvolvedInBattle.getSpellTarget().decreaseEffectiveAbilityValue(this.currentActionValue, Ability.ABSORB_DAMAGE);
     }
 }

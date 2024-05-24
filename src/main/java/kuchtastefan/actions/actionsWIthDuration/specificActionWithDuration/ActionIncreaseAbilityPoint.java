@@ -6,7 +6,7 @@ import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionValue.ActionWithBaseValue;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithAffectingAbility;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
@@ -16,16 +16,16 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class ActionIncreaseAbilityPoint extends ActionWithDuration implements ActionWithBaseValue, ActionWithAffectingAbility {
+public class ActionIncreaseAbilityPoint extends ActionWithDurationPerformedOnce implements ActionWithBaseValue, ActionWithAffectingAbility {
 
     private final Ability ability;
 
-
-    public ActionIncreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
-                                      int actionMaxStacks, Ability ability, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {
-        super(actionName, actionEffectOn, baseActionValue, maxActionTurns, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
+    public ActionIncreaseAbilityPoint(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int maxActionTurns,
+                                      int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect, Ability ability) {
+        super(actionName, actionEffectOn, maxActionValue, maxActionTurns, actionMaxStacks, chanceToPerformAction, actionStatusEffect);
         this.ability = ability;
     }
+
 
     @Override
     public void performAction() {
@@ -52,6 +52,11 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration implements Ac
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
         return 2;
+    }
+
+    @Override
+    public void returnToDefaultValues() {
+        this.charactersInvolvedInBattle.getSpellTarget().decreaseEffectiveAbilityValue(this.currentActionValue, this.ability);
     }
 
     @Override

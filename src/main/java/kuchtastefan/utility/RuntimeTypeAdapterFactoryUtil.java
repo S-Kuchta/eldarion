@@ -1,13 +1,12 @@
 package kuchtastefan.utility;
 
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.actionsWIthDuration.*;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.*;
 import kuchtastefan.actions.instantAction.*;
-import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
-import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.enemy.QuestEnemy;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.character.npc.vendor.specificVendorCharacter.ConsumableVendorCharacter;
@@ -22,25 +21,19 @@ import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
-import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestChain;
-import kuchtastefan.quest.questObjectives.*;
-import kuchtastefan.quest.questObjectives.specificQuestObjectives.*;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestBringItemObjective;
+import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestClearLocationObjective;
+import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestKillObjective;
+import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestUseItemObjective;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
-import kuchtastefan.world.location.locationStage.*;
+import kuchtastefan.world.location.locationStage.LocationStage;
 import kuchtastefan.world.location.locationStage.specificLocationStage.*;
 
 
 public class RuntimeTypeAdapterFactoryUtil {
-
-//    public static final Gson gson = new GsonBuilder()
-//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.actionsRuntimeTypeAdapterFactory)
-//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.itemsRuntimeTypeAdapterFactory)
-//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationStageRuntimeTypeAdapterFactory)
-//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questRuntimeTypeAdapterFactory)
-//            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
-//            .enableComplexMapKeySerialization().setPrettyPrinting().create();
 
     public static final RuntimeTypeAdapterFactory<Action> actionsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Action.class)

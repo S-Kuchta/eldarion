@@ -2,6 +2,7 @@ package kuchtastefan.service;
 
 import com.google.gson.Gson;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.inventory.UsingHeroInventory;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.item.Item;
@@ -11,9 +12,8 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.PrintUtil;
-import kuchtastefan.workshop.Workshop;
 
-public class BlacksmithingService implements Workshop {
+public class BlacksmithingService implements UsingHeroInventory {
 
     @Override
     public void mainMenu(Hero hero) {

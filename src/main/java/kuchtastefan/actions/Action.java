@@ -12,7 +12,6 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.Exclude;
 import kuchtastefan.utility.RandomNumberGenerator;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -6,12 +6,8 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionDealDamageOverTime;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionStun;
-import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

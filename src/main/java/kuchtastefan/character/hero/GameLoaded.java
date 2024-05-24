@@ -4,7 +4,6 @@ import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.hint.Hint;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,13 +16,11 @@ public class GameLoaded {
 
     private final Hero hero;
     private final Map<HintName, Hint> hintUtil;
-//    private final Map<Item, Integer> itemList;
     private final Map<Integer, Integer> vendorIdAndItemListId;
 
     public GameLoaded(Hero hero, Map<HintName, Hint> hintUtil/*, Map<Item, Integer> itemList*/) {
         this.hero = hero;
         this.hintUtil = hintUtil;
-//        this.itemList = itemList;
         this.vendorIdAndItemListId = new HashMap<>();
     }
 

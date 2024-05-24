@@ -1,11 +1,8 @@
 package kuchtastefan.quest;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter

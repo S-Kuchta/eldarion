@@ -11,7 +11,6 @@ import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.RandomNumberGenerator;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

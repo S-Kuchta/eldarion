@@ -10,6 +10,7 @@ import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.CharacterPrint;
 import kuchtastefan.utility.printUtil.PrintUtil;
+import kuchtastefan.utility.printUtil.SpellAndActionPrint;
 import kuchtastefan.world.Biome;
 import kuchtastefan.world.location.Location;
 import lombok.Getter;
@@ -48,6 +49,7 @@ public class Region {
             // Printing region information and options
             System.out.println();
             CharacterPrint.printHeaderWithStatsBar(hero);
+            SpellAndActionPrint.printBuffTable(hero);
             PrintUtil.printExtraLongDivider();
 
             System.out.println("\n\t" + this.getRegionName()
@@ -87,6 +89,7 @@ public class Region {
             }
         }
     }
+
 
     public String getRegionName() {
         return ConsoleColor.YELLOW + regionName + ConsoleColor.RESET;

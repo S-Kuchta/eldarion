@@ -3,10 +3,9 @@ package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
+import kuchtastefan.actions.actionValue.ActionWithoutValue;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.actions.actionsWIthDuration.PerformActionBeforeTurn;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
@@ -36,7 +35,7 @@ public class ActionStun extends ActionWithDurationPerformedOnce implements Actio
     @Override
     public void printActiveAction() {
         System.out.println("\t" + charactersInvolvedInBattle.getSpellTarget().getName() + " is stunned!");
-        }
+    }
 
     @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {

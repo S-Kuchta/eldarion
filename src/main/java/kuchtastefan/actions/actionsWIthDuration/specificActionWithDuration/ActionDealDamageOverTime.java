@@ -7,7 +7,6 @@ import kuchtastefan.actions.actionValue.ActionWithIncreasedValueByPrimaryAbility
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
-import lombok.AllArgsConstructor;
 
 public class ActionDealDamageOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
     public ActionDealDamageOverTime(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,

@@ -38,7 +38,7 @@ public class HintDB {
                 \tcheck accepted and completed quests, learn new spells, and adjust game settings."""));
 
         HINT_DB.put(HintName.NEW_SPELL_HINT, new Hint("""
-                \tHere you can learn a new spell. You can learn one new spell on levels 1, 2, 3, 5 and 7.
+                \tHere you can learn a new spells. You can learn one new spell on levels 1, 2, 3, 4 and 5.
                 \tWhen you want to change a learned spell, simply learn a new one, and the old one will be unlearned."""));
 
         HINT_DB.put(HintName.REGION_HINT, new Hint("""
@@ -54,7 +54,7 @@ public class HintDB {
         HINT_DB.put(HintName.BATTLE_HINT, new Hint("""
                 \tOne of the most important parts of the game are the battles. Battles occur in turns.
                 \tCombat is conducted using spells, each spell has actions that are performed after using the spell.
-                \tActions with durations are always performed before of the character's turn.
+                \tActions with durations are performed after of the turn of character affected by Action, Except action Stun, which is performed right after the spell.
                 \tHowever, be careful, some actions do not have a 100% chance of execution.
                 \tIf action has lower chance to perform, you will see percentage chance in action description.
                 \tSpells on CoolDowns can't be used.

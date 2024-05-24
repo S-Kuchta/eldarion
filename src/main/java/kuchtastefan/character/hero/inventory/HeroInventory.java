@@ -100,7 +100,7 @@ public class HeroInventory {
         Map<T, Integer> itemMap = new HashMap<>();
 
         for (Map.Entry<? extends Item, Integer> entry : returnHeroInventory(itemClass).entrySet()) {
-            if (itemFilter.isCheckLevel() && !LevelCondition.checkItemLevelCondition(entry.getKey(), itemFilter.getMaxItemLevel(), itemFilter.getMinItemLevel())) {
+            if (itemFilter.isCheckLevel() && !ItemLevelCondition.checkItemLevelCondition(entry.getKey(), itemFilter.getMaxItemLevel(), itemFilter.getMinItemLevel())) {
                 continue;
             }
 

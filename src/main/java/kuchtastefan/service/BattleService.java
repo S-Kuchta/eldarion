@@ -15,7 +15,10 @@ import kuchtastefan.hint.HintName;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
-import kuchtastefan.utility.*;
+import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.LetterToNumber;
+import kuchtastefan.utility.RandomNumberGenerator;
 import kuchtastefan.utility.printUtil.CharacterPrint;
 import kuchtastefan.utility.printUtil.GameSettingsPrint;
 import kuchtastefan.utility.printUtil.PrintUtil;
@@ -158,7 +161,7 @@ public class BattleService {
     private void printCharacterStats(GameCharacter gameCharacter) {
         CharacterPrint.printHeaderWithStatsBar(gameCharacter);
         CharacterPrint.printEffectiveAbilityPoints(gameCharacter);
-        SpellAndActionPrint.printBattleBuffs(gameCharacter);
+        SpellAndActionPrint.printBuffTable(gameCharacter);
     }
 
     private GameCharacter setNpcTarget(GameCharacter attackingCharacter) {
@@ -377,13 +380,13 @@ public class BattleService {
             }
         }
 
-        spellToCast.useSpell(new CharactersInvolvedInBattle(/*hero, */spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
+        spellToCast.useSpell(new CharactersInvolvedInBattle(spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
     }
 
-    public void resetSpellsCoolDowns(Hero hero) {
-        hero.getCharacterSpellList().forEach(spell -> {
-            spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
-            spell.checkSpellCoolDown();
-        });
-    }
+//    public void resetSpellsCoolDowns(Hero hero) {
+//        hero.getCharacterSpellList().forEach(spell -> {
+//            spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
+//            spell.checkSpellCoolDown();
+//        });
+//    }
 }

@@ -2,7 +2,7 @@ package kuchtastefan.utility;
 
 import kuchtastefan.item.Item;
 
-public class LevelCondition {
+public class ItemLevelCondition {
 
     public static boolean checkItemLevelCondition(Item item, int maxItemLevel, int minItemLevel) {
         if (item.getItemLevel() == 0) {

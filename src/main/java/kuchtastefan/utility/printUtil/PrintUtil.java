@@ -1,27 +1,8 @@
 package kuchtastefan.utility.printUtil;
 
-import de.vandermeer.asciitable.AsciiTable;
-import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.Action;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithAffectingAbility;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.spell.Spell;
-import kuchtastefan.constant.Constant;
-import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
-import kuchtastefan.item.specificItems.wearableItem.WearableItem;
-import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
-import kuchtastefan.quest.Quest;
-import kuchtastefan.quest.QuestStatus;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.utility.ConsoleColor;
-
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 public class PrintUtil {
 

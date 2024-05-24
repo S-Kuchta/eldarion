@@ -30,6 +30,10 @@ public class CharacterPrint {
         System.out.println();
     }
 
+    /**
+     * Print Bar for Health, Mana and Absorb Damage
+     *
+     */
     private static void printBar(GameCharacter gameCharacter, Ability ability) {
         int maxValue = gameCharacter.getEnhancedAbilities().get(ability);
         int currentValue = gameCharacter.getEffectiveAbilityValue(ability);
@@ -105,7 +109,7 @@ public class CharacterPrint {
     }
 
     public static void printEffectiveAbilityPoints(GameCharacter gameCharacter) {
-        System.out.print("\t\t\t");
+        System.out.print("\t\t");
         for (Map.Entry<Ability, Integer> abilityPoints : gameCharacter.getEffectiveAbilities().entrySet()) {
 
             if (!(abilityPoints.getKey().equals(Ability.MANA)

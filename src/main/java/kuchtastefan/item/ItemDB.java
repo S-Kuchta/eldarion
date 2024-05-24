@@ -5,7 +5,7 @@ import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
-import kuchtastefan.utility.LevelCondition;
+import kuchtastefan.utility.ItemLevelCondition;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 
@@ -40,7 +40,7 @@ public class ItemDB {
     public static <T extends Item> List<T> returnFilteredItemList(Class<T> itemClass, ItemFilter itemFilter) {
         List<T> itemList = new ArrayList<>();
         for (Item item : ITEM_DB.values()) {
-            if (!itemClass.isInstance(item) || !LevelCondition.checkItemLevelCondition(item, itemFilter.getMaxItemLevel(), itemFilter.getMinItemLevel())) {
+            if (!itemClass.isInstance(item) || !ItemLevelCondition.checkItemLevelCondition(item, itemFilter.getMaxItemLevel(), itemFilter.getMinItemLevel())) {
                 continue;
             }
 

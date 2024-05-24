@@ -30,6 +30,11 @@ public class ActionReflectSpell extends ActionWithDuration implements ActionWith
     }
 
     @Override
+    public void printActiveAction() {
+        System.out.println("\t" + this.charactersInvolvedInBattle.getSpellTarget().getName() + " reflect next spell");
+    }
+
+    @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
         return 3;
     }

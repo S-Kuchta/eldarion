@@ -11,6 +11,7 @@ import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.Actio
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -38,6 +39,8 @@ public abstract class ActionWithDuration extends Action {
     }
 
     public abstract void printActionPerforming();
+
+    public abstract void printActiveAction();
 
     @Override
     public abstract void performAction();

@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithAffectingAbility;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithBaseValue;
 import kuchtastefan.character.GameCharacter;
@@ -13,7 +14,7 @@ import lombok.Getter;
 import java.util.Objects;
 
 @Getter
-public class ActionDecreaseAbilityPoint extends ActionWithDuration implements ActionWithBaseValue {
+public class ActionDecreaseAbilityPoint extends ActionWithDuration implements ActionWithBaseValue, ActionWithAffectingAbility {
 
     private final Ability ability;
 
@@ -39,6 +40,11 @@ public class ActionDecreaseAbilityPoint extends ActionWithDuration implements Ac
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Decrease " + this.returnTargetName(spellCaster, spellTarget) + " " + this.ability.toString() + " by " + this.returnActionValueRange(spellCaster).getOnlyValue());
+    }
+
+    @Override
+    public void printActiveAction() {
+        System.out.println("\t" + this.charactersInvolvedInBattle.getSpellTarget() + " " + this.ability + " is decreased by " + this.currentActionValue);
     }
 
     @Override

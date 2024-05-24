@@ -42,6 +42,12 @@ public class ActionDrainMana extends ActionWithDuration implements ActionWithInc
     }
 
     @Override
+    public void printActiveAction() {
+        System.out.println("\t" + this.charactersInvolvedInBattle.getSpellCaster().getName() + " drains "
+                + ConsoleColor.BLUE + this.currentActionValue + ConsoleColor.RESET + " mana from " + this.charactersInvolvedInBattle.getSpellTarget().getName());
+    }
+
+    @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
         return 3;
     }

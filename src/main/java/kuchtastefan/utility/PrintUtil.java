@@ -1,7 +1,9 @@
 package kuchtastefan.utility;
 
+import de.vandermeer.asciitable.AsciiTable;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithAffectingAbility;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
@@ -22,43 +24,6 @@ import java.util.Set;
 
 public class PrintUtil {
 
-//    public static void printSpellDescription(Hero hero, GameCharacter spellTarget, Spell spell) {
-//
-//        System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
-//                + " [Mana Cost: " + ConsoleColor.BLUE + spell.getSpellManaCost() + ConsoleColor.RESET + "]");
-//        if (spell.getTurnCoolDown() > 0) {
-//            System.out.print("[CoolDown: "
-//                    + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
-//        }
-//
-//        if (spell.getBonusValueFromAbility() != null) {
-//            System.out.print("[Bonus From Ability: ");
-//            for (Map.Entry<Ability, Integer> abilityBonus : spell.getBonusValueFromAbility().entrySet()) {
-//                System.out.print(abilityBonus.getKey() + "(" + abilityBonus.getValue() + "x), ");
-//            }
-//            System.out.print("]");
-//        }
-//
-//        System.out.println("\n\t" + spell.getSpellDescription());
-//
-//        for (Action action : spell.getSpellActions()) {
-//
-//            int totalActionValue = action.returnTotalActionValue(spell.getBonusValueFromAbility(), hero);
-//            if (spellTarget != null && action.getActionEffectOn().equals(ActionEffectOn.SPELL_TARGET)) {
-//                totalActionValue -= spellTarget.getCurrentAbilityValue(Ability.RESIST_DAMAGE);
-//            }
-//
-//            System.out.print("\t- " + ConsoleColor.YELLOW + action.getActionName() + ConsoleColor.RESET + " on ");
-//            if (spell.isHitAllEnemy()) {
-//                System.out.print("All enemies ");
-//            } else {
-//                System.out.print(action.getActionEffectOn() + " ");
-//            }
-//
-//            printActionDetails(action, totalActionValue);
-//        }
-//    }
-
     public static void printSpellDescription(Hero hero, GameCharacter spellTarget, Spell spell) {
 
         System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
@@ -76,32 +41,75 @@ public class PrintUtil {
             System.out.println();
             System.out.print("\t\t");
             action.printActionDescription(hero, spellTarget);
+            String printChanceToPerform = action.getChanceToPerformAction() == 100 ? "" : " [" + action.getChanceToPerformAction() + "% chance to perform]";
+            System.out.print(printChanceToPerform);
             if (GameSettingsDB.returnGameSettingValue(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
                 System.out.print("\n\t\t" + action.getActionName().getDescription());
             }
         }
     }
 
+    //    public static void printBattleBuffs(GameCharacter gameCharacter) {
+//        if (gameCharacter.getBuffsAndDebuffs() == null) {
+//            gameCharacter.setBuffsAndDebuffs(new HashSet<>());
+//        }
+//
+//        generateTableWithBuffs(gameCharacter.getBuffsAndDebuffs());
+//    }
+//    public static void printBattleBuffs(GameCharacter gameCharacter) {
+//        if (gameCharacter.getBuffsAndDebuffs() == null) {
+//            gameCharacter.setBuffsAndDebuffs(new HashSet<>());
+//        }
+//
+//        for (ActionWithDuration actionWithDuration : gameCharacter.getBuffsAndDebuffs()) {
+//            actionWithDuration.printActiveAction();
+//        }
+//
+//        printExtraLongDivider();
+////        generateTableWithBuffs(gameCharacter.getBuffsAndDebuffs());
+//    }
     public static void printBattleBuffs(GameCharacter gameCharacter) {
         if (gameCharacter.getBuffsAndDebuffs() == null) {
             gameCharacter.setBuffsAndDebuffs(new HashSet<>());
         }
 
-        generateTableWithBuffs(gameCharacter.getBuffsAndDebuffs());
+        if (!gameCharacter.getBuffsAndDebuffs().isEmpty()) {
+            generateTableWithBuffs(gameCharacter.getBuffsAndDebuffs());
+        }
     }
 
-    public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {
-        if (!actionWithDurationList.isEmpty()) {
-            String leftAlignment = "| %-30s | %-20s | %-28s | %-20s |%n";
-            for (ActionWithDuration actionWithDuration : actionWithDurationList) {
-                System.out.format(leftAlignment, actionWithDuration.getActionName(),
-                        "Action Value: " + actionWithDuration.getCurrentActionValue(),
-                        "Turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()),
-                        "Stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
-            }
 
-            printExtraLongDivider();
+    //    public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {
+//        if (!actionWithDurationList.isEmpty()) {
+//            String leftAlignment = "| %-30s | %-20s | %-28s | %-20s |%n";
+//            for (ActionWithDuration actionWithDuration : actionWithDurationList) {
+//                System.out.format(leftAlignment, actionWithDuration.getActionName(),
+//                        "Action Value: " + actionWithDuration.getCurrentActionValue(),
+//                        "Turns: " + printActionTurnRemaining(actionWithDuration.getCurrentActionTurn(), actionWithDuration.getMaxActionTurns()),
+//                        "Stacks: " + printActionTurnRemaining(actionWithDuration.getActionCurrentStacks(), actionWithDuration.getActionMaxStacks()));
+//            }
+//
+//            printExtraLongDivider();
+//        }
+//    }
+
+    public static void generateTableWithBuffs(Set<ActionWithDuration> actionWithDurationList) {
+        AsciiTable at = new AsciiTable();
+
+        at.addRule();
+        for (ActionWithDuration action : actionWithDurationList) {
+            String ability = action instanceof ActionWithAffectingAbility affectingAbility ? "Ability: " + affectingAbility.getAbility() : "";
+            at.addRow(action.getActionName(),
+                    ability,
+                    "Turns: " + printActionTurnRemaining(action.getCurrentActionTurn(), action.getMaxActionTurns()),
+                    "Stacks: " + printActionTurnRemaining(action.getActionCurrentStacks(), action.getActionMaxStacks()));
         }
+
+        at.addRule();
+        at.setPaddingLeft(2);
+        at.getContext().setGridTheme(253);
+        String rend = at.render(120);
+        System.out.println(rend);
     }
 
     public static StringBuilder printActionTurnRemaining(int currentValue, int maxValue) {

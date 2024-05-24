@@ -41,6 +41,12 @@ public class ActionLoseMana extends ActionWithDuration implements ActionWithBase
     }
 
     @Override
+    public void printActiveAction() {
+        System.out.println("\t" + this.charactersInvolvedInBattle.getSpellTarget().getName() + " loses "
+                + ConsoleColor.BLUE + this.currentActionValue + ConsoleColor.RESET + " mana");
+    }
+
+    @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
         return 0;
     }

@@ -5,6 +5,7 @@ import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionValue.ActionWithBaseValue;
+import kuchtastefan.actions.actionsWIthDuration.ActionWithAffectingAbility;
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
@@ -15,7 +16,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public class ActionIncreaseAbilityPoint extends ActionWithDuration implements ActionWithBaseValue {
+public class ActionIncreaseAbilityPoint extends ActionWithDuration implements ActionWithBaseValue, ActionWithAffectingAbility {
 
     private final Ability ability;
 
@@ -41,6 +42,11 @@ public class ActionIncreaseAbilityPoint extends ActionWithDuration implements Ac
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Increase " + this.returnTargetName(spellCaster, spellTarget) + " " + this.ability.toString()
                 + " by " + ConsoleColor.GREEN + this.returnActionValueRange(spellCaster).getOnlyValue() + ConsoleColor.RESET);
+    }
+
+    @Override
+    public void printActiveAction() {
+        System.out.println("\t" + this.charactersInvolvedInBattle.getSpellTarget() + " " + this.ability + " is increased by " + this.currentActionValue);
     }
 
     @Override

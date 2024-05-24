@@ -33,6 +33,11 @@ public class ActionStun extends ActionWithDuration implements ActionWithoutValue
     }
 
     @Override
+    public void printActiveAction() {
+        System.out.println("\t" + charactersInvolvedInBattle.getSpellTarget().getName() + " is stunned!");
+        }
+
+    @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
         return 2 + getMaxActionTurns();
     }

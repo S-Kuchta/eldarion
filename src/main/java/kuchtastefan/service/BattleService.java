@@ -82,15 +82,15 @@ public class BattleService {
         sortCharactersByHaste(allCharacters);
         int currentTurn = 0;
 
-        while (!isBattleFinished()/* || hero.getEffectiveAbilityValue(Ability.HEALTH) > 0*/) {
+        while (!isBattleFinished()) {
             if (currentTurn >= allCharacters.size()) {
                 sortCharactersByHaste(allCharacters);
                 currentTurn = 0;
             }
 
-            if (isBattleFinished()) {
-                return;
-            }
+//            if (isBattleFinished()) {
+//                return;
+//            }
 
             GameCharacter attackingCharacter = allCharacters.get(currentTurn);
             attackingCharacter.removeActionWithDuration();

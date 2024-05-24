@@ -40,6 +40,11 @@ public class ActionRestoreHealthOverTime extends ActionWithDuration implements A
     }
 
     @Override
+    public void printActiveAction() {
+        System.out.println("\t" + this.charactersInvolvedInBattle.getSpellTarget().getName() + " restores " + ConsoleColor.RED + this.getCurrentActionValue() + ConsoleColor.RESET + " health");
+    }
+
+    @Override
     public int returnPriorityPoints(GameCharacter spellCaster, GameCharacter spellTarget) {
         if (spellCaster.getEffectiveAbilityValue(Ability.HEALTH) < spellCaster.getEnhancedAbilities().get(Ability.HEALTH) / 2) {
             return 2;

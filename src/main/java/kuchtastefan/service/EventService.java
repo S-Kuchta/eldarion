@@ -3,6 +3,7 @@ package kuchtastefan.service;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.npc.enemy.EnemyGroupDB;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.spell.Spell;
 import kuchtastefan.utility.AutosaveCount;
 import kuchtastefan.world.event.specificEvent.*;
 import kuchtastefan.world.location.Location;
@@ -41,5 +42,6 @@ public class EventService {
 
         hero.restoreHealthAndManaAfterTurn();
         hero.performActionsWithDuration(false);
+        hero.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
     }
 }

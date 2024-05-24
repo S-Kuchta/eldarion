@@ -7,6 +7,7 @@ import kuchtastefan.actions.actionValue.ActionWithIncreasedValueByPrimaryAbility
 import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
+import lombok.AllArgsConstructor;
 
 public class ActionDealDamageOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
     public ActionDealDamageOverTime(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
@@ -36,6 +37,11 @@ public class ActionDealDamageOverTime extends ActionWithDuration implements Acti
                 + ConsoleColor.RESET
                 + " damage over " + this.getMaxActionTurns() + " turns to "
                 + ConsoleColor.YELLOW + this.returnTargetName(spellCaster, spellTarget) + ConsoleColor.RESET);
+    }
+
+    @Override
+    public void printActiveAction() {
+        System.out.println("\t" + this.charactersInvolvedInBattle.getSpellTarget() + " take " + ConsoleColor.RED_BRIGHT + this.currentActionValue + ConsoleColor.RESET + " damage ");
     }
 
     @Override

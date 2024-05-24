@@ -9,8 +9,10 @@ import kuchtastefan.hint.HintName;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumberSpellLevel;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.GameSettingsPrint;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.RuntimeTypeAdapterFactoryUtil;
+import kuchtastefan.utility.printUtil.SpellAndActionPrint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +63,7 @@ public class HeroSpellManager {
                 PrintUtil.printIndexAndText(letterToNumberSpellLevel.name(), "Spell level: " + letterToNumberSpellLevel.getValue() + ", ");
             }
 
-            PrintUtil.printSpellGameSettings();
+            GameSettingsPrint.printSpellGameSettings();
 
             System.out.print("\n\n");
             PrintUtil.printIndexAndText("0", "Go back");
@@ -70,7 +72,7 @@ public class HeroSpellManager {
             int index = 1;
             for (Spell spell : spellsByClassAndLevel) {
                 PrintUtil.printIndexAndText(String.valueOf(index), "");
-                PrintUtil.printSpellDescription(hero, null, spell);
+                SpellAndActionPrint.printSpellDescription(hero, null, spell);
                 index++;
                 System.out.println();
             }
@@ -137,7 +139,7 @@ public class HeroSpellManager {
     private void checkLearnedSpells(Hero hero) {
         for (Spell spell : hero.getCharacterSpellList()) {
             System.out.print("\t");
-            PrintUtil.printSpellDescription(hero, null, spell);
+            SpellAndActionPrint.printSpellDescription(hero, null, spell);
             System.out.println();
         }
     }

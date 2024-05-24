@@ -9,7 +9,9 @@ import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.CharacterPrint;
+import kuchtastefan.utility.printUtil.GameSettingsPrint;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -69,9 +71,9 @@ public class HeroMenuService {
     }
 
     private void showHeroInfo(Hero hero) {
-        PrintUtil.printHeaderWithStatsBar(hero);
-        PrintUtil.printEffectiveAbilityPoints(hero);
-        PrintUtil.printCurrentWearingArmor(hero);
+        CharacterPrint.printHeaderWithStatsBar(hero);
+        CharacterPrint.printEffectiveAbilityPoints(hero);
+        CharacterPrint.printCurrentWearingArmor(hero);
     }
 
     private void gameSettingsMenu() {
@@ -84,7 +86,7 @@ public class HeroMenuService {
             for (Map.Entry<GameSetting, Boolean> gameSettings : GameSettingsDB.getGAME_SETTINGS_DB().entrySet()) {
                 gameSettingList.add(gameSettings.getKey());
                 PrintUtil.printIndexAndText(String.valueOf(index), gameSettings.getKey().toString() + " - ");
-                PrintUtil.printYesNoSelection(gameSettings.getValue());
+                GameSettingsPrint.printYesNoSelection(gameSettings.getValue());
                 System.out.println();
                 index++;
             }

@@ -6,7 +6,8 @@ import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
+import kuchtastefan.utility.printUtil.QuestPrint;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,7 +44,7 @@ public class QuestService {
             if (choice == 0) {
                 break;
             } else if (choice > 0 && choice <= quests.size()) {
-                PrintUtil.printQuestDetails(quests.get(choice - 1), hero);
+                QuestPrint.printQuestDetails(quests.get(choice - 1), hero);
             } else {
                 PrintUtil.printEnterValidInput();
             }
@@ -57,7 +58,7 @@ public class QuestService {
         PrintUtil.printIndexAndText("0", "Go back\n");
         int index = 1;
         for (Quest quest : quests) {
-            PrintUtil.printIndexAndText(String.valueOf(index++), quest.getQuestName() + " " + PrintUtil.returnQuestSuffix(quest));
+            PrintUtil.printIndexAndText(String.valueOf(index++), quest.getQuestName() + " " + QuestPrint.returnQuestSuffix(quest));
             System.out.println();
         }
     }
@@ -71,7 +72,7 @@ public class QuestService {
      */
     private void questMenu(Quest quest, Hero hero) {
 
-        PrintUtil.printQuestDetails(quest, hero);
+        QuestPrint.printQuestDetails(quest, hero);
         if (printQuestOptions(hero, quest)) {
             while (true) {
                 int choice = InputUtil.intScanner();
@@ -108,7 +109,7 @@ public class QuestService {
                 PrintUtil.printIndexAndText("1", "Complete quest\n");
                 return true;
             }
-            case QuestStatus.ACCEPTED -> PrintUtil.printQuestDetails(quest, hero);
+            case QuestStatus.ACCEPTED -> QuestPrint.printQuestDetails(quest, hero);
             case QuestStatus.TURNED_IN -> System.out.println("\tQuest " + quest.getQuestName() + " is Completed");
             case QuestStatus.UNAVAILABLE ->
                     System.out.println(ConsoleColor.RED + "\tQuest can not be accepted yet." + ConsoleColor.RESET);

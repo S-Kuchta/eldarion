@@ -6,7 +6,7 @@ import kuchtastefan.hint.HintName;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.AutosaveCount;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;

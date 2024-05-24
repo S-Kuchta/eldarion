@@ -14,7 +14,7 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.location.Location;
 import lombok.Getter;
 import lombok.Setter;

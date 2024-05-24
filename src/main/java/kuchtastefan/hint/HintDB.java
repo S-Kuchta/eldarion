@@ -1,7 +1,7 @@
 package kuchtastefan.hint;
 
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 
 import java.util.HashMap;

@@ -6,7 +6,7 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
 
 public interface UsableItem {
 

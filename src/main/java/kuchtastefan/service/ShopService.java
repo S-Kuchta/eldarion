@@ -9,7 +9,8 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
+import kuchtastefan.utility.printUtil.ShopPrint;
 
 public class ShopService implements UsingHeroInventory {
 
@@ -70,7 +71,7 @@ public class ShopService implements UsingHeroInventory {
             sortVendorOffer.sortVendorOffer();
         }
 
-        PrintUtil.printShopHeader(hero, this.vendorCharacter.returnItemClass().getSimpleName().replaceAll("\\d+", ""));
+        ShopPrint.printShopHeader(hero, this.vendorCharacter.returnItemClass().getSimpleName().replaceAll("\\d+", ""));
         this.vendorCharacter.printVendorItemsOffer(hero);
         buyItem(hero);
     }

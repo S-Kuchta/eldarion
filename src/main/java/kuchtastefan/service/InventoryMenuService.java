@@ -12,7 +12,8 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.InventoryPrint;
+import kuchtastefan.utility.printUtil.PrintUtil;
 
 public class InventoryMenuService implements UsingHeroInventory {
 
@@ -44,11 +45,11 @@ public class InventoryMenuService implements UsingHeroInventory {
     public void wearableItemsMenu(Hero hero) {
         PrintUtil.printMenuHeader("Wearable");
         String[] wearableTypes = {"Go Back",
-                "Weapons (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.WEAPON) + "x)",
-                "Head (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HEAD) + "x)",
-                "Body (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BODY) + "x)",
-                "Hands (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.HANDS) + "x)",
-                "Boots (" + PrintUtil.printWearableItemCountByType(hero, WearableItemType.BOOTS) + "x)"};
+                "Weapons (" + InventoryPrint.printWearableItemCountByType(hero, WearableItemType.WEAPON) + "x)",
+                "Head (" + InventoryPrint.printWearableItemCountByType(hero, WearableItemType.HEAD) + "x)",
+                "Body (" + InventoryPrint.printWearableItemCountByType(hero, WearableItemType.BODY) + "x)",
+                "Hands (" + InventoryPrint.printWearableItemCountByType(hero, WearableItemType.HANDS) + "x)",
+                "Boots (" + InventoryPrint.printWearableItemCountByType(hero, WearableItemType.BOOTS) + "x)"};
 
         PrintUtil.printMenuOptions(wearableTypes);
         int choice = InputUtil.intScanner();

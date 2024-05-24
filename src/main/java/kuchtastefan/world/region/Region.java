@@ -8,7 +8,8 @@ import kuchtastefan.service.HeroMenuService;
 import kuchtastefan.service.LocationService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.CharacterPrint;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.Biome;
 import kuchtastefan.world.location.Location;
 import lombok.Getter;
@@ -46,15 +47,12 @@ public class Region {
         while (true) {
             // Printing region information and options
             System.out.println();
-            PrintUtil.printHeaderWithStatsBar(hero);
-            System.out.println(ConsoleColor.WHITE_UNDERLINED + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" + ConsoleColor.RESET);
-//            PrintUtil.printExtraLongDivider();
+            CharacterPrint.printHeaderWithStatsBar(hero);
+            PrintUtil.printExtraLongDivider();
 
-//            PrintUtil.printLongDivider();
             System.out.println("\n\t" + this.getRegionName()
                     + " \tRegion level: " + this.getMinimumRegionLevel() + " - " + this.getMaximumRegionLevel()
                     + " \tDiscovered locations: " + hero.getDiscoveredLocationList().size() + " / " + this.getAllLocations().size() + "\n");
-//            PrintUtil.printLongDivider();
 
             PrintUtil.printMenuOptions("Go back to the city", "Travel across region " + this.getRegionName(), "Hero menu");
 

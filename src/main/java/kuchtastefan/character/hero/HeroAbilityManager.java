@@ -4,7 +4,8 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.ability.AbilityPointsSpendOrRemove;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.CharacterPrint;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,8 +38,8 @@ public class HeroAbilityManager {
             PrintUtil.printLongDivider();
         } else {
             while (this.hero.getUnspentAbilityPoints() > 0) {
-                PrintUtil.printHeaderWithStatsBar(this.hero);
-                PrintUtil.printBaseAbilityPoints(this.hero);
+                CharacterPrint.printHeaderWithStatsBar(this.hero);
+                CharacterPrint.printBaseAbilityPoints(this.hero);
 
                 System.out.println("Choose ability to upgrade:");
                 System.out.println("You have " + this.hero.getUnspentAbilityPoints() + " to spend.");
@@ -47,22 +48,22 @@ public class HeroAbilityManager {
             }
 
             System.out.println("You have spent all your available points. Your abilities are: ");
-            PrintUtil.printHeaderWithStatsBar(this.hero);
-            PrintUtil.printBaseAbilityPoints(this.hero);
+            CharacterPrint.printHeaderWithStatsBar(this.hero);
+            CharacterPrint.printBaseAbilityPoints(this.hero);
         }
     }
 
     public void removeAbilityPoints() {
         while (true) {
-            PrintUtil.printHeaderWithStatsBar(this.hero);
-            PrintUtil.printBaseAbilityPoints(this.hero);
+            CharacterPrint.printHeaderWithStatsBar(this.hero);
+            CharacterPrint.printBaseAbilityPoints(this.hero);
 
             System.out.println("Choose ability to remove:");
             printPossibleAbilitiesToUpgrade(AbilityPointsSpendOrRemove.REMOVE);
             int removeAbilityInput = InputUtil.intScanner();
             if (removeAbilityInput == 0) {
-                PrintUtil.printHeaderWithStatsBar(this.hero);
-                PrintUtil.printBaseAbilityPoints(this.hero);
+                CharacterPrint.printHeaderWithStatsBar(this.hero);
+                CharacterPrint.printBaseAbilityPoints(this.hero);
                 break;
             }
 

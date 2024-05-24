@@ -8,7 +8,7 @@ import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
 import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.event.Event;
 
 public class UseItemEvent extends Event implements UsingHeroInventory {

@@ -4,12 +4,12 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
+import kuchtastefan.utility.printUtil.QuestPrint;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -67,7 +67,7 @@ public class Quest {
         }
 
         if (!this.questStatus.equals(QuestStatus.COMPLETED)) {
-            PrintUtil.printCompleteQuestText(this.questName);
+            QuestPrint.printCompleteQuestText(this.questName);
             this.questStatus = QuestStatus.COMPLETED;
         }
 
@@ -82,7 +82,7 @@ public class Quest {
     public void turnInTheQuest(Hero hero) {
         if (this.getQuestStatus().equals(QuestStatus.COMPLETED)) {
             PrintUtil.printLongDivider();
-            PrintUtil.printCompleteQuestText(this.questName);
+            QuestPrint.printCompleteQuestText(this.questName);
             PrintUtil.printLongDivider();
             this.getQuestReward().giveQuestReward(hero);
             this.setQuestStatus(QuestStatus.TURNED_IN);

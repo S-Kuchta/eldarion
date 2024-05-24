@@ -5,7 +5,8 @@ import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
+import kuchtastefan.utility.printUtil.QuestPrint;
 import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageBlacksmith;
@@ -61,7 +62,7 @@ public class Location {
                 for (Quest quest : QuestGiverCharacterDB.returnQuestGiverFromDB(locationStageQuestGiver.getQuestGiverId()).getQuests()) {
                     if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE) || quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
                         stringBuilder.append("[");
-                        stringBuilder.append(PrintUtil.returnQuestSuffix(quest));
+                        stringBuilder.append(QuestPrint.returnQuestSuffix(quest));
                         stringBuilder.append("]");
                     }
                 }

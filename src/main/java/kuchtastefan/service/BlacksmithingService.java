@@ -10,7 +10,7 @@ import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.workshop.Workshop;
 
 public class BlacksmithingService implements Workshop {

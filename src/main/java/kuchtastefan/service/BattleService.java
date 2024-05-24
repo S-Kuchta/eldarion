@@ -16,6 +16,10 @@ import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
 import kuchtastefan.utility.*;
+import kuchtastefan.utility.printUtil.CharacterPrint;
+import kuchtastefan.utility.printUtil.GameSettingsPrint;
+import kuchtastefan.utility.printUtil.PrintUtil;
+import kuchtastefan.utility.printUtil.SpellAndActionPrint;
 import lombok.Getter;
 
 import java.util.*;
@@ -152,9 +156,9 @@ public class BattleService {
     }
 
     private void printCharacterStats(GameCharacter gameCharacter) {
-        PrintUtil.printHeaderWithStatsBar(gameCharacter);
-        PrintUtil.printEffectiveAbilityPoints(gameCharacter);
-        PrintUtil.printBattleBuffs(gameCharacter);
+        CharacterPrint.printHeaderWithStatsBar(gameCharacter);
+        CharacterPrint.printEffectiveAbilityPoints(gameCharacter);
+        SpellAndActionPrint.printBattleBuffs(gameCharacter);
     }
 
     private GameCharacter setNpcTarget(GameCharacter attackingCharacter) {
@@ -295,7 +299,7 @@ public class BattleService {
             }
         }
 
-        PrintUtil.printSpellGameSettings();
+        GameSettingsPrint.printSpellGameSettings();
         System.out.println();
         printHeroSpells(hero);
         PrintUtil.printIndexAndText(String.valueOf(hero.getCharacterSpellList().size()), "Potions Menu");
@@ -324,7 +328,7 @@ public class BattleService {
         for (Spell spell : hero.getCharacterSpellList()) {
             if (shouldPrintSpell(spell)) {
                 System.out.print(ConsoleColor.CYAN + "\t" + spellIndex + ". " + ConsoleColor.RESET);
-                PrintUtil.printSpellDescription(hero, this.playerTarget, spell);
+                SpellAndActionPrint.printSpellDescription(hero, this.playerTarget, spell);
                 System.out.println();
             }
             spellIndex++;

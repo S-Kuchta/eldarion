@@ -2,7 +2,7 @@ package kuchtastefan.world.location.locationStage.specificLocationStage;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.PrintUtil;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
 import kuchtastefan.world.location.locationStage.LocationStage;

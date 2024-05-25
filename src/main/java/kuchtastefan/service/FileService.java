@@ -306,6 +306,7 @@ public class FileService {
                 }
 
                 for (QuestItem questItem : questItemList) {
+                    System.out.println("adding: " + questItem.getName() + ", id: " + questItem.getItemId());
                     ItemDB.addItemToDB(questItem);
                 }
 

@@ -3,6 +3,9 @@ package kuchtastefan.quest.questObjectives.specificQuestObjectives;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
 import kuchtastefan.quest.questObjectives.ConnectedWithItem;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
@@ -23,6 +26,7 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
     @Override
     public void printQuestObjectiveProgress(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.itemId);
+        hero.getHeroInventory().getHeroInventory().putIfAbsent(item, 0);
         System.out.println("\tBring " + hero.getHeroInventory().getItemCount(item) + "/" + this.itemCountNeeded + " " + item.getName() );
     }
 

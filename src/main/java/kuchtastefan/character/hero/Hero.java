@@ -61,9 +61,7 @@ public class Hero extends GameCharacter {
 
     public void equipItem(WearableItem wearableItem) {
         if (this.level < wearableItem.getItemLevel()) {
-            PrintUtil.printLongDivider();
             System.out.println("\tYou don't meet minimal level requirement to wear this item!");
-            PrintUtil.printLongDivider();
         } else {
             System.out.println("\tYou equipped " + wearableItem.getName());
             this.equippedItem.put(wearableItem.getItemType(), wearableItem);
@@ -240,7 +238,6 @@ public class Hero extends GameCharacter {
 
     public void setInitialEquip() {
         this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(200), 1);
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(400), 1);
         this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(500), 1);
         this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(600), 1);
 
@@ -252,7 +249,6 @@ public class Hero extends GameCharacter {
         this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(1200), 1);
 
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(200));
-        this.equipItem((WearableItem) ItemDB.returnItemFromDB(400));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(500));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(600));
     }

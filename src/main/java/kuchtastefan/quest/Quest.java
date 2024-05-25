@@ -42,6 +42,7 @@ public class Quest {
         if (!hero.getHeroQuests().containsQuest(this.questId)) {
             hero.getHeroQuests().addQuestToHeroAcceptedQuest(this);
             this.setQuestStatus(QuestStatus.ACCEPTED);
+            hero.getHeroQuests().makeProgressInQuestObjective(hero, this.questId);
             this.checkIfQuestIsCompleted(hero);
         }
     }

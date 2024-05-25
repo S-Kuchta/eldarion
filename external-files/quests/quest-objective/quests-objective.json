@@ -44,7 +44,7 @@
     "type": "QuestBringItemObjective",
     "questObjectiveId": 7,
     "questObjectiveName": "Find the Book of Elders",
-    "objectiveItemId": 104,
+    "itemId": 104,
     "itemCountNeeded": 1
   },
   {

@@ -60,7 +60,7 @@
     "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
     "questLevel": 2,
     "instantTurnIn": false,
-    "questObjectives": [
+    "questObjectivesIds": [
       7
     ],
     "questReward": {
@@ -80,7 +80,7 @@
     "questDescription": "After reading Tattered Letter near a corpse, you discover a chilling message written upon it. The message speaks of a cursed medallion stolen from the altar within the Tower of the Damned. It warns of dire consequences should the medallion remain in the wrong hands.",
     "questLevel": 2,
     "instantTurnIn": true,
-    "questObjectives": [
+    "questObjectivesIds": [
       8
     ],
     "questReward": {

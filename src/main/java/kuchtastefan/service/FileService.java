@@ -120,10 +120,10 @@ public class FileService {
                 errorMessage = "Error while saving game!";
             } catch (InvalidPathException e) {
                 errorMessage = "Invalid characters in file name!";
-            } catch (StackOverflowError e) {
+            } /*catch (StackOverflowError e) {
                 errorMessage = "is this null?";
                 System.out.println(e.getMessage());
-            }
+            }*/
         }
 
         System.out.println(ConsoleColor.RED + "\tSomething went wrong while saving the game!" + ConsoleColor.RESET);

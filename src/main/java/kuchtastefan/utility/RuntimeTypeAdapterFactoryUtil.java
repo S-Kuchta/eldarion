@@ -1,9 +1,9 @@
 package kuchtastefan.utility;
 
 import kuchtastefan.actions.Action;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.*;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDurationPerformedOnce;
+import kuchtastefan.actions.actionsWithDuration.specificActionWithDuration.*;
 import kuchtastefan.actions.instantAction.*;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
@@ -37,6 +37,7 @@ public class RuntimeTypeAdapterFactoryUtil {
 
     public static final RuntimeTypeAdapterFactory<Action> actionsRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
             .of(Action.class)
+            .registerSubtype(Action.class)
             .registerSubtype(ActionWithDuration.class)
             .registerSubtype(ActionWithDurationPerformedOnce.class)
             .registerSubtype(ActionRestoreHealth.class)

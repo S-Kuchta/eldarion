@@ -1,13 +1,14 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.spell.Spell;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
-import kuchtastefan.quest.QuestDB;
-import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.AutosaveCount;
 import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.printUtil.CharacterPrint;
 import kuchtastefan.utility.printUtil.PrintUtil;
+import kuchtastefan.utility.printUtil.SpellAndActionPrint;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;
@@ -35,6 +36,8 @@ public class LocationService {
         while (true) {
             location.questLocationStageSet(hero);
 
+            CharacterPrint.printHeaderWithStatsBar(hero);
+            SpellAndActionPrint.printBuffTable(hero);
             location.printHeader();
             location.printMenu(index);
 
@@ -92,6 +95,7 @@ public class LocationService {
             discoverNextStage(location, location.getStageCompleted() + 1);
             locationStage.completeStage();
             hero.restoreHealthAndManaAfterTurn();
+            hero.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
         }
 
         // Completing all location stages

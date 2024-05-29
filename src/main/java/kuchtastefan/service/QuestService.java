@@ -23,6 +23,7 @@ public class QuestService {
 
     public void questGiverMenu(Hero hero, List<Quest> quests) {
         while (true) {
+            questGiverCharacter.setQuestsStatus(hero);
             printQuestsMenu(quests);
             int choice = InputUtil.intScanner();
             if (choice == 0) {

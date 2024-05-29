@@ -1,10 +1,10 @@
-package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
+package kuchtastefan.actions.actionsWithDuration.specificActionWithDuration;
 
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionValue.ActionWithIncreasedValueByPrimaryAbility;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 

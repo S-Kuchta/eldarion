@@ -4,7 +4,7 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithBaseValue;
 import kuchtastefan.character.GameCharacter;
 import lombok.Getter;

@@ -1,12 +1,12 @@
-package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
+package kuchtastefan.actions.actionsWithDuration.specificActionWithDuration;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionValue.ActionWithBaseValue;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithAffectingAbility;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
+import kuchtastefan.actions.actionsWithDuration.ActionWithAffectingAbility;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;

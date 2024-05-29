@@ -1,16 +1,17 @@
 package kuchtastefan.character;
 
 import kuchtastefan.ability.Ability;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
-import kuchtastefan.actions.actionsWIthDuration.PerformActionBeforeTurn;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionAbsorbDamage;
-import kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration.ActionReflectSpell;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDurationPerformedOnce;
+import kuchtastefan.actions.actionsWithDuration.PerformActionBeforeTurn;
+import kuchtastefan.actions.actionsWithDuration.specificActionWithDuration.ActionAbsorbDamage;
+import kuchtastefan.actions.actionsWithDuration.specificActionWithDuration.ActionReflectSpell;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.Exclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,6 +26,7 @@ public abstract class GameCharacter {
     protected Map<Ability, Integer> baseAbilities;
     protected Map<Ability, Integer> enhancedAbilities;
     protected Map<Ability, Integer> effectiveAbilities;
+    @Exclude
     protected Set<ActionWithDuration> buffsAndDebuffs;
     protected List<Spell> characterSpellList;
     protected boolean canPerformAction;

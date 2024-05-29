@@ -50,7 +50,14 @@ public class QuestGiverCharacter {
         }
     }
 
+    public void setQuestsStatus(Hero hero) {
+        for (Quest quest : this.getQuests()) {
+            QuestDB.setQuestStatus(hero, quest);
+        }
+    }
+
     public void questGiverMenu(Hero hero) {
+
         QuestService questService = new QuestService();
         questService.setQuestGiverCharacter(this);
         HintDB.printHint(HintName.QUEST_HINT);

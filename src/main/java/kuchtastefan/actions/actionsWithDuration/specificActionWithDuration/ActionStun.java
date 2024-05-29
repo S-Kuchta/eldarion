@@ -1,11 +1,11 @@
-package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
+package kuchtastefan.actions.actionsWithDuration.specificActionWithDuration;
 
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionValue.ActionWithoutValue;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
-import kuchtastefan.actions.actionsWIthDuration.PerformActionBeforeTurn;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDurationPerformedOnce;
+import kuchtastefan.actions.actionsWithDuration.PerformActionBeforeTurn;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 

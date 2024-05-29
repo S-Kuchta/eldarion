@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 5,
+        "baseActionValue": 3,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -26,7 +26,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 8,
+        "baseActionValue": 10,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }

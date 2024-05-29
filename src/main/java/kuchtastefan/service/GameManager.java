@@ -18,6 +18,7 @@ import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.region.RegionDB;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class GameManager {
@@ -40,6 +41,7 @@ public class GameManager {
         while (true) {
             QuestGiverCharacterDB.setAllQuestGiversName(this.hero);
 
+            System.out.println();
             PrintUtil.printLongDivider();
             System.out.println("\t\t\t\t\t\t\t------ Main Menu ------");
             PrintUtil.printLongDivider();
@@ -137,6 +139,7 @@ public class GameManager {
     private void loadGame(GameLoaded gameLoaded) {
         this.hero = gameLoaded.getHero();
         this.hero.setLevel(gameLoaded.getHero().getLevel());
+        this.hero.setBuffsAndDebuffs(new HashSet<>());
         this.heroAbilityManager.setHero(gameLoaded.getHero());
         HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
         QuestDB.loadQuests(this.hero);

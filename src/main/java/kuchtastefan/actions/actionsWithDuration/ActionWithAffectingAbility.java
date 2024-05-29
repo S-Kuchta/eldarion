@@ -1,4 +1,4 @@
-package kuchtastefan.actions.actionsWIthDuration;
+package kuchtastefan.actions.actionsWithDuration;
 
 import kuchtastefan.ability.Ability;
 

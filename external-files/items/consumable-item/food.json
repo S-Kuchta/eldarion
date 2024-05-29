@@ -21,6 +21,7 @@
         "actionDurationType": "REGION_ACTION",
         "actionMaxStacks": 1,
         "ability": "ATTACK",
+        "actionStatusEffect": "BUFF",
         "actionEffectOn": "SPELL_CASTER",
         "chanceToPerformAction": 100,
         "canBeActionCriticalHit": false

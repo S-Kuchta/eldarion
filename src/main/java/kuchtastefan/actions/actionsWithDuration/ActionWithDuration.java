@@ -1,4 +1,4 @@
-package kuchtastefan.actions.actionsWIthDuration;
+package kuchtastefan.actions.actionsWithDuration;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

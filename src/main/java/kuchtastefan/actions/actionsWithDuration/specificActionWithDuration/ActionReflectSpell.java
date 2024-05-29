@@ -1,10 +1,10 @@
-package kuchtastefan.actions.actionsWIthDuration.specificActionWithDuration;
+package kuchtastefan.actions.actionsWithDuration.specificActionWithDuration;
 
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionValue.ActionWithoutValue;
-import kuchtastefan.actions.actionsWIthDuration.ActionWithDurationPerformedOnce;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.character.GameCharacter;
 
 public class ActionReflectSpell extends ActionWithDurationPerformedOnce implements ActionWithoutValue {

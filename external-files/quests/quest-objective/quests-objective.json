@@ -51,7 +51,7 @@
     "type": "QuestUseItemObjective",
     "questObjectiveId": 8,
     "questObjectiveName": "Fill Empty Socket with Coursed Medallion",
-    "itemToUseId": 1300,
+    "itemId": 1300,
     "locationId": 1,
     "locationStageId": 3
   }

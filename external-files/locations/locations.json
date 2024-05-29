@@ -137,7 +137,7 @@
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           404,
-          103,
+          1201,
           609
         ]
       }
@@ -318,7 +318,6 @@
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
-          1201,
           1300
         ]
       },

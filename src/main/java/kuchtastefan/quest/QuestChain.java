@@ -18,6 +18,7 @@ public class QuestChain extends Quest {
         this.previousQuestId = previousQuestId;
     }
 
+    @Override
     public boolean canBeQuestAccepted(Hero hero) {
         try {
             return hero.getHeroQuests().getHeroAcceptedQuest().get(this.previousQuestId).getQuestStatus().equals(QuestStatus.TURNED_IN);

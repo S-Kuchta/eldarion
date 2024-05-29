@@ -43,7 +43,6 @@ public class Quest {
             hero.getHeroQuests().addQuestToHeroAcceptedQuest(this);
             this.setQuestStatus(QuestStatus.ACCEPTED);
             hero.getHeroQuests().checkIfQuestIsCompleted(hero, this.getQuestId());
-//            hero.getHeroQuests().makeProgressInQuestObjective(hero, this.questId);
             this.checkIfQuestIsCompleted(hero);
         }
     }
@@ -95,6 +94,11 @@ public class Quest {
                 removeObjectiveProgress.removeCompletedQuestObjectiveAssignment(hero);
             }
         }
+    }
+
+    // TODO rename to initialQuestStatus
+    public boolean canBeQuestAccepted(Hero hero) {
+        return hero.getLevel() >= this.questLevel;
     }
 
     @Override

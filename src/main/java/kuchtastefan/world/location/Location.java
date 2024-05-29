@@ -109,10 +109,10 @@ public class Location {
         }
     }
 
-    public void setLocationStageName() {
+    public void questLocationStageSet(Hero hero) {
         for (LocationStage locationStage : this.locationStages.values()) {
             if (locationStage instanceof LocationStageQuestGiver locationStageQuestGiver) {
-                locationStageQuestGiver.setStageName();
+                locationStageQuestGiver.setStage(hero);
             }
         }
     }

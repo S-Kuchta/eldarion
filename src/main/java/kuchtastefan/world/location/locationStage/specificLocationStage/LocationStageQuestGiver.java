@@ -1,8 +1,9 @@
 package kuchtastefan.world.location.locationStage.specificLocationStage;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
-import kuchtastefan.service.QuestService;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
 import kuchtastefan.world.location.locationStage.LocationStage;
@@ -21,12 +22,17 @@ public class LocationStageQuestGiver extends LocationStage implements CanEnterSt
 
     @Override
     public boolean exploreStage(Hero hero, Location location) {
+        setStage(hero);
         QuestGiverCharacterDB.questGiverMenu(this.questGiverId, hero);
-        setStageName();
         return QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId).checkIfAllAcceptedQuestsAreCompleted(hero);
     }
 
-    public void setStageName() {
+    public void setStage(Hero hero) {
+        for (Quest quest : QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId).getQuests()) {
+            QuestDB.setQuestStatus(hero, quest);
+        }
+
+        QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId).setNameBasedOnQuestsAvailable(hero);
         this.setStageName(QuestGiverCharacterDB.returnQuestGiverName(this.questGiverId));
     }
 }

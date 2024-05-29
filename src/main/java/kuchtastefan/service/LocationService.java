@@ -3,6 +3,7 @@ package kuchtastefan.service;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.AutosaveCount;
 import kuchtastefan.utility.InputUtil;
@@ -32,7 +33,7 @@ public class LocationService {
         int index = 3;
 
         while (true) {
-            this.location.setLocationStageName();
+            location.questLocationStageSet(hero);
 
             location.printHeader();
             location.printMenu(index);
@@ -70,7 +71,7 @@ public class LocationService {
      * If stage is successfully completed, increase counter of stageCompleted located in Location
      * If stageCompleted meet value of stageTotal, location is completed and rewards are granted
      *
-     * @param hero               Exploring LocationStage
+     * @param hero Exploring LocationStage
      */
     public void exploreLocationStage(Hero hero, LocationStage locationStage) {
         AutosaveCount.checkAutosaveCount(hero);

@@ -12,6 +12,7 @@ public class QuestDB {
         return QUEST_DB.get(questID);
     }
 
+
     public static void addQuestToDB(Quest quest) {
         quest.getQuestReward().calculateExperiencePointsReward(quest.getQuestLevel());
         QUEST_DB.put(quest.getQuestId(), quest);
@@ -19,18 +20,16 @@ public class QuestDB {
 
     public static void setInitialQuestsStatus(Hero hero) {
         for (Quest quest : QUEST_DB.values()) {
-            if (quest instanceof QuestChain questChain) {
-                if (questChain.canBeQuestAccepted(hero)) {
-                    quest.setQuestStatus(QuestStatus.AVAILABLE);
-                } else {
-                    quest.setQuestStatus(QuestStatus.UNAVAILABLE);
-                }
+            setQuestStatus(hero, quest);
+        }
+    }
+
+    public static void setQuestStatus(Hero hero, Quest quest) {
+        if (!hero.getHeroQuests().containsQuest(quest.getQuestId())) {
+            if (quest.canBeQuestAccepted(hero)) {
+                quest.setQuestStatus(QuestStatus.AVAILABLE);
             } else {
-                if (quest.getQuestLevel() <= hero.getLevel()) {
-                    quest.setQuestStatus(QuestStatus.AVAILABLE);
-                } else {
-                    quest.setQuestStatus(QuestStatus.UNAVAILABLE);
-                }
+                quest.setQuestStatus(QuestStatus.UNAVAILABLE);
             }
         }
     }

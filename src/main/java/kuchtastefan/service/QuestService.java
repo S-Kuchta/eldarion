@@ -71,7 +71,6 @@ public class QuestService {
      * @param quest quest which come dynamically depending on you choice
      */
     private void questMenu(Quest quest, Hero hero) {
-
         QuestPrint.printQuestDetails(quest, hero);
         if (printQuestOptions(hero, quest)) {
             while (true) {

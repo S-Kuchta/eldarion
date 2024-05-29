@@ -308,8 +308,8 @@
         "stageDiscovered": true,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
-          401,
-          401
+          101,
+          101
         ]
       },
       "1": {
@@ -318,7 +318,7 @@
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
-          106
+            1300
         ]
       },
       "2": {
@@ -326,7 +326,7 @@
         "stageName": "Letter lying next to corpse",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
-        "questGiverId": 1
+        "questGiverId": 3
       }
     }
   },

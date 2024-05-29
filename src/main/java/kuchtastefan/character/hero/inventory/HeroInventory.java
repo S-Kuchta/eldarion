@@ -41,7 +41,7 @@ public class HeroInventory {
     public void addQuestItemToInventory(QuestItem questItem, int count, Hero hero) {
         if (hero.getHeroQuests().containsQuestObjective(questItem.getQuestObjectiveId())) {
             addItemToInventory(questItem, count);
-            hero.getHeroQuests().makeProgressInQuestObjective(hero, questItem.getQuestObjectiveId());
+            hero.getHeroQuests().updateQuestObjectiveProgress(hero, questItem.getQuestObjectiveId());
         }
     }
 

@@ -14,7 +14,7 @@ public enum Ability {
     SPIRIT("Spirit is used for restore health and mana out of combat and mana during combat. One point of Spirit is equals to 1% of mana and health restore."),
     CRITICAL_HIT_CHANCE("Critical hit chance is responsible for chance of critical hit. One point of Critical hit chance is equals to 1% chance."),
     HEALTH("Health is the amount of damage you can take before you die."),
-    MANA("Mana is used for casting spells. After every turn you will restore" + Constant.RESTORE_MANA_PER_ONE_HASTE + " points of mana per 1 point of Haste."),
+    MANA("Mana is used for casting spells. After every turn you will restore" + Constant.RESTORE_MANA_PER_ONE_SPIRIT + " points of mana per 1 point of Haste."),
     ABSORB_DAMAGE("Absorb damage is used as a shield. Attacker must first destroy Absorb damage before target will take damage.");
 
     private final String description;

@@ -143,7 +143,7 @@ public class Location {
         this.cleared = cleared;
 
         try {
-            hero.getHeroQuests().makeProgressInQuestObjective(hero, this.locationId);
+            hero.getHeroQuests().updateQuestObjectiveProgress(hero, this.locationId);
         } catch (NullPointerException ignored) {
         }
 

@@ -83,8 +83,19 @@ public class HeroQuests {
         }
     }
 
-    public void makeProgressInQuestObjective(Hero hero, int questObjectiveId) {
+    public void checkIfQuestIsCompleted(Hero hero, int questId) {
+        for (QuestObjective questObjective : heroAcceptedQuest.get(questId).getQuestObjectives()) {
+            questObjective.verifyQuestObjectiveCompletion(hero);
+        }
+    }
+
+    public void updateQuestObjectiveProgress(Hero hero, int questObjectiveId) {
         QuestObjective questObjective = this.getQuestObjective(questObjectiveId);
+
+        if (questObjective == null || questObjective.isCompleted()) {
+            return;
+        }
+
         questObjective.printQuestObjectiveProgress(hero);
         questObjective.verifyQuestObjectiveCompletion(hero);
     }

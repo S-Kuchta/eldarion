@@ -92,7 +92,7 @@
     "level": 2
   },
   {
-    "type": "Enemy",
+    "type": "QuestEnemy",
     "npcId": 204,
     "name": "Defias Miner",
     "characterRarity": "COMMON",
@@ -115,7 +115,7 @@
     "level": 2
   },
   {
-    "type": "Enemy",
+    "type": "QuestEnemy",
     "npcId": 205,
     "name": "Weak Defias WatchMan",
     "characterRarity": "COMMON",
@@ -184,7 +184,7 @@
     "level": 2
   },
   {
-    "type": "Enemy",
+    "type": "QuestEnemy",
     "npcId": 208,
     "name": "Defias Miner Leader",
     "characterRarity": "RARE",

@@ -146,12 +146,14 @@ public abstract class GameCharacter {
 
     public void restoreAbilityValue(int amountToRestore, Ability ability) {
         int maxCharacterAbility = this.getEnhancedAbilities().get(ability);
-        int currentCharacterAbility = this.getEffectiveAbilityValue(ability);
+        int effectiveCharacterAbility = this.getEffectiveAbilityValue(ability);
 
-        if (maxCharacterAbility - currentCharacterAbility <= amountToRestore) {
+
+
+        if (maxCharacterAbility - effectiveCharacterAbility <= amountToRestore) {
             this.effectiveAbilities.put(ability, maxCharacterAbility);
         } else {
-            this.effectiveAbilities.put(ability, currentCharacterAbility + amountToRestore);
+            this.effectiveAbilities.put(ability, effectiveCharacterAbility + amountToRestore);
         }
 
         ConsoleColor consoleColor = ConsoleColor.RED;
@@ -171,11 +173,11 @@ public abstract class GameCharacter {
         System.out.println();
         if (this instanceof Hero hero && !hero.isInCombat()) {
             this.restoreAbilityValue(this.getEffectiveAbilityValue(Ability.SPIRIT)
-                    * Constant.RESTORE_HEALTH_PER_ONE_HASTE, Ability.HEALTH);
+                    * Constant.RESTORE_HEALTH_PER_ONE_SPIRIT, Ability.HEALTH);
         }
 
         this.restoreAbilityValue(this.getEffectiveAbilityValue(Ability.SPIRIT)
-                * Constant.RESTORE_MANA_PER_ONE_HASTE, Ability.MANA);
+                * Constant.RESTORE_MANA_PER_ONE_SPIRIT, Ability.MANA);
     }
 
     public void increaseEffectiveAbilityValue(int valueToIncrease, Ability ability) {

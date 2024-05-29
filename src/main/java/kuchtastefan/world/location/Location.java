@@ -109,6 +109,14 @@ public class Location {
         }
     }
 
+    public void setLocationStageName() {
+        for (LocationStage locationStage : this.locationStages.values()) {
+            if (locationStage instanceof LocationStageQuestGiver locationStageQuestGiver) {
+                locationStageQuestGiver.setStageName();
+            }
+        }
+    }
+
     public int getStageDiscovered() {
         int count = 0;
         for (LocationStage locationStage : locationStages.values()) {

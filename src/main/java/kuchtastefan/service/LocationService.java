@@ -32,7 +32,8 @@ public class LocationService {
         int index = 3;
 
         while (true) {
-            QuestGiverCharacterDB.setAllQuestGiversName(hero);
+            this.location.setLocationStageName();
+
             location.printHeader();
             location.printMenu(index);
 
@@ -102,10 +103,6 @@ public class LocationService {
         LocationStage nextLocationStage = location.getLocationStages().get(locationStageOrder);
         if (nextLocationStage != null) {
             nextLocationStage.setStageDiscovered(true);
-
-            if (nextLocationStage instanceof LocationStageQuestGiver locationStageQuestGiver) {
-                locationStageQuestGiver.setStageName(QuestGiverCharacterDB.returnQuestGiverName(locationStageQuestGiver.getQuestGiverId()));
-            }
         }
     }
 

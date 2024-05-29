@@ -318,7 +318,8 @@
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
-            1300
+          1201,
+          1300
         ]
       },
       "2": {
@@ -344,7 +345,7 @@
       },
       "1": {
         "type": "LocationStageBlacksmith",
-        "stageName": "Blacksmith Equipment",
+        "stageName": "Blacksmithing Forge",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": []
       },

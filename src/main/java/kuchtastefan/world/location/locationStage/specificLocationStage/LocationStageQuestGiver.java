@@ -22,8 +22,11 @@ public class LocationStageQuestGiver extends LocationStage implements CanEnterSt
     @Override
     public boolean exploreStage(Hero hero, Location location) {
         QuestGiverCharacterDB.questGiverMenu(this.questGiverId, hero);
-        this.setStageName(QuestGiverCharacterDB.returnQuestGiverName(this.questGiverId));
-
+        setStageName();
         return QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId).checkIfAllAcceptedQuestsAreCompleted(hero);
+    }
+
+    public void setStageName() {
+        this.setStageName(QuestGiverCharacterDB.returnQuestGiverName(this.questGiverId));
     }
 }

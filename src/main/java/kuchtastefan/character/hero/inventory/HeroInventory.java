@@ -45,13 +45,17 @@ public class HeroInventory {
         }
     }
 
-    public Item getItemFromInventory(int itemId) {
+    public Item getItemFromInventoryById(int itemId) {
+        System.out.println("Searching for: " + itemId);
         for (Item item : this.heroInventory.keySet()) {
             if (item.getItemId() == itemId) {
+                // TODO remove after test
+                System.out.println("Returning: " + item.getName());
                 return item;
             }
         }
 
+        System.out.println("not found");
         return null;
     }
 

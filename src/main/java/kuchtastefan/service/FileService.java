@@ -105,7 +105,6 @@ public class FileService {
 
     private boolean saveGame(GameLoaded gameLoaded, String path, String saveGameName) {
         String errorMessage;
-        System.out.println(path);
 
         if (saveGameName.isEmpty()) {
             errorMessage = "Save game title can not be empty!";
@@ -120,10 +119,7 @@ public class FileService {
                 errorMessage = "Error while saving game!";
             } catch (InvalidPathException e) {
                 errorMessage = "Invalid characters in file name!";
-            } /*catch (StackOverflowError e) {
-                errorMessage = "is this null?";
-                System.out.println(e.getMessage());
-            }*/
+            }
         }
 
         System.out.println(ConsoleColor.RED + "\tSomething went wrong while saving the game!" + ConsoleColor.RESET);

@@ -61,8 +61,13 @@ public class Quest {
      * Quest is completed if all questObjectives belonging to quest are completed.
      */
     public void checkIfQuestIsCompleted(Hero hero) {
+
         for (QuestObjective questObjective : this.getQuestObjectives()) {
+            System.out.println("Id: " + questObjective.getQuestObjectiveId() + ", completed: " + questObjective.isCompleted());
+            System.out.println(questObjective.hashCode());
             if (!questObjective.isCompleted()) {
+                //TODO remove after testing
+                System.out.println("returning...");
                 return;
             }
         }
@@ -84,9 +89,9 @@ public class Quest {
         if (this.getQuestStatus().equals(QuestStatus.COMPLETED)) {
             PrintUtil.printLongDivider();
             QuestPrint.printCompleteQuestText(this.questName);
-            PrintUtil.printLongDivider();
             this.getQuestReward().giveQuestReward(hero);
             this.setQuestStatus(QuestStatus.TURNED_IN);
+            PrintUtil.printLongDivider();
         }
 
         for (QuestObjective questObjective : this.getQuestObjectives()) {

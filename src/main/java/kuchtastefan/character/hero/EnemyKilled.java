@@ -17,11 +17,14 @@ public class EnemyKilled {
 
     public void addQuestEnemyKilled(Hero hero, QuestEnemy questEnemy) {
         if (hero.getHeroQuests().containsQuestObjective(questEnemy.getQuestObjectiveId())) {
-            if (containsEnemy(questEnemy.getNpcId())) {
-                this.enemyKilled.put(questEnemy.getNpcId(), this.enemyKilled.get(questEnemy.getNpcId()) + 1);
-            } else {
-                this.enemyKilled.put(questEnemy.getNpcId(), 1);
+            if (!hero.getHeroQuests().getQuestObjective(questEnemy.getQuestObjectiveId()).isCompleted()) {
+                if (containsEnemy(questEnemy.getNpcId())) {
+                    this.enemyKilled.put(questEnemy.getNpcId(), this.enemyKilled.get(questEnemy.getNpcId()) + 1);
+                } else {
+                    this.enemyKilled.put(questEnemy.getNpcId(), 1);
+                }
             }
+
 
             hero.getHeroQuests().updateQuestObjectiveProgress(hero, questEnemy.getQuestObjectiveId());
         }

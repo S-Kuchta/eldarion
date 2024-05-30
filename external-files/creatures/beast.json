@@ -29,7 +29,7 @@
     "characterRarity": "RARE",
     "npcType": "DEFENDER",
     "baseAbilities": {
-      "ATTACK": 2,
+      "ATTACK": 4,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 4,
       "INTELLECT": 1,

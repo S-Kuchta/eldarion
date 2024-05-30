@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 3,
+        "baseActionValue": 5,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }

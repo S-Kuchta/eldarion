@@ -32,12 +32,12 @@ public class QuestUseItemObjective extends QuestObjective implements RemoveObjec
         LocationStage locationStage = location.getLocationStages().get(this.locationStageId);
         Item item = ItemDB.returnItemFromDB(this.itemId);
 
-        System.out.println("\tUse " + item.getName() + " in " + location.getLocationName() + "  " + locationStage.getStageName());
+        System.out.println("\tUse " + item.getName() + " in " + location.getLocationName() + " " + locationStage.getStageName());
     }
 
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
-        Item item = hero.getHeroInventory().getItemFromInventory(this.itemId);
+        Item item = hero.getHeroInventory().getItemFromInventoryById(this.itemId);
         if (!this.completed && item instanceof UsableQuestItem usableQuestItem && usableQuestItem.isWasUsed()) {
             setCompleted(hero, true);
         }
@@ -45,6 +45,6 @@ public class QuestUseItemObjective extends QuestObjective implements RemoveObjec
 
     @Override
     public void removeCompletedQuestObjectiveAssignment(Hero hero) {
-        hero.getHeroInventory().removeItemFromHeroInventory(hero.getHeroInventory().getItemFromInventory(this.itemId), 1);
+        hero.getHeroInventory().removeItemFromHeroInventory(hero.getHeroInventory().getItemFromInventoryById(this.itemId), 1);
     }
 }

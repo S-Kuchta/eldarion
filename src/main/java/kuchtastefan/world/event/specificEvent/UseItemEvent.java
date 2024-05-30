@@ -3,6 +3,7 @@ package kuchtastefan.world.event.specificEvent;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.UsingHeroInventory;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
@@ -43,11 +44,14 @@ public class UseItemEvent extends Event implements UsingHeroInventory {
 
     @Override
     public boolean itemOptions(Hero hero, Item item) {
-        Item neededItem = hero.getHeroInventory().getItemFromInventory(this.itemId);
+//        Item neededItem = hero.getHeroInventory().getItemFromInventoryById(this.itemId);
+        Item neededItem = ItemDB.returnItemFromDB(this.itemId);
+
         if (neededItem.equals(item)) {
             this.wasUsed = UsableItem.useItem(hero, item, this);
             if (item instanceof UsableQuestItem usableQuestItem) {
                 usableQuestItem.setWasUsed(this.wasUsed);
+                hero.getHeroQuests().updateQuestObjectiveProgress(hero, usableQuestItem.getQuestObjectiveId());
             }
         } else {
             System.out.println("\tThis item does not fit here!");

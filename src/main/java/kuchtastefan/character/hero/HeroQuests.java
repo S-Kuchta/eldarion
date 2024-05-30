@@ -72,7 +72,10 @@ public class HeroQuests {
 
     public void checkQuestCompletion(Hero hero, int questObjectiveId) {
         Quest quest = findQuestByObjective(questObjectiveId);
+        System.out.println(getQuestObjective(questObjectiveId).hashCode());
+        // TODO remove after testing
         if (quest != null) {
+            System.out.println("checking if quest is completed");
             quest.checkIfQuestIsCompleted(hero);
         }
     }

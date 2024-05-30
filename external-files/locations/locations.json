@@ -185,9 +185,7 @@
         "stageName": "Empty Socket in Cursed Altar",
         "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
-        "itemsId": [
-          106
-        ]
+        "itemId": 1300
       },
       "4": {
         "type": "LocationStageCombat",

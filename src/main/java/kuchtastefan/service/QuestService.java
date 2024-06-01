@@ -2,6 +2,7 @@ package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.utility.ConsoleColor;
@@ -11,7 +12,6 @@ import kuchtastefan.utility.printUtil.QuestPrint;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -37,7 +37,7 @@ public class QuestService {
     }
 
     public void heroAcceptedQuestMenu(Hero hero) {
-        List<Quest> quests = new ArrayList<>(hero.getHeroQuests().getHeroAcceptedQuest().values());
+        List<Quest> quests = QuestDB.getQuestListByIds(hero.getHeroQuestList().getEntitiesIds());
 
         while (true) {
             printQuestsMenu(quests);

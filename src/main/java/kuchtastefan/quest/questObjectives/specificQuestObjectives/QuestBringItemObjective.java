@@ -30,7 +30,7 @@ public class QuestBringItemObjective extends QuestObjective implements RemoveObj
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.itemId);
-        if (!this.completed && hero.getHeroInventory().hasRequiredItems(item, this.itemCountNeeded)) {
+        if (hero.getHeroInventory().hasRequiredItems(item, this.itemCountNeeded)) {
             setCompleted(hero, true);
         }
     }

@@ -5,8 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.save.GameLoaded;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.NonPlayerCharacter;
@@ -73,9 +73,6 @@ public class FileService {
 
 
     public void saveGame(Hero hero) {
-        final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB());
-        gameLoaded.setVendorIdAndItemListId();
-
         while (true) {
             System.out.println("\tHow do you want to name your save?");
             final String name = InputUtil.stringScanner();
@@ -87,7 +84,7 @@ public class FileService {
                 }
             }
 
-            if (saveGame(gameLoaded, path, name)) {
+            if (saveGame(returnGameLoaded(hero), path, name)) {
                 break;
             }
         }
@@ -95,12 +92,15 @@ public class FileService {
 
     public void autoSave(Hero hero) {
         if (GameSettingsDB.returnGameSettingValue(GameSetting.AUTO_SAVE)) {
-            final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB());
-            gameLoaded.setVendorIdAndItemListId();
-
             final String path = this.savedGamesPath + hero.getNameWithoutColor() + "_AutoSave" + ".json";
-            saveGame(gameLoaded, path, hero.getName());
+            saveGame(returnGameLoaded(hero), path, hero.getName());
         }
+    }
+
+    private GameLoaded returnGameLoaded(Hero hero) {
+        final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB());
+        QuestDB.saveDatabase(hero);
+        return gameLoaded;
     }
 
     private boolean saveGame(GameLoaded gameLoaded, String path, String saveGameName) {

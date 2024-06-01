@@ -25,4 +25,13 @@ public class QuestObjectiveDB {
     public static QuestObjective returnQuestObjectiveFromDb(int questObjectiveId) {
         return QUEST_OBJECTIVE_DB.get(questObjectiveId);
     }
+
+    public static QuestObjective getQuestObjectiveById(int id) {
+        QuestObjective questObjective = QUEST_OBJECTIVE_DB.get(id);
+        if (questObjective == null) {
+            throw new IllegalArgumentException("Quest Objective with id: " + id + " not found");
+        }
+
+        return questObjective;
+    }
 }

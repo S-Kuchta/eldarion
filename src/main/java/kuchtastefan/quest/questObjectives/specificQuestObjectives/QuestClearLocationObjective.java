@@ -23,7 +23,7 @@ public class QuestClearLocationObjective extends QuestObjective {
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
         if (!hero.getDiscoveredLocationList().isEmpty() && hero.getDiscoveredLocationList().get(this.locationId) != null) {
-            if (!this.completed && hero.getDiscoveredLocationList().get(this.locationId).isCleared()) {
+            if (hero.getDiscoveredLocationList().get(this.locationId).isCleared()) {
                 this.setCompleted(hero, true);
             }
         }

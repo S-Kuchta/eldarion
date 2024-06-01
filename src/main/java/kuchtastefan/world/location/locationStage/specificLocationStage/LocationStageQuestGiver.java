@@ -33,7 +33,7 @@ public class LocationStageQuestGiver extends LocationStage implements CanEnterSt
 //            QuestDB.setQuestStatus(hero, quest);
 //        }
 
-        QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId).setNameBasedOnQuestsAvailable(hero);
+        QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId).setNameBasedOnQuestsAvailable();
         this.setStageName(QuestGiverCharacterDB.returnQuestGiverName(this.questGiverId));
     }
 }

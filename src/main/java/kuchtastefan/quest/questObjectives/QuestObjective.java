@@ -31,10 +31,12 @@ public abstract class QuestObjective {
     }
 
     public void setCompleted(Hero hero, boolean completed) {
-        System.out.println(this.hashCode());
-        this.completed = completed;
-        System.out.println("\tYou have completed " + this.getQuestObjectiveName() + " quest objective");
-        hero.getHeroQuests().checkQuestCompletion(hero, this.questObjectiveId);
+        if (!this.completed) {
+            this.completed = completed;
+            System.out.println("\tYou have completed " + this.getQuestObjectiveName() + " quest objective");
+        }
+
+//        hero.getHeroQuests().checkQuestCompletion(hero, this.questObjectiveId);
     }
 
     @Override

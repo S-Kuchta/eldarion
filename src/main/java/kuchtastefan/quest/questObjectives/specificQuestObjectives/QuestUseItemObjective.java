@@ -38,7 +38,7 @@ public class QuestUseItemObjective extends QuestObjective implements RemoveObjec
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
         Item item = hero.getHeroInventory().getItemFromInventoryById(this.itemId);
-        if (!this.completed && item instanceof UsableQuestItem usableQuestItem && usableQuestItem.isWasUsed()) {
+        if (item instanceof UsableQuestItem usableQuestItem && usableQuestItem.isWasUsed()) {
             setCompleted(hero, true);
         }
     }

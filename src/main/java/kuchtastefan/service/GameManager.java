@@ -1,9 +1,9 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.CharacterClass;
-import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.HeroAbilityManager;
+import kuchtastefan.character.hero.save.GameLoaded;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
@@ -112,7 +112,6 @@ public class GameManager {
         }
 
         QuestDB.setInitialQuestsStatus(this.hero);
-
     }
 
     private void startNewGame() {
@@ -142,7 +141,8 @@ public class GameManager {
         this.hero.setBuffsAndDebuffs(new HashSet<>());
         this.heroAbilityManager.setHero(gameLoaded.getHero());
         HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
-        QuestDB.loadQuests(this.hero);
+        QuestDB.syncQuestsWithSaveGame(gameLoaded.getHero().getHeroQuestList());
+//        QuestDB.loadQuests(this.hero);
         VendorCharacterDB.setVendorCurrentCharacterItemListId(gameLoaded.getVendorIdAndItemListId());
     }
 

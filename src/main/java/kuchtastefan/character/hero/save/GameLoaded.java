@@ -1,5 +1,6 @@
-package kuchtastefan.character.hero;
+package kuchtastefan.character.hero.save;
 
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.hint.Hint;
@@ -17,6 +18,7 @@ public class GameLoaded {
     private final Hero hero;
     private final Map<HintName, Hint> hintUtil;
     private final Map<Integer, Integer> vendorIdAndItemListId;
+
 
     public GameLoaded(Hero hero, Map<HintName, Hint> hintUtil/*, Map<Item, Integer> itemList*/) {
         this.hero = hero;

@@ -7,6 +7,8 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.utility.*;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
@@ -39,23 +41,33 @@ public class HeroInventory {
     }
 
     public void addQuestItemToInventory(QuestItem questItem, int count, Hero hero) {
-        if (hero.getHeroQuests().containsQuestObjective(questItem.getQuestObjectiveId())) {
-            addItemToInventory(questItem, count);
-            hero.getHeroQuests().updateQuestObjectiveProgress(hero, questItem.getQuestObjectiveId());
-        }
+
+
+//        for (Quest quest : QuestDB.getQuestListByIds(hero.getHeroQuestList().getEntitiesIds())) {
+//            if (quest.containsQuestObjective(questItem.getQuestObjectiveId())) {
+//                addItemToInventory(questItem, count);
+//            }
+//        }
+
+
+//        if (QuestDB.isContainingQuestObjectiveByIds(questItem.getQuestObjectiveId(), hero.getHeroQuestList().getEntitiesIds())) {
+//            addItemToInventory(questItem, count);
+//            hero.getHeroQuests().updateQuestObjectiveProgress(hero, questItem.getQuestObjectiveId());
+//        }
+
+//        if (hero.getHeroQuests().containsQuestObjective(questItem.getQuestObjectiveId())) {
+//            addItemToInventory(questItem, count);
+//            hero.getHeroQuests().updateQuestObjectiveProgress(hero, questItem.getQuestObjectiveId());
+//        }
     }
 
     public Item getItemFromInventoryById(int itemId) {
-        System.out.println("Searching for: " + itemId);
         for (Item item : this.heroInventory.keySet()) {
             if (item.getItemId() == itemId) {
-                // TODO remove after test
-                System.out.println("Returning: " + item.getName());
                 return item;
             }
         }
 
-        System.out.println("not found");
         return null;
     }
 

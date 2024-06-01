@@ -40,14 +40,14 @@ public class QuestGiverCharacter {
      * @param hero The hero whose accepted quest list is being connected.
      */
     public void connectHeroQuestListWithCharacterQuestList(Hero hero) {
-        for (Quest quest : this.quests) {
-            for (Map.Entry<Integer, Quest> questMap : hero.getHeroQuests().getHeroAcceptedQuest().entrySet()) {
-                if (quest.equals(questMap.getValue())) {
-                    int position = this.quests.indexOf(questMap.getValue());
-                    this.quests.set(position, questMap.getValue());
-                }
-            }
-        }
+//        for (Quest quest : this.quests) {
+//            for (Map.Entry<Integer, Quest> questMap : hero.getHeroQuests().getHeroAcceptedQuest().entrySet()) {
+//                if (quest.equals(questMap.getValue())) {
+//                    int position = this.quests.indexOf(questMap.getValue());
+//                    this.quests.set(position, questMap.getValue());
+//                }
+//            }
+//        }
     }
 
     public void setQuestsStatus(Hero hero) {
@@ -57,14 +57,13 @@ public class QuestGiverCharacter {
     }
 
     public void questGiverMenu(Hero hero) {
-
+        syncQuests();
         QuestService questService = new QuestService();
         questService.setQuestGiverCharacter(this);
         HintDB.printHint(HintName.QUEST_HINT);
 
-        connectHeroQuestListWithCharacterQuestList(hero);
         questService.questGiverMenu(hero, this.quests);
-        setNameBasedOnQuestsAvailable(hero);
+        setNameBasedOnQuestsAvailable();
     }
 
     /**
@@ -73,12 +72,12 @@ public class QuestGiverCharacter {
      * If quest is completed but not turned in yet, there will appear after name: - ? -
      * If quest is turned in there will appear after name: - Completed -
      */
-    public void setNameBasedOnQuestsAvailable(Hero hero) {
-        this.name = this.baseName + returnNameSuffix(hero);
+    public void setNameBasedOnQuestsAvailable() {
+        syncQuests();
+        this.name = this.baseName + returnNameSuffix();
     }
 
-    private String returnNameSuffix(Hero hero) {
-        connectHeroQuestListWithCharacterQuestList(hero);
+    private String returnNameSuffix() {
         int numberOfTurnedInQuests = 0;
         boolean haveQuestAvailable = false;
         boolean haveQuestUnavailable = false;
@@ -118,7 +117,7 @@ public class QuestGiverCharacter {
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
         boolean questCompleted = true;
-        for (Quest quest : hero.getHeroQuests().getHeroAcceptedQuest().values()) {
+        for (Quest quest : QuestDB.getQuestListByIds(hero.getHeroQuestList().getEntitiesIds())) {
             if (this.quests.contains(quest) && !quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
                 questCompleted = false;
                 break;
@@ -126,13 +125,17 @@ public class QuestGiverCharacter {
         }
 
         for (Quest quest : this.quests) {
-            if (!hero.getHeroQuests().getHeroAcceptedQuest().containsValue(quest)) {
+            if (!QuestDB.getQuestListByIds(hero.getHeroQuestList().getEntitiesIds()).contains(quest)) {
                 questCompleted = false;
                 break;
             }
         }
 
         return questCompleted;
+    }
+
+    public void syncQuests() {
+        this.quests = QuestDB.getQuestListByIds(this.questsId);
     }
 
     public void convertQuestIdToQuest() {

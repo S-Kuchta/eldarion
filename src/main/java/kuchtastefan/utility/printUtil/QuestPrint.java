@@ -21,7 +21,7 @@ public class QuestPrint {
         PrintUtil.printTextWrap(quest.getQuestDescription());
 
         System.out.println("\n\tQuest Objective(s):");
-        for (QuestObjective questObjective : quest.getQuestObjectives()) {
+        for (QuestObjective questObjective : quest.getQuestObjectivesList()) {
             questObjective.printQuestObjectiveProgress(hero);
         }
 

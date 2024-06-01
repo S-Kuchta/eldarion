@@ -1,5 +1,6 @@
-package kuchtastefan.character.hero;
+package kuchtastefan.character.hero.heroQuest;
 
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestClearLocationObjective;
@@ -21,7 +22,7 @@ public class HeroQuests {
 
     public void addQuestToHeroAcceptedQuest(Quest quest) {
         this.heroAcceptedQuest.put(quest.getQuestId(), quest);
-        for (QuestObjective questObjective : quest.getQuestObjectives()) {
+        for (QuestObjective questObjective : quest.getQuestObjectivesList()) {
             addQuestObjectiveToHeroQuestObjectives(questObjective);
         }
     }
@@ -60,7 +61,7 @@ public class HeroQuests {
 
     private Quest findQuestByObjective(int questObjectiveId) {
         for (Quest quest : this.getHeroAcceptedQuest().values()) {
-            for (QuestObjective questObjective : quest.getQuestObjectives()) {
+            for (QuestObjective questObjective : quest.getQuestObjectivesList()) {
                 if (questObjective.getQuestObjectiveId() == questObjectiveId) {
                     return quest;
                 }
@@ -87,7 +88,7 @@ public class HeroQuests {
     }
 
     public void checkIfQuestIsCompleted(Hero hero, int questId) {
-        for (QuestObjective questObjective : heroAcceptedQuest.get(questId).getQuestObjectives()) {
+        for (QuestObjective questObjective : heroAcceptedQuest.get(questId).getQuestObjectivesList()) {
             questObjective.verifyQuestObjectiveCompletion(hero);
         }
     }

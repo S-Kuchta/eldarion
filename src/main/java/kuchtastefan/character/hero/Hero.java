@@ -4,6 +4,9 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventory;
+import kuchtastefan.character.hero.save.SaveGameEntityList;
+import kuchtastefan.character.hero.save.location.HeroLocation;
+import kuchtastefan.character.hero.save.quest.HeroQuest;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
@@ -34,7 +37,11 @@ public class Hero extends GameCharacter {
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
-    private final HeroQuests heroQuests;
+    private final SaveGameEntityList<HeroQuest> heroQuestList;
+    private final SaveGameEntityList<HeroLocation> heroLocationList;
+
+    //    private final HeroQuestsList heroQuestsList;
+//    private final HeroQuests heroQuests;
     private final Map<Integer, Spell> learnedSpells;
     private final Map<Integer, Location> discoveredLocationList;
     private final EnemyKilled enemyKilled;
@@ -53,10 +60,13 @@ public class Hero extends GameCharacter {
         this.experiencePointsService = new ExperiencePointsService();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
-        this.heroQuests = new HeroQuests();
+        this.heroQuestList = new SaveGameEntityList<>(new HashMap<>());
+        this.heroLocationList = new SaveGameEntityList<>(new HashMap<>());
+//        this.heroQuests = new HeroQuests();
         this.learnedSpells = new HashMap<>();
         this.discoveredLocationList = new HashMap<>();
         this.inCombat = false;
+//        this.heroQuestsList = new HeroQuestsList(new HashMap<>());
     }
 
     public void equipItem(WearableItem wearableItem) {

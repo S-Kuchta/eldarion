@@ -27,7 +27,7 @@ public class QuestKillObjective extends QuestObjective {
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
         QuestEnemy questTarget = (QuestEnemy) CharacterDB.CHARACTER_DB.get(this.questEnemyId);
-        if (!this.completed && countEnemyToKill == hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget)) {
+        if (countEnemyToKill == hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget)) {
             setCompleted(hero, true);
         }
     }

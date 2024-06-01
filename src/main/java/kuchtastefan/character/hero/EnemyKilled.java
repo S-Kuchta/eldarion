@@ -1,6 +1,8 @@
 package kuchtastefan.character.hero;
 
 import kuchtastefan.character.npc.enemy.QuestEnemy;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -16,17 +18,20 @@ public class EnemyKilled {
     }
 
     public void addQuestEnemyKilled(Hero hero, QuestEnemy questEnemy) {
-        if (hero.getHeroQuests().containsQuestObjective(questEnemy.getQuestObjectiveId())) {
-            if (!hero.getHeroQuests().getQuestObjective(questEnemy.getQuestObjectiveId()).isCompleted()) {
-                if (containsEnemy(questEnemy.getNpcId())) {
-                    this.enemyKilled.put(questEnemy.getNpcId(), this.enemyKilled.get(questEnemy.getNpcId()) + 1);
-                } else {
-                    this.enemyKilled.put(questEnemy.getNpcId(), 1);
-                }
+        QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questEnemy.getQuestObjectiveId());
+        if (hero.getSaveGameEntities().getHeroQuestObjectives().containsEntity(questEnemy.getQuestObjectiveId())) {
+            if (QuestObjectiveDB.getQuestObjectiveById(questEnemy.getQuestObjectiveId()).isCompleted()) {
+                return;
             }
 
+            if (containsEnemy(questEnemy.getNpcId())) {
+                this.enemyKilled.put(questEnemy.getNpcId(), this.enemyKilled.get(questEnemy.getNpcId()) + 1);
+            } else {
+                this.enemyKilled.put(questEnemy.getNpcId(), 1);
+            }
 
-            hero.getHeroQuests().updateQuestObjectiveProgress(hero, questEnemy.getQuestObjectiveId());
+            questObjective.printQuestObjectiveProgress(hero);
+            questObjective.verifyQuestObjectiveCompletion(hero);
         }
     }
 

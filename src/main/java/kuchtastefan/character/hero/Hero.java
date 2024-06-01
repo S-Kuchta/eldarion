@@ -4,9 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventory;
-import kuchtastefan.character.hero.save.SaveGameEntityList;
-import kuchtastefan.character.hero.save.location.HeroLocation;
-import kuchtastefan.character.hero.save.quest.HeroQuest;
+import kuchtastefan.character.hero.save.SaveGameEntities;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
@@ -37,8 +35,11 @@ public class Hero extends GameCharacter {
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
-    private final SaveGameEntityList<HeroQuest> heroQuestList;
-    private final SaveGameEntityList<HeroLocation> heroLocationList;
+    private final SaveGameEntities saveGameEntities;
+//    private final SaveGameEntityList<HeroQuest> heroQuestSaveGameEntityList;
+//    private final SaveGameEntityList<HeroQuestObjective> heroQuestObjectiveSaveGameEntityList;
+//    private final SaveGameEntityList<HeroLocation> heroLocationSaveGameEntityList;
+
 
     //    private final HeroQuestsList heroQuestsList;
 //    private final HeroQuests heroQuests;
@@ -60,8 +61,10 @@ public class Hero extends GameCharacter {
         this.experiencePointsService = new ExperiencePointsService();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
-        this.heroQuestList = new SaveGameEntityList<>(new HashMap<>());
-        this.heroLocationList = new SaveGameEntityList<>(new HashMap<>());
+        this.saveGameEntities = new SaveGameEntities();
+//        this.heroQuestSaveGameEntityList = new SaveGameEntityList<>(new HashMap<>());
+//        this.heroLocationSaveGameEntityList = new SaveGameEntityList<>(new HashMap<>());
+//        this.heroQuestObjectiveSaveGameEntityList = new SaveGameEntityList<>(new HashMap<>());
 //        this.heroQuests = new HeroQuests();
         this.learnedSpells = new HashMap<>();
         this.discoveredLocationList = new HashMap<>();

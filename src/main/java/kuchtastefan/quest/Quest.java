@@ -6,66 +6,79 @@ import kuchtastefan.character.hero.save.quest.HeroQuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.Exclude;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.printUtil.QuestPrint;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Getter
 @Setter
 public class Quest {
 
-    private final int questId;
-    private final String questName;
-    private final String questDescription;
-    private final int questLevel;
-    private final int[] questObjectivesIds;
-    @Exclude
-    private final Map<Integer, QuestObjective> questObjectives;
-    private final QuestReward questReward;
-    private QuestStatus questStatus;
+    private final int id;
+    private final int level;
+    private final int[] objectivesIds;
+    private final String title;
+    private final String description;
+    private final QuestReward reward;
     private final boolean instantTurnIn;
+    @Exclude
+    private Map<Integer, QuestObjective> objectives;
+    @Exclude
+    private QuestStatus status;
+    @Exclude
+    private String statusIcon;
 
-    public Quest(int questId, String questName, String questDescription, int questLevel,
-                 int[] questObjectivesIds, QuestReward questReward, boolean instantTurnIn) {
+    public Quest(int id, String title, String description, int level,
+                 int[] objectivesIds, QuestReward reward, boolean instantTurnIn) {
 
-        this.questObjectives = new HashMap<>();
-        this.questId = questId;
-        this.questName = questName;
-        this.questDescription = questDescription;
-        this.questLevel = questLevel;
-        this.questObjectivesIds = questObjectivesIds;
-        this.questReward = questReward;
+        this.objectives = new HashMap<>();
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.level = level;
+        this.objectivesIds = objectivesIds;
+        this.reward = reward;
         this.instantTurnIn = instantTurnIn;
     }
 
 
     public void startTheQuest(Hero hero) {
-        this.setQuestStatus(QuestStatus.ACCEPTED);
+        this.status = QuestStatus.ACCEPTED;
         this.verifyQuestObjectiveCompletion(hero);
         this.checkIfQuestIsCompleted(hero);
-        hero.getHeroQuestList().addEntity(new HeroQuest(this.questId, this.questStatus, getHeroQuestObjectiveMap()));
+        this.setStatusIcon();
+        hero.getSaveGameEntities().getHeroQuests().addEntity(new HeroQuest(this.id, this.status));
+        hero.getSaveGameEntities().getHeroQuestObjectives().addEntities(getConvertedObjectiveMap());
     }
 
-    public Map<Integer, HeroQuestObjective> getHeroQuestObjectiveMap() {
-        Map<Integer, HeroQuestObjective> heroQuestObjectiveMap = new HashMap<>();
-        for (QuestObjective questObjective : this.getQuestObjectivesList()) {
-            HeroQuestObjective heroQuestObjective = new HeroQuestObjective(questObjective.getQuestObjectiveId(), questObjective.isCompleted());
-            heroQuestObjectiveMap.put(questObjective.getQuestObjectiveId(), heroQuestObjective);
+    public Map<Integer, HeroQuestObjective> getConvertedObjectiveMap() {
+        Map<Integer, HeroQuestObjective> convertedQuestObjectiveMap = new HashMap<>();
+        for (QuestObjective questObjective : this.objectives.values()) {
+            HeroQuestObjective heroQuestObjective = new HeroQuestObjective(questObjective.getId(), questObjective.isCompleted());
+            convertedQuestObjectiveMap.put(questObjective.getId(), heroQuestObjective);
         }
 
-        return heroQuestObjectiveMap;
+        return convertedQuestObjectiveMap;
     }
 
-    public List<QuestObjective> getQuestObjectivesList() {
-        List<QuestObjective> questObjectives = new ArrayList<>();
-        for (int questObjectiveId : this.questObjectivesIds) {
-            questObjectives.add(QuestObjectiveDB.returnQuestObjectiveFromDb(questObjectiveId));
+    public void convertIdsToQuestObjectiveMap() {
+        if (this.objectives == null) {
+            objectives = new HashMap<>();
         }
 
-        return questObjectives;
+        for (int questObjectiveId : this.objectivesIds) {
+            objectives.put(questObjectiveId, QuestObjectiveDB.getQuestObjectiveById(questObjectiveId));
+        }
+    }
+
+    public boolean containsQuestObjective(int questObjectiveId) {
+        return this.objectives.containsKey(questObjectiveId);
     }
 
     /**
@@ -73,16 +86,15 @@ public class Quest {
      * Quest is completed if all questObjectives belonging to quest are completed.
      */
     public void checkIfQuestIsCompleted(Hero hero) {
-        verifyQuestObjectiveCompletion(hero);
-        for (QuestObjective questObjective : this.questObjectives.values()) {
+        for (QuestObjective questObjective : this.objectives.values()) {
             if (!questObjective.isCompleted()) {
                 return;
             }
         }
 
-        if (!this.questStatus.equals(QuestStatus.COMPLETED)) {
-            QuestPrint.printCompleteQuestText(this.questName);
-            this.questStatus = QuestStatus.COMPLETED;
+        if (!this.status.equals(QuestStatus.COMPLETED)) {
+            QuestPrint.printCompleteQuestText(this.title);
+            this.status = QuestStatus.COMPLETED;
         }
 
         if (this.instantTurnIn) {
@@ -91,7 +103,7 @@ public class Quest {
     }
 
     private void verifyQuestObjectiveCompletion(Hero hero) {
-        for (QuestObjective questObjective : this.questObjectives.values()) {
+        for (QuestObjective questObjective : this.objectives.values()) {
             questObjective.verifyQuestObjectiveCompletion(hero);
         }
     }
@@ -100,46 +112,45 @@ public class Quest {
      * Turn in the quest, give quest reward to hero and remove items/killed enemy etc. from hero
      */
     public void turnInTheQuest(Hero hero) {
-        if (this.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+        if (this.getStatus().equals(QuestStatus.COMPLETED)) {
             PrintUtil.printLongDivider();
-            QuestPrint.printCompleteQuestText(this.questName);
-            this.getQuestReward().giveQuestReward(hero);
-            this.setQuestStatus(QuestStatus.TURNED_IN);
+            QuestPrint.printCompleteQuestText(this.title);
+            this.reward.giveQuestReward(hero);
+            this.status = QuestStatus.TURNED_IN;
             PrintUtil.printLongDivider();
         }
 
-        for (QuestObjective questObjective : this.getQuestObjectivesList()) {
+        for (QuestObjective questObjective : this.objectives.values()) {
             if (questObjective instanceof RemoveObjectiveProgress removeObjectiveProgress) {
                 removeObjectiveProgress.removeCompletedQuestObjectiveAssignment(hero);
             }
         }
     }
 
-    public boolean containsQuestObjective(int questObjectiveId) {
-        return this.questObjectives.containsKey(questObjectiveId);
-    }
-
-    public void convertIdToQuestObjectiveMap() {
-        for (int questObjectiveId : this.questObjectivesIds) {
-            questObjectives.put(questObjectiveId, QuestObjectiveDB.getQuestObjectiveById(questObjectiveId));
+    public void setInitialQuestStatus(Hero hero) {
+        if (this.status == null || this.status == QuestStatus.UNAVAILABLE) {
+            if (this.canBeQuestAccepted(hero)) {
+                this.status = QuestStatus.AVAILABLE;
+            } else {
+                this.status = QuestStatus.UNAVAILABLE;
+            }
         }
     }
 
     public boolean canBeQuestAccepted(Hero hero) {
-        return hero.getLevel() >= this.questLevel;
+        return hero.getLevel() >= this.level;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Quest quest = (Quest) o;
+    public void setStatusIcon() {
+        switch (this.getStatus()) {
+            case QuestStatus.UNAVAILABLE -> statusIcon = ConsoleColor.WHITE + "!" + ConsoleColor.RESET + "-";
+            case QuestStatus.AVAILABLE ->
+                    statusIcon = "-" + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + "-";
+            case QuestStatus.COMPLETED ->
+                    statusIcon = "-" + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + "-";
+            case QuestStatus.TURNED_IN -> statusIcon = " -- Completed --";
+            default -> statusIcon = "";
 
-        return questId == quest.questId && questLevel == quest.questLevel && Objects.equals(questName, quest.questName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(questName, questDescription, questLevel);
+        }
     }
 }

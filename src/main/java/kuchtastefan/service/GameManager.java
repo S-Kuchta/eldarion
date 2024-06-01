@@ -10,8 +10,10 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.PrintUtil;
@@ -111,7 +113,8 @@ public class GameManager {
             default -> PrintUtil.printEnterValidInput();
         }
 
-        QuestDB.setInitialQuestsStatus(this.hero);
+        List<Quest> quests = new ArrayList<>(QuestDB.getQUEST_DB().values());
+        QuestDB.setInitialQuestsStatusFromGivenList(this.hero, quests);
     }
 
     private void startNewGame() {
@@ -141,7 +144,8 @@ public class GameManager {
         this.hero.setBuffsAndDebuffs(new HashSet<>());
         this.heroAbilityManager.setHero(gameLoaded.getHero());
         HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
-        QuestDB.syncQuestsWithSaveGame(gameLoaded.getHero().getHeroQuestList());
+        QuestDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuests());
+        QuestObjectiveDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuestObjectives());
 //        QuestDB.loadQuests(this.hero);
         VendorCharacterDB.setVendorCurrentCharacterItemListId(gameLoaded.getVendorIdAndItemListId());
     }

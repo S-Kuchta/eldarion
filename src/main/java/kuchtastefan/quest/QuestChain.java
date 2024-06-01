@@ -1,6 +1,7 @@
 package kuchtastefan.quest;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.save.quest.HeroQuest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,11 +21,11 @@ public class QuestChain extends Quest {
 
     @Override
     public boolean canBeQuestAccepted(Hero hero) {
-        try {
-            return hero.getHeroQuestList().getEntity(getQuestId()).getQuestStatus().equals(QuestStatus.TURNED_IN);
-//            return hero.getHeroQuests().getHeroAcceptedQuest().get(this.previousQuestId).getQuestStatus().equals(QuestStatus.TURNED_IN);
-        } catch (NullPointerException e) {
+        HeroQuest previousQuest = hero.getSaveGameEntities().getHeroQuests().getEntity(this.previousQuestId);
+        if (previousQuest == null) {
             return false;
         }
+
+        return QuestStatus.TURNED_IN.equals(previousQuest.getQuestStatus());
     }
 }

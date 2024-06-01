@@ -1,13 +1,15 @@
 package kuchtastefan.character.hero.save.quest;
 
+import kuchtastefan.character.hero.save.SaveGameEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
+
 @Getter
 @Setter
-public class HeroQuestObjective {
+@AllArgsConstructor
+public class HeroQuestObjective implements SaveGameEntity {
 
     private final int id;
     private boolean completed;

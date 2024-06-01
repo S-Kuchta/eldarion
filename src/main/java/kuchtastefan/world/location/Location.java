@@ -60,7 +60,7 @@ public class Location {
 
             if (stage instanceof LocationStageQuestGiver locationStageQuestGiver) {
                 for (Quest quest : QuestGiverCharacterDB.returnQuestGiverFromDB(locationStageQuestGiver.getQuestGiverId()).getQuests()) {
-                    if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE) || quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+                    if (quest.getStatus().equals(QuestStatus.AVAILABLE) || quest.getStatus().equals(QuestStatus.COMPLETED)) {
                         stringBuilder.append("[");
                         stringBuilder.append(QuestPrint.returnQuestSuffix(quest));
                         stringBuilder.append("]");
@@ -149,11 +149,13 @@ public class Location {
 
     public void setCleared(Hero hero, boolean cleared) {
         this.cleared = cleared;
+        // TODO location quest objective
 
-        try {
-            hero.getHeroQuests().updateQuestObjectiveProgress(hero, this.locationId);
-        } catch (NullPointerException ignored) {
-        }
+
+//        try {
+//            hero.getHeroQuests().updateQuestObjectiveProgress(hero, this.locationId);
+//        } catch (NullPointerException ignored) {
+//        }
 
     }
 

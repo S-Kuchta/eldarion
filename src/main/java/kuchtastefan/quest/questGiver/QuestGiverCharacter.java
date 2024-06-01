@@ -13,7 +13,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -30,30 +29,6 @@ public class QuestGiverCharacter {
         this.name = name;
         this.quests = new ArrayList<>();
         this.baseName = name;
-    }
-
-    /**
-     * Connects the hero's accepted quest list with the character's quest list.
-     * Iterates through each quest in the quest list and checks if it exists in the hero's accepted quest list.
-     * If found, updates the quest in the character's quest list with the one from the hero's accepted quest list.
-     *
-     * @param hero The hero whose accepted quest list is being connected.
-     */
-    public void connectHeroQuestListWithCharacterQuestList(Hero hero) {
-//        for (Quest quest : this.quests) {
-//            for (Map.Entry<Integer, Quest> questMap : hero.getHeroQuests().getHeroAcceptedQuest().entrySet()) {
-//                if (quest.equals(questMap.getValue())) {
-//                    int position = this.quests.indexOf(questMap.getValue());
-//                    this.quests.set(position, questMap.getValue());
-//                }
-//            }
-//        }
-    }
-
-    public void setQuestsStatus(Hero hero) {
-        for (Quest quest : this.getQuests()) {
-            QuestDB.setQuestStatus(hero, quest);
-        }
     }
 
     public void questGiverMenu(Hero hero) {
@@ -83,18 +58,18 @@ public class QuestGiverCharacter {
         boolean haveQuestUnavailable = false;
 
         for (Quest quest : this.quests) {
-            if (quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
+            if (quest.getStatus().equals(QuestStatus.TURNED_IN)) {
                 numberOfTurnedInQuests++;
             }
-            if (quest.getQuestStatus().equals(QuestStatus.UNAVAILABLE)) {
+            if (quest.getStatus().equals(QuestStatus.UNAVAILABLE)) {
                 haveQuestUnavailable = true;
             }
 
-            if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
+            if (quest.getStatus().equals(QuestStatus.AVAILABLE)) {
                 haveQuestAvailable = true;
             }
 
-            if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+            if (quest.getStatus().equals(QuestStatus.COMPLETED)) {
                 return " -" + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + "-";
             }
         }
@@ -117,15 +92,15 @@ public class QuestGiverCharacter {
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
         boolean questCompleted = true;
-        for (Quest quest : QuestDB.getQuestListByIds(hero.getHeroQuestList().getEntitiesIds())) {
-            if (this.quests.contains(quest) && !quest.getQuestStatus().equals(QuestStatus.TURNED_IN)) {
+        for (Quest quest : QuestDB.getQuestListByIds(hero.getSaveGameEntities().getHeroQuests().getEntitiesIds())) {
+            if (this.quests.contains(quest) && !quest.getStatus().equals(QuestStatus.TURNED_IN)) {
                 questCompleted = false;
                 break;
             }
         }
 
         for (Quest quest : this.quests) {
-            if (!QuestDB.getQuestListByIds(hero.getHeroQuestList().getEntitiesIds()).contains(quest)) {
+            if (!QuestDB.getQuestListByIds(hero.getSaveGameEntities().getHeroQuests().getEntitiesIds()).contains(quest)) {
                 questCompleted = false;
                 break;
             }
@@ -141,7 +116,7 @@ public class QuestGiverCharacter {
     public void convertQuestIdToQuest() {
         this.quests = new ArrayList<>();
         for (int questId : this.questsId) {
-            this.quests.add(QuestDB.returnQuestFromDB(questId));
+            this.quests.add(QuestDB.getQuestById(questId));
         }
     }
 }

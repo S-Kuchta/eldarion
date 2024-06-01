@@ -15,6 +15,10 @@ public class SaveGameEntityList<T extends SaveGameEntity> {
         return this.saveEntities.containsKey(id);
     }
 
+    public void addEntities(Map<Integer, T> saveEntities) {
+        this.saveEntities.putAll(saveEntities);
+    }
+
     public void addEntity(T saveEntity) {
         this.saveEntities.put(saveEntity.getId(), saveEntity);
     }

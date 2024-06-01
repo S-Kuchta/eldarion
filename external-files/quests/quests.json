@@ -1,16 +1,16 @@
 [
   {
     "type": "Quest",
-    "questId": 0,
-    "questName": "Cleansing Crystal Lake",
-    "questDescription": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Kill water Elementals all over the Crystal Lake.",
-    "questLevel": 1,
+    "id": 0,
+    "title": "Cleansing Crystal Lake",
+    "description": "The serene Crystal Lake has been tainted by the presence of elusive Water Elementals. Kill water Elementals all over the Crystal Lake.",
+    "level": 1,
     "instantTurnIn": false,
-    "questObjectivesIds": [
+    "objectivesIds": [
       1,
       2
     ],
-    "questReward": {
+    "reward": {
       "itemsReward": [
         207
       ],
@@ -19,15 +19,15 @@
   },
   {
     "type": "Quest",
-    "questId": 1,
-    "questName": "Clear Crystal Lake",
-    "questDescription": "Clear the area of Crystal lake.",
-    "questLevel": 1,
+    "id": 1,
+    "title": "Clear Crystal Lake",
+    "description": "Clear the area of Crystal lake.",
+    "level": 1,
     "instantTurnIn": false,
-    "questObjectivesIds": [
+    "objectivesIds": [
       3
     ],
-    "questReward": {
+    "reward": {
       "itemsReward": [
         206
       ],
@@ -36,17 +36,17 @@
   },
   {
     "type": "Quest",
-    "questId": 2,
-    "questName": "Bandits and Miners",
-    "questDescription": "Hey there, could you lend me a hand? They've locked me up in this cell for no reason! I used to serve them, lead the miners, and now I'm stuck here... I want to revenge, can you help me?",
-    "questLevel": 2,
+    "id": 2,
+    "title": "Bandits and Miners",
+    "description": "Hey there, could you lend me a hand? They've locked me up in this cell for no reason! I used to serve them, lead the miners, and now I'm stuck here... I want to revenge, can you help me?",
+    "level": 2,
     "instantTurnIn": false,
-    "questObjectivesIds": [
+    "objectivesIds": [
       4,
       5,
       6
     ],
-    "questReward": {
+    "reward": {
       "itemsReward": [
         1201
       ],
@@ -55,15 +55,15 @@
   },
   {
     "type": "Quest",
-    "questId": 3,
-    "questName": "Find the Lost Book",
-    "questDescription": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
-    "questLevel": 2,
+    "id": 3,
+    "title": "Find the Lost Book",
+    "description": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
+    "level": 2,
     "instantTurnIn": false,
-    "questObjectivesIds": [
+    "objectivesIds": [
       7
     ],
-    "questReward": {
+    "reward": {
       "itemsReward": [
         903,
         901,
@@ -75,15 +75,15 @@
   },
   {
     "type": "Quest",
-    "questId": 4,
-    "questName": "Coursed Medallion",
-    "questDescription": "After reading Tattered Letter near a corpse, you discover a chilling message written upon it. The message speaks of a cursed medallion stolen from the altar within the Tower of the Damned. It warns of dire consequences should the medallion remain in the wrong hands.",
-    "questLevel": 2,
+    "id": 4,
+    "title": "Coursed Medallion",
+    "description": "After reading Tattered Letter near a corpse, you discover a chilling message written upon it. The message speaks of a cursed medallion stolen from the altar within the Tower of the Damned. It warns of dire consequences should the medallion remain in the wrong hands.",
+    "level": 2,
     "instantTurnIn": true,
-    "questObjectivesIds": [
+    "objectivesIds": [
       8
     ],
-    "questReward": {
+    "reward": {
       "itemsReward": [
         901,
         901

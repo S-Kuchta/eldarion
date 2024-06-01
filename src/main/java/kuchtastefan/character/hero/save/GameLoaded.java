@@ -20,7 +20,7 @@ public class GameLoaded {
     private final Map<Integer, Integer> vendorIdAndItemListId;
 
 
-    public GameLoaded(Hero hero, Map<HintName, Hint> hintUtil/*, Map<Item, Integer> itemList*/) {
+    public GameLoaded(Hero hero, Map<HintName, Hint> hintUtil) {
         this.hero = hero;
         this.hintUtil = hintUtil;
         this.vendorIdAndItemListId = new HashMap<>();

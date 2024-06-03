@@ -4,6 +4,8 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.printUtil.QuestPrint;
@@ -145,10 +147,6 @@ public class Location {
 
     public int getStageTotal() {
         return locationStages.size();
-    }
-
-    public void setCleared(Hero hero, boolean cleared) {
-        this.cleared = cleared;
     }
 
     @Override

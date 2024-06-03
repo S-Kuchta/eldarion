@@ -4,12 +4,15 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.AutosaveCount;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.CharacterPrint;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.printUtil.SpellAndActionPrint;
 import kuchtastefan.world.location.Location;
+import kuchtastefan.world.location.QuestLocation;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;
 
@@ -100,7 +103,13 @@ public class LocationService {
 
         // Completing all location stages
         if (location.getStageCompleted() == location.getStageTotal()) {
-            location.setCleared(hero, true);
+            location.setCleared(true);
+
+            if (location instanceof QuestLocation questLocation) {
+                QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());
+                questObjective.verifyQuestObjectiveCompletion(hero);
+                questObjective.printQuestObjectiveProgress(hero);
+            }
         }
     }
 

@@ -4,10 +4,10 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.save.quest.HeroQuest;
 import kuchtastefan.character.hero.save.quest.HeroQuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.quest.questObjectives.RemoveObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.Exclude;
+import kuchtastefan.utility.annotationStrategy.Exclude;
+import kuchtastefan.utility.annotationStrategy.ExcludeDeserialization;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.printUtil.QuestPrint;
 import lombok.Getter;
@@ -28,6 +28,7 @@ public class Quest {
     private final QuestReward reward;
     private final boolean instantTurnIn;
     @Exclude
+//    @ExcludeDeserialization
     private Map<Integer, QuestObjective> objectives;
     @Exclude
     private QuestStatus status;

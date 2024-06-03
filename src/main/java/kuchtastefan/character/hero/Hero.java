@@ -36,13 +36,6 @@ public class Hero extends GameCharacter {
     private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
     private final SaveGameEntities saveGameEntities;
-//    private final SaveGameEntityList<HeroQuest> heroQuestSaveGameEntityList;
-//    private final SaveGameEntityList<HeroQuestObjective> heroQuestObjectiveSaveGameEntityList;
-//    private final SaveGameEntityList<HeroLocation> heroLocationSaveGameEntityList;
-
-
-    //    private final HeroQuestsList heroQuestsList;
-//    private final HeroQuests heroQuests;
     private final Map<Integer, Spell> learnedSpells;
     private final Map<Integer, Location> discoveredLocationList;
     private final EnemyKilled enemyKilled;
@@ -62,14 +55,9 @@ public class Hero extends GameCharacter {
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
         this.saveGameEntities = new SaveGameEntities();
-//        this.heroQuestSaveGameEntityList = new SaveGameEntityList<>(new HashMap<>());
-//        this.heroLocationSaveGameEntityList = new SaveGameEntityList<>(new HashMap<>());
-//        this.heroQuestObjectiveSaveGameEntityList = new SaveGameEntityList<>(new HashMap<>());
-//        this.heroQuests = new HeroQuests();
         this.learnedSpells = new HashMap<>();
         this.discoveredLocationList = new HashMap<>();
         this.inCombat = false;
-//        this.heroQuestsList = new HeroQuestsList(new HashMap<>());
     }
 
     public void equipItem(WearableItem wearableItem) {

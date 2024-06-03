@@ -1,4 +1,4 @@
-package kuchtastefan.utility;
+package kuchtastefan.utility.annotationStrategy;
 
 import com.google.gson.FieldAttributes;
 

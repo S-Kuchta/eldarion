@@ -40,6 +40,8 @@ import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.*;
+import kuchtastefan.utility.annotationStrategy.AnnotationDeserializationExclusionStrategy;
+import kuchtastefan.utility.annotationStrategy.AnnotationExclusionStrategy;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.LocationDB;
@@ -67,6 +69,7 @@ public class FileService {
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.gameCharactersRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.vendorRuntimeTypeAdapterFactory)
             .setExclusionStrategies(new AnnotationExclusionStrategy())
+            .addDeserializationExclusionStrategy(new AnnotationDeserializationExclusionStrategy())
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
 
     private final String savedGamesPath = "external-files/saved-games/";

@@ -11,7 +11,7 @@ import kuchtastefan.character.spell.CharactersInvolvedInBattle;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.Exclude;
+import kuchtastefan.utility.annotationStrategy.Exclude;
 import lombok.Getter;
 import lombok.Setter;
 

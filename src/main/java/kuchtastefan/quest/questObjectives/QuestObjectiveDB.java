@@ -6,6 +6,7 @@ import kuchtastefan.character.hero.save.quest.HeroQuestObjective;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 public class QuestObjectiveDB {
 
+    @Getter
     private final static Map<Integer, QuestObjective> QUEST_OBJECTIVE_DB = new HashMap<>();
 
     public static void addQuestObjectiveToDB(QuestObjective questObjective) {

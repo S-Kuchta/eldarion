@@ -67,16 +67,6 @@ public class Quest {
         return convertedQuestObjectiveMap;
     }
 
-    public void convertIdsToQuestObjectiveMap() {
-        if (this.objectives == null) {
-            objectives = new HashMap<>();
-        }
-
-        for (int questObjectiveId : this.objectivesIds) {
-            objectives.put(questObjectiveId, QuestObjectiveDB.getQuestObjectiveById(questObjectiveId));
-        }
-    }
-
     public boolean containsQuestObjective(int questObjectiveId) {
         return this.objectives.containsKey(questObjectiveId);
     }

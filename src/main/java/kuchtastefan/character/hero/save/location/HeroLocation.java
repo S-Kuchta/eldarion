@@ -14,5 +14,4 @@ public class HeroLocation implements SaveGameEntity {
     private boolean cleared;
     private int currentStageToEnter;
     private final Map<Integer, HeroLocationStage> stages;
-
 }

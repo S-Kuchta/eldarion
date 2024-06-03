@@ -98,7 +98,6 @@ public class QuestService {
     }
 
     private boolean printQuestOptions(Hero hero, Quest quest) {
-        System.out.println("Quest Status: " + quest.getStatus());
         switch (quest.getStatus()) {
             case QuestStatus.AVAILABLE -> {
                 PrintUtil.printIndexAndText("0", "Go back");

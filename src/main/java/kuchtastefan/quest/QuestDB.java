@@ -3,6 +3,7 @@ package kuchtastefan.quest;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.save.SaveGameEntityList;
 import kuchtastefan.character.hero.save.quest.HeroQuest;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import lombok.Getter;
 
 import java.util.*;
@@ -15,8 +16,18 @@ public class QuestDB {
 
     public static void addQuestToDB(Quest quest) {
         quest.getReward().calculateExperiencePointsReward(quest.getLevel());
-        quest.convertIdsToQuestObjectiveMap();
+        initializeQuestObjectives(quest);
         QUEST_DB.put(quest.getId(), quest);
+    }
+
+    private static void initializeQuestObjectives(Quest quest) {
+        if (quest.getObjectives() == null) {
+            quest.setObjectives(new HashMap<>());
+        }
+
+        for (int questObjectiveId : quest.getObjectivesIds()) {
+            quest.getObjectives().put(questObjectiveId, QuestObjectiveDB.getQuestObjectiveById(questObjectiveId));
+        }
     }
 
     public static List<Quest> getQuestListByIds(int[] questIds) {

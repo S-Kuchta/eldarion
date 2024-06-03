@@ -1,7 +1,6 @@
 package kuchtastefan.quest.questObjectives;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.quest.QuestDB;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +26,12 @@ public abstract class QuestObjective {
 
     public abstract void verifyQuestObjectiveCompletion(Hero hero);
 
+    public void printProgress(Hero hero) {
+        if (hero.getSaveGameEntities().getHeroQuestObjectives().containsEntity(this.id)) {
+            printQuestObjectiveProgress(hero);
+        }
+    }
+
     public String getTitle() {
         return ConsoleColor.YELLOW + title + ConsoleColor.RESET;
     }
@@ -34,10 +39,11 @@ public abstract class QuestObjective {
     public void setCompleted(Hero hero, boolean completed) {
         if (!this.completed) {
             this.completed = completed;
-            System.out.println("\tYou have completed " + this.getTitle() + " quest objective");
-        }
 
-        QuestDB.findQuestByObjectiveId(this.id).checkIfQuestIsCompleted(hero);
+            if (hero.getSaveGameEntities().getHeroQuestObjectives().containsEntity(this.id)) {
+                System.out.println("\tYou have completed " + this.getTitle() + " quest objective");
+            }
+        }
     }
 
     @Override

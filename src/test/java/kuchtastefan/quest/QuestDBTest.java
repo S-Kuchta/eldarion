@@ -60,7 +60,7 @@ class QuestDBTest {
                 new QuestReward(new Integer[]{1}, 100, 100), false);
         QuestDB.addQuestToDB(quest);
 
-        assertThrows(IllegalArgumentException.class, () -> QuestDB.getQuestById(2));
+        assertThrows(IllegalArgumentException.class, () -> QuestDB.getQuestById(quest.getId() + 1));
     }
 
     @Test

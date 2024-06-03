@@ -149,14 +149,6 @@ public class Location {
 
     public void setCleared(Hero hero, boolean cleared) {
         this.cleared = cleared;
-        // TODO location quest objective
-
-
-//        try {
-//            hero.getHeroQuests().updateQuestObjectiveProgress(hero, this.locationId);
-//        } catch (NullPointerException ignored) {
-//        }
-
     }
 
     @Override

@@ -42,6 +42,7 @@ import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.*;
 import kuchtastefan.utility.annotationStrategy.AnnotationDeserializationExclusionStrategy;
 import kuchtastefan.utility.annotationStrategy.AnnotationExclusionStrategy;
+import kuchtastefan.utility.annotationStrategy.AnnotationSerializationExclusionStrategy;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.LocationDB;
@@ -68,8 +69,10 @@ public class FileService {
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.gameCharactersRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.vendorRuntimeTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationRuntimeTypeAdapterFactory)
             .setExclusionStrategies(new AnnotationExclusionStrategy())
             .addDeserializationExclusionStrategy(new AnnotationDeserializationExclusionStrategy())
+            .addSerializationExclusionStrategy(new AnnotationSerializationExclusionStrategy())
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
 
     private final String savedGamesPath = "external-files/saved-games/";
@@ -420,7 +423,7 @@ public class FileService {
         }
     }
 
-    public void importQuestsObjectiveListFromFile() {
+    public void importQuestsObjectiveFromFile() {
         String path = "external-files/quests/quest-objective";
 
         try {

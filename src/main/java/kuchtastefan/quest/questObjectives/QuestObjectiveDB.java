@@ -6,6 +6,10 @@ import kuchtastefan.character.hero.save.quest.HeroQuestObjective;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestClearLocationObjective;
+import kuchtastefan.world.location.Location;
+import kuchtastefan.world.location.LocationDB;
+import kuchtastefan.world.location.QuestLocation;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -19,6 +23,14 @@ public class QuestObjectiveDB {
     private final static Map<Integer, QuestObjective> QUEST_OBJECTIVE_DB = new HashMap<>();
 
     public static void addQuestObjectiveToDB(QuestObjective questObjective) {
+
+        if (questObjective instanceof QuestClearLocationObjective questClearLocationObjective) {
+            Location location = LocationDB.returnLocation(questClearLocationObjective.getLocationId());
+            if (location instanceof QuestLocation questLocation) {
+                questLocation.setQuestObjectiveId(questClearLocationObjective.getId());
+            }
+        }
+
         if (questObjective instanceof ConnectedWithItem connectedWithItem) {
             Item item = ItemDB.returnItemFromDB(connectedWithItem.getItemId());
             if (item instanceof QuestItem questItem) {

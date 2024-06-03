@@ -4,16 +4,17 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.enemy.QuestEnemy;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.ResetObjectiveProgress;
 import lombok.Getter;
 
 @Getter
-public class QuestKillObjective extends QuestObjective {
+public class QuestKillObjective extends QuestObjective implements ResetObjectiveProgress {
     private final int questEnemyId;
     private final int countEnemyToKill;
 
 
-    public QuestKillObjective(String questObjectiveName, int questEnemyId, int countEnemyToKill, int questObjectiveId) {
-        super(questObjectiveId, questObjectiveName);
+    public QuestKillObjective(String questObjectiveName, int questEnemyId, int countEnemyToKill, int id) {
+        super(id, questObjectiveName);
         this.questEnemyId = questEnemyId;
         this.countEnemyToKill = countEnemyToKill;
     }
@@ -21,14 +22,20 @@ public class QuestKillObjective extends QuestObjective {
     @Override
     public void printQuestObjectiveProgress(Hero hero) {
         QuestEnemy questTarget = (QuestEnemy) CharacterDB.CHARACTER_DB.get(this.questEnemyId);
-        System.out.println("\tKill " + hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget) + "/" + this.countEnemyToKill + " " + questTarget.getName());
+        int numberOfKilledEnemies = Math.min(countEnemyToKill, hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget.getNpcId()));
+        System.out.println("\tKill " + numberOfKilledEnemies + "/" + this.countEnemyToKill + " " + questTarget.getName());
     }
 
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
         QuestEnemy questTarget = (QuestEnemy) CharacterDB.CHARACTER_DB.get(this.questEnemyId);
-        if (countEnemyToKill == hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget)) {
+        if (countEnemyToKill == hero.getEnemyKilled().getAmountOfKilledEnemy(questTarget.getNpcId())) {
             setCompleted(hero, true);
         }
+    }
+
+    @Override
+    public void resetCompletedQuestObjectiveAssignment(Hero hero) {
+        hero.getEnemyKilled().removeQuestEnemyKilled(this.questEnemyId, this.countEnemyToKill);
     }
 }

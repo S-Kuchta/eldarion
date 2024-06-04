@@ -17,7 +17,7 @@ public class RegionDB {
         }
 
         for (int locationId : region.getLocationsId()) {
-            region.allLocations.add(LocationDB.returnLocation(locationId));
+            region.allLocations.add(LocationDB.getLocationById(locationId));
         }
 
         REGION_DB.put(region.getRegionId(), region);

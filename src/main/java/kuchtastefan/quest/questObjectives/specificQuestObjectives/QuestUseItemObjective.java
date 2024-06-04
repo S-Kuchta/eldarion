@@ -28,7 +28,7 @@ public class QuestUseItemObjective extends QuestObjective implements ResetObject
 
     @Override
     public void printQuestObjectiveProgress(Hero hero) {
-        Location location = LocationDB.returnLocation(this.locationId);
+        Location location = LocationDB.getLocationById(this.locationId);
         LocationStage locationStage = location.getLocationStages().get(this.locationStageId);
         Item item = ItemDB.returnItemFromDB(this.itemId);
 

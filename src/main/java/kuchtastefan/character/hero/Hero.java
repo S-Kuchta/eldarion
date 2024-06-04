@@ -16,7 +16,6 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.printUtil.PrintUtil;
-import kuchtastefan.world.location.Location;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,7 +36,6 @@ public class Hero extends GameCharacter {
     private final ExperiencePointsService experiencePointsService;
     private final SaveGameEntities saveGameEntities;
     private final Map<Integer, Spell> learnedSpells;
-    private final Map<Integer, Location> discoveredLocationList;
     private final EnemyKilled enemyKilled;
     private boolean inCombat;
 
@@ -56,7 +54,6 @@ public class Hero extends GameCharacter {
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
         this.saveGameEntities = new SaveGameEntities();
         this.learnedSpells = new HashMap<>();
-        this.discoveredLocationList = new HashMap<>();
         this.inCombat = false;
     }
 

@@ -3,7 +3,6 @@ package kuchtastefan.quest;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
-import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestKillObjective;
 import kuchtastefan.service.FileService;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.LocationDB;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -58,11 +56,10 @@ class QuestTest {
         List<Quest> quests = new ArrayList<>(QuestDB.getQUEST_DB().values());
         QuestDB.setInitialQuestsStatusFromGivenList(hero, quests);
 
-        Location questLocation = LocationDB.returnLocation(2);
-        QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(((QuestLocation) questLocation).getQuestObjectiveId());
+        QuestLocation questLocation = (QuestLocation) LocationDB.getLocationById(2);
+        QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());
+        questLocation.setCompleted();
 
-        hero.getDiscoveredLocationList().put(questLocation.getLocationId(), questLocation);
-        hero.getDiscoveredLocationList().get(questLocation.getLocationId()).setCompleted();
         questObjective.verifyQuestObjectiveCompletion(hero);
 
         quest.checkIfQuestIsCompleted(hero);

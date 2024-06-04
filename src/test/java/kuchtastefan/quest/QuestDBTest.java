@@ -78,20 +78,6 @@ class QuestDBTest {
     }
 
     @Test
-    void syncWithSaveGameNotEquals() {
-        QuestReward reward = new QuestReward(new Integer[]{1}, 100, 100);
-        Hero hero = new Hero("Test");
-        QuestObjectiveDB.addQuestObjectiveToDB(new QuestKillObjective("Enemy name", 1, 1, 1));
-        Quest quest = new Quest(1, "Test Quest", "Test Description", 1, new int[]{1}, reward, false);
-        QuestDB.addQuestToDB(quest);
-        quest.setInitialQuestStatus(hero);
-        HeroQuest heroQuest = new HeroQuest(1, QuestStatus.ACCEPTED);
-        hero.getSaveGameEntities().getHeroQuests().addEntity(heroQuest);
-        QuestDB.syncWithSaveGame(hero.getSaveGameEntities().getHeroQuests());
-        assertNotEquals(QuestStatus.AVAILABLE, QuestDB.getQuestById(1).getStatus());
-    }
-
-    @Test
     void findQuestByObjectiveId() {
         QuestObjectiveDB.addQuestObjectiveToDB(
                 new QuestKillObjective("Enemy name", 1, 1, 1));

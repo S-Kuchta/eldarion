@@ -25,7 +25,7 @@ public class QuestObjectiveDB {
     public static void addQuestObjectiveToDB(QuestObjective questObjective) {
 
         if (questObjective instanceof QuestClearLocationObjective questClearLocationObjective) {
-            Location location = LocationDB.returnLocation(questClearLocationObjective.getLocationId());
+            Location location = LocationDB.getLocationById(questClearLocationObjective.getLocationId());
             if (location instanceof QuestLocation questLocation) {
                 questLocation.setQuestObjectiveId(questClearLocationObjective.getId());
             }

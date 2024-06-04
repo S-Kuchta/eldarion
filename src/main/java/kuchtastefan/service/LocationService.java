@@ -1,6 +1,7 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.save.location.HeroLocation;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
@@ -12,7 +13,7 @@ import kuchtastefan.utility.printUtil.CharacterPrint;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.printUtil.SpellAndActionPrint;
 import kuchtastefan.world.location.Location;
-import kuchtastefan.world.location.LocationStatus;
+import kuchtastefan.world.location.LocationDB;
 import kuchtastefan.world.location.QuestLocation;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;
@@ -35,8 +36,10 @@ public class LocationService {
      */
     public void locationMenu(Hero hero, HeroMenuService heroMenuService) {
         HintDB.printHint(HintName.LOCATION_HINT);
-        int index = 3;
+        hero.getSaveGameEntities().getHeroLocations().addEntityIfNotContains(new HeroLocation(location.getLocationId(),
+                location.getLocationStatus(), LocationDB.returnHeroLocationStages(location.getLocationId())));
 
+        int index = 3;
         while (true) {
             location.questLocationStageSet(hero);
 
@@ -104,7 +107,7 @@ public class LocationService {
 
         // Completing all location stages
         if (location.getCountOfStageCompleted() == location.getStageTotal()) {
-            location.setLocationStatus(LocationStatus.COMPLETED);
+            location.setCompleted();
 
             if (location instanceof QuestLocation questLocation) {
                 QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());

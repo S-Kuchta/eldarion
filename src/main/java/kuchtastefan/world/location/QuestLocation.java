@@ -1,8 +1,5 @@
 package kuchtastefan.world.location;
 
-import kuchtastefan.character.hero.Hero;
-import kuchtastefan.quest.questObjectives.QuestObjective;
-import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.annotationStrategy.Exclude;
 import lombok.Getter;
 import lombok.Setter;

@@ -3,7 +3,6 @@ package kuchtastefan.quest;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.save.SaveGameEntityList;
 import kuchtastefan.character.hero.save.quest.HeroQuest;
-import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import lombok.Getter;
 
@@ -78,5 +77,4 @@ public class QuestDB {
             hero.getSaveGameEntities().getHeroQuests().addEntity(new HeroQuest(quest.getId(), quest.getStatus()));
         }
     }
-
 }

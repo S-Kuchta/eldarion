@@ -18,12 +18,12 @@ public class QuestClearLocationObjective extends QuestObjective {
     @Override
     public void printQuestObjectiveProgress(Hero hero) {
         String cleared = this.isCompleted() ? "Cleared" : "Not Cleared Yet";
-        System.out.println("\tClear " + LocationDB.returnLocation(this.locationId).getLocationName() + " -> " + cleared);
+        System.out.println("\tClear " + LocationDB.getLocationById(this.locationId).getLocationName() + " -> " + cleared);
     }
 
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
-        QuestLocation questLocation = (QuestLocation) LocationDB.returnLocation(this.locationId);
+        QuestLocation questLocation = (QuestLocation) LocationDB.getLocationById(this.locationId);
         if (questLocation != null && questLocation.isCompleted()) {
             this.setCompleted(hero, true);
         }

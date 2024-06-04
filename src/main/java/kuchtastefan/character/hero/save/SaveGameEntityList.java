@@ -30,4 +30,10 @@ public class SaveGameEntityList<T extends SaveGameEntity> {
     public int[] getEntitiesIds() {
         return this.saveEntities.keySet().stream().mapToInt(Integer::intValue).toArray();
     }
+
+    public void addEntityIfNotContains(T entity) {
+        if (!containsEntity(entity.getId())) {
+            addEntity(entity);
+        }
+    }
 }

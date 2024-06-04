@@ -53,7 +53,7 @@ public class Region {
 
             System.out.println("\n\t" + this.getRegionName()
                     + " \tRegion level: " + this.getMinimumRegionLevel() + " - " + this.getMaximumRegionLevel()
-                    + " \tDiscovered locations: " + hero.getDiscoveredLocationList().size() + " / " + this.getAllLocations().size() + "\n");
+                    + " \tDiscovered locations: " + LocationDB.getClearedAndDiscoveredLocationListByIds(this.locationsId).size() + " / " + this.getAllLocations().size() + "\n");
 
             PrintUtil.printMenuOptions("Go back to the city", "Travel across region " + this.getRegionName(), "Hero menu");
 
@@ -66,17 +66,6 @@ public class Region {
                 System.out.println();
                 index++;
             }
-
-
-
-//            for (Map.Entry<Integer, Location> location : hero.getDiscoveredLocationList().entrySet()) {
-//                String s = location.getValue().getLocationName() + " " + location.getValue().printLocationServices();
-//
-//                PrintUtil.printIndexAndText(String.valueOf(index), s);
-//                locations.add(location.getValue());
-//                System.out.println();
-//                index++;
-//            }
 
             // Getting user choice
             int choice = InputUtil.intScanner();

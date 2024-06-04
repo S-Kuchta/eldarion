@@ -17,6 +17,7 @@ import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.PrintUtil;
+import kuchtastefan.world.location.LocationDB;
 import kuchtastefan.world.region.RegionDB;
 
 import java.util.ArrayList;
@@ -144,6 +145,8 @@ public class GameManager {
         this.hero.setBuffsAndDebuffs(new HashSet<>());
         this.heroAbilityManager.setHero(gameLoaded.getHero());
         HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
+
+        LocationDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroLocations());
         QuestDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuests());
         QuestObjectiveDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuestObjectives());
 //        QuestDB.loadQuests(this.hero);

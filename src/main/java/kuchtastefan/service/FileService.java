@@ -106,6 +106,8 @@ public class FileService {
     private GameLoaded returnGameLoaded(Hero hero) {
         final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB());
         gameLoaded.setVendorIdAndItemListId();
+
+        LocationDB.saveDatabase(hero);
         QuestDB.saveDatabase(hero);
         QuestObjectiveDB.saveDatabase(hero);
         return gameLoaded;

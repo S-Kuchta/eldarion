@@ -12,6 +12,7 @@ import kuchtastefan.utility.printUtil.CharacterPrint;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.printUtil.SpellAndActionPrint;
 import kuchtastefan.world.location.Location;
+import kuchtastefan.world.location.LocationStatus;
 import kuchtastefan.world.location.QuestLocation;
 import kuchtastefan.world.location.locationStage.LocationStage;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;
@@ -45,7 +46,8 @@ public class LocationService {
             location.printMenu(index);
 
             int choice = InputUtil.intScanner();
-            if (choice < 0 || choice > location.getLocationStages().size() + 2) {
+            if (choice < 0 || choice > location.getStageTotal() + 2) {
+                System.out.println("prvy invalid");
                 PrintUtil.printEnterValidInput();
             } else {
                 if (choice == 0) {
@@ -62,9 +64,10 @@ public class LocationService {
                     continue;
                 }
 
-                if (location.getLocationStage(choice - index).isStageDiscovered()) {
+                if (location.getLocationStage(choice - index).isDiscovered() || location.getLocationStage(choice - index).isCleared()) {
                     exploreLocationStage(hero, location.getLocationStage(choice - index));
                 } else {
+                    System.out.println("druhy invalid");
                     PrintUtil.printEnterValidInput();
                 }
             }
@@ -82,7 +85,7 @@ public class LocationService {
     public void exploreLocationStage(Hero hero, LocationStage locationStage) {
         AutosaveCount.checkAutosaveCount(hero);
 
-        locationStage.setStageDiscovered(true);
+        locationStage.discoverStage();
         if (!locationStage.canHeroEnterStage(hero)) {
             return;
         }
@@ -94,7 +97,7 @@ public class LocationService {
         boolean isStageCompleted = locationStage.exploreStage(hero, location);
 
         // check if stage is successfully cleared
-        if (isStageCompleted && !locationStage.isStageCompleted()) {
+        if (isStageCompleted && !(locationStage.isCleared())) {
             discoverNextStage(location, location.getStageCompleted() + 1);
             locationStage.completeStage();
             hero.restoreHealthAndManaAfterTurn();
@@ -103,12 +106,16 @@ public class LocationService {
 
         // Completing all location stages
         if (location.getStageCompleted() == location.getStageTotal()) {
-            location.setCleared(true);
+            location.setLocationStatus(LocationStatus.COMPLETED);
 
             if (location instanceof QuestLocation questLocation) {
-                QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());
-                questObjective.verifyQuestObjectiveCompletion(hero);
-                questObjective.printQuestObjectiveProgress(hero);
+                try {
+                    QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());
+                    questObjective.verifyQuestObjectiveCompletion(hero);
+                    questObjective.printProgress(hero);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Quest objective not found");
+                }
             }
         }
     }
@@ -116,31 +123,32 @@ public class LocationService {
     private void discoverNextStage(Location location, int locationStageOrder) {
         LocationStage nextLocationStage = location.getLocationStages().get(locationStageOrder);
         if (nextLocationStage != null) {
-            nextLocationStage.setStageDiscovered(true);
+            nextLocationStage.discoverStage();
         }
     }
 
     private LocationStage determineLocationStage(int locationStageOrder) {
         LocationStage locationStage = location.getLocationStages().get(locationStageOrder);
+        LocationStage nextLocationStage = location.getLocationStages().get(locationStageOrder);
 
         if (locationStage instanceof LocationStageQuestGiver) {
-            if (locationStage.isStageDiscovered() && location.getLocationStage(locationStageOrder + 1) != null) {
-                locationStage = location.getLocationStages().get(locationStageOrder + 1);
+            if (locationStage.isDiscovered() && location.getLocationStage(locationStageOrder + 1) != null) {
+                nextLocationStage = location.getLocationStages().get(locationStageOrder + 1);
             } else {
                 discoverNextStage(location, locationStageOrder + 1);
             }
         } else {
-            if (locationStage != null && locationStage.isStageCompleted()) {
-                locationStage = location.getLocationStages().get(locationStageOrder + 1);
+            if (locationStage != null && locationStage.isCleared()) {
+                nextLocationStage = location.getLocationStages().get(locationStageOrder + 1);
                 discoverNextStage(location, locationStageOrder);
             }
         }
 
-        if (locationStage == null) {
-            locationStage = location.getLocationStages().get(location.getStageCompleted() - 1);
+        if (nextLocationStage == null) {
+            return location.getLocationStages().get(location.getStageCompleted() - 1);
         }
 
-        return locationStage;
+        return nextLocationStage;
     }
 }
 

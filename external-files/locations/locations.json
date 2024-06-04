@@ -1,6 +1,7 @@
 [
   {
     "type": "Location",
+    "locationStatus": "NOT_DISCOVERED",
     "locationId": 0,
     "locationName": "DeadMines",
     "locationLevel": 2,
@@ -146,6 +147,7 @@
   },
   {
     "type": "Location",
+    "locationStatus": "NOT_DISCOVERED",
     "locationId": 1,
     "locationName": "Tower of Damned",
     "locationLevel": 2,
@@ -231,6 +233,7 @@
   },
   {
     "type": "QuestLocation",
+    "locationStatus": "DISCOVERED",
     "locationId": 2,
     "locationName": "Crystal Lake",
     "locationLevel": 1,
@@ -299,6 +302,7 @@
   },
   {
     "type": "Location",
+    "locationStatus": "NOT_DISCOVERED",
     "locationId": 3,
     "locationName": "Bear Cave",
     "locationLevel": 2,
@@ -334,6 +338,7 @@
   },
   {
     "type": "Location",
+    "locationStatus": "DISCOVERED",
     "locationId": 4,
     "locationName": "Mystic Hollow",
     "locationLevel": 1,

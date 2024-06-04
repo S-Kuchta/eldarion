@@ -22,13 +22,13 @@ import java.util.Map;
 public class HeroMenuService {
     private final InventoryMenuService inventoryMenuService;
     private final HeroAbilityManager heroAbilityManager;
-    private final QuestService questService;
+    private final QuestMenuService questMenuService;
     private final HeroSpellManager heroSpellManager;
 
     public HeroMenuService(HeroAbilityManager heroAbilityManager) {
         this.inventoryMenuService = new InventoryMenuService();
         this.heroAbilityManager = heroAbilityManager;
-        this.questService = new QuestService();
+        this.questMenuService = new QuestMenuService();
         this.heroSpellManager = new HeroSpellManager();
     }
 
@@ -50,7 +50,7 @@ public class HeroMenuService {
             }
             case 2 -> this.inventoryMenuService.mainMenu(hero);
             case 3 -> this.abilityMenu(hero);
-            case 4 -> this.questService.heroAcceptedQuestMenu(hero);
+            case 4 -> this.questMenuService.heroAcceptedQuestMenu(hero);
             case 5 -> this.heroSpellManager.spellMenu(hero);
             case 6 -> this.gameSettingsMenu();
             default -> PrintUtil.printEnterValidInput();

@@ -16,7 +16,7 @@ import java.util.List;
 
 @Setter
 @Getter
-public class QuestService {
+public class QuestMenuService {
 
     private QuestGiverCharacter questGiverCharacter;
 

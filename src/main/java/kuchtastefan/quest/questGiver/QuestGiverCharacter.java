@@ -6,7 +6,7 @@ import kuchtastefan.hint.HintName;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.QuestStatus;
-import kuchtastefan.service.QuestService;
+import kuchtastefan.service.QuestMenuService;
 import kuchtastefan.utility.ConsoleColor;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,11 +33,11 @@ public class QuestGiverCharacter {
 
     public void questGiverMenu(Hero hero) {
         syncQuests();
-        QuestService questService = new QuestService();
-        questService.setQuestGiverCharacter(this);
+        QuestMenuService questMenuService = new QuestMenuService();
+        questMenuService.setQuestGiverCharacter(this);
         HintDB.printHint(HintName.QUEST_HINT);
 
-        questService.questGiverMenu(hero, this.quests);
+        questMenuService.questGiverMenu(hero, this.quests);
         setNameBasedOnQuestsAvailable();
     }
 

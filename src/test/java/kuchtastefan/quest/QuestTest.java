@@ -3,6 +3,7 @@ package kuchtastefan.quest;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
+import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestKillObjective;
 import kuchtastefan.service.FileService;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.LocationDB;
@@ -11,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,6 +27,7 @@ class QuestTest {
         fileService.importQuestsObjectiveFromFile();
         fileService.importQuestsListFromFile();
         fileService.importQuestItemsFromFile();
+        fileService.importCreaturesFromFile();
     }
 
     @Test
@@ -67,7 +70,7 @@ class QuestTest {
     }
 
     @Test
-    void canBeQuestAcceptedShouldReturnFalse() {
+    void canBeQuestAcceptedByLevelShouldReturnFalse() {
         Hero hero = new Hero("Test");
         hero.setLevel(1);
         Quest quest = QuestDB.getQuestById(3);
@@ -76,11 +79,23 @@ class QuestTest {
     }
 
     @Test
-    void canBeQuestAcceptedShouldReturnTrue() {
+    void canBeQuestAcceptedByLevelShouldReturnTrue() {
         Hero hero = new Hero("Test");
         hero.setLevel(2);
         Quest quest = QuestDB.getQuestById(3);
 
         assertTrue(quest.canBeQuestAccepted(hero));
+    }
+
+    // TODO - write test after adding chain quest
+    @Test
+    void canBeQuestAcceptedByPreviousQuestShouldReturnFalse() {
+
+    }
+
+    // TODO - write test after adding chain quest
+    @Test
+    void canBeQuestAcceptedByPreviousQuestShouldReturnTrue() {
+
     }
 }

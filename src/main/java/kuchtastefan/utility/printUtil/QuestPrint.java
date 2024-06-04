@@ -17,11 +17,11 @@ public class QuestPrint {
 
     public static void printQuestDetails(Quest quest, Hero hero) {
         PrintUtil.printLongDivider();
-        System.out.println("\t" + ConsoleColor.MAGENTA + quest.getQuestName() + ConsoleColor.RESET);
-        PrintUtil.printTextWrap(quest.getQuestDescription());
+        System.out.println("\t" + ConsoleColor.MAGENTA + quest.getTitle() + ConsoleColor.RESET);
+        PrintUtil.printTextWrap(quest.getDescription());
 
         System.out.println("\n\tQuest Objective(s):");
-        for (QuestObjective questObjective : quest.getQuestObjectives()) {
+        for (QuestObjective questObjective : quest.getObjectives().values()) {
             questObjective.printQuestObjectiveProgress(hero);
         }
 
@@ -29,7 +29,7 @@ public class QuestPrint {
     }
 
     public static String returnQuestSuffix(Quest quest) {
-        switch (quest.getQuestStatus()) {
+        switch (quest.getStatus()) {
             case QuestStatus.UNAVAILABLE -> {
                 return "-" + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + "-";
             }

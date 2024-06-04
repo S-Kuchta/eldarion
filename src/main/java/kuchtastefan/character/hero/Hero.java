@@ -4,6 +4,7 @@ import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventory;
+import kuchtastefan.character.hero.save.SaveGameEntities;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.character.spell.SpellDB;
@@ -15,7 +16,6 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.service.ExperiencePointsService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.printUtil.PrintUtil;
-import kuchtastefan.world.location.Location;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,9 +34,8 @@ public class Hero extends GameCharacter {
     private final Map<Ability, Integer> wearingItemAbilityPoints;
     private final HeroInventory heroInventory;
     private final ExperiencePointsService experiencePointsService;
-    private final HeroQuests heroQuests;
+    private final SaveGameEntities saveGameEntities;
     private final Map<Integer, Spell> learnedSpells;
-    private final Map<Integer, Location> discoveredLocationList;
     private final EnemyKilled enemyKilled;
     private boolean inCombat;
 
@@ -53,9 +52,8 @@ public class Hero extends GameCharacter {
         this.experiencePointsService = new ExperiencePointsService();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
-        this.heroQuests = new HeroQuests();
+        this.saveGameEntities = new SaveGameEntities();
         this.learnedSpells = new HashMap<>();
-        this.discoveredLocationList = new HashMap<>();
         this.inCombat = false;
     }
 

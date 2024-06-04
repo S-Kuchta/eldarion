@@ -14,9 +14,10 @@ public class LocationStageFindTreasure extends LocationStage {
 
     @Override
     public boolean exploreStage(Hero hero, Location location) {
-        if (!this.isStageCompleted()) {
+//        if (!this.isStageCompleted()) {
+//        if (!this.isStageCompleted()) {
             new FindTreasureEvent(location.getLocationLevel()).eventOccurs(hero);
-        }
+//        }
 
         return true;
     }

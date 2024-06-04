@@ -5,8 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
-import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.save.GameLoaded;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.CharacterType;
 import kuchtastefan.character.npc.NonPlayerCharacter;
@@ -40,6 +40,9 @@ import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.*;
+import kuchtastefan.utility.annotationStrategy.AnnotationDeserializationExclusionStrategy;
+import kuchtastefan.utility.annotationStrategy.AnnotationExclusionStrategy;
+import kuchtastefan.utility.annotationStrategy.AnnotationSerializationExclusionStrategy;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.LocationDB;
@@ -66,16 +69,16 @@ public class FileService {
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.questObjectiveRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.gameCharactersRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.vendorRuntimeTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationRuntimeTypeAdapterFactory)
             .setExclusionStrategies(new AnnotationExclusionStrategy())
+            .addDeserializationExclusionStrategy(new AnnotationDeserializationExclusionStrategy())
+            .addSerializationExclusionStrategy(new AnnotationSerializationExclusionStrategy())
             .enableComplexMapKeySerialization().setPrettyPrinting().create();
 
     private final String savedGamesPath = "external-files/saved-games/";
 
 
     public void saveGame(Hero hero) {
-        final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB());
-        gameLoaded.setVendorIdAndItemListId();
-
         while (true) {
             System.out.println("\tHow do you want to name your save?");
             final String name = InputUtil.stringScanner();
@@ -87,7 +90,7 @@ public class FileService {
                 }
             }
 
-            if (saveGame(gameLoaded, path, name)) {
+            if (saveGame(returnGameLoaded(hero), path, name)) {
                 break;
             }
         }
@@ -95,12 +98,19 @@ public class FileService {
 
     public void autoSave(Hero hero) {
         if (GameSettingsDB.returnGameSettingValue(GameSetting.AUTO_SAVE)) {
-            final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB());
-            gameLoaded.setVendorIdAndItemListId();
-
             final String path = this.savedGamesPath + hero.getNameWithoutColor() + "_AutoSave" + ".json";
-            saveGame(gameLoaded, path, hero.getName());
+            saveGame(returnGameLoaded(hero), path, hero.getName());
         }
+    }
+
+    private GameLoaded returnGameLoaded(Hero hero) {
+        final GameLoaded gameLoaded = new GameLoaded(hero, HintDB.getHINT_DB());
+        gameLoaded.setVendorIdAndItemListId();
+
+        LocationDB.saveDatabase(hero);
+        QuestDB.saveDatabase(hero);
+        QuestObjectiveDB.saveDatabase(hero);
+        return gameLoaded;
     }
 
     private boolean saveGame(GameLoaded gameLoaded, String path, String saveGameName) {
@@ -415,7 +425,7 @@ public class FileService {
         }
     }
 
-    public void importQuestsObjectiveListFromFile() {
+    public void importQuestsObjectiveFromFile() {
         String path = "external-files/quests/quest-objective";
 
         try {

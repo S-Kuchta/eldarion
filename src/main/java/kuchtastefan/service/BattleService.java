@@ -95,10 +95,6 @@ public class BattleService {
                 currentTurn = 0;
             }
 
-//            if (isBattleFinished()) {
-//                return;
-//            }
-
             GameCharacter attackingCharacter = allCharacters.get(currentTurn);
             attackingCharacter.removeActionWithDuration();
             GameCharacter target = setNpcTarget(attackingCharacter);

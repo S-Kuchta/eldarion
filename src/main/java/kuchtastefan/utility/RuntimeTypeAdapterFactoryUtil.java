@@ -29,7 +29,9 @@ import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestClearLoca
 import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestKillObjective;
 import kuchtastefan.quest.questObjectives.specificQuestObjectives.QuestUseItemObjective;
 import kuchtastefan.service.RuntimeTypeAdapterFactory;
+import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.LocationStage;
+import kuchtastefan.world.location.QuestLocation;
 import kuchtastefan.world.location.locationStage.specificLocationStage.*;
 
 
@@ -104,4 +106,9 @@ public class RuntimeTypeAdapterFactoryUtil {
             .registerSubtype(WearableItemVendorCharacter.class)
             .registerSubtype(CraftingReagentItemVendorCharacter.class)
             .registerSubtype(JunkVendorCharacter.class);
+
+    public static final RuntimeTypeAdapterFactory<? extends Location> locationRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
+            .of(Location.class)
+            .registerSubtype(Location.class)
+            .registerSubtype(QuestLocation.class);
 }

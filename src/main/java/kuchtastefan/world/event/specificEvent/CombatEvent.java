@@ -6,11 +6,14 @@ import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.npc.enemy.QuestEnemy;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.quest.QuestDB;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.service.BattleService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.RandomNumberGenerator;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.event.Event;
 import lombok.Getter;
 
@@ -114,7 +117,12 @@ public class CombatEvent extends Event {
             hero.gainExperiencePoints(enemy.enemyExperiencePointsValue());
 
             if (enemy instanceof QuestEnemy questEnemy) {
-                hero.getEnemyKilled().addQuestEnemyKilled(hero, questEnemy);
+                QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questEnemy.getQuestObjectiveId());
+                hero.getEnemyKilled().addQuestEnemyKilled(questEnemy.getNpcId());
+
+                questObjective.printProgress(hero);
+                questObjective.verifyQuestObjectiveCompletion(hero);
+                QuestDB.findQuestByObjectiveId(questEnemy.getQuestObjectiveId()).checkIfQuestIsCompleted(hero);
             }
         }
     }

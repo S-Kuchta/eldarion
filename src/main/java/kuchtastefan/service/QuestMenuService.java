@@ -2,6 +2,7 @@ package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.utility.ConsoleColor;
@@ -11,19 +12,18 @@ import kuchtastefan.utility.printUtil.QuestPrint;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 @Getter
-public class QuestService {
+public class QuestMenuService {
 
     private QuestGiverCharacter questGiverCharacter;
 
 
     public void questGiverMenu(Hero hero, List<Quest> quests) {
         while (true) {
-            questGiverCharacter.setQuestsStatus(hero);
+            QuestDB.setInitialQuestsStatusFromGivenList(hero, quests);
             printQuestsMenu(quests);
             int choice = InputUtil.intScanner();
             if (choice == 0) {
@@ -37,7 +37,7 @@ public class QuestService {
     }
 
     public void heroAcceptedQuestMenu(Hero hero) {
-        List<Quest> quests = new ArrayList<>(hero.getHeroQuests().getHeroAcceptedQuest().values());
+        List<Quest> quests = QuestDB.getQuestListByIds(hero.getSaveGameEntities().getHeroQuests().getEntitiesIds());
 
         while (true) {
             printQuestsMenu(quests);
@@ -59,7 +59,7 @@ public class QuestService {
         PrintUtil.printIndexAndText("0", "Go back\n");
         int index = 1;
         for (Quest quest : quests) {
-            PrintUtil.printIndexAndText(String.valueOf(index++), quest.getQuestName() + " " + QuestPrint.returnQuestSuffix(quest));
+            PrintUtil.printIndexAndText(String.valueOf(index++), quest.getTitle() + " " + quest.getStatusIcon());
             System.out.println();
         }
     }
@@ -79,12 +79,12 @@ public class QuestService {
                 if (choice == 0) {
                     break;
                 } else if (choice == 1) {
-                    if (quest.getQuestStatus().equals(QuestStatus.AVAILABLE)) {
+                    if (quest.getStatus().equals(QuestStatus.AVAILABLE)) {
                         quest.startTheQuest(hero);
                         System.out.println(ConsoleColor.YELLOW + "\tQuest Accepted\n" + ConsoleColor.RESET);
                     }
 
-                    if (quest.getQuestStatus().equals(QuestStatus.COMPLETED)) {
+                    if (quest.getStatus().equals(QuestStatus.COMPLETED)) {
                         quest.turnInTheQuest(hero);
                         System.out.println(ConsoleColor.YELLOW + "\tQuest Completed\n" + ConsoleColor.RESET);
                     }
@@ -98,7 +98,7 @@ public class QuestService {
     }
 
     private boolean printQuestOptions(Hero hero, Quest quest) {
-        switch (quest.getQuestStatus()) {
+        switch (quest.getStatus()) {
             case QuestStatus.AVAILABLE -> {
                 PrintUtil.printIndexAndText("0", "Go back");
                 PrintUtil.printIndexAndText("1", "Accept quest\n");
@@ -110,7 +110,7 @@ public class QuestService {
                 return true;
             }
             case QuestStatus.ACCEPTED -> QuestPrint.printQuestDetails(quest, hero);
-            case QuestStatus.TURNED_IN -> System.out.println("\tQuest " + quest.getQuestName() + " is Completed");
+            case QuestStatus.TURNED_IN -> System.out.println("\tQuest " + quest.getTitle() + " is Completed");
             case QuestStatus.UNAVAILABLE ->
                     System.out.println(ConsoleColor.RED + "\tQuest can not be accepted yet." + ConsoleColor.RESET);
         }

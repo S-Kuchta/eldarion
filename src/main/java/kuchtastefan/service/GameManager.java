@@ -1,20 +1,23 @@
 package kuchtastefan.service;
 
 import kuchtastefan.character.hero.CharacterClass;
-import kuchtastefan.character.hero.GameLoaded;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.HeroAbilityManager;
+import kuchtastefan.character.hero.save.GameLoaded;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.SpellDB;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.PrintUtil;
+import kuchtastefan.world.location.LocationDB;
 import kuchtastefan.world.region.RegionDB;
 
 import java.util.ArrayList;
@@ -111,8 +114,8 @@ public class GameManager {
             default -> PrintUtil.printEnterValidInput();
         }
 
-        QuestDB.setInitialQuestsStatus(this.hero);
-
+        List<Quest> quests = new ArrayList<>(QuestDB.getQUEST_DB().values());
+        QuestDB.setInitialQuestsStatusFromGivenList(this.hero, quests);
     }
 
     private void startNewGame() {
@@ -142,7 +145,11 @@ public class GameManager {
         this.hero.setBuffsAndDebuffs(new HashSet<>());
         this.heroAbilityManager.setHero(gameLoaded.getHero());
         HintDB.getHINT_DB().putAll(gameLoaded.getHintUtil());
-        QuestDB.loadQuests(this.hero);
+
+        LocationDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroLocations());
+        QuestDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuests());
+        QuestObjectiveDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuestObjectives());
+//        QuestDB.loadQuests(this.hero);
         VendorCharacterDB.setVendorCurrentCharacterItemListId(gameLoaded.getVendorIdAndItemListId());
     }
 
@@ -179,9 +186,9 @@ public class GameManager {
 
         SpellDB.SPELL_LIST.addAll(this.fileService.importSpellsFromFile());
 
-        this.fileService.importQuestsObjectiveListFromFile();
-        this.fileService.importQuestsListFromFile();
         this.fileService.importLocationsFromFile();
+        this.fileService.importQuestsObjectiveFromFile();
+        this.fileService.importQuestsListFromFile();
         this.fileService.importEnemyGroupFromFile();
         this.fileService.importQuestGiverFromFile();
         this.fileService.importCreaturesFromFile();

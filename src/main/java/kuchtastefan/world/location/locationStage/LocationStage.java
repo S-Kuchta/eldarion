@@ -12,11 +12,11 @@ import lombok.Setter;
 public abstract class LocationStage {
 
     private String stageName;
-    private boolean stageCompleted;
-    private boolean stageDiscovered;
+    private LocationStageStatus stageStatus;
     private Integer[] itemsIdNeededToEnterStage;
 
     public LocationStage(String stageName) {
+        this.stageStatus = LocationStageStatus.NOT_DISCOVERED;
         this.stageName = stageName;
     }
 
@@ -33,13 +33,6 @@ public abstract class LocationStage {
         return true;
     }
 
-    public void completeStage() {
-        this.stageCompleted = true;
-        if (this instanceof RemoveLocationStageProgress removeLocationStageProgress) {
-            removeLocationStageProgress.removeProgressAfterCompletedStage();
-        }
-    }
-
     public boolean canHeroEnterStage(Hero hero) {
         if (!this.haveHeroKey(hero)) {
             System.out.println("\tYou don't have needed keys to enter location! You need: ");
@@ -50,11 +43,34 @@ public abstract class LocationStage {
             return false;
         }
 
-        if (!(this instanceof CanEnterStageAfterComplete) && this.isStageCompleted()) {
+        if (!(this instanceof CanEnterStageAfterComplete) && this.isCleared()) {
             System.out.println("\tNothing new to do in " + this.getStageName());
             return false;
         }
 
         return true;
+    }
+
+    public void discoverStage() {
+        if (isDiscovered() || isCleared()) {
+            return;
+        }
+
+        this.stageStatus = LocationStageStatus.DISCOVERED;
+    }
+
+    public void completeStage() {
+        this.stageStatus = LocationStageStatus.CLEARED;
+        if (this instanceof RemoveLocationStageProgress removeLocationStageProgress) {
+            removeLocationStageProgress.removeProgressAfterCompletedStage();
+        }
+    }
+
+    public boolean isDiscovered() {
+        return this.stageStatus == LocationStageStatus.DISCOVERED;
+    }
+
+    public boolean isCleared() {
+        return this.stageStatus == LocationStageStatus.CLEARED;
     }
 }

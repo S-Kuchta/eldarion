@@ -12,29 +12,38 @@ import java.util.Objects;
 @Getter
 public abstract class QuestObjective {
 
-    private final int questObjectiveId;
+    private final int id;
     protected boolean completed;
-    protected final String questObjectiveName;
+    protected final String title;
 
-    public QuestObjective(int questObjectiveId, String questObjectiveName) {
-        this.questObjectiveId = questObjectiveId;
+    public QuestObjective(int id, String title) {
+        this.id = id;
         this.completed = false;
-        this.questObjectiveName = questObjectiveName;
+        this.title = title;
     }
 
     public abstract void printQuestObjectiveProgress(Hero hero);
 
     public abstract void verifyQuestObjectiveCompletion(Hero hero);
 
-    public String getQuestObjectiveName() {
-        return ConsoleColor.YELLOW + questObjectiveName + ConsoleColor.RESET;
+    public void printProgress(Hero hero) {
+        if (hero.getSaveGameEntities().getHeroQuestObjectives().containsEntity(this.id)) {
+            printQuestObjectiveProgress(hero);
+        }
+    }
+
+    public String getTitle() {
+        return ConsoleColor.YELLOW + title + ConsoleColor.RESET;
     }
 
     public void setCompleted(Hero hero, boolean completed) {
-        System.out.println(this.hashCode());
-        this.completed = completed;
-        System.out.println("\tYou have completed " + this.getQuestObjectiveName() + " quest objective");
-        hero.getHeroQuests().checkQuestCompletion(hero, this.questObjectiveId);
+        if (!this.completed) {
+            this.completed = completed;
+
+            if (hero.getSaveGameEntities().getHeroQuestObjectives().containsEntity(this.id)) {
+                System.out.println("\tYou have completed " + this.getTitle() + " quest objective");
+            }
+        }
     }
 
     @Override
@@ -42,11 +51,11 @@ public abstract class QuestObjective {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         QuestObjective that = (QuestObjective) object;
-        return questObjectiveId == that.questObjectiveId && completed == that.completed && Objects.equals(questObjectiveName, that.questObjectiveName);
+        return id == that.id && completed == that.completed && Objects.equals(title, that.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(questObjectiveId, completed, questObjectiveName);
+        return Objects.hash(id, completed, title);
     }
 }

@@ -51,7 +51,8 @@ public class UseItemEvent extends Event implements UsingHeroInventory {
             this.wasUsed = UsableItem.useItem(hero, item, this);
             if (item instanceof UsableQuestItem usableQuestItem) {
                 usableQuestItem.setWasUsed(this.wasUsed);
-                hero.getHeroQuests().updateQuestObjectiveProgress(hero, usableQuestItem.getQuestObjectiveId());
+                // TODO quest objective progress
+//                hero.getHeroQuests().updateQuestObjectiveProgress(hero, usableQuestItem.getQuestObjectiveId());
             }
         } else {
             System.out.println("\tThis item does not fit here!");

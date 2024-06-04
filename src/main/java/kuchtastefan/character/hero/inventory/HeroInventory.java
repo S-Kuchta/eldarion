@@ -7,6 +7,9 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.quest.Quest;
+import kuchtastefan.quest.QuestDB;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.*;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
@@ -39,23 +42,19 @@ public class HeroInventory {
     }
 
     public void addQuestItemToInventory(QuestItem questItem, int count, Hero hero) {
-        if (hero.getHeroQuests().containsQuestObjective(questItem.getQuestObjectiveId())) {
+        if (hero.getSaveGameEntities().getHeroQuestObjectives().containsEntity(questItem.getQuestObjectiveId())) {
             addItemToInventory(questItem, count);
-            hero.getHeroQuests().updateQuestObjectiveProgress(hero, questItem.getQuestObjectiveId());
+            QuestObjectiveDB.getQuestObjectiveById(questItem.getQuestObjectiveId()).verifyQuestObjectiveCompletion(hero);
         }
     }
 
     public Item getItemFromInventoryById(int itemId) {
-        System.out.println("Searching for: " + itemId);
         for (Item item : this.heroInventory.keySet()) {
             if (item.getItemId() == itemId) {
-                // TODO remove after test
-                System.out.println("Returning: " + item.getName());
                 return item;
             }
         }
 
-        System.out.println("not found");
         return null;
     }
 

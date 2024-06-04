@@ -35,11 +35,9 @@ class QuestClearLocationObjectiveTest {
         List<Quest> quests = new ArrayList<>(QuestDB.getQUEST_DB().values());
         QuestDB.setInitialQuestsStatusFromGivenList(hero, quests);
 
-        Location questLocation = LocationDB.returnLocation(2);
-        QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(((QuestLocation) questLocation).getQuestObjectiveId());
-
-        hero.getDiscoveredLocationList().put(questLocation.getLocationId(), questLocation);
-        hero.getDiscoveredLocationList().get(questLocation.getLocationId()).setCleared(true);
+        QuestLocation questLocation = (QuestLocation) LocationDB.returnLocation(2);
+        QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());
+        questLocation.setCompleted();
         questObjective.verifyQuestObjectiveCompletion(hero);
 
         assertTrue(questObjective.isCompleted());
@@ -57,11 +55,10 @@ class QuestClearLocationObjectiveTest {
         List<Quest> quests = new ArrayList<>(QuestDB.getQUEST_DB().values());
         QuestDB.setInitialQuestsStatusFromGivenList(hero, quests);
 
-        Location questLocation = LocationDB.returnLocation(2);
-        QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(((QuestLocation) questLocation).getQuestObjectiveId());
-
-        hero.getDiscoveredLocationList().put(questLocation.getLocationId(), questLocation);
-        hero.getDiscoveredLocationList().get(questLocation.getLocationId()).setCleared(false);
+        QuestLocation questLocation = (QuestLocation) LocationDB.returnLocation(2);
+        QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());
+        questLocation.setDiscovered();
+        questObjective.verifyQuestObjectiveCompletion(hero);
 
         assertFalse(questObjective.isCompleted());
     }

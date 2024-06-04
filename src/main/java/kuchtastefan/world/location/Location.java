@@ -81,7 +81,7 @@ public class Location {
         PrintUtil.printExtraLongDivider();
         System.out.println(ConsoleColor.YELLOW + "\t" + this.getLocationName() + ConsoleColor.RESET
                 + "\tLocation level: " + this.locationLevel + " "
-                + "\tStages completed: " + this.getStageCompleted() + " / " + this.getStageTotal() + " "
+                + "\tStages completed: " + this.getCountOfStageCompleted() + " / " + this.getStageTotal() + " "
                 + "\tLocation difficulty: " + this.locationDifficulty);
         PrintUtil.printExtraLongDivider();
     }
@@ -90,7 +90,7 @@ public class Location {
         System.out.println("\tWhat do you want to do?");
         PrintUtil.printMenuOptions("Go back on the path", "Explore location", "Hero Menu");
 
-        if (this.getStageDiscovered() > 0) {
+        if (this.getCountOfStageDiscovered() > 0) {
             System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t\t\tLocation Stages\t\t\t\t\t\t\t" + ConsoleColor.RESET);
             for (Map.Entry<Integer, LocationStage> locationStage : this.getLocationStages().entrySet()) {
                 if (locationStage.getValue().isDiscovered() || locationStage.getValue().isCleared()) {
@@ -117,7 +117,7 @@ public class Location {
         }
     }
 
-    public int getStageDiscovered() {
+    public int getCountOfStageDiscovered() {
         int count = 0;
         for (LocationStage locationStage : locationStages.values()) {
             if (locationStage.getStageStatus() == LocationStageStatus.DISCOVERED) {
@@ -128,7 +128,7 @@ public class Location {
         return count;
     }
 
-    public int getStageCompleted() {
+    public int getCountOfStageCompleted() {
         int count = 0;
         for (LocationStage locationStage : locationStages.values()) {
             if (locationStage.getStageStatus() == LocationStageStatus.CLEARED) {
@@ -145,6 +145,14 @@ public class Location {
 
     public int getStageTotal() {
         return locationStages.size();
+    }
+
+    public void setDiscovered() {
+        this.locationStatus = LocationStatus.DISCOVERED;
+    }
+
+    public void setCompleted() {
+        this.locationStatus = LocationStatus.COMPLETED;
     }
 
     public boolean isDiscovered() {

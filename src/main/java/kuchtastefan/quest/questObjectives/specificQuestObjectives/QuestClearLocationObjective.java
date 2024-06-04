@@ -3,7 +3,7 @@ package kuchtastefan.quest.questObjectives.specificQuestObjectives;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.world.location.LocationDB;
-import kuchtastefan.world.location.LocationStatus;
+import kuchtastefan.world.location.QuestLocation;
 import lombok.Getter;
 
 @Getter
@@ -23,10 +23,9 @@ public class QuestClearLocationObjective extends QuestObjective {
 
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
-        if (!hero.getDiscoveredLocationList().isEmpty() && hero.getDiscoveredLocationList().get(this.locationId) != null) {
-            if (hero.getDiscoveredLocationList().get(this.locationId).isCompleted()) {
-                this.setCompleted(hero, true);
-            }
+        QuestLocation questLocation = (QuestLocation) LocationDB.returnLocation(this.locationId);
+        if (questLocation != null && questLocation.isCompleted()) {
+            this.setCompleted(hero, true);
         }
     }
 }

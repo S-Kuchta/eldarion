@@ -47,7 +47,6 @@ public class LocationService {
 
             int choice = InputUtil.intScanner();
             if (choice < 0 || choice > location.getStageTotal() + 2) {
-                System.out.println("prvy invalid");
                 PrintUtil.printEnterValidInput();
             } else {
                 if (choice == 0) {
@@ -55,7 +54,7 @@ public class LocationService {
                 }
 
                 if (choice == 1) {
-                    exploreLocationStage(hero, determineLocationStage(location.getStageCompleted()));
+                    exploreLocationStage(hero, determineLocationStage(location.getCountOfStageCompleted()));
                     continue;
                 }
 
@@ -67,7 +66,6 @@ public class LocationService {
                 if (location.getLocationStage(choice - index).isDiscovered() || location.getLocationStage(choice - index).isCleared()) {
                     exploreLocationStage(hero, location.getLocationStage(choice - index));
                 } else {
-                    System.out.println("druhy invalid");
                     PrintUtil.printEnterValidInput();
                 }
             }
@@ -98,24 +96,20 @@ public class LocationService {
 
         // check if stage is successfully cleared
         if (isStageCompleted && !(locationStage.isCleared())) {
-            discoverNextStage(location, location.getStageCompleted() + 1);
+            discoverNextStage(location, location.getCountOfStageCompleted() + 1);
             locationStage.completeStage();
             hero.restoreHealthAndManaAfterTurn();
             hero.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
         }
 
         // Completing all location stages
-        if (location.getStageCompleted() == location.getStageTotal()) {
+        if (location.getCountOfStageCompleted() == location.getStageTotal()) {
             location.setLocationStatus(LocationStatus.COMPLETED);
 
             if (location instanceof QuestLocation questLocation) {
-                try {
-                    QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());
-                    questObjective.verifyQuestObjectiveCompletion(hero);
-                    questObjective.printProgress(hero);
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Quest objective not found");
-                }
+                QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());
+                questObjective.verifyQuestObjectiveCompletion(hero);
+                questObjective.printProgress(hero);
             }
         }
     }
@@ -145,7 +139,7 @@ public class LocationService {
         }
 
         if (nextLocationStage == null) {
-            return location.getLocationStages().get(location.getStageCompleted() - 1);
+            return location.getLocationStages().get(location.getCountOfStageCompleted() - 1);
         }
 
         return nextLocationStage;

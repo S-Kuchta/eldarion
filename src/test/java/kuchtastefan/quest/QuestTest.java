@@ -62,7 +62,7 @@ class QuestTest {
         QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(((QuestLocation) questLocation).getQuestObjectiveId());
 
         hero.getDiscoveredLocationList().put(questLocation.getLocationId(), questLocation);
-        hero.getDiscoveredLocationList().get(questLocation.getLocationId()).setCleared(true);
+        hero.getDiscoveredLocationList().get(questLocation.getLocationId()).setCompleted();
         questObjective.verifyQuestObjectiveCompletion(hero);
 
         quest.checkIfQuestIsCompleted(hero);

@@ -8,6 +8,9 @@ import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
 import kuchtastefan.item.usableItem.UsableItem;
+import kuchtastefan.quest.QuestDB;
+import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.world.event.Event;
@@ -44,15 +47,16 @@ public class UseItemEvent extends Event implements UsingHeroInventory {
 
     @Override
     public boolean itemOptions(Hero hero, Item item) {
-//        Item neededItem = hero.getHeroInventory().getItemFromInventoryById(this.itemId);
         Item neededItem = ItemDB.returnItemFromDB(this.itemId);
 
         if (neededItem.equals(item)) {
             this.wasUsed = UsableItem.useItem(hero, item, this);
             if (item instanceof UsableQuestItem usableQuestItem) {
+                QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(usableQuestItem.getQuestObjectiveId());
                 usableQuestItem.setWasUsed(this.wasUsed);
-                // TODO quest objective progress
-//                hero.getHeroQuests().updateQuestObjectiveProgress(hero, usableQuestItem.getQuestObjectiveId());
+                questObjective.printProgress(hero);
+                questObjective.verifyQuestObjectiveCompletion(hero);
+                QuestDB.findQuestByObjectiveId(usableQuestItem.getQuestObjectiveId()).checkIfQuestIsCompleted(hero);
             }
         } else {
             System.out.println("\tThis item does not fit here!");

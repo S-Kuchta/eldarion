@@ -20,10 +20,16 @@ public class QuestPrint {
         System.out.println("\t" + ConsoleColor.MAGENTA + quest.getTitle() + ConsoleColor.RESET);
         PrintUtil.printTextWrap(quest.getDescription());
 
-        System.out.println("\n\tQuest Objective(s):");
-        for (QuestObjective questObjective : quest.getObjectives().values()) {
-            questObjective.printQuestObjectiveProgress(hero);
+        if (quest.getStatus() != QuestStatus.TURNED_IN) {
+            System.out.println("\n\tQuest Objective(s):");
+            for (QuestObjective questObjective : quest.getObjectives().values()) {
+                questObjective.printQuestObjectiveProgress(hero);
+            }
+        } else {
+            System.out.println("\n\tQuest is completed!");
         }
+
+
 
         PrintUtil.printLongDivider();
     }

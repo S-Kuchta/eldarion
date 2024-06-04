@@ -17,6 +17,7 @@ public class ActionRestoreHealth extends Action implements ActionWithIncreasedVa
 
     @Override
     public void performAction() {
+        this.currentActionValue = this.returnFinalValue(charactersInvolvedInBattle.getSpellCaster());
         charactersInvolvedInBattle.getSpellTarget().restoreAbilityValue(this.getCurrentActionValue(), Ability.HEALTH);
     }
 

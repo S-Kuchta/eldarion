@@ -212,7 +212,7 @@
         "type": "ActionDealDamageOverTime",
         "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
-        "baseActionValue": 1,
+        "baseActionValue": 5,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
@@ -251,7 +251,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 6,
+        "baseActionValue": 10,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }

@@ -10,14 +10,12 @@
       "0": {
         "type": "LocationStageQuestGiver",
         "stageName": "Mine Outside campsite",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "questGiverId": 1
       },
       "1": {
         "type": "LocationStageCombat",
         "stageName": "Mine entry door",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           205
@@ -26,7 +24,6 @@
       "2": {
         "type": "LocationStageCombat",
         "stageName": "Miner's Quarters",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           204
@@ -35,7 +32,6 @@
       "3": {
         "type": "LocationStageFindItem",
         "stageName": "Miner's Quarters shelves",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           900,
@@ -47,7 +43,6 @@
       "4": {
         "type": "LocationStageCombat",
         "stageName": "Abandoned Tunnels",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           204
@@ -56,7 +51,6 @@
       "5": {
         "type": "LocationStageFindItem",
         "stageName": "Collapsed Chambers",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           608
@@ -65,7 +59,6 @@
       "6": {
         "type": "LocationStageCombat",
         "stageName": "Abandoned Tunnels",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           204
@@ -74,7 +67,6 @@
       "7": {
         "type": "LocationStageFindItem",
         "stageName": "Collapsed Chambers",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           505
@@ -83,7 +75,6 @@
       "8": {
         "type": "LocationStageFindItem",
         "stageName": "Ore Deposits",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           703,
@@ -93,7 +84,6 @@
       "9": {
         "type": "LocationStageCombat",
         "stageName": "Abandoned Tunnels",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           204,
@@ -103,7 +93,6 @@
       "10": {
         "type": "LocationStageCombat",
         "stageName": "Refinery",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           205,
@@ -114,7 +103,6 @@
       "11": {
         "type": "LocationStageFindItem",
         "stageName": "Ore storage",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           703,
@@ -126,7 +114,6 @@
       "12": {
         "type": "LocationStageCombat",
         "stageName": "Miner Leader Chamber",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           208
@@ -135,7 +122,6 @@
       "13": {
         "type": "LocationStageFindItem",
         "stageName": "Miner leader chamber locked chest",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           404,
@@ -156,7 +142,6 @@
       "0": {
         "type": "LocationStageCombat",
         "stageName": "Tower Door",
-        "stageDiscovered": true,
         "itemsIdNeededToEnterStage": [
           1201
         ],
@@ -167,7 +152,6 @@
       "1": {
         "type": "LocationStageCombat",
         "stageName": "Forgotten Crypts",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           303,
@@ -177,7 +161,6 @@
       "2": {
         "type": "LocationStageFindItem",
         "stageName": "Cursed Altar",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           506,
@@ -187,14 +170,12 @@
       "3": {
         "type": "LocationStageUseItem",
         "stageName": "Empty Socket in Cursed Altar",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemId": 1300
       },
       "4": {
         "type": "LocationStageCombat",
         "stageName": "Sorrowful Chapel",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           304
@@ -203,7 +184,6 @@
       "5": {
         "type": "LocationStageFindItem",
         "stageName": "Spectral Library",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           104,
@@ -213,7 +193,6 @@
       "6": {
         "type": "LocationStageCombat",
         "stageName": "Malevolent Throne Room",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           209
@@ -222,7 +201,6 @@
       "7": {
         "type": "LocationStageFindItem",
         "stageName": "Necromancer Hidden Chest",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           212,
@@ -233,7 +211,7 @@
   },
   {
     "type": "QuestLocation",
-    "locationStatus": "DISCOVERED",
+    "locationStatus": "NOT_DISCOVERED",
     "locationId": 2,
     "locationName": "Crystal Lake",
     "locationLevel": 1,
@@ -242,14 +220,12 @@
       "0": {
         "type": "LocationStageQuestGiver",
         "stageName": "Fisherman Cabin",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "questGiverId": 2
       },
       "1": {
         "type": "LocationStageCombat",
         "stageName": "Right Lake shore",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           401
@@ -258,7 +234,6 @@
       "2": {
         "type": "LocationStageCombat",
         "stageName": "Left Lake shore",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           401
@@ -267,7 +242,6 @@
       "3": {
         "type": "LocationStageCombat",
         "stageName": "Old fishing pier",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           401,
@@ -277,7 +251,6 @@
       "4": {
         "type": "LocationStageFindItem",
         "stageName": "The End of Old fishing pier",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           301,
@@ -291,7 +264,6 @@
       "5": {
         "type": "LocationStageCombat",
         "stageName": "Lake Isle",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           401,
@@ -311,7 +283,6 @@
       "0": {
         "type": "LocationStageCombat",
         "stageName": "Bear cave chamber",
-        "stageDiscovered": true,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           101,
@@ -321,7 +292,6 @@
       "1": {
         "type": "LocationStageFindItem",
         "stageName": "Human Corpse",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           1300
@@ -330,7 +300,6 @@
       "2": {
         "type": "LocationStageQuestGiver",
         "stageName": "Letter lying next to corpse",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "questGiverId": 3
       }
@@ -347,54 +316,46 @@
       "0": {
         "type": "LocationStageNothingOutcome",
         "stageName": "Main gate City Guard",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": []
       },
       "1": {
         "type": "LocationStageBlacksmith",
         "stageName": "Blacksmithing Forge",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": []
       },
       "2": {
         "type": "LocationStageVendor",
         "stageName": "Blacksmith Equipment Merchant",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "vendorId": 0
       },
       "3": {
         "type": "LocationStageVendor",
         "stageName": "Ore Merchant",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "vendorId": 1
       },
       "4": {
         "type": "LocationStageVendor",
         "stageName": "Alchemist potion Vendor",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "vendorId": 2
       },
       "5": {
         "type": "LocationStageVendor",
         "stageName": "Alchemist reagent Vendor",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "vendorId": 4
       },
       "6": {
         "type": "LocationStageVendor",
         "stageName": "Merchant of Trinkets",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "vendorId": 3
       },
       "7": {
         "type": "LocationStagePlaceToRest",
         "stageName": "Empty house",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [
           1200
         ]
@@ -402,21 +363,18 @@
       "8": {
         "type": "LocationStageVendor",
         "stageName": "Tavern Keeper",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "vendorId": 5
       },
       "9": {
         "type": "LocationStageQuestGiver",
         "stageName": "Man with cape in Tavern",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "questGiverId": 0
       },
       "10": {
         "type": "LocationStageCombat",
         "stageName": "Tavern Back door",
-        "stageDiscovered": false,
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           210,

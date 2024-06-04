@@ -6,7 +6,6 @@ import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.service.FileService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestClassOrder;
 
 import static org.junit.jupiter.api.Assertions.*;
 

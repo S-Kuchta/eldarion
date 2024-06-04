@@ -150,13 +150,8 @@ public abstract class GameCharacter {
         int maxCharacterAbility = this.getEnhancedAbilities().get(ability);
         int effectiveCharacterAbility = this.getEffectiveAbilityValue(ability);
 
-
-
-        if (maxCharacterAbility - effectiveCharacterAbility <= amountToRestore) {
-            this.effectiveAbilities.put(ability, maxCharacterAbility);
-        } else {
-            this.effectiveAbilities.put(ability, effectiveCharacterAbility + amountToRestore);
-        }
+        amountToRestore = Math.min(amountToRestore, maxCharacterAbility - effectiveCharacterAbility);
+        this.effectiveAbilities.put(ability, this.getEffectiveAbilityValue(ability) + amountToRestore);
 
         ConsoleColor consoleColor = ConsoleColor.RED;
         if (ability.equals(Ability.MANA)) {

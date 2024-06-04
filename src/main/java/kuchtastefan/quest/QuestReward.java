@@ -21,13 +21,17 @@ public class QuestReward {
 
     public void giveQuestReward(Hero hero) {
         hero.gainExperiencePoints(this.experiencePointsReward);
-        System.out.println("\tYou gained " + this.goldsReward + " golds");
-        hero.addGolds(this.goldsReward);
+        if (this.goldsReward > 0) {
+            System.out.println("\tYou gained " + this.goldsReward + " golds");
+            hero.addGolds(this.goldsReward);
+        }
 
+        if (itemsReward.length > 0) {
+            System.out.println("\n\tYou also gained the following items:");
+        }
         for (Integer itemId : this.itemsReward) {
             Item itemReward = ItemDB.returnItemFromDB(itemId);
             hero.getHeroInventory().addItemToInventory(itemReward, 1);
-            System.out.println("\tReward for completing the quest: " + itemReward.getName());
         }
     }
 

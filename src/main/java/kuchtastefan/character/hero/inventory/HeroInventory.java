@@ -7,8 +7,8 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.HaveType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
-import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
+import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.*;
 import kuchtastefan.utility.printUtil.PrintUtil;
@@ -42,10 +42,12 @@ public class HeroInventory {
     }
 
     public void addQuestItemToInventory(QuestItem questItem, int count, Hero hero) {
-        if (hero.getSaveGameEntities().getHeroQuestObjectives().containsEntity(questItem.getQuestObjectiveId())) {
-            addItemToInventory(questItem, count);
-            QuestObjectiveDB.getQuestObjectiveById(questItem.getQuestObjectiveId()).verifyQuestObjectiveCompletion(hero);
-        }
+        addItemToInventory(questItem, count);
+
+        QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questItem.getQuestObjectiveId());
+        questObjective.printProgress(hero);
+        questObjective.verifyQuestObjectiveCompletion(hero);
+        QuestDB.findQuestByObjectiveId(questItem.getQuestObjectiveId()).checkIfQuestIsCompleted(hero);
     }
 
     public Item getItemFromInventoryById(int itemId) {
@@ -79,6 +81,7 @@ public class HeroInventory {
         if (hasRequiredItems(item, count)) {
             System.out.print("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " has been removed from your inventory");
             if (this.heroInventory.get(item) == count) {
+                System.out.println();
                 this.heroInventory.remove(item);
             } else {
                 this.heroInventory.put(item, this.heroInventory.get(item) - count);

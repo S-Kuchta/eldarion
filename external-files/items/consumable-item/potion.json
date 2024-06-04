@@ -32,6 +32,7 @@
       {
         "type": "ActionRestoreHealthOverTime",
         "actionName": "HEAL_OVER_TIME",
+        "actionStatusEffect": "BUFF",
         "baseActionValue": 5,
         "maxActionTurns": 3,
         "actionDurationType": "BATTLE_ACTION",

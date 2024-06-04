@@ -29,14 +29,14 @@
     "characterRarity": "RARE",
     "npcType": "DEFENDER",
     "baseAbilities": {
-      "ATTACK": 4,
-      "RESIST_DAMAGE": 4,
+      "ATTACK": 7,
+      "RESIST_DAMAGE": 6,
       "STRENGTH": 4,
       "INTELLECT": 1,
       "SPIRIT": 1,
       "HASTE": 1,
       "CRITICAL_HIT_CHANCE": 4,
-      "HEALTH": 71,
+      "HEALTH": 78,
       "MANA": 0,
       "ABSORB_DAMAGE": 0
     },
@@ -52,7 +52,7 @@
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
     "baseAbilities": {
-      "ATTACK": 4,
+      "ATTACK": 6,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 2,
       "INTELLECT": 1,
@@ -75,7 +75,7 @@
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
     "baseAbilities": {
-      "ATTACK": 5,
+      "ATTACK": 7,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 4,
       "INTELLECT": 1,

@@ -104,7 +104,7 @@
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
         "ability": "CRITICAL_HIT_CHANCE",
-        "actionStatusEffect": "BUFF"
+        "actionStatusEffect": "DEBUFF"
       }
     ],
     "spellLevel": 1,

@@ -51,12 +51,8 @@ public class CombatEvent extends Event {
 
         if (haveHeroWon) {
             battleWon(hero);
-        } /*else {
-            battleLost(hero);
-        }*/
+        }
 
-//        this.battleService.resetSpellsCoolDowns(hero);
-//        hero.getBuffsAndDebuffs().clear();
         hero.setInCombat(false);
 
         return haveHeroWon;
@@ -101,12 +97,11 @@ public class CombatEvent extends Event {
 
             PrintUtil.printMenuHeader(ConsoleColor.RESET + "Loot from " + enemy.getName());
             for (Item item : enemy.getItemsDrop()) {
+                hero.getHeroInventory().addItemToInventory(item, 1);
+
                 if (item instanceof QuestItem questItem) {
                     hero.getHeroInventory().addQuestItemToInventory(questItem, 1, hero);
-                    continue;
                 }
-
-                hero.getHeroInventory().addItemToInventory(item, 1);
             }
 
             if (goldEarn > 0) {
@@ -125,16 +120,5 @@ public class CombatEvent extends Event {
                 QuestDB.findQuestByObjectiveId(questEnemy.getQuestObjectiveId()).checkIfQuestIsCompleted(hero);
             }
         }
-    }
-
-    private void battleLost(Hero hero) {
-//        int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * hero.getLevel();
-//
-//        hero.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
-//        hero.getEffectiveAbilities().put(Ability.HEALTH, hero.getEnhancedAbilities().get(Ability.HEALTH));
-//
-//        System.out.println("\n\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
-//        System.out.println("\tYou lost " + goldToRemove + " golds!");
-
     }
 }

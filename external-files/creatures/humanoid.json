@@ -217,13 +217,13 @@
     "npcType": "MAGE",
     "baseAbilities": {
       "ATTACK": 8,
-      "RESIST_DAMAGE": 6,
+      "RESIST_DAMAGE": 8,
       "STRENGTH": 2,
       "INTELLECT": 7,
       "SPIRIT": 4,
       "HASTE": 6,
       "CRITICAL_HIT_CHANCE": 6,
-      "HEALTH": 78,
+      "HEALTH": 99,
       "MANA": 85,
       "ABSORB_DAMAGE": 0
     },

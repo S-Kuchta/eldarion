@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 3,
+        "baseActionValue": 1,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -26,7 +26,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 8,
+        "baseActionValue": 10,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -45,7 +45,7 @@
         "type": "ActionDealDamageOverTime",
         "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
-        "baseActionValue": 7,
+        "baseActionValue": 5,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
@@ -120,14 +120,14 @@
         "actionEffectOn": "SPELL_TARGET",
         "baseActionValue": 1,
         "maxActionTurns": 4,
-        "actionMaxStacks": 3,
+        "actionMaxStacks": 2,
         "chanceToPerformAction": 100,
         "actionStatusEffect": "DEBUFF"
       }
     ],
     "spellLevel": 2,
     "spellManaCost": 37,
-    "turnCoolDown": 0
+    "turnCoolDown": 3
   },
   {
     "spellId": 406,

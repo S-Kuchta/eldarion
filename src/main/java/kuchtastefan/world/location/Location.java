@@ -90,16 +90,16 @@ public class Location {
         System.out.println("\tWhat do you want to do?");
         PrintUtil.printMenuOptions("Go back on the path", "Explore location", "Hero Menu");
 
-        if (this.getCountOfStageDiscovered() > 0) {
+        if (this.getCountOfStageDiscovered() > 0 || this.getCountOfStageCompleted() > 0) {
             System.out.println(ConsoleColor.YELLOW_UNDERLINED + "\t\t\t\t\t\t\tLocation Stages\t\t\t\t\t\t\t" + ConsoleColor.RESET);
             for (Map.Entry<Integer, LocationStage> locationStage : this.getLocationStages().entrySet()) {
                 if (locationStage.getValue().isDiscovered() || locationStage.getValue().isCleared()) {
 
                     String completed;
-                    if (locationStage.getValue() instanceof CanEnterStageAfterComplete && this.locationStatus == LocationStatus.COMPLETED) {
+                    if (locationStage.getValue() instanceof CanEnterStageAfterComplete && this.isCompleted()) {
                         completed = "";
                     } else {
-                        completed = locationStage.getValue().getStageStatus().equals(LocationStageStatus.CLEARED) ? ConsoleColor.YELLOW + " ✔ " + ConsoleColor.RESET : "";
+                        completed = locationStage.getValue().isCleared() ? ConsoleColor.YELLOW + " ✔ " + ConsoleColor.RESET : "";
                     }
 
                     PrintUtil.printIndexAndText(String.valueOf(index + locationStage.getKey()), locationStage.getValue().getStageName() + " " + completed);
@@ -120,7 +120,7 @@ public class Location {
     public int getCountOfStageDiscovered() {
         int count = 0;
         for (LocationStage locationStage : locationStages.values()) {
-            if (locationStage.getStageStatus() == LocationStageStatus.DISCOVERED) {
+            if (locationStage.isDiscovered()) {
                 count++;
             }
         }
@@ -131,7 +131,7 @@ public class Location {
     public int getCountOfStageCompleted() {
         int count = 0;
         for (LocationStage locationStage : locationStages.values()) {
-            if (locationStage.getStageStatus() == LocationStageStatus.CLEARED) {
+            if (locationStage.isCleared()) {
                 count++;
             }
         }

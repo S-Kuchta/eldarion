@@ -5,6 +5,7 @@ import kuchtastefan.character.hero.save.location.HeroLocation;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.AutosaveCount;
@@ -111,8 +112,9 @@ public class LocationService {
 
             if (location instanceof QuestLocation questLocation) {
                 QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(questLocation.getQuestObjectiveId());
-                questObjective.verifyQuestObjectiveCompletion(hero);
                 questObjective.printProgress(hero);
+                questObjective.verifyQuestObjectiveCompletion(hero);
+                QuestDB.findQuestByObjectiveId(questLocation.getQuestObjectiveId()).checkIfQuestIsCompleted(hero);
             }
         }
     }

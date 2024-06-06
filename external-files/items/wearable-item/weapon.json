@@ -23,31 +23,33 @@
       "ATTACK": 1,
       "INTELLECT": 1
     },
-    "itemLevel": 1
+    "itemLevel": 2
   },
   {
     "itemId": 203,
-    "name": "Arcana Shard Spire",
+    "name": "Opaque Wand",
     "abilities": {
-      "ATTACK": 2,
-      "HASTE": 3
+      "ATTACK": 1,
+      "HASTE": 1
     },
-    "itemLevel": 1
+    "itemLevel": 2
   },
   {
     "itemId": 204,
     "type": "WearableItem",
-    "name": "Death Bringer",
-    "wearableItemQuality": "QUEST_REWARD",
+    "name": "Battle Slayer",
+    "wearableItemQuality": "SPECIAL",
     "abilities": {
-      "ATTACK": 1
+      "ATTACK": 2,
+      "STRENGTH": 1,
+      "CRITICAL_HIT_CHANCE": 1
     },
     "itemLevel": 1
   },
   {
     "itemId": 205,
     "type": "WearableItem",
-    "name": "ASH BRINGER",
+    "name": "Gleaming Claymore",
     "wearableItemQuality": "SPECIAL",
     "abilities": {
       "ATTACK": 1,
@@ -115,8 +117,28 @@
   },
   {
     "itemId": 212,
-    "name": "Night Watch ShortSword",
+    "name": "Assassin's Blade",
     "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "ATTACK": 4,
+      "HASTE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 213,
+    "name": "Night Watch ShortSword",
+    "wearableItemQuality": "QUEST_REWARD",
+    "abilities": {
+      "ATTACK": 4,
+      "HASTE": 2
+    },
+    "itemLevel": 2
+  },
+  {
+    "itemId": 214,
+    "name": "Night Watch Stave",
+    "wearableItemQuality": "QUEST_REWARD",
     "abilities": {
       "ATTACK": 4,
       "HASTE": 2

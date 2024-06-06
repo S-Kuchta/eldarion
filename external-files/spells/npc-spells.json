@@ -66,7 +66,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 5,
+        "baseActionValue": 12,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -251,7 +251,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 10,
+        "baseActionValue": 12,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -259,5 +259,123 @@
     "spellLevel": 0,
     "spellManaCost": 25,
     "turnCoolDown": 2
+  },
+  {
+    "spellId": 113,
+    "spellName": "FrostBolt",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "baseActionValue": 12,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100
+      },
+      {
+        "type": "ActionDecreaseAbilityPoint",
+        "actionName": "DECREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_TARGET",
+        "baseActionValue": 0,
+        "maxActionTurns": 2,
+        "actionMaxStacks": 1,
+        "chanceToPerformAction": 50,
+        "ability": "HASTE",
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "spellLevel": 0,
+    "spellManaCost": 25,
+    "turnCoolDown": 2
+  },
+  {
+    "spellId": 114,
+    "spellName": "Fiend Fury",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "baseActionValue": 2,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "chanceToPerformAction": 100,
+        "ability": "ATTACK",
+        "actionStatusEffect": "BUFF"
+      },
+      {
+        "type": "ActionDecreaseAbilityPoint",
+        "actionName": "DECREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "baseActionValue": 2,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "chanceToPerformAction": 100,
+        "ability": "RESIST_DAMAGE",
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "spellLevel": 0,
+    "spellManaCost": 25,
+    "turnCoolDown": 6
+  },
+  {
+    "spellId": 115,
+    "spellName": "Fiend Fury",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionStun",
+        "actionName": "STUN",
+        "actionEffectOn": "SPELL_TARGET",
+        "baseActionValue": 0,
+        "maxActionTurns": 1,
+        "actionMaxStacks": 1,
+        "chanceToPerformAction": 100,
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "spellLevel": 0,
+    "spellManaCost": 25,
+    "turnCoolDown": 6
+  },
+  {
+    "spellId": 116,
+    "spellName": "Summon Skeleton",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "baseActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "summonedNpcId": 311
+      },
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "baseActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 50,
+        "summonedNpcId": 311
+      },
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "baseActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 20,
+        "summonedNpcId": 311
+      }
+    ],
+    "spellLevel": 0,
+    "spellManaCost": 29,
+    "turnCoolDown": 8
   }
 ]

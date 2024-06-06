@@ -7,5 +7,14 @@
     "maximumRegionLevel": 2,
     "biome": "FOREST",
     "locationsId": [0,1,2,3,4]
+  },
+  {
+    "regionId": 1,
+    "regionName": "DarkShire",
+    "regionDescription": "Magic forest",
+    "minimumRegionLevel": 1,
+    "maximumRegionLevel": 2,
+    "biome": "DARK_FOREST",
+    "locationsId": [5,6,7,8]
   }
 ]

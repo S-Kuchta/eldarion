@@ -383,5 +383,134 @@
         ]
       }
     }
+  },
+  {
+    "type": "Location",
+    "locationStatus": "NOT_DISCOVERED",
+    "locationId": 5,
+    "locationName": "Tranquil Gardens",
+    "locationLevel": 3,
+    "locationDifficulty": "MEDIUM",
+    "locationStages": {
+      "0": {
+        "type": "LocationStageCombat",
+        "stageName": "Garden Entrance",
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          305,
+          305
+        ]
+      },
+      "1": {
+        "type": "LocationStageCombat",
+        "stageName": "Garden Path",
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          305,
+          306
+        ]
+      },
+      "2": {
+        "type": "LocationStageCombat",
+        "stageName": "Garden Fountain",
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          305,
+          306,
+          303
+        ]
+      }
+    }
+  },
+  {
+    "type": "Location",
+    "locationStatus": "NOT_DISCOVERED",
+    "locationId": 6,
+    "locationName": "Tranquil Gardens Cemetery",
+    "locationLevel": 3,
+    "locationDifficulty": "MEDIUM",
+    "locationStages": {
+      "0": {
+        "type": "LocationStageCombat",
+        "stageName": "Cemetery Entrance",
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          307,
+          308
+        ]
+      },
+      "1": {
+        "type": "LocationStageCombat",
+        "stageName": "Cemetery Path",
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          307,
+          308
+        ]
+      },
+      "2": {
+        "type": "LocationStageCombat",
+        "stageName": "Cemetery Chapel",
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          307,
+          307,
+          304
+        ]
+      }
+    }
+  },
+  {
+    "type": "Location",
+    "locationStatus": "NOT_DISCOVERED",
+    "locationId": 7,
+    "locationName": "Raven Hill graveyard",
+    "locationLevel": 3,
+    "locationDifficulty": "HARD",
+    "locationStages": {
+      "0": {
+        "type": "LocationStageCombat",
+        "stageName": "Graveyard Entrance",
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          302,
+          302
+        ]
+      },
+      "1": {
+        "type": "LocationStageCombat",
+        "stageName": "Shrouded Path",
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          302,
+          302,
+          302
+        ]
+      },
+      "2": {
+        "type": "LocationStageCombat",
+        "stageName": "Forsaken Chapel",
+        "itemsIdNeededToEnterStage": [],
+        "locationEnemyIdList": [
+          309
+        ]
+      }
+    }
+  },
+  {
+    "type": "Location",
+    "locationStatus": "DISCOVERED",
+    "locationId": 8,
+    "locationName": "DuskWood Night Watch camp",
+    "locationLevel": 3,
+    "locationDifficulty": "EASY",
+    "locationStages": {
+      "0": {
+        "type": "LocationStageQuestGiver",
+        "stageName": "Commander Tent",
+        "itemsIdNeededToEnterStage": [],
+        "questGiverId": 4
+      }
+    }
   }
 ]

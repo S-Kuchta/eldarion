@@ -25,7 +25,6 @@
   {
     "type": "QuestEnemy",
     "npcId": 401,
-    "questObjectiveId": 1,
     "name": "Weak Water Elemental",
     "characterRarity": "COMMON",
     "npcType": "MAGE",
@@ -50,7 +49,6 @@
   {
     "type": "QuestEnemy",
     "npcId": 402,
-    "questObjectiveId": 2,
     "name": "Lake Isle Water Elemental",
     "characterRarity": "RARE",
     "npcType": "MAGE",

@@ -52,19 +52,20 @@
     "characterRarity": "RARE",
     "npcType": "WARRIOR",
     "baseAbilities": {
-      "ATTACK": 7,
-      "RESIST_DAMAGE": 3,
-      "STRENGTH": 3,
+      "ATTACK": 9,
+      "RESIST_DAMAGE": 4,
+      "STRENGTH": 5,
       "INTELLECT": 1,
       "SPIRIT": 1,
       "HASTE": 4,
       "CRITICAL_HIT_CHANCE": 5,
-      "HEALTH": 90,
-      "MANA": 40,
+      "HEALTH": 92,
+      "MANA": 50,
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
-      100
+      100,
+      103
     ],
     "level": 3
   },
@@ -114,5 +115,176 @@
       110
     ],
     "level": 2
+  },
+  {
+    "type": "QuestEnemy",
+    "npcId": 305,
+    "characterRarity": "COMMON",
+    "npcType": "WARRIOR",
+    "baseAbilities": {
+      "ATTACK": 7,
+      "RESIST_DAMAGE": 6,
+      "STRENGTH": 5,
+      "INTELLECT": 1,
+      "SPIRIT": 2,
+      "HASTE": 4,
+      "CRITICAL_HIT_CHANCE": 5,
+      "HEALTH": 78,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      103
+    ],
+    "level": 3
+  },
+  {
+    "type": "QuestEnemy",
+    "npcId": 306,
+    "name": "Skeletal Mage",
+    "characterRarity": "COMMON",
+    "npcType": "MAGE",
+    "baseAbilities": {
+      "ATTACK": 7,
+      "RESIST_DAMAGE": 4,
+      "STRENGTH": 2,
+      "INTELLECT": 7,
+      "SPIRIT": 4,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 4,
+      "HEALTH": 71,
+      "MANA": 71,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      112
+    ],
+    "level": 3
+  },
+  {
+    "type": "QuestEnemy",
+    "npcId": 307,
+    "name": "Skeletal Fiend",
+    "characterRarity": "COMMON",
+    "npcType": "WARRIOR",
+    "baseAbilities": {
+      "ATTACK": 9,
+      "RESIST_DAMAGE": 6,
+      "STRENGTH": 5,
+      "INTELLECT": 1,
+      "SPIRIT": 2,
+      "HASTE": 4,
+      "CRITICAL_HIT_CHANCE": 6,
+      "HEALTH": 78,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      103,
+      114
+    ],
+    "level": 3
+  },
+  {
+    "type": "QuestEnemy",
+    "npcId": 308,
+    "name": "Skeletal Horror",
+    "characterRarity": "COMMON",
+    "npcType": "WARRIOR",
+    "baseAbilities": {
+      "ATTACK": 7,
+      "RESIST_DAMAGE": 4,
+      "STRENGTH": 7,
+      "INTELLECT": 1,
+      "SPIRIT": 2,
+      "HASTE": 4,
+      "CRITICAL_HIT_CHANCE": 3,
+      "HEALTH": 92,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      103,
+      115
+    ],
+    "level": 3
+  },
+  {
+    "type": "QuestEnemy",
+    "npcId": 309,
+    "name": "Mor'Ladim",
+    "characterRarity": "ELITE",
+    "npcType": "WARRIOR",
+    "baseAbilities": {
+      "ATTACK": 15,
+      "RESIST_DAMAGE": 10,
+      "STRENGTH": 10,
+      "INTELLECT": 4,
+      "SPIRIT": 4,
+      "HASTE": 6,
+      "CRITICAL_HIT_CHANCE": 5,
+      "HEALTH": 127,
+      "MANA": 64,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      103,
+      114,
+      115
+    ],
+    "level": 3
+  },
+  {
+    "type": "Enemy",
+    "npcId": 310,
+    "name": "Lord Malathrom",
+    "characterRarity": "ELITE",
+    "npcType": "WARRIOR",
+    "baseAbilities": {
+      "ATTACK": 15,
+      "RESIST_DAMAGE": 10,
+      "STRENGTH": 3,
+      "INTELLECT": 11,
+      "SPIRIT": 6,
+      "HASTE": 6,
+      "CRITICAL_HIT_CHANCE": 5,
+      "HEALTH": 106,
+      "MANA": 78,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      113,
+      116
+    ],
+    "level": 3
+  },
+  {
+    "type": "NonPlayerCharacter",
+    "npcId": 311,
+    "name": "Summoned Skeleton",
+    "characterRarity": "SUMMONED",
+    "npcType": "WARRIOR",
+    "baseAbilities": {
+      "ATTACK": 6,
+      "RESIST_DAMAGE": 6,
+      "STRENGTH": 6,
+      "INTELLECT": 1,
+      "SPIRIT": 1,
+      "HASTE": 6,
+      "CRITICAL_HIT_CHANCE": 6,
+      "HEALTH": 57,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100
+    ],
+    "level": 1
   }
 ]

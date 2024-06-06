@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum Biome {
     FOREST("Region"),
+    DARK_FOREST("Region"),
     HIGHLAND("Region"),
     MINE("Location"),
     CAVE("Location"),

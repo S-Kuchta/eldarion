@@ -90,5 +90,65 @@
       ],
       "goldsReward": 0.0
     }
+  },
+  {
+    "type": "Quest",
+    "id": 5,
+    "title": "The Night Watch",
+    "description": "As Commander of The Night Watch it is my sworn duty to protect the citizens of DarkShire. Mystic Hollow has retracted their commissioned guards from their posts here, leaving us to our own devices.\n\nIf you feel worthy of the task, we need your help! Assist The Night Watch by venturing forth into Tranquil Gardens, just south of DarkShire, and slaying 4 Skeletal Warriors and 2 Skeletal Mages. The undead threat must be thwarted!",
+    "level": 3,
+    "instantTurnIn": false,
+    "objectivesIds": [
+      9,
+      10
+    ],
+    "reward": {
+      "itemsReward": [
+        901,
+        901,
+        903,
+        903
+      ],
+      "goldsReward": 40.0
+    }
+  },
+  {
+    "type": "QuestChain",
+    "id": 6,
+    "previousQuestId": 5,
+    "title": "The Night Watch",
+    "description": "I'm getting reports of an undead infestation in the forest! If you're up to the job, journey to the Tranquil Gardens Cemetery and slay 3 of those vile Skeletal Fiends and 3 Skeletal Horrors. The undead must be driven from Duskwood!",
+    "level": 3,
+    "instantTurnIn": false,
+    "objectivesIds": [
+      11,
+      12
+    ],
+    "reward": {
+      "itemsReward": [
+        901,
+        903
+      ],
+      "goldsReward": 60.0
+    }
+  },
+  {
+    "type": "QuestChain",
+    "id": 7,
+    "previousQuestId": 6,
+    "title": "Mor'Ladim",
+    "description": "From what my scouts tell me, Mor'Ladim wanders throughout Duskwood, following a strange and meandering path through the cemetery. We buried him out past the house on the hill, you know where that is?\n\nThere isn't anything I can do to help you, but I wish you good luck.",
+    "level": 3,
+    "instantTurnIn": false,
+    "objectivesIds": [
+      13
+    ],
+    "reward": {
+      "itemsReward": [
+        901,
+        903
+      ],
+      "goldsReward": 80.0
+    }
   }
 ]

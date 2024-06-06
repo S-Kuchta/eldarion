@@ -1,6 +1,7 @@
 package kuchtastefan.quest.questObjectives.specificQuestObjectives;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.save.quest.HeroQuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.service.FileService;
@@ -15,8 +16,8 @@ class QuestKillObjectiveTest {
     void setUp() {
         QuestObjectiveDB.getQUEST_OBJECTIVE_DB().clear();
         FileService fileService = new FileService();
-        fileService.importQuestsObjectiveFromFile();
         fileService.importCreaturesFromFile();
+        fileService.importQuestsObjectiveFromFile();
     }
 
 

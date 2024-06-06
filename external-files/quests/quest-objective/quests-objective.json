@@ -54,5 +54,40 @@
     "itemId": 1300,
     "locationId": 1,
     "locationStageId": 3
+  },
+  {
+    "type": "QuestKillObjective",
+    "id": 9,
+    "title": "Kill Skeletal Warrior",
+    "questEnemyId": 305,
+    "countEnemyToKill": 4
+  },
+  {
+    "type": "QuestKillObjective",
+    "id": 10,
+    "title": "Kill Skeletal Mage",
+    "questEnemyId": 306,
+    "countEnemyToKill": 2
+  },
+  {
+    "type": "QuestKillObjective",
+    "id": 11,
+    "title": "Kill Skeletal Fiend",
+    "questEnemyId": 307,
+    "countEnemyToKill": 3
+  },
+  {
+    "type": "QuestKillObjective",
+    "id": 12,
+    "title": "Kill Skeletal Horror",
+    "questEnemyId": 308,
+    "countEnemyToKill": 3
+  },
+  {
+    "type": "QuestKillObjective",
+    "id": 13,
+    "title": "Kill Mor'Ladim",
+    "questEnemyId": 309,
+    "countEnemyToKill": 3
   }
 ]

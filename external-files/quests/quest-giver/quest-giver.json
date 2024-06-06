@@ -26,5 +26,14 @@
     "questsId": [
       4
     ]
+  },
+  {
+    "questGiverId": 4,
+    "baseName": "Commander Althea Ebonlocke",
+    "questsId": [
+      5,
+      6,
+      7
+    ]
   }
 ]

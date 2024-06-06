@@ -186,12 +186,12 @@ public class GameManager {
 
         SpellDB.SPELL_LIST.addAll(this.fileService.importSpellsFromFile());
 
+        this.fileService.importQuestGiverFromFile();
+        this.fileService.importEnemyGroupFromFile();
+        this.fileService.importCreaturesFromFile();
         this.fileService.importLocationsFromFile();
         this.fileService.importQuestsObjectiveFromFile();
         this.fileService.importQuestsListFromFile();
-        this.fileService.importEnemyGroupFromFile();
-        this.fileService.importQuestGiverFromFile();
-        this.fileService.importCreaturesFromFile();
         this.fileService.importRegionsFromFile();
         this.fileService.importNamesFromFile();
         this.fileService.importVendorsFromFile();

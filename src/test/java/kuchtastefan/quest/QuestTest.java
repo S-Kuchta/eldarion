@@ -84,15 +84,29 @@ class QuestTest {
         assertTrue(quest.canBeQuestAccepted(hero));
     }
 
-    // TODO - write test after adding chain quest
     @Test
-    void canBeQuestAcceptedByPreviousQuestShouldReturnFalse() {
-
+    void isQuestChainInstanceOfQuestChain() {
+        Quest quest = QuestDB.getQuestById(7);
+        assertInstanceOf(QuestChain.class, quest);
     }
 
-    // TODO - write test after adding chain quest
+    @Test
+    void canBeQuestAcceptedByPreviousQuestShouldReturnFalse() {
+        Hero hero = new Hero("Test");
+        Quest previousQuest = QuestDB.getQuestById(6);
+        Quest chainQuest = QuestDB.getQuestById(7);
+
+        previousQuest.setStatus(QuestStatus.ACCEPTED);
+        assertFalse(chainQuest.canBeQuestAccepted(hero));
+    }
+
     @Test
     void canBeQuestAcceptedByPreviousQuestShouldReturnTrue() {
+        Hero hero = new Hero("Test");
+        Quest previousQuest = QuestDB.getQuestById(6);
+        Quest chainQuest = QuestDB.getQuestById(7);
 
+        previousQuest.setStatus(QuestStatus.TURNED_IN);
+        assertTrue(chainQuest.canBeQuestAccepted(hero));
     }
 }

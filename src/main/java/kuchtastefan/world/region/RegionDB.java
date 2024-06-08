@@ -12,14 +12,6 @@ public class RegionDB {
     private static final Map<Integer, Region> REGION_DB = new HashMap<>();
 
     public static void addRegionToDB(Region region) {
-        if (region.getAllLocations() == null) {
-            region.setAllLocations(new ArrayList<>());
-        }
-
-        for (int locationId : region.getLocationsId()) {
-            region.allLocations.add(LocationDB.getLocationById(locationId));
-        }
-
         REGION_DB.put(region.getRegionId(), region);
     }
 

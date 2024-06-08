@@ -130,19 +130,93 @@
     "name": "Night Watch ShortSword",
     "wearableItemQuality": "QUEST_REWARD",
     "abilities": {
-      "ATTACK": 4,
-      "HASTE": 2
+      "ATTACK": 3,
+      "STRENGTH": 3,
+      "CRITICAL_HIT_CHANCE": 1
     },
-    "itemLevel": 2
+    "itemLevel": 3
   },
   {
     "itemId": 214,
+    "name": "Night Watch Dagger",
+    "wearableItemQuality": "QUEST_REWARD",
+    "abilities": {
+      "ATTACK": 3,
+      "HASTE": 3,
+      "CRITICAL_HIT_CHANCE": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 215,
     "name": "Night Watch Stave",
     "wearableItemQuality": "QUEST_REWARD",
     "abilities": {
-      "ATTACK": 4,
-      "HASTE": 2
+      "ATTACK": 3,
+      "INTELLECT": 3,
+      "SPIRIT": 1
     },
-    "itemLevel": 2
+    "itemLevel": 3
+  },
+  {
+    "itemId": 216,
+    "name": "Ancient War Sword",
+    "abilities": {
+      "ATTACK": 2,
+      "STRENGTH": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 217,
+    "name": "Ancient War Dagger",
+    "abilities": {
+      "ATTACK": 2,
+      "HASTE": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 218,
+    "name": "Ancient War Stave of Intellect",
+    "abilities": {
+      "ATTACK": 2,
+      "INTELLECT": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 219,
+    "name": "Ancient War Stave of Spirit",
+    "abilities": {
+      "ATTACK": 1,
+      "SPIRIT": 2
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 220,
+    "name": "Ancient War Stave of Defence",
+    "abilities": {
+      "ATTACK": 1,
+      "RESIST_DAMAGE": 2
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 221,
+    "name": "Ancient War Dagger of Attack",
+    "abilities": {
+      "ATTACK": 3
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 222,
+    "name": "Ancient War Dagger of Spirit",
+    "abilities": {
+      "SPIRIT": 3
+    },
+    "itemLevel": 3
   }
 ]

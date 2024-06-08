@@ -104,6 +104,8 @@ class QuestTest {
     void canBeQuestAcceptedByPreviousQuestShouldReturnTrue() {
         Hero hero = new Hero("Test");
         Quest previousQuest = QuestDB.getQuestById(6);
+
+        // Quest with id 7 is QuestChain and have Quest with ID 6 as a previous Quest
         Quest chainQuest = QuestDB.getQuestById(7);
 
         previousQuest.setStatus(QuestStatus.TURNED_IN);

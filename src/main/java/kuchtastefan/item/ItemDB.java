@@ -20,6 +20,7 @@ public class ItemDB {
     private static final Map<Integer, Item> ITEM_DB = new HashMap<>();
 
     public static Item returnItemFromDB(int itemId) {
+
         return ITEM_DB.get(itemId);
     }
 
@@ -59,6 +60,10 @@ public class ItemDB {
     public static <T extends Item> Item getRandomItem(Class<T> itemClass, ItemFilter itemFilter) {
         List<T> items = returnFilteredItemList(itemClass, itemFilter);
         return items.get(RandomNumberGenerator.getRandomNumber(0, items.size() - 1));
+    }
+
+    public static List<Item> returnItemList() {
+        return new ArrayList<>(ItemDB.ITEM_DB.values());
     }
 
 }

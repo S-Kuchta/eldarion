@@ -126,8 +126,9 @@
     ],
     "reward": {
       "itemsReward": [
-        901,
-        903
+        213,
+        214,
+        215
       ],
       "goldsReward": 60.0
     }

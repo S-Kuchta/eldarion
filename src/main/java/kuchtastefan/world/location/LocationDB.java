@@ -35,17 +35,6 @@ public class LocationDB {
         return heroLocationStages;
     }
 
-    public static List<Location> returnDiscoveredAndClearedLocations() {
-        List<Location> discoveredLocations = new ArrayList<>();
-        for (Location location : LOCATION_DB.values()) {
-            if (location.isDiscovered() || location.isCompleted()) {
-                discoveredLocations.add(location);
-            }
-        }
-
-        return discoveredLocations;
-    }
-
     public static List<Location> getLocationListByIds(int[] locationIds) {
         List<Location> locations = new ArrayList<>();
         for (int locationId : locationIds) {
@@ -55,7 +44,7 @@ public class LocationDB {
         return locations;
     }
 
-    public static List<Location> getClearedAndDiscoveredLocationListByIds(int[] locationIds) {
+    public static List<Location> getClearedAndDiscoveredLocationsByIds(int[] locationIds) {
         List<Location> locations = new ArrayList<>();
         for (int locationId : locationIds) {
             if (getLocationById(locationId).isDiscovered() || getLocationById(locationId).isCompleted()) {

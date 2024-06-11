@@ -42,7 +42,7 @@ public class GameManager {
         this.initGame();
 
         while (true) {
-            QuestGiverCharacterDB.setAllQuestGiversName(this.hero);
+            QuestGiverCharacterDB.setAllQuestGiversName();
 
             System.out.println();
             PrintUtil.printLongDivider();

@@ -7,6 +7,7 @@ import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,7 +49,10 @@ public class Enemy extends NonPlayerCharacter {
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
 
         for (int i = 0; i < itemsForDrop; i++) {
-            addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)));
+            if (!addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)))) {
+                i--;
+            }
+//            addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)));
         }
 
         if (this.constantItemDrop != null) {
@@ -58,9 +62,16 @@ public class Enemy extends NonPlayerCharacter {
         }
     }
 
-    public void addItemToItemDrop(Item item) {
+    public boolean addItemToItemDrop(Item item) {
+        if (item instanceof KeyItem) {
+            return false;
+        }
+
         if (!this.itemsDrop.contains(item)) {
             this.itemsDrop.add(item);
+            return true;
+        } else {
+            return false;
         }
     }
 

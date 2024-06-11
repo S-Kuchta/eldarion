@@ -140,5 +140,61 @@
         "chanceToPerformAction": 100
       }
     ]
+  },
+  {
+    "itemId": 1008,
+    "name": "Coyote Steak",
+    "price": 39,
+    "itemLevel": 3,
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "baseActionValue": 40,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100
+      }
+    ]
+  },
+  {
+    "itemId": 1009,
+    "name": "Coyote Goulash",
+    "price": 39,
+    "itemLevel": 3,
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "baseActionValue": 40,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "baseActionValue": 3,
+        "maxActionTurns": 10,
+        "actionMaxStacks": 1,
+        "ability": "RESIST_DAMAGE",
+        "actionStatusEffect": "BUFF",
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100
+      }
+    ]
+  },
+  {
+    "itemId": 1010,
+    "name": "GoldHorn Tea",
+    "price": 30,
+    "itemLevel": 3,
+    "actionList": [
+      {
+        "type": "ActionRestoreMana",
+        "actionName": "HEAL",
+        "baseActionValue": 40,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100
+      }
+    ]
   }
 ]

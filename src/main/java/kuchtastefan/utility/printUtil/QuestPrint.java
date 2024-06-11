@@ -10,9 +10,7 @@ import kuchtastefan.utility.ConsoleColor;
 public class QuestPrint {
 
     public static void printCompleteQuestText(String questName) {
-        System.out.println("\t" + ConstantSymbol.QUEST_SYMBOL
-                + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET + " "
-                + ConstantSymbol.QUEST_SYMBOL);
+        System.out.println("\t" + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET);
     }
 
     public static void printQuestDetails(Quest quest, Hero hero) {
@@ -29,30 +27,6 @@ public class QuestPrint {
             System.out.println("\n\tQuest is completed!");
         }
 
-
-
         PrintUtil.printLongDivider();
     }
-
-    public static String returnQuestSuffix(Quest quest) {
-        switch (quest.getStatus()) {
-            case QuestStatus.UNAVAILABLE -> {
-                return "-" + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + "-";
-            }
-            case QuestStatus.AVAILABLE -> {
-                return "-" + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + "-";
-            }
-            case QuestStatus.COMPLETED -> {
-                return "-" + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + "-";
-            }
-            case QuestStatus.TURNED_IN -> {
-                return " -- Completed --";
-            }
-            default -> {
-                return "";
-            }
-        }
-    }
-
-
 }

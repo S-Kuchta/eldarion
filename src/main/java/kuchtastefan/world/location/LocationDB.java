@@ -28,7 +28,7 @@ public class LocationDB {
         Map<Integer, HeroLocationStage> heroLocationStages = new HashMap<>();
 
         for (Map.Entry<Integer, LocationStage> entry : LOCATION_DB.get(locationId).getLocationStages().entrySet()) {
-            heroLocationStage = new HeroLocationStage(entry.getKey(), entry.getValue().getStageStatus());
+            heroLocationStage = new HeroLocationStage(entry.getKey(), entry.getValue().getStageName(), entry.getValue().getStageStatus());
             heroLocationStages.put(entry.getKey(), heroLocationStage);
         }
 
@@ -59,8 +59,10 @@ public class LocationDB {
         for (HeroLocation heroLocation : heroLocations.getSaveEntities().values()) {
             Location location = getLocationById(heroLocation.getId());
             location.setLocationStatus(heroLocation.getLocationStatus());
+
             for (HeroLocationStage heroLocationStage : heroLocation.getStages().values()) {
-                location.getLocationStage(heroLocationStage.getOrder()).setStageStatus(heroLocationStage.getStageStatus());
+                location.getLocationStage(heroLocationStage.order()).setStageStatus(heroLocationStage.stageStatus());
+                location.getLocationStage(heroLocationStage.order()).setStageName(heroLocationStage.stageName());
             }
         }
     }

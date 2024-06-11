@@ -97,7 +97,7 @@
   },
   {
     "itemId": 210,
-    "name": "Disciple's Robe",
+    "name": "Disciple's Staff",
     "abilities": {
       "RESIST_DAMAGE": 1,
       "INTELLECT": 1
@@ -216,6 +216,16 @@
     "name": "Ancient War Dagger of Spirit",
     "abilities": {
       "SPIRIT": 3
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 223,
+    "name": "Mor'Ladim Falchion",
+    "abilities": {
+      "ATTACK": 3,
+      "CRITICAL_HIT_CHANCE": 3,
+      "RESIST_DAMAGE": 2
     },
     "itemLevel": 3
   }

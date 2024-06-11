@@ -1,7 +1,6 @@
 package kuchtastefan.quest.questGiver;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.quest.QuestDB;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,10 +8,6 @@ import java.util.Map;
 public class QuestGiverCharacterDB {
 
     private static final Map<Integer, QuestGiverCharacter> QUEST_GIVER_CHARACTER_DB = new HashMap<>();
-
-    public static String returnQuestGiverName(int questGiverId) {
-        return QUEST_GIVER_CHARACTER_DB.get(questGiverId).getName();
-    }
 
     public static void questGiverMenu(int questGiverId, Hero hero) {
         QUEST_GIVER_CHARACTER_DB.get(questGiverId).questGiverMenu(hero);
@@ -23,14 +18,13 @@ public class QuestGiverCharacterDB {
     }
 
     public static void addQuestGiverToDB(QuestGiverCharacter questGiverCharacter) {
-//        questGiverCharacter.convertQuestIdToQuest();
-//        questGiverCharacter.setQuests(QuestDB.questListByIds(questGiverCharacter.getQuestsId()));
         questGiverCharacter.setName(questGiverCharacter.getBaseName());
         QUEST_GIVER_CHARACTER_DB.put(questGiverCharacter.getQuestGiverId(), questGiverCharacter);
     }
 
-    public static void setAllQuestGiversName(Hero hero) {
+    public static void setAllQuestGiversName() {
         for (QuestGiverCharacter questGiverCharacter : QUEST_GIVER_CHARACTER_DB.values()) {
+            questGiverCharacter.setQuests();
             questGiverCharacter.setNameBasedOnQuestsAvailable();
         }
     }

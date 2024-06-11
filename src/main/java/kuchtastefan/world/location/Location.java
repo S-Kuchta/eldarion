@@ -7,10 +7,7 @@ import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.printUtil.PrintUtil;
-import kuchtastefan.utility.printUtil.QuestPrint;
-import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
 import kuchtastefan.world.location.locationStage.LocationStage;
-import kuchtastefan.world.location.locationStage.LocationStageStatus;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageBlacksmith;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageVendor;
@@ -62,7 +59,7 @@ public class Location {
                 for (Quest quest : QuestGiverCharacterDB.returnQuestGiverFromDB(locationStageQuestGiver.getQuestGiverId()).getQuests()) {
                     if (quest.getStatus().equals(QuestStatus.AVAILABLE) || quest.getStatus().equals(QuestStatus.COMPLETED)) {
                         stringBuilder.append("[");
-                        stringBuilder.append(QuestPrint.returnQuestSuffix(quest));
+                        stringBuilder.append(quest.getStatusIcon());
                         stringBuilder.append("]");
                     }
                 }
@@ -101,11 +98,6 @@ public class Location {
                     if (locationStage.getValue().isCleared()) {
                         completed = locationStage.getValue().isCleared() ? ConsoleColor.YELLOW + "✔" + ConsoleColor.RESET : "";
                     }
-//                    if (locationStage.getValue() instanceof CanEnterStageAfterComplete && this.isCompleted()) {
-//                        completed = "";
-//                    } else {
-//                        completed = locationStage.getValue().isCleared() ? ConsoleColor.YELLOW + " ✔ " + ConsoleColor.RESET : "";
-//                    }
 
                     PrintUtil.printIndexAndText(String.valueOf(index + locationStage.getKey()), locationStage.getValue().getStageName() + " " + completed);
                     System.out.println();
@@ -120,6 +112,11 @@ public class Location {
                 locationStageQuestGiver.setStage(hero);
             }
         }
+    }
+
+    public void saveLocation(Hero hero) {
+        hero.getSaveGameEntities().getHeroLocations().addEntityIfNotContains(new HeroLocation(this.getLocationId(),
+                this.getLocationStatus(), LocationDB.returnHeroLocationStages(this.getLocationId())));
     }
 
     public int getCountOfStageDiscovered() {
@@ -142,11 +139,6 @@ public class Location {
         }
 
         return count;
-    }
-
-    public void saveLocation(Hero hero) {
-        hero.getSaveGameEntities().getHeroLocations().addEntityIfNotContains(new HeroLocation(this.getLocationId(),
-                this.getLocationStatus(), LocationDB.returnHeroLocationStages(this.getLocationId())));
     }
 
     public LocationStage getLocationStage(int order) {

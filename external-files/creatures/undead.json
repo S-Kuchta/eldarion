@@ -234,6 +234,9 @@
       "MANA": 64,
       "ABSORB_DAMAGE": 0
     },
+    "constantItemDrop": [
+      223
+    ],
     "npcCharacterSpellsId": [
       100,
       103,

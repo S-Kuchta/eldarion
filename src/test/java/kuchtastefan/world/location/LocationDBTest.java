@@ -27,7 +27,7 @@ class LocationDBTest {
     }
 
     @Test
-    void syncWithSaveGameDiscoveredLocationTest() {
+    void syncWithSaveGameDiscoveredLocationTestCheckLocationStatus() {
         Hero hero = new Hero("Test");
         Location location = LocationDB.getLocationById(1);
 

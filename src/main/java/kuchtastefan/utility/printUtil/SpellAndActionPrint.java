@@ -23,6 +23,10 @@ public class SpellAndActionPrint {
             System.out.print("[CoolDown: " + printActionTurnCoolDown(spell.getCurrentTurnCoolDown(), spell.getTurnCoolDown()) + "]");
         }
 
+        if (spell.isHitAllEnemy()) {
+            System.out.print("[Hit All Enemies]");
+        }
+
         for (Action action : spell.getSpellActions()) {
             if (spellTarget == null) {
                 spellTarget = new Hero("Target");
@@ -33,6 +37,11 @@ public class SpellAndActionPrint {
             action.printActionDescription(hero, spellTarget);
             String printChanceToPerform = action.getChanceToPerformAction() == 100 ? "" : " [" + action.getChanceToPerformAction() + "% chance to perform]";
             System.out.print(printChanceToPerform);
+            if (action instanceof ActionWithDuration actionWithDuration) {
+                if (actionWithDuration.getActionMaxStacks() > 1) {
+                    System.out.print(" [Stackable to: " + actionWithDuration.getActionMaxStacks() + "]");
+                }
+            }
             if (GameSettingsDB.returnGameSettingValue(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME)) {
                 System.out.print("\n\t\t" + action.getActionName().getDescription());
             }

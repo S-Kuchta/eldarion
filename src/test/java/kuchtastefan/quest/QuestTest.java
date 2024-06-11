@@ -52,6 +52,7 @@ class QuestTest {
     void checkIfQuestIsCompleted() {
         Hero hero = new Hero("Test");
         Quest quest = QuestDB.getQuestById(1);
+        quest.setStatus(QuestStatus.ACCEPTED);
 
         List<Quest> quests = new ArrayList<>(QuestDB.getQUEST_DB().values());
         QuestDB.setInitialQuestsStatusFromGivenList(hero, quests);

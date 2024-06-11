@@ -36,6 +36,7 @@ public class DiscoverLocationEvent extends Event {
             if (!location.isDiscovered() && location.getLocationLevel() <= hero.getLevel()) {
 
                 location.setLocationStatus(LocationStatus.DISCOVERED);
+                location.saveLocation(hero);
 
                 System.out.println("\t--> You discovered " + location.getLocationName() + ", recommended level: " + location.getLocationLevel() + " level <--");
                 hero.gainExperiencePoints(50);

@@ -10,21 +10,18 @@
         "actionName": "HEAL",
         "baseActionValue": 25,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "chanceToPerformAction": 100
       },
       {
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "baseActionValue": 1,
         "maxActionTurns": 10,
-        "actionDurationType": "REGION_ACTION",
         "actionMaxStacks": 1,
         "ability": "ATTACK",
         "actionStatusEffect": "BUFF",
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "chanceToPerformAction": 100
       }
     ]
   },
@@ -39,8 +36,7 @@
         "actionName": "HEAL",
         "baseActionValue": 20,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "chanceToPerformAction": 100
       }
     ]
   },
@@ -55,8 +51,7 @@
         "actionName": "HEAL",
         "baseActionValue": 22,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "chanceToPerformAction": 100
       }
     ]
   },
@@ -71,8 +66,7 @@
         "actionName": "HEAL",
         "baseActionValue": 18,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "chanceToPerformAction": 100
       }
     ]
   },
@@ -87,8 +81,63 @@
         "actionName": "HEAL",
         "baseActionValue": 16,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 100,
-        "canBeActionCriticalHit": false
+        "chanceToPerformAction": 100
+      }
+    ]
+  },
+  {
+    "itemId": 1005,
+    "name": "Bear steak",
+    "price": 30,
+    "itemLevel": 2,
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "baseActionValue": 27,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100
+      }
+    ]
+  },
+  {
+    "itemId": 1006,
+    "name": "Salmon",
+    "price": 33,
+    "itemLevel": 2,
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "baseActionValue": 29,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100
+      }
+    ]
+  },
+  {
+    "itemId": 1007,
+    "name": "Salmon Goulash",
+    "price": 45,
+    "itemLevel": 2,
+    "actionList": [
+      {
+        "type": "ActionRestoreHealth",
+        "actionName": "HEAL",
+        "baseActionValue": 30,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100
+      },
+      {
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "baseActionValue": 1,
+        "maxActionTurns": 10,
+        "actionMaxStacks": 1,
+        "ability": "RESIST_DAMAGE",
+        "actionStatusEffect": "BUFF",
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100
       }
     ]
   }

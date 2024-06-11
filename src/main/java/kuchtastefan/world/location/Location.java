@@ -1,6 +1,7 @@
 package kuchtastefan.world.location;
 
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.hero.save.location.HeroLocation;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
@@ -95,12 +96,16 @@ public class Location {
             for (Map.Entry<Integer, LocationStage> locationStage : this.getLocationStages().entrySet()) {
                 if (locationStage.getValue().isDiscovered() || locationStage.getValue().isCleared()) {
 
-                    String completed;
-                    if (locationStage.getValue() instanceof CanEnterStageAfterComplete && this.isCompleted()) {
-                        completed = "";
-                    } else {
-                        completed = locationStage.getValue().isCleared() ? ConsoleColor.YELLOW + " ✔ " + ConsoleColor.RESET : "";
+
+                    String completed = "";
+                    if (locationStage.getValue().isCleared()) {
+                        completed = locationStage.getValue().isCleared() ? ConsoleColor.YELLOW + "✔" + ConsoleColor.RESET : "";
                     }
+//                    if (locationStage.getValue() instanceof CanEnterStageAfterComplete && this.isCompleted()) {
+//                        completed = "";
+//                    } else {
+//                        completed = locationStage.getValue().isCleared() ? ConsoleColor.YELLOW + " ✔ " + ConsoleColor.RESET : "";
+//                    }
 
                     PrintUtil.printIndexAndText(String.valueOf(index + locationStage.getKey()), locationStage.getValue().getStageName() + " " + completed);
                     System.out.println();
@@ -137,6 +142,11 @@ public class Location {
         }
 
         return count;
+    }
+
+    public void saveLocation(Hero hero) {
+        hero.getSaveGameEntities().getHeroLocations().addEntityIfNotContains(new HeroLocation(this.getLocationId(),
+                this.getLocationStatus(), LocationDB.returnHeroLocationStages(this.getLocationId())));
     }
 
     public LocationStage getLocationStage(int order) {

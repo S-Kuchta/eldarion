@@ -277,6 +277,7 @@ public class BattleService {
             selectedEnemyForShowSelection = "A";
             playerTarget = enemyList.getFirst();
         } catch (IndexOutOfBoundsException e) {
+            selectedEnemyForShowSelection = "A";
             PrintUtil.printEnterValidInput();
         }
     }

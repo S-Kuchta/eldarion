@@ -84,15 +84,14 @@ public class Quest {
                 return;
             }
         }
-
-//        if (!this.status.equals(QuestStatus.COMPLETED)) {
-        if (this.status != QuestStatus.COMPLETED) {
+        
+//        if (this.status != QuestStatus.COMPLETED) {
             if (hero.getSaveGameEntities().getHeroQuests().containsEntity(this.id)) {
                 QuestPrint.printCompleteQuestText(this.title);
             }
 
             this.status = QuestStatus.COMPLETED;
-        }
+//        }
 
         if (this.instantTurnIn) {
             this.turnInTheQuest(hero);

@@ -257,6 +257,7 @@ public class Hero extends GameCharacter {
             int goldToRemove = Constant.GOLD_TO_REMOVE_PER_LEVEL_AFTER_DEAD * this.getLevel();
             this.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
             this.getEffectiveAbilities().put(Ability.HEALTH, this.getEnhancedAbilities().get(Ability.HEALTH));
+            this.getEffectiveAbilities().put(Ability.MANA, this.getEnhancedAbilities().get(Ability.MANA));
 
             System.out.println("\n\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
             System.out.print("\t You lost " + goldToRemove + " golds!");

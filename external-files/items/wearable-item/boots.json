@@ -62,5 +62,78 @@
       "INTELLECT": 4
     },
     "itemLevel": 2
+  },
+  {
+    "itemId": 507,
+    "name": "Raincaller Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "MANA": 7,
+      "INTELLECT": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 508,
+    "name": "Everlast Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "SPIRIT": 2
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 509,
+    "name": "Vital Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "HASTE": 2
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 510,
+    "name": "Wrangler's Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "CRITICAL_HIT_CHANCE": 2
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 511,
+    "name": "Imposing Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "STRENGTH": 1,
+      "HASTE": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 512,
+    "name": "Barbaric Iron Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "STRENGTH": 2
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 513,
+    "name": "Blackforge Greaves",
+    "abilities": {
+      "RESIST_DAMAGE": 3
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 514,
+    "name": "Captain's Boots",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "HEALTH": 14
+    },
+    "itemLevel": 3
   }
 ]

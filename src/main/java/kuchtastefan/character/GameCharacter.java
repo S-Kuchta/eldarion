@@ -138,6 +138,10 @@ public abstract class GameCharacter {
         this.effectiveAbilities.put(Ability.HEALTH, this.getEffectiveAbilityValue(Ability.HEALTH) - damage);
     }
 
+    public void receiveDamageOverTime(int damage) {
+        this.effectiveAbilities.put(Ability.HEALTH, this.getEffectiveAbilityValue(Ability.HEALTH) - damage);
+    }
+
     public int returnDamageAfterResistDamage(int incomingDamage) {
         if (this.getEffectiveAbilityValue(Ability.RESIST_DAMAGE) >= incomingDamage) {
             return 0;

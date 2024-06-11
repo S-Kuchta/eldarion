@@ -29,7 +29,7 @@ public class ActionSummonCreature extends Action implements ActionWithoutValue {
     }
 
     private NonPlayerCharacter returnSummonedCharacter(int gameCharacterLevel) {
-        NonPlayerCharacter nonPlayerCharacter = CharacterDB.returnNewCharacter(this.summonedNpcId);
+        NonPlayerCharacter nonPlayerCharacter = CharacterDB.returnNewSummonedCreature(this.summonedNpcId);
         nonPlayerCharacter.increaseAbilityPointsByMultiplier(gameCharacterLevel);
 
         return nonPlayerCharacter;

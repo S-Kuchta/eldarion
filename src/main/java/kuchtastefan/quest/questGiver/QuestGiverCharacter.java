@@ -32,11 +32,11 @@ public class QuestGiverCharacter {
     }
 
     public void questGiverMenu(Hero hero) {
-        syncQuests();
-        QuestMenuService questMenuService = new QuestMenuService();
-        questMenuService.setQuestGiverCharacter(this);
         HintDB.printHint(HintName.QUEST_HINT);
 
+        setQuests();
+        QuestMenuService questMenuService = new QuestMenuService();
+        questMenuService.setQuestGiverCharacter(this);
         questMenuService.questGiverMenu(hero, this.quests);
         setNameBasedOnQuestsAvailable();
     }
@@ -48,19 +48,18 @@ public class QuestGiverCharacter {
      * If quest is turned in there will appear after name: - Completed -
      */
     public void setNameBasedOnQuestsAvailable() {
-        syncQuests();
         this.name = this.baseName + returnNameSuffix();
     }
 
     private String returnNameSuffix() {
-        int numberOfTurnedInQuests = 0;
+//        int numberOfTurnedInQuests = 0;
         boolean haveQuestAvailable = false;
         boolean haveQuestUnavailable = false;
 
         for (Quest quest : this.quests) {
-            if (quest.getStatus().equals(QuestStatus.TURNED_IN)) {
-                numberOfTurnedInQuests++;
-            }
+//            if (quest.getStatus().equals(QuestStatus.TURNED_IN)) {
+//                numberOfTurnedInQuests++;
+//            }
             if (quest.getStatus().equals(QuestStatus.UNAVAILABLE)) {
                 haveQuestUnavailable = true;
             }
@@ -86,9 +85,9 @@ public class QuestGiverCharacter {
             return ConsoleColor.RESET + " -" + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + "-";
         }
 
-        return numberOfTurnedInQuests == this.quests.size() ? ConsoleColor.YELLOW + "  ✔ " + ConsoleColor.RESET : "";
+        return "";
+//        return numberOfTurnedInQuests == this.quests.size() ? ConsoleColor.YELLOW + " ✔ " + ConsoleColor.RESET : "";
     }
-
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {
         boolean questCompleted = true;
@@ -109,15 +108,8 @@ public class QuestGiverCharacter {
         return questCompleted;
     }
 
-    public void syncQuests() {
+    public void setQuests() {
         this.quests = QuestDB.getQuestListByIds(this.questsId);
-    }
-
-    public void convertQuestIdToQuest() {
-        this.quests = new ArrayList<>();
-        for (int questId : this.questsId) {
-            this.quests.add(QuestDB.getQuestById(questId));
-        }
     }
 }
 

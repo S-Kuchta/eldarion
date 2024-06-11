@@ -21,11 +21,6 @@ public class QuestChain extends Quest {
 
     @Override
     public boolean canBeQuestAccepted(Hero hero) {
-        HeroQuest previousQuest = hero.getSaveGameEntities().getHeroQuests().getEntity(this.previousQuestId);
-        if (previousQuest == null) {
-            return false;
-        }
-
-        return QuestStatus.TURNED_IN.equals(previousQuest.getQuestStatus());
+        return QuestDB.getQuestById(this.previousQuestId).getStatus() == (QuestStatus.TURNED_IN);
     }
 }

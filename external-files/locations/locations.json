@@ -454,7 +454,7 @@
         "itemsIdNeededToEnterStage": [],
         "locationEnemyIdList": [
           307,
-          307,
+          308,
           304
         ]
       }
@@ -471,7 +471,9 @@
       "0": {
         "type": "LocationStageCombat",
         "stageName": "Graveyard Entrance",
-        "itemsIdNeededToEnterStage": [],
+        "itemsIdNeededToEnterStage": [
+
+        ],
         "locationEnemyIdList": [
           302,
           302
@@ -511,6 +513,12 @@
         "itemsIdNeededToEnterStage": [],
         "questGiverId": 4
       }
+    },
+    "1": {
+      "type": "LocationStageVendor",
+      "stageName": "DuskWood Night Watch camp keeper",
+      "itemsIdNeededToEnterStage": [],
+      "vendorId": 6
     }
   }
 ]

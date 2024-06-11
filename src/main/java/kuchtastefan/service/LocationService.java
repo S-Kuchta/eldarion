@@ -37,11 +37,10 @@ public class LocationService {
      */
     public void locationMenu(Hero hero, HeroMenuService heroMenuService) {
         HintDB.printHint(HintName.LOCATION_HINT);
-        hero.getSaveGameEntities().getHeroLocations().addEntityIfNotContains(new HeroLocation(location.getLocationId(),
-                location.getLocationStatus(), LocationDB.returnHeroLocationStages(location.getLocationId())));
 
         int index = 3;
         while (true) {
+            location.saveLocation(hero);
             location.questLocationStageSet(hero);
 
             CharacterPrint.printHeaderWithStatsBar(hero);

@@ -29,21 +29,22 @@
     "characterRarity": "COMMON",
     "npcType": "WARRIOR",
     "baseAbilities": {
-      "ATTACK": 5,
+      "ATTACK": 7,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 5,
       "INTELLECT": 1,
       "SPIRIT": 1,
       "HASTE": 3,
       "CRITICAL_HIT_CHANCE": 4,
-      "HEALTH": 80,
-      "MANA": 40,
+      "HEALTH": 85,
+      "MANA": 50,
       "ABSORB_DAMAGE": 0
     },
     "npcCharacterSpellsId": [
-      100
+      100,
+      117
     ],
-    "level": 2
+    "level": 3
   },
   {
     "type": "Enemy",
@@ -65,7 +66,8 @@
     },
     "npcCharacterSpellsId": [
       100,
-      103
+      117,
+      114
     ],
     "level": 3
   },
@@ -119,6 +121,7 @@
   {
     "type": "QuestEnemy",
     "npcId": 305,
+    "name": "Skeletal Warrior",
     "characterRarity": "COMMON",
     "npcType": "WARRIOR",
     "baseAbilities": {
@@ -231,6 +234,9 @@
       "MANA": 64,
       "ABSORB_DAMAGE": 0
     },
+    "constantItemDrop": [
+      223
+    ],
     "npcCharacterSpellsId": [
       100,
       103,

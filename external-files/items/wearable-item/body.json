@@ -63,6 +63,9 @@
     "itemId": 607,
     "name": "Insulated ChestGuard",
     "abilities": {
+      "RESIST_DAMAGE": 1,
+      "HEALTH": 7,
+      "STRENGTH": 1
     },
     "itemLevel": 3
   },
@@ -87,5 +90,27 @@
       "INTELLECT": 3
     },
     "itemLevel": 2
+  },
+  {
+    "itemId": 610,
+    "name": "Bloody Apron",
+    "wearableItemQuality": "QUEST_REWARD",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "MANA": 14,
+      "INTELLECT": 3
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 611,
+    "name": "GloomShroud Armor",
+    "wearableItemQuality": "QUEST_REWARD",
+    "abilities": {
+      "RESIST_DAMAGE": 3,
+      "HEALTH": 14,
+      "STRENGTH": 1
+    },
+    "itemLevel": 3
   }
 ]

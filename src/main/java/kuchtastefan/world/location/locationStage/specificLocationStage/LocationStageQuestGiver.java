@@ -1,8 +1,8 @@
 package kuchtastefan.world.location.locationStage.specificLocationStage;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestDB;
+import kuchtastefan.quest.questGiver.QuestGiverCharacter;
 import kuchtastefan.quest.questGiver.QuestGiverCharacterDB;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.locationStage.CanEnterStageAfterComplete;
@@ -28,8 +28,11 @@ public class LocationStageQuestGiver extends LocationStage implements CanEnterSt
     }
 
     public void setStage(Hero hero) {
-        QuestDB.setInitialQuestsStatusFromGivenList(hero, QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId).getQuests());
-        QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId).setNameBasedOnQuestsAvailable();
-        this.setStageName(QuestGiverCharacterDB.returnQuestGiverName(this.questGiverId));
+        QuestGiverCharacter questGiverCharacter = QuestGiverCharacterDB.returnQuestGiverFromDB(this.questGiverId);
+        QuestDB.setInitialQuestsStatusFromGivenList(hero, questGiverCharacter.getQuests());
+
+        questGiverCharacter.setQuests();
+        questGiverCharacter.setNameBasedOnQuestsAvailable();
+        setStageName(questGiverCharacter.getName());
     }
 }

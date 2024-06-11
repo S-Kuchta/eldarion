@@ -20,12 +20,13 @@ public abstract class LocationStage {
         this.stageName = stageName;
     }
 
+
     public abstract boolean exploreStage(Hero hero, Location location);
 
     private boolean haveHeroKey(Hero hero) {
         for (Integer itemId : this.itemsIdNeededToEnterStage) {
             Item item = ItemDB.returnItemFromDB(itemId);
-            if (!hero.getHeroInventory().getHeroInventory().containsKey(item)) {
+            if (!hero.getHeroInventory().hasRequiredItems(item, 1)) {
                 return false;
             }
         }
@@ -36,7 +37,7 @@ public abstract class LocationStage {
     public boolean canHeroEnterStage(Hero hero) {
         if (!this.haveHeroKey(hero)) {
             System.out.println("\tYou don't have needed keys to enter location! You need: ");
-            for (int itemId : this.getItemsIdNeededToEnterStage()) {
+            for (int itemId : this.itemsIdNeededToEnterStage) {
                 System.out.println("\t" + ItemDB.returnItemFromDB(itemId).getName() + ", ");
             }
 
@@ -44,7 +45,7 @@ public abstract class LocationStage {
         }
 
         if (!(this instanceof CanEnterStageAfterComplete) && this.isCleared()) {
-            System.out.println("\tNothing new to do in " + this.getStageName());
+            System.out.println("\tNothing new to do in " + this.stageName);
             return false;
         }
 

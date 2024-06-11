@@ -2,7 +2,6 @@
   {
     "regionId": 0,
     "regionName": "SilverWood Glade",
-    "regionDescription": "Magic forest",
     "minimumRegionLevel": 1,
     "maximumRegionLevel": 2,
     "biome": "FOREST",
@@ -10,8 +9,7 @@
   },
   {
     "regionId": 1,
-    "regionName": "DarkShire",
-    "regionDescription": "Magic forest",
+    "regionName": "DuskWood",
     "minimumRegionLevel": 1,
     "maximumRegionLevel": 2,
     "biome": "DARK_FOREST",

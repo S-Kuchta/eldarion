@@ -75,20 +75,21 @@ public class Quest {
      * Quest is completed if all questObjectives belonging to quest are completed.
      */
     public void checkIfQuestIsCompleted(Hero hero) {
+        if (this.status != QuestStatus.ACCEPTED) {
+            return;
+        }
+
         for (QuestObjective questObjective : this.objectives.values()) {
             if (!questObjective.isCompleted()) {
                 return;
             }
         }
 
-        if (!this.status.equals(QuestStatus.COMPLETED)) {
-            if (hero.getSaveGameEntities().getHeroQuests().containsEntity(this.id)) {
-                QuestPrint.printCompleteQuestText(this.title);
-            }
-
-            this.status = QuestStatus.COMPLETED;
+        if (hero.getSaveGameEntities().getHeroQuests().containsEntity(this.id)) {
+            QuestPrint.printCompleteQuestText(this.title);
         }
 
+        this.status = QuestStatus.COMPLETED;
         if (this.instantTurnIn) {
             this.turnInTheQuest(hero);
         }
@@ -135,14 +136,13 @@ public class Quest {
 
     public void setStatusIcon() {
         switch (this.getStatus()) {
-            case QuestStatus.UNAVAILABLE -> statusIcon = ConsoleColor.WHITE + "!" + ConsoleColor.RESET + "-";
+            case QuestStatus.UNAVAILABLE -> statusIcon = "-" + ConsoleColor.WHITE + "!" + ConsoleColor.RESET + "-";
             case QuestStatus.AVAILABLE ->
                     statusIcon = "-" + ConsoleColor.YELLOW_BOLD_BRIGHT + "!" + ConsoleColor.RESET + "-";
             case QuestStatus.COMPLETED ->
                     statusIcon = "-" + ConsoleColor.YELLOW_BOLD_BRIGHT + "?" + ConsoleColor.RESET + "-";
             case QuestStatus.TURNED_IN -> statusIcon = " -- Completed --";
             default -> statusIcon = "";
-
         }
     }
 }

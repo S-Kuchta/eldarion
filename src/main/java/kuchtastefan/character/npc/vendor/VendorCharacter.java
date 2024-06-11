@@ -31,7 +31,6 @@ public abstract class VendorCharacter {
     public abstract Class<? extends Item> returnItemClass();
 
     public void printVendorItemsOffer(Hero hero) {
-
         int index = 1;
         PrintUtil.printIndexAndText("0", "Go Back");
         System.out.println();

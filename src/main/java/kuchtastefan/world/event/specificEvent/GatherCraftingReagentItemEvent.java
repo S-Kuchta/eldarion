@@ -26,7 +26,7 @@ public class GatherCraftingReagentItemEvent extends Event {
             return true;
         }
 
-        System.out.println("--> During travelling You find and gather <--");
+        System.out.println("\t--> During travelling You find and gather <--");
         hero.getHeroInventory().addItemToInventory(item, numberOfFindingItems);
 
         return true;

@@ -28,22 +28,11 @@ public class LocationDB {
         Map<Integer, HeroLocationStage> heroLocationStages = new HashMap<>();
 
         for (Map.Entry<Integer, LocationStage> entry : LOCATION_DB.get(locationId).getLocationStages().entrySet()) {
-            heroLocationStage = new HeroLocationStage(entry.getKey(), entry.getValue().getStageStatus());
+            heroLocationStage = new HeroLocationStage(entry.getKey(), entry.getValue().getStageName(), entry.getValue().getStageStatus());
             heroLocationStages.put(entry.getKey(), heroLocationStage);
         }
 
         return heroLocationStages;
-    }
-
-    public static List<Location> returnDiscoveredAndClearedLocations() {
-        List<Location> discoveredLocations = new ArrayList<>();
-        for (Location location : LOCATION_DB.values()) {
-            if (location.isDiscovered() || location.isCompleted()) {
-                discoveredLocations.add(location);
-            }
-        }
-
-        return discoveredLocations;
     }
 
     public static List<Location> getLocationListByIds(int[] locationIds) {
@@ -55,7 +44,7 @@ public class LocationDB {
         return locations;
     }
 
-    public static List<Location> getClearedAndDiscoveredLocationListByIds(int[] locationIds) {
+    public static List<Location> getClearedAndDiscoveredLocationsByIds(int[] locationIds) {
         List<Location> locations = new ArrayList<>();
         for (int locationId : locationIds) {
             if (getLocationById(locationId).isDiscovered() || getLocationById(locationId).isCompleted()) {
@@ -70,8 +59,10 @@ public class LocationDB {
         for (HeroLocation heroLocation : heroLocations.getSaveEntities().values()) {
             Location location = getLocationById(heroLocation.getId());
             location.setLocationStatus(heroLocation.getLocationStatus());
+
             for (HeroLocationStage heroLocationStage : heroLocation.getStages().values()) {
-                location.getLocationStage(heroLocationStage.getOrder()).setStageStatus(heroLocationStage.getStageStatus());
+                location.getLocationStage(heroLocationStage.order()).setStageStatus(heroLocationStage.stageStatus());
+                location.getLocationStage(heroLocationStage.order()).setStageName(heroLocationStage.stageName());
             }
         }
     }

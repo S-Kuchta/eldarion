@@ -6,7 +6,7 @@
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
     "baseAbilities": {
-      "ATTACK": 3,
+      "ATTACK": 2,
       "RESIST_DAMAGE": 2,
       "STRENGTH": 3,
       "INTELLECT": 1,
@@ -29,7 +29,7 @@
     "characterRarity": "COMMON",
     "npcType": "ROGUE",
     "baseAbilities": {
-      "ATTACK": 4,
+      "ATTACK": 3,
       "RESIST_DAMAGE": 3,
       "STRENGTH": 3,
       "INTELLECT": 1,
@@ -232,7 +232,6 @@
       110,
       111,
       112
-
     ],
     "level": 2
   },

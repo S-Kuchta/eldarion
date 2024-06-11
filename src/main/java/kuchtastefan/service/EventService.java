@@ -42,8 +42,10 @@ public class EventService {
 
         hero.restoreHealthAndManaAfterTurn();
         hero.performActionsWithDuration(false);
+        hero.performActionsWithDuration(true);
+        hero.removeActionWithDuration();
         hero.printActionsWithDuration();
         hero.getCharacterSpellList().forEach(Spell::increaseSpellCoolDown);
-        hero.removeActionWithDuration();
+
     }
 }

@@ -377,5 +377,33 @@
     "spellLevel": 0,
     "spellManaCost": 29,
     "turnCoolDown": 8
+  },
+  {
+    "spellId": 117,
+    "spellName": "Rake",
+    "spellClass": "NPC",
+    "spellDescription": "",
+    "spellActions": [
+      {
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "baseActionValue": 3,
+        "actionEffectOn": "SPELL_TARGET",
+        "chanceToPerformAction": 100
+      },
+      {
+        "type": "ActionDealDamageOverTime",
+        "actionName": "DAMAGE_OVER_TIME",
+        "actionEffectOn": "SPELL_TARGET",
+        "baseActionValue": 5,
+        "maxActionTurns": 3,
+        "actionMaxStacks": 1,
+        "chanceToPerformAction": 100,
+        "actionStatusEffect": "DEBUFF"
+      }
+    ],
+    "spellLevel": 0,
+    "spellManaCost": 20,
+    "turnCoolDown": 5
   }
 ]

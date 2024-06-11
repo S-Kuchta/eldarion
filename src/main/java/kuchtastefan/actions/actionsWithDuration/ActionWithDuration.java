@@ -63,7 +63,7 @@ public abstract class ActionWithDuration extends Action {
     }
 
     public boolean checkIfActionReachMaxActionTurns() {
-        return this.maxActionTurns == this.currentActionTurn;
+        return this.currentActionTurn >= this.maxActionTurns;
     }
 
     @Override

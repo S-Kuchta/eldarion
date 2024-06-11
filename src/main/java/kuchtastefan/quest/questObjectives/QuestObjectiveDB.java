@@ -30,7 +30,7 @@ public class QuestObjectiveDB {
     public static void addQuestObjectiveToDB(QuestObjective questObjective) {
 
         if (questObjective instanceof QuestKillObjective questKillObjective) {
-            NonPlayerCharacter nonPlayerCharacter = CharacterDB.returnNewCharacter(questKillObjective.getQuestEnemyId());
+            NonPlayerCharacter nonPlayerCharacter = CharacterDB.getCharacter(questKillObjective.getQuestEnemyId());
             if (nonPlayerCharacter instanceof QuestEnemy questEnemy) {
                 questEnemy.setQuestObjectiveId(questKillObjective.getId());
             }

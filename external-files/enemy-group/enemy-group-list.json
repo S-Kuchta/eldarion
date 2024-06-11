@@ -55,5 +55,79 @@
       100,
       102
     ]
+  },
+  {
+    "biome": "DARK_FOREST",
+    "groupLevel": 3,
+    "enemiesId": [
+      301
+    ]
+  },
+  {
+    "biome": "DARK_FOREST",
+    "groupLevel": 3,
+    "enemiesId": [
+      302
+    ]
+  },
+  {
+    "biome": "DARK_FOREST",
+    "groupLevel": 3,
+    "enemiesId": [
+      301,
+      301
+    ]
+  },
+  {
+    "biome": "DARK_FOREST",
+    "groupLevel": 3,
+    "enemiesId": [
+      301,
+      301,
+      301
+    ]
+  },
+  {
+    "biome": "DARK_FOREST",
+    "groupLevel": 3,
+    "enemiesId": [
+      302,
+      302
+    ]
+  },
+  {
+    "biome": "DARK_FOREST",
+    "groupLevel": 3,
+    "enemiesId": [
+      302,
+      302,
+      302
+    ]
+  },
+  {
+    "biome": "DARK_FOREST",
+    "groupLevel": 3,
+    "enemiesId": [
+      301,
+      302
+    ]
+  },
+  {
+    "biome": "DARK_FOREST",
+    "groupLevel": 3,
+    "enemiesId": [
+      301,
+      301,
+      302
+    ]
+  },
+  {
+    "biome": "DARK_FOREST",
+    "groupLevel": 3,
+    "enemiesId": [
+      301,
+      302,
+      302
+    ]
   }
 ]

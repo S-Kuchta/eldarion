@@ -75,13 +75,18 @@ public class Quest {
      * Quest is completed if all questObjectives belonging to quest are completed.
      */
     public void checkIfQuestIsCompleted(Hero hero) {
+        if (this.status != QuestStatus.ACCEPTED) {
+            return;
+        }
+
         for (QuestObjective questObjective : this.objectives.values()) {
             if (!questObjective.isCompleted()) {
                 return;
             }
         }
 
-        if (!this.status.equals(QuestStatus.COMPLETED)) {
+//        if (!this.status.equals(QuestStatus.COMPLETED)) {
+        if (this.status != QuestStatus.COMPLETED) {
             if (hero.getSaveGameEntities().getHeroQuests().containsEntity(this.id)) {
                 QuestPrint.printCompleteQuestText(this.title);
             }

@@ -10,6 +10,7 @@ import kuchtastefan.item.ItemAndCount;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.PrintUtil;
 
@@ -21,6 +22,18 @@ public class BlacksmithingService implements UsingHeroInventory {
         PrintUtil.printMenuOptions("Go back", "Hero Inventory");
 
         final int choice = InputUtil.intScanner();
+//        while (true) {
+//            String choice = InputUtil.stringScanner().toUpperCase();
+//            ItemFilter itemFilter = new ItemFilter();
+//            if (choice.matches("\\d+")) {
+//                handleNumericChoice(hero, Integer.parseInt(choice), itemFilter);
+//                break;
+//            } else {
+//                itemFhandeNonNumericChoice();
+//            }
+//        }
+
+
         switch (choice) {
             case 0 -> {
             }
@@ -28,6 +41,7 @@ public class BlacksmithingService implements UsingHeroInventory {
             default -> PrintUtil.printEnterValidInput();
         }
     }
+
 
     /**
      * This method displays a menu for a specific wearable item.

@@ -11,6 +11,7 @@ import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.RandomNumberGenerator;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -84,6 +85,24 @@ public class WearableItem extends Item implements UsableItem, HaveType {
         Item reagent = ItemDB.getRandomItem(CraftingReagentItem.class, new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, this.itemLevel));
         return new ItemAndCount(reagent, RandomNumberGenerator.getRandomNumber(2, 4) + this.itemLevel);
     }
+
+//    @Override
+//    public void printTypeSelection() {
+//        for (WearableItemType wearableItemType : WearableItemType.values()) {
+//            System.out.println(wearableItemType);
+//        }
+//
+//        PrintUtil.printIndexAndText("A", "Weapon");
+//        PrintUtil.printIndexAndText("B", "Body");
+//        PrintUtil.printIndexAndText("C", "Boots");
+//        PrintUtil.printIndexAndText("D", "Hands");
+//        PrintUtil.printIndexAndText("E", "Head");
+//    }
+//
+//    @Override
+//    public ItemFilter returnItemType() {
+//        return null;
+//    }
 
     @Override
     public boolean equals(Object o) {

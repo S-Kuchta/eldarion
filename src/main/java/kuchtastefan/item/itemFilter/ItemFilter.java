@@ -2,6 +2,7 @@ package kuchtastefan.item.itemFilter;
 
 import kuchtastefan.item.itemType.ItemType;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * This class represents a filter for items. It is used to filter items based on their type and level.
@@ -9,6 +10,7 @@ import lombok.Getter;
 @Getter
 public class ItemFilter {
 
+    @Setter
     private ItemType itemType;
     private int maxItemLevel;
     private int minItemLevel;

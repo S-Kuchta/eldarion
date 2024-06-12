@@ -2,6 +2,7 @@ package kuchtastefan.item;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.constant.Constant;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.ConsoleColor;
@@ -37,6 +38,8 @@ public abstract class Item {
     public String getName() {
         return ConsoleColor.YELLOW + this.name + ConsoleColor.RESET;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

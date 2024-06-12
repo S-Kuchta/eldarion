@@ -6,7 +6,10 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.HaveType;
+import kuchtastefan.item.itemType.ItemType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
@@ -141,10 +144,58 @@ public class HeroInventory {
         }
     }
 
-    public <T extends Item> boolean selectItem(Hero hero, Class<T> itemClass, ItemFilter itemFilter, UsingHeroInventory usingHeroInventory, int indexStart) {
-        hero.getHeroInventory().printHeroInventory(itemClass, itemFilter, indexStart, hero);
+//    public <T extends Item> boolean selectItem(Hero hero, Class<T> itemClass, ItemFilter itemFilter, UsingHeroInventory usingHeroInventory, int indexStart) {
+//        hero.getHeroInventory().printHeroInventory(itemClass, itemFilter, indexStart, hero);
+//
+//        final int choice = InputUtil.intScanner();
+//        if (choice == 0) {
+//            usingHeroInventory.mainMenu(hero);
+//        } else {
+//            List<T> items = new ArrayList<>(hero.getHeroInventory().returnHeroInventory(itemClass, itemFilter).keySet());
+//            if (choice - 1 < items.size()) {
+//                return usingHeroInventory.itemOptions(hero, items.get(choice - 1));
+//            } else {
+//                PrintUtil.printEnterValidInput();
+//            }
+//        }
+//
+//        return false;
+//    }
 
-        final int choice = InputUtil.intScanner();
+    public <T extends Item> boolean selectItem(Hero hero, Class<T> itemClass, ItemFilter itemFilter, UsingHeroInventory usingHeroInventory, int indexStart) {
+        while (true) {
+
+//            for (ItemType itemType : itemFilter.getItemType().name()) {
+//
+//            }
+
+//            for (int i = 1; i < WearableItemType.values().length; i++) {
+//                PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(i), WearableItemType.values());
+//            }
+
+//            if (itemFilter.isCheckType()) {
+                itemFilter.getItemType().printTypeSelection();
+//            }
+
+
+//            PrintUtil.printIndexAndText("A", "Weapon");
+//            PrintUtil.printIndexAndText("B", "Body");
+//            PrintUtil.printIndexAndText("C", "Boots");
+//            PrintUtil.printIndexAndText("D", "Hands");
+//            PrintUtil.printIndexAndText("E", "Head");
+            System.out.println();
+            hero.getHeroInventory().printHeroInventory(itemClass, itemFilter, indexStart, hero);
+
+            String choice = InputUtil.stringScanner().toUpperCase();
+            if (choice.matches("\\d+")) {
+                return handleNumericChoice(usingHeroInventory, itemClass, hero, Integer.parseInt(choice), itemFilter);
+            } else {
+                itemFilter = handeNonNumericChoice(choice);
+            }
+        }
+    }
+
+    private <T extends Item> boolean handleNumericChoice(UsingHeroInventory usingHeroInventory, Class<T> itemClass, Hero hero, int choice, ItemFilter itemFilter) {
         if (choice == 0) {
             usingHeroInventory.mainMenu(hero);
         } else {
@@ -157,5 +208,28 @@ public class HeroInventory {
         }
 
         return false;
+    }
+
+    private ItemFilter handeNonNumericChoice(String choice) {
+        switch (choice) {
+            case "A" -> {
+                return new ItemFilter(WearableItemType.WEAPON);
+            }
+            case "B" -> {
+                return new ItemFilter(WearableItemType.BODY);
+            }
+            case "C" -> {
+                return new ItemFilter(WearableItemType.BOOTS);
+            }
+            case "D" -> {
+                return new ItemFilter(WearableItemType.HANDS);
+            }
+            case "E" -> {
+                return new ItemFilter(WearableItemType.HEAD);
+            }
+            default -> {
+                return new ItemFilter();
+            }
+        }
     }
 }

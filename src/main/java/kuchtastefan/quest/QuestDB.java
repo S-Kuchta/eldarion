@@ -16,18 +16,7 @@ public class QuestDB {
 
     public static void addQuestToDB(Quest quest) {
         quest.getReward().calculateExperiencePointsReward(quest.getLevel());
-        initializeQuestObjectives(quest);
         QUEST_DB.put(quest.getId(), quest);
-    }
-
-    private static void initializeQuestObjectives(Quest quest) {
-        if (quest.getObjectives() == null) {
-            quest.setObjectives(new HashMap<>());
-        }
-
-        for (int questObjectiveId : quest.getObjectivesIds()) {
-            quest.getObjectives().put(questObjectiveId, QuestObjectiveDB.getQuestObjectiveById(questObjectiveId));
-        }
     }
 
     public static List<Quest> getQuestListByIds(int[] questIds) {

@@ -4,6 +4,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.save.quest.HeroQuest;
 import kuchtastefan.character.hero.save.quest.HeroQuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.quest.questObjectives.ResetObjectiveProgress;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.annotationStrategy.Exclude;
@@ -11,7 +12,9 @@ import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.printUtil.QuestPrint;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.ArrayUtils;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,8 +30,6 @@ public class Quest {
     private final QuestReward reward;
     private final boolean instantTurnIn;
     @Exclude
-    private Map<Integer, QuestObjective> objectives;
-    @Exclude
     private QuestStatus status;
     @Exclude
     private String statusIcon;
@@ -36,7 +37,6 @@ public class Quest {
     public Quest(int id, String title, String description, int level,
                  int[] objectivesIds, QuestReward reward, boolean instantTurnIn) {
 
-        this.objectives = new HashMap<>();
         this.id = id;
         this.title = title;
         this.description = description;
@@ -58,7 +58,7 @@ public class Quest {
 
     public Map<Integer, HeroQuestObjective> getConvertedObjectiveMap() {
         Map<Integer, HeroQuestObjective> convertedQuestObjectiveMap = new HashMap<>();
-        for (QuestObjective questObjective : this.objectives.values()) {
+        for (QuestObjective questObjective : QuestObjectiveDB.getQuestObjectiveListByIds(this.objectivesIds)) {
             HeroQuestObjective heroQuestObjective = new HeroQuestObjective(questObjective.getId(), questObjective.isCompleted());
             convertedQuestObjectiveMap.put(questObjective.getId(), heroQuestObjective);
         }
@@ -67,7 +67,7 @@ public class Quest {
     }
 
     public boolean containsQuestObjective(int questObjectiveId) {
-        return this.objectives.containsKey(questObjectiveId);
+        return ArrayUtils.contains(this.objectivesIds, questObjectiveId);
     }
 
     /**
@@ -79,7 +79,7 @@ public class Quest {
             return;
         }
 
-        for (QuestObjective questObjective : this.objectives.values()) {
+        for (QuestObjective questObjective : QuestObjectiveDB.getQuestObjectiveListByIds(this.objectivesIds)) {
             if (!questObjective.isCompleted()) {
                 return;
             }
@@ -96,7 +96,7 @@ public class Quest {
     }
 
     private void verifyQuestObjectiveCompletion(Hero hero) {
-        for (QuestObjective questObjective : this.objectives.values()) {
+        for (QuestObjective questObjective : QuestObjectiveDB.getQuestObjectiveListByIds(this.objectivesIds)) {
             questObjective.verifyQuestObjectiveCompletion(hero);
         }
     }
@@ -113,7 +113,7 @@ public class Quest {
             PrintUtil.printLongDivider();
         }
 
-        for (QuestObjective questObjective : this.objectives.values()) {
+        for (QuestObjective questObjective : QuestObjectiveDB.getQuestObjectiveListByIds(this.objectivesIds)) {
             if (questObjective instanceof ResetObjectiveProgress resetObjectiveProgress) {
                 resetObjectiveProgress.resetCompletedQuestObjectiveAssignment(hero);
             }

@@ -5,6 +5,7 @@ import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;
+import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.ConsoleColor;
 
 public class QuestPrint {
@@ -20,7 +21,7 @@ public class QuestPrint {
 
         if (quest.getStatus() != QuestStatus.TURNED_IN) {
             System.out.println("\n\tQuest Objective(s):");
-            for (QuestObjective questObjective : quest.getObjectives().values()) {
+            for (QuestObjective questObjective : QuestObjectiveDB.getQuestObjectiveListByIds(quest.getObjectivesIds())) {
                 questObjective.printQuestObjectiveProgress(hero);
             }
         } else {

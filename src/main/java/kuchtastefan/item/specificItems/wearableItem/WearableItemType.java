@@ -38,7 +38,7 @@ public enum WearableItemType implements ItemType {
     }
 
     @Override
-    public ItemFilter returnItemType() {
-        return null;
+    public ItemFilter returnItemType(int ordinal) {
+        return new ItemFilter(WearableItemType.values()[ordinal - 1]);
     }
 }

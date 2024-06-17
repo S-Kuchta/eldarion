@@ -8,6 +8,7 @@ public interface ItemType {
 
     String name();
 
+    ItemFilter returnItemType(int ordinal);
+
     void printTypeSelection();
-    ItemFilter returnItemType();
 }

@@ -2,7 +2,6 @@ package kuchtastefan.item.specificItems.craftingItem;
 
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.ItemType;
-import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
@@ -35,7 +34,7 @@ public enum CraftingReagentItemType implements ItemType {
     }
 
     @Override
-    public ItemFilter returnItemType() {
+    public ItemFilter returnItemType(int ordinal) {
         return null;
     }
 }

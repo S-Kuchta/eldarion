@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 public class ItemFilter {
 
-    @Setter
+//    @Setter
     private ItemType itemType;
     private int maxItemLevel;
     private int minItemLevel;

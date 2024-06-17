@@ -164,25 +164,10 @@ public class HeroInventory {
 
     public <T extends Item> boolean selectItem(Hero hero, Class<T> itemClass, ItemFilter itemFilter, UsingHeroInventory usingHeroInventory, int indexStart) {
         while (true) {
-
-//            for (ItemType itemType : itemFilter.getItemType().name()) {
-//
-//            }
-
-//            for (int i = 1; i < WearableItemType.values().length; i++) {
-//                PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(i), WearableItemType.values());
-//            }
-
-//            if (itemFilter.isCheckType()) {
+            if (itemFilter.isCheckType()) {
                 itemFilter.getItemType().printTypeSelection();
-//            }
+            }
 
-
-//            PrintUtil.printIndexAndText("A", "Weapon");
-//            PrintUtil.printIndexAndText("B", "Body");
-//            PrintUtil.printIndexAndText("C", "Boots");
-//            PrintUtil.printIndexAndText("D", "Hands");
-//            PrintUtil.printIndexAndText("E", "Head");
             System.out.println();
             hero.getHeroInventory().printHeroInventory(itemClass, itemFilter, indexStart, hero);
 
@@ -190,7 +175,7 @@ public class HeroInventory {
             if (choice.matches("\\d+")) {
                 return handleNumericChoice(usingHeroInventory, itemClass, hero, Integer.parseInt(choice), itemFilter);
             } else {
-                itemFilter = handeNonNumericChoice(choice);
+                itemFilter = handeNonNumericChoice(choice, itemFilter);
             }
         }
     }
@@ -210,26 +195,7 @@ public class HeroInventory {
         return false;
     }
 
-    private ItemFilter handeNonNumericChoice(String choice) {
-        switch (choice) {
-            case "A" -> {
-                return new ItemFilter(WearableItemType.WEAPON);
-            }
-            case "B" -> {
-                return new ItemFilter(WearableItemType.BODY);
-            }
-            case "C" -> {
-                return new ItemFilter(WearableItemType.BOOTS);
-            }
-            case "D" -> {
-                return new ItemFilter(WearableItemType.HANDS);
-            }
-            case "E" -> {
-                return new ItemFilter(WearableItemType.HEAD);
-            }
-            default -> {
-                return new ItemFilter();
-            }
-        }
+    private ItemFilter handeNonNumericChoice(String choice, ItemFilter itemFilter) {
+        return itemFilter.getItemType().returnItemType(LetterToNumber.valueOf(choice).getValue());
     }
 }

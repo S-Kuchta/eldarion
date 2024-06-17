@@ -4,6 +4,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.UsingHeroInventory;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.itemType.ItemType;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.keyItem.KeyItem;
@@ -26,7 +27,8 @@ public class InventoryMenuService implements UsingHeroInventory {
             switch (choice) {
                 case 0 -> {
                 }
-                case 1 -> wearableItemsMenu(hero);
+//                case 1 -> wearableItemsMenu(hero);
+                case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.WEAPON), this, 1);
                 case 2 ->
                         hero.getHeroInventory().selectItem(hero, CraftingReagentItem.class, new ItemFilter(), this, 1);
                 case 3 -> hero.getHeroInventory().selectItem(hero, ConsumableItem.class, new ItemFilter(), this, 1);

@@ -37,7 +37,7 @@ public class BlacksmithingService implements UsingHeroInventory {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(), this, 1);
+            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.WEAPON), this, 1);
             default -> PrintUtil.printEnterValidInput();
         }
     }

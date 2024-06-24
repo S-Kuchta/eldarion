@@ -23,8 +23,7 @@ public class ItemLevelFilter {
         this.maxItemLevel = 0;
     }
 
-
-    public boolean isCheckLevel() {
-        return maxItemLevel != 0 || minItemLevel != 0;
+    public boolean checkLevelCondition(int itemLevel) {
+        return itemLevel >= minItemLevel && itemLevel <= maxItemLevel;
     }
 }

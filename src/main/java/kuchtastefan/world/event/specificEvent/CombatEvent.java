@@ -97,10 +97,10 @@ public class CombatEvent extends Event {
 
             PrintUtil.printMenuHeader(ConsoleColor.RESET + "Loot from " + enemy.getName());
             for (Item item : enemy.getItemsDrop()) {
-                hero.getHeroInventory().addItemToInventory(item, 1);
+                hero.getHeroInventoryManager().addItem(item, 1);
 
                 if (item instanceof QuestItem questItem) {
-                    hero.getHeroInventory().addQuestItemToInventory(questItem, 1, hero);
+                    hero.getHeroInventoryManager().addQuestItem(questItem, 1, hero);
                 }
             }
 

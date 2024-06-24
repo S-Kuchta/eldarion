@@ -151,6 +151,9 @@ public class GameManager {
         QuestObjectiveDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuestObjectives());
 //        QuestDB.loadQuests(this.hero);
         VendorCharacterDB.setVendorCurrentCharacterItemListId(gameLoaded.getVendorIdAndItemListId());
+
+//        if (hero.getHeroInventoryManager().getHeroItems().)
+        System.out.println(hero.getHeroInventoryManager().getHeroItems().getSaveEntities().size());
     }
 
     private void classSelect() {

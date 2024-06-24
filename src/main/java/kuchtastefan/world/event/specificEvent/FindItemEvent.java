@@ -20,11 +20,11 @@ public class FindItemEvent extends Event {
         Item item = ItemDB.returnItemFromDB(this.itemId);
 
         if (item instanceof QuestItem questItem) {
-            hero.getHeroInventory().addQuestItemToInventory(questItem, 1, hero);
+            hero.getHeroInventoryManager().addQuestItem(questItem, 1, hero);
             return true;
         }
 
-        hero.getHeroInventory().addItemToInventory(item, 1);
+        hero.getHeroInventoryManager().addItem(item, 1);
         return true;
     }
 }

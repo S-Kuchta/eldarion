@@ -2,10 +2,10 @@ package kuchtastefan.service;
 
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.UsingHeroInventory;
-import kuchtastefan.item.itemFilter.ItemFilter;
-import kuchtastefan.character.npc.vendor.vendorOffer.SortVendorOffer;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
+import kuchtastefan.character.npc.vendor.vendorOffer.SortVendorOffer;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
@@ -35,8 +35,7 @@ public class ShopService implements UsingHeroInventory {
             case 0 -> {
             }
             case 1 -> vendorOffer(hero);
-            case 2 ->
-                    hero.getHeroInventory().selectItem(hero, this.vendorCharacter.returnItemClass(), new ItemFilter(), this, 1);
+            case 2 -> hero.getHeroInventoryManager().selectItem(hero, this, new ItemFilter());
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -48,16 +47,15 @@ public class ShopService implements UsingHeroInventory {
 
         int choice = InputUtil.intScanner();
         if (choice == 0) {
-            mainMenu(hero);
+            return false;
         } else if (choice == 1) {
             hero.addGolds(item.returnSellItemPrice());
             if (item instanceof WearableItem wearableItem && hero.isItemEquipped(wearableItem)) {
                 hero.unEquipItem(wearableItem);
             }
 
-            hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
+            hero.getHeroInventoryManager().removeItem(item, 1);
             System.out.println("\t" + item.getName() + " sold for " + item.returnSellItemPrice() + " golds");
-            mainMenu(hero);
             return true;
         } else {
             PrintUtil.printEnterValidInput();
@@ -112,7 +110,7 @@ public class ShopService implements UsingHeroInventory {
             case 0 -> {
             }
             case 1 -> {
-                hero.getHeroInventory().addItemToInventory(item, 1);
+                hero.getHeroInventoryManager().addItem(item, 1);
                 hero.checkHeroGoldsAndSubtractIfHaveEnough(item.getPrice());
                 System.out.println("\t" + ConsoleColor.YELLOW + item.getName() + ConsoleColor.RESET + " bought. You can find it in your inventory\n");
             }

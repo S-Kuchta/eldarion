@@ -8,14 +8,14 @@ import java.util.Map;
 
 public class InventoryPrint {
 
-    public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
-        int count = 0;
-        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnHeroInventory(WearableItem.class).entrySet()) {
-            if (item.getKey().getItemType().equals(wearableItemType)) {
-                count += item.getValue();
-            }
-        }
-
-        return count;
-    }
+//    public static int printWearableItemCountByType(Hero hero, WearableItemType wearableItemType) {
+//        int count = 0;
+//        for (Map.Entry<WearableItem, Integer> item : hero.getHeroInventory().returnHeroInventory(WearableItem.class).entrySet()) {
+//            if (item.getKey().getItemType().equals(wearableItemType)) {
+//                count += item.getValue();
+//            }
+//        }
+//
+//        return count;
+//    }
 }

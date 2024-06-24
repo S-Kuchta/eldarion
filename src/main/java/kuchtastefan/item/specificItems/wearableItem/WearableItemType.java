@@ -29,16 +29,16 @@ public enum WearableItemType implements ItemType {
 
 
     @Override
+    public ItemFilter returnItemType(int ordinal) {
+        return null;
+    }
+
+    @Override
     public void printTypeSelection() {
         int index = 1;
         for (WearableItemType wearableItemType : WearableItemType.values()) {
             PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index), wearableItemType.toString());
             index++;
         }
-    }
-
-    @Override
-    public ItemFilter returnItemType(int ordinal) {
-        return new ItemFilter(WearableItemType.values()[ordinal - 1]);
     }
 }

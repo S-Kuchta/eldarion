@@ -36,4 +36,8 @@ public class SaveGameEntityList<T extends SaveGameEntity> {
             addEntity(entity);
         }
     }
+
+    public void removeEntityById(int id) {
+        this.saveEntities.remove(id);
+    }
 }

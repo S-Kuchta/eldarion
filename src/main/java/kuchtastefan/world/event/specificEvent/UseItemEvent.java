@@ -4,6 +4,7 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.inventory.UsingHeroInventory;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
@@ -34,13 +35,18 @@ public class UseItemEvent extends Event implements UsingHeroInventory {
 
     @Override
     public void mainMenu(Hero hero) {
+        ItemFilter questItemFilter =  new ItemFilter(new ItemClassFilter(UsableQuestItem.class));
+        questItemFilter.setCanBeChanged(false);
+        ItemFilter keyItemFilter =  new ItemFilter(new ItemClassFilter(UsableQuestItem.class));
+        keyItemFilter.setCanBeChanged(false);
+
         PrintUtil.printMenuOptions("Go back", "Quest items", "Keys");
         int choice = InputUtil.intScanner();
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> hero.getHeroInventory().selectItem(hero, UsableQuestItem.class, new ItemFilter(), this, 1);
-            case 2 -> hero.getHeroInventory().selectItem(hero, KeyItem.class, new ItemFilter(), this, 1);
+            case 1 -> hero.getHeroInventoryManager().selectItem(hero, this, questItemFilter);
+            case 2 -> hero.getHeroInventoryManager().selectItem(hero, this, keyItemFilter);
             default -> PrintUtil.printEnterValidInput();
         }
     }

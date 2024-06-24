@@ -3,7 +3,7 @@ package kuchtastefan.character.hero;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.hero.inventory.HeroInventory;
+import kuchtastefan.character.hero.inventory.HeroInventoryManager;
 import kuchtastefan.character.hero.save.SaveGameEntities;
 import kuchtastefan.character.npc.vendor.VendorCharacterDB;
 import kuchtastefan.character.spell.Spell;
@@ -32,7 +32,7 @@ public class Hero extends GameCharacter {
     private double experiencePoints;
     private Map<WearableItemType, WearableItem> equippedItem;
     private final Map<Ability, Integer> wearingItemAbilityPoints;
-    private final HeroInventory heroInventory;
+    private final HeroInventoryManager heroInventoryManager;
     private final ExperiencePointsService experiencePointsService;
     private final SaveGameEntities saveGameEntities;
     private final Map<Integer, Spell> learnedSpells;
@@ -48,13 +48,13 @@ public class Hero extends GameCharacter {
         this.unspentAbilityPoints = Constant.INITIAL_ABILITY_POINTS;
         this.wearingItemAbilityPoints = getItemsInitialAbilityPoints();
         this.equippedItem = initialEquip();
-        this.heroInventory = new HeroInventory();
         this.experiencePointsService = new ExperiencePointsService();
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
         this.saveGameEntities = new SaveGameEntities();
         this.learnedSpells = new HashMap<>();
         this.inCombat = false;
+        this.heroInventoryManager = new HeroInventoryManager(this);
     }
 
     public void equipItem(WearableItem wearableItem) {
@@ -235,16 +235,17 @@ public class Hero extends GameCharacter {
     }
 
     public void setInitialEquip() {
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(200), 1);
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(500), 1);
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(600), 1);
 
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(1001), 2);
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(1002), 2);
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(900), 2);
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(902), 1);
+        this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(200), 1);
+        this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(500), 1);
+        this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(600), 1);
 
-        this.heroInventory.addItemToInventory(ItemDB.returnItemFromDB(1200), 1);
+        this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(1001), 2);
+        this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(1002), 2);
+        this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(900), 2);
+        this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(902), 1);
+
+        this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(1200), 1);
 
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(200));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(500));

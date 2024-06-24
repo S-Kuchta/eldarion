@@ -7,6 +7,7 @@ import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemAndCount;
+import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
@@ -29,7 +30,7 @@ public class BlacksmithingService implements UsingHeroInventory {
 //                handleNumericChoice(hero, Integer.parseInt(choice), itemFilter);
 //                break;
 //            } else {
-//                itemFhandeNonNumericChoice();
+//                itemHandeNonNumericChoice();
 //            }
 //        }
 
@@ -37,7 +38,8 @@ public class BlacksmithingService implements UsingHeroInventory {
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.WEAPON), this, 1);
+//            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.WEAPON), this, 1);
+//            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.WEAPON), this, 1);
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -54,6 +56,8 @@ public class BlacksmithingService implements UsingHeroInventory {
      */
     @Override
     public boolean itemOptions(Hero hero, Item item) {
+        ItemFilter itemFilter = new ItemFilter(new ItemClassFilter(WearableItem.class));
+        itemFilter.setCanBeChanged(false);
         ItemAndCount neededToRefine = ((WearableItem) item).reagentNeededToRefine();
         PrintUtil.printMenuHeader(item.getName());
         PrintUtil.printMenuOptions("Go back",
@@ -62,7 +66,8 @@ public class BlacksmithingService implements UsingHeroInventory {
 
         final int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(), this, 1);
+//            case 0 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(), this, 1);
+            case 0 -> hero.getHeroInventoryManager().selectItem(hero, this, itemFilter);
             case 1 -> {
                 return this.refineItemQuality(hero, (WearableItem) item);
             }
@@ -87,8 +92,8 @@ public class BlacksmithingService implements UsingHeroInventory {
         if (hero.isItemEquipped(item)) {
             hero.unEquipItem(item);
         }
-        hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
-        hero.getHeroInventory().addItemToInventory(reagent.item(), reagent.count());
+        hero.getHeroInventoryManager().removeItem(item, 1);
+        hero.getHeroInventoryManager().addItem(reagent.item(), reagent.count());
         return true;
     }
 
@@ -109,16 +114,16 @@ public class BlacksmithingService implements UsingHeroInventory {
         }
 
         ItemAndCount requiredReagent = item.reagentNeededToRefine();
-        if (!hero.getHeroInventory().hasRequiredItems(requiredReagent.item(), requiredReagent.count())) {
+        if (!hero.getHeroInventoryManager().hasRequiredItems(requiredReagent.item(), requiredReagent.count())) {
             System.out.println("\tYou don't have enough reagents. Your can't refine your item.");
             return false;
         }
 
         WearableItem refinedItem = new Gson().fromJson(new Gson().toJson(item), WearableItem.class);
         refinedItem.refine();
-        hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
-        hero.getHeroInventory().removeItemFromHeroInventory(requiredReagent.item(), requiredReagent.count());
-        hero.getHeroInventory().addItemToInventory(refinedItem, 1);
+        hero.getHeroInventoryManager().removeItem(item, 1);
+        hero.getHeroInventoryManager().removeItem(requiredReagent.item(), requiredReagent.count());
+        hero.getHeroInventoryManager().addItem(refinedItem, 1);
 
         System.out.println("\tYou refinement your item " + refinedItem.getName() + " to " + refinedItem.getWearableItemQuality() + " quality");
         if (hero.isItemEquipped(item)) {

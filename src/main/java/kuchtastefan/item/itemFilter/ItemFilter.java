@@ -1,7 +1,10 @@
 package kuchtastefan.item.itemFilter;
 
-import kuchtastefan.item.itemType.ItemType;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.itemType.HaveType;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 /**
@@ -10,50 +13,80 @@ import lombok.Setter;
 @Getter
 public class ItemFilter {
 
-    private ItemType itemType;
-    private int maxItemLevel;
-    private int minItemLevel;
-
-    public ItemFilter(ItemType itemType, int maxItemLevel, int minItemLevel) {
-        this.itemType = itemType;
-        this.maxItemLevel = maxItemLevel;
-        this.minItemLevel = minItemLevel;
-    }
+    private ItemLevelFilter itemLevelFilter;
+    private ItemTypeFilter itemTypeFilter;
+    private ItemClassFilter itemClassFilter;
+    @Setter
+    private boolean canBeChanged = true;
 
     /**
-     * Constructs a new ItemFilter with the specified item type and maximum level. The minimum level is set to the same value as the maximum level.
-     *
-     * @param itemType     The type of items to filter.
-     * @param maxItemLevel The maximum level of items to filter.
+     * Empty Constructor creates a new ItemFilter with default values.
      */
-    public ItemFilter(ItemType itemType, int maxItemLevel) {
-        this.itemType = itemType;
-        this.maxItemLevel = maxItemLevel;
-        this.minItemLevel = maxItemLevel;
-    }
-
-    public ItemFilter(int maxItemLevel, int minItemLevel) {
-        this.maxItemLevel = maxItemLevel;
-        this.minItemLevel = minItemLevel;
-    }
-
-    public ItemFilter(int maxItemLevel) {
-        this.maxItemLevel = maxItemLevel;
-        this.minItemLevel = maxItemLevel;
-    }
-
-    public ItemFilter(ItemType itemType) {
-        this.itemType = itemType;
-    }
-
     public ItemFilter() {
+        this.itemClassFilter = new ItemClassFilter(Item.class);
+        this.itemTypeFilter = new ItemTypeFilter();
+        this.itemLevelFilter = new ItemLevelFilter(1,5);
     }
+
+    public ItemFilter(ItemClassFilter itemClassFilter, ItemLevelFilter itemLevelFilter, ItemTypeFilter itemTypeFilter) {
+        this.itemClassFilter = itemClassFilter;
+        this.itemLevelFilter = itemLevelFilter;
+        this.itemTypeFilter = itemTypeFilter;
+    }
+
+    public ItemFilter(ItemLevelFilter itemLevelFilter, ItemTypeFilter itemTypeFilter) {
+        this.itemLevelFilter = itemLevelFilter;
+        this.itemTypeFilter = itemTypeFilter;
+    }
+
+    public ItemFilter(ItemClassFilter itemClassFilter, ItemLevelFilter itemLevelFilter) {
+        this.itemClassFilter = itemClassFilter;
+        this.itemLevelFilter = itemLevelFilter;
+    }
+
+    public ItemFilter(ItemLevelFilter itemLevelFilter) {
+        this.itemLevelFilter = itemLevelFilter;
+    }
+
+    public ItemFilter(ItemTypeFilter itemTypeFilter) {
+        this.itemTypeFilter = itemTypeFilter;
+    }
+
+    public ItemFilter(ItemClassFilter itemClassFilter) {
+        this.itemClassFilter = itemClassFilter;
+    }
+
 
     public boolean isCheckType() {
-        return itemType != null;
+        return itemTypeFilter != null;
     }
 
     public boolean isCheckLevel() {
-        return maxItemLevel != 0 || minItemLevel != 0;
+        return itemLevelFilter != null;
     }
+
+    public boolean isCheckClass() {
+        return itemClassFilter != null;
+    }
+
+    public Item filterItem(Item item) {
+        if (this.isCheckClass() && !this.itemClassFilter.checkClassCondition(item.getClass())) {
+            return null;
+        }
+
+        if (this.isCheckType() && item instanceof HaveType itemWithType) {
+            if (this.itemTypeFilter.checkTypeCondition(itemWithType.getItemType())) {
+                return null;
+            }
+        }
+
+        if (this.isCheckLevel()) {
+            if (!this.itemLevelFilter.checkLevelCondition(item.getItemLevel())) {
+                return null;
+            }
+        }
+
+        return item;
+    }
+
 }

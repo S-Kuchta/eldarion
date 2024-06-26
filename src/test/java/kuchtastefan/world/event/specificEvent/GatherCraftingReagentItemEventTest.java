@@ -5,6 +5,7 @@ import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemFilter.ItemLevelFilter;
+import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.service.FileService;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -29,6 +30,7 @@ class GatherCraftingReagentItemEventTest {
         int eventLevel = 1;
         List<Item> craftingReagentItemList = ItemDB.returnFilteredItemList(new ItemFilter(
                 new ItemClassFilter(CraftingReagentItem.class),
+                new ItemTypeFilter(),
                 new ItemLevelFilter(1, eventLevel)));
 
         Item item = craftingReagentItemList.get(RandomNumberGenerator.getRandomNumber(0, craftingReagentItemList.size() - 1));

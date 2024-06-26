@@ -11,7 +11,6 @@ import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemFilter.ItemLevelFilter;
 import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.keyItem.KeyItem;
-import kuchtastefan.utility.InitializeItemClassList;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,6 +49,8 @@ public class Enemy extends NonPlayerCharacter {
         }
 
         List<Item> itemList = ItemDB.returnItemListForEnemyDrop(new ItemFilter(
+                new ItemClassFilter(),
+                new ItemTypeFilter(),
                 new ItemLevelFilter(this.level)));
 
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);

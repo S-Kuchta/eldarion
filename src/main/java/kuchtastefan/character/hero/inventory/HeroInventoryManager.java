@@ -112,28 +112,14 @@ public class HeroInventoryManager {
         return items;
     }
 
-    public void printHeroInventory(Hero hero, ItemFilter itemFilter) {
-        Map<Integer, HeroItem> heroInventory = getFilteredHeroInventory(itemFilter);
-
-        if (heroInventory.isEmpty()) {
-            System.out.println("\tFor specific Item Type, Class or Level, you don't have any items in your inventory");
-            PrintUtil.printIndexAndText(String.valueOf(0), "Go back\n");
-            return;
-        }
-
-        PrintUtil.printIndexAndText(String.valueOf(0), "Go back\n");
-        for (Map.Entry<Integer, HeroItem> entry : heroInventory.entrySet()) {
-            PrintUtil.printIndexAndText(String.valueOf(entry.getKey()), entry.getValue().getAmount() + "x: ");
-            entry.getValue().getItem().printItemDescription(hero);
-        }
-    }
 
     public boolean selectItem(Hero hero, UsingHeroInventory usingHeroInventory, ItemFilter itemFilter) {
-        List<Class<? extends Item>> classes = InitializeItemClassList.initializeClassList();
+        List<Class<? extends Item>> classes = ItemClassList.allClassList();
         boolean flag = false;
 
         System.out.println();
         while (true) {
+            PrintUtil.printMenuHeader("Hero Inventory");
             if (itemFilter.isCanBeChanged()) {
                 printClassChoice(itemFilter, classes);
                 printTypeChoice(itemFilter, classes.size() + 1);
@@ -152,6 +138,22 @@ public class HeroInventoryManager {
             } else {
                 handleNonNumericChoice(choice, itemFilter, classes);
             }
+        }
+    }
+
+    public void printHeroInventory(Hero hero, ItemFilter itemFilter) {
+        Map<Integer, HeroItem> heroInventory = getFilteredHeroInventory(itemFilter);
+
+        if (heroInventory.isEmpty()) {
+            System.out.println("\tFor specific Item Type, Class or Level, you don't have any items in your inventory");
+            PrintUtil.printIndexAndText(String.valueOf(0), "Go back\n");
+            return;
+        }
+
+        PrintUtil.printIndexAndText(String.valueOf(0), "Go back\n");
+        for (Map.Entry<Integer, HeroItem> entry : heroInventory.entrySet()) {
+            PrintUtil.printIndexAndText(String.valueOf(entry.getKey()), entry.getValue().getAmount() + "x: ");
+            entry.getValue().getItem().printItemDescription(hero);
         }
     }
 
@@ -178,7 +180,7 @@ public class HeroInventoryManager {
                 if (choiceValue <= classes.size()) {
                     handleClassChoice(classes.get(choiceValue - 1), itemFilter);
                 } else {
-                    handleTypeChoice(InitializeItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter())
+                    handleTypeChoice(ItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter())
                             .get(choiceValue - classes.size() - 1), itemFilter);
                 }
             } catch (Exception e) {
@@ -190,10 +192,6 @@ public class HeroInventoryManager {
     private void printClassChoice(ItemFilter itemFilter, List<Class<? extends Item>> classes) {
         int index = 1;
         for (Class<? extends Item> itemClass : classes) {
-            if (!itemFilter.isCheckClass()) {
-                return;
-            }
-
             String className;
             if (itemFilter.getItemClassFilter().containsClass(itemClass)) {
                 className = itemClass.getSimpleName();
@@ -201,7 +199,6 @@ public class HeroInventoryManager {
                 className = ConsoleColor.WHITE + itemClass.getSimpleName() + ConsoleColor.RESET;
             }
 
-//            System.out.printf("%3s: %s", LetterToNumber.getStringFromValue(index++), className);
             PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index++), className);
         }
 
@@ -218,12 +215,8 @@ public class HeroInventoryManager {
 
     private void printTypeChoice(ItemFilter itemFilter, int indexStart) {
         int index = indexStart;
-        List<ItemType> itemTypes = InitializeItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter());
+        List<ItemType> itemTypes = ItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter());
         for (ItemType itemType : itemTypes) {
-            if (!itemFilter.isCheckType()) {
-                return;
-            }
-
             String typeName;
             if (itemFilter.getItemTypeFilter().containsType(itemType)) {
                 typeName = itemType.toString();
@@ -248,10 +241,10 @@ public class HeroInventoryManager {
     private void printLevelChoice(ItemFilter itemFilter) {
         itemFilter.getItemLevelFilter().printLevelRange();
         System.out.println();
-        PrintUtil.printIndexAndText("-", "Decrease min item level");
-        PrintUtil.printIndexAndText("--", "Decrease max item level");
         PrintUtil.printIndexAndText("+", "Increase min item level");
+        PrintUtil.printIndexAndText("-", "Decrease min item level");
         PrintUtil.printIndexAndText("++", "Increase max item level");
+        PrintUtil.printIndexAndText("--", "Decrease max item level");
 
         System.out.println();
     }

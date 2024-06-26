@@ -5,18 +5,16 @@ import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemAndCount;
 import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemFilter.ItemLevelFilter;
 import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.itemType.HaveType;
-import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.usableItem.UsableItem;
-import kuchtastefan.utility.IntegerLength;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 import java.util.Objects;
@@ -80,8 +78,9 @@ public class WearableItem extends Item implements UsableItem, HaveType {
 
     public ItemAndCount reagentNeededToRefine() {
         Item reagent = ItemDB.getRandomItem(new ItemFilter(
-                new ItemLevelFilter(this.itemLevel),
-                new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT)));
+                new ItemClassFilter(),
+                new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT),
+                new ItemLevelFilter(this.itemLevel)));
 
         int count = this.itemLevel * 2;
         return new ItemAndCount(reagent, count);
@@ -89,8 +88,9 @@ public class WearableItem extends Item implements UsableItem, HaveType {
 
     public ItemAndCount dismantle() {
         Item reagent = ItemDB.getRandomItem(new ItemFilter(
-                new ItemLevelFilter(this.itemLevel),
-                new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT)));
+                new ItemClassFilter(),
+                new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT),
+                new ItemLevelFilter(this.itemLevel)));
 
         return new ItemAndCount(reagent, RandomNumberGenerator.getRandomNumber(2, 4) + this.itemLevel);
     }

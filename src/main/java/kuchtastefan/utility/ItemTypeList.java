@@ -1,6 +1,5 @@
 package kuchtastefan.utility;
 
-import kuchtastefan.item.Item;
 import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemType.ItemType;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
@@ -11,12 +10,14 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class InitializeItemTypeList {
+public class ItemTypeList {
 
-    public static List<ItemType> itemTypeList() {
-        List<ItemType> itemTypes = new ArrayList<>();
+    public static Set<ItemType> allTypesList() {
+        Set<ItemType> itemTypes = new HashSet<>();
         itemTypes.addAll(List.of(WearableItemType.values()));
         itemTypes.addAll(List.of(ConsumableItemType.values()));
         itemTypes.addAll(List.of(CraftingReagentItemType.values()));
@@ -51,5 +52,9 @@ public class InitializeItemTypeList {
         }
 
         return itemTypes;
+    }
+
+    public static List<ItemType> itemTypes(ItemType... types) {
+        return new ArrayList<>(List.of(types));
     }
 }

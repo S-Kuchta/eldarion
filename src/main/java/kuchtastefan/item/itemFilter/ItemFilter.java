@@ -1,5 +1,6 @@
 package kuchtastefan.item.itemFilter;
 
+import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.itemType.HaveType;
 import lombok.Getter;
@@ -11,80 +12,40 @@ import lombok.Setter;
 @Getter
 public class ItemFilter {
 
-    private ItemLevelFilter itemLevelFilter;
-    private ItemTypeFilter itemTypeFilter;
-    private ItemClassFilter itemClassFilter;
+    private final ItemLevelFilter itemLevelFilter;
+    private final ItemTypeFilter itemTypeFilter;
+    private final ItemClassFilter itemClassFilter;
     @Setter
     private boolean canBeChanged = true;
 
     /**
      * Empty Constructor creates a new ItemFilter with default values.
      */
-    public ItemFilter() {
-        this.itemClassFilter = new ItemClassFilter(Item.class);
+    public ItemFilter(Hero hero) {
+        this.itemClassFilter = new ItemClassFilter();
         this.itemTypeFilter = new ItemTypeFilter();
-        this.itemLevelFilter = new ItemLevelFilter(1, 5);
+        this.itemLevelFilter = new ItemLevelFilter(1, hero.getLevel());
     }
 
-    public ItemFilter(ItemClassFilter itemClassFilter, ItemLevelFilter itemLevelFilter, ItemTypeFilter itemTypeFilter) {
-        this.itemClassFilter = itemClassFilter;
-        this.itemLevelFilter = itemLevelFilter;
-        this.itemTypeFilter = itemTypeFilter;
-    }
-
-    public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter) {
+    public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter, ItemLevelFilter itemLevelFilter) {
         this.itemClassFilter = itemClassFilter;
         this.itemTypeFilter = itemTypeFilter;
-    }
-
-    public ItemFilter(ItemLevelFilter itemLevelFilter, ItemTypeFilter itemTypeFilter) {
         this.itemLevelFilter = itemLevelFilter;
-        this.itemTypeFilter = itemTypeFilter;
-    }
-
-    public ItemFilter(ItemClassFilter itemClassFilter, ItemLevelFilter itemLevelFilter) {
-        this.itemClassFilter = itemClassFilter;
-        this.itemLevelFilter = itemLevelFilter;
-    }
-
-    public ItemFilter(ItemLevelFilter itemLevelFilter) {
-        this.itemLevelFilter = itemLevelFilter;
-    }
-
-    public ItemFilter(ItemClassFilter itemClassFilter) {
-        this.itemClassFilter = itemClassFilter;
-    }
-
-
-    public boolean isCheckType() {
-        return itemTypeFilter != null;
-    }
-
-    public boolean isCheckLevel() {
-        return itemLevelFilter != null;
-    }
-
-    public boolean isCheckClass() {
-        return itemClassFilter != null;
     }
 
     public Item filterItem(Item item) {
-        if (this.isCheckClass() && !this.itemClassFilter.checkClassCondition(item.getClass())) {
+        if (!this.itemClassFilter.checkClassCondition(item.getClass())) {
             return null;
         }
 
-        if (this.isCheckType()) {
-            if (item instanceof HaveType itemWithType) {
-                if (!this.itemTypeFilter.checkTypeCondition(itemWithType.getItemType())) {
-                    return null;
-                }
+        if (item instanceof HaveType itemWithType) {
+            if (!this.itemTypeFilter.checkTypeCondition(itemWithType.getItemType())) {
+                return null;
             }
         }
 
-        if (this.isCheckLevel()) {
-            if (!this.itemLevelFilter.checkLevelCondition(item.getItemLevel())) {
-                return null;
-            }
+        if (!this.itemLevelFilter.checkLevelCondition(item.getItemLevel())) {
+            return null;
         }
 
         return item;

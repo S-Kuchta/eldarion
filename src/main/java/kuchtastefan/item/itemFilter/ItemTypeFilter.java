@@ -1,40 +1,34 @@
 package kuchtastefan.item.itemFilter;
 
 import kuchtastefan.item.itemType.ItemType;
-import kuchtastefan.utility.InitializeItemTypeList;
+import kuchtastefan.utility.ItemTypeList;
 import lombok.Getter;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 public class ItemTypeFilter {
 
-    private ItemType itemType;
-    private List<ItemType> itemTypes;
+    private final Set<ItemType> itemTypes;
+
 
     public ItemTypeFilter() {
-        this.itemTypes = InitializeItemTypeList.itemTypeList();
+        this.itemTypes = ItemTypeList.allTypesList();
     }
 
-    public ItemTypeFilter(ItemType itemType) {
-        this.itemType = itemType;
+    public ItemTypeFilter(ItemType... itemTypes) {
+        this.itemTypes = new HashSet<>(List.of(itemTypes));
     }
 
-    public ItemTypeFilter(List<ItemType> itemTypes) {
-        this.itemTypes = itemTypes;
-    }
 
     public boolean containsType(ItemType itemType) {
         return itemTypes.contains(itemType);
     }
 
     public boolean checkTypeCondition(ItemType itemType) {
-        if (itemTypes != null) {
-            return containsType(itemType);
-        }
-
-        return this.itemType == itemType;
+        return containsType(itemType);
     }
 
     public void addItemType(ItemType itemType) {

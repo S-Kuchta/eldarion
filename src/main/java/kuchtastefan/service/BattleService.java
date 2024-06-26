@@ -14,6 +14,7 @@ import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.ItemLevelFilter;
 import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
@@ -249,7 +250,8 @@ public class BattleService {
             if (parsedChoice == hero.getCharacterSpellList().size()) {
                 return hero.getHeroInventoryManager().selectItem(hero, inventoryMenuService, new ItemFilter(
                         new ItemClassFilter(ConsumableItem.class),
-                        new ItemTypeFilter(ConsumableItemType.POTION)));
+                        new ItemTypeFilter(ConsumableItemType.POTION),
+                        new ItemLevelFilter()));
             } else {
                 return hero.getCharacterSpellList().get(parsedChoice).useSpell(
                         new CharactersInvolvedInBattle(hero, this.playerTarget, enemyList, alliesList, tempCharacterList));

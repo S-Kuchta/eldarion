@@ -11,7 +11,7 @@ public class InventoryMenuService implements UsingHeroInventory {
     @Override
     public void mainMenu(Hero hero) {
         if (!hero.isInCombat()) {
-            hero.getHeroInventoryManager().selectItem(hero, this, new ItemFilter());
+            hero.getHeroInventoryManager().selectItem(hero, this, new ItemFilter(hero));
         }
     }
 

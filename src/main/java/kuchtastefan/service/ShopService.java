@@ -35,7 +35,7 @@ public class ShopService implements UsingHeroInventory {
             case 0 -> {
             }
             case 1 -> vendorOffer(hero);
-            case 2 -> hero.getHeroInventoryManager().selectItem(hero, this, new ItemFilter());
+            case 2 -> hero.getHeroInventoryManager().selectItem(hero, this, new ItemFilter(hero));
             default -> PrintUtil.printEnterValidInput();
         }
     }

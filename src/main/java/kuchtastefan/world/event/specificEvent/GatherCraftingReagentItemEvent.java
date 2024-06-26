@@ -6,6 +6,7 @@ import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemFilter.ItemLevelFilter;
+import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.utility.RandomNumberGenerator;
 import kuchtastefan.world.event.Event;
@@ -39,6 +40,7 @@ public class GatherCraftingReagentItemEvent extends Event {
     private Item findRandomCraftingReagentItem() {
         List<Item> craftingReagentItemList = ItemDB.returnFilteredItemList(new ItemFilter(
                 new ItemClassFilter(CraftingReagentItem.class),
+                new ItemTypeFilter(),
                 new ItemLevelFilter(1, this.eventLevel)));
 
         return craftingReagentItemList.get(RandomNumberGenerator.getRandomNumber(0, craftingReagentItemList.size() - 1));

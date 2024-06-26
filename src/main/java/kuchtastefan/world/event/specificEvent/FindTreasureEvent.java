@@ -6,6 +6,7 @@ import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemLevelFilter;
+import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -20,19 +21,15 @@ public class FindTreasureEvent extends Event {
 
     @Override
     public boolean eventOccurs(Hero hero) {
-//        List<WearableItem> tempWearableItemList = ItemDB.returnFilteredItemList(WearableItem.class,
-//                new ItemFilter(this.eventLevel));
-
-//        List<ConsumableItem> tempConsumableItemList = ItemDB.returnFilteredItemList(ConsumableItem.class,
-//                new ItemFilter(this.eventLevel));
-
         List<Item> tempWearableItemList = ItemDB.returnFilteredItemList(new ItemFilter(
                 new ItemClassFilter(WearableItem.class),
+                new ItemTypeFilter(),
                 new ItemLevelFilter(this.eventLevel)));
 
 
         List<Item> tempConsumableItemList = ItemDB.returnFilteredItemList(new ItemFilter(
                 new ItemClassFilter(ConsumableItem.class),
+                new ItemTypeFilter(),
                 new ItemLevelFilter(this.eventLevel)));
 
         System.out.println("\tYou find a treasure! You got: ");

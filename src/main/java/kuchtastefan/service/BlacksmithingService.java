@@ -9,6 +9,8 @@ import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemAndCount;
 import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.ItemLevelFilter;
+import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
@@ -23,23 +25,14 @@ public class BlacksmithingService implements UsingHeroInventory {
         PrintUtil.printMenuOptions("Go back", "Hero Inventory");
 
         final int choice = InputUtil.intScanner();
-//        while (true) {
-//            String choice = InputUtil.stringScanner().toUpperCase();
-//            ItemFilter itemFilter = new ItemFilter();
-//            if (choice.matches("\\d+")) {
-//                handleNumericChoice(hero, Integer.parseInt(choice), itemFilter);
-//                break;
-//            } else {
-//                itemHandeNonNumericChoice();
-//            }
-//        }
-
-
         switch (choice) {
             case 0 -> {
             }
-//            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.WEAPON), this, 1);
-//            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.WEAPON), this, 1);
+            case 1 -> hero.getHeroInventoryManager().selectItem(hero, this, new ItemFilter(
+                    new ItemClassFilter(WearableItem.class),
+                    new ItemTypeFilter(),
+                    new ItemLevelFilter(hero.getLevel())));
+
             default -> PrintUtil.printEnterValidInput();
         }
     }
@@ -56,8 +49,12 @@ public class BlacksmithingService implements UsingHeroInventory {
      */
     @Override
     public boolean itemOptions(Hero hero, Item item) {
-        ItemFilter itemFilter = new ItemFilter(new ItemClassFilter(WearableItem.class));
+        ItemFilter itemFilter = new ItemFilter(
+                new ItemClassFilter(WearableItem.class),
+                new ItemTypeFilter(),
+                new ItemLevelFilter(hero.getLevel()));
         itemFilter.setCanBeChanged(false);
+
         ItemAndCount neededToRefine = ((WearableItem) item).reagentNeededToRefine();
         PrintUtil.printMenuHeader(item.getName());
         PrintUtil.printMenuOptions("Go back",
@@ -66,7 +63,6 @@ public class BlacksmithingService implements UsingHeroInventory {
 
         final int choice = InputUtil.intScanner();
         switch (choice) {
-//            case 0 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(), this, 1);
             case 0 -> hero.getHeroInventoryManager().selectItem(hero, this, itemFilter);
             case 1 -> {
                 return this.refineItemQuality(hero, (WearableItem) item);

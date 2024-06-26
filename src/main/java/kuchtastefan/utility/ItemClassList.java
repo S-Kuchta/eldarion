@@ -11,9 +11,9 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InitializeItemClassList {
+public class ItemClassList {
 
-    public static List<Class<? extends Item>> initializeClassList() {
+    public static List<Class<? extends Item>> allClassList() {
         List<Class<? extends Item>> classList = new ArrayList<>();
         classList.add(WearableItem.class);
         classList.add(ConsumableItem.class);

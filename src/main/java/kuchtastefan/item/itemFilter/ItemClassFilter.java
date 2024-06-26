@@ -1,6 +1,7 @@
 package kuchtastefan.item.itemFilter;
 
 import kuchtastefan.item.Item;
+import kuchtastefan.utility.ItemClassList;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -9,22 +10,15 @@ import java.util.List;
 @Getter
 public class ItemClassFilter {
 
-    private final Class<? extends Item> itemClass;
     private final List<Class<? extends Item>> itemClassList;
 
-    public ItemClassFilter(Class<? extends Item> itemClass) {
-        this.itemClass = itemClass;
-        this.itemClassList = new ArrayList<>();
+    public ItemClassFilter() {
+        this.itemClassList = ItemClassList.allClassList();
     }
 
-    public ItemClassFilter(Class<? extends Item> itemClass, List<Class<? extends Item>> itemList) {
-        this.itemClass = itemClass;
-        this.itemClassList = itemList;
-    }
-
-    public ItemClassFilter(List<Class<? extends Item>> itemList) {
-        this.itemClassList = itemList;
-        this.itemClass = itemList.getFirst();
+    @SafeVarargs
+    public ItemClassFilter(Class<? extends Item>... itemClass) {
+        this.itemClassList = new ArrayList<>(List.of(itemClass));
     }
 
 
@@ -33,11 +27,7 @@ public class ItemClassFilter {
     }
 
     public boolean checkClassCondition(Class<? extends Item> itemClass) {
-        if (!itemClassList.isEmpty()) {
-            return containsClass(itemClass);
-        }
-
-        return this.itemClass == itemClass;
+        return containsClass(itemClass);
     }
 
     public void addItemClass(Class<? extends Item> itemClass) {

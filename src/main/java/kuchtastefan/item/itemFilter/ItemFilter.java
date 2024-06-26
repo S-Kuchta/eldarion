@@ -19,7 +19,7 @@ public class ItemFilter {
     private boolean canBeChanged = true;
 
     /**
-     * Empty Constructor creates a new ItemFilter with default values.
+     * Creates a new ItemFilter with default values.
      */
     public ItemFilter(Hero hero) {
         this.itemClassFilter = new ItemClassFilter();
@@ -34,12 +34,12 @@ public class ItemFilter {
     }
 
     public Item filterItem(Item item) {
-        if (!this.itemClassFilter.checkClassCondition(item.getClass())) {
+        if (!this.itemClassFilter.containsClass(item.getClass())) {
             return null;
         }
 
         if (item instanceof HaveType itemWithType) {
-            if (!this.itemTypeFilter.checkTypeCondition(itemWithType.getItemType())) {
+            if (!this.itemTypeFilter.containsType(itemWithType.getItemType())) {
                 return null;
             }
         }
@@ -50,5 +50,4 @@ public class ItemFilter {
 
         return item;
     }
-
 }

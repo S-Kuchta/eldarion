@@ -1,7 +1,10 @@
 package kuchtastefan.item.itemFilter;
 
 import kuchtastefan.item.itemType.ItemType;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.ItemTypeList;
+import kuchtastefan.utility.LetterToNumber;
+import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 
 import java.util.HashSet;
@@ -23,19 +26,44 @@ public class ItemTypeFilter {
     }
 
 
+    public void printTypeChoice(ItemFilter itemFilter, int indexStart) {
+        int index = indexStart;
+        List<ItemType> itemTypes = ItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter());
+        if (itemTypes.isEmpty()) {
+            return;
+        }
+
+        for (ItemType itemType : itemTypes) {
+            String typeName;
+            if (containsType(itemType)) {
+                typeName = itemType.toString();
+            } else {
+                typeName = ConsoleColor.WHITE + itemType.toString() + ConsoleColor.RESET;
+            }
+
+            PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index++), typeName);
+        }
+
+        System.out.println();
+    }
+
+    public void handleTypeChoice(ItemType itemType) {
+        if (containsType(itemType)) {
+            removeItemType(itemType);
+        } else {
+            addItemType(itemType);
+        }
+    }
+
     public boolean containsType(ItemType itemType) {
         return itemTypes.contains(itemType);
     }
 
-    public boolean checkTypeCondition(ItemType itemType) {
-        return containsType(itemType);
-    }
-
-    public void addItemType(ItemType itemType) {
+    private void addItemType(ItemType itemType) {
         itemTypes.add(itemType);
     }
 
-    public void removeItemType(ItemType itemType) {
+    private void removeItemType(ItemType itemType) {
         itemTypes.remove(itemType);
     }
 }

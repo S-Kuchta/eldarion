@@ -13,7 +13,7 @@ import kuchtastefan.item.itemFilter.ItemLevelFilter;
 import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
-import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.PrintUtil;
 
@@ -37,7 +37,6 @@ public class BlacksmithingService implements UsingHeroInventory {
         }
     }
 
-
     /**
      * This method displays a menu for a specific wearable item.
      * The user can choose to go back, refine the item, or dismantle the item.
@@ -49,21 +48,18 @@ public class BlacksmithingService implements UsingHeroInventory {
      */
     @Override
     public boolean itemOptions(Hero hero, Item item) {
-        ItemFilter itemFilter = new ItemFilter(
-                new ItemClassFilter(WearableItem.class),
-                new ItemTypeFilter(),
-                new ItemLevelFilter(hero.getLevel()));
-        itemFilter.setCanBeChanged(false);
-
         ItemAndCount neededToRefine = ((WearableItem) item).reagentNeededToRefine();
+
         PrintUtil.printMenuHeader(item.getName());
         PrintUtil.printMenuOptions("Go back",
-                "Refinement item (" + neededToRefine.count() + "x " + neededToRefine.item().getName() + ")",
+                "Refinement item - You Need: " + neededToRefine.item().getName() + " - " + neededToRefine.count() + "/" + getReagentCountColor(hero, neededToRefine.item(), neededToRefine.count()),
                 "Dismantle item");
 
         final int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> hero.getHeroInventoryManager().selectItem(hero, this, itemFilter);
+            case 0 -> {
+                return false;
+            }
             case 1 -> {
                 return this.refineItemQuality(hero, (WearableItem) item);
             }
@@ -74,6 +70,13 @@ public class BlacksmithingService implements UsingHeroInventory {
         }
 
         return false;
+    }
+
+    private String getReagentCountColor(Hero hero, Item reagent, int count) {
+        int countHave = hero.getHeroInventoryManager().getItemCount(reagent);
+        return hero.getHeroInventoryManager().hasRequiredItems(reagent, count)
+                ? ConsoleColor.GREEN + String.valueOf(countHave) + ConsoleColor.RESET
+                : ConsoleColor.RED + String.valueOf(countHave) + ConsoleColor.RESET;
     }
 
     /**

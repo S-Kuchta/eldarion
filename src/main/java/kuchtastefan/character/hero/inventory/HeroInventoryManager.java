@@ -7,7 +7,6 @@ import kuchtastefan.character.hero.save.item.HeroWearableItem;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
-import kuchtastefan.item.itemType.ItemType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.quest.QuestDB;
@@ -60,11 +59,9 @@ public class HeroInventoryManager {
     }
 
     public int getItemCount(Item item) {
-        if (item instanceof WearableItem wearableItem) {
-            return heroItems.getEntity(wearableItem.getNewItemId()).getAmount();
-        } else {
-            return heroItems.getEntity(item.getItemId()).getAmount();
-        }
+        int id = (item instanceof WearableItem) ? ((WearableItem) item).getNewItemId() : item.getItemId();
+        HeroItem heroItem = heroItems.getEntity(id);
+        return (heroItem != null) ? heroItem.getAmount() : 0;
     }
 
     public boolean hasRequiredItems(Item item, int count) {
@@ -114,16 +111,16 @@ public class HeroInventoryManager {
 
 
     public boolean selectItem(Hero hero, UsingHeroInventory usingHeroInventory, ItemFilter itemFilter) {
-        List<Class<? extends Item>> classes = ItemClassList.allClassList();
+        List<Class<? extends Item>> classes = List.copyOf(itemFilter.getItemClassFilter().getItemClassList());
         boolean flag = false;
 
         System.out.println();
         while (true) {
             PrintUtil.printMenuHeader("Hero Inventory");
             if (itemFilter.isCanBeChanged()) {
-                printClassChoice(itemFilter, classes);
-                printTypeChoice(itemFilter, classes.size() + 1);
-                printLevelChoice(itemFilter);
+                itemFilter.getItemClassFilter().printClassChoice(classes);
+                itemFilter.getItemTypeFilter().printTypeChoice(itemFilter, classes.size() + 1);
+                itemFilter.getItemLevelFilter().printLevelChoice(itemFilter);
                 PrintUtil.printExtraLongDivider();
             }
 
@@ -171,88 +168,23 @@ public class HeroInventoryManager {
     private void handleNonNumericChoice(String choice, ItemFilter itemFilter, List<Class<? extends Item>> classes) {
         if (itemFilter.isCanBeChanged()) {
             try {
-                if (containsSpecialCharacter(choice)) {
+                if (CharacterCheck.containsCharacter(choice, "+", "-")) {
                     itemFilter.getItemLevelFilter().handleItemLevel(choice, itemFilter);
                     return;
                 }
 
                 int choiceValue = LetterToNumber.valueOf(choice).getValue();
                 if (choiceValue <= classes.size()) {
-                    handleClassChoice(classes.get(choiceValue - 1), itemFilter);
+                    itemFilter.getItemClassFilter().handleClassChoice(classes.get(choiceValue - 1));
                 } else {
-                    handleTypeChoice(ItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter())
-                            .get(choiceValue - classes.size() - 1), itemFilter);
+                    itemFilter.getItemTypeFilter().handleTypeChoice(ItemTypeList.itemTypesByClass(
+                            itemFilter.getItemClassFilter()).get(choiceValue - classes.size() - 1));
                 }
             } catch (Exception e) {
                 PrintUtil.printEnterValidInput();
             }
         }
     }
-
-    private void printClassChoice(ItemFilter itemFilter, List<Class<? extends Item>> classes) {
-        int index = 1;
-        for (Class<? extends Item> itemClass : classes) {
-            String className;
-            if (itemFilter.getItemClassFilter().containsClass(itemClass)) {
-                className = itemClass.getSimpleName();
-            } else {
-                className = ConsoleColor.WHITE + itemClass.getSimpleName() + ConsoleColor.RESET;
-            }
-
-            PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index++), className);
-        }
-
-        System.out.println();
-    }
-
-    private void handleClassChoice(Class<? extends Item> itemClass, ItemFilter itemFilter) {
-        if (itemFilter.getItemClassFilter().containsClass(itemClass)) {
-            itemFilter.getItemClassFilter().removeItemClass(itemClass);
-        } else {
-            itemFilter.getItemClassFilter().addItemClass(itemClass);
-        }
-    }
-
-    private void printTypeChoice(ItemFilter itemFilter, int indexStart) {
-        int index = indexStart;
-        List<ItemType> itemTypes = ItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter());
-        for (ItemType itemType : itemTypes) {
-            String typeName;
-            if (itemFilter.getItemTypeFilter().containsType(itemType)) {
-                typeName = itemType.toString();
-            } else {
-                typeName = ConsoleColor.WHITE + itemType.toString() + ConsoleColor.RESET;
-            }
-
-            PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index++), typeName);
-        }
-
-        System.out.println();
-    }
-
-    private void handleTypeChoice(ItemType itemType, ItemFilter itemFilter) {
-        if (itemFilter.getItemTypeFilter().containsType(itemType)) {
-            itemFilter.getItemTypeFilter().removeItemType(itemType);
-        } else {
-            itemFilter.getItemTypeFilter().addItemType(itemType);
-        }
-    }
-
-    private void printLevelChoice(ItemFilter itemFilter) {
-        itemFilter.getItemLevelFilter().printLevelRange();
-        System.out.println();
-        PrintUtil.printIndexAndText("+", "Increase min item level");
-        PrintUtil.printIndexAndText("-", "Decrease min item level");
-        PrintUtil.printIndexAndText("++", "Increase max item level");
-        PrintUtil.printIndexAndText("--", "Decrease max item level");
-
-        System.out.println();
-    }
-
-    private boolean containsSpecialCharacter(String choice) {
-        return choice.contains("-") || choice.contains("+");
-    }
-
 }
 
 

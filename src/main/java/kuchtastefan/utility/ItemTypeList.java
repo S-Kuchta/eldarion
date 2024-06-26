@@ -53,8 +53,4 @@ public class ItemTypeList {
 
         return itemTypes;
     }
-
-    public static List<ItemType> itemTypes(ItemType... types) {
-        return new ArrayList<>(List.of(types));
-    }
 }

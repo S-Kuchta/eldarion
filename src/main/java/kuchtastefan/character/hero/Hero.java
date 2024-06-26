@@ -235,7 +235,6 @@ public class Hero extends GameCharacter {
     }
 
     public void setInitialEquip() {
-
         this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(200), 1);
         this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(500), 1);
         this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(600), 1);

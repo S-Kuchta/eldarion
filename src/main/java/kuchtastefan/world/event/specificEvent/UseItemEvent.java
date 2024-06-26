@@ -56,7 +56,7 @@ public class UseItemEvent extends Event implements UsingHeroInventory {
         Item neededItem = ItemDB.returnItemFromDB(this.itemId);
 
         if (neededItem.equals(item)) {
-            this.wasUsed = UsableItem.useItem(hero, item, this);
+            this.wasUsed = UsableItem.useItem(hero, item);
             if (item instanceof UsableQuestItem usableQuestItem) {
                 QuestObjective questObjective = QuestObjectiveDB.getQuestObjectiveById(usableQuestItem.getQuestObjectiveId());
                 usableQuestItem.setWasUsed(this.wasUsed);

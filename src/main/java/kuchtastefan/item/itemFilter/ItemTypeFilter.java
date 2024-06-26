@@ -25,9 +25,13 @@ public class ItemTypeFilter {
         this.itemTypes = itemTypes;
     }
 
+    public boolean containsType(ItemType itemType) {
+        return itemTypes.contains(itemType);
+    }
+
     public boolean checkTypeCondition(ItemType itemType) {
         if (itemTypes != null) {
-            return itemTypes.contains(itemType);
+            return containsType(itemType);
         }
 
         return this.itemType == itemType;

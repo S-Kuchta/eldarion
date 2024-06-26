@@ -3,6 +3,7 @@ package kuchtastefan.utility.printUtil;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.LetterToNumber;
 
 public class PrintUtil {
 

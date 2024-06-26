@@ -7,15 +7,13 @@ import kuchtastefan.character.hero.save.item.HeroWearableItem;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.itemType.ItemType;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
-import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.InitializeItemClassList;
-import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.LetterToNumber;
+import kuchtastefan.utility.*;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 
@@ -116,13 +114,14 @@ public class HeroInventoryManager {
 
     public void printHeroInventory(Hero hero, ItemFilter itemFilter) {
         Map<Integer, HeroItem> heroInventory = getFilteredHeroInventory(itemFilter);
+
         if (heroInventory.isEmpty()) {
-            System.out.println("\tYour inventory is empty");
+            System.out.println("\tFor specific Item Type, Class or Level, you don't have any items in your inventory");
+            PrintUtil.printIndexAndText(String.valueOf(0), "Go back\n");
             return;
         }
 
-        PrintUtil.printIndexAndText(String.valueOf(0), "Go back");
-        System.out.println();
+        PrintUtil.printIndexAndText(String.valueOf(0), "Go back\n");
         for (Map.Entry<Integer, HeroItem> entry : heroInventory.entrySet()) {
             PrintUtil.printIndexAndText(String.valueOf(entry.getKey()), entry.getValue().getAmount() + "x: ");
             entry.getValue().getItem().printItemDescription(hero);
@@ -130,7 +129,6 @@ public class HeroInventoryManager {
     }
 
     public boolean selectItem(Hero hero, UsingHeroInventory usingHeroInventory, ItemFilter itemFilter) {
-//        List<Class<? extends Item>> classes = itemFilter.getItemClassFilter().initializeClassList();
         List<Class<? extends Item>> classes = InitializeItemClassList.initializeClassList();
         boolean flag = false;
 
@@ -138,11 +136,12 @@ public class HeroInventoryManager {
         while (true) {
             if (itemFilter.isCanBeChanged()) {
                 printClassChoice(itemFilter, classes);
+                printTypeChoice(itemFilter, classes.size() + 1);
+                printLevelChoice(itemFilter);
                 PrintUtil.printExtraLongDivider();
             }
 
             printHeroInventory(hero, itemFilter);
-
             String choice = InputUtil.stringScanner().toUpperCase();
             if (choice.matches("\\d+")) {
                 if (Integer.parseInt(choice) == 0) {
@@ -170,8 +169,19 @@ public class HeroInventoryManager {
     private void handleNonNumericChoice(String choice, ItemFilter itemFilter, List<Class<? extends Item>> classes) {
         if (itemFilter.isCanBeChanged()) {
             try {
-                handleClassChoice(classes.get(LetterToNumber.valueOf(choice).getValue() - 1), itemFilter);
-            } catch (IllegalArgumentException e) {
+                if (containsSpecialCharacter(choice)) {
+                    itemFilter.getItemLevelFilter().handleItemLevel(choice, itemFilter);
+                    return;
+                }
+
+                int choiceValue = LetterToNumber.valueOf(choice).getValue();
+                if (choiceValue <= classes.size()) {
+                    handleClassChoice(classes.get(choiceValue - 1), itemFilter);
+                } else {
+                    handleTypeChoice(InitializeItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter())
+                            .get(choiceValue - classes.size() - 1), itemFilter);
+                }
+            } catch (Exception e) {
                 PrintUtil.printEnterValidInput();
             }
         }
@@ -191,6 +201,7 @@ public class HeroInventoryManager {
                 className = ConsoleColor.WHITE + itemClass.getSimpleName() + ConsoleColor.RESET;
             }
 
+//            System.out.printf("%3s: %s", LetterToNumber.getStringFromValue(index++), className);
             PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index++), className);
         }
 
@@ -205,6 +216,49 @@ public class HeroInventoryManager {
         }
     }
 
+    private void printTypeChoice(ItemFilter itemFilter, int indexStart) {
+        int index = indexStart;
+        List<ItemType> itemTypes = InitializeItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter());
+        for (ItemType itemType : itemTypes) {
+            if (!itemFilter.isCheckType()) {
+                return;
+            }
+
+            String typeName;
+            if (itemFilter.getItemTypeFilter().containsType(itemType)) {
+                typeName = itemType.toString();
+            } else {
+                typeName = ConsoleColor.WHITE + itemType.toString() + ConsoleColor.RESET;
+            }
+
+            PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index++), typeName);
+        }
+
+        System.out.println();
+    }
+
+    private void handleTypeChoice(ItemType itemType, ItemFilter itemFilter) {
+        if (itemFilter.getItemTypeFilter().containsType(itemType)) {
+            itemFilter.getItemTypeFilter().removeItemType(itemType);
+        } else {
+            itemFilter.getItemTypeFilter().addItemType(itemType);
+        }
+    }
+
+    private void printLevelChoice(ItemFilter itemFilter) {
+        itemFilter.getItemLevelFilter().printLevelRange();
+        System.out.println();
+        PrintUtil.printIndexAndText("-", "Decrease min item level");
+        PrintUtil.printIndexAndText("--", "Decrease max item level");
+        PrintUtil.printIndexAndText("+", "Increase min item level");
+        PrintUtil.printIndexAndText("++", "Increase max item level");
+
+        System.out.println();
+    }
+
+    private boolean containsSpecialCharacter(String choice) {
+        return choice.contains("-") || choice.contains("+");
+    }
 
 }
 

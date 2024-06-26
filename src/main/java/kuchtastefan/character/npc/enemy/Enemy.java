@@ -50,7 +50,6 @@ public class Enemy extends NonPlayerCharacter {
         }
 
         List<Item> itemList = ItemDB.returnItemListForEnemyDrop(new ItemFilter(
-                new ItemClassFilter(InitializeItemClassList.initializeClassList()),
                 new ItemLevelFilter(this.level)));
 
         int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);

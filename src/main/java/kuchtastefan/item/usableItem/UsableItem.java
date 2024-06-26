@@ -1,7 +1,6 @@
 package kuchtastefan.item.usableItem;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.hero.inventory.UsingHeroInventory;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
@@ -24,14 +23,16 @@ public interface UsableItem {
         return "Use item";
     }
 
-    static boolean useItem(Hero hero, Item item, UsingHeroInventory usingHeroInventory) {
+    static boolean useItem(Hero hero, Item item) {
         if (item instanceof UsableItem usableItem) {
             PrintUtil.printMenuHeader(item.getName());
             PrintUtil.printMenuOptions("Go back", returnUseItemText(item));
 
             final int choice = InputUtil.intScanner();
             switch (choice) {
-                case 0 -> usingHeroInventory.mainMenu(hero);
+                case 0 -> {
+                    return false;
+                }
                 case 1 -> {
                     return usableItem.useItem(hero);
                 }
@@ -40,7 +41,7 @@ public interface UsableItem {
             }
         }
 
-        usingHeroInventory.mainMenu(hero);
         return false;
     }
+
 }

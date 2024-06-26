@@ -79,7 +79,6 @@ public class WearableItem extends Item implements UsableItem, HaveType {
     }
 
     public ItemAndCount reagentNeededToRefine() {
-//        Item reagent = ItemDB.getRandomItem(CraftingReagentItem.class, new ItemFilter(CraftingReagentItemType.BLACKSMITH_REAGENT, this.itemLevel));
         Item reagent = ItemDB.getRandomItem(new ItemFilter(
                 new ItemLevelFilter(this.itemLevel),
                 new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT)));
@@ -89,7 +88,6 @@ public class WearableItem extends Item implements UsableItem, HaveType {
     }
 
     public ItemAndCount dismantle() {
-//        Item reagent = ItemDB.getRandomItem(CraftingReagentItem.class, new ItemFilter<>(CraftingReagentItemType.BLACKSMITH_REAGENT, this.itemLevel));
         Item reagent = ItemDB.getRandomItem(new ItemFilter(
                 new ItemLevelFilter(this.itemLevel),
                 new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT)));
@@ -107,24 +105,6 @@ public class WearableItem extends Item implements UsableItem, HaveType {
 
         return Integer.parseInt(newId);
     }
-
-    //    @Override
-//    public void printTypeSelection() {
-//        for (WearableItemType wearableItemType : WearableItemType.values()) {
-//            System.out.println(wearableItemType);
-//        }
-//
-//        PrintUtil.printIndexAndText("A", "Weapon");
-//        PrintUtil.printIndexAndText("B", "Body");
-//        PrintUtil.printIndexAndText("C", "Boots");
-//        PrintUtil.printIndexAndText("D", "Hands");
-//        PrintUtil.printIndexAndText("E", "Head");
-//    }
-//
-//    @Override
-//    public ItemFilter returnItemType() {
-//        return null;
-//    }
 
     @Override
     public boolean equals(Object o) {

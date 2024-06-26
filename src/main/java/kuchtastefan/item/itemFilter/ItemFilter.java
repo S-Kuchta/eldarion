@@ -24,7 +24,7 @@ public class ItemFilter {
     public ItemFilter(Hero hero) {
         this.itemClassFilter = new ItemClassFilter();
         this.itemTypeFilter = new ItemTypeFilter();
-        this.itemLevelFilter = new ItemLevelFilter(1, hero.getLevel());
+        this.itemLevelFilter = new ItemLevelFilter(hero.getLevel());
     }
 
     public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter, ItemLevelFilter itemLevelFilter) {

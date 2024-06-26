@@ -9,6 +9,7 @@ import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemFilter.ItemLevelFilter;
 import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.keyItem.KeyItem;
+import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.questItem.UsableQuestItem;
 import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.quest.QuestDB;
@@ -41,13 +42,11 @@ public class UseItemEvent extends Event implements UsingHeroInventory {
                 new ItemClassFilter(UsableQuestItem.class),
                 new ItemTypeFilter(),
                 new ItemLevelFilter());
-        questItemFilter.setCanBeChanged(false);
 
         ItemFilter keyItemFilter =  new ItemFilter(
-                new ItemClassFilter(UsableQuestItem.class),
+                new ItemClassFilter(KeyItem.class),
                 new ItemTypeFilter(),
                 new ItemLevelFilter());
-        keyItemFilter.setCanBeChanged(false);
 
         PrintUtil.printMenuOptions("Go back", "Quest items", "Keys");
         int choice = InputUtil.intScanner();

@@ -230,7 +230,8 @@ public class Hero extends GameCharacter {
     }
 
     public void rest() {
-        this.resetAbilitiesToMaxValues();
+        this.getEffectiveAbilities().put(Ability.HEALTH, this.getEnhancedAbilities().get(Ability.HEALTH));
+        this.getEffectiveAbilities().put(Ability.MANA, this.getEnhancedAbilities().get(Ability.MANA));
         this.buffsAndDebuffs.removeIf(debuffs -> debuffs.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF));
     }
 

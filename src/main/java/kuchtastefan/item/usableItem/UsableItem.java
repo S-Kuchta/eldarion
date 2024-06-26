@@ -36,7 +36,6 @@ public interface UsableItem {
                 case 1 -> {
                     return usableItem.useItem(hero);
                 }
-
                 default -> PrintUtil.printEnterValidInput();
             }
         }

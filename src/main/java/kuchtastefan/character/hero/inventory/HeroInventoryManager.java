@@ -112,6 +112,7 @@ public class HeroInventoryManager {
 
     public boolean selectItem(Hero hero, UsingHeroInventory usingHeroInventory, ItemFilter itemFilter) {
         List<Class<? extends Item>> classes = List.copyOf(itemFilter.getItemClassFilter().getItemClassList());
+        itemFilter.getItemClassFilter().getItemClassList().clear();
         boolean flag = false;
 
         System.out.println();
@@ -131,7 +132,11 @@ public class HeroInventoryManager {
                     return flag;
                 }
 
-                flag = handleNumericChoice(Integer.parseInt(choice), usingHeroInventory, hero, itemFilter);
+                if (hero.isInCombat()) {
+                    return handleNumericChoice(Integer.parseInt(choice), usingHeroInventory, hero, itemFilter);
+                } else {
+                    flag = handleNumericChoice(Integer.parseInt(choice), usingHeroInventory, hero, itemFilter);
+                }
             } else {
                 handleNonNumericChoice(choice, itemFilter, classes);
             }

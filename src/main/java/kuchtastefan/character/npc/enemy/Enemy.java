@@ -9,7 +9,9 @@ import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemFilter.ItemLevelFilter;
+import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.keyItem.KeyItem;
+import kuchtastefan.utility.InitializeItemClassList;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,14 +49,15 @@ public class Enemy extends NonPlayerCharacter {
             this.itemsDrop = new ArrayList<>();
         }
 
-        List<Item> itemList = ItemDB.returnItemListForEnemyDrop(new ItemFilter(new ItemClassFilter(Item.class), new ItemLevelFilter(this.level)));
-        int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
+        List<Item> itemList = ItemDB.returnItemListForEnemyDrop(new ItemFilter(
+                new ItemClassFilter(InitializeItemClassList.initializeClassList()),
+                new ItemLevelFilter(this.level)));
 
+        int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
         for (int i = 0; i < itemsForDrop; i++) {
             if (!addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)))) {
                 i--;
             }
-//            addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)));
         }
 
         if (this.constantItemDrop != null) {

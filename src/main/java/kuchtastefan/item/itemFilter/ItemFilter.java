@@ -3,8 +3,6 @@ package kuchtastefan.item.itemFilter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.itemType.HaveType;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 
 /**
@@ -25,12 +23,17 @@ public class ItemFilter {
     public ItemFilter() {
         this.itemClassFilter = new ItemClassFilter(Item.class);
         this.itemTypeFilter = new ItemTypeFilter();
-        this.itemLevelFilter = new ItemLevelFilter(1,5);
+        this.itemLevelFilter = new ItemLevelFilter(1, 5);
     }
 
     public ItemFilter(ItemClassFilter itemClassFilter, ItemLevelFilter itemLevelFilter, ItemTypeFilter itemTypeFilter) {
         this.itemClassFilter = itemClassFilter;
         this.itemLevelFilter = itemLevelFilter;
+        this.itemTypeFilter = itemTypeFilter;
+    }
+
+    public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter) {
+        this.itemClassFilter = itemClassFilter;
         this.itemTypeFilter = itemTypeFilter;
     }
 
@@ -46,10 +49,6 @@ public class ItemFilter {
 
     public ItemFilter(ItemLevelFilter itemLevelFilter) {
         this.itemLevelFilter = itemLevelFilter;
-    }
-
-    public ItemFilter(ItemTypeFilter itemTypeFilter) {
-        this.itemTypeFilter = itemTypeFilter;
     }
 
     public ItemFilter(ItemClassFilter itemClassFilter) {
@@ -74,9 +73,11 @@ public class ItemFilter {
             return null;
         }
 
-        if (this.isCheckType() && item instanceof HaveType itemWithType) {
-            if (this.itemTypeFilter.checkTypeCondition(itemWithType.getItemType())) {
-                return null;
+        if (this.isCheckType()) {
+            if (item instanceof HaveType itemWithType) {
+                if (!this.itemTypeFilter.checkTypeCondition(itemWithType.getItemType())) {
+                    return null;
+                }
             }
         }
 

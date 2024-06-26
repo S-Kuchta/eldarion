@@ -1,6 +1,7 @@
 package kuchtastefan.item.itemFilter;
 
 import kuchtastefan.item.itemType.ItemType;
+import kuchtastefan.utility.InitializeItemTypeList;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class ItemTypeFilter {
     private List<ItemType> itemTypes;
 
     public ItemTypeFilter() {
-        this.itemTypes = new ArrayList<>();
+        this.itemTypes = InitializeItemTypeList.itemTypeList();
     }
 
     public ItemTypeFilter(ItemType itemType) {

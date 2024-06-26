@@ -12,6 +12,7 @@ import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
@@ -246,11 +247,9 @@ public class BattleService {
         try {
             PrintUtil.printExtraLongDivider();
             if (parsedChoice == hero.getCharacterSpellList().size()) {
-//                return hero.getHeroInventory().selectItem(hero, ConsumableItem.class,
-//                        new ItemFilter(ConsumableItemType.POTION), inventoryMenuService, 1);
-//                return hero.getHeroInventory().selectItem(hero, ConsumableItem.class,
-//                        new ItemFilter(new ItemTypeFilter(ConsumableItemType.POTION)), inventoryMenuService, 1);
-                return hero.getHeroInventoryManager().selectItem(hero, inventoryMenuService, new ItemFilter(new ItemTypeFilter(ConsumableItemType.POTION)));
+                return hero.getHeroInventoryManager().selectItem(hero, inventoryMenuService, new ItemFilter(
+                        new ItemClassFilter(ConsumableItem.class),
+                        new ItemTypeFilter(ConsumableItemType.POTION)));
             } else {
                 return hero.getCharacterSpellList().get(parsedChoice).useSpell(
                         new CharactersInvolvedInBattle(hero, this.playerTarget, enemyList, alliesList, tempCharacterList));

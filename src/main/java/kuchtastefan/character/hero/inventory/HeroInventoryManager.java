@@ -13,6 +13,7 @@ import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
 import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.InitializeItemClassList;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.printUtil.PrintUtil;
@@ -129,7 +130,8 @@ public class HeroInventoryManager {
     }
 
     public boolean selectItem(Hero hero, UsingHeroInventory usingHeroInventory, ItemFilter itemFilter) {
-        List<Class<? extends Item>> classes = itemFilter.getItemClassFilter().initializeClassList();
+//        List<Class<? extends Item>> classes = itemFilter.getItemClassFilter().initializeClassList();
+        List<Class<? extends Item>> classes = InitializeItemClassList.initializeClassList();
         boolean flag = false;
 
         System.out.println();
@@ -144,7 +146,7 @@ public class HeroInventoryManager {
             String choice = InputUtil.stringScanner().toUpperCase();
             if (choice.matches("\\d+")) {
                 if (Integer.parseInt(choice) == 0) {
-                    break;
+                    return flag;
                 }
 
                 flag = handleNumericChoice(Integer.parseInt(choice), usingHeroInventory, hero, itemFilter);
@@ -152,8 +154,6 @@ public class HeroInventoryManager {
                 handleNonNumericChoice(choice, itemFilter, classes);
             }
         }
-
-        return flag;
     }
 
     private boolean handleNumericChoice(int choice, UsingHeroInventory usingHeroInventory, Hero hero, ItemFilter itemFilter) {
@@ -163,6 +163,7 @@ public class HeroInventoryManager {
         } else {
             PrintUtil.printEnterValidInput();
         }
+
         return false;
     }
 

@@ -1,7 +1,6 @@
 package kuchtastefan.quest.questObjectives.specificQuestObjectives;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.character.hero.save.item.HeroItem;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.quest.questObjectives.ConnectedWithItem;
@@ -24,8 +23,6 @@ public class QuestBringItemObjective extends QuestObjective implements ResetObje
     @Override
     public void printQuestObjectiveProgress(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.itemId);
-//        hero.getHeroInventoryManager().addItem(item,0);
-//        hero.getHeroInventoryManager().getHeroItems().addEntityIfNotContains(new HeroItem(item.getItemId(), 0));
         System.out.println("\tBring " + hero.getHeroInventoryManager().getItemCount(item) + "/" + this.itemCountNeeded + " " + item.getName());
     }
 

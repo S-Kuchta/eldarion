@@ -320,9 +320,9 @@ public class BattleService {
         }
 
         String enemy = consoleColor + nonPlayerCharacter.getName() + " - "
-                + nonPlayerCharacter.getCharacterRarity() + " - "
-                + healthsColor + "Healths: "
-                + nonPlayerCharacter.getEffectiveAbilityValue(Ability.HEALTH) + ConsoleColor.RESET;
+                       + nonPlayerCharacter.getCharacterRarity() + " - "
+                       + healthsColor + "Healths: "
+                       + nonPlayerCharacter.getEffectiveAbilityValue(Ability.HEALTH) + ConsoleColor.RESET;
 
         PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index), enemy);
     }
@@ -384,11 +384,4 @@ public class BattleService {
 
         spellToCast.useSpell(new CharactersInvolvedInBattle(spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
     }
-
-//    public void resetSpellsCoolDowns(Hero hero) {
-//        hero.getCharacterSpellList().forEach(spell -> {
-//            spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
-//            spell.checkSpellCoolDown();
-//        });
-//    }
 }

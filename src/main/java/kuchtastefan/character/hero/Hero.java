@@ -232,7 +232,7 @@ public class Hero extends GameCharacter {
     public void rest() {
         this.getEffectiveAbilities().put(Ability.HEALTH, this.getEnhancedAbilities().get(Ability.HEALTH));
         this.getEffectiveAbilities().put(Ability.MANA, this.getEnhancedAbilities().get(Ability.MANA));
-        this.buffsAndDebuffs.removeIf(debuffs -> debuffs.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF));
+        this.buffsAndDebuffs.removeIf(debuff -> debuff.getActionStatusEffect().equals(ActionStatusEffect.DEBUFF));
     }
 
     public void setInitialEquip() {
@@ -259,6 +259,7 @@ public class Hero extends GameCharacter {
             this.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
             this.getEffectiveAbilities().put(Ability.HEALTH, this.getEnhancedAbilities().get(Ability.HEALTH));
             this.getEffectiveAbilities().put(Ability.MANA, this.getEnhancedAbilities().get(Ability.MANA));
+            this.buffsAndDebuffs.clear();
 
             System.out.println("\n\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
             System.out.print("\t You lost " + goldToRemove + " golds!");

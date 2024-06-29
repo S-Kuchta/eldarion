@@ -32,7 +32,6 @@ public class QuestReward {
         for (Integer itemId : this.itemsReward) {
             Item itemReward = ItemDB.returnItemFromDB(itemId);
             hero.getHeroInventoryManager().addItem(itemReward, 1);
-//            hero.getHeroInventory().addItemToInventory(itemReward, 1);
         }
     }
 

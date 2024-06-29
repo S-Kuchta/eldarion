@@ -33,8 +33,9 @@ public class ItemLevelFilter {
         return itemLevel >= minItemLevel && itemLevel <= maxItemLevel;
     }
 
-    public void printLevelChoice(ItemFilter itemFilter) {
-        itemFilter.getItemLevelFilter().printLevelRange();
+    public void printLevelChoice() {
+        System.out.print("\tCurrent level Range -> Min level: " + ConsoleColor.MAGENTA + minItemLevel + ConsoleColor.RESET
+                         + " Max level: " + ConsoleColor.MAGENTA + maxItemLevel + ConsoleColor.RESET);
         System.out.println();
         PrintUtil.printIndexAndText("+", "Increase min item level");
         PrintUtil.printIndexAndText("-", "Decrease min item level");
@@ -45,8 +46,7 @@ public class ItemLevelFilter {
     }
 
     public void printLevelRange() {
-        System.out.print("\tCurrent level Range -> Min level: " + ConsoleColor.MAGENTA + minItemLevel + ConsoleColor.RESET
-                + " Max level: " + ConsoleColor.MAGENTA + maxItemLevel + ConsoleColor.RESET);
+
     }
 
     public void handleItemLevel(String choice, ItemFilter itemFilter) {

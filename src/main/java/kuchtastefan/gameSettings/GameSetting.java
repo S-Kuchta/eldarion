@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 @Getter
 public enum GameSetting {
-    PRINT_STRING_SLOWLY(false),
+    PRINT_STRING_SLOWLY(true),
     HIDE_SPELLS_ON_COOL_DOWN(true),
     SHOW_INFORMATION_ABOUT_ACTION_NAME(false),
     AUTO_SAVE(true);

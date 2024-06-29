@@ -121,7 +121,7 @@ public class HeroInventoryManager {
             if (itemFilter.isCanBeChanged()) {
                 itemFilter.getItemClassFilter().printClassChoice(classes);
                 itemFilter.getItemTypeFilter().printTypeChoice(itemFilter, classes.size() + 1);
-                itemFilter.getItemLevelFilter().printLevelChoice(itemFilter);
+                itemFilter.getItemLevelFilter().printLevelChoice();
                 PrintUtil.printExtraLongDivider();
             }
 

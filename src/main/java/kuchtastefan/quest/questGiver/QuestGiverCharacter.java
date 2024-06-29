@@ -52,14 +52,10 @@ public class QuestGiverCharacter {
     }
 
     private String returnNameSuffix() {
-//        int numberOfTurnedInQuests = 0;
         boolean haveQuestAvailable = false;
         boolean haveQuestUnavailable = false;
 
         for (Quest quest : this.quests) {
-//            if (quest.getStatus().equals(QuestStatus.TURNED_IN)) {
-//                numberOfTurnedInQuests++;
-//            }
             if (quest.getStatus().equals(QuestStatus.UNAVAILABLE)) {
                 haveQuestUnavailable = true;
             }
@@ -86,7 +82,6 @@ public class QuestGiverCharacter {
         }
 
         return "";
-//        return numberOfTurnedInQuests == this.quests.size() ? ConsoleColor.YELLOW + " ✔ " + ConsoleColor.RESET : "";
     }
 
     public boolean checkIfAllAcceptedQuestsAreCompleted(Hero hero) {

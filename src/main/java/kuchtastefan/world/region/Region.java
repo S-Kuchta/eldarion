@@ -8,7 +8,6 @@ import kuchtastefan.service.HeroMenuService;
 import kuchtastefan.service.LocationService;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
-import kuchtastefan.utility.annotationStrategy.Exclude;
 import kuchtastefan.utility.printUtil.CharacterPrint;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import kuchtastefan.utility.printUtil.SpellAndActionPrint;

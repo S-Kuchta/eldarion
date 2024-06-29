@@ -1,9 +1,6 @@
 package kuchtastefan.item.specificItems.craftingItem;
 
-import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.ItemType;
-import kuchtastefan.utility.LetterToNumber;
-import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
@@ -23,18 +20,4 @@ public enum CraftingReagentItemType implements ItemType {
         return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
     }
 
-
-    @Override
-    public void printTypeSelection() {
-        int index = 1;
-        for (CraftingReagentItemType craftingReagentItemType : CraftingReagentItemType.values()) {
-            PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index), craftingReagentItemType.toString());
-            index++;
-        }
-    }
-
-    @Override
-    public ItemFilter returnItemType(int ordinal) {
-        return null;
-    }
 }

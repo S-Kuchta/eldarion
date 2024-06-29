@@ -10,8 +10,8 @@
   {
     "regionId": 1,
     "regionName": "DuskWood",
-    "minimumRegionLevel": 1,
-    "maximumRegionLevel": 2,
+    "minimumRegionLevel": 3,
+    "maximumRegionLevel": 4,
     "biome": "DARK_FOREST",
     "locationsId": [5,6,7,8]
   }

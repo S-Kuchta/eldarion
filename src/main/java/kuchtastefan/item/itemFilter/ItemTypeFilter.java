@@ -7,6 +7,7 @@ import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,7 @@ public class ItemTypeFilter {
     public void printTypeChoice(ItemFilter itemFilter, int indexStart) {
         int index = indexStart;
         List<ItemType> itemTypes = ItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter());
+
         if (itemTypes.isEmpty()) {
             return;
         }

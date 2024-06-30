@@ -7,7 +7,6 @@ import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,14 +15,18 @@ import java.util.Set;
 public class ItemTypeFilter {
 
     private final Set<ItemType> itemTypes;
+    private final boolean filterTypes;
 
 
-    public ItemTypeFilter() {
+    public ItemTypeFilter(boolean filterTypes) {
         this.itemTypes = ItemTypeList.allTypesList();
+        this.filterTypes = filterTypes;
     }
 
     public ItemTypeFilter(ItemType... itemTypes) {
+        this.filterTypes = itemTypes.length != 0;
         this.itemTypes = new HashSet<>(List.of(itemTypes));
+
     }
 
 

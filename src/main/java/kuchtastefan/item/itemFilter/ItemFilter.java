@@ -38,8 +38,12 @@ public class ItemFilter {
             return null;
         }
 
-        if (item instanceof HaveType itemWithType) {
-            if (!this.itemTypeFilter.containsType(itemWithType.getItemType())) {
+        if (itemTypeFilter.isFilterTypes()) {
+            if (item instanceof HaveType itemWithType) {
+                if (!this.itemTypeFilter.containsType(itemWithType.getItemType())) {
+                    return null;
+                }
+            } else {
                 return null;
             }
         }

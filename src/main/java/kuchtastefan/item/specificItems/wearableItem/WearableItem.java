@@ -79,7 +79,7 @@ public class WearableItem extends Item implements UsableItem, HaveType {
 
     public ItemAndCount reagentNeededToRefine() {
         Item reagent = ItemDB.getRandomItem(new ItemFilter(
-                new ItemClassFilter(CraftingReagentItem.class),
+                new ItemClassFilter(/*CraftingReagentItem.class*/),
                 new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT),
                 new ItemLevelFilter(this.itemLevel)));
 
@@ -89,7 +89,7 @@ public class WearableItem extends Item implements UsableItem, HaveType {
 
     public ItemAndCount dismantle() {
         Item reagent = ItemDB.getRandomItem(new ItemFilter(
-                new ItemClassFilter(CraftingReagentItem.class),
+                new ItemClassFilter(/*CraftingReagentItem.class*/),
                 new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT),
                 new ItemLevelFilter(this.itemLevel)));
 

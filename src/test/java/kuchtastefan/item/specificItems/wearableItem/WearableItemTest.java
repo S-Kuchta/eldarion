@@ -1,6 +1,7 @@
 package kuchtastefan.item.specificItems.wearableItem;
 
 import kuchtastefan.item.Item;
+import kuchtastefan.item.ItemAndCount;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
@@ -11,10 +12,8 @@ import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
 import kuchtastefan.service.FileService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class WearableItemTest {
 
@@ -25,17 +24,6 @@ class WearableItemTest {
         fileService.importCraftingReagentItemsFromFile();
     }
 
-    @Test
-    void reagentNeededToRefine() {
-        Item wearableItem = ItemDB.returnItemFromDB(200);
-        Item reagent = ItemDB.getRandomItem(new ItemFilter(
-                new ItemClassFilter(),
-                new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT),
-                new ItemLevelFilter(wearableItem.getItemLevel())));
-
-        assertNotNull(reagent);
-    }
-
     @RepeatedTest(30)
     void reagentNeededToRefineRepeated() {
         Item wearableItem = ItemDB.getRandomItem(new ItemFilter(
@@ -43,11 +31,18 @@ class WearableItemTest {
                 new ItemTypeFilter(),
                 new ItemLevelFilter()));
 
-        Item reagent = ItemDB.getRandomItem(new ItemFilter(
-                new ItemClassFilter(),
-                new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT),
-                new ItemLevelFilter(wearableItem.getItemLevel())));
+        ItemAndCount reagentAndCount = ((WearableItem) wearableItem).reagentNeededToRefine();
+        assertEquals(((CraftingReagentItem) reagentAndCount.item()).getItemType(), CraftingReagentItemType.BLACKSMITH_REAGENT);
+    }
 
-        assertEquals(((CraftingReagentItem) reagent).getItemType(), CraftingReagentItemType.BLACKSMITH_REAGENT);
+    @RepeatedTest(30)
+    void dismantleTest() {
+        Item wearableItem = ItemDB.getRandomItem(new ItemFilter(
+                new ItemClassFilter(WearableItem.class),
+                new ItemTypeFilter(),
+                new ItemLevelFilter()));
+
+        ItemAndCount reagentAndCount = ((WearableItem) wearableItem).dismantle();
+        assertEquals(((CraftingReagentItem) reagentAndCount.item()).getItemType(), CraftingReagentItemType.BLACKSMITH_REAGENT);
     }
 }

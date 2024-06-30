@@ -18,8 +18,8 @@ A Street of Code Java Tutorial Assignment.<br>
 I recommend to maximize the console window for better playing experience.<br>
 When there is a CYAN - colored number or letter followed by a dot and text, you can enter this number or letter into the console, and the action will be performed.<br>
 To start, enter your name, select a hero class, and set your initial ability points.<br>
-You begin the game in the city with 10 free ability points, which you can spend on abilities of your choice.<br>
-After this, you embark on your journey in the city. In the city, you can accept quests, visit vendors, buy or sell items, etc.<br>
+You begin the game with 10 free ability points, which you can spend on abilities of your choice.<br>
+After this, you embark on your journey. You can accept quests, visit vendors, buy or sell items, fight,  etc.<br>
 You can change some of the game settings. 
 
 
@@ -124,7 +124,7 @@ You can encounter various types of items.
 #### Wearable items
 - increases hero ability points. There are five slots that can be obtained - Body, Boots, Hands, Head and Weapon.
 - On each slot you can have only one item.
-- During game is possible to change wearable items with no cost. Old item will not be removed.
+- During game is possible to change wearable items with no cost. Old item will not be removed from inventory.
 - Wearable items can have 4 types of quality:
   - Basic - the lowest item quality. Basic items randomly drops from enemy or can be bought from vendors.
   - Improved - to achieve Improved item quality you need to reforge your item with basic quality - for this you need to have specific crafting reagent items
@@ -136,7 +136,7 @@ You can encounter various types of items.
 
 #### Consumeable items
 - Consumeable items could improve hero abilities, restore health or mana.
-- Can be found in locations, bought from vendors or create them.
+- Can be found in locations or bought from vendors.
 - There are two types of consumeable items.
   - Food (drink) - used only out of combat.
   - Potion - can be used during combat.
@@ -148,11 +148,13 @@ You can encounter various types of items.
 - Can be obtained during travelling across region, bought from vendor or find them in locations.
 - There are two types of Crafting reagent items:
   - Alchemy Reagent - Used for craft new potion or food.
-  - Blacksmith reagent - Used for refinement wearable item or craft new wearable item.
+  - Blacksmith reagent - Used for refinement wearable item.
 
 #### Quest items
 - Are used to complete quests.
-- Also included keys to unlock certain locations or location stages.
+
+#### Usable Quest items
+- Are used also for completing quests, but player need to choose correct one when needed.
 
 #### Junk items
 - Good only for sell and make som extra golds. Can be obtained randomly from enemies.
@@ -167,7 +169,7 @@ In case of defeat, the hero loses a certain amount of gold.
 ## Hints
 During the game, players will receive hint for the current situation.<br>
 Each hint will be shown only once.<br>
-Hints can be reset.
+Hints can be reset in Game Settings.
 
 ## Constraints
 

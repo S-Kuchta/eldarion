@@ -6,10 +6,11 @@ import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.criticalHit.CanBeCriticalHit;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionRestoreManaOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
+public class ActionRestoreManaOverTime extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility, CanBeCriticalHit {
 
     public ActionRestoreManaOverTime(ActionName actionName, ActionEffectOn actionEffectOn, int maxActionValue, int baseActionValue,
                                      int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {

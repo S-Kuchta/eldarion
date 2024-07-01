@@ -10,7 +10,6 @@ import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemFilter.ItemLevelFilter;
 import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.itemType.HaveType;
-import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
 import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItemType;
 import kuchtastefan.item.usableItem.UsableItem;
 import kuchtastefan.utility.RandomNumberGenerator;
@@ -79,7 +78,7 @@ public class WearableItem extends Item implements UsableItem, HaveType {
 
     public ItemAndCount reagentNeededToRefine() {
         Item reagent = ItemDB.getRandomItem(new ItemFilter(
-                new ItemClassFilter(/*CraftingReagentItem.class*/),
+                new ItemClassFilter(),
                 new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT),
                 new ItemLevelFilter(this.itemLevel)));
 
@@ -89,7 +88,7 @@ public class WearableItem extends Item implements UsableItem, HaveType {
 
     public ItemAndCount dismantle() {
         Item reagent = ItemDB.getRandomItem(new ItemFilter(
-                new ItemClassFilter(/*CraftingReagentItem.class*/),
+                new ItemClassFilter(),
                 new ItemTypeFilter(CraftingReagentItemType.BLACKSMITH_REAGENT),
                 new ItemLevelFilter(this.itemLevel)));
 

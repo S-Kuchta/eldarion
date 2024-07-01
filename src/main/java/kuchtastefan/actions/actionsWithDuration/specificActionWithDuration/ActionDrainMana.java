@@ -6,10 +6,11 @@ import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
 import kuchtastefan.actions.actionValue.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.criticalHit.CanBeCriticalHit;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
-public class ActionDrainMana extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility {
+public class ActionDrainMana extends ActionWithDuration implements ActionWithIncreasedValueByPrimaryAbility, CanBeCriticalHit {
 
     public ActionDrainMana(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int maxActionTurns,
                            int actionMaxStacks, int chanceToPerformAction, ActionStatusEffect actionStatusEffect) {

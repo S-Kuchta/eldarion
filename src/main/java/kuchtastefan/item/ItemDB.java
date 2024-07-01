@@ -1,6 +1,7 @@
 package kuchtastefan.item;
 
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
@@ -28,9 +29,10 @@ public class ItemDB {
 
     public static List<Item> returnItemListForEnemyDrop(ItemFilter itemFilter) {
         List<Item> itemList = new ArrayList<>(returnFilteredItemList(itemFilter));
-        itemList.removeIf(item -> item instanceof QuestItem || (item instanceof WearableItem wearableItem &&
-                (wearableItem.getWearableItemQuality() == WearableItemQuality.QUEST_REWARD ||
-                        wearableItem.getWearableItemQuality() == WearableItemQuality.SPECIAL)));
+        itemList.removeIf(item -> item instanceof QuestItem ||
+                item instanceof KeyItem ||
+                (item instanceof WearableItem wearableItem && (
+                        wearableItem.getWearableItemQuality() == WearableItemQuality.QUEST_REWARD || wearableItem.getWearableItemQuality() == WearableItemQuality.SPECIAL)));
 
         return itemList;
     }

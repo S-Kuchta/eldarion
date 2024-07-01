@@ -15,6 +15,7 @@ import kuchtastefan.utility.printUtil.SpellAndActionPrint;
 import kuchtastefan.world.location.Location;
 import kuchtastefan.world.location.QuestLocation;
 import kuchtastefan.world.location.locationStage.LocationStage;
+import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStagePlaceToRest;
 import kuchtastefan.world.location.locationStage.specificLocationStage.LocationStageQuestGiver;
 
 public class LocationService {
@@ -86,6 +87,11 @@ public class LocationService {
 
         locationStage.discoverStage();
         if (!locationStage.canHeroEnterStage(hero)) {
+            if (locationStage instanceof LocationStagePlaceToRest) {
+                locationStage.completeStage();
+//                discoverNextStage(location, location.getCountOfStageCompleted() + 1);
+            }
+
             return;
         }
 

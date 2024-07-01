@@ -10,7 +10,11 @@ import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemFilter.ItemLevelFilter;
 import kuchtastefan.item.itemFilter.ItemTypeFilter;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
+import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.specificItems.junkItem.JunkItem;
 import kuchtastefan.item.specificItems.keyItem.KeyItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -49,7 +53,7 @@ public class Enemy extends NonPlayerCharacter {
         }
 
         List<Item> itemList = ItemDB.returnItemListForEnemyDrop(new ItemFilter(
-                new ItemClassFilter(),
+                new ItemClassFilter(WearableItem.class, ConsumableItem.class, CraftingReagentItem.class, JunkItem.class),
                 new ItemTypeFilter(),
                 new ItemLevelFilter(this.level)));
 

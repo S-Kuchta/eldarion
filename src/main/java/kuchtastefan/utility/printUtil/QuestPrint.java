@@ -1,7 +1,6 @@
 package kuchtastefan.utility.printUtil;
 
 import kuchtastefan.character.hero.Hero;
-import kuchtastefan.constant.ConstantSymbol;
 import kuchtastefan.quest.Quest;
 import kuchtastefan.quest.QuestStatus;
 import kuchtastefan.quest.questObjectives.QuestObjective;

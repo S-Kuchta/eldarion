@@ -48,8 +48,7 @@ public class HintDB {
         HINT_DB.put(HintName.LOCATION_HINT, new Hint("""
                 \tWelcome to the location. The Location consists of multiple stages.
                 \tIf a stage is not open from the beginning, you can only access it after completing the previous stage.
-                \tTo enter some stages, you need an item to unlock the stage.
-                \tAfter completing all stages, you will receive a reward."""));
+                \tTo enter some stages, you need an item to unlock the stage."""));
 
         HINT_DB.put(HintName.BATTLE_HINT, new Hint("""
                 \tOne of the most important parts of the game are the battles. Battles occur in turns.

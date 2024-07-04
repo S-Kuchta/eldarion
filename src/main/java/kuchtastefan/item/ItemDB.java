@@ -1,11 +1,10 @@
 package kuchtastefan.item;
 
 import kuchtastefan.item.itemFilter.ItemFilter;
-import kuchtastefan.item.itemType.HaveType;
+import kuchtastefan.item.specificItems.keyItem.KeyItem;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
-import kuchtastefan.utility.ItemLevelCondition;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 
@@ -28,37 +27,19 @@ public class ItemDB {
         ITEM_DB.put(item.getItemId(), item);
     }
 
-    public static List<Item> returnItemListForEnemyDrop(ItemFilter itemFilter) {
-        List<Item> itemList = new ArrayList<>(returnFilteredItemList(Item.class, itemFilter));
-        itemList.removeIf(item -> item instanceof QuestItem || (item instanceof WearableItem wearableItem &&
-                (wearableItem.getWearableItemQuality() == WearableItemQuality.QUEST_REWARD ||
-                        wearableItem.getWearableItemQuality() == WearableItemQuality.SPECIAL)));
-
-        return itemList;
-    }
-
-
-    public static <T extends Item> List<T> returnFilteredItemList(Class<T> itemClass, ItemFilter itemFilter) {
-        List<T> itemList = new ArrayList<>();
+    public static List<Item> returnFilteredItemList(ItemFilter itemFilter) {
+        List<Item> itemList = new ArrayList<>();
         for (Item item : ITEM_DB.values()) {
-            if (!itemClass.isInstance(item) || !ItemLevelCondition.checkItemLevelCondition(item, itemFilter.getMaxItemLevel(), itemFilter.getMinItemLevel())) {
-                continue;
+            if (itemFilter.filterItem(item) != null) {
+                itemList.add(item);
             }
-
-            if (item instanceof HaveType itemWithType) {
-                if (itemFilter.isCheckType() && !itemWithType.getItemType().equals(itemFilter.getItemType())) {
-                    continue;
-                }
-            }
-
-            itemList.add(itemClass.cast(item));
         }
 
         return itemList;
     }
 
-    public static <T extends Item> Item getRandomItem(Class<T> itemClass, ItemFilter itemFilter) {
-        List<T> items = returnFilteredItemList(itemClass, itemFilter);
+    public static Item getRandomItem(ItemFilter itemFilter) {
+        List<Item> items = returnFilteredItemList(itemFilter);
         return items.get(RandomNumberGenerator.getRandomNumber(0, items.size() - 1));
     }
 

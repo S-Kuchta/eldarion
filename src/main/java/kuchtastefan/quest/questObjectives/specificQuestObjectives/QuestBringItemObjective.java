@@ -23,14 +23,13 @@ public class QuestBringItemObjective extends QuestObjective implements ResetObje
     @Override
     public void printQuestObjectiveProgress(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.itemId);
-        hero.getHeroInventory().getHeroInventory().putIfAbsent(item, 0);
-        System.out.println("\tBring " + hero.getHeroInventory().getItemCount(item) + "/" + this.itemCountNeeded + " " + item.getName());
+        System.out.println("\tBring " + hero.getHeroInventoryManager().getItemCount(item) + "/" + this.itemCountNeeded + " " + item.getName());
     }
 
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.itemId);
-        if (hero.getHeroInventory().hasRequiredItems(item, this.itemCountNeeded)) {
+        if (hero.getHeroInventoryManager().hasRequiredItems(item, this.itemCountNeeded)) {
             setCompleted(hero, true);
         }
     }
@@ -38,6 +37,6 @@ public class QuestBringItemObjective extends QuestObjective implements ResetObje
     @Override
     public void resetCompletedQuestObjectiveAssignment(Hero hero) {
         Item item = ItemDB.returnItemFromDB(this.itemId);
-        hero.getHeroInventory().removeItemFromHeroInventory(item, this.itemCountNeeded);
+        hero.getHeroInventoryManager().removeItem(item, this.itemCountNeeded);
     }
 }

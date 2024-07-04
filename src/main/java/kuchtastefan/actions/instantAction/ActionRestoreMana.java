@@ -5,11 +5,12 @@ import kuchtastefan.actions.Action;
 import kuchtastefan.actions.ActionEffectOn;
 import kuchtastefan.actions.ActionName;
 import kuchtastefan.actions.actionValue.ActionWithIncreasedValueByPrimaryAbility;
+import kuchtastefan.actions.criticalHit.CanBeCriticalHit;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.utility.ConsoleColor;
 
 
-public class ActionRestoreMana extends Action implements ActionWithIncreasedValueByPrimaryAbility {
+public class ActionRestoreMana extends Action implements ActionWithIncreasedValueByPrimaryAbility, CanBeCriticalHit {
 
     public ActionRestoreMana(ActionName actionName, ActionEffectOn actionEffectOn, int baseActionValue, int chanceToPerformAction) {
         super(actionName, actionEffectOn, baseActionValue, chanceToPerformAction);

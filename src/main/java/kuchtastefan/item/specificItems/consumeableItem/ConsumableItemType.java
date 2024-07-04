@@ -1,12 +1,12 @@
 package kuchtastefan.item.specificItems.consumeableItem;
 
 
-import kuchtastefan.item.itemFilter.ItemFilter;
 import kuchtastefan.item.itemType.ItemType;
-import kuchtastefan.utility.LetterToNumber;
-import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public enum ConsumableItemType implements ItemType {
@@ -23,20 +23,5 @@ public enum ConsumableItemType implements ItemType {
     @Override
     public String toString() {
         return StringUtils.capitalize(name().toLowerCase().replace("_", " "));
-    }
-
-
-    @Override
-    public void printTypeSelection() {
-        int index = 1;
-        for (ConsumableItemType consumableItemType : ConsumableItemType.values()) {
-            PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index), consumableItemType.toString());
-            index++;
-        }
-    }
-
-    @Override
-    public ItemFilter returnItemType(int ordinal) {
-        return null;
     }
 }

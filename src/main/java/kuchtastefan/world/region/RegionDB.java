@@ -1,9 +1,7 @@
 package kuchtastefan.world.region;
 
-import kuchtastefan.world.location.LocationDB;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

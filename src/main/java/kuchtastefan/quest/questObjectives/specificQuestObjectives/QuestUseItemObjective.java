@@ -37,7 +37,7 @@ public class QuestUseItemObjective extends QuestObjective implements ResetObject
 
     @Override
     public void verifyQuestObjectiveCompletion(Hero hero) {
-        Item item = hero.getHeroInventory().getItemFromInventoryById(this.itemId);
+        Item item = hero.getHeroInventoryManager().getItem(this.itemId);
         if (item instanceof UsableQuestItem usableQuestItem && usableQuestItem.isWasUsed()) {
             setCompleted(hero, true);
         }
@@ -45,6 +45,6 @@ public class QuestUseItemObjective extends QuestObjective implements ResetObject
 
     @Override
     public void resetCompletedQuestObjectiveAssignment(Hero hero) {
-        hero.getHeroInventory().removeItemFromHeroInventory(hero.getHeroInventory().getItemFromInventoryById(this.itemId), 1);
+        hero.getHeroInventoryManager().removeItem(ItemDB.returnItemFromDB(this.itemId), 1);
     }
 }

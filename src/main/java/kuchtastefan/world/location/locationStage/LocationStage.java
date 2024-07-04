@@ -26,7 +26,7 @@ public abstract class LocationStage {
     private boolean haveHeroKey(Hero hero) {
         for (Integer itemId : this.itemsIdNeededToEnterStage) {
             Item item = ItemDB.returnItemFromDB(itemId);
-            if (!hero.getHeroInventory().hasRequiredItems(item, 1)) {
+            if (!hero.getHeroInventoryManager().hasRequiredItems(item, 1)) {
                 return false;
             }
         }

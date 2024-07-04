@@ -49,18 +49,18 @@
   {
     "type": "Enemy",
     "npcId": 302,
-    "name": "Insane Ghoul",
-    "characterRarity": "RARE",
+    "name": "Ghoul",
+    "characterRarity": "COMMON",
     "npcType": "WARRIOR",
     "baseAbilities": {
-      "ATTACK": 9,
+      "ATTACK": 8,
       "RESIST_DAMAGE": 4,
       "STRENGTH": 5,
       "INTELLECT": 1,
       "SPIRIT": 1,
       "HASTE": 4,
       "CRITICAL_HIT_CHANCE": 5,
-      "HEALTH": 92,
+      "HEALTH": 85,
       "MANA": 50,
       "ABSORB_DAMAGE": 0
     },
@@ -292,5 +292,30 @@
       100
     ],
     "level": 1
+  },
+  {
+    "type": "Enemy",
+    "npcId": 312,
+    "name": "Insane Ghoul",
+    "characterRarity": "RARE",
+    "npcType": "WARRIOR",
+    "baseAbilities": {
+      "ATTACK": 9,
+      "RESIST_DAMAGE": 4,
+      "STRENGTH": 5,
+      "INTELLECT": 1,
+      "SPIRIT": 1,
+      "HASTE": 4,
+      "CRITICAL_HIT_CHANCE": 5,
+      "HEALTH": 92,
+      "MANA": 50,
+      "ABSORB_DAMAGE": 0
+    },
+    "npcCharacterSpellsId": [
+      100,
+      117,
+      114
+    ],
+    "level": 3
   }
 ]

@@ -12,7 +12,10 @@ import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
+import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.ItemLevelFilter;
+import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItemType;
 import kuchtastefan.utility.ConsoleColor;
@@ -245,8 +248,10 @@ public class BattleService {
         try {
             PrintUtil.printExtraLongDivider();
             if (parsedChoice == hero.getCharacterSpellList().size()) {
-                return hero.getHeroInventory().selectItem(hero, ConsumableItem.class,
-                        new ItemFilter(ConsumableItemType.POTION), inventoryMenuService, 1);
+                return hero.getHeroInventoryManager().selectItem(hero, inventoryMenuService, new ItemFilter(
+                        new ItemClassFilter(ConsumableItem.class),
+                        new ItemTypeFilter(ConsumableItemType.POTION),
+                        new ItemLevelFilter(hero.getLevel())));
             } else {
                 return hero.getCharacterSpellList().get(parsedChoice).useSpell(
                         new CharactersInvolvedInBattle(hero, this.playerTarget, enemyList, alliesList, tempCharacterList));
@@ -315,9 +320,9 @@ public class BattleService {
         }
 
         String enemy = consoleColor + nonPlayerCharacter.getName() + " - "
-                + nonPlayerCharacter.getCharacterRarity() + " - "
-                + healthsColor + "Healths: "
-                + nonPlayerCharacter.getEffectiveAbilityValue(Ability.HEALTH) + ConsoleColor.RESET;
+                       + nonPlayerCharacter.getCharacterRarity() + " - "
+                       + healthsColor + "Healths: "
+                       + nonPlayerCharacter.getEffectiveAbilityValue(Ability.HEALTH) + ConsoleColor.RESET;
 
         PrintUtil.printIndexAndText(LetterToNumber.getStringFromValue(index), enemy);
     }
@@ -379,11 +384,4 @@ public class BattleService {
 
         spellToCast.useSpell(new CharactersInvolvedInBattle(spellCaster, spellTarget, alliesList, enemyList, tempCharacterList));
     }
-
-//    public void resetSpellsCoolDowns(Hero hero) {
-//        hero.getCharacterSpellList().forEach(spell -> {
-//            spell.setCurrentTurnCoolDown(spell.getTurnCoolDown() + 1);
-//            spell.checkSpellCoolDown();
-//        });
-//    }
 }

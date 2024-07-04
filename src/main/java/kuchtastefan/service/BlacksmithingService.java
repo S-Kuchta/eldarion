@@ -7,10 +7,10 @@ import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemAndCount;
-import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.*;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
-import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
+import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
 import kuchtastefan.utility.printUtil.PrintUtil;
 
@@ -22,26 +22,18 @@ public class BlacksmithingService implements UsingHeroInventory {
         PrintUtil.printMenuOptions("Go back", "Hero Inventory");
 
         final int choice = InputUtil.intScanner();
-//        while (true) {
-//            String choice = InputUtil.stringScanner().toUpperCase();
-//            ItemFilter itemFilter = new ItemFilter();
-//            if (choice.matches("\\d+")) {
-//                handleNumericChoice(hero, Integer.parseInt(choice), itemFilter);
-//                break;
-//            } else {
-//                itemFhandeNonNumericChoice();
-//            }
-//        }
-
-
         switch (choice) {
             case 0 -> {
             }
-            case 1 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(WearableItemType.WEAPON), this, 1);
+            case 1 -> hero.getHeroInventoryManager().selectItem(hero, this, new ItemFilter(
+                    new ItemClassFilter(WearableItem.class),
+                    new ItemTypeFilter(true),
+                    new ItemLevelFilter(hero.getLevel()),
+                    new WearableItemQualityFilter(WearableItemQuality.BASIC)));
+
             default -> PrintUtil.printEnterValidInput();
         }
     }
-
 
     /**
      * This method displays a menu for a specific wearable item.
@@ -55,14 +47,17 @@ public class BlacksmithingService implements UsingHeroInventory {
     @Override
     public boolean itemOptions(Hero hero, Item item) {
         ItemAndCount neededToRefine = ((WearableItem) item).reagentNeededToRefine();
+
         PrintUtil.printMenuHeader(item.getName());
         PrintUtil.printMenuOptions("Go back",
-                "Refinement item (" + neededToRefine.count() + "x " + neededToRefine.item().getName() + ")",
+                "Refinement item - You Need: " + neededToRefine.item().getName() + " - " + neededToRefine.count() + "/" + getReagentCountColor(hero, neededToRefine.item(), neededToRefine.count()),
                 "Dismantle item");
 
         final int choice = InputUtil.intScanner();
         switch (choice) {
-            case 0 -> hero.getHeroInventory().selectItem(hero, WearableItem.class, new ItemFilter(), this, 1);
+            case 0 -> {
+                return false;
+            }
             case 1 -> {
                 return this.refineItemQuality(hero, (WearableItem) item);
             }
@@ -73,6 +68,13 @@ public class BlacksmithingService implements UsingHeroInventory {
         }
 
         return false;
+    }
+
+    private String getReagentCountColor(Hero hero, Item reagent, int count) {
+        int countHave = hero.getHeroInventoryManager().getItemCount(reagent);
+        return hero.getHeroInventoryManager().hasRequiredItems(reagent, count)
+                ? ConsoleColor.GREEN + String.valueOf(countHave) + ConsoleColor.RESET
+                : ConsoleColor.RED + String.valueOf(countHave) + ConsoleColor.RESET;
     }
 
     /**
@@ -87,8 +89,8 @@ public class BlacksmithingService implements UsingHeroInventory {
         if (hero.isItemEquipped(item)) {
             hero.unEquipItem(item);
         }
-        hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
-        hero.getHeroInventory().addItemToInventory(reagent.item(), reagent.count());
+        hero.getHeroInventoryManager().removeItem(item, 1);
+        hero.getHeroInventoryManager().addItem(reagent.item(), reagent.count());
         return true;
     }
 
@@ -109,16 +111,16 @@ public class BlacksmithingService implements UsingHeroInventory {
         }
 
         ItemAndCount requiredReagent = item.reagentNeededToRefine();
-        if (!hero.getHeroInventory().hasRequiredItems(requiredReagent.item(), requiredReagent.count())) {
+        if (!hero.getHeroInventoryManager().hasRequiredItems(requiredReagent.item(), requiredReagent.count())) {
             System.out.println("\tYou don't have enough reagents. Your can't refine your item.");
             return false;
         }
 
         WearableItem refinedItem = new Gson().fromJson(new Gson().toJson(item), WearableItem.class);
         refinedItem.refine();
-        hero.getHeroInventory().removeItemFromHeroInventory(item, 1);
-        hero.getHeroInventory().removeItemFromHeroInventory(requiredReagent.item(), requiredReagent.count());
-        hero.getHeroInventory().addItemToInventory(refinedItem, 1);
+        hero.getHeroInventoryManager().removeItem(item, 1);
+        hero.getHeroInventoryManager().removeItem(requiredReagent.item(), requiredReagent.count());
+        hero.getHeroInventoryManager().addItem(refinedItem, 1);
 
         System.out.println("\tYou refinement your item " + refinedItem.getName() + " to " + refinedItem.getWearableItemQuality() + " quality");
         if (hero.isItemEquipped(item)) {

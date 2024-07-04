@@ -1,6 +1,9 @@
 package kuchtastefan.item.itemFilter;
 
-import kuchtastefan.item.itemType.ItemType;
+import kuchtastefan.character.hero.Hero;
+import kuchtastefan.item.Item;
+import kuchtastefan.item.itemType.HaveType;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,51 +13,62 @@ import lombok.Setter;
 @Getter
 public class ItemFilter {
 
-//    @Setter
-    private ItemType itemType;
-    private int maxItemLevel;
-    private int minItemLevel;
-
-    public ItemFilter(ItemType itemType, int maxItemLevel, int minItemLevel) {
-        this.itemType = itemType;
-        this.maxItemLevel = maxItemLevel;
-        this.minItemLevel = minItemLevel;
-    }
+    private final ItemLevelFilter itemLevelFilter;
+    private final ItemTypeFilter itemTypeFilter;
+    private final ItemClassFilter itemClassFilter;
+    private final WearableItemQualityFilter wearableItemQualityFilter;
+    @Setter
+    private boolean canBeChanged = true;
 
     /**
-     * Constructs a new ItemFilter with the specified item type and maximum level. The minimum level is set to the same value as the maximum level.
-     *
-     * @param itemType     The type of items to filter.
-     * @param maxItemLevel The maximum level of items to filter.
+     * Creates a new ItemFilter with default values.
      */
-    public ItemFilter(ItemType itemType, int maxItemLevel) {
-        this.itemType = itemType;
-        this.maxItemLevel = maxItemLevel;
-        this.minItemLevel = maxItemLevel;
+    public ItemFilter(Hero hero) {
+        this.itemClassFilter = new ItemClassFilter();
+        this.itemTypeFilter = new ItemTypeFilter(true);
+        this.itemLevelFilter = new ItemLevelFilter(hero.getLevel());
+        this.wearableItemQualityFilter = new WearableItemQualityFilter();
     }
 
-    public ItemFilter(int maxItemLevel, int minItemLevel) {
-        this.maxItemLevel = maxItemLevel;
-        this.minItemLevel = minItemLevel;
+    public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter, ItemLevelFilter itemLevelFilter) {
+        this.itemClassFilter = itemClassFilter;
+        this.itemTypeFilter = itemTypeFilter;
+        this.itemLevelFilter = itemLevelFilter;
+        this.wearableItemQualityFilter = new WearableItemQualityFilter();
     }
 
-    public ItemFilter(int maxItemLevel) {
-        this.maxItemLevel = maxItemLevel;
-        this.minItemLevel = maxItemLevel;
+    public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter, ItemLevelFilter itemLevelFilter, WearableItemQualityFilter wearableItemQualityFilter) {
+        this.itemClassFilter = itemClassFilter;
+        this.itemTypeFilter = itemTypeFilter;
+        this.itemLevelFilter = itemLevelFilter;
+        this.wearableItemQualityFilter = wearableItemQualityFilter;
     }
 
-    public ItemFilter(ItemType itemType) {
-        this.itemType = itemType;
-    }
+    public Item filterItem(Item item) {
+        if (!this.itemClassFilter.containsClass(item.getClass())) {
+            return null;
+        }
 
-    public ItemFilter() {
-    }
+        if (itemTypeFilter.isFilterTypes()) {
+            if (item instanceof HaveType itemWithType) {
+                if (!this.itemTypeFilter.containsType(itemWithType.getItemType())) {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        }
 
-    public boolean isCheckType() {
-        return itemType != null;
-    }
+        if (!this.itemLevelFilter.checkLevelCondition(item.getItemLevel())) {
+            return null;
+        }
 
-    public boolean isCheckLevel() {
-        return maxItemLevel != 0 || minItemLevel != 0;
+        if (item instanceof WearableItem wearableItem) {
+            if (!this.wearableItemQualityFilter.containsQuality(wearableItem.getWearableItemQuality())) {
+                return null;
+            }
+        }
+
+        return item;
     }
 }

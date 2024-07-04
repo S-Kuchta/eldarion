@@ -5,6 +5,8 @@ import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
 import kuchtastefan.actions.actionsWithDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.actions.actionsWithDuration.specificActionWithDuration.*;
 import kuchtastefan.actions.instantAction.*;
+import kuchtastefan.character.hero.save.item.HeroItem;
+import kuchtastefan.character.hero.save.item.HeroWearableItem;
 import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.npc.enemy.Enemy;
 import kuchtastefan.character.npc.enemy.QuestEnemy;
@@ -111,4 +113,9 @@ public class RuntimeTypeAdapterFactoryUtil {
             .of(Location.class)
             .registerSubtype(Location.class)
             .registerSubtype(QuestLocation.class);
+
+    public static final RuntimeTypeAdapterFactory<? extends HeroItem> heroItemRuntimeTypeAdapterFactory = RuntimeTypeAdapterFactory
+            .of(HeroItem.class)
+            .registerSubtype(HeroItem.class)
+            .registerSubtype(HeroWearableItem.class);
 }

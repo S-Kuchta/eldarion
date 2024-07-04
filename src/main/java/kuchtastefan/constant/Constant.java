@@ -8,7 +8,6 @@ public class Constant {
     public static final int MANA_OF_ONE_POINT = 7;
     public static final int INITIAL_LEVEL = 1;
     public static final int INITIAL_HERO_GOLD = 150;
-    public static final int MAX_VENDOR_ITEMS_FOR_SELL = 6;
     public static final int INITIAL_EXPERIENCE_POINT = 0;
     public static final int RESTORE_MANA_PER_ONE_SPIRIT = 3;
     public static final int RESTORE_HEALTH_PER_ONE_SPIRIT = 1;

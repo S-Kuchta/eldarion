@@ -70,6 +70,7 @@ public class FileService {
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.gameCharactersRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.vendorRuntimeTypeAdapterFactory)
             .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.locationRuntimeTypeAdapterFactory)
+            .registerTypeAdapterFactory(RuntimeTypeAdapterFactoryUtil.heroItemRuntimeTypeAdapterFactory)
             .setExclusionStrategies(new AnnotationExclusionStrategy())
             .addDeserializationExclusionStrategy(new AnnotationDeserializationExclusionStrategy())
             .addSerializationExclusionStrategy(new AnnotationSerializationExclusionStrategy())

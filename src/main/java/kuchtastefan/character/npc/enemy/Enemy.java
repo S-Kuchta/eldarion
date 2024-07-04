@@ -6,8 +6,13 @@ import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.constant.Constant;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
-import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.*;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
+import kuchtastefan.item.specificItems.craftingItem.CraftingReagentItem;
+import kuchtastefan.item.specificItems.junkItem.JunkItem;
 import kuchtastefan.item.specificItems.keyItem.KeyItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,14 +50,17 @@ public class Enemy extends NonPlayerCharacter {
             this.itemsDrop = new ArrayList<>();
         }
 
-        List<Item> itemList = ItemDB.returnItemListForEnemyDrop(new ItemFilter(this.level));
-        int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
+        List<Item> itemList = ItemDB.returnFilteredItemList(new ItemFilter(
+                new ItemClassFilter(WearableItem.class, ConsumableItem.class, CraftingReagentItem.class, JunkItem.class),
+                new ItemTypeFilter(),
+                new ItemLevelFilter(this.level),
+                new WearableItemQualityFilter(WearableItemQuality.BASIC)));
 
+        int itemsForDrop = RandomNumberGenerator.getRandomNumber(1, 3);
         for (int i = 0; i < itemsForDrop; i++) {
             if (!addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)))) {
                 i--;
             }
-//            addItemToItemDrop(itemList.get(RandomNumberGenerator.getRandomNumber(0, itemList.size() - 1)));
         }
 
         if (this.constantItemDrop != null) {

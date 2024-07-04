@@ -5,6 +5,6 @@ public enum QuestStatus {
     AVAILABLE,
     ACCEPTED,
     COMPLETED,
-    TURNED_IN;
+    TURNED_IN
 
 }

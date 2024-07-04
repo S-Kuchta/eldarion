@@ -222,6 +222,7 @@
   {
     "itemId": 223,
     "name": "Mor'Ladim Falchion",
+    "wearableItemQuality": "SPECIAL",
     "abilities": {
       "ATTACK": 3,
       "CRITICAL_HIT_CHANCE": 3,

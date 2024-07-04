@@ -3,6 +3,9 @@ package kuchtastefan.item.specificItems.wearableItem;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 public enum WearableItemQuality {
     BASIC("Basic item quality"),

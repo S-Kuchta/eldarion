@@ -149,8 +149,9 @@ public class GameManager {
         LocationDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroLocations());
         QuestDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuests());
         QuestObjectiveDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuestObjectives());
-//        QuestDB.loadQuests(this.hero);
         VendorCharacterDB.setVendorCurrentCharacterItemListId(gameLoaded.getVendorIdAndItemListId());
+
+        System.out.println(hero.getHeroInventoryManager().getHeroItems().getSaveEntities().size());
     }
 
     private void classSelect() {

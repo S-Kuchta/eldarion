@@ -28,7 +28,7 @@ class QuestBringItemObjectiveTest {
         QuestBringItemObjective questBringItemObjective = (QuestBringItemObjective) questObjective;
         Item item = ItemDB.returnItemFromDB(questBringItemObjective.getItemId());
 
-        hero.getHeroInventory().addItemToInventory(item, questBringItemObjective.getItemCountNeeded());
+        hero.getHeroInventoryManager().addItem(item, questBringItemObjective.getItemCountNeeded());
         questBringItemObjective.printProgress(hero);
         questBringItemObjective.verifyQuestObjectiveCompletion(hero);
 

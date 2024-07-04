@@ -125,7 +125,7 @@
         "itemsIdNeededToEnterStage": [],
         "itemsId": [
           404,
-          1201,
+          1200,
           609
         ]
       }
@@ -355,7 +355,7 @@
       },
       "7": {
         "type": "LocationStagePlaceToRest",
-        "stageName": "Empty house",
+        "stageName": "Old miner house",
         "itemsIdNeededToEnterStage": [
           1200
         ]
@@ -472,7 +472,6 @@
         "type": "LocationStageCombat",
         "stageName": "Graveyard Entrance",
         "itemsIdNeededToEnterStage": [
-
         ],
         "locationEnemyIdList": [
           302,

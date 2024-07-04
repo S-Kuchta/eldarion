@@ -29,8 +29,8 @@ class QuestUseItemObjectiveTest {
         QuestUseItemObjective questUseItemObjective = (QuestUseItemObjective) questObjective;
         Item item = ItemDB.returnItemFromDB(questUseItemObjective.getItemId());
 
-        hero.getHeroInventory().addItemToInventory(item, 1);
-        UsableQuestItem usableQuestItem = (UsableQuestItem) hero.getHeroInventory().getItemFromInventoryById(item.getItemId());
+        hero.getHeroInventoryManager().addItem(item, 1);
+        UsableQuestItem usableQuestItem = (UsableQuestItem) hero.getHeroInventoryManager().getItem(item.getItemId());
         usableQuestItem.useItem(hero);
         usableQuestItem.setWasUsed(true);
 

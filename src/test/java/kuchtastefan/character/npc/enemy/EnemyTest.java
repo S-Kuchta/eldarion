@@ -5,7 +5,8 @@ import kuchtastefan.service.FileService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class EnemyTest {
     @BeforeAll
@@ -33,6 +34,4 @@ class EnemyTest {
         enemy.setItemDrop();
         assertFalse(enemy.getItemsDrop().isEmpty());
     }
-
-
 }

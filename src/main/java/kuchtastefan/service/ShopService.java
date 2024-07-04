@@ -5,7 +5,10 @@ import kuchtastefan.character.hero.inventory.UsingHeroInventory;
 import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.character.npc.vendor.vendorOffer.SortVendorOffer;
 import kuchtastefan.item.Item;
+import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.ItemLevelFilter;
+import kuchtastefan.item.itemFilter.ItemTypeFilter;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.InputUtil;
@@ -35,7 +38,11 @@ public class ShopService implements UsingHeroInventory {
             case 0 -> {
             }
             case 1 -> vendorOffer(hero);
-            case 2 -> hero.getHeroInventoryManager().selectItem(hero, this, new ItemFilter(hero));
+            case 2 -> hero.getHeroInventoryManager().selectItem(hero, this,
+                    new ItemFilter(
+                            new ItemClassFilter(this.vendorCharacter.returnItemClass()),
+                            new ItemTypeFilter(),
+                            new ItemLevelFilter()));
             default -> PrintUtil.printEnterValidInput();
         }
     }

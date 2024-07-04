@@ -1,12 +1,13 @@
 package kuchtastefan.item.itemFilter;
 
+import kuchtastefan.item.itemFilter.listsToFilter.ItemTypeList;
 import kuchtastefan.item.itemType.ItemType;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.ItemTypeList;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,29 +17,29 @@ public class ItemTypeFilter {
 
     private final Set<ItemType> itemTypes;
     private final boolean filterTypes;
-
+    private int numOfIndexes;
 
     public ItemTypeFilter(boolean filterTypes) {
-        this.itemTypes = ItemTypeList.allTypesList();
+        this.itemTypes = new HashSet<>();
         this.filterTypes = filterTypes;
     }
 
     public ItemTypeFilter(ItemType... itemTypes) {
+        this.itemTypes = new HashSet<>(Set.of(itemTypes));
         this.filterTypes = itemTypes.length != 0;
-        this.itemTypes = new HashSet<>(List.of(itemTypes));
-
     }
 
 
     public void printTypeChoice(ItemFilter itemFilter, int indexStart) {
         int index = indexStart;
-        List<ItemType> itemTypes = ItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter());
+        List<ItemType> itemTypesPrintCopy = new ArrayList<>(ItemTypeList.itemTypesByClass(itemFilter.getItemClassFilter()));
+        numOfIndexes = itemTypesPrintCopy.size();
 
-        if (itemTypes.isEmpty()) {
+        if (itemTypesPrintCopy.isEmpty()) {
             return;
         }
 
-        for (ItemType itemType : itemTypes) {
+        for (ItemType itemType : itemTypesPrintCopy) {
             String typeName;
             if (containsType(itemType)) {
                 typeName = itemType.toString();
@@ -50,25 +51,18 @@ public class ItemTypeFilter {
         }
 
         System.out.println();
+
     }
 
     public void handleTypeChoice(ItemType itemType) {
         if (containsType(itemType)) {
-            removeItemType(itemType);
+            itemTypes.remove(itemType);
         } else {
-            addItemType(itemType);
+            itemTypes.add(itemType);
         }
     }
 
     public boolean containsType(ItemType itemType) {
         return itemTypes.contains(itemType);
-    }
-
-    private void addItemType(ItemType itemType) {
-        itemTypes.add(itemType);
-    }
-
-    private void removeItemType(ItemType itemType) {
-        itemTypes.remove(itemType);
     }
 }

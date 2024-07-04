@@ -27,16 +27,6 @@ public class ItemDB {
         ITEM_DB.put(item.getItemId(), item);
     }
 
-    public static List<Item> returnItemListForEnemyDrop(ItemFilter itemFilter) {
-        List<Item> itemList = new ArrayList<>(returnFilteredItemList(itemFilter));
-        itemList.removeIf(item -> item instanceof QuestItem ||
-                item instanceof KeyItem ||
-                (item instanceof WearableItem wearableItem && (
-                        wearableItem.getWearableItemQuality() == WearableItemQuality.QUEST_REWARD || wearableItem.getWearableItemQuality() == WearableItemQuality.SPECIAL)));
-
-        return itemList;
-    }
-
     public static List<Item> returnFilteredItemList(ItemFilter itemFilter) {
         List<Item> itemList = new ArrayList<>();
         for (Item item : ITEM_DB.values()) {

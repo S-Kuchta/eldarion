@@ -1,4 +1,4 @@
-package kuchtastefan.utility;
+package kuchtastefan.item.itemFilter.listsToFilter;
 
 import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;

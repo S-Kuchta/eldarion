@@ -2,7 +2,7 @@ package kuchtastefan.item.itemFilter;
 
 import kuchtastefan.item.Item;
 import kuchtastefan.utility.ConsoleColor;
-import kuchtastefan.utility.ItemClassList;
+import kuchtastefan.item.itemFilter.listsToFilter.ItemClassList;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;

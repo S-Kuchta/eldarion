@@ -17,7 +17,6 @@ public class Spell {
 
     private final int spellId;
     private final String spellName;
-    private final String spellDescription;
     private final List<Action> spellActions;
     private final int spellLevel;
     private int spellManaCost;
@@ -28,12 +27,11 @@ public class Spell {
     private final boolean hitAllEnemy;
 
 
-    public Spell(int spellId, String spellName, String spellDescription, List<Action> spellActions, int turnCoolDown,
+    public Spell(int spellId, String spellName, List<Action> spellActions, int turnCoolDown,
                  int spellLevel, int spellManaCost, CharacterClass spellClass, boolean hitAllEnemy) {
 
         this.spellId = spellId;
         this.spellName = spellName;
-        this.spellDescription = spellDescription;
         this.spellActions = spellActions;
         this.spellLevel = spellLevel;
         this.spellManaCost = spellManaCost;

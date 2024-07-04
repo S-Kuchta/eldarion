@@ -5,6 +5,9 @@ import kuchtastefan.item.itemType.ItemType;
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 public enum ConsumableItemType implements ItemType {
 

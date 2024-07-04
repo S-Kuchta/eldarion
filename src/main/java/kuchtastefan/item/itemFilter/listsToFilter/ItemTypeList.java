@@ -1,4 +1,4 @@
-package kuchtastefan.utility;
+package kuchtastefan.item.itemFilter.listsToFilter;
 
 import kuchtastefan.item.itemFilter.ItemClassFilter;
 import kuchtastefan.item.itemType.ItemType;
@@ -25,30 +25,18 @@ public class ItemTypeList {
         return itemTypes;
     }
 
-    public static List<ItemType> wearableItemTypeList() {
-        return new ArrayList<>(List.of(WearableItemType.values()));
-    }
-
-    public static List<ItemType> craftingReagentItemTypeList() {
-        return new ArrayList<>(List.of(CraftingReagentItemType.values()));
-    }
-
-    public static List<ItemType> consumeableItemTypeList() {
-        return new ArrayList<>(List.of(ConsumableItemType.values()));
-    }
-
     public static List<ItemType> itemTypesByClass(ItemClassFilter itemClassFilter) {
         List<ItemType> itemTypes = new ArrayList<>();
         if (itemClassFilter.containsClass(WearableItem.class)) {
-            itemTypes.addAll(wearableItemTypeList());
+            itemTypes.addAll(List.of(WearableItemType.values()));
         }
 
         if (itemClassFilter.containsClass(CraftingReagentItem.class)) {
-            itemTypes.addAll(craftingReagentItemTypeList());
+            itemTypes.addAll(List.of(CraftingReagentItemType.values()));
         }
 
         if (itemClassFilter.containsClass(ConsumableItem.class)) {
-            itemTypes.addAll(consumeableItemTypeList());
+            itemTypes.addAll(List.of(ConsumableItemType.values()));
         }
 
         return itemTypes;

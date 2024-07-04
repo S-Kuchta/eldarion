@@ -21,7 +21,6 @@
     "spellId": 301,
     "spellName": "Heroic Strike",
     "spellClass": "WARRIOR",
-    "spellDescription": "A strong attack. Causes high amount of damage. Have 10% chance to cause bleed over 3 turns.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -49,7 +48,6 @@
     "spellId": 302,
     "spellName": "Parry",
     "spellClass": "WARRIOR",
-    "spellDescription": "Parry next attack. Next spell casted on you will be reflected.",
     "spellActions": [
       {
         "type": "ActionReflectSpell",
@@ -70,7 +68,6 @@
     "spellId": 303,
     "spellName": "Berserker Stance",
     "spellClass": "WARRIOR",
-    "spellDescription": "An aggressive stance. Critical hit chance is increased for 4 turns.",
     "spellActions": [
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -92,7 +89,6 @@
     "spellId": 304,
     "spellName": "Devotion Aura",
     "spellClass": "WARRIOR",
-    "spellDescription": "Gives you an additional resist damage over 4 turns.",
     "spellActions": [
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -114,7 +110,6 @@
     "spellId": 305,
     "spellName": "Rend",
     "spellClass": "WARRIOR",
-    "spellDescription": "Wounds the target causing them to bleed.",
     "spellActions": [
       {
         "type": "ActionDealDamageOverTime",
@@ -135,7 +130,6 @@
     "spellId": 306,
     "spellName": "Holy Light",
     "spellClass": "WARRIOR",
-    "spellDescription": "Heals the caster",
     "spellActions": [
       {
         "type": "ActionRestoreHealth",
@@ -153,7 +147,6 @@
     "spellId": 307,
     "spellName": "Thunder Clap",
     "spellClass": "WARRIOR",
-    "spellDescription": "Blasts all enemies, deal damage to them and decrease their haste over 2 turns.",
     "hitAllEnemy": true,
     "spellActions": [
       {
@@ -183,7 +176,6 @@
     "spellId": 308,
     "spellName": "Consecration",
     "spellClass": "WARRIOR",
-    "spellDescription": "Consecrates the land , doing Holy damage over 3 turns.",
     "hitAllEnemy": true,
     "spellActions": [
       {
@@ -205,7 +197,6 @@
     "spellId": 309,
     "spellName": "Demoralizing Shout",
     "spellClass": "WARRIOR",
-    "spellDescription": "Reduces the Attack of all enemies over 2 turns.",
     "hitAllEnemy": true,
     "spellActions": [
       {
@@ -228,7 +219,6 @@
     "spellId": 310,
     "spellName": "Hammer of Justice",
     "spellClass": "WARRIOR",
-    "spellDescription": "Instant Stuns the target and for an additional 3 turns.",
     "spellActions": [
       {
         "type": "ActionStun",
@@ -249,7 +239,6 @@
     "spellId": 311,
     "spellName": "Sunder Armor",
     "spellClass": "WARRIOR",
-    "spellDescription": "Reduce target resist damage for 4 turns.",
     "spellActions": [
       {
         "type": "ActionDecreaseAbilityPoint",
@@ -271,7 +260,6 @@
     "spellId": 311,
     "spellName": "Divine Shield",
     "spellClass": "WARRIOR",
-    "spellDescription": "Protects the caster from all damage and spells for 3 turns.",
     "spellActions": [
       {
         "type": "ActionInvulnerability",

@@ -7,10 +7,7 @@ import kuchtastefan.hint.HintDB;
 import kuchtastefan.hint.HintName;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemAndCount;
-import kuchtastefan.item.itemFilter.ItemClassFilter;
-import kuchtastefan.item.itemFilter.ItemFilter;
-import kuchtastefan.item.itemFilter.ItemLevelFilter;
-import kuchtastefan.item.itemFilter.ItemTypeFilter;
+import kuchtastefan.item.itemFilter.*;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.utility.ConsoleColor;
@@ -30,8 +27,9 @@ public class BlacksmithingService implements UsingHeroInventory {
             }
             case 1 -> hero.getHeroInventoryManager().selectItem(hero, this, new ItemFilter(
                     new ItemClassFilter(WearableItem.class),
-                    new ItemTypeFilter(),
-                    new ItemLevelFilter(hero.getLevel())));
+                    new ItemTypeFilter(true),
+                    new ItemLevelFilter(hero.getLevel()),
+                    new WearableItemQualityFilter(WearableItemQuality.BASIC)));
 
             default -> PrintUtil.printEnterValidInput();
         }

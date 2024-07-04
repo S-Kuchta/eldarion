@@ -3,6 +3,7 @@ package kuchtastefan.item.itemFilter;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.itemType.HaveType;
+import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ public class ItemFilter {
     private final ItemLevelFilter itemLevelFilter;
     private final ItemTypeFilter itemTypeFilter;
     private final ItemClassFilter itemClassFilter;
+    private final WearableItemQualityFilter wearableItemQualityFilter;
     @Setter
     private boolean canBeChanged = true;
 
@@ -23,14 +25,23 @@ public class ItemFilter {
      */
     public ItemFilter(Hero hero) {
         this.itemClassFilter = new ItemClassFilter();
-        this.itemTypeFilter = new ItemTypeFilter();
+        this.itemTypeFilter = new ItemTypeFilter(true);
         this.itemLevelFilter = new ItemLevelFilter(hero.getLevel());
+        this.wearableItemQualityFilter = new WearableItemQualityFilter();
     }
 
     public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter, ItemLevelFilter itemLevelFilter) {
         this.itemClassFilter = itemClassFilter;
         this.itemTypeFilter = itemTypeFilter;
         this.itemLevelFilter = itemLevelFilter;
+        this.wearableItemQualityFilter = new WearableItemQualityFilter();
+    }
+
+    public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter, ItemLevelFilter itemLevelFilter, WearableItemQualityFilter wearableItemQualityFilter) {
+        this.itemClassFilter = itemClassFilter;
+        this.itemTypeFilter = itemTypeFilter;
+        this.itemLevelFilter = itemLevelFilter;
+        this.wearableItemQualityFilter = wearableItemQualityFilter;
     }
 
     public Item filterItem(Item item) {
@@ -50,6 +61,12 @@ public class ItemFilter {
 
         if (!this.itemLevelFilter.checkLevelCondition(item.getItemLevel())) {
             return null;
+        }
+
+        if (item instanceof WearableItem wearableItem) {
+            if (!this.wearableItemQualityFilter.containsQuality(wearableItem.getWearableItemQuality())) {
+                return null;
+            }
         }
 
         return item;

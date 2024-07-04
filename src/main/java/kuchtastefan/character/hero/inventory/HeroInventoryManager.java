@@ -7,12 +7,17 @@ import kuchtastefan.character.hero.save.item.HeroWearableItem;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemFilter.ItemFilter;
+import kuchtastefan.item.itemFilter.listsToFilter.ItemTypeList;
 import kuchtastefan.item.specificItems.questItem.QuestItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.quest.QuestDB;
 import kuchtastefan.quest.questObjectives.QuestObjective;
 import kuchtastefan.quest.questObjectives.QuestObjectiveDB;
-import kuchtastefan.utility.*;
+import kuchtastefan.utility.CharacterCheck;
+import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.InputUtil;
+import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.printUtil.PrintUtil;
 import lombok.Getter;
 
@@ -121,6 +126,7 @@ public class HeroInventoryManager {
             if (itemFilter.isCanBeChanged()) {
                 itemFilter.getItemClassFilter().printClassChoice(classes);
                 itemFilter.getItemTypeFilter().printTypeChoice(itemFilter, classes.size() + 1);
+                itemFilter.getWearableItemQualityFilter().printQualityChoice(itemFilter, classes.size() + itemFilter.getItemTypeFilter().getNumOfIndexes() + 1);
                 itemFilter.getItemLevelFilter().printLevelChoice();
                 PrintUtil.printExtraLongDivider();
             }
@@ -181,9 +187,11 @@ public class HeroInventoryManager {
                 int choiceValue = LetterToNumber.valueOf(choice).getValue();
                 if (choiceValue <= classes.size()) {
                     itemFilter.getItemClassFilter().handleClassChoice(classes.get(choiceValue - 1));
-                } else {
+                } else if (choiceValue <= classes.size() + itemFilter.getItemTypeFilter().getNumOfIndexes()) {
                     itemFilter.getItemTypeFilter().handleTypeChoice(ItemTypeList.itemTypesByClass(
                             itemFilter.getItemClassFilter()).get(choiceValue - classes.size() - 1));
+                } else {
+                    itemFilter.getWearableItemQualityFilter().handleQualityChoice(List.of(WearableItemQuality.values()).get(choiceValue - classes.size() - itemFilter.getItemTypeFilter().getNumOfIndexes() - 1));
                 }
             } catch (Exception e) {
                 PrintUtil.printEnterValidInput();

@@ -3,8 +3,6 @@ A Street of Code Java Tutorial Assignment.<br>
 
 > [!IMPORTANT]
 > ## Actual game status
-> - Fixing som bugs, creating new Locations, enemies etc.<br>
-> - You need to wait for short time to see game ready to release. But release is almost there!<br>
 > - I am doing my maximum :slightly_smiling_face:
 
 # How to Run the Project

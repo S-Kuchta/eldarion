@@ -1,4 +1,4 @@
-# Gladiatus
+# Eldarion
 A Street of Code Java Tutorial Assignment.<br>
 
 > [!IMPORTANT]

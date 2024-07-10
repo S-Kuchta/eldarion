@@ -3,7 +3,9 @@ package kuchtastefan.item.itemFilter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.ItemDB;
 import kuchtastefan.item.itemType.ItemType;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
+import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
 import kuchtastefan.service.FileService;
 import org.junit.jupiter.api.BeforeAll;
@@ -24,8 +26,19 @@ class ItemFilterTest {
     }
 
     @RepeatedTest(20)
-    void testFilterItemByClass() {
+    void testFilterItemByClassWearableItem() {
         Class<? extends Item> itemClass = WearableItem.class;
+        Item item = ItemDB.getRandomItem(new ItemFilter(
+                new ItemClassFilter(itemClass),
+                new ItemTypeFilter(),
+                new ItemLevelFilter()));
+
+        assertEquals(itemClass, item.getClass());
+    }
+
+    @RepeatedTest(20)
+    void testFilterItemByClassConsumableItem() {
+        Class<? extends Item> itemClass = ConsumableItem.class;
         Item item = ItemDB.getRandomItem(new ItemFilter(
                 new ItemClassFilter(itemClass),
                 new ItemTypeFilter(),
@@ -54,6 +67,19 @@ class ItemFilterTest {
                 new ItemLevelFilter(level)));
 
         assertEquals(level, item.getItemLevel());
+    }
+
+    @RepeatedTest(20)
+    void testFilterItemByQuality() {
+        WearableItemQuality quality = WearableItemQuality.BASIC;
+
+        Item item = ItemDB.getRandomItem(new ItemFilter(
+                new ItemClassFilter(),
+                new ItemTypeFilter(),
+                new ItemLevelFilter(),
+                new WearableItemQualityFilter(WearableItemQuality.BASIC)));
+
+        assertEquals(quality, ((WearableItem) item).getWearableItemQuality());
     }
 
 

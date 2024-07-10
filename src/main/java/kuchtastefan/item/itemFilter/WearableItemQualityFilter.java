@@ -5,20 +5,25 @@ import kuchtastefan.item.specificItems.wearableItem.WearableItemQuality;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.LetterToNumber;
 import kuchtastefan.utility.printUtil.PrintUtil;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class WearableItemQualityFilter {
 
     private final List<WearableItemQuality> wearableItemQualities;
+    private final boolean filterQualities;
 
     public WearableItemQualityFilter() {
         this.wearableItemQualities = new ArrayList<>();
+        this.filterQualities = false;
     }
 
     public WearableItemQualityFilter(WearableItemQuality... wearableItemQualities) {
         this.wearableItemQualities = new ArrayList<>(List.of(wearableItemQualities));
+        this.filterQualities = true;
     }
 
 

@@ -45,13 +45,13 @@ public class ItemFilter {
     }
 
     public Item filterItem(Item item) {
-        if (!this.itemClassFilter.containsClass(item.getClass())) {
+        if (!itemClassFilter.containsClass(item.getClass())) {
             return null;
         }
 
         if (itemTypeFilter.isFilterTypes()) {
             if (item instanceof HaveType itemWithType) {
-                if (!this.itemTypeFilter.containsType(itemWithType.getItemType())) {
+                if (!itemTypeFilter.containsType(itemWithType.getItemType())) {
                     return null;
                 }
             } else {
@@ -59,12 +59,16 @@ public class ItemFilter {
             }
         }
 
-        if (!this.itemLevelFilter.checkLevelCondition(item.getItemLevel())) {
+        if (!itemLevelFilter.checkLevelCondition(item.getItemLevel())) {
             return null;
         }
 
-        if (item instanceof WearableItem wearableItem) {
-            if (!this.wearableItemQualityFilter.containsQuality(wearableItem.getWearableItemQuality())) {
+        if (wearableItemQualityFilter.isFilterQualities()) {
+            if (item instanceof WearableItem wearableItem) {
+                if (!wearableItemQualityFilter.containsQuality(wearableItem.getWearableItemQuality())) {
+                    return null;
+                }
+            } else {
                 return null;
             }
         }

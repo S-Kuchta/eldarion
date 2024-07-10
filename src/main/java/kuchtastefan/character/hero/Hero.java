@@ -248,8 +248,6 @@ public class Hero extends GameCharacter {
         this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(900), 2);
         this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(902), 1);
 
-//        this.heroInventoryManager.addItem(ItemDB.returnItemFromDB(1200), 1);
-
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(200));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(500));
         this.equipItem((WearableItem) ItemDB.returnItemFromDB(600));

@@ -402,6 +402,16 @@
         ]
       },
       "1": {
+        "type": "LocationStageFindItem",
+        "stageName": "Human Corpses",
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          515,
+          516,
+          517
+        ]
+      },
+      "2": {
         "type": "LocationStageCombat",
         "stageName": "Garden Path",
         "itemsIdNeededToEnterStage": [],
@@ -410,7 +420,7 @@
           306
         ]
       },
-      "2": {
+      "3": {
         "type": "LocationStageCombat",
         "stageName": "Garden Fountain",
         "itemsIdNeededToEnterStage": [],
@@ -433,13 +443,25 @@
       "0": {
         "type": "LocationStageCombat",
         "stageName": "Cemetery Entrance",
-        "itemsIdNeededToEnterStage": [],
+        "itemsIdNeededToEnterStage": [
+          1202
+        ],
         "locationEnemyIdList": [
           307,
           308
         ]
       },
       "1": {
+        "type": "LocationStageFindItem",
+        "stageName": "Human Corpses",
+        "itemsIdNeededToEnterStage": [],
+        "itemsId": [
+          314,
+          315,
+          316
+        ]
+      },
+      "2": {
         "type": "LocationStageCombat",
         "stageName": "Cemetery Path",
         "itemsIdNeededToEnterStage": [],
@@ -448,7 +470,7 @@
           308
         ]
       },
-      "2": {
+      "3": {
         "type": "LocationStageCombat",
         "stageName": "Cemetery Chapel",
         "itemsIdNeededToEnterStage": [],
@@ -472,6 +494,7 @@
         "type": "LocationStageCombat",
         "stageName": "Graveyard Entrance",
         "itemsIdNeededToEnterStage": [
+          1203
         ],
         "locationEnemyIdList": [
           302,

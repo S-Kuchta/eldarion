@@ -57,7 +57,7 @@
   },
   {
     "itemId": 406,
-    "name": "The Frozen Clutch",
+    "name": "Scarlet Gauntlets",
     "wearableItemQuality": "QUEST_REWARD",
     "abilities": {
       "RESIST_DAMAGE": 3,
@@ -68,7 +68,7 @@
   },
   {
     "itemId": 407,
-    "name": "Gloves of Old",
+    "name": "Bloody Apron Gloves",
     "wearableItemQuality": "QUEST_REWARD",
     "abilities": {
       "RESIST_DAMAGE": 2,
@@ -79,6 +79,17 @@
   },
   {
     "itemId": 408,
+    "name": "GloomShroud Boots",
+    "wearableItemQuality": "QUEST_REWARD",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "HASTE": 2,
+      "CRITICAL_HIT_CHANCE": 3
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 409,
     "name": "Gloves of Kapelan",
     "abilities": {
       "RESIST_DAMAGE": 1,
@@ -88,7 +99,7 @@
     "itemLevel": 3
   },
   {
-    "itemId": 409,
+    "itemId": 410,
     "name": "Ebon Vise",
     "abilities": {
       "RESIST_DAMAGE": 2,

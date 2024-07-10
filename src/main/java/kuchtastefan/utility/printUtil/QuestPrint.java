@@ -10,7 +10,7 @@ import kuchtastefan.utility.ConsoleColor;
 public class QuestPrint {
 
     public static void printCompleteQuestText(String questName) {
-        System.out.println("\t" + " You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET);
+        System.out.println("\t" + "You have completed Quest " + ConsoleColor.YELLOW + questName + ConsoleColor.RESET);
     }
 
     public static void printQuestDetails(Quest quest, Hero hero) {

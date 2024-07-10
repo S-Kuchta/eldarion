@@ -38,7 +38,7 @@ public class HeroInventoryManager {
     public void addItem(Item item, int count) {
         int id = item.getItemId();
         if (item instanceof WearableItem wearableItem) {
-            id = wearableItem.getNewItemId();
+            id = wearableItem.getTempItemId();
         }
 
         if (heroItems.containsEntity(id)) {
@@ -64,7 +64,7 @@ public class HeroInventoryManager {
     }
 
     public int getItemCount(Item item) {
-        int id = (item instanceof WearableItem) ? ((WearableItem) item).getNewItemId() : item.getItemId();
+        int id = (item instanceof WearableItem) ? ((WearableItem) item).getTempItemId() : item.getItemId();
         HeroItem heroItem = heroItems.getEntity(id);
         return (heroItem != null) ? heroItem.getAmount() : 0;
     }

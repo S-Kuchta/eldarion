@@ -135,5 +135,41 @@
       "HEALTH": 14
     },
     "itemLevel": 3
+  },
+  {
+    "itemId": 515,
+    "name": "Bloody Apron Boots",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "MANA": 14,
+      "INTELLECT": 3,
+      "ATTACK": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 516,
+    "name": "Scarlet Boots",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "HEALTH": 14,
+      "STRENGTH": 3,
+      "CRITICAL_HIT_CHANCE": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 517,
+    "name": "GloomShroud Boots",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "HASTE": 3,
+      "ATTACK": 2,
+      "CRITICAL_HIT_CHANCE": 1
+    },
+    "itemLevel": 3
   }
 ]

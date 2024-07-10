@@ -3,7 +3,6 @@
     "spellId": 400,
     "spellName": "Weapon Attack",
     "spellClass": "WARLOCK",
-    "spellDescription": "Attack with weapon",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -21,7 +20,6 @@
     "spellId": 401,
     "spellName": "Shadow Bolt",
     "spellClass": "WARLOCK",
-    "spellDescription": "Sends a shadowy bolt at the enemy, causing Shadow damage.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -39,7 +37,6 @@
     "spellId": 402,
     "spellName": "Corruption",
     "spellClass": "WARLOCK",
-    "spellDescription": "Corrupts the target, causing Shadow damage over 4 turns.",
     "spellActions": [
       {
         "type": "ActionDealDamageOverTime",
@@ -60,7 +57,6 @@
     "spellId": 403,
     "spellName": "Summon Succubus",
     "spellClass": "WARLOCK",
-    "spellDescription": "Summons a Succubus under the command of the Warlock.",
     "spellActions": [
       {
         "type": "ActionSummonCreature",
@@ -79,7 +75,6 @@
     "spellId": 404,
     "spellName": "Demon Armor",
     "spellClass": "WARLOCK",
-    "spellDescription": "Protects the caster, increasing caster resist and intellect over 3 turns.",
     "spellActions": [
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -112,7 +107,6 @@
     "spellId": 405,
     "spellName": "Curse of Agony",
     "spellClass": "WARLOCK",
-    "spellDescription": "Curses the target with agony, causing Shadow damage over 4 turns. Can be stacked.",
     "spellActions": [
       {
         "type": "ActionDealDamageOverTime",
@@ -133,7 +127,6 @@
     "spellId": 406,
     "spellName": "Chaos Bolt",
     "spellClass": "WARLOCK",
-    "spellDescription": "Unleashes a devastating blast of chaos, dealing Chaos damage and restore Warlock health.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -158,7 +151,6 @@
     "spellId": 407,
     "spellName": "Howl of Terror",
     "spellClass": "WARLOCK",
-    "spellDescription": "Strikes fear in the enemies, causing them to stun in fear for up to 2 turns.",
     "hitAllEnemy": true,
     "spellActions": [
       {
@@ -180,7 +172,6 @@
     "spellId": 408,
     "spellName": "Rain of Fire",
     "spellClass": "WARLOCK",
-    "spellDescription": "Calls down a rain of hellfire, dealing Fire damage to all enemies over 2 turns.",
     "hitAllEnemy": true,
     "spellActions": [
       {
@@ -202,7 +193,6 @@
     "spellId": 409,
     "spellName": "Drain Life",
     "spellClass": "WARLOCK",
-    "spellDescription": "Transfers health every turn from the target to the caster. Lasts 4 turns.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -227,7 +217,6 @@
     "spellId": 410,
     "spellName": "Life Tap",
     "spellClass": "WARLOCK",
-    "spellDescription": "Converts health into mana.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -252,7 +241,6 @@
     "spellId": 411,
     "spellName": "Metamorphosis",
     "spellClass": "WARLOCK",
-    "spellDescription": "Transform into a Demon, increasing resist, intellect and attack. Lasts 4 turns.",
     "spellActions": [
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -296,7 +284,6 @@
     "spellId": 412,
     "spellName": "Summon FelGuard",
     "spellClass": "WARLOCK",
-    "spellDescription": "Summons a FelGuard under your command as a powerful melee combatant.",
     "spellActions": [
       {
         "type": "ActionSummonCreature",

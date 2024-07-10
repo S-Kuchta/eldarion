@@ -3,7 +3,7 @@ package kuchtastefan.character.spell;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.Action;
 import kuchtastefan.character.GameCharacter;
-import kuchtastefan.character.hero.CharacterClass;
+import kuchtastefan.character.CharacterClass;
 import kuchtastefan.utility.ConsoleColor;
 import kuchtastefan.utility.RandomNumberGenerator;
 import lombok.Getter;

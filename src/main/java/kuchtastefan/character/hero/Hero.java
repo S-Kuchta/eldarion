@@ -2,6 +2,9 @@ package kuchtastefan.character.hero;
 
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
+import kuchtastefan.actions.actionsWithDuration.ActionWithDurationPerformedOnce;
+import kuchtastefan.character.CharacterClass;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventoryManager;
 import kuchtastefan.character.hero.save.SaveGameEntities;
@@ -259,10 +262,13 @@ public class Hero extends GameCharacter {
             this.checkHeroGoldsAndSubtractIfHaveEnough(goldToRemove);
             this.getEffectiveAbilities().put(Ability.HEALTH, this.getEnhancedAbilities().get(Ability.HEALTH));
             this.getEffectiveAbilities().put(Ability.MANA, this.getEnhancedAbilities().get(Ability.MANA));
-            this.buffsAndDebuffs.clear();
+            for (ActionWithDuration actionWithDuration : this.buffsAndDebuffs) {
+                actionWithDuration.setCurrentActionTurn(100);
+            }
+            this.removeActionWithDuration();
 
             System.out.println("\n\t" + ConsoleColor.RED + "You have died!" + ConsoleColor.RESET);
-            System.out.print("\t You lost " + goldToRemove + " golds!");
+            System.out.println("\tYou lost " + goldToRemove + " golds!");
             return true;
         }
 

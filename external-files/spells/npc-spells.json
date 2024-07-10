@@ -3,7 +3,6 @@
     "spellId": 100,
     "spellName": "Attack",
     "spellClass": "NPC",
-    "spellDescription": "Base enemy attack",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -21,7 +20,6 @@
     "spellId": 101,
     "spellName": "Lash of Pain",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -39,7 +37,6 @@
     "spellId": 102,
     "spellName": "Soothing Kiss",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionStun",
@@ -79,7 +76,6 @@
     "spellId": 104,
     "spellName": "Fire Totem Damage",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -97,7 +93,7 @@
     "spellId": 105,
     "spellName": "Water Totem Heal",
     "spellClass": "NPC",
-    "spellDescription": "",
+
     "hitAllEnemy": true,
     "spellActions": [
       {
@@ -116,7 +112,6 @@
     "spellId": 106,
     "spellName": "",
     "spellClass": "NPC",
-    "spellDescription": "Do nothing, just skip round",
     "spellActions": [
       {
         "type": "ActionSkipTurn",
@@ -134,7 +129,6 @@
     "spellId": 107,
     "spellName": "Earth Totem stun",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionStun",
@@ -155,7 +149,6 @@
     "spellId": 108,
     "spellName": "Air totem spell reflect",
     "spellClass": "NPC",
-    "spellDescription": "",
     "hitAllEnemy": true,
     "spellActions": [
       {
@@ -177,7 +170,6 @@
     "spellId": 109,
     "spellName": "Ice lance",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -206,7 +198,6 @@
     "spellId": 110,
     "spellName": "Shadow Pain",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionDealDamageOverTime",
@@ -227,7 +218,6 @@
     "spellId": 111,
     "spellName": "Summon Weak Zombie",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionSummonCreature",
@@ -246,7 +236,6 @@
     "spellId": 112,
     "spellName": "Shadow Bolt",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -264,7 +253,6 @@
     "spellId": 113,
     "spellName": "FrostBolt",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -293,7 +281,6 @@
     "spellId": 114,
     "spellName": "Fiend Fury",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -326,7 +313,6 @@
     "spellId": 115,
     "spellName": "Fiend Fury",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionStun",
@@ -347,7 +333,6 @@
     "spellId": 116,
     "spellName": "Summon Skeleton",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionSummonCreature",
@@ -382,7 +367,6 @@
     "spellId": 117,
     "spellName": "Rake",
     "spellClass": "NPC",
-    "spellDescription": "",
     "spellActions": [
       {
         "type": "ActionDealDamage",

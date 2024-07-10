@@ -10,5 +10,17 @@
     "name": "Key to Tower of Damned",
     "price": 0,
     "itemLevel": 2
+  },
+  {
+    "itemId": 1202,
+    "name": "Key to the Tranquil Gardens Cemetery",
+    "price": 0,
+    "itemLevel": 3
+  },
+  {
+    "itemId": 1203,
+    "name": "Key to the Raven Hill graveyard",
+    "price": 0,
+    "itemLevel": 3
   }
 ]

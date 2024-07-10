@@ -1,0 +1,1461 @@
+{
+  "hero": {
+    "characterClass": "SHAMAN",
+    "unspentAbilityPoints": 0,
+    "heroGold": 591.0,
+    "experiencePoints": 2057.0,
+    "equippedItem": {
+      "BOOTS": {
+        "itemType": "BOOTS",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
+          "HASTE": 3,
+          "ATTACK": 2,
+          "CRITICAL_HIT_CHANCE": 1,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "SPIRIT": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 517,
+        "name": "GloomShroud Boots",
+        "price": 210.0,
+        "itemLevel": 3
+      },
+      "HEAD": {
+        "itemType": "HEAD",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "HASTE": 2,
+          "ATTACK": 3,
+          "CRITICAL_HIT_CHANCE": 2,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "SPIRIT": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 316,
+        "name": "GloomShroud Boots",
+        "price": 210.0,
+        "itemLevel": 3
+      },
+      "HANDS": {
+        "itemType": "HANDS",
+        "abilities": {
+          "RESIST_DAMAGE": 2,
+          "ATTACK": 2,
+          "CRITICAL_HIT_CHANCE": 2,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "HASTE": 0,
+          "SPIRIT": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 404,
+        "name": "Blackened Defias Gloves",
+        "price": 140.0,
+        "itemLevel": 2
+      },
+      "BODY": {
+        "itemType": "BODY",
+        "abilities": {
+          "RESIST_DAMAGE": 1,
+          "HEALTH": 7,
+          "ATTACK": 3,
+          "HASTE": 1,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "SPIRIT": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "QUEST_REWARD",
+        "itemId": 612,
+        "name": "GloomShroud Chest Armor",
+        "price": 210.0,
+        "itemLevel": 3
+      },
+      "WEAPON": {
+        "itemType": "WEAPON",
+        "abilities": {
+          "ATTACK": 4,
+          "HASTE": 2,
+          "RESIST_DAMAGE": 0,
+          "STRENGTH": 0,
+          "INTELLECT": 0,
+          "SPIRIT": 0,
+          "CRITICAL_HIT_CHANCE": 0,
+          "HEALTH": 0,
+          "MANA": 0,
+          "ABSORB_DAMAGE": 0
+        },
+        "wearableItemQuality": "SPECIAL",
+        "itemId": 212,
+        "name": "Assassin\u0027s Blade",
+        "price": 140.0,
+        "itemLevel": 2
+      }
+    },
+    "wearingItemAbilityPoints": {
+      "HASTE": 8,
+      "HEALTH": 7,
+      "SPIRIT": 0,
+      "INTELLECT": 0,
+      "RESIST_DAMAGE": 6,
+      "MANA": 0,
+      "STRENGTH": 0,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 5,
+      "ATTACK": 14
+    },
+    "heroInventoryManager": {
+      "heroItems": {
+        "saveEntities": {
+          "704": {
+            "type": "HeroItem",
+            "id": 704,
+            "amount": 14
+          },
+          "800": {
+            "type": "HeroItem",
+            "id": 800,
+            "amount": 21
+          },
+          "900": {
+            "type": "HeroItem",
+            "id": 900,
+            "amount": 14
+          },
+          "902": {
+            "type": "HeroItem",
+            "id": 902,
+            "amount": 10
+          },
+          "200": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2000,
+            "amount": 1
+          },
+          "1001": {
+            "type": "HeroItem",
+            "id": 1001,
+            "amount": 7
+          },
+          "1002": {
+            "type": "HeroItem",
+            "id": 1002,
+            "amount": 9
+          },
+          "1003": {
+            "type": "HeroItem",
+            "id": 1003,
+            "amount": 10
+          },
+          "1004": {
+            "type": "HeroItem",
+            "id": 1004,
+            "amount": 3
+          },
+          "300": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 3000,
+            "amount": 1
+          },
+          "301": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 301,
+            "amount": 1
+          },
+          "206": {
+            "type": "HeroWearableItem",
+            "quality": "QUEST_REWARD",
+            "id": 206,
+            "amount": 1
+          },
+          "207": {
+            "type": "HeroWearableItem",
+            "quality": "QUEST_REWARD",
+            "id": 207,
+            "amount": 1
+          },
+          "400": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 4000,
+            "amount": 1
+          },
+          "500": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5000,
+            "amount": 1
+          },
+          "501": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5010,
+            "amount": 1
+          },
+          "600": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 6000,
+            "amount": 1
+          },
+          "503": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5030,
+            "amount": 1
+          },
+          "201": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2010,
+            "amount": 1
+          },
+          "402": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 4020,
+            "amount": 1
+          },
+          "601": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 6010,
+            "amount": 1
+          },
+          "608": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 608,
+            "amount": 1
+          },
+          "304": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 3040,
+            "amount": 1
+          },
+          "904": {
+            "type": "HeroItem",
+            "id": 904,
+            "amount": 2
+          },
+          "202": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2020,
+            "amount": 1
+          },
+          "505": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 505,
+            "amount": 1
+          },
+          "703": {
+            "type": "HeroItem",
+            "id": 703,
+            "amount": 11
+          },
+          "504": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5040,
+            "amount": 1
+          },
+          "302": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 3020,
+            "amount": 1
+          },
+          "502": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5020,
+            "amount": 1
+          },
+          "210": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2100,
+            "amount": 1
+          },
+          "1005": {
+            "type": "HeroItem",
+            "id": 1005,
+            "amount": 1
+          },
+          "700": {
+            "type": "HeroItem",
+            "id": 700,
+            "amount": 8
+          },
+          "404": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 404,
+            "amount": 1
+          },
+          "1200": {
+            "type": "HeroItem",
+            "id": 1200,
+            "amount": 1
+          },
+          "609": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 609,
+            "amount": 1
+          },
+          "1201": {
+            "type": "HeroItem",
+            "id": 1201,
+            "amount": 1
+          },
+          "401": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 4010,
+            "amount": 1
+          },
+          "801": {
+            "type": "HeroItem",
+            "id": 801,
+            "amount": 5
+          },
+          "1000": {
+            "type": "HeroItem",
+            "id": 1000,
+            "amount": 2
+          },
+          "602": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 6020,
+            "amount": 1
+          },
+          "506": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 506,
+            "amount": 1
+          },
+          "405": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 405,
+            "amount": 1
+          },
+          "901": {
+            "type": "HeroItem",
+            "id": 901,
+            "amount": 6
+          },
+          "306": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 306,
+            "amount": 1
+          },
+          "203": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2030,
+            "amount": 1
+          },
+          "212": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 212,
+            "amount": 1
+          },
+          "211": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 211,
+            "amount": 1
+          },
+          "702": {
+            "type": "HeroItem",
+            "id": 702,
+            "amount": 5
+          },
+          "512": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5120,
+            "amount": 1
+          },
+          "219": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2190,
+            "amount": 1
+          },
+          "701": {
+            "type": "HeroItem",
+            "id": 701,
+            "amount": 3
+          },
+          "605": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 6050,
+            "amount": 1
+          },
+          "1008": {
+            "type": "HeroItem",
+            "id": 1008,
+            "amount": 2
+          },
+          "307": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 3070,
+            "amount": 1
+          },
+          "216": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2160,
+            "amount": 1
+          },
+          "217": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2170,
+            "amount": 1
+          },
+          "507": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5070,
+            "amount": 1
+          },
+          "508": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5080,
+            "amount": 1
+          },
+          "511": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5110,
+            "amount": 1
+          },
+          "510": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5100,
+            "amount": 1
+          },
+          "515": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 515,
+            "amount": 1
+          },
+          "516": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 516,
+            "amount": 1
+          },
+          "517": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 517,
+            "amount": 1
+          },
+          "310": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 3100,
+            "amount": 1
+          },
+          "309": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 3090,
+            "amount": 1
+          },
+          "218": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2180,
+            "amount": 1
+          },
+          "903": {
+            "type": "HeroItem",
+            "id": 903,
+            "amount": 5
+          },
+          "610": {
+            "type": "HeroWearableItem",
+            "quality": "QUEST_REWARD",
+            "id": 610,
+            "amount": 1
+          },
+          "611": {
+            "type": "HeroWearableItem",
+            "quality": "QUEST_REWARD",
+            "id": 611,
+            "amount": 1
+          },
+          "612": {
+            "type": "HeroWearableItem",
+            "quality": "QUEST_REWARD",
+            "id": 612,
+            "amount": 1
+          },
+          "1202": {
+            "type": "HeroItem",
+            "id": 1202,
+            "amount": 1
+          },
+          "604": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 6040,
+            "amount": 1
+          },
+          "409": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 4090,
+            "amount": 1
+          },
+          "513": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5130,
+            "amount": 1
+          },
+          "222": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2220,
+            "amount": 1
+          },
+          "314": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 314,
+            "amount": 1
+          },
+          "315": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 315,
+            "amount": 1
+          },
+          "316": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 316,
+            "amount": 1
+          },
+          "220": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2200,
+            "amount": 1
+          },
+          "514": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5140,
+            "amount": 1
+          },
+          "313": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 3130,
+            "amount": 1
+          }
+        }
+      }
+    },
+    "experiencePointsService": {
+      "neededExperiencePointsForNewLevel": 2700.0
+    },
+    "saveGameEntities": {
+      "heroQuests": {
+        "saveEntities": {
+          "0": {
+            "id": 0,
+            "questStatus": "TURNED_IN"
+          },
+          "1": {
+            "id": 1,
+            "questStatus": "TURNED_IN"
+          },
+          "2": {
+            "id": 2,
+            "questStatus": "TURNED_IN"
+          },
+          "3": {
+            "id": 3,
+            "questStatus": "TURNED_IN"
+          },
+          "4": {
+            "id": 4,
+            "questStatus": "TURNED_IN"
+          },
+          "5": {
+            "id": 5,
+            "questStatus": "TURNED_IN"
+          },
+          "6": {
+            "id": 6,
+            "questStatus": "COMPLETED"
+          }
+        }
+      },
+      "heroQuestObjectives": {
+        "saveEntities": {
+          "1": {
+            "id": 1,
+            "completed": true
+          },
+          "2": {
+            "id": 2,
+            "completed": true
+          },
+          "3": {
+            "id": 3,
+            "completed": true
+          },
+          "4": {
+            "id": 4,
+            "completed": true
+          },
+          "5": {
+            "id": 5,
+            "completed": true
+          },
+          "6": {
+            "id": 6,
+            "completed": true
+          },
+          "7": {
+            "id": 7,
+            "completed": true
+          },
+          "8": {
+            "id": 8,
+            "completed": true
+          },
+          "9": {
+            "id": 9,
+            "completed": true
+          },
+          "10": {
+            "id": 10,
+            "completed": true
+          },
+          "11": {
+            "id": 11,
+            "completed": true
+          },
+          "12": {
+            "id": 12,
+            "completed": true
+          }
+        }
+      },
+      "heroLocations": {
+        "saveEntities": {
+          "0": {
+            "id": 0,
+            "locationStatus": "COMPLETED",
+            "stages": {
+              "0": {
+                "order": 0,
+                "stageName": "Miner Johnson",
+                "stageStatus": "CLEARED"
+              },
+              "1": {
+                "order": 1,
+                "stageName": "Mine entry door",
+                "stageStatus": "CLEARED"
+              },
+              "2": {
+                "order": 2,
+                "stageName": "Miner\u0027s Quarters",
+                "stageStatus": "CLEARED"
+              },
+              "3": {
+                "order": 3,
+                "stageName": "Miner\u0027s Quarters shelves",
+                "stageStatus": "CLEARED"
+              },
+              "4": {
+                "order": 4,
+                "stageName": "Abandoned Tunnels",
+                "stageStatus": "CLEARED"
+              },
+              "5": {
+                "order": 5,
+                "stageName": "Collapsed Chambers",
+                "stageStatus": "CLEARED"
+              },
+              "6": {
+                "order": 6,
+                "stageName": "Abandoned Tunnels",
+                "stageStatus": "CLEARED"
+              },
+              "7": {
+                "order": 7,
+                "stageName": "Collapsed Chambers",
+                "stageStatus": "CLEARED"
+              },
+              "8": {
+                "order": 8,
+                "stageName": "Ore Deposits",
+                "stageStatus": "CLEARED"
+              },
+              "9": {
+                "order": 9,
+                "stageName": "Abandoned Tunnels",
+                "stageStatus": "CLEARED"
+              },
+              "10": {
+                "order": 10,
+                "stageName": "Refinery",
+                "stageStatus": "CLEARED"
+              },
+              "11": {
+                "order": 11,
+                "stageName": "Ore storage",
+                "stageStatus": "CLEARED"
+              },
+              "12": {
+                "order": 12,
+                "stageName": "Miner Leader Chamber",
+                "stageStatus": "CLEARED"
+              },
+              "13": {
+                "order": 13,
+                "stageName": "Miner leader chamber locked chest",
+                "stageStatus": "CLEARED"
+              }
+            }
+          },
+          "1": {
+            "id": 1,
+            "locationStatus": "COMPLETED",
+            "stages": {
+              "0": {
+                "order": 0,
+                "stageName": "Tower Door",
+                "stageStatus": "CLEARED"
+              },
+              "1": {
+                "order": 1,
+                "stageName": "Forgotten Crypts",
+                "stageStatus": "CLEARED"
+              },
+              "2": {
+                "order": 2,
+                "stageName": "Cursed Altar",
+                "stageStatus": "CLEARED"
+              },
+              "3": {
+                "order": 3,
+                "stageName": "Empty Socket in Cursed Altar",
+                "stageStatus": "CLEARED"
+              },
+              "4": {
+                "order": 4,
+                "stageName": "Sorrowful Chapel",
+                "stageStatus": "CLEARED"
+              },
+              "5": {
+                "order": 5,
+                "stageName": "Spectral Library",
+                "stageStatus": "CLEARED"
+              },
+              "6": {
+                "order": 6,
+                "stageName": "Malevolent Throne Room",
+                "stageStatus": "CLEARED"
+              },
+              "7": {
+                "order": 7,
+                "stageName": "Necromancer Hidden Chest",
+                "stageStatus": "CLEARED"
+              }
+            }
+          },
+          "2": {
+            "id": 2,
+            "locationStatus": "DISCOVERED",
+            "stages": {
+              "0": {
+                "order": 0,
+                "stageName": "Ilyana Shalee",
+                "stageStatus": "CLEARED"
+              },
+              "1": {
+                "order": 1,
+                "stageName": "Right Lake shore",
+                "stageStatus": "CLEARED"
+              },
+              "2": {
+                "order": 2,
+                "stageName": "Left Lake shore",
+                "stageStatus": "CLEARED"
+              },
+              "3": {
+                "order": 3,
+                "stageName": "Old fishing pier",
+                "stageStatus": "CLEARED"
+              },
+              "4": {
+                "order": 4,
+                "stageName": "The End of Old fishing pier",
+                "stageStatus": "CLEARED"
+              },
+              "5": {
+                "order": 5,
+                "stageName": "Lake Isle",
+                "stageStatus": "CLEARED"
+              }
+            }
+          },
+          "4": {
+            "id": 4,
+            "locationStatus": "DISCOVERED",
+            "stages": {
+              "0": {
+                "order": 0,
+                "stageName": "Main gate City Guard",
+                "stageStatus": "CLEARED"
+              },
+              "1": {
+                "order": 1,
+                "stageName": "Blacksmithing Forge",
+                "stageStatus": "CLEARED"
+              },
+              "2": {
+                "order": 2,
+                "stageName": "Reivut Duskmaster (Wearable Item Vendor)",
+                "stageStatus": "CLEARED"
+              },
+              "3": {
+                "order": 3,
+                "stageName": "Bedgraen Grimdelver (Crafting Reagent Item Vendor)",
+                "stageStatus": "CLEARED"
+              },
+              "4": {
+                "order": 4,
+                "stageName": "Faraine Daeyra (Consumable Item Vendor)",
+                "stageStatus": "CLEARED"
+              },
+              "5": {
+                "order": 5,
+                "stageName": "Elora Quiqen (Crafting Reagent Item Vendor)",
+                "stageStatus": "CLEARED"
+              },
+              "6": {
+                "order": 6,
+                "stageName": "Lucky Thorne (Junk Item Vendor)",
+                "stageStatus": "CLEARED"
+              },
+              "7": {
+                "order": 7,
+                "stageName": "Old miner house",
+                "stageStatus": "CLEARED"
+              },
+              "8": {
+                "order": 8,
+                "stageName": "Mystic Hollow Tavern Keeper (Consumable Item Vendor)",
+                "stageStatus": "CLEARED"
+              },
+              "9": {
+                "order": 9,
+                "stageName": "Gervese the Stranger",
+                "stageStatus": "CLEARED"
+              },
+              "10": {
+                "order": 10,
+                "stageName": "Tavern Back door",
+                "stageStatus": "DISCOVERED"
+              }
+            }
+          },
+          "3": {
+            "id": 3,
+            "locationStatus": "DISCOVERED",
+            "stages": {
+              "0": {
+                "order": 0,
+                "stageName": "Bear cave chamber",
+                "stageStatus": "CLEARED"
+              },
+              "1": {
+                "order": 1,
+                "stageName": "Human Corpse",
+                "stageStatus": "CLEARED"
+              },
+              "2": {
+                "order": 2,
+                "stageName": "Tattered Letter",
+                "stageStatus": "DISCOVERED"
+              }
+            }
+          },
+          "8": {
+            "id": 8,
+            "locationStatus": "DISCOVERED",
+            "stages": {
+              "0": {
+                "order": 0,
+                "stageName": "Commander Althea Ebonlocke -\u001b[0;37m!\u001b[0m-",
+                "stageStatus": "DISCOVERED"
+              }
+            }
+          },
+          "7": {
+            "id": 7,
+            "locationStatus": "DISCOVERED",
+            "stages": {
+              "0": {
+                "order": 0,
+                "stageName": "Graveyard Entrance"
+              },
+              "1": {
+                "order": 1,
+                "stageName": "Shrouded Path"
+              },
+              "2": {
+                "order": 2,
+                "stageName": "Forsaken Chapel"
+              }
+            }
+          },
+          "6": {
+            "id": 6,
+            "locationStatus": "COMPLETED",
+            "stages": {
+              "0": {
+                "order": 0,
+                "stageName": "Cemetery Entrance",
+                "stageStatus": "CLEARED"
+              },
+              "1": {
+                "order": 1,
+                "stageName": "Human Corpses",
+                "stageStatus": "CLEARED"
+              },
+              "2": {
+                "order": 2,
+                "stageName": "Cemetery Path",
+                "stageStatus": "CLEARED"
+              },
+              "3": {
+                "order": 3,
+                "stageName": "Cemetery Chapel",
+                "stageStatus": "CLEARED"
+              }
+            }
+          },
+          "5": {
+            "id": 5,
+            "locationStatus": "COMPLETED",
+            "stages": {
+              "0": {
+                "order": 0,
+                "stageName": "Garden Entrance",
+                "stageStatus": "CLEARED"
+              },
+              "1": {
+                "order": 1,
+                "stageName": "Human Corpses",
+                "stageStatus": "CLEARED"
+              },
+              "2": {
+                "order": 2,
+                "stageName": "Garden Path",
+                "stageStatus": "CLEARED"
+              },
+              "3": {
+                "order": 3,
+                "stageName": "Garden Fountain",
+                "stageStatus": "CLEARED"
+              }
+            }
+          }
+        }
+      },
+      "heroItems": {
+        "saveEntities": {
+          "704": {
+            "type": "HeroItem",
+            "id": 704,
+            "amount": 9
+          },
+          "800": {
+            "type": "HeroItem",
+            "id": 800,
+            "amount": 5
+          },
+          "900": {
+            "type": "HeroItem",
+            "id": 900,
+            "amount": 7
+          },
+          "902": {
+            "type": "HeroItem",
+            "id": 902,
+            "amount": 6
+          },
+          "200": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 2000,
+            "amount": 1
+          },
+          "1001": {
+            "type": "HeroItem",
+            "id": 1001,
+            "amount": 5
+          },
+          "1002": {
+            "type": "HeroItem",
+            "id": 1002,
+            "amount": 5
+          },
+          "1003": {
+            "type": "HeroItem",
+            "id": 1003,
+            "amount": 7
+          },
+          "1004": {
+            "type": "HeroItem",
+            "id": 1004,
+            "amount": 3
+          },
+          "300": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 3000,
+            "amount": 1
+          },
+          "301": {
+            "type": "HeroWearableItem",
+            "quality": "SPECIAL",
+            "id": 301,
+            "amount": 1
+          },
+          "206": {
+            "type": "HeroWearableItem",
+            "quality": "QUEST_REWARD",
+            "id": 206,
+            "amount": 1
+          },
+          "207": {
+            "type": "HeroWearableItem",
+            "quality": "QUEST_REWARD",
+            "id": 207,
+            "amount": 1
+          },
+          "400": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 4000,
+            "amount": 1
+          },
+          "500": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5000,
+            "amount": 1
+          },
+          "501": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 5010,
+            "amount": 1
+          },
+          "600": {
+            "type": "HeroWearableItem",
+            "quality": "BASIC",
+            "id": 6000,
+            "amount": 1
+          }
+        }
+      }
+    },
+    "learnedSpells": {
+      "1": {
+        "spellId": 504,
+        "spellName": "StormStrike",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "baseActionValue": 15,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100
+          },
+          {
+            "type": "ActionDecreaseAbilityPoint",
+            "ability": "CRITICAL_HIT_CHANCE",
+            "actionPerformed": false,
+            "maxActionTurns": 2,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionStatusEffect": "DEBUFF",
+            "actionName": "DECREASE_ABILITY_POINTS",
+            "baseActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100
+          }
+        ],
+        "spellLevel": 1,
+        "spellManaCost": 16,
+        "turnCoolDown": 4,
+        "currentTurnCoolDown": 5,
+        "canSpellBeCasted": true,
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
+      },
+      "2": {
+        "spellId": 505,
+        "spellName": "Call Fire Totem",
+        "spellActions": [
+          {
+            "type": "ActionSummonCreature",
+            "summonedNpcId": 600,
+            "actionName": "SUMMON_CREATURE",
+            "baseActionValue": 0,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100
+          }
+        ],
+        "spellLevel": 2,
+        "spellManaCost": 27,
+        "turnCoolDown": 3,
+        "currentTurnCoolDown": 4,
+        "canSpellBeCasted": true,
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
+      },
+      "3": {
+        "spellId": 507,
+        "spellName": "Shamanistic Focus",
+        "spellActions": [
+          {
+            "type": "ActionIncreaseAbilityPoint",
+            "ability": "CRITICAL_HIT_CHANCE",
+            "actionPerformed": false,
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionStatusEffect": "BUFF",
+            "actionName": "INCREASE_ABILITY_POINTS",
+            "baseActionValue": 100,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100
+          }
+        ],
+        "spellLevel": 3,
+        "spellManaCost": 20,
+        "turnCoolDown": 4,
+        "currentTurnCoolDown": 5,
+        "canSpellBeCasted": true,
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
+      }
+    },
+    "enemyKilled": {
+      "enemyKilled": {
+        "401": 0,
+        "402": 0,
+        "204": 2,
+        "205": 0,
+        "208": 0,
+        "305": 0,
+        "306": 0,
+        "307": 3,
+        "308": 3
+      }
+    },
+    "inCombat": false,
+    "name": "Shammy",
+    "level": 3,
+    "baseAbilities": {
+      "HASTE": 4,
+      "HEALTH": 85,
+      "SPIRIT": 3,
+      "INTELLECT": 1,
+      "RESIST_DAMAGE": 5,
+      "MANA": 67,
+      "STRENGTH": 1,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 1,
+      "ATTACK": 4
+    },
+    "enhancedAbilities": {
+      "HASTE": 12,
+      "HEALTH": 94,
+      "SPIRIT": 3,
+      "RESIST_DAMAGE": 11,
+      "INTELLECT": 1,
+      "MANA": 69,
+      "STRENGTH": 1,
+      "ABSORB_DAMAGE": 0,
+      "ATTACK": 18,
+      "CRITICAL_HIT_CHANCE": 9
+    },
+    "effectiveAbilities": {
+      "HASTE": 12,
+      "HEALTH": 63,
+      "SPIRIT": 3,
+      "INTELLECT": 1,
+      "RESIST_DAMAGE": 11,
+      "MANA": 69,
+      "STRENGTH": 1,
+      "ABSORB_DAMAGE": 0,
+      "CRITICAL_HIT_CHANCE": 9,
+      "ATTACK": 18
+    },
+    "characterSpellList": [
+      {
+        "spellId": 500,
+        "spellName": "Weapon Attack",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "baseActionValue": 6,
+            "currentActionValue": 30,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100
+          }
+        ],
+        "spellLevel": 0,
+        "spellManaCost": 0,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 2,
+        "canSpellBeCasted": true,
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
+      },
+      {
+        "spellId": 501,
+        "spellName": "Earth Shock",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "baseActionValue": 10,
+            "currentActionValue": 29,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100
+          },
+          {
+            "type": "ActionDecreaseAbilityPoint",
+            "ability": "HASTE",
+            "actionPerformed": false,
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionStatusEffect": "DEBUFF",
+            "actionName": "DECREASE_ABILITY_POINTS",
+            "baseActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100
+          }
+        ],
+        "spellLevel": 0,
+        "spellManaCost": 13,
+        "turnCoolDown": 3,
+        "currentTurnCoolDown": 3,
+        "canSpellBeCasted": false,
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
+      },
+      {
+        "spellId": 502,
+        "spellName": "Lesser Healing Wave",
+        "spellActions": [
+          {
+            "type": "ActionRestoreHealth",
+            "actionName": "HEAL",
+            "baseActionValue": 7,
+            "currentActionValue": 36,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100
+          }
+        ],
+        "spellLevel": 0,
+        "spellManaCost": 23,
+        "turnCoolDown": 0,
+        "currentTurnCoolDown": 10,
+        "canSpellBeCasted": true,
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
+      },
+      {
+        "spellId": 504,
+        "spellName": "StormStrike",
+        "spellActions": [
+          {
+            "type": "ActionDealDamage",
+            "actionName": "DAMAGE",
+            "baseActionValue": 15,
+            "currentActionValue": 66,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100
+          },
+          {
+            "type": "ActionDecreaseAbilityPoint",
+            "ability": "CRITICAL_HIT_CHANCE",
+            "actionPerformed": false,
+            "maxActionTurns": 2,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionStatusEffect": "DEBUFF",
+            "actionName": "DECREASE_ABILITY_POINTS",
+            "baseActionValue": 1,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_TARGET",
+            "chanceToPerformAction": 100
+          }
+        ],
+        "spellLevel": 1,
+        "spellManaCost": 16,
+        "turnCoolDown": 4,
+        "currentTurnCoolDown": 5,
+        "canSpellBeCasted": true,
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
+      },
+      {
+        "spellId": 505,
+        "spellName": "Call Fire Totem",
+        "spellActions": [
+          {
+            "type": "ActionSummonCreature",
+            "summonedNpcId": 600,
+            "actionName": "SUMMON_CREATURE",
+            "baseActionValue": 0,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100
+          }
+        ],
+        "spellLevel": 2,
+        "spellManaCost": 27,
+        "turnCoolDown": 3,
+        "currentTurnCoolDown": 46,
+        "canSpellBeCasted": true,
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
+      },
+      {
+        "spellId": 507,
+        "spellName": "Shamanistic Focus",
+        "spellActions": [
+          {
+            "type": "ActionIncreaseAbilityPoint",
+            "ability": "CRITICAL_HIT_CHANCE",
+            "actionPerformed": false,
+            "maxActionTurns": 3,
+            "currentActionTurn": 0,
+            "actionMaxStacks": 1,
+            "actionCurrentStacks": 0,
+            "actionStatusEffect": "BUFF",
+            "actionName": "INCREASE_ABILITY_POINTS",
+            "baseActionValue": 100,
+            "currentActionValue": 0,
+            "actionEffectOn": "SPELL_CASTER",
+            "chanceToPerformAction": 100
+          }
+        ],
+        "spellLevel": 3,
+        "spellManaCost": 20,
+        "turnCoolDown": 4,
+        "currentTurnCoolDown": 7,
+        "canSpellBeCasted": true,
+        "spellClass": "SHAMAN",
+        "hitAllEnemy": false
+      }
+    ],
+    "canPerformAction": true,
+    "reflectSpell": false
+  },
+  "hintUtil": {
+    "HERO_MENU": {
+      "text": "\tIn the hero menu, you can view your statistics, inventory, add or subtract ability points\n\tcheck accepted and completed quests, learn new spells, and adjust game settings.",
+      "showed": true
+    },
+    "WELCOME": {
+      "text": "\tHello, my name is Stefan, and I am creator of this game.\n\tI will guide you through the game for a short time.\n\tIf you find the slow text print bothersome, you can disable it in the game settings.\n\tI hope you will enjoy the game! Good luck with exploring the world of Eldarion!",
+      "showed": true
+    },
+    "BATTLE_HINT": {
+      "text": "\tOne of the most important parts of the game are the battles. Battles occur in turns.\n\tCombat is conducted using spells, each spell has actions that are performed after using the spell.\n\tActions with durations are performed after of the turn of character affected by Action, Except action Stun, which is performed right after the spell.\n\tHowever, be careful, some actions do not have a 100% chance of execution.\n\tIf action has lower chance to perform, you will see percentage chance in action description.\n\tSpells on CoolDowns can\u0027t be used.\n\tTo receive rewards or fulfill Quest Objectives, you must defeat all units and win the battle.",
+      "showed": true
+    },
+    "REGION_HINT": {
+      "text": "\tWelcome to the region. Here you can travel across the region, discover new locations, and complete quests.\n\tHowever, be cautious of traps while traveling through locations.",
+      "showed": true
+    },
+    "NEW_SPELL_HINT": {
+      "text": "\tHere you can learn a new spells. You can learn one new spell on levels 1, 2, 3, 4 and 5.\n\tWhen you want to change a learned spell, simply learn a new one, and the old one will be unlearned.",
+      "showed": true
+    },
+    "BLACKSMITH_HINT": {
+      "text": "\t\t- You can dismantle wearable item. This will destroy item,\n\tbut you get crafting reagents (items),\n\t\t- You can refinement wearable item. This will increase item\n\tprice and ability bonus, For refinement item you need crafting reagents (items)",
+      "showed": true
+    },
+    "LOCATION_HINT": {
+      "text": "\tWelcome to the location. The Location consists of multiple stages.\n\tIf a stage is not open from the beginning, you can only access it after completing the previous stage.\n\tTo enter some stages, you need an item to unlock the stage.",
+      "showed": true
+    },
+    "QUEST_HINT": {
+      "text": "\tThroughout the game, you will be completing quests. For each completed quest, you will receive a reward.\n\tEach quest can have multiple Quest Objectives that you need to fulfill to complete the quest.\n\tAvailable quests will be marked with a yellow exclamation point ( - ! - ),\n\twhile completed but not yet turned in quests will be marked with a yellow question mark ( - ? - ).\n\tYou may also encounter a gray exclamation point, indicating that you have not yet met the requirements\n\tto accept that quest (insufficient level, need to complete a prerequisite quest).",
+      "showed": true
+    }
+  },
+  "vendorIdAndItemListId": {
+    "0": 12,
+    "1": 0,
+    "2": 13,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 11
+  }
+}

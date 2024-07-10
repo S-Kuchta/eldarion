@@ -3,12 +3,11 @@
     "spellId": 500,
     "spellName": "Weapon Attack",
     "spellClass": "SHAMAN",
-    "spellDescription": "Attack with weapon",
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 5,
+        "baseActionValue": 9,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -21,12 +20,11 @@
     "spellId": 501,
     "spellName": "Earth Shock",
     "spellClass": "SHAMAN",
-    "spellDescription": "Instantly shocks the target with concussive force, causing Nature damage and reducing Haste for 3 turns.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 8,
+        "baseActionValue": 12,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       },
@@ -68,12 +66,11 @@
     "spellId": 503,
     "spellName": "Lava Burst",
     "spellClass": "SHAMAN",
-    "spellDescription": "You hurl molten lava at the target, dealing high amount of Fire damage. ",
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 17,
+        "baseActionValue": 18,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -86,12 +83,11 @@
     "spellId": 504,
     "spellName": "StormStrike",
     "spellClass": "SHAMAN",
-    "spellDescription": "Instantly attack with weapon. Deal high amount of damage. Increase critical hit chance for next 2 turns.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 12,
+        "baseActionValue": 15,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       },
@@ -115,8 +111,15 @@
     "spellId": 505,
     "spellName": "Call Fire Totem",
     "spellClass": "SHAMAN",
-    "spellDescription": "Summons a Fire Totem that repeatedly attacks an enemy.",
     "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "baseActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 100,
+        "summonedNpcId": 600
+      },
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
@@ -134,8 +137,15 @@
     "spellId": 506,
     "spellName": "Call Water Totem",
     "spellClass": "SHAMAN",
-    "spellDescription": "Summons a Water Totem that heal a caster.",
     "spellActions": [
+      {
+        "type": "ActionSummonCreature",
+        "actionName": "SUMMON_CREATURE",
+        "baseActionValue": 0,
+        "actionEffectOn": "SPELL_CASTER",
+        "chanceToPerformAction": 601,
+        "summonedNpcId": 400
+      },
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
@@ -153,7 +163,6 @@
     "spellId": 507,
     "spellName": "Shamanistic Focus",
     "spellClass": "SHAMAN",
-    "spellDescription": "Next casted spell will be critical hit.",
     "spellActions": [
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -175,7 +184,6 @@
     "spellId": 508,
     "spellName": "Purge",
     "spellClass": "SHAMAN",
-    "spellDescription": "Purges the enemy target, removing all buffs from target.",
     "spellActions": [
       {
         "type": "ActionRemoveBuffOrDebuff",
@@ -195,13 +203,12 @@
     "spellId": 509,
     "spellName": "Chain Lightning",
     "spellClass": "SHAMAN",
-    "spellDescription": "Hurls a lightning bolt at the enemy, dealing Nature damage and then jumping to next enemy.",
     "hitAllEnemy": true,
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 7,
+        "baseActionValue": 10,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -214,7 +221,6 @@
     "spellId": 510,
     "spellName": "Feral Spirit",
     "spellClass": "SHAMAN",
-    "spellDescription": "Summons two Spirit Wolves.",
     "spellActions": [
       {
         "type": "ActionSummonCreature",
@@ -241,7 +247,6 @@
     "spellId": 511,
     "spellName": "BloodLust",
     "spellClass": "SHAMAN",
-    "spellDescription": "Increase abilities Haste, Attack and Intellect over 4 turns.",
     "spellActions": [
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -285,7 +290,6 @@
     "spellId": 512,
     "spellName": "Elements totem call",
     "spellClass": "SHAMAN",
-    "spellDescription": "Call 4 totems from power of elements. Fire, Water, Air and Earth. Fire deal damage, Water heal the hero, Air make hero reflect damage and earth stun the target.",
     "spellActions": [
       {
         "type": "ActionSummonCreature",

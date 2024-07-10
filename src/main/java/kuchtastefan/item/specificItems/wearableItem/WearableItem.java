@@ -95,7 +95,7 @@ public class WearableItem extends Item implements UsableItem, HaveType {
         return new ItemAndCount(reagent, RandomNumberGenerator.getRandomNumber(2, 4) + this.itemLevel);
     }
 
-    public int getNewItemId() {
+    public int getTempItemId() {
         String newId = this.getItemId().toString();
         if (this.wearableItemQuality == WearableItemQuality.BASIC) {
             newId += "0";

@@ -8,7 +8,7 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 8,
+        "baseActionValue": 9,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -87,7 +87,7 @@
   },
   {
     "spellId": 304,
-    "spellName": "Devotion Aura",
+    "spellName": "Defensive Stance",
     "spellClass": "WARRIOR",
     "spellActions": [
       {
@@ -103,7 +103,7 @@
       }
     ],
     "spellLevel": 1,
-    "spellManaCost": 15,
+    "spellManaCost": 8,
     "turnCoolDown": 4
   },
   {
@@ -128,19 +128,20 @@
   },
   {
     "spellId": 306,
-    "spellName": "Holy Light",
+    "spellName": "Whirlwind",
     "spellClass": "WARRIOR",
+    "hitAllEnemy": true,
     "spellActions": [
       {
-        "type": "ActionRestoreHealth",
-        "actionName": "HEAL",
-        "baseActionValue": 10,
-        "actionEffectOn": "SPELL_CASTER",
+        "type": "ActionDealDamage",
+        "actionName": "DAMAGE",
+        "baseActionValue": 5,
+        "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 2,
-    "spellManaCost": 35,
+    "spellManaCost": 10,
     "turnCoolDown": 5
   },
   {
@@ -174,19 +175,20 @@
   },
   {
     "spellId": 308,
-    "spellName": "Consecration",
+    "spellName": "Weapon Mastery",
     "spellClass": "WARRIOR",
     "hitAllEnemy": true,
     "spellActions": [
       {
-        "type": "ActionDealDamageOverTime",
-        "actionName": "DAMAGE_OVER_TIME",
-        "actionEffectOn": "SPELL_TARGET",
-        "baseActionValue": 1,
-        "maxActionTurns": 3,
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "baseActionValue": 100,
+        "maxActionTurns": 2,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "actionStatusEffect": "DEBUFF"
+        "ability": "CRITICAL_HIT_CHANCE",
+        "actionStatusEffect": "BUFF"
       }
     ],
     "spellLevel": 3,
@@ -217,22 +219,23 @@
   },
   {
     "spellId": 310,
-    "spellName": "Hammer of Justice",
+    "spellName": "Enrage",
     "spellClass": "WARRIOR",
     "spellActions": [
       {
-        "type": "ActionStun",
-        "actionName": "STUN",
-        "actionEffectOn": "SPELL_TARGET",
-        "baseActionValue": 0,
-        "maxActionTurns": 3,
+        "type": "ActionIncreaseAbilityPoint",
+        "actionName": "INCREASE_ABILITY_POINTS",
+        "actionEffectOn": "SPELL_CASTER",
+        "baseActionValue": 100,
+        "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "actionStatusEffect": "DEBUFF"
+        "ability": "ATTACK",
+        "actionStatusEffect": "BUFF"
       }
     ],
     "spellLevel": 4,
-    "spellManaCost": 45,
+    "spellManaCost": 15,
     "turnCoolDown": 6
   },
   {
@@ -255,25 +258,5 @@
     "spellLevel": 5,
     "spellManaCost": 15,
     "turnCoolDown": 7
-  },
-  {
-    "spellId": 311,
-    "spellName": "Divine Shield",
-    "spellClass": "WARRIOR",
-    "spellActions": [
-      {
-        "type": "ActionInvulnerability",
-        "actionName": "INVULNERABILITY",
-        "actionEffectOn": "SPELL_CASTER",
-        "baseActionValue": 0,
-        "maxActionTurns": 3,
-        "actionMaxStacks": 1,
-        "chanceToPerformAction": 100,
-        "actionStatusEffect": "BUFF"
-      }
-    ],
-    "spellLevel": 5,
-    "spellManaCost": 70,
-    "turnCoolDown": 12
   }
 ]

@@ -3,7 +3,6 @@
     "spellId": 200,
     "spellName": "Weapon Attack",
     "spellClass": "MAGE",
-    "spellDescription": "Attack with weapon",
     "spellActions": [
       {
         "type": "ActionDealDamage",
@@ -21,12 +20,11 @@
     "spellId": 201,
     "spellName": "Arcane Missiles",
     "spellClass": "MAGE",
-    "spellDescription": "Launches Arcane Missiles at the enemy, causing Arcane damage",
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 10,
+        "baseActionValue": 11,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
@@ -39,7 +37,6 @@
     "spellId": 202,
     "spellName": "Mage Barrier",
     "spellClass": "MAGE",
-    "spellDescription": "Absorbs damage, but drain Mana while barrier is active.",
     "spellActions": [
       {
         "type": "ActionAbsorbDamage",
@@ -70,12 +67,11 @@
     "spellId": 203,
     "spellName": "FireBall",
     "spellClass": "MAGE",
-    "spellDescription": "Hurls a fiery ball that causes Fire damage and an additional Fire damage over 3 turns.",
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 15,
+        "baseActionValue": 17,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       },
@@ -98,12 +94,11 @@
     "spellId": 204,
     "spellName": "FrostBolt",
     "spellClass": "MAGE",
-    "spellDescription": "Launches a bolt of frost at the enemy, causing Frost damage and lower target Attack Ability",
     "spellActions": [
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 7,
+        "baseActionValue": 14,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       },
@@ -127,7 +122,6 @@
     "spellId": 205,
     "spellName": "Molten Armor",
     "spellClass": "MAGE",
-    "spellDescription": "Absorbs damage and increase critical hit chance. Lasts 3 turns or until is destroyed.",
     "spellActions": [
       {
         "type": "ActionAbsorbDamage",
@@ -159,7 +153,6 @@
     "spellId": 206,
     "spellName": "Ice Armor",
     "spellClass": "MAGE",
-    "spellDescription": "Increases Resist damage",
     "spellActions": [
       {
         "type": "ActionIncreaseAbilityPoint",
@@ -181,7 +174,6 @@
     "spellId": 207,
     "spellName": "Frost Nova",
     "spellClass": "MAGE",
-    "spellDescription": "Blasts enemies near the caster for Frost damage, freeze them and prevent before action.",
     "hitAllEnemy": true,
     "spellActions": [
       {
@@ -210,7 +202,6 @@
     "spellId": 208,
     "spellName": "FlameStrike",
     "spellClass": "MAGE",
-    "spellDescription": "Calls down a pillar of fire, burning all enemies with Fire damage and an additional deal Fire damage over 3 turns.",
     "hitAllEnemy": true,
     "spellActions": [
       {
@@ -239,7 +230,6 @@
     "spellId": 209,
     "spellName": "Ice block",
     "spellClass": "MAGE",
-    "spellDescription": "You become encased in a block of ice, protecting you from all incoming damage for 2 turns.",
     "spellActions": [
       {
         "type": "ActionInvulnerability",
@@ -260,8 +250,17 @@
     "spellId": 210,
     "spellName": "Reflect Spell",
     "spellClass": "MAGE",
-    "spellDescription": "Reflecting the next spell cast on you.",
     "spellActions": [
+      {
+        "type": "ActionReflectSpell",
+        "actionName": "REFLECT_SPELL",
+        "actionEffectOn": "SPELL_CASTER",
+        "baseActionValue": 0,
+        "maxActionTurns": 4,
+        "actionMaxStacks": 1,
+        "chanceToPerformAction": 100,
+        "actionStatusEffect": "BUFF"
+      },
       {
         "type": "ActionReflectSpell",
         "actionName": "REFLECT_SPELL",
@@ -281,7 +280,6 @@
     "spellId": 211,
     "spellName": "Evocation",
     "spellClass": "MAGE",
-    "spellDescription": "Restore mana over 3 turns. Also, you will get intellect during duration of Evocation.",
     "spellActions": [
       {
         "type": "ActionRestoreManaOverTime",
@@ -310,10 +308,9 @@
     "turnCoolDown": 8
   },
   {
-    "spellId": 213,
+    "spellId": 212,
     "spellName": "Summon Water Elemental",
     "spellClass": "MAGE",
-    "spellDescription": "Summon Water Elemental",
     "spellActions": [
       {
         "type": "ActionSummonCreature",

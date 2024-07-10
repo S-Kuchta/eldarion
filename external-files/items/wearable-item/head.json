@@ -130,5 +130,41 @@
       "ATTACK": 2
     },
     "itemLevel": 3
+  },
+  {
+    "itemId": 314,
+    "name": "Bloody Apron Circlet",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "MANA": 14,
+      "SPIRIT": 3,
+      "ATTACK": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 315,
+    "name": "Scarlet HeadGuard",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 2,
+      "HEALTH": 14,
+      "STRENGTH": 2,
+      "ATTACK": 2
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 316,
+    "name": "GloomShroud Cape",
+    "wearableItemQuality": "SPECIAL",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "HASTE": 2,
+      "ATTACK": 3,
+      "CRITICAL_HIT_CHANCE": 2
+    },
+    "itemLevel": 3
   }
 ]

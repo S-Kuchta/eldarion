@@ -93,7 +93,7 @@
   },
   {
     "itemId": 610,
-    "name": "Bloody Apron",
+    "name": "Bloody Apron Robe",
     "wearableItemQuality": "QUEST_REWARD",
     "abilities": {
       "RESIST_DAMAGE": 2,
@@ -104,12 +104,25 @@
   },
   {
     "itemId": 611,
-    "name": "GloomShroud Armor",
+    "name": "Scarlet Chestpiece",
     "wearableItemQuality": "QUEST_REWARD",
     "abilities": {
-      "RESIST_DAMAGE": 3,
+      "RESIST_DAMAGE": 4,
       "HEALTH": 14,
       "STRENGTH": 1
+    },
+    "itemLevel": 3
+  },
+  {
+    "itemId": 612,
+    "name": "GloomShroud Chest Armor",
+    "wearableItemQuality": "QUEST_REWARD",
+    "abilities": {
+      "RESIST_DAMAGE": 1,
+      "HEALTH": 7,
+      "ATTACK": 3,
+      "HASTE": 1,
+      "CRITICAL_HIT_CHANCE": 1
     },
     "itemLevel": 3
   }

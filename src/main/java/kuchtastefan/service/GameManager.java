@@ -1,6 +1,6 @@
 package kuchtastefan.service;
 
-import kuchtastefan.character.hero.CharacterClass;
+import kuchtastefan.character.CharacterClass;
 import kuchtastefan.character.hero.Hero;
 import kuchtastefan.character.hero.HeroAbilityManager;
 import kuchtastefan.character.hero.save.GameLoaded;
@@ -150,8 +150,6 @@ public class GameManager {
         QuestDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuests());
         QuestObjectiveDB.syncWithSaveGame(gameLoaded.getHero().getSaveGameEntities().getHeroQuestObjectives());
         VendorCharacterDB.setVendorCurrentCharacterItemListId(gameLoaded.getVendorIdAndItemListId());
-
-        System.out.println(hero.getHeroInventoryManager().getHeroItems().getSaveEntities().size());
     }
 
     private void classSelect() {
@@ -160,7 +158,11 @@ public class GameManager {
         characterClassList.removeIf(characterClass -> characterClass.equals(CharacterClass.NPC));
 
         for (int i = 0; i < characterClassList.size(); i++) {
-            PrintUtil.printIndexAndText(String.valueOf(i), characterClassList.get(i).toString());
+            PrintUtil.printIndexAndText(String.valueOf(i), characterClassList.get(i).toString()
+                    + " (primary ability: " + characterClassList.get(i).getPrimaryAbility() + ")");
+            if (i == 1) {
+                System.out.println();
+            }
         }
 
         System.out.println();

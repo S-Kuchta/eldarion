@@ -95,7 +95,7 @@
     "type": "Quest",
     "id": 5,
     "title": "The Night Watch",
-    "description": "As Commander of The Night Watch it is my sworn duty to protect the citizens of DarkShire. Mystic Hollow has retracted their commissioned guards from their posts here, leaving us to our own devices.\n\nIf you feel worthy of the task, we need your help! Assist The Night Watch by venturing forth into Tranquil Gardens, just south of DarkShire, and slaying 4 Skeletal Warriors and 2 Skeletal Mages. The undead threat must be thwarted!",
+    "description": "As Commander of The Night Watch it is my sworn duty to protect the citizens of DuskWood. Mystic Hollow has retracted their commissioned guards from their posts here, leaving us to our own devices.\n\nIf you feel worthy of the task, we need your help! Assist The Night Watch by venturing forth into Tranquil Gardens, just south of DarkShire, and slaying 4 Skeletal Warriors and 2 Skeletal Mages. The undead threat must be thwarted!",
     "level": 3,
     "instantTurnIn": false,
     "objectivesIds": [
@@ -105,11 +105,13 @@
     "reward": {
       "itemsReward": [
         901,
-        901,
-        903,
+        902,
+        904,
         903,
         610,
-        611
+        611,
+        612,
+        1202
       ],
       "goldsReward": 40.0
     }
@@ -130,7 +132,10 @@
       "itemsReward": [
         213,
         214,
-        215
+        215,
+        906,
+        906,
+        1203
       ],
       "goldsReward": 60.0
     }
@@ -151,7 +156,8 @@
         901,
         903,
         406,
-        407
+        407,
+        408
       ],
       "goldsReward": 80.0
     }

@@ -1,7 +1,7 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-/external-files/saved-games/**
+/out
 
 
 ### IntelliJ IDEA ###

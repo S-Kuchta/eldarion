@@ -117,15 +117,16 @@ public class HeroSpellManager {
     }
 
     private void handleNonNumericChoice(String choice) {
-        if (choice.equals("X")) {
-            GameSettingsDB.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
-        } else if (choice.equals("Y")) {
-            GameSettingsDB.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
-        } else {
-            try {
-                levelChosen = LetterToNumberSpellLevel.valueOf(choice).getValue();
-            } catch (IllegalArgumentException e) {
-                PrintUtil.printEnterValidInput();
+        switch (choice) {
+            case "X" -> GameSettingsDB.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
+            case "Y" -> GameSettingsDB.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
+            case "Z" -> GameSettingsDB.setTrueOrFalse(GameSetting.SUMMONED_CREATURES_SPELL);
+            default -> {
+                try {
+                    levelChosen = LetterToNumberSpellLevel.valueOf(choice).getValue();
+                } catch (IllegalArgumentException e) {
+                    PrintUtil.printEnterValidInput();
+                }
             }
         }
     }
@@ -150,10 +151,13 @@ public class HeroSpellManager {
     }
 
     private void checkLearnedSpells(Hero hero) {
+        PrintUtil.printLongDivider();
+        PrintUtil.printMenuHeader(hero.getName() + " Learned Spells");
         for (Spell spell : hero.getCharacterSpellList()) {
             System.out.print("\t");
             SpellAndActionPrint.printSpellDescription(hero, null, spell);
             System.out.println();
         }
+        PrintUtil.printLongDivider();
     }
 }

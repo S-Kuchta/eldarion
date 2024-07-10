@@ -8,6 +8,7 @@ public enum GameSetting {
     PRINT_STRING_SLOWLY(false),
     HIDE_SPELLS_ON_COOL_DOWN(true),
     SHOW_INFORMATION_ABOUT_ACTION_NAME(false),
+    SUMMONED_CREATURES_SPELL(true),
     AUTO_SAVE(true);
 
     private final Boolean InitialValue;

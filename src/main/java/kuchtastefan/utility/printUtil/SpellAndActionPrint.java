@@ -7,6 +7,7 @@ import kuchtastefan.actions.actionsWithDuration.ActionWithAffectingAbility;
 import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.Hero;
+import kuchtastefan.character.npc.NonPlayerCharacter;
 import kuchtastefan.character.spell.Spell;
 import kuchtastefan.gameSettings.GameSetting;
 import kuchtastefan.gameSettings.GameSettingsDB;
@@ -16,7 +17,7 @@ import java.util.HashSet;
 
 public class SpellAndActionPrint {
 
-    public static void printSpellDescription(Hero hero, GameCharacter spellTarget, Spell spell) {
+    public static void printSpellDescription(GameCharacter gameCharacter, GameCharacter spellTarget, Spell spell) {
         System.out.print(ConsoleColor.MAGENTA + spell.getSpellName() + ConsoleColor.RESET
                 + " [Mana Cost: " + ConsoleColor.BLUE + spell.getSpellManaCost() + ConsoleColor.RESET + "]");
         if (spell.getTurnCoolDown() > 0) {
@@ -34,7 +35,10 @@ public class SpellAndActionPrint {
 
             System.out.println();
             System.out.print("\t\t");
-            action.printActionDescription(hero, spellTarget);
+            if (gameCharacter instanceof NonPlayerCharacter) {
+                System.out.print("  ");
+            }
+            action.printActionDescription(gameCharacter, spellTarget);
             String printChanceToPerform = action.getChanceToPerformAction() == 100 ? "" : " [" + action.getChanceToPerformAction() + "% chance to perform]";
             System.out.print(printChanceToPerform);
             if (action instanceof ActionWithDuration actionWithDuration) {

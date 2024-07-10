@@ -263,12 +263,11 @@ public class BattleService {
     }
 
     private boolean handleNonNumericChoice(String choice) {
-        if (choice.equals("X")) {
-            GameSettingsDB.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
-        } else if (choice.equals("Y")) {
-            GameSettingsDB.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
-        } else {
-            setSelectedEnemy(choice);
+        switch (choice) {
+            case "X" -> GameSettingsDB.setTrueOrFalse(GameSetting.SHOW_INFORMATION_ABOUT_ACTION_NAME);
+            case "Y" -> GameSettingsDB.setTrueOrFalse(GameSetting.HIDE_SPELLS_ON_COOL_DOWN);
+            case "Z" -> GameSettingsDB.setTrueOrFalse(GameSetting.SUMMONED_CREATURES_SPELL);
+            default -> setSelectedEnemy(choice);
         }
 
         return false;

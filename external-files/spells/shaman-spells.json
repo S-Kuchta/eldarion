@@ -143,16 +143,16 @@
         "actionName": "SUMMON_CREATURE",
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 601,
-        "summonedNpcId": 400
+        "chanceToPerformAction": 100,
+        "summonedNpcId": 601
       },
       {
         "type": "ActionSummonCreature",
         "actionName": "SUMMON_CREATURE",
         "baseActionValue": 0,
         "actionEffectOn": "SPELL_CASTER",
-        "chanceToPerformAction": 601,
-        "summonedNpcId": 400
+        "chanceToPerformAction": 100,
+        "summonedNpcId": 601
       }
     ],
     "spellLevel": 2,

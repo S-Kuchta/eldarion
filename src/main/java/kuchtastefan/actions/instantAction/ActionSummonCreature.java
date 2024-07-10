@@ -7,7 +7,11 @@ import kuchtastefan.actions.actionValue.ActionWithoutValue;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.npc.CharacterDB;
 import kuchtastefan.character.npc.NonPlayerCharacter;
+import kuchtastefan.character.spell.Spell;
+import kuchtastefan.gameSettings.GameSetting;
+import kuchtastefan.gameSettings.GameSettingsDB;
 import kuchtastefan.utility.ConsoleColor;
+import kuchtastefan.utility.printUtil.SpellAndActionPrint;
 import lombok.Getter;
 
 @Getter
@@ -37,7 +41,14 @@ public class ActionSummonCreature extends Action implements ActionWithoutValue {
 
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
-        System.out.print("Summon " + ConsoleColor.YELLOW + returnSummonedCharacter(spellCaster.getLevel()).getName() + ConsoleColor.RESET + " to fight on your side");
+        System.out.print("Summon " + ConsoleColor.YELLOW + returnSummonedCharacter(spellCaster.getLevel()).getName() + ConsoleColor.RESET + " to fight on your side\n");
+        if (GameSettingsDB.returnGameSettingValue(GameSetting.SUMMONED_CREATURES_SPELL)) {
+            for (Spell spell : returnSummonedCharacter(summonedNpcId).getCharacterSpellList()) {
+                System.out.print("\t\t ");
+                SpellAndActionPrint.printSpellDescription(returnSummonedCharacter(summonedNpcId), null, spell);
+                System.out.println();
+            }
+        }
     }
 
     @Override

@@ -20,6 +20,10 @@ public class GameSettingsPrint {
         System.out.print("\t");
         PrintUtil.printIndexAndText("Y", "Hide spells on CoolDown - ");
         printYesNoSelection(GameSettingsDB.returnGameSettingValue(GameSetting.HIDE_SPELLS_ON_COOL_DOWN));
+
+        System.out.print("\t");
+        PrintUtil.printIndexAndText("Z", "Hide summoned spells - ");
+        printYesNoSelection(GameSettingsDB.returnGameSettingValue(GameSetting.SUMMONED_CREATURES_SPELL));
     }
 
 }

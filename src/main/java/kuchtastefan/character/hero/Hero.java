@@ -3,7 +3,6 @@ package kuchtastefan.character.hero;
 import kuchtastefan.ability.Ability;
 import kuchtastefan.actions.ActionStatusEffect;
 import kuchtastefan.actions.actionsWithDuration.ActionWithDuration;
-import kuchtastefan.actions.actionsWithDuration.ActionWithDurationPerformedOnce;
 import kuchtastefan.character.CharacterClass;
 import kuchtastefan.character.GameCharacter;
 import kuchtastefan.character.hero.inventory.HeroInventoryManager;
@@ -38,7 +37,6 @@ public class Hero extends GameCharacter {
     private final HeroInventoryManager heroInventoryManager;
     private final ExperiencePointsService experiencePointsService;
     private final SaveGameEntities saveGameEntities;
-    private final Map<Integer, Spell> learnedSpells;
     private final EnemyKilled enemyKilled;
     private boolean inCombat;
 
@@ -55,7 +53,6 @@ public class Hero extends GameCharacter {
         this.heroGold = Constant.INITIAL_HERO_GOLD;
         this.experiencePoints = Constant.INITIAL_EXPERIENCE_POINT;
         this.saveGameEntities = new SaveGameEntities();
-        this.learnedSpells = new HashMap<>();
         this.inCombat = false;
         this.heroInventoryManager = new HeroInventoryManager(this);
     }

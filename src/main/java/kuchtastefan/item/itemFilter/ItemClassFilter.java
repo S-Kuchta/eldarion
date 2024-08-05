@@ -15,12 +15,13 @@ public class ItemClassFilter {
 
     private final List<Class<? extends Item>> itemClassList;
 
-    public ItemClassFilter() {
-        this.itemClassList = ItemClassList.allClassList();
-    }
-
     @SafeVarargs
     public ItemClassFilter(Class<? extends Item>... itemClass) {
+        if (itemClass.length == 0) {
+            this.itemClassList = ItemClassList.allClassList();
+            return;
+        }
+
         this.itemClassList = new ArrayList<>(List.of(itemClass));
     }
 

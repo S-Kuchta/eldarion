@@ -5,6 +5,7 @@ import kuchtastefan.character.npc.vendor.VendorCharacter;
 import kuchtastefan.item.Item;
 import kuchtastefan.item.specificItems.wearableItem.WearableItem;
 import kuchtastefan.item.specificItems.wearableItem.WearableItemType;
+import lombok.NoArgsConstructor;
 
 public class WearableItemVendorCharacter extends VendorCharacter implements SortVendorOffer {
 

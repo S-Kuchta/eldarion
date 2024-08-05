@@ -42,11 +42,6 @@ public class DiscoverLocationEvent extends Event {
                 hero.gainExperiencePoints(50);
                 break;
             }
-
-            if (location.getLocationLevel() > hero.getLevel()) {
-                System.out.println("\t--> You are too afraid to go closer to the location <--");
-                break;
-            }
         }
 
         return true;

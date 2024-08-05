@@ -16,9 +16,9 @@ public class WearableItemQualityFilter {
     private final List<WearableItemQuality> wearableItemQualities;
     private final boolean filterQualities;
 
-    public WearableItemQualityFilter() {
+    public WearableItemQualityFilter(boolean filterQualities) {
         this.wearableItemQualities = new ArrayList<>();
-        this.filterQualities = false;
+        this.filterQualities = filterQualities;
     }
 
     public WearableItemQualityFilter(WearableItemQuality... wearableItemQualities) {

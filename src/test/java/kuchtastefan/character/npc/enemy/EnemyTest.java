@@ -1,6 +1,8 @@
 package kuchtastefan.character.npc.enemy;
 
 import kuchtastefan.character.npc.CharacterDB;
+import kuchtastefan.item.ItemDB;
+import kuchtastefan.item.specificItems.consumeableItem.ConsumableItem;
 import kuchtastefan.service.FileService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

@@ -28,11 +28,6 @@ public class CharactersInvolvedInBattle {
                 this.tempCharacterList = tempCharacterList;
         }
 
-        public CharactersInvolvedInBattle(GameCharacter spellCaster, GameCharacter spellTarget) {
-                this.spellCaster = spellCaster;
-                this.spellTarget = spellTarget;
-        }
-
         public CharactersInvolvedInBattle(Hero hero) {
                 this.hero = hero;
                 this.spellCaster = hero;

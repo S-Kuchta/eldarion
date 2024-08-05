@@ -251,7 +251,7 @@ public class BattleService {
                 return hero.getHeroInventoryManager().selectItem(hero, inventoryMenuService, new ItemFilter(
                         new ItemClassFilter(ConsumableItem.class),
                         new ItemTypeFilter(ConsumableItemType.POTION),
-                        new ItemLevelFilter(hero.getLevel())));
+                        new ItemLevelFilter(1, hero.getLevel())));
             } else {
                 return hero.getCharacterSpellList().get(parsedChoice).useSpell(
                         new CharactersInvolvedInBattle(hero, this.playerTarget, enemyList, alliesList, tempCharacterList));

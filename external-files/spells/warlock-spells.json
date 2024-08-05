@@ -24,13 +24,13 @@
       {
         "type": "ActionDealDamage",
         "actionName": "DAMAGE",
-        "baseActionValue": 10,
+        "baseActionValue": 12,
         "actionEffectOn": "SPELL_TARGET",
         "chanceToPerformAction": 100
       }
     ],
     "spellLevel": 0,
-    "spellManaCost": 19,
+    "spellManaCost": 17,
     "turnCoolDown": 0
   },
   {
@@ -42,7 +42,7 @@
         "type": "ActionDealDamageOverTime",
         "actionName": "DAMAGE_OVER_TIME",
         "actionEffectOn": "SPELL_TARGET",
-        "baseActionValue": 5,
+        "baseActionValue": 6,
         "maxActionTurns": 3,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,

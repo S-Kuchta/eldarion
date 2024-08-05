@@ -27,14 +27,14 @@ public class ItemFilter {
         this.itemClassFilter = new ItemClassFilter();
         this.itemTypeFilter = new ItemTypeFilter(true);
         this.itemLevelFilter = new ItemLevelFilter(hero.getLevel());
-        this.wearableItemQualityFilter = new WearableItemQualityFilter();
+        this.wearableItemQualityFilter = new WearableItemQualityFilter(true);
     }
 
     public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter, ItemLevelFilter itemLevelFilter) {
         this.itemClassFilter = itemClassFilter;
         this.itemTypeFilter = itemTypeFilter;
         this.itemLevelFilter = itemLevelFilter;
-        this.wearableItemQualityFilter = new WearableItemQualityFilter();
+        this.wearableItemQualityFilter = new WearableItemQualityFilter(false);
     }
 
     public ItemFilter(ItemClassFilter itemClassFilter, ItemTypeFilter itemTypeFilter, ItemLevelFilter itemLevelFilter, WearableItemQualityFilter wearableItemQualityFilter) {
@@ -63,13 +63,11 @@ public class ItemFilter {
             return null;
         }
 
-        if (wearableItemQualityFilter.isFilterQualities()) {
-            if (item instanceof WearableItem wearableItem) {
+        if (item instanceof WearableItem wearableItem) {
+            if (wearableItemQualityFilter.isFilterQualities()) {
                 if (!wearableItemQualityFilter.containsQuality(wearableItem.getWearableItemQuality())) {
                     return null;
                 }
-            } else {
-                return null;
             }
         }
 

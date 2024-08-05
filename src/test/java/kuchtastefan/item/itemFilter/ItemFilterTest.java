@@ -74,10 +74,10 @@ class ItemFilterTest {
         WearableItemQuality quality = WearableItemQuality.BASIC;
 
         Item item = ItemDB.getRandomItem(new ItemFilter(
-                new ItemClassFilter(),
+                new ItemClassFilter(WearableItem.class),
                 new ItemTypeFilter(),
                 new ItemLevelFilter(),
-                new WearableItemQualityFilter(WearableItemQuality.BASIC)));
+                new WearableItemQualityFilter(quality)));
 
         assertEquals(quality, ((WearableItem) item).getWearableItemQuality());
     }

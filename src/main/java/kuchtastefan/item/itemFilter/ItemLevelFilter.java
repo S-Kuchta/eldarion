@@ -45,10 +45,6 @@ public class ItemLevelFilter {
         System.out.println();
     }
 
-    public void printLevelRange() {
-
-    }
-
     public void handleItemLevel(String choice, ItemFilter itemFilter) {
         if (itemFilter.isCanBeChanged()) {
             switch (choice) {

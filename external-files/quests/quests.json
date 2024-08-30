@@ -57,7 +57,7 @@
     "type": "Quest",
     "id": 3,
     "title": "Find the Lost Book",
-    "description": "Your journey begins as you embark into the heart of Evergreen Forest. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
+    "description": "Your journey begins as you embark into the heart of SilverWood Glade. Your task is to find the Lost Book of Elders, hidden within the Tower of Damned. Be wary, for the forest is teeming with mystical creatures and hidden dangers.",
     "level": 2,
     "instantTurnIn": false,
     "objectivesIds": [

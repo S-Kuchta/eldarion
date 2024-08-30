@@ -187,7 +187,7 @@ public abstract class GameCharacter {
 
     public void decreaseEffectiveAbilityValue(int valueOfLower, Ability ability) {
         int currentAbility = getEffectiveAbilityValue(ability);
-        this.effectiveAbilities.put(ability, Math.max(currentAbility - valueOfLower, 0));
+        this.effectiveAbilities.put(ability, Math.max(currentAbility - valueOfLower, 1));
     }
 
     public int getEffectiveAbilityValue(Ability ability) {

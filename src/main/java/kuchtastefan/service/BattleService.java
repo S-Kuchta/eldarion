@@ -205,7 +205,7 @@ public class BattleService {
     }
 
     private void sortCharactersByHaste(List<GameCharacter> characters) {
-        characters.sort(Comparator.comparingInt(character -> -character.getEffectiveAbilityValue(Ability.HASTE)));
+        characters.sort(Comparator.comparingInt(character -> character.getEffectiveAbilityValue(Ability.HASTE)));
     }
 
     private void npcPrintHeader(GameCharacter gameCharacter) {

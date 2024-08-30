@@ -61,8 +61,8 @@ public class LocationDB {
             location.setLocationStatus(heroLocation.getLocationStatus());
 
             for (HeroLocationStage heroLocationStage : heroLocation.getStages().values()) {
-                location.getLocationStage(heroLocationStage.order()).setStageStatus(heroLocationStage.stageStatus());
-                location.getLocationStage(heroLocationStage.order()).setStageName(heroLocationStage.stageName());
+                location.getLocationStage(heroLocationStage.locationStageId()).setStageStatus(heroLocationStage.stageStatus());
+                location.getLocationStage(heroLocationStage.locationStageId()).setStageName(heroLocationStage.stageName());
             }
         }
     }

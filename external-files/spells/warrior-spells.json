@@ -158,7 +158,7 @@
         "maxActionTurns": 2,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,
-        "ability": "HASTE",
+        "ability": "RESIST_DAMAGE",
         "actionStatusEffect": "DEBUFF"
       },
       {
@@ -226,7 +226,7 @@
         "type": "ActionIncreaseAbilityPoint",
         "actionName": "INCREASE_ABILITY_POINTS",
         "actionEffectOn": "SPELL_CASTER",
-        "baseActionValue": 100,
+        "baseActionValue": 5,
         "maxActionTurns": 4,
         "actionMaxStacks": 1,
         "chanceToPerformAction": 100,

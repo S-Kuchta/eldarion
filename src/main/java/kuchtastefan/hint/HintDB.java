@@ -23,7 +23,9 @@ public class HintDB {
                 \tHello, my name is Stefan, and I am creator of this game.
                 \tI will guide you through the game for a short time.
                 \tIf you find the slow text print bothersome, you can disable it in the game settings.
-                \tI hope you will enjoy the game! Good luck with exploring the world of Eldarion!"""));
+                \tFor better game experience I recommend you to maximize the console window.
+                \tI hope you will enjoy the game! Good luck with exploring the world of Eldarion!
+                \tIf you have any questions, feel free to ask me!"""));
 
         HINT_DB.put(HintName.QUEST_HINT, new Hint("""
                 \tThroughout the game, you will be completing quests. For each completed quest, you will receive a reward.

@@ -193,7 +193,7 @@ public class Hero extends GameCharacter {
      */
     public void gainExperiencePoints(double experiencePointsGained) {
 
-        if (this.level < Constant.MAX_LEVEL) {
+        if (this.level <= Constant.MAX_LEVEL) {
             this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
             this.experiencePoints += experiencePointsGained;
 
@@ -208,6 +208,7 @@ public class Hero extends GameCharacter {
                 this.experiencePoints -= this.experiencePointsService.getNeededExperiencePointsForNewLevel();
                 this.experiencePointsService.setNeededExperiencePointsForNewLevel(this.level);
                 VendorCharacterDB.setRandomCurrentVendorCharacterItemListId(this.level);
+                this.rest();
             }
 
             if (experiencePointsGained > 0) {

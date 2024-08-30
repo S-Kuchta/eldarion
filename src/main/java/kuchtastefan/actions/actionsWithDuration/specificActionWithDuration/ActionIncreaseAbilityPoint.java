@@ -41,7 +41,8 @@ public class ActionIncreaseAbilityPoint extends ActionWithDurationPerformedOnce 
     @Override
     public void printActionDescription(GameCharacter spellCaster, GameCharacter spellTarget) {
         System.out.print("Increase " + this.returnTargetName(spellCaster, spellTarget) + " " + this.ability.toString()
-                + " by " + ConsoleColor.GREEN + this.returnActionValueRange(spellCaster).getOnlyValue() + ConsoleColor.RESET);
+                + " by " + ConsoleColor.GREEN + this.returnActionValueRange(spellCaster).getOnlyValue() + ConsoleColor.RESET
+                + " for " + this.getMaxActionTurns() + " turns");
     }
 
     @Override

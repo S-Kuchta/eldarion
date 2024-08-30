@@ -3,7 +3,7 @@ A Street of Code Java Tutorial Assignment.<br>
 
 > [!IMPORTANT]
 > ## Actual game status
-> - I am doing my maximum :slightly_smiling_face:
+> - Alpha ready to play! :slightly_smiling_face:
 
 # How to Run the Project
 1.	Clone the git repository with your IDE - https://github.com/S-Kuchta/gladiatus.git<br>

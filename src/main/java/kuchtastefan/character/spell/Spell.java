@@ -56,7 +56,7 @@ public class Spell {
         GameCharacter spellCaster = charactersInvolvedInBattle.getSpellCaster();
         GameCharacter spellTarget = charactersInvolvedInBattle.getSpellTarget();
 
-        if (this.isCanSpellBeCasted() && spellCaster.getEffectiveAbilityValue(Ability.MANA) >= this.getSpellManaCost()) {
+        if (this.isCanSpellBeCasted() && haveEnoughMana(spellCaster)) {
 
             System.out.println("\t" + spellCaster.getName() + " use " + this.getSpellName());
             if (isAttackSuccessful(spellCaster, spellTarget)) {
@@ -72,7 +72,7 @@ public class Spell {
 
             return true;
         } else {
-            if (spellCaster.getEffectiveAbilityValue(Ability.MANA) < this.getSpellManaCost()) {
+            if (!haveEnoughMana(spellCaster)) {
                 System.out.println(ConsoleColor.RED + "\tYou do not have enough Mana to perform this ability!" + ConsoleColor.RESET);
             } else {
                 System.out.println(ConsoleColor.RED + "\tYou can not cast " + this.getSpellName() + ". Spell is on coolDown! (You have to wait "
@@ -116,6 +116,10 @@ public class Spell {
 
     public String getSpellName() {
         return ConsoleColor.MAGENTA + spellName + ConsoleColor.RESET;
+    }
+
+    public boolean haveEnoughMana(GameCharacter spellCaster) {
+        return spellCaster.getEffectiveAbilityValue(Ability.MANA) >= this.getSpellManaCost();
     }
 
 }

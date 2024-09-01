@@ -358,7 +358,7 @@ public class BattleService {
         Spell spellToCast = spellCaster.getCharacterSpellList().getFirst();
 
         spellCaster.getCharacterSpellList().forEach(spell -> {
-            if (spell.isCanSpellBeCasted()) {
+            if (spell.isCanSpellBeCasted() && spell.haveEnoughMana(spellCaster)) {
                 spells.put(spell, 0);
             }
         });

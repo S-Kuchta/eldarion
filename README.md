@@ -6,7 +6,7 @@ A Street of Code Java Tutorial Assignment.<br>
 > - Alpha ready to play! :slightly_smiling_face:
 
 # How to Run the Project
-1.	Clone the git repository with your IDE - https://github.com/S-Kuchta/gladiatus.git<br>
+1.	Clone the git repository with your IDE - https://github.com/S-Kuchta/eldarion.git<br>
   or
 2.	Download the zip and open it in your IDE.
 3.	Run Main.class in src/main/java/.
